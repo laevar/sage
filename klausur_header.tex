@@ -1,0 +1,113 @@
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+%\usepackage{latexsym}
+\usepackage{theorem}
+
+
+\usepackage{fontspec,xunicode,xltxtra}
+\usepackage[ngerman]{babel}
+\selectlanguage{ngerman}
+
+
+\usepackage[svgnames]{xcolor} %color definitions
+%\usepackage{tikz}
+%\usetikzlibrary{shadows}
+%\usetikzlibrary{fit}
+%\usetikzlibrary{shapes}
+%\usetikzlibrary{backgrounds}
+
+\usepackage{cellspace}
+\setlength{\cellspacetoplimit}{8pt}
+\setlength{\cellspacebottomlimit}{8pt}
+
+\usepackage{mcode}
+%\usepackage{pstricks,pst-node,pst-text,pst-3d}
+\parindent0cm % Abs�tze nicht einr�cken 
+
+%---- neue Umgebung f�r Aufgaben
+\theoremstyle{break}
+\theoremheaderfont{\Large \bf}
+\theorembodyfont{\normalfont}
+
+
+% Definieren einer neuen Farbe
+\definecolor{light-gray}{gray}{.9}
+
+\newcounter{zaehler}     % neuen Z�hler einf�hren
+\stepcounter{zaehler}    % Z�hler einen hochz�hlen
+
+\newenvironment{aufg}[1]
+%---- Header
+{\begin{samepage}%
+\colorbox{light-gray}{%                         % Box in gray
+ \makebox[\textwidth]{%                           % Box in linewidth
+\textbf{Aufgabe \arabic{zaehler} } }\hspace{-\textwidth}\makebox[\textwidth]{\hfill #1 Punkte} }\\[0.1cm]       % Header
+\begin{minipage}{\textwidth}}
+%-----  foot
+{\end{minipage} \nopagebreak %\begin{minipage}{1cm} \end{minipage}
+\\[0.1cm] 
+%\begin{minipage}{0.1cm} \end{minipage} 
+%\hrulefill \begin{minipage}{1cm} \end{minipage}\\[1cm]  
+\stepcounter{zaehler}                           % increase counter
+ \end{samepage}%
+}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+%--------------------------------------------------- Header
+\begin{center}
+\textbf{\LARGE Einf\"uhrung in MATLAB }\\
+\end{center}
+\begin{minipage}{6cm}
+Dr. J. Schulz
+\end{minipage}\hfill
+\begin{minipage}{4cm}
+%\textbf{Klausur}\\
+%30.07.2007
+18.09.2009
+\end{minipage}\\[1cm]
+%------------------------------
+
+\begin{center}
+\Huge \textbf{Klausur}
+\end{center}
+\bigskip\bigskip\bigskip
+\Large
+\begin{center}
+\begin{tabular}{|Sl||p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}||p{1cm}|}
+\hline
+Aufgabe & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10   & 11 & $\sum$ \\
+\hline
+Punkte &    &   &   &   &   &   &   &   &   &    &  &    \\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip\bigskip\bigskip
+Bitte eintragen:\\
+\begin{center}
+\begin{tabular}{|Sl|p{8cm}|}
+\hline
+Nachname: & \\
+\hline
+Vorname: & \\
+\hline
+Studiengang: & \\
+\hline 
+Semester: & \\
+\hline 
+Immatrikulationsnummer: & \\
+\hline
+\end{tabular}\\[1cm]
+\textbf{Hinweise:}
+\begin{itemize}
+\item Die Klausur beginnt um 10.00 Uhr und endet um 12.00 Uhr.
+\item Ben\"otigte Hilfsmittel sind Stift und Papier.
+\item Erlaubte Hilfsmittel sind gedruckte sowie handgeschriebene Notizen oder Skripte. 
+\end{itemize}
+\end{center}
+
+\newpage
+\normalsize

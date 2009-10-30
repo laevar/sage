@@ -1,0 +1,192 @@
+\mode<article>
+{
+  \usepackage{fullpage}
+  \usepackage{pgf}
+  \usepackage[xetex]{hyperref}
+  \setjobnamebeamerversion{beamer}
+}
+
+\mode<presentation>
+{
+  %\usetheme{Frankfurt}
+ %\usetheme{My}
+  \usetheme{Madrid}
+  % or ...
+%\usecolortheme{seagull}
+  %\setbeamercovered{transparent}
+  %\setbeamercovered{dynamic}
+  % or whatever (possibly just delete it)
+}
+\usenavigationsymbolstemplate{}
+\usefonttheme{structurebold}
+\usepackage{multimedia}
+%\usepackage{tikz}
+\usepackage{fontspec,xunicode,xltxtra}
+
+%\usepackage{polyglossia}
+%\setdefaultlanguage[spelling=new, latesthyphen=true]{german}
+%\setsansfont{DejaVu Sans}
+%\setsansfont{Verdana}
+%\setsansfont{Arial}
+%\setromanfont{Linux Libertine O}
+%\setsansfont{Linux Biolinum O}
+
+\setbeamertemplate{footline}
+{
+\leavevmode
+%\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,
+%leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,
+%rightskip=.3cm plus1fil]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle\hfill
+
+\hfill\insertframenumber  \hspace{3pt}
+
+%\inserttotalframenumber
+%\hspace*{2ex}
+%  \end{beamercolorbox}}%
+  \vskip3pt%
+}
+
+%\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
+\selectlanguage{ngerman}
+
+%
+% math/symbols
+%
+\usepackage{amssymb}
+\usepackage{amsthm}
+% \usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage{listings}
+\usepackage[framed]{mcode}
+%\usepackage{mcode}
+
+\usepackage{mydef}
+%\usepackage{cmap} % you can search in the pdf for umlauts and ligatures
+%\usepackage{colonequals} %corrects the definition-symbols \colonequals (besides others)
+\title{Einführung in Matlab}
+%
+%\subtitle{Disputation} % (optional)
+
+\author{Jochen Schulz}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute{Georg-August Universit\"at G\"ottingen \pgfimage[height=0.5cm]{../figures/unilogo3}}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{\today}
+
+\subject{Sage}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+%\logo{\pgfimage[height=0.5cm]{figures/unilogo3}}
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>
+%     \frametitle{Aufbau}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Aufbau}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Aufbau}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+%%%%%%%%%%%%%%%%%% Fuer Frames [fragile]-Option verwenden!
+%Programm-Listing
+%%%%%%%%%%%%%%%%%%
+%Listingsumgebung fuer verbatim
+%Grauhinterlegeter Text
+%Automatischer Zeilenumbruch ist aktiviert
+%Alles zwischen $ .. $ wird im Latex-Mathe-Modus gesetzt
+%Den Dollar macht man mit $\text{\dollar}$
+\usepackage{listings}
+\definecolor{lgray}{gray}{0.80}
+%\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
+\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true}}{}
+
+\newcommand{\dollar}{\$}
+
+%%%%%%%%%%%%%%%%
+%Mathematisches
+%%%%%%%%%%%%%%%%
+%Diagramme mit Taylor-Packet (ist nicht in tetex enthalten!)
+%\usepackage[size=2em,nohug]{diagrams} 
+
+%%%%%%%%%%%%%%%%
+%Mathematisches
+%%%%%%%%%%%%%%%%
+
+\usepackage{amssymb}		
+ %mathfrak+amsfonts+spezielle Symbole
+
+\usepackage{amsxtra}		
+ %Weitere Extrasymbole
+
+
+\usepackage{empheq}		
+ %Gleichungen hervorheben
+
+\usepackage{bm}                 
+ %\bm{A} Boldface im Mathemodus
+
+%%%%%%%%%%%%%%%%%%%
+%Neue Definitionen
+%%%%%%%%%%%%%%%%%%%
+
+%Newcommands
+\newcommand{\Fun}[1]{\mathcal{#1}}      %Mathcal fuer Funktoren
+\newcommand{\field}[1]{\mathbb{#1}}     %Grundkoerper ?? in mathds
+
+\newcommand{\A}{\field{A}}              %Affines A
+\newcommand{\C}{\field{C}}              %Complexes C
+\newcommand{\Fp}{\field{F}_{\!p}}       %Endlicher Koerper mit p Elementen
+\newcommand{\Fq}{\field{F}_{\!q}}       %Endlicher Koerper mit q Elementen
+\newcommand{\Ga}{\field{G}_{a}}         %Add Gruppenschema
+\newcommand{\K}{\field{K}}              %Generischer Koerper 
+\newcommand{\N}{\field{N}}              %Nat Zahlen
+\newcommand{\Pj}{\field{P}}             %Projektives P
+\newcommand{\R}{\field{R}} 		%Reelle Zahlen
+\newcommand{\Q}{\field{Q}}              %Rationale Zahlen  
+\newcommand{\Qt}{\field{H}}             %Quaternionen 
+\newcommand{\V}{\field{V}}              %Vektorbuendel V
+\newcommand{\Z}{\field{Z}}              %Ganze Zahlen
+
+\newcommand{\fdg}{\;|\;}                 %fuer die gilt
+
+%Operatoren
+\DeclareMathOperator{\Abb}{Abb}
+
+
+\begin{document}
+\lstset{basicstyle={\lstbasicfont\footnotesize}}
+

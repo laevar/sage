@@ -1,0 +1,280 @@
+\documentclass[12pt,a4paper,ngerman]{article}
+
+\usepackage{babel}
+ %Silbentrennung, etc.
+
+\usepackage[utf8]{inputenc} 
+ %Inputencoding 
+ % Konvertieren von latin1 mit iconv -f latin1 -t utf8 -o outputfile inputfile
+
+\usepackage[T1]{fontenc}
+ %Fontencoding (Wird auch von fourier geladen)
+
+\usepackage{microtype} 
+ %Fewer Overfull/Underfull boxes
+
+\usepackage{pbsi}
+ %\textbsi{} Schreibschrift dick 
+
+\usepackage{calligra}
+ %\textcalligra{} Schreibschrift duenn
+ 
+\usepackage{graphicx} 
+ %Graphiken
+
+\usepackage{color}
+ %Farbe
+
+\usepackage{float}
+ %Definiert H (genau hier) bei figure-Umgebungen (Vor hyperref platzieren!)
+
+\usepackage[pdftex,hyperindex,colorlinks,bookmarks=false]{hyperref}
+ %Hyperlinks mit index und farbigen links
+ 
+%\usepackage[draft]{hyperref}
+ %Alternative Draft-Version fuer Ausdruck
+
+%%%%%%%%%%%%%%%%%
+%Editorelle Hilfen
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%
+%Programm-Listings
+%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+ %Listingsumgebung fuer verbatim
+ %Grauhinterlegeter Text
+ %Automatischer Zeilenumbruch ist aktiviert
+ %Alles zwischen $ .. $ wird im Latex-Mathe-Modus gesetzt
+ %Den Dollar macht man mit $\text{\dollar}$
+ \definecolor{lgray}{gray}{0.80}
+ %\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
+ \lstnewenvironment{mupad}{\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily,
+ breaklines=true,mathescape =true}}{}
+
+%%%%%%%%%%%%%%%%
+%Mathematisches
+%%%%%%%%%%%%%%%%
+\usepackage[leqno]{amsmath}	
+ %Labels werden links gesetzt; amsbsy+amsopn+amstext
+
+\usepackage{amssymb}		
+ %mathfrak+amsfonts+spezielle Symbole
+
+\usepackage{amsxtra}		
+ %Weitere Extrasymbole
+
+\usepackage[thmmarks,hyperref,amsmath]{ntheorem}
+ %Theoremstyles (alternativ zu amsthm)
+
+\usepackage[ntheorem]{empheq}		
+ %Gleichungen hervorheben
+
+\usepackage{bm}                 
+ %\bm{A} Boldface im Mathemodus
+
+\let\mathscr\mathcal %Wegen Kompabilitaet mit alten Files
+
+% Suppress fonts information of fourier I
+\makeatletter
+  \let\my@@font@warning\@font@warning
+  \let\@font@warning\@font@info
+\makeatother
+
+\usepackage{fourier}
+ %Fouierpacket
+
+% Suppress fonts information of fourier II
+\makeatletter
+  \let\@font@warning\my@@font@warning
+\makeatother
+
+ \usepackage{enumerate}
+ %Verbesserte Enumerate-Umgebung
+ 
+\usepackage{array}
+\usepackage{eqnarray}
+ %Verbesserte Tabellen- und Equation-Umgebung
+
+\usepackage{longtable}
+ %Tabellen ueber mehrere Seiten
+
+\usepackage{diagrams}
+ %Diagrammstyle von Paul Taylor. Ist nicht in texlive enthalten
+ %Ins aktuelle Verzeichnis kopieren oder in den tex-Pfad
+ %Zum Download siehe http://www.monad.me.uk/
+
+
+%%%%%%%%%%%%%%%%%%%
+%Theoremstyles
+%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{break}
+\newtheorem{Theorem}{Theorem}[section]
+\newtheorem{Satz}[Theorem]{Satz}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Korollar}[Theorem]{Korollar}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem{Folgerung}[Theorem]{Folgerung}
+\newtheorem{Behauptung}[Theorem]{Behauptung}
+
+\theorembodyfont{\normalfont}
+\newtheorem{Beispiel}[Theorem]{Beispiel}
+\newtheorem{Beispiele}[Theorem]{Beispiele}
+\newtheorem{Bemerkung}[Theorem]{Bemerkung}
+\newtheorem{Anmerkung}[Theorem]{Anmerkung}
+\newtheorem{Hinweis}[Theorem]{Hinweis}
+\newtheorem{Aufgabe}{Aufgabe}
+\newtheorem{Eigenschaften}[Theorem]{Eigenschaften}
+
+
+\theoremstyle{nonumberplain}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{_\Box}}
+\newtheorem{Beweis}{Beweis}
+
+%%%%%%%%%%%%%%%%%%%
+%Newcommands
+%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Fun}[1]{\mathcal{#1}}      %Mathcal fuer Funktoren
+\newcommand{\field}[1]{\mathbb{#1}}     %Koerper ?? in mathds
+
+\newcommand{\A}{\field{A}}              %Affines A
+\newcommand{\C}{\field{C}}              %Complexes C
+\newcommand{\Fp}{\field{F}_{\!p}}       %Endlicher Koerper mit p Elementen
+\newcommand{\Fq}{\field{F}_{\!q}}       %Endlicher Koerper mit q Elementen
+\newcommand{\Ga}{\field{G}_{a}}         %Add Gruppenschema
+\newcommand{\K}{\field{K}}              %Generischer Koerper 
+\newcommand{\N}{\field{N}}              %Nat Zahlen
+\newcommand{\Pj}{\field{P}}             %Projektives P
+\newcommand{\R}{\field{R}} 		%Reelle Zahlen
+\newcommand{\Q}{\field{Q}}              %Rationale Zahlen  
+\newcommand{\Qt}{\field{H}}             %Quaternionen 
+\newcommand{\V}{\field{V}}              %Vektorbuendel V
+\newcommand{\Z}{\field{Z}}              %Ganze Zahlen
+
+\newcommand{\fdg}{\;|\;}                 %fuer die gilt
+
+%Fuer Dollar in verbatim
+\newcommand{\dollar}{\$}
+
+%%%%%%%%%%%%%%%%%%%
+%Operatoren
+%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Abb}{Abb}
+
+%Trennhilfen
+\hyphenation{pa-ral-le-len}
+
+%%%%%%%%
+%Layout
+%%%%%%%%
+
+%Absatzeinzug (alternativ \usepackage{parskip}) 
+\setlength{\parindent}{0cm} 
+
+%Zusatzabstand zwischen Absaetzen
+\setlength{\parskip}{0cm} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\pagestyle{empty}
+\begin{center}
+{\LARGE \bf Mathematische Anwendersysteme }\\
+{\LARGE \bf Einführung in MuPAD}\\\medskip
+WS 2008/09
+\end{center}
+\bigskip
+\begin{minipage}{6cm}
+Stefan Wiedmann,\\
+Jochen Schulz
+\end{minipage} \hfill 
+\begin{minipage}{2cm}
+{\bf Blatt 1}\\
+16.02.2009
+\end{minipage}
+\bigskip
+%-----------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------
+\begin{Aufgabe}
+ Führen Sie eine Kurvendiskussion durch für die Funktion
+\[  f: x \quad \mapsto \quad \exp(1/x)+\frac{1}{4}x\exp(1/x)\]
+\begin{itemize}
+\item Untersuchen Sie das Verhalten von $f$ bei eventuellen Polstellen.
+\item Untersuchen Sei das Verhalten von $f$ für $x\rTo \pm \infty$.
+\item Berechnen Sie Nullstellen, Extremstellen und
+  Wendepunkte. Überlegen Sie sich, ob lokale/globale Maxima oder Minima an den
+  Extremstellen vorliegen und geben Sie sie an. 
+\item Plotten Sie den Graphen  auf dem Intervall $[-5,10]$.
+\end{itemize}
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+\begin{Aufgabe}
+Definieren Sie die Funktion 
+\[ f(s):= \int_0^\infty x^{s-1} e^{-x} dx, \quad s >0 \]
+und berechnen Sie $f(1), f(2), \dots ,f(10)$. \newline
+Erkennen Sie einen
+Zusammenhang zu einer klassischen Funktion? Berechnen Sie $\left( 8
+f(2) f(5/2)/f(4) \right)^2$!
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+\begin{Aufgabe}
+Versuchen  Sie, die folgenden Grenzwerte zu erraten, und
+  berechnen Sie sie dann
+\[ \lim_{x \rightarrow \infty} \left( 1 + \frac{a}{x} \right)^x, \quad 
+\lim_{x \rightarrow 0} x\sin(\frac{1}{x}) , \quad \lim_{x \rightarrow
+  0} \sin(\frac{1}{x}).\]
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+
+\begin{Aufgabe}
+Bestimmen Sie die folgenden unbestimmten Integrale
+\[  \int \frac{x}{ \sqrt{(2ax-x^2)^3}} dx, \qquad \int \frac{1}{x
+    \sqrt{1+x^2}} dx. \]
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+
+\begin{Aufgabe}
+Zeigen Sie mit MuPAD die Identität
+\[ \sqrt{ 14 + 3 \sqrt{ 3+ 2 \sqrt{ 5 - 12 \sqrt{ 3-2 \sqrt{2}} } } }
+=\sqrt{2} +3. \]
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+
+\begin{Aufgabe}
+Faktorisieren Sie $2x^2-2a^2-x^3-2x^4+x^5+a^2x+2a^2x^2-a^2x^3$.
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+
+\begin{Aufgabe}
+Zeichnen und berechnen Sie den Schnittpunkt der Ebene 
+\[ E: \vec{x}= 
+\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
+\left ( \begin{array}{c}  1 \\ -1 \\ 1 \end{array} \right) +m
+\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right), \quad l,m
+\in \mathbb{R}
+\]
+mit der Geraden 
+\[
+g: \vec{x}=
+\left ( \begin{array}{c}  3 \\ 4 \\ 5 \end{array} \right) +k
+\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right), \quad k \in \mathbb{R}.
+\]
+\end{Aufgabe}
+%-----------------------------------------------------------------------------------
+
+\begin{Aufgabe}
+Bestimmen Sie die Menge der natürlichen Zahlen $\leq 10000$, die $3$,
+$2$ und $14$ als Teiler besitzen. Wie viele sind es?
+
+Benutzen Sie dazu die Funktion $\verb+a mod b+$, die den Rest der Division
+von $a$ durch $b$ berechnet.  
+\end{Aufgabe}
+
+
+\end{document}
+

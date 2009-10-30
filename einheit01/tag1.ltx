@@ -1,0 +1,1026 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+% \documentclass[handout,hyperref={pdfpagelabels=false}]{beamer}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+
+\setbeamercovered{transparent}
+%Ausblendungen transparent
+
+\beamertemplatenavigationsymbolsempty
+%Navigationssymbole abschalten
+
+
+\usetheme{Madrid}
+%Beamer-Thema
+
+
+\usepackage[T1]{fontenc}
+%Fontencoding
+
+
+\usepackage{lmodern}
+\usepackage{ae,aecompl}
+%CM-Fonts in T1-Codierung
+
+
+\usepackage{microtype} 
+%Fewer Overfull/Underfull boxes
+
+
+\usepackage[ngerman]{babel} 
+%Deutsche Silbentrennung, etc.
+
+\usepackage[utf8]{inputenc} 
+%Deutsche Umlaute im Quellext
+
+
+
+%Verbesserte Enumerate-Umgebung
+\usepackage{enumerate}
+
+%Verbesserte Tabellen- und Equation-Umgebung
+\usepackage{array}
+\usepackage{eqnarray}
+
+%Verbesserte Tabellen
+\usepackage{longtable}
+
+%PDF-Seiten einbinden
+\usepackage{pdfpages}
+
+
+%%%%%%%%%%%%%%%%%% Fuer Frames [fragile]-Option verwenden!
+%Programm-Listing
+%%%%%%%%%%%%%%%%%%
+%Listingsumgebung fuer verbatim
+%Grauhinterlegeter Text
+%Automatischer Zeilenumbruch ist aktiviert
+%Alles zwischen $ .. $ wird im Latex-Mathe-Modus gesetzt
+%Den Dollar macht man mit $\text{\dollar}$
+\usepackage{listings}
+\definecolor{lgray}{gray}{0.80}
+%\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
+\lstnewenvironment{mupad}{\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true}}{}
+
+\newcommand{\dollar}{\$}
+
+%%%%%%%%%%%%%%%%
+%Mathematisches
+%%%%%%%%%%%%%%%%
+%Diagramme mit Taylor-Packet (ist nicht in tetex enthalten!)
+\usepackage[size=2em,nohug]{diagrams} 
+
+%%%%%%%%%%%%%%%%
+%Mathematisches
+%%%%%%%%%%%%%%%%
+
+\usepackage{amssymb}		
+ %mathfrak+amsfonts+spezielle Symbole
+
+\usepackage{amsxtra}		
+ %Weitere Extrasymbole
+
+
+\usepackage{empheq}		
+ %Gleichungen hervorheben
+
+\usepackage{bm}                 
+ %\bm{A} Boldface im Mathemodus
+
+%%%%%%%%%%%%%%%%%%%
+%Neue Definitionen
+%%%%%%%%%%%%%%%%%%%
+
+%Newcommands
+\newcommand{\Fun}[1]{\mathcal{#1}}      %Mathcal fuer Funktoren
+\newcommand{\field}[1]{\mathbb{#1}}     %Grundkoerper ?? in mathds
+
+\newcommand{\A}{\field{A}}              %Affines A
+\newcommand{\C}{\field{C}}              %Complexes C
+\newcommand{\Fp}{\field{F}_{\!p}}       %Endlicher Koerper mit p Elementen
+\newcommand{\Fq}{\field{F}_{\!q}}       %Endlicher Koerper mit q Elementen
+\newcommand{\Ga}{\field{G}_{a}}         %Add Gruppenschema
+\newcommand{\K}{\field{K}}              %Generischer Koerper 
+\newcommand{\N}{\field{N}}              %Nat Zahlen
+\newcommand{\Pj}{\field{P}}             %Projektives P
+\newcommand{\R}{\field{R}} 		%Reelle Zahlen
+\newcommand{\Q}{\field{Q}}              %Rationale Zahlen  
+\newcommand{\Qt}{\field{H}}             %Quaternionen 
+\newcommand{\V}{\field{V}}              %Vektorbuendel V
+\newcommand{\Z}{\field{Z}}              %Ganze Zahlen
+
+\newcommand{\fdg}{\;|\;}                 %fuer die gilt
+
+%Operatoren
+\DeclareMathOperator{\Abb}{Abb}
+
+%%%%%%%%%%%
+%Titelseite
+%%%%%%%%%%%
+\title[Vorlesung Tag1]{Vorlesung MuPAD\\
+Tag 1 \\ 
+Aufbau von MuPAD\\ 
+Streifzug durch MuPAD}
+\author{Stefan Wiedmann}
+\date{16.01.2009}
+\institute[Göttingen]{
+  Mathematisches Institut
+  Universität Göttingen}
+\titlegraphic{\includegraphics[scale=0.05]{matheinst.jpg}}
+
+
+
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Organisatorisches}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Organisatorisches}
+\begin{itemize}
+\item Anmeldungen zu der Veranstaltung über StudIP \\
+      \url{https://www.studip.uni-goettingen.de/}
+
+{\color{blue}{Einführung in MuPAD (Mathematische Anwendersysteme) (WS 2008/09)}}
+\item Alle Unterlagen können von der  StudIP-Seite (Reiter Dateien) heruntergeladen werden 
+\pause
+\item Dozent: Stefan Wiedmann \texttt{wiedmann@uni-math.gwdg.de}
+\item Büro: Zi. 006 (Erdgescho{\ss}), MI
+\item Telefon: 39-7754
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Accounts}
+\begin{itemize}
+\item MuPAD ist in Version 4.0 auf allen Rechnern der Mathematischen Fakultät installiert
+\item Kiosk-System im Übungssaal und im Computerraum -- kein Login aber auch keine Speicherung von eigenen Dateien
+\item Accounts im CIP-Pools der Mathematischen Fakultät:
+\begin{itemize}
+\item Mit \alert{Stud.it-Account}: Formular unter \url{https://xldap.uni-math.gwdg.de/register.php} ausfüllen
+\item Ohne \alert{Stud.it-Account}: An Herrn Jochen Schulz wenden
+\end{itemize}
+\item Mit Account: Möglichkeit via {\color{blue}ssh} in der Shell mupad zu starten:
+
+\texttt{ssh -X username@l1.num.math.uni-goettingen.de}
+
+\texttt{ssh -X username@s1.math.uni-goettingen.de}
+\item Alternative Rechner: \texttt{l2 -- l14}, bzw. \texttt{s2 -- s6}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Unterlagen}
+\begin{itemize}
+\item {Aufgabenblätter:} {\color{blue}StudIP}
+\item {Folien zur Vorlesung}: {\color{blue}StudIP}
+\item {Folien der Vorlesung zum Ausdrucken}: {\color{blue}StudIP}
+\item {Notebooks zur Vorlesung}: {\color{blue}StudIP}
+\item {MuPAD Buch:} Preis: 19.95 Euro,\\
+{Rapin, Wassong, Wiedmann, Koospal:
+
+ MuPAD - Eine Einführung, 
+
+Springer 2007, ISBN 978-3-540-73475-8}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ablauf der Veranstaltung}
+\begin{itemize}
+\item Blockveranstaltung vom  16.2.-27.2.2008
+\item Vorlesung: 9.15 Uhr bis 11.30 Uhr
+\item Nachmittags: 4 Übungsgruppen \`a je 1h 15min
+\begin{itemize}
+\item 13:00-14:15 (Tutor: Schulz)	
+\item 14:15-15:30 (Tutor: Wiedmann)
+\item 15:30-16:45 (Tutor: Schulz)
+\item 16:45-18:00 (Tutor: Wiedmann)
+\end{itemize}
+
+\item Scheinerwerb
+\begin{itemize}
+\item Regelmäßige Teilnahme an den Übungen
+\item Vorführen von Aufgaben
+\item Klausur am 27.2.2009; 9:15 -- 10:45; Anmeldung über FlexNow!
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]{Inhalt der Vorlesung}
+\begin{description}
+ \item[1. Tag]Organisatorisches, Aufbau von MuPAD, Streifzug durch MuPAD
+\item [2. Tag]Grundlagen MuPAD (grundlegende Datentypen, Ausdrücke), Lösen von Gleichungen, Symbolisches Rechnen
+\item [3. Tag] Mengen,  natürliche, rationale, reelle und komplexe Zahlen, Gleitkommazahlen, Ungleichungen
+\item [4. Tag] Vektoren und Matrizen, Lineare Algebra in MuPAD, Programmieren I
+\item [5. Tag] Datencontainer in MuPAD, Lineare Abbildungen und Matrizen
+\item [6. Tag] Folgen und Reihen
+\item [7. Tag] Reelle Funktionen, Grafiken
+\item [8. Tag] Differenzial- und Integralrechnung
+\item [9. Tag] Grundlagen der Programmierung,  Zeichenketten (Strings)
+\item [10. Tag] Klausur (9.15 - 10.45 Uhr)
+\end{description}
+\end{frame}
+
+\begin{frame}[<+->]{Gliederung des heutigen Tages}
+\begin{itemize}
+\item Organisatorisches
+\item Was ist MuPAD?
+\item Ein Streifzug durch MuPAD
+\begin{itemize}
+\item Eine Kurvendiskussion
+\item Symbolisches Rechnen
+\item Etwas AGLA
+\item Etwas Zahlentheorie
+\item Nützliches und Hilfe
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Was ist MuPAD}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{MuPAD}
+\begin{itemize}
+\item MuPAD $\equiv$ \underline{Mu}lti \underline{P}rocessing \underline{A}lgebra \underline{D}ata tool
+\item MuPAD ist ein Computeralgebra-System
+\begin{itemize}
+ \item Entwicklung von MuPAD seit 1990 an der Universität Paderborn
+ \item Seit 1997 Teilausgliederung in die SciFace Sofware GmbH
+ \item MuPAD wurde mitte des Jahres 2008 an Mathworks verkauft
+ \item MuPAD ist seither eine Toolbox des Programms \alert{Matlab} (Symbolic Toolbox)
+\end{itemize}
+\item MuPAD ist in C/C++ geschrieben.
+\item MuPAD ist objektorientiert.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Computeralgebra-Systeme}
+
+\begin{block}{Computeralgebra}
+beschäftigt sich mit \alert{exakten} Berechnungen von
+mathematischen Objekten
+\end{block}
+\bigskip
+
+\begin{block}{Mathematische Objekte} 
+Natürliche Zahlen, reelle Zahlen, Polynome, Funktionen,
+Gruppen, Ringe, \ldots
+\end{block}
+
+\begin{block}{Numerischen Berechnungen}
+Bei numerischen
+Rechnungen (z.B. Taschenrechner) benutzt man Zahlen in 
+{\color{blue}Gleitpunktdarstellung}, also i.A.~nur Näherungen an die
+gesuchte Lösung
+\end{block}
+\end{frame}
+
+\begin{frame}{Computeralgebra <-> Numerische Berechnung}
+\begin{block}{Beispiel}
+\begin{tabular}{ll}
+ Mathematische Objekte & $\pi$, $\sqrt{2}$\\
+ Gleitpunktdarstellung (8 Stellen)& $3.1415927$, $1.4142136$
+\end{tabular}
+\end{block}
+\end{frame}
+
+\begin{frame}{Andere Computeralgebra-Systeme}
+\begin{small}
+\begin{tabular}{cp{7cm}}
+\alert{General purpose}: & Derive (Eingestellt 2006, TI)\\
+& LiveMath (Maple)\\
+& Maxima (Free, GPL)\\
+& Reduce (sehr alt, in Lisp programmiert, free)\\
+& Mathematica (Platzhirsch)\\
+& Maple (Platzhirsch)\\
+& Matlab/Octave (Für große Rechnungen)\\
+& Magma (Spezielle mathematische Rechungen)\\
+\alert{Special  purpose}: & Cadabra (Körpertheorie)\\
+& PARI/GP (Zahlentheorie)\\
+& GAP (Gruppentheorie) \\
+& Macaulay (Algebraische Geometrie)\\
+& Singular (Algebraische Geometrie)
+\end{tabular}
+\end{small}
+\end{frame}
+
+\begin{frame}{Neuere Entwicklungen}
+Neue Entwicklungen/Bibliotheken:
+\begin{description}
+\item[Sage] Sehr ehrgeiziges Projekt, komplett in Phython geschrieben
+\item[SymPy] Phython-Bibliotheken als CAS-Verwendbar
+\item[SymbolicC++] Bibliotheken zur CA in C++
+\end{description}
+Überblick:
+
+ \url{http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems}
+\end{frame}
+
+
+\begin{frame}[<+->]{MuPAD - Stärken}
+
+\begin{itemize}
+\item Objektorientiertes Konzept (definieren eigener Datentypen,
+  überladen von Operatoren möglich)
+\item interaktiver Quellcode-Debugger
+\item umfangreiches Hilfesystem
+\item Einfaches Einbinden von C/C++ Routinen (dynamische Module)
+\item Teil einer großen Software (Weiterenwicklung gesichert)
+\item Viele freie (Unterrichts-)materialien im Netz 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]{MuPAD - Schwächen}
+\begin{itemize}
+\item Befehlsumfang nicht so mächtig wie bei Maple oder Mathematica
+\item Geringerer Verbreitungsgrad 
+\item Benutzung ist nicht so intuitiv wie bei anderen Systemen
+\item Teil einer großen Software (Matlab muß installiert/erworben werden)
+\item Programmierumgebung wenig komfortabel (Es gibt in der Matlab-Version einen Editor)
+\item Gültigkeitsberereich von Variablen in Funktionen ist global
+\item Zum Teil nicht konsistent erscheinende Auswertungen von Variablen
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Struktur von MuPAD}
+\begin{center}
+\includegraphics[width=6cm]{components.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Kern von MuPAD}
+\begin{itemize}
+\item \alert{Parser:} Liest die Eingaben und überprüft die Syntax;
+  Umwandlung in MuPAD-Datentyp
+\item \alert{Auswerter:} Auswertung und Vereinfachung der
+  Ergebnisse
+\item \alert{Speicherverwaltung:} (MAMMUT $\equiv$ Memory
+  Allocation Managment Unit) interne Verwaltung der
+  MuPAD-Objekte
+\item \alert{Kernfunktionen:}  Oft benötigte Funktionen
+  werden aus Effizienzgründen im Kern auf C-Ebene implementiert.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Literatur}
+\begin{itemize}
+\item K. Gehrs, F. Postel. MuPAD -- Eine praktische
+  Einführung. SciFace. 2001.
+\item Ch. Creutzig, J. Gerhard, W. Oevel, St. Wehmeier. Das MuPAD
+  Tutorium. Springer. 2. Auflage. 2002.
+\item M. Majewski. MuPAD Pro Computing Essentials. Springer. 2002.
+\item Rolf Monnerjahn. Mathematische Anwendungen in Biologie, Chemie, Physik. MuPad im Mathematikunterricht: 5.-10. Schuljahr
+\item  Gerd Rapin, Thomas Wassong, Stefan Wiedmann und Stefan Koospal. MuPAD: Eine Einführung
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Streifzug durch MuPAD}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{MuPAD als Taschenrechner}
+Hier einige Beispiele:
+\begin{mupad}
+>> 3+4*10+12 
+\end{mupad}
+\begin{mupad}
+  55 
+\end{mupad}
+\begin{mupad}
+>> sin(PI) 
+\end{mupad}
+\begin{mupad}
+  0
+\end{mupad}
+\begin{mupad}
+>> float(PI)
+\end{mupad}
+\begin{mupad}
+  3.141592654 
+\end{mupad}
+\begin{mupad}
+>> float(sqrt(2))
+\end{mupad}
+\begin{mupad}
+  1.414213562 
+\end{mupad}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eine Kurvendiskussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Kurvendiskussion I}
+Betrachte die durch die reelle Zahl $a$ parametrisierte Funktionenschar:
+\[ 
+f: x \quad \mapsto \quad \frac{2x^2-20x+42}{x-1}+a, \quad
+a \in \mathbb{R} 
+\]
+
+\begin{itemize}
+\item Eingabe der Funktion
+\begin{mupad}
+>> f:= x -> (2*x^2-20*x +42)/(x-1)+a
+\end{mupad}
+\begin{mupad}
+  x -> (2*x^2 - 20*x + 42)/(x - 1) + a
+\end{mupad}
+\item Definitionslücken
+\begin{mupad}
+>> Problemstellen:=discont(f(x),x)
+\end{mupad}
+\begin{mupad}
+  {1}
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kurvendiskussion II}
+\begin{itemize}
+\item Pol ?
+\begin{mupad}
+>> limit(f(x),x=1,Left)
+\end{mupad}
+\begin{mupad}
+  a - infinity
+\end{mupad}
+\begin{mupad}
+>> limit(f(x), x=1, Right)
+\end{mupad}
+\begin{mupad}
+  a + infinity
+\end{mupad}
+\item Umformen
+\begin{mupad}
+>> normal(f(x))
+\end{mupad}
+\begin{mupad}
+     2
+  2 x  - 20 x - a + a x + 42
+  --------------------------
+             x - 1
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kurvendiskussion III}
+\begin{itemize}
+\item Nullstellen
+\begin{mupad}
+>> Nullstellen:=solve(f(x)=0,x)
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+ {       2             1/2        2             1/2         }
+ {     (a  - 32 a + 64)      a  (a  - 32 a + 64)      a     }
+ { 5 - ------------------- - -, ------------------- - - + 5 }
+ {              4            4           4            4     }
+\end{mupad}
+\end{scriptsize}
+\item Berechnen der Ableitung
+\begin{mupad}
+>> f'(x)
+\end{mupad}
+\begin{mupad} 
+                   2
+     4 x - 20   2 x  - 20 x + 42
+     -------- - ----------------
+      x - 1                2
+                    (x - 1)
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kurvendiskussion IV}
+\begin{itemize}
+\item Extremwerte
+\begin{mupad}
+>> Extremstellen:=solve(f'(x)=0,x)
+\end{mupad}
+\begin{mupad}
+                1/2     1/2
+        {1 - 2 3   , 2 3    + 1}
+\end{mupad}
+\item Lokale Minima und Maxima
+\begin{mupad}
+>> float(f''(1-2*sqrt(3)))
+\end{mupad}
+\begin{mupad}
+  -1.154700538
+\end{mupad}
+\begin{mupad}
+>> float(f''(2*sqrt(3)+1))
+\end{mupad}
+\begin{mupad}
+  1.154700538
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kurvendiskussion V}
+\begin{itemize}
+\item Verhalten von $f$ für große $x$
+\begin{mupad}
+>> limit(f(x),x=infinity); limit(f(x),x=-infinity)
+\end{mupad}
+\begin{mupad}
+  a+infinity 
+  a-infinity
+\end{mupad}
+\item Definiere $f_{0}$, $f_{1}$, $f_{2}$
+\begin{mupad}
+>>  f0:=subs(f(x),a=0): 
+>>  f1:=subs(f(x),a=-20): 
+>>  f2:=subs(f(x),a=20): f0,f1,f2
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+     2                 2                     2
+  2 x  - 20 x + 42  2 x  - 20 x + 42      2 x  - 20 x + 42
+  ----------------, ---------------- -20, ---------------- +20
+       x - 1             x - 1                 x - 1
+\end{mupad}
+\end{scriptsize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Plot}
+\begin{mupad}
+>> plotfunc2d(f0,f1,f2,x=0..10)
+\end{mupad}
+\begin{center}
+\includegraphics[height=6cm]{graphen.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Zusammenfassung I}
+\begin{itemize}
+\item Definieren von Variablen mit {\color{blue}':='}, z.B. {\verb~a:=3~} 
+\item Löschen von Objekten mit {\color{blue}{\verb+delete+}}, z.B. {\verb+delete a+}
+\item Definieren von Funktionen mit{\color{blue} '->'}, z.B. {\verb~f:= x -> x^2- 6*x~}
+\item Symbolisches Rechnen 
+\begin{itemize}
+\item Unstetigkeitsstellen: {\color{blue} \verb~discont(f(x),x)~}
+\item Grenzwertbestimmung: {\color{blue}   \verb~limit(f(x), x= 2, Left)~}
+\item Vereinfachen: {\color{blue}  \verb~normal(f(x))~}
+\item Bilden von Ableitungen {\color{blue} \verb~f'(x)~}
+\end{itemize} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zusammenfassung II}
+\begin{itemize}
+\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)=0, x)~}
+\item Berechnen numerischer Approximationen:
+  {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
+\item Plotten einer Funktion: {\color{blue} \verb~plotfunc2d(sin(x),x=0..4)~}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Symbolisches Rechnen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Symbolisches Rechnen I}
+\begin{itemize}
+\item Integrieren von $\int_0^\infty x^4 e^{-x} dx$
+\begin{mupad}
+>> int(x^(4)*exp(-x),x=0..infinity)
+\end{mupad}
+\begin{mupad}
+  24
+\end{mupad}
+\item Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$
+\begin{mupad}
+>> f := x -> (1+sin(x))/(1+cos(x)): 
+>> int(f(x),x)
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+    ln(2 cos(x) + 2) - sin(x) + cos(x) ln(2 cos(x) + 2)
+  - ---------------------------------------------------
+                         cos(x) + 1
+\end{mupad}
+\end{scriptsize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Symbolisches Rechnen II}
+\begin{itemize}
+\item Faktorisieren und Ausmultiplizieren 
+\begin{mupad}
+>> expand((x-1)*(x-2)*(x-3)*(x-4))
+\end{mupad}
+\begin{mupad}
+   4       3       2
+  x  - 10 x  + 35 x  - 50 x + 24
+\end{mupad}
+\begin{mupad}
+>> factor(%)
+\end{mupad}
+\begin{mupad}
+  (x - 1) (x - 2) (x - 3) (x - 4)
+\end{mupad}
+\item Sortieren eines Ausdrucks bezüglich einer Unbekannten
+\begin{mupad}
+collect(x^2+2*x+b*x^2+sin(x)+a*x,x)
+\end{mupad}
+\begin{mupad}
+            2
+  (b + 1) x  + (a + 2) x + sin(x)
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Symbolisches Rechnen III}
+\begin{itemize}
+\item Partialbruchzerlegung
+\begin{mupad}
+>> partfrac( x^ 2/( x^ 2- 1))
+\end{mupad}
+\begin{mupad}
+      1           1
+  --------- - --------- + 1
+  2 (x - 1)   2 (x + 1)
+\end{mupad}
+\item Vereinfachen von Ausdrücken ($\frac{e^x -1}{e^{(1/2)x}+1}$)
+\begin{mupad}
+>> simplify((exp(x)-1)/(exp(x/2)+1))
+\end{mupad}
+\begin{mupad}
+     / x \
+  exp| - | - 1
+     \ 2 /
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD unterscheidet 
+strikt zwischen Funktionen und Ausdrücken I}
+
+Beispiele:
+
+\begin{mupad}
+>> f:= x -> sin(x)
+\end{mupad}
+\begin{mupad}
+ x -> sin(x)
+\end{mupad}
+\begin{mupad}
+>> g:=sin(x)
+\end{mupad}
+\begin{mupad}
+  sin(x)
+\end{mupad}
+\begin{mupad}
+>> f(1),g(1)
+\end{mupad}
+\begin{mupad}
+ sin(1), sin(x)(1)
+\end{mupad}
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD unterscheidet 
+strikt zwischen Funktionen und Ausdrücken II}
+\begin{mupad}
+>> int(f,x)
+\end{mupad}
+\begin{mupad}
+  Error: Illegal integrand [int]
+\end{mupad}
+\begin{mupad}
+>> int(f(x),x)
+\end{mupad}
+\begin{mupad}
+  -cos(x)
+\end{mupad}
+\begin{mupad}
+>> f(x)-g
+\end{mupad}
+\begin{mupad}
+  0
+\end{mupad}
+\begin{mupad}
+>> h:=fp::unapply(g)
+\end{mupad}
+\begin{mupad}
+  x -> sin(x)
+\end{mupad}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Etwas AGLA}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Analytische Geometrie und Lineare Algebra}
+
+Berechnen des Schnittpunkts der Ebene 
+\[ E: \vec{x}= 
+\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
+\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
+\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right), \quad l,m
+\in \mathbb{R}
+\]
+mit der Geraden 
+\[
+g: \vec{x}=
+\left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
+\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right), \quad k \in \mathbb{R}
+\]
+\end{frame}
+
+\begin{frame}[fragile]{Grafische Darstellung}
+\begin{mupad}
+>> E1 := 2+l-3*m: E2:=1-l+m: E3:=-1-l+4*m:
+\end{mupad}
+\begin{mupad}
+>> Ebene1 := plot::Surface([E1,E2,E3],
+ l=-2..2,m=-2..2, Mesh=[20,20]):
+\end{mupad}
+\begin{mupad}
+>> g1 := 3+4*k: g2 := -k: g3 := 1+2*k:
+\end{mupad}
+\begin{mupad}
+>> Gerade1 := plot::Curve3d([g1, g2,  
+ g3], k=-3..3):
+\end{mupad}
+\begin{mupad}
+>> plot(Ebene1,Gerade1)
+\end{mupad}
+\end{frame}
+
+\begin{frame}{Grafische Darstellung}
+\begin{center}
+\includegraphics[width=10cm, height=6cm]{ebene2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Analytische Lösung}
+Gleichsetzen ergibt: 
+\[ 
+\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
+\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
+\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right) = \left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
+\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right)
+\] oder {
+\[ 
+\underbrace{\left(   
+\begin{array} {ccc} 
+1 & -3 & -4\\
+-1 & 1 & 1 \\
+-1 & 4 & -2  
+\end{array} \right)}_{\displaystyle =:A} 
+\underbrace{\left ( \begin{array}{c}  l \\ m \\ k \end{array}
+  \right)}_{\displaystyle =:L} = \underbrace{\left ( \begin{array}{c}  1 \\ -1 \\ 2
+  \end{array} \right)}_{\displaystyle =:b}
+\] }
+oder $A L=b$.
+\end{frame}
+
+\begin{frame}[fragile]{Definieren und Lösen des LGS}
+\begin{itemize}
+\item Definieren der Matrix $A$
+\begin{mupad}
+>> A:= matrix([[ 1, -3, -4], 
+[- 1,1,1], [- 1,4,- 2]])
+\end{mupad}
+\begin{mupad}
+  +-            -+
+  |   1, -3, -4  |
+  |              |
+  |  -1,  1,  1  |
+  |              |
+  |  -1,  4, -2  |
+  +-            -+
+\end{mupad}
+\item Definieren des Vektors $b$
+\begin{mupad}
+>> b:=matrix([1,-1,2]):
+\end{mupad}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+\item Lösen von  $A \ L=b$
+\begin{small}
+\begin{mupad}
+>> L:=linalg::matlinsolve(A,b)
+\end{mupad}
+\end{small}
+\begin{scriptsize}
+\begin{mupad}
+  +-      -+
+  |   6/5  |
+  |        |
+  |   3/5  |
+  |        |
+  |  -2/5  |
+  +-      -+
+\end{mupad}
+\end{scriptsize}
+\item Einsetzen in die Geradengleichung
+\begin{mupad}
+>> k:=L[3]: x_s:=matrix([g1,g2,g3])
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+  +-     -+
+  |  7/5  |
+  |       |
+  |  2/5  |
+  |       |
+  |  1/5  |
+  +-     -+
+\end{mupad}
+\end{scriptsize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+\item Matrizenoperationen
+\begin{mupad}
+>> B:=matrix([[1,0,0],[0,1,1],[1,1,1]]):
+>> A*B, A-B, A+B
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+  +-            -+  +-            -+  +-            -+
+  |  -3, -7, -7  |  |   0, -3, -4  |  |   2, -3, -4  |
+  |              |  |              |  |              |
+  |   0,  2,  2  |, |  -1,  0,  0  |, |  -1,  2,  2  |
+  |              |  |              |  |              |
+  |  -3,  2,  2  |  |  -2,  3, -3  |  |   0,  5, -1  |
+  +-            -+  +-            -+  +-            -+
+\end{mupad}
+\end{scriptsize}
+\item Berechnen der Inversen (mit Probe)
+\begin{mupad}
+>> A^(-1), A*A^(-1)
+\end{mupad}
+\begin{scriptsize}
+\begin{mupad}
+  +-                     -+  +-         -+
+  |  -2/5, -22/15,  1/15  |  |  1, 0, 0  |
+  |                       |  |           |
+  |  -1/5,  -2/5,   1/5   |, |  0, 1, 0  |
+  |                       |  |           |
+  |  -1/5,  -1/15, -2/15  |  |  0, 0, 1  |
+  +-                     -+  +-         -+
+\end{mupad}
+\end{scriptsize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Etwas Zahlentheorie}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Etwas Zahlentheorie I}
+Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
+Zahl $F_n$, die keine Primzahl ist!
+\begin{mupad}
+>> F:=2^(2^n)+1:
+>> n:=1: F, isprime(F)
+  5, TRUE
+>> n:=2: F, isprime(F)
+  17, TRUE
+>> n:=3: F, isprime(F)
+  257, TRUE
+>> n:=4: F, isprime(F)
+  65537, TRUE
+>> n:=5: F, isprime(F)
+  4294967297, FALSE
+>> numlib::divisors(F)
+  [1, 641, 6700417, 4294967297]
+\end{mupad}
+\end{frame}
+
+\begin{frame}[fragile]{Etwas Zahlentheorie II}
+\begin{itemize}
+\item Eine Liste der ersten  Primzahlen bis $100$
+\begin{mupad}
+>> Menge:= [ i $\text{\dollar}$ i=1..100 ]:
+>> select(Menge,isprime)
+\end{mupad}
+\begin{mupad}
+  [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+   31, 37, 41, 43, 47, 53, 59, 61, 67,
+   71, 73, 79, 83, 89, 97]
+\end{mupad}
+\item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
+Mersenne Primzahlen im Bereich $\leq 200$.
+\begin{mupad}
+>> Primes := select([i $\text{\dollar}$ i=1..200],isprime):
+>> select(Primes,p->isprime(2^p-1))
+\end{mupad}
+\begin{mupad}
+  [2,3,5,7,13,17,19,31,61,89,107,127]
+\end{mupad}
+\begin{mupad}
+>> numlib::mersenne()
+\end{mupad} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Etwas Zahlentheorie III}
+Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
+$1,2,3,\dots $ Teiler haben.
+\begin{mupad}
+>> Liste:=[i $\text{\dollar}$ i=1..1000]:
+>> anz_teiler:= n -> nops(numlib::divisors(n)):
+>> Liste1:=map(Liste,anz_teiler):
+>> for i from 1 to 50 do
+     print(i,nops(select(Liste1, x -> (x = i))))
+   end_for:
+\end{mupad}
+
+\begin{mupad}
+  1, 0
+  2, 168
+   ...
+\end{mupad}
+Teiler der Zahl $840$:
+\begin{mupad}
+>> numlib::divisors(840)
+\end{mupad}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section{Nützliches und Hilfe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Überlebensregeln}
+\begin{itemize}
+\item Kommas zwischen Eingaben erzeugen den Datentyp einer Folge!
+\item Mehrere Befehle in einer Zeile besser durch
+{\color{blue} ';'} oder {\color{blue} ':'} 
+  trennen. Ausgabe wird mit {\color{blue} ':'} am Ende unterdrückt
+\item Die Eingabe {\color{blue} \%} ergibt die Ausgabe des letzten Befehls
+\item Die Eingabe {\color{blue} \%n} ergibt die Ausgabe des $n$-letzten Befehls
+\item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
+  Zeilenumbruch durch {\color{blue} <SHIFT>+<ENTER>} erreicht werden
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Nützliches}
+\begin{itemize}
+\item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} reset()}
+\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
+\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
+\item Alle Ausgaben entfernen: Bearbeiten -> Alle Ausgaben entfernen
+\item Matheklammer erzeugen: $\pi$
+\item Lücke für Text erzeugen: \P
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Starten von MuPAD}
+\begin{itemize}
+\item Kiosk: Lernprogramme -> Mathematisches -> MuPAD 4.0.0
+\item Benutzung der Terminals:
+\begin{itemize}
+\item Einloggen auf einem Linuxrechner
+(l1,\ldots,l14) mit
+
+{\color{blue} \verb+ ssh -X l1.num.math.uni-goettingen.de+}
+\item Starten von MuPAD:
+{\color{blue} \verb+mupad &+}
+\end{itemize}
+\item Hilfefunktionen in MuPAD
+\begin{itemize}
+\item {\color{blue} ?} (startet menügesteuertes Hilfefenster)
+\item {\color{blue} info({\it name})} gibt  eine Kurzhilfe zu {\it name}
+\item {\color{blue} ? {\it name}} oder help(``{\it name}'') gibt ausführliche Hilfe.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
