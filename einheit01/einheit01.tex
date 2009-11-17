@@ -12,30 +12,24 @@
 \item Anmeldungen zu der Veranstaltung über StudIP \\
       \url{https://www.studip.uni-goettingen.de/}
 
-{\color{blue}{Einführung in MuPAD (Mathematische Anwendersysteme) (WS 2008/09)}}
+{\color{blue}{Einführung in MuPAD (Mathematische Anwendersysteme) (WS 2009/2010)}}
 \item Alle Unterlagen können von der  StudIP-Seite (Reiter Dateien) heruntergeladen werden 
 \pause
-\item Dozent: Stefan Wiedmann \texttt{wiedmann@uni-math.gwdg.de}
-\item Büro: Zi. 006 (Erdgescho{\ss}), MI
-\item Telefon: 39-7754
+\item Dozent: Jochen Schulz \texttt{schulz@math.uni-goettingen.de}
+\item Büro: Zi. 04 (Erdgescho{\ss}), NAM
+\item Telefon: 39-4525
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Accounts}
 \begin{itemize}
-\item MuPAD ist in Version 4.0 auf allen Rechnern der Mathematischen Fakultät installiert
+\item Sage ist in Version 4.1.2 auf allen Rechnern der Mathematischen Fakultät installiert
+\item Accounts im CIP-Pools der Mathematischen Fakultät (MI und NAM): Formular unter \url{https://ldap.math.uni-goettingen.de} ausfüllen (\alert{Stud.it-Account} nötig!)
 \item Kiosk-System im Übungssaal und im Computerraum -- kein Login aber auch keine Speicherung von eigenen Dateien
-\item Accounts im CIP-Pools der Mathematischen Fakultät:
-\begin{itemize}
-\item Mit \alert{Stud.it-Account}: Formular unter \url{https://xldap.uni-math.gwdg.de/register.php} ausfüllen
-\item Ohne \alert{Stud.it-Account}: An Herrn Jochen Schulz wenden
-\end{itemize}
 \item Mit Account: Möglichkeit via {\color{blue}ssh} in der Shell mupad zu starten:
 
-\texttt{ssh -X username@l1.num.math.uni-goettingen.de}
-
 \texttt{ssh -X username@s1.math.uni-goettingen.de}
-\item Alternative Rechner: \texttt{l2 -- l14}, bzw. \texttt{s2 -- s6}
+\item Alternative Rechner: \texttt{s2 -- s6}
 \end{itemize}
 \end{frame}
 
@@ -44,26 +38,26 @@
 \item {Aufgabenblätter:} {\color{blue}StudIP}
 \item {Folien zur Vorlesung}: {\color{blue}StudIP}
 \item {Folien der Vorlesung zum Ausdrucken}: {\color{blue}StudIP}
-\item {Notebooks zur Vorlesung}: {\color{blue}StudIP}
-\item {MuPAD Buch:} Preis: 19.95 Euro,\\
-{Rapin, Wassong, Wiedmann, Koospal:
-
- MuPAD - Eine Einführung, 
-
-Springer 2007, ISBN 978-3-540-73475-8}
+%\item {Notebooks zur Vorlesung}: {\color{blue}StudIP}
+%\item {MuPAD Buch:} Preis: 19.95 Euro,\\
+%{Rapin, Wassong, Wiedmann, Koospal:
+%
+% MuPAD - Eine Einführung, 
+%
+%Springer 2007, ISBN 978-3-540-73475-8}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
-\item Blockveranstaltung vom  16.2.-27.2.2008
+\item Blockveranstaltung vom  16.2.-27.2.2010
 \item Vorlesung: 9.15 Uhr bis 11.30 Uhr
 \item Nachmittags: 4 Übungsgruppen \`a je 1h 15min
 \begin{itemize}
 \item 13:00-14:15 (Tutor: Schulz)	
-\item 14:15-15:30 (Tutor: Wiedmann)
+\item 14:15-15:30 (Tutor: ?)
 \item 15:30-16:45 (Tutor: Schulz)
-\item 16:45-18:00 (Tutor: Wiedmann)
+\item 16:45-18:00 (Tutor: ?)
 \end{itemize}
 
 \item Scheinerwerb
@@ -400,13 +394,12 @@ x |--> -Infinity
 
 \begin{frame}[fragile]{Plot}
 \begin{sage}
->> p = plot(f0,(x, 0, 10),ymin=-80,ymax=80,detect_poles='True',color='red')
-p += plot(f1,(x, 0, 10),detect_poles='True',color='green')
-p += plot(f2,(x, 0, 10),detect_poles='True',color='blue')
-p.show()
+p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
+p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
+p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
 \end{sage}
 \begin{center}
-\includegraphics[height=6cm]{figures/graphen.png}
+\includegraphics[height=4.5cm]{figures/graphen}
 \end{center}
 \end{frame}
 
@@ -442,21 +435,21 @@ p.show()
 \begin{itemize}
 \item Integrieren von $\int_0^\infty x^4 e^{-x} dx$
 \begin{sage}
->> int(x^(4)*exp(-x),x=0..infinity)
+>> integrate(x^4*exp(-x),x,0,oo)
 \end{sage}
 \begin{sage}
   24
 \end{sage}
 \item Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$
 \begin{sage}
->> f := x -> (1+sin(x))/(1+cos(x)): 
->> int(f(x),x)
+>> f(x) = (1+sin(x))/(1+cos(x))
+>> g = f.integrate(x)
+>> g.full_simplify()
 \end{sage}
 \begin{scriptsize}
+%x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
 \begin{sage}
-    ln(2 cos(x) + 2) - sin(x) + cos(x) ln(2 cos(x) + 2)
-  - ---------------------------------------------------
-                         cos(x) + 1
+x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
 \end{sage}
 \end{scriptsize}
 \end{itemize}
@@ -469,22 +462,22 @@ p.show()
 >> expand((x-1)*(x-2)*(x-3)*(x-4))
 \end{sage}
 \begin{sage}
-   4       3       2
-  x  - 10 x  + 35 x  - 50 x + 24
+x^4 - 10*x^3 + 35*x^2 - 50*x + 24
 \end{sage}
 \begin{sage}
->> factor(%)
+>> factor(_)
 \end{sage}
 \begin{sage}
-  (x - 1) (x - 2) (x - 3) (x - 4)
+(x - 4)*(x - 3)*(x - 2)*(x - 1)
 \end{sage}
 \item Sortieren eines Ausdrucks bezüglich einer Unbekannten
 \begin{sage}
-collect(x^2+2*x+b*x^2+sin(x)+a*x,x)
+var('b,a')
+g = x^2+2*x+b*x^2+sin(x)+a*x
+g.collect(x)
 \end{sage}
 \begin{sage}
-            2
-  (b + 1) x  + (a + 2) x + sin(x)
+(b + 1)*x^2 + (a + 2)*x + sin(x)
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -493,77 +486,74 @@ collect(x^2+2*x+b*x^2+sin(x)+a*x,x)
 \begin{itemize}
 \item Partialbruchzerlegung
 \begin{sage}
->> partfrac( x^ 2/( x^ 2- 1))
+>>g = x^ 2/( x^ 2- 1)
+g.partial_fraction()
 \end{sage}
 \begin{sage}
-      1           1
-  --------- - --------- + 1
-  2 (x - 1)   2 (x + 1)
+1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
 \item Vereinfachen von Ausdrücken ($\frac{e^x -1}{e^{(1/2)x}+1}$)
 \begin{sage}
->> simplify((exp(x)-1)/(exp(x/2)+1))
+>> g = (exp(x)-1)/(exp(x/2)+1); g.simplify_radical()
 \end{sage}
 \begin{sage}
-     / x \
-  exp| - | - 1
-     \ 2 /
+ e^(1/2*x) - 1
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{MuPAD unterscheidet 
-strikt zwischen Funktionen und Ausdrücken I}
+% \begin{frame}[fragile]{MuPAD unterscheidet 
+% strikt zwischen Funktionen und Ausdrücken I}
+% 
+% Beispiele:
+% 
+% \begin{sage}
+% >> f:= x -> sin(x)
+% \end{sage}
+% \begin{sage}
+%  x -> sin(x)
+% \end{sage}
+% \begin{sage}
+% >> g:=sin(x)
+% \end{sage}
+% \begin{sage}
+%   sin(x)
+% \end{sage}
+% \begin{sage}
+% >> f(1),g(1)
+% \end{sage}
+% \begin{sage}
+%  sin(1), sin(x)(1)
+% \end{sage}
+% \end{frame}
 
-Beispiele:
-
-\begin{sage}
->> f:= x -> sin(x)
-\end{sage}
-\begin{sage}
- x -> sin(x)
-\end{sage}
-\begin{sage}
->> g:=sin(x)
-\end{sage}
-\begin{sage}
-  sin(x)
-\end{sage}
-\begin{sage}
->> f(1),g(1)
-\end{sage}
-\begin{sage}
- sin(1), sin(x)(1)
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{MuPAD unterscheidet 
-strikt zwischen Funktionen und Ausdrücken II}
-\begin{sage}
->> int(f,x)
-\end{sage}
-\begin{sage}
-  Error: Illegal integrand [int]
-\end{sage}
-\begin{sage}
->> int(f(x),x)
-\end{sage}
-\begin{sage}
-  -cos(x)
-\end{sage}
-\begin{sage}
->> f(x)-g
-\end{sage}
-\begin{sage}
-  0
-\end{sage}
-\begin{sage}
->> h:=fp::unapply(g)
-\end{sage}
-\begin{sage}
-  x -> sin(x)
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{MuPAD unterscheidet 
+% strikt zwischen Funktionen und Ausdrücken II}
+% \begin{sage}
+% >> int(f,x)
+% \end{sage}
+% \begin{sage}
+%   Error: Illegal integrand [int]
+% \end{sage}
+% \begin{sage}
+% >> int(f(x),x)
+% \end{sage}
+% \begin{sage}
+%   -cos(x)
+% \end{sage}
+% \begin{sage}
+% >> f(x)-g
+% \end{sage}
+% \begin{sage}
+%   0
+% \end{sage}
+% \begin{sage}
+% >> h:=fp::unapply(g)
+% \end{sage}
+% \begin{sage}
+%   x -> sin(x)
+% \end{sage}
+% \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -590,27 +580,25 @@ g: \vec{x}=
 
 \begin{frame}[fragile]{Grafische Darstellung}
 \begin{sage}
->> E1 := 2+l-3*m: E2:=1-l+m: E3:=-1-l+4*m:
+var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
 \end{sage}
 \begin{sage}
->> Ebene1 := plot::Surface([E1,E2,E3],
- l=-2..2,m=-2..2, Mesh=[20,20]):
+>> p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
 \end{sage}
 \begin{sage}
->> g1 := 3+4*k: g2 := -k: g3 := 1+2*k:
+>> var('k'); g1 = 3+4*k; g2 = -k; g3 = 1+2*k
 \end{sage}
 \begin{sage}
->> Gerade1 := plot::Curve3d([g1, g2,  
- g3], k=-3..3):
+>> p += parametric_plot3d( (g1,g2,g3), (k, -3, 3),thickness='3' ) 
 \end{sage}
 \begin{sage}
->> plot(Ebene1,Gerade1)
+>> p.show()
 \end{sage}
 \end{frame}
 
 \begin{frame}{Grafische Darstellung}
 \begin{center}
-\includegraphics[width=10cm, height=6cm]{figures/ebene2.png}
+\includegraphics[width=0.7\textwidth]{figures/ebene2}
 \end{center}
 \end{frame}
 
@@ -640,21 +628,16 @@ oder $A L=b$.
 \begin{itemize}
 \item Definieren der Matrix $A$
 \begin{sage}
->> A:= matrix([[ 1, -3, -4], 
-[- 1,1,1], [- 1,4,- 2]])
+>> A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
 \end{sage}
 \begin{sage}
-  +-            -+
-  |   1, -3, -4  |
-  |              |
-  |  -1,  1,  1  |
-  |              |
-  |  -1,  4, -2  |
-  +-            -+
+[ 1 -3 -4]
+[-1  1  1]
+[-1  4 -2]
 \end{sage}
 \item Definieren des Vektors $b$
 \begin{sage}
->> b:=matrix([1,-1,2]):
+>> b = vector([1,-1,2])
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -662,37 +645,24 @@ oder $A L=b$.
 \begin{frame}[fragile]
 \begin{itemize}
 \item Lösen von  $A \ L=b$
-\begin{small}
 \begin{sage}
->> L:=linalg::matlinsolve(A,b)
+A.solve_right(b)
 \end{sage}
-\end{small}
-\begin{scriptsize}
+oder 
 \begin{sage}
-  +-      -+
-  |   6/5  |
-  |        |
-  |   3/5  |
-  |        |
-  |  -2/5  |
-  +-      -+
+A\b
 \end{sage}
-\end{scriptsize}
+ergibt
+\begin{sage}
+(6/5, 3/5, -2/5)
+\end{sage}
 \item Einsetzen in die Geradengleichung
 \begin{sage}
->> k:=L[3]: x_s:=matrix([g1,g2,g3])
+>> x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
 \end{sage}
-\begin{scriptsize}
 \begin{sage}
-  +-     -+
-  |  7/5  |
-  |       |
-  |  2/5  |
-  |       |
-  |  1/5  |
-  +-     -+
+[7/5 2/5 1/5]
 \end{sage}
-\end{scriptsize}
 \end{itemize}
 \end{frame}
 
@@ -700,18 +670,14 @@ oder $A L=b$.
 \begin{itemize}
 \item Matrizenoperationen
 \begin{sage}
->> B:=matrix([[1,0,0],[0,1,1],[1,1,1]]):
->> A*B, A-B, A+B
+>> B = matrix([[1,0,0],[0,1,1],[1,1,1]])
+>> A*B; A-B; A+B
 \end{sage}
 \begin{scriptsize}
 \begin{sage}
-  +-            -+  +-            -+  +-            -+
-  |  -3, -7, -7  |  |   0, -3, -4  |  |   2, -3, -4  |
-  |              |  |              |  |              |
-  |   0,  2,  2  |, |  -1,  0,  0  |, |  -1,  2,  2  |
-  |              |  |              |  |              |
-  |  -3,  2,  2  |  |  -2,  3, -3  |  |   0,  5, -1  |
-  +-            -+  +-            -+  +-            -+
+[-3 -7 -7]  [ 0 -3 -4] [ 2 -3 -4]
+[ 0  2  2]  [-1  0  0] [-1  2  2]
+[-3  2  2]  [-2  3 -3] [ 0  5 -1]
 \end{sage}
 \end{scriptsize}
 \item Berechnen der Inversen (mit Probe)
@@ -720,13 +686,13 @@ oder $A L=b$.
 \end{sage}
 \begin{scriptsize}
 \begin{sage}
-  +-                     -+  +-         -+
-  |  -2/5, -22/15,  1/15  |  |  1, 0, 0  |
-  |                       |  |           |
-  |  -1/5,  -2/5,   1/5   |, |  0, 1, 0  |
-  |                       |  |           |
-  |  -1/5,  -1/15, -2/15  |  |  0, 0, 1  |
-  +-                     -+  +-         -+
+[  -2/5 -22/15   1/15]
+[  -1/5   -2/5    1/5]
+[  -1/5  -1/15  -2/15]
+
+[1 0 0]
+[0 1 0]
+[0 0 1]
 \end{sage}
 \end{scriptsize}
 \end{itemize}
@@ -740,19 +706,19 @@ oder $A L=b$.
 Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
 Zahl $F_n$, die keine Primzahl ist!
 \begin{sage}
->> F:=2^(2^n)+1:
->> n:=1: F, isprime(F)
-  5, TRUE
->> n:=2: F, isprime(F)
-  17, TRUE
->> n:=3: F, isprime(F)
-  257, TRUE
->> n:=4: F, isprime(F)
-  65537, TRUE
->> n:=5: F, isprime(F)
-  4294967297, FALSE
->> numlib::divisors(F)
-  [1, 641, 6700417, 4294967297]
+>> F = 2^(2^n)+1
+>> F1 = F.subs(n=1); F1, is_prime(F1)
+(5, True)
+>> F1 = F.subs(n=2); F1, is_prime(F1)
+(17, True)
+>> F1 = F.subs(n=3); F1, is_prime(F1)
+(257, True)
+>> F1 = F.subs(n=4); F1, is_prime(F1)
+(65537, True)
+>> F1 = F.subs(n=5); F1, is_prime(F1)
+(4294967297, False)
+>> divisors(int(F1))
+[1, 641, 6700417, 4294967297]
 \end{sage}
 \end{frame}
 
