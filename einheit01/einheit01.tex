@@ -726,26 +726,22 @@ Zahl $F_n$, die keine Primzahl ist!
 \begin{itemize}
 \item Eine Liste der ersten  Primzahlen bis $100$
 \begin{sage}
->> Menge:= [ i $\text{\dollar}$ i=1..100 ]:
->> select(Menge,isprime)
+>> menge = set(range(1,100))
+>> [m for m in menge if is_prime(m)]
 \end{sage}
 \begin{sage}
-  [2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
-   31, 37, 41, 43, 47, 53, 59, 61, 67,
-   71, 73, 79, 83, 89, 97]
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 \end{sage}
 \item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
 Mersenne Primzahlen im Bereich $\leq 200$.
 \begin{sage}
->> Primes := select([i $\text{\dollar}$ i=1..200],isprime):
->> select(Primes,p->isprime(2^p-1))
+menge = set(range(1,200))
+primes = [m for m in menge if is_prime(m)]
+[m for m in primes if is_prime(2^m-1)]
 \end{sage}
 \begin{sage}
-  [2,3,5,7,13,17,19,31,61,89,107,127]
+[2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127]
 \end{sage}
-\begin{sage}
->> numlib::mersenne()
-\end{sage} 
 \end{itemize}
 \end{frame}
 
@@ -753,22 +749,23 @@ Mersenne Primzahlen im Bereich $\leq 200$.
 Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
 $1,2,3,\dots $ Teiler haben.
 \begin{sage}
->> Liste:=[i $\text{\dollar}$ i=1..1000]:
->> anz_teiler:= n -> nops(numlib::divisors(n)):
->> Liste1:=map(Liste,anz_teiler):
->> for i from 1 to 50 do
-     print(i,nops(select(Liste1, x -> (x = i))))
-   end_for:
+>> menge = set(range(1,1000))
+>> def anz_teiler(n): 
+>>     return number_of_divisors(int(n))
+>> liste = [anz_teiler(m) for m in menge]
+>> for i in range(1,50):
+>>     print (i,len([m for m in liste if m==i]))
 \end{sage}
 
 \begin{sage}
-  1, 0
-  2, 168
-   ...
+(1, 1)
+(2, 168)
+(3, 11)
+...
 \end{sage}
 Teiler der Zahl $840$:
 \begin{sage}
->> numlib::divisors(840)
+>> divisors(840)
 \end{sage}
 \end{frame}
 

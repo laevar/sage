@@ -1,0 +1,63 @@
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+%\usepackage{latexsym}
+\usepackage{theorem}
+
+
+\usepackage{fontspec,xunicode,xltxtra}
+\usepackage[ngerman]{babel}
+\selectlanguage{ngerman}
+
+
+\usepackage[svgnames]{xcolor} %color definitions
+%\usepackage{tikz}
+%\usetikzlibrary{shadows}
+%\usetikzlibrary{fit}
+%\usetikzlibrary{shapes}
+%\usetikzlibrary{backgrounds}
+
+
+\usepackage{mcode}
+%\usepackage{pstricks,pst-node,pst-text,pst-3d}
+\parindent0cm % Abs�tze nicht einr�cken 
+
+%---- neue Umgebung f�r Aufgaben
+\theoremstyle{break}
+\theoremheaderfont{\Large \bf}
+\theorembodyfont{\normalfont}
+
+
+% Definieren einer neuen Farbe
+\definecolor{light-gray}{gray}{.9}
+
+\newcounter{zaehler}     % neuen Z�hler einf�hren
+\stepcounter{zaehler}    % Z�hler einen hochz�hlen
+
+\newenvironment{aufg}%
+%---- Header
+{\begin{samepage}
+\colorbox{light-gray}{                         % Box in gray
+ \makebox[\textwidth]{                           % Box in linewidth
+\textbf{Aufgabe} \arabic{zaehler} :}}\\[0.1cm]       % Header
+%\begin{minipage}{0.5cm} \end{minipage}    % Insert 0.5cm
+\begin{minipage}{\textwidth}}
+%-----  foot
+{\end{minipage} \nopagebreak %\begin{minipage}{1cm} \end{minipage}
+\\[0.1cm] 
+%\begin{minipage}{0.1cm} \end{minipage} 
+%\hrulefill \begin{minipage}{1cm} \end{minipage}\\[1cm]  
+\stepcounter{zaehler}                           % increase counter
+ \end{samepage}%
+}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+%--------------------------------------------------- Header
+\begin{center}
+\textbf{\LARGE Einf\"uhrung in Sage }\\
+\end{center}
+\begin{minipage}{6cm}
+Dr. J. Schulz\\
+\end{minipage}\hfill
