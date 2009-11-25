@@ -12,39 +12,33 @@
 \item Anmeldungen zu der Veranstaltung über StudIP \\
       \url{https://www.studip.uni-goettingen.de/}
 
-{\color{blue}{Einführung in MuPAD (Mathematische Anwendersysteme) (WS 2009/2010)}}
-\item Alle Unterlagen können von der  StudIP-Seite (Reiter Dateien) heruntergeladen werden 
+{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2009/2010)}}
+\item Alle Unterlagen (Aufgabenblätter, Vorlesungsfolien, Beispiele, Musterlösungen) können von der  StudIP-Seite (Reiter Dateien) heruntergeladen werden 
 \pause
-\item Dozent: Jochen Schulz \texttt{schulz@math.uni-goettingen.de}
-\item Büro: Zi. 04 (Erdgescho{\ss}), NAM
-\item Telefon: 39-4525
+\begin{block}{Dozent}
+Jochen Schulz\\
+NAM, Zimmer 04 (Erdgescho{\ss})\\
+Telefon: 39-4525
+Email: \url{schulz@math.uni-goettingen.de}\\
+XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
+
+\end{block}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Accounts}
+\begin{frame}{Starten des Programms}
+\textbf{Vor.:} Account im CIP-Pool der Mathematischen Fakultät (MI und NAM): Registrierungs-Formular unter \url{https://ldap.math.uni-goettingen.de} (\alert{Stud.It-Account} nötig!)\\
+\textbf{Wiki} (\url{https://wiki.math.uni-goettingen.de/mediawiki})
 \begin{itemize}
 \item Sage ist in Version 4.1.2 auf allen Rechnern der Mathematischen Fakultät installiert
-\item Accounts im CIP-Pools der Mathematischen Fakultät (MI und NAM): Formular unter \url{https://ldap.math.uni-goettingen.de} ausfüllen (\alert{Stud.it-Account} nötig!)
-\item Kiosk-System im Übungssaal und im Computerraum -- kein Login aber auch keine Speicherung von eigenen Dateien
-\item Mit Account: Möglichkeit via {\color{blue}ssh} in der Shell mupad zu starten:
-
-\texttt{ssh -X username@s1.math.uni-goettingen.de}
-\item Alternative Rechner: \texttt{s2 -- s6}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Unterlagen}
+\item login direkt oder per \alert{nxclient}
+auf den Rechnern \texttt{s1.math.uni-goettingen.de} bis \texttt{s8.math.uni-goettingen.de}
+und \texttt{s241.math.uni-goettingen.de} bis \texttt{s245.math.uni-goettingen.de}
+\item Starten von Sage: Im Terminal 
 \begin{itemize}
-\item {Aufgabenblätter:} {\color{blue}StudIP}
-\item {Folien zur Vorlesung}: {\color{blue}StudIP}
-\item {Folien der Vorlesung zum Ausdrucken}: {\color{blue}StudIP}
-%\item {Notebooks zur Vorlesung}: {\color{blue}StudIP}
-%\item {MuPAD Buch:} Preis: 19.95 Euro,\\
-%{Rapin, Wassong, Wiedmann, Koospal:
-%
-% MuPAD - Eine Einführung, 
-%
-%Springer 2007, ISBN 978-3-540-73475-8}
+ \item \texttt{sage} 
+\item \texttt{sage -notebook} 
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -63,40 +57,28 @@
 \item Scheinerwerb
 \begin{itemize}
 \item Regelmäßige Teilnahme an den Übungen
-\item Vorführen von Aufgaben
-\item Klausur am 27.2.2009; 9:15 -- 10:45; Anmeldung über FlexNow!
+\item Projektarbeit durchführen
+\item Klausur am 3.3.2009; 9:15 - 10:45; Anmeldung über FlexNow!
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[<+->]{Inhalt der Vorlesung}
 \begin{description}
- \item[1. Tag]Organisatorisches, Aufbau von MuPAD, Streifzug durch MuPAD
-\item [2. Tag]Grundlagen MuPAD (grundlegende Datentypen, Ausdrücke), Lösen von Gleichungen, Symbolisches Rechnen
+ \item[1. Tag]Organisatorisches, Aufbau von Sage, Streifzug durch Sage
+\item [2. Tag]Grundlagen Sage (grundlegende Datentypen, Ausdrücke), Lösen von Gleichungen, Symbolisches Rechnen
 \item [3. Tag] Mengen,  natürliche, rationale, reelle und komplexe Zahlen, Gleitkommazahlen, Ungleichungen
 \item [4. Tag] Vektoren und Matrizen, Lineare Algebra in MuPAD, Programmieren I
-\item [5. Tag] Datencontainer in MuPAD, Lineare Abbildungen und Matrizen
+\item [5. Tag] Datencontainer in Sage, Lineare Abbildungen und Matrizen
 \item [6. Tag] Folgen und Reihen
 \item [7. Tag] Reelle Funktionen, Grafiken
 \item [8. Tag] Differenzial- und Integralrechnung
 \item [9. Tag] Grundlagen der Programmierung,  Zeichenketten (Strings)
-\item [10. Tag] Klausur (9.15 - 10.45 Uhr)
 \end{description}
 \end{frame}
 
-\begin{frame}[<+->]{Gliederung des heutigen Tages}
-\begin{itemize}
-\item Organisatorisches
-\item Was ist MuPAD?
-\item Ein Streifzug durch MuPAD
-\begin{itemize}
-\item Eine Kurvendiskussion
-\item Symbolisches Rechnen
-\item Etwas AGLA
-\item Etwas Zahlentheorie
-\item Nützliches und Hilfe
-\end{itemize}
-\end{itemize}
+\begin{frame}{Aufbau}
+\tableofcontents
 \end{frame}
 
 
@@ -115,7 +97,7 @@
  \item MuPAD wurde mitte des Jahres 2008 an Mathworks verkauft
  \item MuPAD ist seither eine Toolbox des Programms \alert{Matlab} (Symbolic Toolbox)
 \end{itemize}
-\item MuPAD ist in C/C++ geschrieben.
+\item Sage ist in python geschrieben.
 \item MuPAD ist objektorientiert.
 \end{itemize}
 \end{frame}
@@ -141,7 +123,7 @@ gesuchte Lösung
 \end{block}
 \end{frame}
 
-\begin{frame}{Computeralgebra <-> Numerische Berechnung}
+\begin{frame}{Computeralgebra != Numerische Berechnung}
 \begin{block}{Beispiel}
 \begin{tabular}{ll}
  Mathematische Objekte & $\pi$, $\sqrt{2}$\\
@@ -153,15 +135,13 @@ gesuchte Lösung
 \begin{frame}{Andere Computeralgebra-Systeme}
 \begin{small}
 \begin{tabular}{cp{7cm}}
-\alert{General purpose}: & Derive (Eingestellt 2006, TI)\\
-& LiveMath (Maple)\\
+\alert{Allgemein}: & LiveMath (Maple)\\
 & Maxima (Free, GPL)\\
-& Reduce (sehr alt, in Lisp programmiert, free)\\
 & Mathematica (Platzhirsch)\\
 & Maple (Platzhirsch)\\
-& Matlab/Octave (Für große Rechnungen)\\
+& Matlab/Octave (Für große Rechnungen, inkl. Mupad)\\
 & Magma (Spezielle mathematische Rechungen)\\
-\alert{Special  purpose}: & Cadabra (Körpertheorie)\\
+\alert{Spezialanwendungen}: & Cadabra (Körpertheorie)\\
 & PARI/GP (Zahlentheorie)\\
 & GAP (Gruppentheorie) \\
 & Macaulay (Algebraische Geometrie)\\
@@ -797,24 +777,12 @@ Teiler der Zahl $840$:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Starten von MuPAD}
-\begin{itemize}
-\item Kiosk: Lernprogramme -> Mathematisches -> MuPAD 4.0.0
-\item Benutzung der Terminals:
-\begin{itemize}
-\item Einloggen auf einem Linuxrechner
-(l1,\ldots,l14) mit
+\begin{frame}[fragile]{Hilfefunktionen in Sage}
 
-{\color{blue} \verb+ ssh -X l1.num.math.uni-goettingen.de+}
-\item Starten von MuPAD:
-{\color{blue} \verb+mupad &+}
-\end{itemize}
-\item Hilfefunktionen in MuPAD
 \begin{itemize}
 \item {\color{blue} ?} (startet menügesteuertes Hilfefenster)
 \item {\color{blue} info({\it name})} gibt  eine Kurzhilfe zu {\it name}
 \item {\color{blue} ? {\it name}} oder help(``{\it name}'') gibt ausführliche Hilfe.
-\end{itemize}
 \end{itemize}
 \end{frame}
 \end{document}
