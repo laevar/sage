@@ -74,6 +74,7 @@ und \texttt{s241.math.uni-goettingen.de} bis \texttt{s245.math.uni-goettingen.de
 \item [7. Tag] Reelle Funktionen, Grafiken
 \item [8. Tag] Differenzial- und Integralrechnung
 \item [9. Tag] Grundlagen der Programmierung,  Zeichenketten (Strings)
+\item [10. Tag] Fragestunde
 \end{description}
 \end{frame}
 
@@ -86,22 +87,6 @@ und \texttt{s241.math.uni-goettingen.de} bis \texttt{s245.math.uni-goettingen.de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Was ist Sage?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Sage}
-\begin{itemize}
-\item Open-source (GPL) Mathematik Software System.
-%\begin{itemize}
-% \item Entwicklung von MuPAD seit 1990 an der Universität Paderborn
-% \item Seit 1997 Teilausgliederung in die SciFace Sofware GmbH
-% \item MuPAD wurde mitte des Jahres 2008 an Mathworks verkauft
-% \item MuPAD ist seither eine Toolbox des Programms \alert{Matlab} (Symbolic Toolbox)
-%\end{itemize}
-\item Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.
-\item Basiert auf Python.
-\item Objektorientiert.
-\item Besitzt Frontends für viele externe Software $\rightarrow$ Synergie-Effekte
-\end{itemize}
-\end{frame}
 
 \begin{frame}{Computeralgebra-Systeme}
 
@@ -133,69 +118,101 @@ gesuchte Lösung
 \end{block}
 \end{frame}
 
-\begin{frame}{Andere Computeralgebra-Systeme}
+\begin{frame}{Computeralgebra-Systeme}
 \begin{small}
-\begin{tabular}{cp{7cm}}
-\alert{Allgemein}: & LiveMath (Maple)\\
-& Maxima (Free, GPL)\\
-& Mathematica (Platzhirsch)\\
-& Maple (Platzhirsch)\\
-& Matlab/Octave (Für große Rechnungen, inkl. Mupad)\\
-& Magma (Spezielle mathematische Rechungen)\\
-\alert{Spezialanwendungen}: & Cadabra (Körpertheorie)\\
-& PARI/GP (Zahlentheorie)\\
-& GAP (Gruppentheorie) \\
-& Macaulay (Algebraische Geometrie)\\
-& Singular (Algebraische Geometrie)
+\begin{block}{Allgemein}
+\begin{tabular}{ll}
+\alert{Sage} & Schnittstelle für Mathematik-Software \\
+ \alert{LiveMath} &Maple\\
+ \alert{Maxima} &Free, GPL, von Sage benutzt\\
+\alert{Mathematica} &Platzhirsch\\
+ \alert{Maple} &Platzhirsch\\
+\alert{Matlab/Octave} &Für große Rechnungen, inkl. Mupad\\
+\alert{Magma} &Spezielle mathematische Rechungen\\
+ \alert{SymPy} &Phython-Bibliotheken als CAS-Verwendbar\\
+ \alert{SymbolicC++} &Bibliotheken zur CA in C++
 \end{tabular}
+
+Überblick:{\scriptsize
+\url{http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems} }
+\end{block}
+
+%\alert{Spezialanwendungen}: & Cadabra (Körpertheorie)\\
+%& PARI/GP (Zahlentheorie, Teil von Sage)\\
+%& GAP (Gruppentheorie, Teil von Sage) \\
+%& Macaulay (Algebraische Geometrie)\\
+%& Singular (Algebraische Geometrie, Teil von Sage)
+%\end{tabular}
 \end{small}
 \end{frame}
 
-\begin{frame}{Neuere Entwicklungen}
-Neue Entwicklungen/Bibliotheken:
-\begin{description}
-\item[Sage] Sehr ehrgeiziges Projekt, komplett in Phython geschrieben
-\item[SymPy] Phython-Bibliotheken als CAS-Verwendbar
-\item[SymbolicC++] Bibliotheken zur CA in C++
-\end{description}
-Überblick:
-
- \url{http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems}
+\begin{frame}{Sage}
+\begin{itemize}
+\item Open-source (GPL) Mathematik Software System.
+%\begin{itemize}
+% \item Entwicklung von MuPAD seit 1990 an der Universität Paderborn
+% \item Seit 1997 Teilausgliederung in die SciFace Sofware GmbH
+% \item MuPAD wurde mitte des Jahres 2008 an Mathworks verkauft
+% \item MuPAD ist seither eine Toolbox des Programms \alert{Matlab} (Symbolic Toolbox)
+%\end{itemize}
+\item Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.
+\item Basiert auf Python.
+\item Objektorientiert.
+\item Besitzt Frontends für viele externe Software $\rightarrow$ Synergie-Effekte
+\end{itemize}
 \end{frame}
 
 
-\begin{frame}[<+->]{MuPAD - Stärken}
+\begin{frame}{}
+von Joachim Neubüser (Gründer von GAP):
+ \begin{small}
+\begin{quote}
+    You can read Sylow’s Theorem and its proof [. . . ] and then
+    you can use Sylow’s Theorem for the rest of your life free of
+    charge, but for many computer algebra systems license fees
+    have to be paid regularly [. . . ]. You press buttons and you get
+    answers in the same way as you get the bright pictures from
+    your television set but you cannot control how they were
+    made in either case. 
 
+With this situation two of the most basic rules of conduct in
+mathematics are violated: in mathematics information is
+passed on free of charge and everything is laid open for
+checking. Not applying these rules to computer algebra
+systems that are made for mathematical research [. . . ]
+means moving in a most undesirable direction. Most
+important: can we expect somebody to believe a result of a
+program that he is not allowed to see?  
+\end{quote}
+ \end{small}
+
+\end{frame}
+
+
+
+
+\begin{frame}[<+->]{Sage - Stärken und Schwächen}
 \begin{itemize}
-\item Objektorientiertes Konzept (definieren eigener Datentypen,
-  überladen von Operatoren möglich)
 \item interaktiver Quellcode-Debugger
 \item umfangreiches Hilfesystem
 \item Einfaches Einbinden von C/C++ Routinen (dynamische Module)
-\item Teil einer großen Software (Weiterenwicklung gesichert)
+\item Schnittstelle zu vielen anderen CAS (Maxima, Pari,
+GAP, R, Magma, ..., wovon einige bereits bei Sage enthalten sind)
 \item Viele freie (Unterrichts-)materialien im Netz 
 \end{itemize}
-\end{frame}
-
-\begin{frame}[<+->]{MuPAD - Schwächen}
 \begin{itemize}
 \item Befehlsumfang nicht so mächtig wie bei Maple oder Mathematica
-\item Geringerer Verbreitungsgrad 
-\item Benutzung ist nicht so intuitiv wie bei anderen Systemen
-\item Teil einer großen Software (Matlab muß installiert/erworben werden)
-\item Programmierumgebung wenig komfortabel (Es gibt in der Matlab-Version einen Editor)
-\item Gültigkeitsberereich von Variablen in Funktionen ist global
-\item Zum Teil nicht konsistent erscheinende Auswertungen von Variablen
+\item es fehlt eine gute Entwicklungsumgebung
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Struktur von MuPAD}
+\begin{frame}{Struktur von Sage}
 \begin{center}
 \includegraphics[width=6cm]{figures/components.png}
 \end{center}
 \end{frame}
 
-\begin{frame}{Kern von MuPAD}
+\begin{frame}{Kern von Sage}
 \begin{itemize}
 \item \alert{Parser:} Liest die Eingaben und überprüft die Syntax;
   Umwandlung in MuPAD-Datentyp
@@ -209,17 +226,17 @@ Neue Entwicklungen/Bibliotheken:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Literatur}
-\begin{itemize}
-\item K. Gehrs, F. Postel. MuPAD -- Eine praktische
-  Einführung. SciFace. 2001.
-\item Ch. Creutzig, J. Gerhard, W. Oevel, St. Wehmeier. Das MuPAD
-  Tutorium. Springer. 2. Auflage. 2002.
-\item M. Majewski. MuPAD Pro Computing Essentials. Springer. 2002.
-\item Rolf Monnerjahn. Mathematische Anwendungen in Biologie, Chemie, Physik. MuPad im Mathematikunterricht: 5.-10. Schuljahr
-\item  Gerd Rapin, Thomas Wassong, Stefan Wiedmann und Stefan Koospal. MuPAD: Eine Einführung
-\end{itemize}
-\end{frame}
+%\begin{frame}{Literatur}
+%\begin{itemize}
+%\item K. Gehrs, F. Postel. MuPAD -- Eine praktische
+%  Einführung. SciFace. 2001.
+%\item Ch. Creutzig, J. Gerhard, W. Oevel, St. Wehmeier. Das MuPAD
+%  Tutorium. Springer. 2. Auflage. 2002.
+%\item M. Majewski. MuPAD Pro Computing Essentials. Springer. 2002.
+%\item Rolf Monnerjahn. Mathematische Anwendungen in Biologie, Chemie, Physik. MuPad im Mathematikunterricht: 5.-10. Schuljahr
+%\item  Gerd Rapin, Thomas Wassong, Stefan Wiedmann und Stefan Koospal. MuPAD: Eine Einführung
+%\end{itemize}
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Streifzug durch Sage}
@@ -256,7 +273,7 @@ Hier einige Beispiele:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Eine Kurvendiskussion}
+\subsection{Eine Kurvendiskussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Kurvendiskussion I}
@@ -409,7 +426,7 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Symbolisches Rechnen}
+\subsection{Symbolisches Rechnen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Symbolisches Rechnen I}
@@ -538,7 +555,7 @@ g.partial_fraction()
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Etwas AGLA}
+\subsection{Etwas AGLA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -680,7 +697,7 @@ ergibt
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Etwas Zahlentheorie}
+\subsection{Etwas Zahlentheorie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Etwas Zahlentheorie I}
