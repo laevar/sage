@@ -58,7 +58,7 @@ und \texttt{s241.math.uni-goettingen.de} bis \texttt{s245.math.uni-goettingen.de
 \begin{itemize}
 \item Regelmäßige Teilnahme an den Übungen
 \item Projektarbeit durchführen
-\item Klausur am 5.3.2009; 10:00 - 12:00; Anmeldung über FlexNow!
+\item Klausur am 1.3.2009; 10:00 - 12:00; Anmeldung über FlexNow!
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -192,6 +192,7 @@ program that he is not allowed to see?
 
 
 \begin{frame}[<+->]{Sage - Stärken und Schwächen}
+\alert{Stärken}
 \begin{itemize}
 \item interaktiver Quellcode-Debugger
 \item umfangreiches Hilfesystem
@@ -200,17 +201,18 @@ program that he is not allowed to see?
 GAP, R, Magma, ..., wovon einige bereits bei Sage enthalten sind)
 \item Viele freie (Unterrichts-)materialien im Netz 
 \end{itemize}
+\alert{Schwächen}
 \begin{itemize}
 \item Befehlsumfang nicht so mächtig wie bei Maple oder Mathematica
 \item es fehlt eine gute Entwicklungsumgebung
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Struktur von Sage}
-\begin{center}
-\includegraphics[width=6cm]{figures/components.png}
-\end{center}
-\end{frame}
+%\begin{frame}{Struktur von Sage}
+%\begin{center}
+%\includegraphics[width=6cm]{figures/components.png}
+%\end{center}
+%\end{frame}
 
 \begin{frame}{Kern von Sage}
 \begin{itemize}
@@ -774,13 +776,10 @@ Teiler der Zahl $840$:
 \begin{frame}[fragile]{Überlebensregeln}
 \begin{itemize}
 \item Kommas zwischen Eingaben erzeugen den Datentyp einer Folge!
-\item Mehrere Befehle in einer Zeile besser durch
-{\color{blue} ';'} oder {\color{blue} ':'} 
-  trennen. Ausgabe wird mit {\color{blue} ':'} am Ende unterdrückt
-\item Die Eingabe {\color{blue} \%} ergibt die Ausgabe des letzten Befehls
-\item Die Eingabe {\color{blue} \%n} ergibt die Ausgabe des $n$-letzten Befehls
+\item Mehrere Befehle in einer Zeile durch {\color{blue} ';'} trennen. 
 \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-  Zeilenumbruch durch {\color{blue} <SHIFT>+<ENTER>} erreicht werden
+  Zeilenumbruch durch {\color{blue} <ENTER>} erreicht werden.
+\item Das auswerten eines Blocks erfolgt mit {\color{blue} <SHIFT>+<ENTER>}.
 \end{itemize}
 \end{frame} 
 
@@ -789,9 +788,8 @@ Teiler der Zahl $840$:
 \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} reset()}
 \item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
 \item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
-\item Alle Ausgaben entfernen: Bearbeiten -> Alle Ausgaben entfernen
-\item Matheklammer erzeugen: $\pi$
-\item Lücke für Text erzeugen: \P
+\item LaTex-doku ?
+\item dokumentieren ? editor!
 \end{itemize}
 \end{frame}
 
