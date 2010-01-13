@@ -253,7 +253,7 @@ Hier einige Beispiele:
   55 
 \end{sage}
 \begin{sage}
->> sin(Pi) 
+>> sin(pi) 
 \end{sage}
 \begin{sage}
   0
@@ -262,13 +262,13 @@ Hier einige Beispiele:
 >> float(Pi)
 \end{sage}
 \begin{sage}
-  3.141592654 
+  3.14159265358979
 \end{sage}
 \begin{sage}
 >> float(sqrt(2))
 \end{sage}
 \begin{sage}
-  1.414213562 
+  1.41421356237310
 \end{sage}
 \end{frame}
 
@@ -403,27 +403,22 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Zusammenfassung I}
+\begin{frame}[fragile]{Zusammenfassung}
 \begin{itemize}
-\item Definieren von Variablen mit {\color{blue}':='}, z.B. {\verb~a:=3~} 
-\item Löschen von Objekten mit {\color{blue}{\verb+delete+}}, z.B. {\verb+delete a+}
-\item Definieren von Funktionen mit{\color{blue} '->'}, z.B. {\verb~f:= x -> x^2- 6*x~}
+\item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
+\item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
 \item Symbolisches Rechnen 
 \begin{itemize}
-\item Unstetigkeitsstellen: {\color{blue} \verb~discont(f(x),x)~}
-\item Grenzwertbestimmung: {\color{blue}   \verb~limit(f(x), x= 2, Left)~}
-\item Vereinfachen: {\color{blue}  \verb~normal(f(x))~}
-\item Bilden von Ableitungen {\color{blue} \verb~f'(x)~}
+\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='plus')~}
+\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
+\item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
 \end{itemize} 
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zusammenfassung II}
 \begin{itemize}
-\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)=0, x)~}
+\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
 \item Berechnen numerischer Approximationen:
   {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
-\item Plotten einer Funktion: {\color{blue} \verb~plotfunc2d(sin(x),x=0..4)~}
+\item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
 \end{itemize}
 \end{frame}
 
@@ -706,18 +701,10 @@ ergibt
 Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
 Zahl $F_n$, die keine Primzahl ist!
 \begin{sage}
->> F = 2^(2^n)+1
->> F1 = F.subs(n=1); F1, is_prime(F1)
-(5, True)
->> F1 = F.subs(n=2); F1, is_prime(F1)
-(17, True)
->> F1 = F.subs(n=3); F1, is_prime(F1)
-(257, True)
->> F1 = F.subs(n=4); F1, is_prime(F1)
-(65537, True)
->> F1 = F.subs(n=5); F1, is_prime(F1)
-(4294967297, False)
->> divisors(int(F1))
+>> def F(n): return 2^(2^n)+1
+>> [[F(m),is_prime(F(m))] for m in xrange(1,6) if is_prime (F(m))]
+[[5, True], [17, True], [257, True], [65537, True]]
+>> divisors(int(F(5)))
 [1, 641, 6700417, 4294967297]
 \end{sage}
 \end{frame}
@@ -726,8 +713,9 @@ Zahl $F_n$, die keine Primzahl ist!
 \begin{itemize}
 \item Eine Liste der ersten  Primzahlen bis $100$
 \begin{sage}
->> menge = set(range(1,100))
+>> menge = set(range(1,101))
 >> [m for m in menge if is_prime(m)]
+oder >> filter(is_prime,menge)
 \end{sage}
 \begin{sage}
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
@@ -735,9 +723,9 @@ Zahl $F_n$, die keine Primzahl ist!
 \item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
 Mersenne Primzahlen im Bereich $\leq 200$.
 \begin{sage}
-menge = set(range(1,200))
-primes = [m for m in menge if is_prime(m)]
-[m for m in primes if is_prime(2^m-1)]
+>> menge = set(range(1,201))
+>> primes = [m for m in menge if is_prime(m)]
+>> [m for m in primes if is_prime(2^m-1)]
 \end{sage}
 \begin{sage}
 [2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127]
@@ -749,10 +737,8 @@ primes = [m for m in menge if is_prime(m)]
 Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
 $1,2,3,\dots $ Teiler haben.
 \begin{sage}
->> menge = set(range(1,1000))
->> def anz_teiler(n): 
->>     return number_of_divisors(int(n))
->> liste = [anz_teiler(m) for m in menge]
+>> menge = set(range(1,1001))
+>> liste = [number_of_divisors(int(m)) for m in menge]
 >> for i in range(1,50):
 >>     print (i,len([m for m in liste if m==i]))
 \end{sage}
@@ -761,6 +747,7 @@ $1,2,3,\dots $ Teiler haben.
 (1, 1)
 (2, 168)
 (3, 11)
+(4, 292)
 ...
 \end{sage}
 Teiler der Zahl $840$:
@@ -775,30 +762,31 @@ Teiler der Zahl $840$:
 
 \begin{frame}[fragile]{Überlebensregeln}
 \begin{itemize}
-\item Kommas zwischen Eingaben erzeugen den Datentyp einer Folge!
 \item Mehrere Befehle in einer Zeile durch {\color{blue} ';'} trennen. 
 \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
   Zeilenumbruch durch {\color{blue} <ENTER>} erreicht werden.
-\item Das auswerten eines Blocks erfolgt mit {\color{blue} <SHIFT>+<ENTER>}.
+\item Das Auswerten eines Blocks erfolgt mit {\color{blue} <SHIFT>+<ENTER>}.
 \end{itemize}
 \end{frame} 
 
 \begin{frame}{Nützliches}
 \begin{itemize}
+\item {\color{blue} _ } refenziert die letzte Ausgabe.
 \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} reset()}
-\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
-\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
+%\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
+%\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
+\item profiler und debugger -> commandline
 \item LaTex-doku ?
-\item dokumentieren ? editor!
+\item dokumentieren ? editor?
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Hilfefunktionen in Sage}
 
 \begin{itemize}
-\item {\color{blue} ?} (startet menügesteuertes Hilfefenster)
-\item {\color{blue} info({\it name})} gibt  eine Kurzhilfe zu {\it name}
-\item {\color{blue} ? {\it name}} oder help(``{\it name}'') gibt ausführliche Hilfe.
+\item {\color{blue} Autocompletion :} mit der <TAB>-Taste erhält man alle möglichen Funktionen und/oder Variablen im gegebenen Kontext.
+\item {\color{blue} \textit{command}? :} gibt ausführliche Hilfe zu \textit{command} an.
+\item {\color{blue} help(\textit{command}) :} öffnet ein Hilfefenster zu \textit{command}.
 \end{itemize}
 \end{frame}
 \end{document}
