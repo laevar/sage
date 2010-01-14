@@ -1,0 +1,904 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 2}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+%\begin{frame}{Übersicht}
+%\begin{enumerate}
+%\item Bezeichner, Zuweisungen, Datentypen und Objekte
+%\item Zerlegen von Objekten in seine Bestandteile
+%\item Symbolisches Rechnen
+%\item Gleichungen
+%\end{enumerate}
+%\end{frame}
+
+%=================================================
+\section{Grundlagen von Sage}
+%=================================================
+
+\begin{frame}[fragile]{Ein erstes Beispiel}
+\begin{sage}
+>> f = x^2-3*x-18; solve(f==0,x)
+\end{sage}
+\begin{sage}
+[x == 6, x == -3]
+\end{sage}
+\begin{sage}
+>> solve(f<=0,x) ??
+\end{sage}
+\begin{sage}
+ [-3, 6] union 
+ {I x + 3/2 | x in (-infinity, infinity)}
+\end{sage}
+\begin{sage}
+>> assume(x,Type::Real): solve(f<=0,x) ??
+\end{sage}
+\begin{sage}
+ [-3, 6]
+   \end{sage}
+\begin{sage}   
+>> x:=1: f  ??
+\end{sage}
+\begin{sage}
+ -20
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel} 
+Betrachte:
+\begin{sage}
+>> f := x^2-3*x-18:
+\end{sage}
+\begin{itemize}
+\item Wie geht MuPAD mit der Unbekannten $x$ um?
+\item Welchen Datentyp hat $f$?
+\item Was kann ich mit $f$ machen?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Bezeichner}
+\begin{itemize}
+\item \alert{Bezeichner} sind Namen, wie z.B. $x$ oder $f$. Sie können
+im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
+\item Bezeichner sind aus Buchstaben, Ziffern und
+Unterstrich \_ zusammengesetzt.
+\item Sage unterscheidet zwischen Groß- und Kleinschreibung.
+\item Bezeichner dürfen nicht mit einer Ziffer beginnen
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Bezeichner}
+\begin{itemize}
+\item zulässige Bezeichner:
+\verb+x+, \verb+f+, \verb+x23+, \verb+_x_1+
+\item unzulässige Bezeichner:
+\verb+12x+, \verb+p~+, \verb+x>y+, \verb+Das System+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wert eines Bezeichners}
+\begin{itemize}
+\item Der \alert{Wert} eines Bezeichners  ist ein \alert{Objekt} eines bestimmten
+\alert{Datentyps}.
+\item Ein \alert{Datentyp} ist durch seine Eigenschaften gegeben. \\
+Beispiel: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
+\item Ein \alert{Objekt} ist eine Instanz (Einheit) eines Datentyps.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zuweisungsoperator $:=$}
+\begin{itemize}
+\item Die Operation {\color{blue} \verb+bez=wert+} weist dem Bezeichner
+\verb+bez+ den Wert \verb+wert+ zu.  
+\item Beispiele: {\color{blue} \verb+N=5+}, {\color{blue} \verb+f= x^2-3*x-18+}
+\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
+\item Warnung: Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
+dem logischen Operator {\color{blue} $==$}.   
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>> N=6
+\end{sage}
+\begin{sage}
+  6
+\end{sage}
+\begin{sage}
+>> f = x+2*x*x-y
+\end{sage}
+\begin{sage}
+             2
+  x - y + 2 x
+\end{sage}
+\begin{sage}
+>> y:= cos( (x:=PI)): x,y
+\end{sage}
+\begin{sage}
+  PI, -1
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Datentypen}
+
+\begin{sage}
+>> domtype(5)
+\end{sage}
+\begin{sage}
+  DOM_INT
+\end{sage}
+\begin{sage}
+>> f:= x^2-3*x-18: domtype(f)
+\end{sage}
+\begin{sage}
+  DOM_EXPR
+\end{sage}
+\begin{sage}
+>> domtype(x)
+\end{sage}
+\begin{sage}
+  DOM_IDENT
+\end{sage}
+\begin{sage}
+>> f+f
+\end{sage}
+\begin{sage}
+     2
+  2 x  - 6 x - 36
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Einige Datentypen}
+\begin{center}
+\begin{tabular}{|lll|}
+\hline
+Domain-Typ & Bedeutung & Beispiel\\
+\hline
+\verb+DOM_INT+ & ganze Zahlen & $-3,0,100$\\
+\verb+DOM_RAT+ & rationale Zahlen & $7/11$\\
+\verb+DOM_FLOAT+ & Gleitpunktzahl & $0.123$\\
+\verb+DOM_COMPLEX+ & komplexe Zahlen & $1+3*I$\\
+\verb+DOM_IDENT+ & symbolische Bezeichner & $x,f,y$\\
+\verb+DOM_EXPR+ & symbolische Ausdrücke & $x+y$\\
+\verb+DOM_BOOL+ & logische Werte: TRUE&\\
+  & FALSE, UNKNOWN&\\ 
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle im Umgang mit $:=$}
+\begin{itemize}
+\item Viele Bezeichner sind vordefiniert und gegen Zuweisungen
+                geschützt, z.B. \verb+sin+, \verb+limit+,..
+\item Aufheben des Schutzes: {\color{blue} \verb+unprotect(bezeichner)+}
+\item Schützen von Bezeichnern: {\color{blue} \verb+protect(bezeichner,Error)+}
+\item Liste aller definierten Bezeichner: {\color{blue} \verb+anames(All)+}
+\item Liste aller vom Benutzer definierten Bezeichner: {\color{blue}
+\verb+anames(All,User)+}
+\item Löschen von Zuweisungen: {\color{blue} \verb+delete bezeichner+}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>> sin:=2
+\end{sage}
+\begin{sage}
+  Error: Identifier 'sin' is protected [_assign]
+\end{sage}
+\begin{sage}
+>> N:=3
+\end{sage}
+\begin{sage}
+  3
+\end{sage}
+\begin{sage}
+>> protect(N,Error): N:=5
+\end{sage}
+\begin{sage}
+  Error: Identifier 'N' is protected [_assign]
+\end{sage}
+\begin{sage}
+>> unprotect(N): N:=3
+\end{sage}
+\begin{sage}
+  3
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel: Auswertung}
+\begin{sage}
+>> f:=x*x-3*x-a
+\end{sage}
+\begin{sage}
+   2
+  x  - 3 x - a
+\end{sage}
+\begin{sage}
+>> a:=1: f
+\end{sage}
+\begin{sage}
+   2
+  x  - 3 x - 1
+\end{sage}
+\begin{sage}
+>> x:=1: f
+\end{sage}
+\begin{sage}
+  -3
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel: Auswertung}
+\begin{sage}
+>> delete a: f
+\end{sage}
+\begin{sage}
+  - a - 2
+\end{sage}
+\begin{sage}
+>> x:=5 :f
+\end{sage}
+\begin{sage}
+  10 - a
+\end{sage}
+\end{frame}
+
+\begin{frame}{Auswertung}
+\begin{itemize}
+\item Der {\color{red} \it Bezeichner} ist der Name einer Unbekannten.
+\item Die  {\color{red} \it Auswertung} eines Bezeichners benutzt alle
+aktuell bekannten Zuweisungen.  
+\item Der {\color{red} \it Wert} bezeichnet die Auswertung zum 
+Zeitpunkt der Zuweisung. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Auswertung}
+\begin{itemize}
+\item Auf interaktiver Ebene wertet MuPAD in der Regel vollständig
+aus. 
+\item Maximale Auswertungstiefe wird durch die Konstanten {\color{blue} LEVEL}
+und {\color{blue} MAXLEVEL} gesteuert.\\
+(Default: {\color{blue} LEVEL}= 100, {\color{blue} MAXLEVEL}=100)
+\item Zuerst wird {\color{blue} MAXLEVEL} geprüft; erst dann {\color{blue} LEVEL}. 
+\item Ist {\color{blue} MAXLEVEL} erreicht, wird eine Fehlermeldung zurückgegeben.
+\item Die Auswertung wird bei {\color{blue} LEVEL} gestoppt, d.h. es wird keine Fehlermeldung zurückgegebnen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Auswertung}
+\begin{itemize}
+\item Bei Aufrufen {\color{blue} \%n} wird nicht ausgewertet. Ähnliches gilt
+bei Einträgen von Matrizen und Tabellen.
+\item Im Zusammenhang mit dem $\$$-Operator wird nicht ausgewertet. 
+\item Auswertungen können durch {\color{blue} eval} erzwungen werden.
+\item Auswertungen können durch {\color{blue} hold} unterbunden werden.
+\item Die Auswertungstiefe eines Bezeichners $a$ kann gezielt durch den Befehl
+  {\color{blue} \verb+level(a,n)+} gesteuert werden ($n$ Auswertungstiefe).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele I}
+\begin{sage}
+>> a:=sin(b)
+\end{sage}
+\begin{sage}
+  sin(b)
+\end{sage}
+\begin{sage}
+>> b:=0
+\end{sage}
+\begin{sage}
+  0
+\end{sage}
+\begin{sage}
+>> a
+\end{sage}
+\begin{sage}
+  0
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele II}
+\begin{sage}
+>> %3,eval(%3)
+\end{sage}
+\begin{sage}
+  sin(b), 0
+\end{sage}
+\begin{sage}
+>> a,hold(a)
+\end{sage}
+\begin{sage}
+  0, a
+\end{sage} 
+\end{frame}
+
+\begin{frame}{Operatoren}
+\begin{itemize}
+\item Typische Operatoren sind $+$, $-$, $*$, $!$,...
+\item In MuPAD werden Objekte immer durch Funktionen miteinander
+verbunden. 
+\item Operatoren sind in MUPAD als Funktionen realisiert.
+\item Für wichtige Operatoren gibt es die gewohnte
+Kurzschreibweise.
+\item Bei Kombination verschiedener Operatoren gelten die üblichen
+Regeln der Bindungsstärke (Punktrechnung vor Strichrechnung); Die Ordnung kann
+durch Klammersetzung geändert werden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wichtige mathematische Operatoren}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Not. & Funktion & Erklärung\\
+\hline
+\hline
+$+$ & \verb~_plus(a,b,c)~ & Addition \\
+$-$ & \verb~_subtract(a,b)~ & Subtraktion\\
+$*$ & \verb+_mult(a,b,c)+ & Multiplikation \\
+$/$ & \verb+_divide(a,b)+ & Division\\
+$\hat{ }$ & \verb+_power(a,b)+ & Potenz\\
+$!$ & \verb+_fact(n)+ & Fakultät\\
+$div$ & \verb+_div(a,b)+ & Quotient ohne Rest\\
+$mod$ & \verb+_mod(a,b)+ & Rest bei Division\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Zerlegen von Objekten}
+\begin{itemize}
+\item Viele Objekte sind zusammengesetzt. Ihre Bausteine heißen {\color{red}
+Operanden.}
+\item Durch {\color{blue} \verb+nops(Objekt)+} erhält man die Anzahl der
+Operanden. 
+\item Durch {\color{blue} \verb+op(Objekt)+} bzw. {\color{blue} \verb+op(Objekt,i)+}
+erhält man alle Operanden bzw. den $i$-ten Operand.
+\item Mittels {\color{blue} \verb+has(Objekt,a)+} kann untersucht werden, ob
+$a$ ein Operand von \verb+Objekt+ ist.
+\item Die Befehle beziehen sich jeweils auf die automatisch
+vereinfachten Objekte.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele I}
+\begin{sage}
+>> f:=_plus(a,b,c)
+\end{sage}
+\begin{sage}
+  a + b + c
+\end{sage}
+\begin{sage}
+>> nops(f), op(f), op(f,2)
+\end{sage}
+\begin{sage}
+  3, a, b, c, b
+\end{sage}
+\begin{sage}
+>> op(f,0)
+\end{sage}
+\begin{sage}
+  _plus
+\end{sage}
+\begin{sage}
+>> has(f,a), has(f,a+b)
+\end{sage}
+\begin{sage}
+  TRUE, FALSE
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele II}
+\begin{sage}
+>> f:=x*z+3*x+sqrt(y):
+>> op(f), nops(op(f,2))
+\end{sage}
+\begin{sage}
+             1/2
+  3 x, x z, y   , 2
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Darstellungsbaum}
+\begin{sage}
+>> a:=int(exp(x^4),x=0..1)
+\end{sage}
+\begin{center}
+\includegraphics[width=8cm, height=6cm]{figures/baum.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel}
+\begin{sage}
+>> a:=int(exp(x^4),x=0..1):
+>> op(a)
+\end{sage}
+\begin{sage}
+       4
+  exp(x ), x = 0..1
+\end{sage}
+\begin{sage}
+>> op(a,0)
+\end{sage}
+\begin{sage}
+  int
+\end{sage}
+\begin{sage}
+>> op(op(a,1))
+\end{sage}
+\begin{sage}
+   4
+  x
+\end{sage}
+\begin{sage}
+>> prog::exprtree(a)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Automatische Vereinfachung}
+MuPAD führt oft automatische Vereinfachungen durch. Ansonsten muß
+der Benutzer gezielt Vereinfachungen anfordern.
+
+ {Beispiele:}
+\begin{sage}
+>> sin(15*PI), exp(0)
+\end{sage}
+\begin{sage}
+  0, 1
+\end{sage}
+\begin{sage}
+>> 2*infinity-5
+\end{sage}
+\begin{sage}
+  infinity
+\end{sage}
+\begin{sage}
+>> y:=(-4*x+x^2+4)*(7*x+x^2+12)
+\end{sage}
+\begin{sage}
+    2                    2
+  (x  - 4 x + 4) (7 x + x  + 12)
+\end{sage}
+\end{frame} 
+
+%=================================================
+\section{Symbolisches Rechnen I}
+%=================================================
+
+\begin{frame}{Manipulation von Ausdrücken}
+\begin{itemize}
+\item Verbinden von Ausdrücken
+\item Vereinfachen
+\item Umformen
+\item Einsetzen der Unbekannten
+\end{itemize}
+\end{frame} 
+
+\begin{frame}[fragile]{Verbinden von Ausdrücken}
+Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
+dividiert werden. 
+\begin{itemize}
+\item Definition
+\begin{sage}
+>> f:= x*x+3*x+y: g:=x-y:
+\end{sage}
+\item Potenz
+\begin{sage}
+>> f^g
+\end{sage}
+\begin{sage}
+              2 x - y
+  (3 x + y + x )
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Verbinden von Ausdrücken II}
+\begin{itemize}
+\item Addition / Subtraktion
+\begin{sage}
+>> f+g, f-g
+\end{sage}
+\begin{sage}
+         2               2
+  4 x + x , 2 x + 2 y + x
+\end{sage}
+\item Multiplikation/ Division
+\begin{sage}
+>> f*g, f/g
+\end{sage}
+\begin{sage}
+                                     2
+                      2   3 x + y + x
+  (x - y) (3 x + y + x ), ------------
+                             x - y
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{collect}
+Durch {\color{blue} \verb+collect(Ausdruck, Unbestimmte)+} wird der
+\verb+Ausdruck+ bzgl. der \verb+Unbestimmten+ sortiert.
+\begin{sage}
+>> f:=a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
+>> collect(f,x)
+\end{sage}
+\begin{sage}
+   3      2
+  x  + a x  + (a + b + sin(x) + 4) x + sin(x)
+\end{sage}
+\begin{sage}
+>> collect(f,[x,sin(x)])
+\end{sage}
+\begin{sage}
+   3      2
+  x  + a x  + x sin(x) + (a + b + 4) x + sin(x)
+\end{sage} 
+\end{frame}
+
+\begin{frame}[fragile]{combine}
+Durch {\color{blue} \verb+combine(Ausdruck,Option)+} wird der Ausdruck
+zusammengefaßt. Dabei werden
+mathematische Identitäten benutzt, die durch \verb+Option+ angegeben
+werden. Optionen sind \verb+arctan+
+,\verb+exp+,\verb+ln+,\verb+sincos+, 
+\verb+sinhcosh+. Ohne
+Angabe der Option werden nur die Potenzgesetze benutzt.  
+\begin{sage}
+>> g:= sin(a)*cos(b):
+>> g=combine(g, sincos)
+\end{sage}
+\begin{sage}
+                  sin(a + b)   sin(a - b)
+  cos(b) sin(a) = ---------- + ----------
+                      2            2
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{expand}
+Ausmultiplizieren von  Ausdrücken erfolgt durch {\color{blue}
+\verb+expand(Ausdruck,f_1,f_2,..)+}. \\
+\verb+f_1+, \verb+f_2+ sind
+Ausdrücke, die \alert{nicht} expandiert werden sollen.
+\begin{sage}
+>> expand((x+2)^4)
+\end{sage}
+\begin{sage}
+   4      3       2
+  x  + 8 x  + 24 x  + 32 x + 16
+\end{sage}
+\begin{sage}
+>> expand(sin(x+y))
+\end{sage}
+\begin{sage}
+  cos(x) sin(y) + cos(y) sin(x)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele zu expand}
+\begin{sage}
+>> f:=(x-y)^2+(x+y)^2: expand(f)
+\end{sage}
+\begin{sage}
+     2      2
+  2 x  + 2 y
+\end{sage}
+\begin{sage}
+>> expand(f,x-y)
+\end{sage}
+\begin{sage}
+   2    2          2
+  x  + y  + (x - y)  + 2 x y
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{factor}
+Der Befehl {\color{blue} \verb+factor(Ausdruck)+} faktorisiert Polynome und
+Ausdrücke. 
+\begin{itemize}
+\item MuPAD faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
+Zahlen sind. 
+\item Auch anwendbar auf rationale Funktionen. Es wird ein gemeinsamer
+Hauptnenner gesucht.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel: factor}
+\begin{sage}
+>> factor(x^2-2), factor(x^2-9/4)
+\end{sage}
+\begin{sage}
+   2      (2 x - 3) (2 x + 3)
+  x  - 2, -------------------
+                 4
+\end{sage}
+\begin{sage}
+>> factor(2 - 2/(x^2-1))
+\end{sage}
+\begin{sage}
+      2
+  2 (x  - 2)
+  ---------------
+  (x - 1) (x + 1)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{normal}
+Durch {\color{blue} \verb+normal(f)+} wird eine 'Normalform' eines
+rationalen Ausdrucks \verb+f+ erzeugt.
+\begin{sage}
+>> normal(2 - 2/(x^2-1))
+\end{sage}
+\begin{sage}
+     2
+  2 x  - 4
+  --------
+   2
+  x  - 1
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{partfrac}
+Durch {\color{blue} \verb+partfrac(f)+} wird ein rationaler Ausdruck in eine
+Summe rationaler Terme zerlegt, in denen jeweils der Zählergrad
+kleiner als der Nennergrad ist. (Partialbruchzerlegung)
+\begin{sage}
+>> f:=x^2/(x^2-1): f=partfrac(f)
+\end{sage}
+\begin{sage}
+     2
+    x         1           1
+  ------ = --------- - --------- + 1
+   2      2 (x - 1)   2 (x + 1)
+  x  - 1
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{rewrite}
+Durch {\color{blue} \verb+rewrite(Ausdruck, Option)+} wird versucht, den
+\verb+Ausdruck+ so umzuformen, das gewisse Funktionen aus dem Ausdruck
+eliminiert werden. 
+\begin{itemize}
+\item Beispielsweise können \verb+sin+ und \verb+cos+ immer
+durch \verb+tan+ ausgedrückt werden (Option: \verb+tan+).\\
+\item Optionen sind \verb+diff+, \verb+exp+, \verb+fact+, \verb+gamma+, 
+\verb+heavyside+, \verb+ln+, \verb+sign+,
+\verb+sincos+, \verb+sinhcosh+, \verb+tan+.\\
+\item Man versucht die Ausdrücke mit Hilfe der in der Option genannten
+Funktion(en) auszudrücken.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele - rewrite I}
+\begin{sage}
+>> rewrite(tan(x),sincos)
+\end{sage}
+\begin{sage}
+  sin(x)
+  ------
+  cos(x)
+\end{sage}
+\begin{sage}
+>> rewrite(tan(x),exp)
+\end{sage}
+\begin{sage}
+              2
+    I exp(I x)  - I
+  - ---------------
+             2
+     exp(I x)  + 1
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele - rewrite II}
+\begin{sage}
+>> rewrite(tan(x),sinhcosh)
+\end{sage}
+\begin{sage}
+  I sinh(-I x)
+  ------------
+  cosh(-I x)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Simplify}
+\begin{itemize}
+\item Durch {\color{blue} \verb+simplify(f,target)+} wird versucht den Ausdruck $f$
+zu vereinfachen. Optional können durch \verb+target+ spezielle
+Vereinfachungen angefordert werden.
+\item Mögliche \verb+targets+ sind \verb+exp+, \verb+ln+,\verb+cos+, \verb+sin+, \verb+sqrt+, \verb+logic+ und
+\verb+relation+. 
+\item Die Optionen \verb+logic+ und \verb+relation+ dienen
+zur Vereinfachung von logischen Ausdrücken bzw. von Gleichungen und
+Ungleichungen. 
+\item Alternativ zu \verb+simplify(f,sqrt)+ kann auch die Funktion
+\verb+radsimp+ verwendet werden.   
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele: Simplify I}
+\begin{sage}
+>> f:=x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2:
+>> f=simplify(f)
+\end{sage}
+\begin{sage}
+     x       y           2         2
+  ----- + ----- - cos(x)  - sin(x)  = 0
+  x + y   x + y
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele: Simplify II}
+\begin{sage}
+>> g:= sqrt(4+2*sqrt(3)): 
+\end{sage}
+\begin{sage}
+>> g=simplify(g,sin)
+\end{sage}
+\begin{sage}
+ 1/2   1/2     1/2    1/2   1/2     1/2
+2    (3    + 2)    = 2    (3    + 2)
+\end{sage}
+\begin{sage}
+>> g=simplify(g)
+\end{sage}
+\begin{sage}
+    1/2   1/2     1/2    1/2         1/2
+  (2    (3    + 2)    = 3    + 1) = 3    + 1
+\end{sage}
+\end{frame}
+
+%=================================================
+\section{Gleichungen}
+%=================================================
+
+\begin{frame}[fragile]{Gleichungen}
+\begin{itemize}
+\item lineares Beispiel
+\begin{sage}
+>> Gleichungen := {x+y = 1, x-y = 1}:
+>> solve(Gleichungen)
+\end{sage}
+\begin{sage}
+  {[x = 1, y = 0]}
+\end{sage}
+\item nichtlineares Beispiel
+\begin{sage}
+>> Gleichungen1:={x+y=1,(x-y)^2=1}:
+>> solve(Gleichungen1)
+\end{sage}
+\begin{sage}
+  {[x = 0, y = 1], [x = 1, y = 0]}
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Vergleiche}
+\begin{itemize}
+\item Der Operator {\color{blue} \verb+=+} vergleicht zwei Objekte. 
+\item {\color{blue}
+\verb+a=b+} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
+besitzen (und vom gleichen Typ sind). 
+\item Zur Überprüfung von Aussagen gibt es die Funktion
+{\color{blue} \verb+bool(Ausdruck)+}. Sie liefert als Ergebnis \verb+TRUE+ oder
+\verb+FALSE+.
+\item Die inverse Operation zu {\color{blue} \verb+'='+} ist {\color{blue}
+\verb+'<>'+}, also \verb+a<>b+ ist \verb+TRUE+, falls $a$ nicht gleich $b$
+ist. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele: Vergleiche I}
+\begin{sage}
+>> bool(4-3=1)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool(4*x=x); x:=0: bool(4*x=x)
+\end{sage}
+\begin{sage}
+  FALSE TRUE
+\end{sage}
+\begin{sage}
+>> bool(x=0); bool(x<>0)
+\end{sage}
+\begin{sage}
+  TRUE FALSE
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele: Vergleiche II}
+\begin{sage}
+>> bool(0.5=1/2)
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage}
+\begin{sage}
+>> domtype(1.0), domtype(1)
+\end{sage}
+\begin{sage}
+  DOM_FLOAT, DOM_INT
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Solve}
+\begin{itemize}
+\item Solve ist der universelle Befehl zum Lösen von Gleichungen und
+Ungleichungen und auch Differentialgleichungen.
+\item Der Befehl ist von der Form {\color{blue} \verb+solve(Gleichungen,Variablen)+}. 
+\item \verb+Gleichungen+ kann ein System von Gleichungen sein.
+\item \verb+Variablen+ gibt an, wonach aufgelöst wird.
+\item Bei einzelnen Gleichungen wird der Lösungswert
+zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
+Gleichungen zurückgegeben.
+\item Weitere Optionen werden später erklärt.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele - Solve I} 
+\begin{sage}
+>> solve(x^2+x=y/4,x)
+\end{sage}
+\begin{sage}
+  {          1/2               1/2       }
+  {   (y + 1)           (y + 1)          }
+  { - ---------- - 1/2, ---------- - 1/2 }
+  {       2                 2            }
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele - Solve II} 
+\begin{sage}
+>> assume(x>0): solve(x^2+x=y/4,y)
+\end{sage}
+\begin{sage}
+            2
+  {4 x + 4 x }
+\end{sage}
+\begin{sage}
+>> solve({x^2-y^2=0},{x,y})
+\end{sage}
+\begin{sage}
+  {[x = z, y = z], [x = -z, y = z]}
+\end{sage}
+\begin{sage}
+>> solve({x^2-y^2=0,x+y=1},{x,y})
+\end{sage}
+\begin{sage}     
+  {[x = 1/2, y = 1/2]}
+\end{sage}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
