@@ -51,10 +51,10 @@
 \begin{frame}[fragile]{Beispiel} 
 Betrachte:
 \begin{sage}
->> f := x^2-3*x-18:
+>> f = x^2-3*x-18
 \end{sage}
 \begin{itemize}
-\item Wie geht MuPAD mit der Unbekannten $x$ um?
+\item Wie geht Sage mit der Unbekannten $x$ um?
 \item Welchen Datentyp hat $f$?
 \item Was kann ich mit $f$ machen?
 \end{itemize}
@@ -69,9 +69,7 @@ Unterstrich \_ zusammengesetzt.
 \item Sage unterscheidet zwischen Groß- und Kleinschreibung.
 \item Bezeichner dürfen nicht mit einer Ziffer beginnen
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele für Bezeichner}
+Beispiele für Bezeichner
 \begin{itemize}
 \item zulässige Bezeichner:
 \verb+x+, \verb+f+, \verb+x23+, \verb+_x_1+
@@ -79,6 +77,7 @@ Unterstrich \_ zusammengesetzt.
 \verb+12x+, \verb+p~+, \verb+x>y+, \verb+Das System+
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}[fragile]{Wert eines Bezeichners}
 \begin{itemize}
@@ -94,7 +93,7 @@ Beispiel: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldot
 \begin{itemize}
 \item Die Operation {\color{blue} \verb+bez=wert+} weist dem Bezeichner
 \verb+bez+ den Wert \verb+wert+ zu.  
-\item Beispiele: {\color{blue} \verb+N=5+}, {\color{blue} \verb+f= x^2-3*x-18+}
+\item Beispiele: {\color{blue} \verb+N=5+}, {\color{blue} \verb+f = x^2-3*x-18+}
 \item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
 \item Warnung: Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
 dem logischen Operator {\color{blue} $==$}.   
@@ -103,52 +102,50 @@ dem logischen Operator {\color{blue} $==$}.
 
 \begin{frame}[fragile]{Beispiele}
 \begin{sage}
->> N=6
+>> N=6; N
 \end{sage}
 \begin{sage}
   6
 \end{sage}
 \begin{sage}
->> f = x+2*x*x-y
+>> x,y = var('x,y'); f = x+2*x*x-y; f
 \end{sage}
 \begin{sage}
-             2
-  x - y + 2 x
+    2*x^2 + x - y
 \end{sage}
 \begin{sage}
->> y:= cos( (x:=PI)): x,y
+>> x=pi;y = cos(x); x,y
 \end{sage}
 \begin{sage}
-  PI, -1
+  (pi, -1)
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele für Datentypen}
 
 \begin{sage}
->> domtype(5)
+>> type(5)
 \end{sage}
 \begin{sage}
-  DOM_INT
+  <type 'sage.rings.integer.Integer'>
 \end{sage}
 \begin{sage}
->> f:= x^2-3*x-18: domtype(f)
+>> f= x^2-3*x-18; type(f)
 \end{sage}
 \begin{sage}
-  DOM_EXPR
+  <type 'sage.symbolic.expression.Expression'>
 \end{sage}
 \begin{sage}
->> domtype(x)
+>> type(x)
 \end{sage}
 \begin{sage}
-  DOM_IDENT
+  <type 'sage.symbolic.expression.Expression'>
 \end{sage}
 \begin{sage}
 >> f+f
 \end{sage}
 \begin{sage}
-     2
-  2 x  - 6 x - 36
+2*x^2 - 6*x - 36
 \end{sage}
 \end{frame}
 
@@ -158,176 +155,128 @@ dem logischen Operator {\color{blue} $==$}.
 \hline
 Domain-Typ & Bedeutung & Beispiel\\
 \hline
-\verb+DOM_INT+ & ganze Zahlen & $-3,0,100$\\
-\verb+DOM_RAT+ & rationale Zahlen & $7/11$\\
-\verb+DOM_FLOAT+ & Gleitpunktzahl & $0.123$\\
-\verb+DOM_COMPLEX+ & komplexe Zahlen & $1+3*I$\\
-\verb+DOM_IDENT+ & symbolische Bezeichner & $x,f,y$\\
-\verb+DOM_EXPR+ & symbolische Ausdrücke & $x+y$\\
-\verb+DOM_BOOL+ & logische Werte: TRUE&\\
-  & FALSE, UNKNOWN&\\ 
+\verb+rings.integer+ & ganze Zahlen & \verb+-3,0,100+\\
+\verb+rings.rational+ & rationale Zahlen & \verb+7/11+\\
+\verb+float+ & Gleitpunktzahl & \verb+0.123+\\
+\verb+complex+ & komplexe Zahlen & \verb+complex(1,3)+\\
+\verb+symbolic.expression+ & symbolische Ausdrücke & \verb!x+y!\\
+\verb+bool+ & logische Werte: true/false&\verb+bool(1<2)+\\
 \hline
 \end{tabular}
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Befehle im Umgang mit $:=$}
+\begin{frame}[fragile]{Befehle im Umgang mit $=$}
 \begin{itemize}
-\item Viele Bezeichner sind vordefiniert und gegen Zuweisungen
-                geschützt, z.B. \verb+sin+, \verb+limit+,..
-\item Aufheben des Schutzes: {\color{blue} \verb+unprotect(bezeichner)+}
-\item Schützen von Bezeichnern: {\color{blue} \verb+protect(bezeichner,Error)+}
-\item Liste aller definierten Bezeichner: {\color{blue} \verb+anames(All)+}
-\item Liste aller vom Benutzer definierten Bezeichner: {\color{blue}
-\verb+anames(All,User)+}
-\item Löschen von Zuweisungen: {\color{blue} \verb+delete bezeichner+}
+\item Löschen von Zuweisungen: {\color{blue} \verb+reset('bezeichner')+}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{sage}
->> sin:=2
-\end{sage}
-\begin{sage}
-  Error: Identifier 'sin' is protected [_assign]
-\end{sage}
-\begin{sage}
->> N:=3
-\end{sage}
-\begin{sage}
-  3
-\end{sage}
-\begin{sage}
->> protect(N,Error): N:=5
-\end{sage}
-\begin{sage}
-  Error: Identifier 'N' is protected [_assign]
-\end{sage}
-\begin{sage}
->> unprotect(N): N:=3
-\end{sage}
-\begin{sage}
-  3
-\end{sage}
-\end{frame}
-
 \begin{frame}[fragile]{Beispiel: Auswertung}
 \begin{sage}
->> f:=x*x-3*x-a
+>> var('a') ; f(x) = x*x-3*x-a
 \end{sage}
 \begin{sage}
-   2
-  x  - 3 x - a
+x |--> x^2 - a - 3*x
 \end{sage}
 \begin{sage}
->> a:=1: f
+>> f(a=2)
 \end{sage}
 \begin{sage}
-   2
-  x  - 3 x - 1
+ x^2 - 3*x - 2  2
 \end{sage}
 \begin{sage}
->> x:=1: f
+>> f(1)
 \end{sage}
 \begin{sage}
-  -3
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiel: Auswertung}
-\begin{sage}
->> delete a: f
+  -a - 2
 \end{sage}
 \begin{sage}
-  - a - 2
+>> f(1,a=2)
 \end{sage}
 \begin{sage}
->> x:=5 :f
-\end{sage}
-\begin{sage}
-  10 - a
+  -4
 \end{sage}
 \end{frame}
 
 \begin{frame}{Auswertung}
 \begin{itemize}
 \item Der {\color{red} \it Bezeichner} ist der Name einer Unbekannten.
-\item Die  {\color{red} \it Auswertung} eines Bezeichners benutzt alle
-aktuell bekannten Zuweisungen.  
+\item Die  {\color{red} \it Auswertung} eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen.
 \item Der {\color{red} \it Wert} bezeichnet die Auswertung zum 
 Zeitpunkt der Zuweisung. 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Auswertung}
-\begin{itemize}
-\item Auf interaktiver Ebene wertet MuPAD in der Regel vollständig
-aus. 
-\item Maximale Auswertungstiefe wird durch die Konstanten {\color{blue} LEVEL}
-und {\color{blue} MAXLEVEL} gesteuert.\\
-(Default: {\color{blue} LEVEL}= 100, {\color{blue} MAXLEVEL}=100)
-\item Zuerst wird {\color{blue} MAXLEVEL} geprüft; erst dann {\color{blue} LEVEL}. 
-\item Ist {\color{blue} MAXLEVEL} erreicht, wird eine Fehlermeldung zurückgegeben.
-\item Die Auswertung wird bei {\color{blue} LEVEL} gestoppt, d.h. es wird keine Fehlermeldung zurückgegebnen.
-\end{itemize}
-\end{frame}
+%\begin{frame}{Auswertung}
+%\begin{itemize}
+%\item Auf interaktiver Ebene wertet MuPAD in der Regel vollständig
+%aus. 
+%\item Maximale Auswertungstiefe wird durch die Konstanten {\color{blue} LEVEL}
+%und {\color{blue} MAXLEVEL} gesteuert.\\
+%(Default: {\color{blue} LEVEL}= 100, {\color{blue} MAXLEVEL}=100)
+%\item Zuerst wird {\color{blue} MAXLEVEL} geprüft; erst dann {\color{blue} LEVEL}. 
+%\item Ist {\color{blue} MAXLEVEL} erreicht, wird eine Fehlermeldung zurückgegeben.
+%\item Die Auswertung wird bei {\color{blue} LEVEL} gestoppt, d.h. es wird keine Fehlermeldung zurückgegebnen.
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}[fragile]{Auswertung}
-\begin{itemize}
-\item Bei Aufrufen {\color{blue} \%n} wird nicht ausgewertet. Ähnliches gilt
-bei Einträgen von Matrizen und Tabellen.
-\item Im Zusammenhang mit dem $\$$-Operator wird nicht ausgewertet. 
-\item Auswertungen können durch {\color{blue} eval} erzwungen werden.
-\item Auswertungen können durch {\color{blue} hold} unterbunden werden.
-\item Die Auswertungstiefe eines Bezeichners $a$ kann gezielt durch den Befehl
-  {\color{blue} \verb+level(a,n)+} gesteuert werden ($n$ Auswertungstiefe).
-\end{itemize}
-\end{frame}
+%\begin{frame}[fragile]{Auswertung}
+%\begin{itemize}
+%\item Bei Aufrufen {\color{blue} \%n} wird nicht ausgewertet. Ähnliches gilt
+%bei Einträgen von Matrizen und Tabellen.
+%\item Im Zusammenhang mit dem $\$$-Operator wird nicht ausgewertet. 
+%\item Auswertungen können durch {\color{blue} eval} erzwungen werden.
+%\item Auswertungen können durch {\color{blue} hold} unterbunden werden.
+%\item Die Auswertungstiefe eines Bezeichners $a$ kann gezielt durch den Befehl
+%  {\color{blue} \verb+level(a,n)+} gesteuert werden ($n$ Auswertungstiefe).
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}[fragile]{Beispiele I}
-\begin{sage}
->> a:=sin(b)
-\end{sage}
-\begin{sage}
-  sin(b)
-\end{sage}
-\begin{sage}
->> b:=0
-\end{sage}
-\begin{sage}
-  0
-\end{sage}
-\begin{sage}
->> a
-\end{sage}
-\begin{sage}
-  0
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele II}
-\begin{sage}
->> %3,eval(%3)
-\end{sage}
-\begin{sage}
-  sin(b), 0
-\end{sage}
-\begin{sage}
->> a,hold(a)
-\end{sage}
-\begin{sage}
-  0, a
-\end{sage} 
-\end{frame}
+% \begin{frame}[fragile]{Beispiele I}
+% \begin{sage}
+% >> a:=sin(b)
+% \end{sage}
+% \begin{sage}
+%   sin(b)
+% \end{sage}
+% \begin{sage}
+% >> b:=0
+% \end{sage}
+% \begin{sage}
+%   0
+% \end{sage}
+% \begin{sage}
+% >> a
+% \end{sage}
+% \begin{sage}
+%   0
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Beispiele II}
+% \begin{sage}
+% >> %3,eval(%3)
+% \end{sage}
+% \begin{sage}
+%   sin(b), 0
+% \end{sage}
+% \begin{sage}
+% >> a,hold(a)
+% \end{sage}
+% \begin{sage}
+%   0, a
+% \end{sage} 
+% \end{frame}
 
 \begin{frame}{Operatoren}
 \begin{itemize}
-\item Typische Operatoren sind $+$, $-$, $*$, $!$,...
-\item In MuPAD werden Objekte immer durch Funktionen miteinander
+\item Typische Operatoren sind \verb~+,-,*,/,...~
+\item In Sage werden Objekte immer durch Funktionen miteinander
 verbunden. 
-\item Operatoren sind in MUPAD als Funktionen realisiert.
-\item Für wichtige Operatoren gibt es die gewohnte
-Kurzschreibweise.
+%\item Operatoren sind in Sage auch als Funktionen realisiert.
+%\item Für wichtige Operatoren gibt es die gewohnte
+%Kurzschreibweise.
 \item Bei Kombination verschiedener Operatoren gelten die üblichen
 Regeln der Bindungsstärke (Punktrechnung vor Strichrechnung); Die Ordnung kann
 durch Klammersetzung geändert werden.
@@ -336,19 +285,18 @@ durch Klammersetzung geändert werden.
 
 \begin{frame}[fragile]{Wichtige mathematische Operatoren}
 \begin{center}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|c|l|}
 \hline
-Not. & Funktion & Erklärung\\
+Operator/Funktion &  Erklärung\\
 \hline
 \hline
-$+$ & \verb~_plus(a,b,c)~ & Addition \\
-$-$ & \verb~_subtract(a,b)~ & Subtraktion\\
-$*$ & \verb+_mult(a,b,c)+ & Multiplikation \\
-$/$ & \verb+_divide(a,b)+ & Division\\
-$\hat{ }$ & \verb+_power(a,b)+ & Potenz\\
-$!$ & \verb+_fact(n)+ & Fakultät\\
-$div$ & \verb+_div(a,b)+ & Quotient ohne Rest\\
-$mod$ & \verb+_mod(a,b)+ & Rest bei Division\\
+\verb!+! & Addition \\
+\verb!-! & Subtraktion\\
+\verb!*! & Multiplikation \\
+\verb!/! & Division\\
+\verb!^! & Potenz\\
+\verb!factorial()! & Fakultät \\
+\verb!mod()! &  Rest bei Division\\
 \hline
 \end{tabular}
 \end{center}
@@ -358,58 +306,58 @@ $mod$ & \verb+_mod(a,b)+ & Rest bei Division\\
 \begin{itemize}
 \item Viele Objekte sind zusammengesetzt. Ihre Bausteine heißen {\color{red}
 Operanden.}
-\item Durch {\color{blue} \verb+nops(Objekt)+} erhält man die Anzahl der
-Operanden. 
-\item Durch {\color{blue} \verb+op(Objekt)+} bzw. {\color{blue} \verb+op(Objekt,i)+}
-erhält man alle Operanden bzw. den $i$-ten Operand.
-\item Mittels {\color{blue} \verb+has(Objekt,a)+} kann untersucht werden, ob
-$a$ ein Operand von \verb+Objekt+ ist.
-\item Die Befehle beziehen sich jeweils auf die automatisch
-vereinfachten Objekte.
+%\item Durch {\color{blue} \verb+nops(Objekt)+} erhält man die Anzahl der
+%Operanden. 
+%\item Durch {\color{blue} \verb+op(Objekt)+} bzw. {\color{blue} \verb+op(Objekt,i)+}
+%erhält man alle Operanden bzw. den $i$-ten Operand.
+%\item Mittels {\color{blue} \verb+has(Objekt,a)+} kann untersucht werden, ob
+%$a$ ein Operand von \verb+Objekt+ ist.
+%\item Die Befehle beziehen sich jeweils auf die automatisch
+%vereinfachten Objekte.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele I}
-\begin{sage}
->> f:=_plus(a,b,c)
-\end{sage}
-\begin{sage}
-  a + b + c
-\end{sage}
-\begin{sage}
->> nops(f), op(f), op(f,2)
-\end{sage}
-\begin{sage}
-  3, a, b, c, b
-\end{sage}
-\begin{sage}
->> op(f,0)
-\end{sage}
-\begin{sage}
-  _plus
-\end{sage}
-\begin{sage}
->> has(f,a), has(f,a+b)
-\end{sage}
-\begin{sage}
-  TRUE, FALSE
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele II}
-\begin{sage}
->> f:=x*z+3*x+sqrt(y):
->> op(f), nops(op(f,2))
-\end{sage}
-\begin{sage}
-             1/2
-  3 x, x z, y   , 2
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Beispiele I}
+% \begin{sage}
+% >> f:=_plus(a,b,c)
+% \end{sage}
+% \begin{sage}
+%   a + b + c
+% \end{sage}
+% \begin{sage}
+% >> nops(f), op(f), op(f,2)
+% \end{sage}
+% \begin{sage}
+%   3, a, b, c, b
+% \end{sage}
+% \begin{sage}
+% >> op(f,0)
+% \end{sage}
+% \begin{sage}
+%   _plus
+% \end{sage}
+% \begin{sage}
+% >> has(f,a), has(f,a+b)
+% \end{sage}
+% \begin{sage}
+%   TRUE, FALSE
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Beispiele II}
+% \begin{sage}
+% >> f:=x*z+3*x+sqrt(y):
+% >> op(f), nops(op(f,2))
+% \end{sage}
+% \begin{sage}
+%              1/2
+%   3 x, x z, y   , 2
+% \end{sage}
+% \end{frame}
 
 \begin{frame}[fragile]{Darstellungsbaum}
 \begin{sage}
->> a:=int(exp(x^4),x=0..1)
+>> a = numerical_integral(exp(x^4),0,1)
 \end{sage}
 \begin{center}
 \includegraphics[width=8cm, height=6cm]{figures/baum.png}
@@ -417,6 +365,7 @@ vereinfachten Objekte.
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel}
+so unsinnig..
 \begin{sage}
 >> a:=int(exp(x^4),x=0..1):
 >> op(a)
@@ -444,29 +393,34 @@ vereinfachten Objekte.
 \end{frame}
 
 \begin{frame}[fragile]{Automatische Vereinfachung}
-MuPAD führt oft automatische Vereinfachungen durch. Ansonsten muß
+Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
 der Benutzer gezielt Vereinfachungen anfordern.
 
- {Beispiele:}
 \begin{sage}
->> sin(15*PI), exp(0)
+>> sin(15*pi), exp(0)
 \end{sage}
 \begin{sage}
-  0, 1
+  (0, 1)
 \end{sage}
 \begin{sage}
->> 2*infinity-5
+>> 2*Infinity-5
 \end{sage}
 \begin{sage}
-  infinity
+  +Infinity
 \end{sage}
 \begin{sage}
->> y:=(-4*x+x^2+4)*(7*x+x^2+12)
+>> y = (-4*x+x^2+4)*(7*x+x^2+12); y
 \end{sage}
 \begin{sage}
-    2                    2
-  (x  - 4 x + 4) (7 x + x  + 12)
+ (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
 \end{sage}
+\begin{sage}
+y.full_simplify()
+\end{sage}
+\begin{sage}
+x^4 + 3*x^3 - 12*x^2 - 20*x + 48
+\end{sage}
+
 \end{frame} 
 
 %=================================================
