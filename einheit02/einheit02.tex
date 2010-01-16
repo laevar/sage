@@ -314,6 +314,13 @@ Operanden.}
 %$a$ ein Operand von \verb+Objekt+ ist.
 %\item Die Befehle beziehen sich jeweils auf die automatisch
 %vereinfachten Objekte.
+coeff
+arguments
+has
+nops()
+number\_of\_operands()
+operands()
+operator()
 \end{itemize}
 \end{frame}
 
@@ -355,42 +362,42 @@ Operanden.}
 % \end{sage}
 % \end{frame}
 
-\begin{frame}[fragile]{Darstellungsbaum}
-\begin{sage}
->> a = numerical_integral(exp(x^4),0,1)
-\end{sage}
-\begin{center}
-\includegraphics[width=8cm, height=6cm]{figures/baum.png}
-\end{center}
-\end{frame}
+% \begin{frame}[fragile]{Darstellungsbaum}
+% \begin{sage}
+% >> a = numerical_integral(exp(x^4),0,1)
+% \end{sage}
+% \begin{center}
+% \includegraphics[width=8cm, height=6cm]{figures/baum.png}
+% \end{center}
+% \end{frame}
 
-\begin{frame}[fragile]{Beispiel}
-so unsinnig..
-\begin{sage}
->> a:=int(exp(x^4),x=0..1):
->> op(a)
-\end{sage}
-\begin{sage}
-       4
-  exp(x ), x = 0..1
-\end{sage}
-\begin{sage}
->> op(a,0)
-\end{sage}
-\begin{sage}
-  int
-\end{sage}
-\begin{sage}
->> op(op(a,1))
-\end{sage}
-\begin{sage}
-   4
-  x
-\end{sage}
-\begin{sage}
->> prog::exprtree(a)
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Beispiel}
+% so unsinnig..
+% \begin{sage}
+% >> a:=int(exp(x^4),x=0..1):
+% >> op(a)
+% \end{sage}
+% \begin{sage}
+%        4
+%   exp(x ), x = 0..1
+% \end{sage}
+% \begin{sage}
+% >> op(a,0)
+% \end{sage}
+% \begin{sage}
+%   int
+% \end{sage}
+% \begin{sage}
+% >> op(op(a,1))
+% \end{sage}
+% \begin{sage}
+%    4
+%   x
+% \end{sage}
+% \begin{sage}
+% >> prog::exprtree(a)
+% \end{sage}
+% \end{frame}
 
 \begin{frame}[fragile]{Automatische Vereinfachung}
 Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
@@ -427,14 +434,14 @@ x^4 + 3*x^3 - 12*x^2 - 20*x + 48
 \section{Symbolisches Rechnen I}
 %=================================================
 
-\begin{frame}{Manipulation von Ausdrücken}
-\begin{itemize}
-\item Verbinden von Ausdrücken
-\item Vereinfachen
-\item Umformen
-\item Einsetzen der Unbekannten
-\end{itemize}
-\end{frame} 
+% \begin{frame}{Manipulation von Ausdrücken}
+% \begin{itemize}
+% \item Verbinden von Ausdrücken
+% \item Vereinfachen
+% \item Umformen
+% \item Einsetzen der Unbekannten
+% \end{itemize}
+% \end{frame} 
 
 \begin{frame}[fragile]{Verbinden von Ausdrücken}
 Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
@@ -442,15 +449,14 @@ dividiert werden.
 \begin{itemize}
 \item Definition
 \begin{sage}
->> f:= x*x+3*x+y: g:=x-y:
+>> var('x,y'); f = x*x+3*x+y; g = x-y
 \end{sage}
 \item Potenz
 \begin{sage}
 >> f^g
 \end{sage}
 \begin{sage}
-              2 x - y
-  (3 x + y + x )
+   (x^2 + 3*x + y)^(x - y)
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -462,161 +468,133 @@ dividiert werden.
 >> f+g, f-g
 \end{sage}
 \begin{sage}
-         2               2
-  4 x + x , 2 x + 2 y + x
+   (x^2 + 4*x, x^2 + 2*x + 2*y)
 \end{sage}
 \item Multiplikation/ Division
 \begin{sage}
 >> f*g, f/g
 \end{sage}
 \begin{sage}
-                                     2
-                      2   3 x + y + x
-  (x - y) (3 x + y + x ), ------------
-                             x - y
+    ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{collect}
-Durch {\color{blue} \verb+collect(Ausdruck, Unbestimmte)+} wird der
-\verb+Ausdruck+ bzgl. der \verb+Unbestimmten+ sortiert.
+\begin{frame}[fragile]{collect()}
+Durch {\color{blue} \verb+a.collect(Unbestimmte)+} wird der Ausdruck
+\verb+a+ bzgl. der \verb+Unbestimmten+ sortiert.
 \begin{sage}
->> f:=a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
->> collect(f,x)
+>> f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
+>> f.collect(x)
 \end{sage}
 \begin{sage}
-   3      2
-  x  + a x  + (a + b + sin(x) + 4) x + sin(x)
+   a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
 \end{sage}
 \begin{sage}
->> collect(f,[x,sin(x)])
+>> f.collect(x*sin(x))
 \end{sage}
 \begin{sage}
-   3      2
-  x  + a x  + x sin(x) + (a + b + 4) x + sin(x)
+  a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
 \end{sage} 
-\end{frame}
-
-\begin{frame}[fragile]{combine}
-Durch {\color{blue} \verb+combine(Ausdruck,Option)+} wird der Ausdruck
-zusammengefaßt. Dabei werden
-mathematische Identitäten benutzt, die durch \verb+Option+ angegeben
-werden. Optionen sind \verb+arctan+
-,\verb+exp+,\verb+ln+,\verb+sincos+, 
-\verb+sinhcosh+. Ohne
-Angabe der Option werden nur die Potenzgesetze benutzt.  
+Durch {\color{blue} \verb+a.combine()+} wird der Ausdruck
+durch die Potenzgesetze zusammengefaßt.
 \begin{sage}
->> g:= sin(a)*cos(b):
->> g=combine(g, sincos)
+>> g = x^(a)*x^(b)
+>> g.combine()
 \end{sage}
 \begin{sage}
-                  sin(a + b)   sin(a - b)
-  cos(b) sin(a) = ---------- + ----------
-                      2            2
+    x^(a + b)
 \end{sage}
+
 \end{frame}
 
-\begin{frame}[fragile]{expand}
+\begin{frame}[fragile]{expand()}
 Ausmultiplizieren von  Ausdrücken erfolgt durch {\color{blue}
-\verb+expand(Ausdruck,f_1,f_2,..)+}. \\
-\verb+f_1+, \verb+f_2+ sind
-Ausdrücke, die \alert{nicht} expandiert werden sollen.
+\verb+a.expand()+ und \verb+a.expand_trig()+}. \\
 \begin{sage}
 >> expand((x+2)^4)
 \end{sage}
 \begin{sage}
-   4      3       2
-  x  + 8 x  + 24 x  + 32 x + 16
+ x^4 + 8*x^3 + 24*x^2 + 32*x + 16
 \end{sage}
 \begin{sage}
->> expand(sin(x+y))
+>> (sin(x+y)).expand_trig()
 \end{sage}
 \begin{sage}
-  cos(x) sin(y) + cos(y) sin(x)
+  sin(x)*cos(y) + sin(y)*cos(x)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele zu expand}
+\begin{frame}[fragile]{expand() bei Gleichungen}
 \begin{sage}
->> f:=(x-y)^2+(x+y)^2: expand(f)
+>> a = (16*x-13)^2 == (3*x+5)^2/2
+>> a.expand()
 \end{sage}
 \begin{sage}
-     2      2
-  2 x  + 2 y
+  256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
 \end{sage}
 \begin{sage}
->> expand(f,x-y)
+>> a.expand('left')
 \end{sage}
 \begin{sage}
-   2    2          2
-  x  + y  + (x - y)  + 2 x y
+  256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
+\end{sage}
+\begin{sage}
+>> a.expand('right')
+\end{sage}
+\begin{sage}
+  (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{factor}
+\begin{frame}[fragile]{factor()}
 Der Befehl {\color{blue} \verb+factor(Ausdruck)+} faktorisiert Polynome und
 Ausdrücke. 
 \begin{itemize}
-\item MuPAD faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
+\item Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
 Zahlen sind. 
 \item Auch anwendbar auf rationale Funktionen. Es wird ein gemeinsamer
 Hauptnenner gesucht.
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiel: factor}
 \begin{sage}
 >> factor(x^2-2), factor(x^2-9/4)
 \end{sage}
 \begin{sage}
-   2      (2 x - 3) (2 x + 3)
-  x  - 2, -------------------
-                 4
+(x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
 \end{sage}
 \begin{sage}
 >> factor(2 - 2/(x^2-1))
 \end{sage}
 \begin{sage}
-      2
-  2 (x  - 2)
-  ---------------
-  (x - 1) (x + 1)
+2*(x^2 - 2)/((x - 1)*(x + 1))
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{normal}
-Durch {\color{blue} \verb+normal(f)+} wird eine 'Normalform' eines
+\begin{frame}[fragile]{simplify\_rational()}
+Durch {\color{blue} \verb+f.simplify_rational()+} wird eine 'Normalform' eines
 rationalen Ausdrucks \verb+f+ erzeugt.
 \begin{sage}
->> normal(2 - 2/(x^2-1))
+>> (2 - 2/(x^2-1)).simplify_rational()
 \end{sage}
 \begin{sage}
-     2
-  2 x  - 4
-  --------
-   2
-  x  - 1
+ 2*(x^2 - 2)/(x^2 - 1)
 \end{sage}
+mehr simplify ??
 \end{frame}
 
-\begin{frame}[fragile]{partfrac}
-Durch {\color{blue} \verb+partfrac(f)+} wird ein rationaler Ausdruck in eine
+\begin{frame}[fragile]{partial\_fraction()}
+Durch {\color{blue} \verb+a.partial_fraction()+} wird ein rationaler Ausdruck in eine
 Summe rationaler Terme zerlegt, in denen jeweils der Zählergrad
 kleiner als der Nennergrad ist. (Partialbruchzerlegung)
 \begin{sage}
->> f:=x^2/(x^2-1): f=partfrac(f)
+>> f = x^2/(x^2-1); f.partial_fraction()
 \end{sage}
 \begin{sage}
-     2
-    x         1           1
-  ------ = --------- - --------- + 1
-   2      2 (x - 1)   2 (x + 1)
-  x  - 1
+ 1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{rewrite}
+\begin{frame}[fragile]{simplify}
 Durch {\color{blue} \verb+rewrite(Ausdruck, Option)+} wird versucht, den
 \verb+Ausdruck+ so umzuformen, das gewisse Funktionen aus dem Ausdruck
 eliminiert werden. 
@@ -631,39 +609,37 @@ Funktion(en) auszudrücken.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele - rewrite I}
+\begin{frame}[fragile]{Beispiele - simplify\_trig()}
 \begin{sage}
->> rewrite(tan(x),sincos)
+>> (tan(x)).simplify_trig()
 \end{sage}
 \begin{sage}
-  sin(x)
-  ------
-  cos(x)
+sin(x)/cos(x)
 \end{sage}
-\begin{sage}
->> rewrite(tan(x),exp)
-\end{sage}
-\begin{sage}
-              2
-    I exp(I x)  - I
-  - ---------------
-             2
-     exp(I x)  + 1
-\end{sage}
+% \begin{sage}
+% >> rewrite(tan(x),exp)
+% \end{sage}
+% \begin{sage}
+%               2
+%     I exp(I x)  - I
+%   - ---------------
+%              2
+%      exp(I x)  + 1
+% \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele - rewrite II}
-\begin{sage}
->> rewrite(tan(x),sinhcosh)
-\end{sage}
-\begin{sage}
-  I sinh(-I x)
-  ------------
-  cosh(-I x)
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Beispiele - rewrite II}
+% \begin{sage}
+% >> rewrite(tan(x),sinhcosh)
+% \end{sage}
+% \begin{sage}
+%   I sinh(-I x)
+%   ------------
+%   cosh(-I x)
+% \end{sage}
+% \end{frame}
 
-\begin{frame}[fragile]{Simplify}
+\begin{frame}[fragile]{Simplify ??}
 \begin{itemize}
 \item Durch {\color{blue} \verb+simplify(f,target)+} wird versucht den Ausdruck $f$
 zu vereinfachen. Optional können durch \verb+target+ spezielle
@@ -673,24 +649,21 @@ Vereinfachungen angefordert werden.
 \item Die Optionen \verb+logic+ und \verb+relation+ dienen
 zur Vereinfachung von logischen Ausdrücken bzw. von Gleichungen und
 Ungleichungen. 
-\item Alternativ zu \verb+simplify(f,sqrt)+ kann auch die Funktion
-\verb+radsimp+ verwendet werden.   
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele: Simplify I}
 \begin{sage}
->> f:=x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2:
->> f=simplify(f)
+>> f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
+>> f.simplify()
 \end{sage}
 \begin{sage}
-     x       y           2         2
-  ----- + ----- - cos(x)  - sin(x)  = 0
-  x + y   x + y
+-sin(x)^2 - cos(x)^2 + x/(x + y) + y/(x + y)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele: Simplify II}
+\begin{frame}[fragile]{Beispiele: Simplify II ??}
+westers paper ?
 \begin{sage}
 >> g:= sqrt(4+2*sqrt(3)): 
 \end{sage}
