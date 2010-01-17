@@ -510,7 +510,7 @@ durch die Potenzgesetze zusammengefaßt.
 
 \begin{frame}[fragile]{expand()}
 Ausmultiplizieren von  Ausdrücken erfolgt durch {\color{blue}
-\verb+a.expand()+ und \verb+a.expand_trig()+}. \\
+\verb+a.expand()+} und {\color{blue} \verb+a.expand_trig()+}. \\
 \begin{sage}
 >> expand((x+2)^4)
 \end{sage}
@@ -570,18 +570,6 @@ Hauptnenner gesucht.
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{simplify\_rational()}
-Durch {\color{blue} \verb+f.simplify_rational()+} wird eine 'Normalform' eines
-rationalen Ausdrucks \verb+f+ erzeugt.
-\begin{sage}
->> (2 - 2/(x^2-1)).simplify_rational()
-\end{sage}
-\begin{sage}
- 2*(x^2 - 2)/(x^2 - 1)
-\end{sage}
-mehr simplify ??
-\end{frame}
-
 \begin{frame}[fragile]{partial\_fraction()}
 Durch {\color{blue} \verb+a.partial_fraction()+} wird ein rationaler Ausdruck in eine
 Summe rationaler Terme zerlegt, in denen jeweils der Zählergrad
@@ -592,67 +580,46 @@ kleiner als der Nennergrad ist. (Partialbruchzerlegung)
 \begin{sage}
  1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{simplify}
-Durch {\color{blue} \verb+rewrite(Ausdruck, Option)+} wird versucht, den
-\verb+Ausdruck+ so umzuformen, das gewisse Funktionen aus dem Ausdruck
-eliminiert werden. 
-\begin{itemize}
-\item Beispielsweise können \verb+sin+ und \verb+cos+ immer
-durch \verb+tan+ ausgedrückt werden (Option: \verb+tan+).\\
-\item Optionen sind \verb+diff+, \verb+exp+, \verb+fact+, \verb+gamma+, 
-\verb+heavyside+, \verb+ln+, \verb+sign+,
-\verb+sincos+, \verb+sinhcosh+, \verb+tan+.\\
-\item Man versucht die Ausdrücke mit Hilfe der in der Option genannten
-Funktion(en) auszudrücken.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele - simplify\_trig()}
 \begin{sage}
->> (tan(x)).simplify_trig()
+f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f 
 \end{sage}
 \begin{sage}
-sin(x)/cos(x)
+ (x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
 \end{sage}
-% \begin{sage}
-% >> rewrite(tan(x),exp)
-% \end{sage}
-% \begin{sage}
-%               2
-%     I exp(I x)  - I
-%   - ---------------
-%              2
-%      exp(I x)  + 1
-% \end{sage}
+
 \end{frame}
 
-% \begin{frame}[fragile]{Beispiele - rewrite II}
-% \begin{sage}
-% >> rewrite(tan(x),sinhcosh)
-% \end{sage}
-% \begin{sage}
-%   I sinh(-I x)
-%   ------------
-%   cosh(-I x)
-% \end{sage}
+
+% \begin{frame}[fragile]{simplify}
+% Durch {\color{blue} \verb+rewrite(Ausdruck, Option)+} wird versucht, den
+% \verb+Ausdruck+ so umzuformen, das gewisse Funktionen aus dem Ausdruck
+% eliminiert werden. 
+% \begin{itemize}
+% \item Beispielsweise können \verb+sin+ und \verb+cos+ immer
+% durch \verb+tan+ ausgedrückt werden (Option: \verb+tan+).\\
+% \item Optionen sind \verb+diff+, \verb+exp+, \verb+fact+, \verb+gamma+, 
+% \verb+heavyside+, \verb+ln+, \verb+sign+,
+% \verb+sincos+, \verb+sinhcosh+, \verb+tan+.\\
+% \item Man versucht die Ausdrücke mit Hilfe der in der Option genannten
+% Funktion(en) auszudrücken.
+% \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Simplify ??}
+\begin{frame}[fragile]{Simplify}
 \begin{itemize}
-\item Durch {\color{blue} \verb+simplify(f,target)+} wird versucht den Ausdruck $f$
-zu vereinfachen. Optional können durch \verb+target+ spezielle
-Vereinfachungen angefordert werden.
-\item Mögliche \verb+targets+ sind \verb+exp+, \verb+ln+,\verb+cos+, \verb+sin+, \verb+sqrt+, \verb+logic+ und
-\verb+relation+. 
-\item Die Optionen \verb+logic+ und \verb+relation+ dienen
-zur Vereinfachung von logischen Ausdrücken bzw. von Gleichungen und
-Ungleichungen. 
+\item Durch {\color{blue} \verb+simplify_<target>(f)+} wird versucht den Ausdruck $f$
+zu vereinfachen. \verb+target+ entspricht verschiedenen Vereinfachungen.
+\item Mögliche \verb+target+ sind \verb+trig+, \verb+rational+,\verb+radical+, \verb+factorial+, \verb+full+
 \end{itemize}
+\begin{sage}
+>> (2 - 2/(x^2-1)).simplify_rational()
+\end{sage}
+\begin{sage}
+ 2*(x^2 - 2)/(x^2 - 1)
+\end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele: Simplify I}
+\begin{frame}[fragile]{Beispiele - Simplify I}
 \begin{sage}
 >> f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
 >> f.simplify()
@@ -660,28 +627,34 @@ Ungleichungen.
 \begin{sage}
 -sin(x)^2 - cos(x)^2 + x/(x + y) + y/(x + y)
 \end{sage}
+\begin{sage}
+>> g = sqrt(997)-(997^3)^(1/6)
+>> g.simplify()
+\end{sage}
+\begin{sage}
+0
+\end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele: Simplify II ??}
-westers paper ?
+
+\begin{frame}[fragile]{Beispiele - Simplify II}
 \begin{sage}
->> g:= sqrt(4+2*sqrt(3)): 
+>> (tan(x)).simplify_trig()
 \end{sage}
 \begin{sage}
->> g=simplify(g,sin)
+sin(x)/cos(x)
 \end{sage}
 \begin{sage}
- 1/2   1/2     1/2    1/2   1/2     1/2
-2    (3    + 2)    = 2    (3    + 2)
+>> a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
+>> a.simplify_full() 
 \end{sage}
 \begin{sage}
->> g=simplify(g)
+ 0
 \end{sage}
-\begin{sage}
-    1/2   1/2     1/2    1/2         1/2
-  (2    (3    + 2)    = 3    + 1) = 3    + 1
-\end{sage}
+
+
 \end{frame}
+
 
 %=================================================
 \section{Gleichungen}
@@ -691,116 +664,116 @@ westers paper ?
 \begin{itemize}
 \item lineares Beispiel
 \begin{sage}
->> Gleichungen := {x+y = 1, x-y = 1}:
->> solve(Gleichungen)
+>> var('x,y')
+>> Gleichungen = [x+y == 1, x-y == 1]
+>> solve(Gleichungen,x,y)
 \end{sage}
 \begin{sage}
-  {[x = 1, y = 0]}
+  [[x == 1, y == 0]]
 \end{sage}
 \item nichtlineares Beispiel
 \begin{sage}
->> Gleichungen1:={x+y=1,(x-y)^2=1}:
->> solve(Gleichungen1)
+>> Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
+>> solve(Gleichungen1,x,y)
 \end{sage}
 \begin{sage}
-  {[x = 0, y = 1], [x = 1, y = 0]}
+  [[x == 0, y == 1], [x == 1, y == 0]]
 \end{sage}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Vergleiche}
 \begin{itemize}
-\item Der Operator {\color{blue} \verb+=+} vergleicht zwei Objekte. 
+\item Der Operator {\color{blue} \verb+==+} vergleicht zwei Objekte. 
 \item {\color{blue}
-\verb+a=b+} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
+\verb+a==b+} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
 besitzen (und vom gleichen Typ sind). 
 \item Zur Überprüfung von Aussagen gibt es die Funktion
-{\color{blue} \verb+bool(Ausdruck)+}. Sie liefert als Ergebnis \verb+TRUE+ oder
-\verb+FALSE+.
-\item Die inverse Operation zu {\color{blue} \verb+'='+} ist {\color{blue}
-\verb+'<>'+}, also \verb+a<>b+ ist \verb+TRUE+, falls $a$ nicht gleich $b$
+{\color{blue} \verb+bool(Ausdruck)+}. Sie liefert als Ergebnis \verb+True+ oder
+\verb+False+.
+\item Die inverse Operation zu {\color{blue} \verb+'=='+} ist {\color{blue}
+\verb+'<>'+}, also \verb+a<>b+ ist \verb+True+, falls $a$ nicht gleich $b$
 ist. 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele: Vergleiche I}
+\begin{frame}[fragile]{Beispiele - Vergleiche I}
 \begin{sage}
->> bool(4-3=1)
+>> bool(4-3==1)
 \end{sage}
 \begin{sage}
-  TRUE
+  True
 \end{sage}
 \begin{sage}
->> bool(4*x=x); x:=0: bool(4*x=x)
+>> bool(4*x==x); x=0; bool(4*x==x)
 \end{sage}
 \begin{sage}
-  FALSE TRUE
+ False
+ True
 \end{sage}
 \begin{sage}
->> bool(x=0); bool(x<>0)
+>> bool(x==0); bool(x<>0)
 \end{sage}
 \begin{sage}
-  TRUE FALSE
+ True
+ False
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele: Vergleiche II}
+\begin{frame}[fragile]{Beispiele - Vergleiche II}
 \begin{sage}
->> bool(0.5=1/2)
+>> bool(0.5==1/2)
 \end{sage}
 \begin{sage}
-  FALSE
+  True
 \end{sage}
 \begin{sage}
->> domtype(1.0), domtype(1)
+??
 \end{sage}
 \begin{sage}
-  DOM_FLOAT, DOM_INT
+??
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Solve}
 \begin{itemize}
-\item Solve ist der universelle Befehl zum Lösen von Gleichungen und
-Ungleichungen und auch Differentialgleichungen.
-\item Der Befehl ist von der Form {\color{blue} \verb+solve(Gleichungen,Variablen)+}. 
-\item \verb+Gleichungen+ kann ein System von Gleichungen sein.
-\item \verb+Variablen+ gibt an, wonach aufgelöst wird.
+\item Solve ist der Befehl zum Lösen von Gleichungen und Gleichungssystemen.
+\item Der Befehl ist von der Form {\color{blue} \verb+solve(Gleichungen,Variablen,solution_dict)+}. 
+\item {\color{blue}\verb+Gleichungen+} kann ein System von Gleichungen sein.
+\item  {\color{blue}\verb+Variablen+} gibt an, wonach aufgelöst wird.
 \item Bei einzelnen Gleichungen wird der Lösungswert
 zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
 Gleichungen zurückgegeben.
-\item Weitere Optionen werden später erklärt.
+\item {\color{blue}\verb+solution_dict=true+} gibt die Lösung als Dictonary zurück.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Solve I} 
 \begin{sage}
->> solve(x^2+x=y/4,x)
+>> solve(x^2+x == y/4,x)
 \end{sage}
 \begin{sage}
-  {          1/2               1/2       }
-  {   (y + 1)           (y + 1)          }
-  { - ---------- - 1/2, ---------- - 1/2 }
-  {       2                 2            }
+[x == -1/2*sqrt(y + 1) - 1/2, x == 1/2*sqrt(y + 1) - 1/2]
 \end{sage}
+%\fcolorbox{red}{blue}{\[\left[x = -\frac{1}{2} \, \sqrt{y + 1} - \frac{1}{2}, x = \frac{1}{2} \,
+%\sqrt{y + 1} - \frac{1}{2}\right]\]}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Solve II} 
 \begin{sage}
->> assume(x>0): solve(x^2+x=y/4,y)
+>> assume(x>0); solve(x^2+x == y/4,y)
 \end{sage}
 \begin{sage}
-            2
-  {4 x + 4 x }
+ [y == 4*x^2 + 4*x]
 \end{sage}
 \begin{sage}
->> solve({x^2-y^2=0},{x,y})
+>> solve([x^2-y^2 == 0],[x,y])
 \end{sage}
 \begin{sage}
-  {[x = z, y = z], [x = -z, y = z]}
+([x == -y, x == y], [1, 1])
 \end{sage}
 \begin{sage}
->> solve({x^2-y^2=0,x+y=1},{x,y})
+>> solve([x^2-y^2 == 0, x+y == 1],x,y)
 \end{sage}
 \begin{sage}     
   {[x = 1/2, y = 1/2]}
