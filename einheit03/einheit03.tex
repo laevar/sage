@@ -1,0 +1,839 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 3}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+%===================================================
+\section{Mengen}
+%==================================================
+
+
+\begin{frame}{Mengen}
+\begin{quote}
+Unter einer \alert{\glq Menge\grq\ }verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens (welche die \glq Elemente\grq\ von $M$ genannt werden) zu einem Ganzen.\\
+{\footnotesize (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
+\end{quote}
+ \begin{itemize}
+\item Die Objekte heißen {\color{red} Elemente} der Menge.
+\item Ist $x$ ein Element der Menge $M$, so schreibt man {\color{red} $x \in
+  M$}. 
+\item Man sagt, eine Menge $M$ ist in einer Menge $N$
+enthalten, wenn für alle $x \in M$ auch $x \in N$ gilt. Man schreibt
+$M \subset N$.
+\item Gilt $M\subset N$ und $N \subset M$, so sind die beiden Mengen
+  gleich. Man schreibt $M=N$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mengen in Sage}
+\begin{itemize}
+\item Mengen in Sage haben den Typ \verb+sets.set+.
+\item Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
+  Objekten. 
+\item Mengen werden als Listen in der Funktion \verb+Set([])+ angegeben.
+\item Leere Mengen werden durch \verb+leere_menge = Set([])+ definiert. 
+\item Einträge werden durch Kommata getrennt.
+\item (Nummerierter) Zugriff auf Elemente der Menge $M$ kann durch \verb+M[n]+ erfolgen ($n\ge0$)
+\item Mit \verb+[M[i] for i in xrange(1,3)]+ können auch Intervalle ausgegeben werden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Mengen}
+\begin{sage}
+>> M1 = Set([x, 2,3,pi,sqrt(2)]); M1
+\end{sage}
+\begin{sage}
+  {x, 2, 3, pi, sqrt(2)}
+\end{sage}
+\begin{sage}
+>> var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
+\end{sage}
+\begin{sage}
+  {y, 1, 2, {y, 1}, x}
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle für Mengen I}
+\begin{itemize}
+\item Die Anzahl der Elemente in einer Menge:
+\begin{sage}
+>> M1.cardinality()
+\end{sage}
+\begin{sage}
+  5
+\end{sage}
+\item Zugriff auf Elemente:
+\begin{sage}
+>> M2[1]; [M2[i] for i in xrange(1,4)]
+\end{sage}
+\begin{sage}
+1
+[1, 2, {y, 1}]
+\end{sage}
+\item Ändern von Einträgen mit \verb+op+ und \verb+subsop+ ohne Nebeneffekt:
+\begin{sage}
+>> op(M2,3), subsop(M2,3=neu)
+\end{sage}
+\begin{sage}
+  {1, y}, {1, 2, neu, x, y}
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle für Mengen II}
+\alert{Manipulationen von Mengen sollten von der Reihenfolge der Elemente keinen Gebrauch machen.}
+\begin{itemize}
+\item Vereinigung, Differenz, Schnitt.
+\begin{sage}
+>> L1 := {1,2,3,a,b}: L2 := {a,b,c,4,5}:
+>> L1 union L2, L1 minus L2, L1 intersect L2
+\end{sage}
+
+\begin{sage}
+{1,2,3,4,5,a,b,c}, {1,2,3}, {a,b}
+\end{sage}
+\item Prüfen, ob  ein Element enthalten ist:
+\begin{sage}
+>> contains(L1,a), contains(L1,c)
+\end{sage}
+\begin{sage}
+  TRUE, FALSE
+\end{sage}
+\begin{sage}
+>> contains(L1,{a}), contains(L1,{1,2})
+\end{sage}
+\begin{sage}
+  FALSE, FALSE
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle für Mengen III}
+\begin{itemize}
+\item Auswählen von Elementen mit bestimmten Eigenschaften
+\begin{sage}
+>> M:={{a,x,b},{a},{x,1}}:
+>> select(M,contains,x)
+\end{sage}
+\begin{sage}
+  {{x, 1}, {a, b, x}}
+\end{sage}
+\item Erzeugen der Potenzmenge
+\begin{sage}
+>> combinat::powerset(L1)
+\end{sage}
+\begin{sage}
+  Warning: combinat::powerset is obsolete.
+\end{sage}
+Die Warnung tritt in den neueren Version nicht mehr auf.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Select}
+Äußerst nützlich und häufig verwendet ist es Mengen durch bestimmte Vorschriften als Teilmengen einer größeren Menge zu erzeugen.
+Durch den Aufruf 
+\begin{sage}
+>> M1:=select(M,f,p1,p2,...)
+\end{sage}
+wird aus der Menge $M$ eine Menge $M1$ extrahiert, die aus den
+Elementen $x\in M$ besteht, für die $f(x,p1,p2,p3,...)$ eine wahre Aussage
+ergibt. $f$ ist eine Abbildung auf die Boolschen Werte TRUE,FALSE und
+$p1,p2,p3,\dots$ sind weitere optionale Parameter der Funktion $f$. 
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel: Select}
+\begin{sage}
+>> M:={i dollar i=1..1000}: 
+>> f:= (x,n) -> bool(x mod n=0)
+
+>> M2 :=select(M,f,2):
+>> M15:=select(M,f,15):
+>> M20:=select(M,f,20):
+
+>> M2 intersect M15 intersect M20
+\end{sage} 
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel}
+Wie kann ich prüfen, ob eine Menge $A1$ eine Teilmenge einer Menge $A$
+ist?
+\begin{sage}
+>> A := {i dollar i=1..10}:
+>> A1:= {i dollar i=1..2}:
+>> A2:= {i dollar i=9..11}:
+>> contains(combinat::powerset(A),A1)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool (A intersect A1 = A1) 
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool (A intersect A2 = A2)
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage} 
+\end{frame}
+
+\begin{frame}[fragile]{Multimengen}
+ Oft ist es nützlich Elemente von Mengen mit Vielfachheit zu zählen. In MuPAD 
+ gibt es deshalb den Datentyp  \verb+Dom::Multiset+. Die Elemente der Menge werden mit Vielfachheit aufgeführt.
+\begin{sage}
+>> Multimenge := Dom::Multiset(a,a,b,c,a,c,d)
+\end{sage}
+\begin{sage}
+  {[a, 3], [b, 1], [c, 2], [d, 1]}
+\end{sage}
+\begin{sage}
+>> Multimenge union {a}; Multimenge minus {c}
+\end{sage}
+\begin{sage}
+  {[a, 4], [b, 1], [c, 2], [d, 1]}
+  {[a, 3], [b, 1], [c, 1], [d, 1]}
+\end{sage}
+\end{frame}
+
+
+
+
+
+
+%-------------------------------------
+\section{Zahlen}
+%--------------------------------------
+
+\begin{frame}{Natürliche Zahlen (nach Peano)}
+Die Menge $\mathbb{N}$ ist definiert durch:
+\begin{enumerate}
+\item $0 \in \mathbb{N}$
+\item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
+  \rightarrow \mathbb{N} \smallsetminus \{ 0 \}$
+\item $nf$ ist injektiv.
+\item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
+  $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Man stelle sich die Nachfolgefunktion $nf$ als $nf(m)=m+1$
+  vor.
+\item Es besteht ein enger Zusammenhang zwischen den natürlichen
+  Zahlen und vollständiger  Induktion.
+\item Man identifiziert die so erzeugte Folge von Zahlen als
+  $0,1,2,3,\dots$.
+\item Sie haben keinen eigenen Datentyp in MuPAD. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Äquivalenzrelation}
+Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
+\[R\subseteq M \times M\]
+ mit den folgenden Eigenschaften. Für $(x,y) \in R$
+schreibt man auch $x \sim_R y$ oder einfach $x \sim y$. 
+\begin{enumerate}
+\item \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
+\item \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
+\item \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
+  $x \sim z$.  
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Äquivalenzklasse}
+\begin{itemize}
+\item Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
+\item Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
+\begin{itemize}
+\item [(a)] $A \neq \emptyset$.
+\item [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
+\item [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
+\end{itemize}
+\item Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
+Äquivalenzklassen.  
+\item Anderstrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
+\item  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
+$A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklasse $A$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ganze Zahlen $\mathbb{Z}$}
+Einführung der ganzen Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
+
+\begin{itemize}
+\item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
+$(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
+\item Die Tupel der Form $(m,0)$ sind paarweise nicht äquivalent
+zueinander. Dies sind die nichtnegativen Zahlen. Die negativen Zahlen
+werden durch $(0,m)$ identifiziert. 
+\item Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
+der Äquivalenzklassen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Verknüpfungen}
+\begin{itemize}
+\item Addition:
+\[
+\overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
+\item Multiplikation:
+\[
+\overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ganze Zahlen in MuPAD}
+Ganze Zahlen in MuPAD haben den Datentyp \verb+DOM_INT+. Man kann
+sie addieren, subtrahieren und multipliziern. Das Ergebnis ist
+wieder vom Typ \verb+DOM_INT+. 
+\begin{sage}
+>> domtype(5), domtype(0), domtype(-5)
+\end{sage}
+\begin{sage}
+  DOM_INT, DOM_INT, DOM_INT
+\end{sage}
+Division?
+\begin{sage}
+>> domtype(5*4), domtype(5/4)
+\end{sage}
+\begin{sage}
+  DOM_INT, DOM_RAT
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Division mit Rest}
+Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
+$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. (Beispiele: $x=45$, $a=7$ und $x=-34$, $a=8$)
+\begin{sage}
+>> r := x mod a:
+>> n := x div a:
+>> x:=45: a:=7: 
+>> n,r
+\end{sage}
+\begin{sage}
+  6, 3
+\end{sage}
+\begin{sage}
+>> x:=-34: a:=8: 
+>> n,r
+\end{sage}
+\begin{sage}
+  -5, 6
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{rationale Zahlen $\mathbb{Q}$}
+Die {\color{red} rationalen Zahlen $\mathbb{Q}$} sind gegeben durch die folgende
+Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
+\[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
+Statt $(m,n)$ schreibt man $\frac{m}{n}$.
+\begin{itemize}
+\item Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
+die $0$ in $\mathbb{Q}$.
+\item Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
+Ä.-klasse.  
+\item Addition:  
+\[ 
+\overline{\genfrac(){}{}{m}{n}}+\overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mq+pn}{nq}},
+\]
+Multiplikation:
+\[
+\overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
+\]
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{rationale Zahlen in MuPAD}
+Rationale Zahlen in MuPAD haben den Datentyp \verb+DOM_RAT+. Man kann
+sie in MuPAD beliebig addieren, subtrahieren, multiplizieren und
+dividieren. Das Ergebnis ist wieder eine rationale Zahl. Die rationalen
+Zahlen bilden einen \alert{Körper}.
+\begin{sage}
+>> a/b+c/d=normal(a/b+c/d)
+\end{sage}
+\begin{sage}
+  a   c   a d + b c  
+  - + - = ---------
+  b   d      b d     
+\end{sage}
+
+\begin{sage}
+>> a/b*c/d=normal(a/b*c/d)
+\end{sage}
+\begin{sage}
+  a c   a c
+  --- = ---
+  b d   b d
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Gruppe}
+Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
+$G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
+\[
+ \cdot: G \times G \ \rightarrow \ G, \quad (a,b) \mapsto a \cdot b
+\]
+mit folgenden Eigenschaften
+\begin{itemize}
+\item [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
+$a,b,c \in G$.
+\item [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
+\in G$ und zu jedem $a \in G$ existiert ein $a' \in G$ ({\it inverses
+Element}) mit $a' \cdot
+a=e$. 
+\end{itemize}  
+Gilt zusätzlich $a \cdot b = b \cdot a$ \alert{für alle} $a,b \in G$ so heißt
+die Gruppe {\it abelsch}.
+\end{frame}
+
+\begin{frame}[fragile]{Eigenschaften einer Gruppe}
+\begin{itemize}
+\item Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
+$a\in G$.
+\item Es gibt genau ein neutrales Element $e \in G$.
+\item Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
+und wird durch $a^{-1}$ bezeichnet. 
+\item Es gilt auch $a \cdot a'=e$. 
+\item Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Körper}
+Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
+Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
+Eigenschaften:
+\begin{itemize}
+\item [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
+heiße $0$. Das inverse Element zu $a \in K$ sei $-a$.) 
+\item [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
+Gruppe. (Das neutrale Element dazu sei $1$.)
+\item [(K3)] Distributivgesetze
+\begin{eqnarray*}
+a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
+(a+b) \cdot c & = &   (a \cdot c) + (b \cdot c) \mbox{ für alle }
+a,b,c \in K.
+\end{eqnarray*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+Gruppen:
+\begin{itemize}
+\item $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
+\item $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
+\item $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
+\item $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
+\end{itemize} 
+Körper:
+\begin{itemize}
+\item Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
+\item Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
+\item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
+\item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Anordnung}
+Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
+Positivbereich} $P \subset K$ gibt mit
+\begin{itemize}
+\item Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
+disjunkt. 
+\item $K = P \cup \{ 0 \} \cup -P$.
+\item Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
+\end{itemize}
+Man definiert:
+\begin{eqnarray*}{rcl}
+ x >y& \text{genau dann, wenn}& x-y\in P,\\
+ x \geq y&  \text{genau dann, wenn} &x-y \in P \cup \{ 0 \}.
+\end{eqnarray*}
+Analog definiert man $<$ und $\leq$. 
+\end{frame}
+
+\begin{frame}{Schranken}
+Sei $K$ ein angeordneter Körper.
+\begin{itemize}
+\item $y\in K$ heißt {\color{red} obere Schranke} von $M \subset
+K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
+\item Hat eine Teilmenge $M$ von $K$ eine obere Schranke, so heißt $M$
+nach oben {\color{red} beschränkt} (analog {\color{red} untere Schranke}).
+\item Eine obere Schranke $y$ einer Teilmenge $M$ von $K$ heißt {\color{red}
+Maximum} von $M$, wenn $y\in M$ (analog {\color{red} Minimum}).
+\item Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M$ von
+$K$ heißt {\color{red} Supremum} (analog {\color{red} Infimum}). Insbesondere müssen sie nicht Element der Menge $M$ sein oder gar als Element von $K$ existieren.  
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Reelle Zahlen}
+\begin{itemize}
+\item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
+Schranke.
+\item Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
+Mengen von oberen Schranken haben. Auf diese Weise kann eine
+Äquivalenzrelation definiert werden.
+\item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
+Zahlen} und die Menge dieser Zahlen bezeichnet man mit $\mathbb{R}$. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Bemerkungen}
+\begin{itemize}
+\item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
+definieren. 
+\item Die reellen Zahlen können auch als Vervollständigung von
+$\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
+\item Die rationalen Zahlen sind als Äquivalenzklassen der
+einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
+\item In MuPAD gibt es \alert{keinen} eigenen Datentyp für reelle
+Zahlen. Beispiele wie $\sqrt{2}$ oder $\log(2)$ werden als Ausdrücke
+(\verb+DOM_EXPR+) gespeichert. 
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Gleitkommazahlen}
+\textbf{Problem:}
+
+Die reellen Zahlen werden nicht exakt im
+Computer abgebildet. Es wird nur eine bestimmte Anzahl von
+Nachkommastellen betrachtet und die letzten Stellen gerundet. 
+
+Computer arbeiten also in der Regel nur mit
+Approximationen an die gesuchte reelle Zahl. 
+
+\textbf{Beispiel:} $\sqrt{2}$
+\begin{sage}
+>> DIGITS:=100:
+>> float(sqrt(2))
+\end{sage}
+\begin{sage}
+1.4142135623730950488016887242096980785\
+696718753769480731766797379907324784621\
+07038850387534327641573
+\end{sage}
+\end{frame}
+
+\begin{frame}{Gleitkommazahlen}
+\textbf{Darstellung von Gleitkommazahlen:}
+\[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
+  b^e}, \quad { \color{red} a_1} \neq 0
+\]
+\begin{itemize}
+\item ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
+\item ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
+\item ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
+\item Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
+\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
+\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
+\item Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
+\end{itemize} 
+\end{frame}
+
+\begin{frame}{Gleitkommazahlen}
+
+\textbf{Beispiele:}
+\[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
+  {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
+  + {\color{red} 0} \cdot 2^1 + {\color{red} 1} \cdot 2^0 
+\]
+$\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
+\[
+73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
+\]
+ $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
+\end{frame}
+
+\begin{frame}[fragile]{Rundungsfehler}
+\begin{itemize}
+\item Sei $rd(x)$ die 'gerundete' Gleitkomm-Zahl zu $x \in \mathbb{R}$.  Es
+ gilt für den {\it relativen Fehler} 
+\[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
+mit $\varepsilon=b^{1-t}$.
+\item Rundungsfehler können sich innerhalb eines Verfahrens
+verstärken. ({\it Fehlerfortpflanzung}).
+\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
+1996.
+\end{itemize}
+Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
+vermeiden.}
+\end{frame}
+
+\begin{frame}{Beispiele}
+
+\[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
+  2^{-1} + {\color{red} 1} \cdot 2^{-2}+
+{\color{red} 1} \cdot 2^{-3} + {\color{red} 1} \cdot 2^{-4}+{\color{red} 0} \cdot 2^{-5}+ \dots \]
+$\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
+
+\[ 2.45 = {\color{red} 2} \cdot 8^0 +  {\color{red} 3} \cdot
+  8^{-1} + {\color{red} 4} \cdot 8^{-2}+
+{\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
+$\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD}
+\begin{itemize}
+\item Gleitkommazahlen haben in MuPAD den Datentyp
+\verb+DOM_FLOAT+. 
+\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
+\item Die Anzahl der signifikanten Stellen kann man durch die globale
+Variable \verb+DIGITS+ steuern (Default: $10$). Möglich sind Werte
+zwischen $1$ und $2^{31}-1$.  
+\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
+bei DIGITS=10 intern mit ca. 19 Stellen gerechnet.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Rechnen mit Zahlen I}
+\begin{itemize}
+ \item Approximation durch \verb+float+. Berechnen einer numerischen
+ Näherung zu einem Ausdruck.
+\begin{sage}
+>> DIGITS:=5: float(PI), float(exp(1))
+\end{sage}
+\begin{sage}
+  3.1416, 2.7183
+\end{sage}
+\item MuPAD rechnet näherungsweise, sobald mindestens eine Zahl in
+Gleitkommadarstellung gegeben ist 
+\begin{sage}
+>> delete DIGITS: (1.0+(5/2*3))/(1/7+7/9)^2
+\end{sage}
+\begin{sage}
+  10.02868609
+\end{sage}
+\begin{sage}
+>> (1+(5/2*3))/(1/7+7/9)^2
+\end{sage}
+\begin{sage}
+  67473/6728
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Rechnen mit Zahlen II}
+\begin{itemize}
+\item Ausdrücke werden nicht automatisch umgewandelt
+\begin{sage}
+>> 2/3*sin(2), 0.666666666666666*sin(2)
+\end{sage}
+\begin{sage}
+  2 sin(2)
+  --------, 0.6666666667 sin(2)
+     3
+\end{sage}
+\begin{sage}
+>> float(2/3*sin(2))
+\end{sage}
+\begin{sage}
+  0.6061982846
+\end{sage}
+\item Viele MuPAD Funktionen liefern numerische Werte beim Einsetzen
+     von Gleitkommazahlen.
+\begin{sage}
+>> sqrt(64.0), sin(3.14), sin(7/5)
+\end{sage}
+\begin{sage}
+  8.0, 0.001592652917, sin(7/5)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Auslöschung}
+\begin{sage}
+>> DIGITS:=5:
+>> x:=10^(-4): ((1.0+x)-1.0)/x
+\end{sage}
+\begin{sage}
+  1.0
+\end{sage}
+\begin{sage}
+>> x:=10^(-5): ((1.0+x)-1.0)/x
+\end{sage}
+\begin{sage}
+  0.99996
+\end{sage}
+\begin{sage}
+>> x:=10^(-10): ((1.0+x)-1.0)/x
+\end{sage}
+\begin{sage}
+  0.0
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Wichtige Funktionen für Zahlen}
+\begin{center}
+\begin{tabular}{|ll|}
+\hline
+\verb+abs+ & Absolutbetrag\\
+\verb+ceil+ & Aufrunden\\
+\verb+floor+ & Abrunden\\
+\verb+frac+ & Abschneiden der Vorkommastellen\\
+\verb+trunc+ & Abschneiden der Nachkommastellen\\
+\verb+round+ & Runden\\
+\verb+sign+ & Vorzeichen\\
+\verb+sqrt+ & Wurzel\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Komplexe Zahlen}
+ Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ versehen mit der
+ Addition
+\[ (k,l)+(n,m)=(k+n,l+m) \] und der Multiplikation
+\[ (k,l) \cdot (n,m) = (kn-lm, km+ln) \]
+ist der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}. 
+
+Das Element {\color{red} $i:=(0,1)$} hat die Eigenschaft
+\[ i^2=(0,1) \cdot (0,1) = (-1,0). \]
+Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
+\[  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y.\]
+\end{frame}
+
+\begin{frame}[fragile]{Eigenschaften von $\mathbb{C}$}
+\begin{itemize}
+\item Fundamentalsatz der Algebra: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
+\item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
+\[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
+\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (MuPAD: \verb+abs+)
+\item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
+\item $\mathbb{C}$ ist kein angeordneter Körper!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{$\mathbb{C}$ in MuPAD I}
+\begin{itemize}
+\item Datentyp in MuPAD: \verb+DOM_COMPLEX+
+\item Die imaginäre Einheit $i=(0,1)$ ist in MuPAD \verb+I+.
+\begin{sage}
+>> sqrt(-1), I^2
+\end{sage}
+\begin{sage}
+  I, -1
+\end{sage}
+\item Rechnen mit komplexen Zahlen
+\begin{sage}
+>> (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
+\end{sage}
+\begin{sage}
+  2 + 9 I, - 0.45 + 0.35 I
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{$\mathbb{C}$ in MuPAD II}
+\begin{itemize}
+\item  Ergebnisse werden nicht automatisch bzgl. Realteil und
+        Imaginärteil getrennt; Dies kann erzwungen werden durch
+        \verb+rectform+:
+\begin{sage}
+1/(sqrt(2)+I), rectform(1/(sqrt(2)+I))
+\end{sage}
+\begin{small}
+\begin{sage}
+             1/2
+     1      2
+  --------, ---- + (-1/3) I
+   1/2       3
+  2    + I
+\end{sage}
+\end{small}
+\item Mittels \verb+Re+ und \verb+Im+ erhält man Real- und
+                  Imaginärteil.
+\begin{sage}
+>> Re(1/(sqrt(2)+I)),Im(1/(sqrt(2)+I))
+\end{sage}
+\begin{small}
+\begin{sage}
+   1/2
+  2
+ ----, -1/3
+  3
+\end{sage}
+\end{small}
+\end{itemize}
+\end{frame}
+
+%=======================================
+\section{Ungleichungen}
+%=======================================
+
+\begin{frame}[fragile]{Ungleichungen}
+MuPAD kann mittels des Befehls {\color{blue} \verb+solve+} auch
+Ungleichungen lösen.
+\begin{sage}
+>> assume(x,Type::Real): solve(x^2<1,x)
+\end{sage}
+\begin{sage}
+  (-1, 1)
+\end{sage}
+\begin{sage}
+>> domtype(%)
+\end{sage}
+\begin{sage}
+  Dom::Interval
+\end{sage}
+\begin{sage}
+>>assume(x>0): solve({exp(x)<=4, exp(x)>=1},x)
+\end{sage}
+\begin{sage}
+  (0, infinity) intersect (0, 2 ln(2)]               
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Intervalle}
+\begin{itemize}
+\item Intervalle in MuPAD werden durch {\color{blue} \verb+...+} definiert. 
+\item Datentyp \verb+DOM_Intervall+.
+\item Zu einer Zahl $a$ wird durch {\color{blue} \verb+hull(a)+} ein
+  Intervall bestimmt, in dem $a$ liegt.
+\item Funktionen wie \verb+sin+ oder \verb+exp+ akzeptieren als Eingaben
+  Intervalle. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele I}
+\begin{sage}
+>> a:=1/3...1; domtype(a) 
+\end{sage}
+\begin{sage}
+  0.3333333333 ... 1.0
+  DOM_INTERVAL 
+\end{sage}
+\begin{sage}
+>> exp(a)+1, sin(a)/a
+\end{sage}
+\begin{sage}
+  2.395612425 ... 3.718281829, 
+  0.3271946967 ... 2.524412955
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele II}
+\begin{sage}
+>> DIGITS:=6: hull(PI) 
+\end{sage}
+\begin{sage}
+  3.14159 ... 3.14160 
+\end{sage}
+\begin{sage}
+>> DIGITS:=10: hull(PI)
+\end{sage}
+\begin{sage}
+  3.141592653 ... 3.141592654 
+\end{sage}
+\end{frame}
+
+\end{document}
