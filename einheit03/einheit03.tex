@@ -85,7 +85,6 @@ $M \subset N$.
 \end{frame}
 
 \begin{frame}[fragile]{Befehle für Mengen II}
-\alert{Manipulationen von Mengen sollten von der Reihenfolge der Elemente keinen Gebrauch machen.}
 \begin{itemize}
 \item Vereinigung, Differenz, Schnitt.
 \begin{sage}
@@ -115,68 +114,76 @@ True
 \begin{itemize}
 \item Auswählen von Elementen mit bestimmten Eigenschaften
 \begin{sage}
->> M:={{a,x,b},{a},{x,1}}:
->> select(M,contains,x)
+>> M = Set(range(1,15))
+>> filter(is_prime,M)
 \end{sage}
 \begin{sage}
-  {{x, 1}, {a, b, x}}
+  [2, 3, 5, 7, 11, 13]
 \end{sage}
 \item Erzeugen der Potenzmenge
 \begin{sage}
->> combinat::powerset(L1)
+>> Set(powerset([1,2,3]))
 \end{sage}
-
+\begin{sage}
+ Set of elements of [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+\end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Select}
+\begin{frame}[fragile]{filter()}
 Äußerst nützlich und häufig verwendet ist es Mengen durch bestimmte Vorschriften als Teilmengen einer größeren Menge zu erzeugen.
 Durch den Aufruf 
 \begin{sage}
->> M1:=select(M,f,p1,p2,...)
+>> M1 = filter(f,M)
 \end{sage}
-wird aus der Menge $M$ eine Menge $M1$ extrahiert, die aus den
-Elementen $x\in M$ besteht, für die $f(x,p1,p2,p3,...)$ eine wahre Aussage
-ergibt. $f$ ist eine Abbildung auf die Boolschen Werte TRUE,FALSE und
-$p1,p2,p3,\dots$ sind weitere optionale Parameter der Funktion $f$. 
+wird aus der Menge \verb+M+ eine Menge \verb+M1+ extrahiert, die aus den
+Elementen $x\in M$ besteht, für die \verb+f(x)+ eine wahre Aussage
+ergibt. \\
+\verb+f+ ist eine Abbildung auf die Boolschen Werte True/False. 
 \end{frame}
 
-\begin{frame}[fragile]{Beispiel: Select}
+\begin{frame}[fragile]{Beispiel - filter()}
 \begin{sage}
->> M:={i dollar i=1..1000}: 
->> f:= (x,n) -> bool(x mod n=0)
-
->> M2 :=select(M,f,2):
->> M15:=select(M,f,15):
->> M20:=select(M,f,20):
-
->> M2 intersect M15 intersect M20
+>> M = Set(range(1,101))
+>> def f(x): return bool(mod(x,2)==0)
+>> M2 = Set(filter(f,M))
+>> def f(x): return bool(mod(x,15)==0)
+>> M15 = Set(filter(f,M))
+>> M2.intersection(M15)
 \end{sage} 
+\begin{sage}
+ {90, 60, 30}
+\end{sage}
+\begin{sage}
+M2 = Set([m for m in M if mod(m,2)==0])
+M15 = Set([m for m in M if mod(m,15)==0])
+\end{sage}
+
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel}
-Wie kann ich prüfen, ob eine Menge $A1$ eine Teilmenge einer Menge $A$
+Wie kann ich prüfen, ob eine Menge \verb+A1+ eine Teilmenge einer Menge \verb+A+
 ist?
 \begin{sage}
->> A := {i dollar i=1..10}:
->> A1:= {i dollar i=1..2}:
->> A2:= {i dollar i=9..11}:
->> contains(combinat::powerset(A),A1)
+>> A = Set(range(1,11))
+>> A1 = Set(range(1,3))
+>> A2 = Set(range(9,12))
+>> contains(combinat::powerset(A),A1) ??
 \end{sage}
 \begin{sage}
   TRUE
 \end{sage}
 \begin{sage}
->> bool (A intersect A1 = A1) 
+>> A.intersection(A1) == A1
 \end{sage}
 \begin{sage}
-  TRUE
+  True
 \end{sage}
 \begin{sage}
->> bool (A intersect A2 = A2)
+>> A.intersection(A2) == A2
 \end{sage}
 \begin{sage}
-  FALSE
+  False
 \end{sage} 
 \end{frame}
 
