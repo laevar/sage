@@ -168,10 +168,6 @@ ist?
 >> A = Set(range(1,11))
 >> A1 = Set(range(1,3))
 >> A2 = Set(range(9,12))
->> contains(combinat::powerset(A),A1) ??
-\end{sage}
-\begin{sage}
-  TRUE
 \end{sage}
 \begin{sage}
 >> A.intersection(A1) == A1
@@ -187,23 +183,23 @@ ist?
 \end{sage} 
 \end{frame}
 
-\begin{frame}[fragile]{Multimengen}
- Oft ist es nützlich Elemente von Mengen mit Vielfachheit zu zählen. In MuPAD 
- gibt es deshalb den Datentyp  \verb+Dom::Multiset+. Die Elemente der Menge werden mit Vielfachheit aufgeführt.
-\begin{sage}
->> Multimenge := Dom::Multiset(a,a,b,c,a,c,d)
-\end{sage}
-\begin{sage}
-  {[a, 3], [b, 1], [c, 2], [d, 1]}
-\end{sage}
-\begin{sage}
->> Multimenge union {a}; Multimenge minus {c}
-\end{sage}
-\begin{sage}
-  {[a, 4], [b, 1], [c, 2], [d, 1]}
-  {[a, 3], [b, 1], [c, 1], [d, 1]}
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Multimengen}
+%  Oft ist es nützlich Elemente von Mengen mit Vielfachheit zu zählen. In MuPAD 
+%  gibt es deshalb den Datentyp  \verb+Dom::Multiset+. Die Elemente der Menge werden mit Vielfachheit aufgeführt.
+% \begin{sage}
+% >> Multimenge := Dom::Multiset(a,a,b,c,a,c,d)
+% \end{sage}
+% \begin{sage}
+%   {[a, 3], [b, 1], [c, 2], [d, 1]}
+% \end{sage}
+% \begin{sage}
+% >> Multimenge union {a}; Multimenge minus {c}
+% \end{sage}
+% \begin{sage}
+%   {[a, 4], [b, 1], [c, 2], [d, 1]}
+%   {[a, 3], [b, 1], [c, 1], [d, 1]}
+% \end{sage}
+% \end{frame}
 
 
 
@@ -215,6 +211,7 @@ ist?
 %--------------------------------------
 
 \begin{frame}{Natürliche Zahlen (nach Peano)}
+% andere einfuehrung!
 Die Menge $\mathbb{N}$ ist definiert durch:
 \begin{enumerate}
 \item $0 \in \mathbb{N}$
@@ -234,7 +231,7 @@ Die Menge $\mathbb{N}$ ist definiert durch:
   Zahlen und vollständiger  Induktion.
 \item Man identifiziert die so erzeugte Folge von Zahlen als
   $0,1,2,3,\dots$.
-\item Sie haben keinen eigenen Datentyp in MuPAD. 
+\item Sie haben keinen eigenen Datentyp in Sage, aber es gibt ganze Zahlen (Integer). 
 \end{itemize}
 \end{frame}
 
@@ -262,7 +259,7 @@ schreibt man auch $x \sim_R y$ oder einfach $x \sim y$.
 \end{itemize}
 \item Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
 Äquivalenzklassen.  
-\item Anderstrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
+\item Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
 \item  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
 $A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklasse $A$. 
 \end{itemize}
@@ -270,7 +267,7 @@ $A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklass
 
 \begin{frame}{Ganze Zahlen $\mathbb{Z}$}
 Einführung der ganzen Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
-
+% das kann abe rbesser...
 \begin{itemize}
 \item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
 $(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
@@ -294,22 +291,25 @@ der Äquivalenzklassen.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Ganze Zahlen in MuPAD}
-Ganze Zahlen in MuPAD haben den Datentyp \verb+DOM_INT+. Man kann
-sie addieren, subtrahieren und multipliziern. Das Ergebnis ist
-wieder vom Typ \verb+DOM_INT+. 
+\begin{frame}[fragile]{Ganze Zahlen in Sage}
+Ganze Zahlen in Sage haben den Datentyp \verb+Integer+. Man kann
+sie addieren, subtrahieren und multiplizieren. Das Ergebnis ist
+wieder vom Typ \verb+Integer+. 
 \begin{sage}
->> domtype(5), domtype(0), domtype(-5)
+>> type(5), type(0), type(-5)
 \end{sage}
 \begin{sage}
-  DOM_INT, DOM_INT, DOM_INT
+(<type 'sage.rings.integer.Integer'>, <type
+'sage.rings.integer.Integer'>, <type
+'sage.rings.integer.Integer'>)
 \end{sage}
 Division?
 \begin{sage}
->> domtype(5*4), domtype(5/4)
+>> type(5*4), type(5/4)
 \end{sage}
 \begin{sage}
-  DOM_INT, DOM_RAT
+(<type 'sage.rings.integer.Integer'>, <type
+'sage.rings.rational.Rational'>)
 \end{sage}
 \end{frame}
 
@@ -317,20 +317,16 @@ Division?
 Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
 $n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. (Beispiele: $x=45$, $a=7$ und $x=-34$, $a=8$)
 \begin{sage}
->> r := x mod a:
->> n := x div a:
->> x:=45: a:=7: 
->> n,r
+mod(45,7), floor(45/7)
 \end{sage}
 \begin{sage}
   6, 3
 \end{sage}
 \begin{sage}
->> x:=-34: a:=8: 
->> n,r
+mod(-34,8), floor(-34/8)
 \end{sage}
 \begin{sage}
-  -5, 6
+(6, -5)
 \end{sage}
 \end{frame}
 
