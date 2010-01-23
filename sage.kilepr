@@ -53,10 +53,10 @@ order=1
 
 [item:einheit03/einheit03.tex]
 archive=true
-column=7
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=328
+line=746
 open=true
 order=2
 

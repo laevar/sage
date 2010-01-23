@@ -351,27 +351,23 @@ Multiplikation:
 \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{rationale Zahlen in MuPAD}
-Rationale Zahlen in MuPAD haben den Datentyp \verb+DOM_RAT+. Man kann
-sie in MuPAD beliebig addieren, subtrahieren, multiplizieren und
+\begin{frame}[fragile]{rationale Zahlen in Sage}
+Rationale Zahlen in Sage haben den Datentyp \verb+rational+. Man kann
+sie in Sage beliebig addieren, subtrahieren, multiplizieren und
 dividieren. Das Ergebnis ist wieder eine rationale Zahl. Die rationalen
 Zahlen bilden einen \alert{Körper}.
 \begin{sage}
->> a/b+c/d=normal(a/b+c/d)
+>> var('a,b,c,d'); a/b+c/d == (a/b+c/d).simplify_rational()
 \end{sage}
 \begin{sage}
-  a   c   a d + b c  
-  - + - = ---------
-  b   d      b d     
+a/b + c/d == (a*d + b*c)/(b*d)
 \end{sage}
 
 \begin{sage}
->> a/b*c/d=normal(a/b*c/d)
+>> a/b*c/d == (a/b*c/d).simplify_rational()
 \end{sage}
 \begin{sage}
-  a c   a c
-  --- = ---
-  b d   b d
+a*c/(b*d) == a*c/(b*d)
 \end{sage}
 \end{frame}
 
@@ -494,14 +490,12 @@ definieren.
 $\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
 \item Die rationalen Zahlen sind als Äquivalenzklassen der
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-\item In MuPAD gibt es \alert{keinen} eigenen Datentyp für reelle
-Zahlen. Beispiele wie $\sqrt{2}$ oder $\log(2)$ werden als Ausdrücke
-(\verb+DOM_EXPR+) gespeichert. 
+\item Der Datentyp in Sage ist \verb+RealNumber+
  \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{Gleitkommazahlen}
+\begin{frame}[fragile]{Gleitkommazahlen I}
 \textbf{Problem:}
 
 Die reellen Zahlen werden nicht exakt im
@@ -513,17 +507,15 @@ Approximationen an die gesuchte reelle Zahl.
 
 \textbf{Beispiel:} $\sqrt{2}$
 \begin{sage}
->> DIGITS:=100:
->> float(sqrt(2))
+>> (sqrt(2)).n(200)
 \end{sage}
 \begin{sage}
-1.4142135623730950488016887242096980785\
-696718753769480731766797379907324784621\
-07038850387534327641573
+1.4142135623730950488016887
+242096980785696718753769480731767
 \end{sage}
 \end{frame}
 
-\begin{frame}{Gleitkommazahlen}
+\begin{frame}{Gleitkommazahlen II}
 \textbf{Darstellung von Gleitkommazahlen:}
 \[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
   b^e}, \quad { \color{red} a_1} \neq 0
@@ -581,16 +573,16 @@ $\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
 $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
 \end{frame}
 
-\begin{frame}[fragile]{MuPAD}
+\begin{frame}[fragile]{Sage}
 \begin{itemize}
-\item Gleitkommazahlen haben in MuPAD den Datentyp
-\verb+DOM_FLOAT+. 
+\item Gleitkommazahlen haben in Sage den Datentyp
+\verb+float+. 
 \item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
 \item Die Anzahl der signifikanten Stellen kann man durch die globale
 Variable \verb+DIGITS+ steuern (Default: $10$). Möglich sind Werte
-zwischen $1$ und $2^{31}-1$.  
+zwischen $1$ und $2^{31}-1$.  ??  .n () 
 \item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
-bei DIGITS=10 intern mit ca. 19 Stellen gerechnet.
+bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
 \end{itemize}
 \end{frame}
 
@@ -599,24 +591,24 @@ bei DIGITS=10 intern mit ca. 19 Stellen gerechnet.
  \item Approximation durch \verb+float+. Berechnen einer numerischen
  Näherung zu einem Ausdruck.
 \begin{sage}
->> DIGITS:=5: float(PI), float(exp(1))
+>> (pi).n(22), (exp(1)).n(22)
 \end{sage}
 \begin{sage}
-  3.1416, 2.7183
+(3.14159, 2.71828)
 \end{sage}
-\item MuPAD rechnet näherungsweise, sobald mindestens eine Zahl in
+\item Sage rechnet näherungsweise, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
 \begin{sage}
->> delete DIGITS: (1.0+(5/2*3))/(1/7+7/9)^2
+>> (1.0+(5/2*3))/(1/7+7/9)^2
 \end{sage}
 \begin{sage}
-  10.02868609
+10.0286860879905
 \end{sage}
 \begin{sage}
 >> (1+(5/2*3))/(1/7+7/9)^2
 \end{sage}
 \begin{sage}
-  67473/6728
+67473/6728
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -628,46 +620,43 @@ Gleitkommadarstellung gegeben ist
 >> 2/3*sin(2), 0.666666666666666*sin(2)
 \end{sage}
 \begin{sage}
-  2 sin(2)
-  --------, 0.6666666667 sin(2)
-     3
+(2/3*sin(2), 0.666666666666666*sin(2))
 \end{sage}
 \begin{sage}
 >> float(2/3*sin(2))
 \end{sage}
 \begin{sage}
-  0.6061982846
+0.60619828455045444
 \end{sage}
-\item Viele MuPAD Funktionen liefern numerische Werte beim Einsetzen
+\item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
      von Gleitkommazahlen.
 \begin{sage}
 >> sqrt(64.0), sin(3.14), sin(7/5)
 \end{sage}
 \begin{sage}
-  8.0, 0.001592652917, sin(7/5)
+(8.0000000000000, 0.00159265291648683, sin(7/5))
 \end{sage}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Auslöschung}
 \begin{sage}
->> DIGITS:=5:
->> x:=10^(-4): ((1.0+x)-1.0)/x
+>> x = 10^(-2); ((1.0+x)-1.0)/x
 \end{sage}
 \begin{sage}
-  1.0
+  1.00000000000000
 \end{sage}
 \begin{sage}
->> x:=10^(-5): ((1.0+x)-1.0)/x
+>> x = 10^(-4); ((1.0+x)-1.0)/x
 \end{sage}
 \begin{sage}
-  0.99996
+ 0.999999999999890
 \end{sage}
 \begin{sage}
->> x:=10^(-10): ((1.0+x)-1.0)/x
+>> x = 10^(-16); ((1.0+x)-1.0)/x
 \end{sage}
 \begin{sage}
-  0.0
+  0.000000000000000
 \end{sage}
 \end{frame}
 
@@ -678,10 +667,11 @@ Gleitkommadarstellung gegeben ist
 \verb+abs+ & Absolutbetrag\\
 \verb+ceil+ & Aufrunden\\
 \verb+floor+ & Abrunden\\
-\verb+frac+ & Abschneiden der Vorkommastellen\\
-\verb+trunc+ & Abschneiden der Nachkommastellen\\
+%\verb+frac+ & Abschneiden der Vorkommastellen\\
+%\verb+trunc+ & Abschneiden der Nachkommastellen\\
 \verb+round+ & Runden\\
-\verb+sign+ & Vorzeichen\\
+%\verb+sign+ & Vorzeichen\\
+mehr!
 \verb+sqrt+ & Wurzel\\
 \hline
 \end{tabular}
@@ -706,60 +696,54 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 \item Fundamentalsatz der Algebra: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
 \item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
 \[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
-\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (MuPAD: \verb+abs+)
+\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \verb+abs+)
 \item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
 \item $\mathbb{C}$ ist kein angeordneter Körper!
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{$\mathbb{C}$ in MuPAD I}
+\begin{frame}[fragile]{$\mathbb{C}$ in Sage I}
 \begin{itemize}
-\item Datentyp in MuPAD: \verb+DOM_COMPLEX+
-\item Die imaginäre Einheit $i=(0,1)$ ist in MuPAD \verb+I+.
+\item Datentyp in Sage: \verb+complex+
+\item Die imaginäre Einheit $i=(0,1)$ ist in Sage \verb+I+.
 \begin{sage}
 >> sqrt(-1), I^2
 \end{sage}
 \begin{sage}
-  I, -1
+(I, -1)
 \end{sage}
 \item Rechnen mit komplexen Zahlen
 \begin{sage}
 >> (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
 \end{sage}
 \begin{sage}
-  2 + 9 I, - 0.45 + 0.35 I
+ (9*I + 2, -0.4500000000 + 0.3500000000*I)
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{$\mathbb{C}$ in MuPAD II}
+\begin{frame}[fragile]{$\mathbb{C}$ in Sage II}
 \begin{itemize}
 \item  Ergebnisse werden nicht automatisch bzgl. Realteil und
         Imaginärteil getrennt; Dies kann erzwungen werden durch
         \verb+rectform+:
 \begin{sage}
-1/(sqrt(2)+I), rectform(1/(sqrt(2)+I))
+1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sage}
 \begin{small}
 \begin{sage}
-             1/2
-     1      2
-  --------, ---- + (-1/3) I
-   1/2       3
-  2    + I
+1/(sqrt(2) + I)
+1/3*sqrt(2) - 1/3*I
 \end{sage}
 \end{small}
-\item Mittels \verb+Re+ und \verb+Im+ erhält man Real- und
+\item Mittels \verb+real()+ und \verb+imag()+ erhält man Real- und
                   Imaginärteil.
 \begin{sage}
->> Re(1/(sqrt(2)+I)),Im(1/(sqrt(2)+I))
+>> real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 \end{sage}
 \begin{small}
 \begin{sage}
-   1/2
-  2
- ----, -1/3
-  3
+(1/3*sqrt(2), -1/3)
 \end{sage}
 \end{small}
 \end{itemize}
