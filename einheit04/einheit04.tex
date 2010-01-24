@@ -1,0 +1,682 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 4}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+% \begin{frame}{Übersicht}
+% \begin{itemize}
+% \item Vektoren
+% \item Vektorräume
+% \item Lineare Unabhängigkeit, Basis
+% \item Matrizen
+% \item MuPAD-Bibliotheken
+% \item Ein erstes Programm
+% \end{itemize}
+% \end{frame}
+
+%===================================================
+\section{Vektoren}
+%==================================================
+
+\subsection{Vektorräume}
+\begin{frame}{Vektorraum}
+Ein Tripel $(V,+,\cdot)$, bestehend aus einer nichtleeren Menge $V$
+und Verknüpfungen
+\[ +:V \times V \ \rightarrow \ V, \qquad \cdot:K\times V \ \rightarrow \ V\]
+heißt {\color{red} Vektorraum} über einem Körper
+$K$, wenn gilt:
+\begin{enumerate}
+\item $(V,+)$ ist eine abelsche Gruppe.
+\item Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
+\begin{enumerate}
+ \item $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
+\item $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
+\item $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
+\item $1 \cdot v = v$.
+\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Begriffe}
+\begin{itemize}
+\item Die Elemente eines Vektorraums nennt man {\color{red} Vektoren}.
+\item Die Abbildung $\cdot : K\times V \ \rightarrow \ V$ heißt
+  {\color{red} Skalarmultiplikation}. Die Elemente des Körpers $K$ nennt man
+  {\color{red} Skalare}.
+\item  Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und gelten
+  alle Vektorraumaxiome, so heißt $U$ ein {\color{red} Untervektorraum} oder
+  {\color{red} Unterraum} von $V$. 
+\item \alert{Vorsicht!} $0$ ist nicht gleich $0$, d.h. man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. Es gilt $0 \cdot v
+  = 0$ für alle $v \in V$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiele für Vektorräume}
+\begin{itemize}
+\item $K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
+\item Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
+  in $K$, $\text{Abb}(M,K)$, mit den punktweise definiertenVerknüpfungen
+\begin{eqnarray*}{rcl}
+(f+g)(x) & :=& f(x)+g(x), \forall\; x \in M\\
+(\alpha \cdot f)(x) & :=& \alpha \cdot f(x), \forall\; x \in M  
+\end{eqnarray*}
+für $\alpha \in K$, $f,g:M \mapsto K$.
+\item Die Menge der Polynome bis zum Grad $n$.
+\item Die Menge aller Polynome.
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
+\item $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}[fragile]{Vektoren in MuPAD}
+\begin{itemize}
+\item Konstruktion von Vektoren
+\begin{sage}
+>> a=matrix([1,2,3,4]); b=matrix([5,6,7]); a,b
+\end{sage}
+\begin{small}
+\begin{sage}
+([1 2 3 4], [5 6 7])
+\end{sage}
+\end{small}
+\item Datentyp: \verb+Matrix_integer_dense+ (für dichte Matrizen)
+\begin{sage}
+>> type(a)
+\end{sage}
+\begin{sage}
+<type 'sage.matrix.matrix_integer_dense.Matrix_integer_dense'>
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lineare Abhängigkeit}
+Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
+Elementen aus $V$.
+\begin{itemize}
+\item $v \in V$ heißt {\color{red} Linearkombination} von $(v_1,\dots ,v_r)$,
+  falls $\exists \lambda_1, \dots, \lambda_r \in K$  mit
+  $ v= \lambda_1 v_1 + \dots + \lambda_r v_r$. 
+\item Die Menge aller Linearkombinationen wird {\color{red} Lineare Hülle}
+  genannt und durch $\mathop{span}\{v_1, \dots, v_n\}$ bezeichnet. Die Lineare
+  Hülle ist ein Unterraum von $V$.
+\item  $(v_1,\dots ,v_r)$ heißen {\color{red} linear unabhängig}, falls gilt:
+  Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
+  \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
+  \lambda_r=0$. Andernfalls sind sie {\color{red} linear abhängig}. 
+\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls \alert{alle endlichen} Teilmengen von $M$ lineare unabhängig sind.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Weitere Notationen und Bemerkungen}
+Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
+Elementen aus $V$
+\begin{itemize}
+\item $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
+jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
+läßt. 
+\item Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
+{\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
+unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
+\item Aus jedem Erzeugendensystem kann man eine Basis auswählen. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiele für Basen}
+\begin{itemize}
+\item Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
+,e_n)$ ist eine Basis des $\mathbb{R}^n$.
+\item Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
+Vektorraums der Polynome $n$-ten Grades.
+\item $(1,i)$ ist eine Basis von $\mathbb{C}$ als
+$\mathbb{R}$-Vektorraum. 
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
+Basis. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Basis und Dimension}
+\begin{itemize}
+\item Sei $(v_1,\dots, v_n)$ eine Basis eines Vektorraums $V$. Dann
+ist die {\color{red} Dimension} des Vektorraums $V$ definiert durch die Anzahl der
+Basiselemente, also $n$.
+\item Jeder Vektorraum besitzt eine Basis.
+\item Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
+die {\color{red} Summe} von $W$ und $Z$. Es gilt:
+\[ \dim(W+Z)=\dim(W) + \dim (Z) - \dim( W \cap Z) \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sage}
+\begin{itemize}
+\item In der Bibliothek \verb+linalg+ finden sich viele Befehle zur
+linearen Algebra ({\color{blue} \verb+? linalg+}).
+\item Bestimmen einer Basis von $span(s1,s2,s3)$
+\begin{sage}
+>> s1 = matrix([1,0,0])
+>> s2 = matrix([0,1,1])
+>> s3 = matrix([1,1,1])
+>> linalg::basis([s1,s2,s3])
+\end{sage}
+\begin{sage}
+  -- +-   -+  +-   -+ --
+  |  |  1  |  |  0  |  |
+  |  |     |  |     |  |
+  |  |  0  |, |  1  |  |
+  |  |     |  |     |  |
+  |  |  0  |  |  1  |  |
+  -- +-   -+  +-   -+ --
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD}
+\begin{itemize}
+\item Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
+\begin{sage}
+>> linalg::intBasis([s1],[s2,s3])
+\end{sage}
+\item Testen der linearen Unabhängigkeit
+\begin{sage}
+>> student::isFree([s1,s2,s3])
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exkurs: Bibliotheken in MuPAD}
+\begin{itemize}
+\item Eine Bibliothek besteht aus einer Sammlung von Funktionen zur
+Lösung von Problemen eines speziellen Gebietes (z.B. Lineare Algebra,
+Zahlentheorie, Numerik).
+\item Eine Übersicht aller Bibliotheken findet man in der 
+Kurzreferenz (über die  Hilfe erreichbar).
+\item Durch {\color{blue} \verb+?bib+} enthält man eine Auflistung der Funktionen
+in der Bibliothek {\color{blue}\verb+bib+}.
+\item Die Standardbibliothek {\color{blue}\verb+stdlib+} enthält die wichtigsten
+Basisfunktionen, die nicht im Kern implementiert sind. Diese
+Funktionen können direkt benutzt werden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Übersicht: Einige Bibliotheken}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\verb+stdlib+ & Standardbibliothek \\
+\verb+linalg+ &  Lineare Algebra \\
+\verb+plot+   & Erzeugen von Grafiken\\
+\verb+numeric+ & Numerische Berechnungen\\
+\verb+stats+ & Statistische Berechnungen\\
+\verb+numlib+ & Zahlentheorie\\
+\verb+student+ & elementare Algorithmen\\ 
+\verb+fp+ & Umgang mit Funktionen\\  
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Benutzen der Bibliotheken}
+\begin{itemize}
+\item Eine Bibliotheksfunktion wird in der Form
+\verb+Bibliothek::Funktion+ aufgerufen, z.B. {\color{blue}
+\verb+linalg::basis([s1,s2,s3])+}.
+\item Durch den Befehl {\color{blue} \verb+export(Bibliothek,Funktion)+} 
+
+können Funktionen einer
+Bibliothek global bekannt gemacht werden. Dies bedeutet, dass die
+Funktion ohne Voranstellen des Bibliotheksnamen aufgerufen werden kann, z.B.
+\begin{sage}
+>> export(student,isFree): 
+>> isFree([s1,s2,s3])
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Benutzen der Bibliotheken}
+\begin{itemize}
+\item Wird {\color{blue} \verb+export(Bibliothek)+} aufgerufen, so werden
+alle Funktionen der Bibliothek exportiert.
+\item Die Bibliotheken werden ständig aktualisiert und erweitert. In
+ihnen steckt das eigentliche mathematische Wissen. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Matrizen}
+Eine {\color{red} $m \times n$ Matrix} $A$ über einen Körper $K$ ist ein rechteckiges
+Schema mit Einträgen $a_{ij} \in K$, $ 1 \leq i \leq m$, $1 \leq j
+\leq n$  der Form
+\[ A = \left( \begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{array} \right) \] 
+mit dem Zeilenindex $i$ mit Werten zwischen $1$ und $m$ und
+Spaltenindex $j$ mit Werten zwischen $1$ und $n$. Man schreibt kurz
+$A=(a_{ij}) \in K^{m\times n}$. 
+\end{frame}
+
+\begin{frame}{Definitionen}
+\begin{itemize}
+\item Die {\color{red} Transponierte } von $A=(a_{ij})$ ist $A^T:=(a_{ji})$.
+\item $A$ heißt {\color{red} symmetrisch}, wenn $A=A^T$ gilt.
+\item Für Matrizen $A=(a_{ij})\in \mathbb{C}^{m\times n}$ ist $A^* :=
+(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
+\item Die {\color{red} Einheitsmatrix} $I:=I_n:=(\delta_{ij}) \in K^{n \times
+n}$
+\item Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$. Dann ist die {\color{red} Addition}
+definiert durch 
+\[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
+mit $c_{ij}=a_{ij}+b_{ij}$.  
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Definitionen}
+\begin{itemize}
+\item Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+\in {K}^{n \times p}$. Dann ist die {\color{red} Multiplikation}
+gegeben durch  
+\[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
+mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
+\item $A\in K^{n \times n}$ heißt {\color{red} orthogonal}, wenn $A \cdot
+A^T=A^T \cdot A=I_n$ gilt.
+\item $A\in \mathbb{C}^{n \times n}$ heißt {\color{red} unitär}, wenn $A \cdot
+A^*=A^* \cdot A=I_n$ gilt.
+\item $A\in K^{n \times n}$ heißt {\color{red} invertierbar}, wenn eine
+Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
+A^{-1}=A^{-1} \cdot A=I_n$.
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Definitionen und Bemerkungen}
+\begin{itemize}
+\item Die Multiplikation ist assoziativ aber in der Regel \alert{nicht kommutativ}. 
+\item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
+$K$ (mit komponentenweiser Skalarmultiplikation).
+\item Die Menge der invertierbaren Matrizen aus $K^{n \times n}$
+bilden bezüglich der Multiplikation eine Gruppe, die {\color{red} allgemeine
+lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definition und Bemerkungen}
+\begin{itemize}
+\item Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
+ eine Untergruppe von  $GL(\mathbb{R},n)$, die {\color{red} orthogonale
+ Gruppe} $O(n)$. 
+
+\item Die entsprechende Untergruppe der unitären Matrizen
+ in $GL(\mathbb{C},n)$ ist die {\color{red} unitäre Gruppe} $U(n)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen in MuPAD}
+\begin{itemize}
+\item Matrizen werden in MuPAD mit Hilfe des Befehls \verb+matrix+
+konstruiert. 
+\item Der Rückgabewert ist vom Typ \verb+Dom::Matrix()+.
+\item Die Einträge der Matrix können beliebige Ausdrücke sein.
+\item Es ist auch möglich Matrizen über bestimmten Bereichen
+(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
+konstruieren. 
+\item Es gibt auch spezielle Datenstrukturen für quadratische Matrizen
+und für dünnbesetzte Matrizen. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Konstruktion von Matrizen I}
+Es gibt in MuPAD verschiedene Möglichkeiten eine Matrix zu
+konstruieren. Beispiel:
+\[ A:= \left( \begin{array}{cccc}
+1 & 2 & 3 & 4\\
+a & 0 & 1 & b\\ 
+\end{array} \right), \quad a,b\in \mathbb{R} \]
+\begin{itemize}
+\item Eingabe der Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
+Spalten dann wieder in eckigen Klammern $[ ..]$.
+\begin{sage}
+A:=matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
+\end{sage}
+\item Mit expliziter Größenangabe
+\begin{sage}
+A:=matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Matrizen II}
+\begin{itemize}
+\item Erzeugen einer Nullmatrix der Größe $n \times m$
+\begin{sage}
+>> n:=3: m:=4: B:=matrix(n,m)
+\end{sage}
+\item Erzeuge eine $n \times m$ - Matrix $A$ mit Hilfe einer Funktion
+$f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
+\begin{sage}
+>> f:=(i,j) -> i*j:
+>> C:=matrix(3,5,f)
+\end{sage}
+\item Eingabe von Zeilen- und Spaltenvektoren
+\begin{sage}
+>> matrix(3,1,[1,2,3])
+>> matrix(1,3,[4,5,6])
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zeilen- und Spaltenzahl}
+\begin{itemize}
+\item Abfragen der Spaltenanzahl: \verb+linalg::ncols+
+\begin{sage}
+>> linalg::ncols(A)
+\end{sage}
+\begin{sage}
+  4
+\end{sage}
+\item Abfragen der Zeilenanzahl: \verb+linalg::nrows+
+\begin{sage}
+>> linalg::nrows(A)
+\end{sage}
+\begin{sage}
+  2
+\end{sage}
+\item Dimension der Matrix: \verb+linalg::matdim+
+\begin{sage}
+>> linalg::matdim(A)
+\end{sage}
+\begin{sage}
+  [2, 4]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf die Einträge I}
+\begin{itemize}
+\item Abfragen von Einträgen in Zeile $i$ und Spalte $j$:
+\begin{sage}
+>> i:=1: j:=2: A[i,j]
+\end{sage}
+\begin{sage}
+  2
+\end{sage}
+\item Ändern des Eintrags in Zeile $i$ und Spalte $j$:
+\begin{sage}
+>> i:=1: j:=2: A[i,j]:=22
+\end{sage}
+\item Extrahieren von Zeilen/Spalten
+\begin{sage}
+>> zeile:=linalg::row(A,2)
+>> spalte:=linalg::col(A,4)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf die Einträge II}
+\begin{itemize}
+\item Extrahieren von Teilmatrizen
+\begin{sage}
+>> zeilen:=1..2: spalten:=2..4:
+>> A[zeilen,spalten]
+\end{sage}
+\item Erzeugen von Diagonalmatrizen
+\begin{sage}
+>> x:=[1,2,3,4,5]:
+>> Diag:=matrix(5,5,x,Diagonal)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Rechnen mit Matrizen}
+\begin{itemize} 
+\item Addieren, Multiplizieren
+\begin{sage}
+>> A:=matrix([[a, b], [c,d]])
+>> B:=matrix([[e, f], [g,h]])
+>> A+B; A*B
+\end{sage}
+\item Bestimmung der Inversen und der Transponierten
+\begin{sage}
+>> A^(-1); linalg::transpose(A)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Systemfunktionen}
+Viele Systemfunktionen lassen sich auf Matrizen anwenden. Beispiele:
+\begin{itemize}
+\item \verb+conjugate(A)+ ersetzt die Komponenten durch ihre komplex
+konjugierten Einträge.
+\item \verb+expand(A)+ wendet \verb+expand+ auf alle Komponenten an.
+\item \verb+float(A)+ wendet \verb+float+ auf alle Komponenten  an.
+\item \verb+has(A,Ausdruck)+ prüft, ob ein Ausdruck \verb+Ausdruck+ in
+mind. einer Komponente von $A$ enthalten ist.
+\end{itemize} 
+\end{frame}
+
+\begin{frame}{Rang von Matrizen}
+Sei $A \in K^{m \times n}$. 
+\begin{itemize}
+\item Die Dimension der linearen Hülle der Spaltenvektoren nennt man
+den {\color{red} Spaltenrang} von $A$. Er ist höchstens gleich $n$.
+\item Die Dimension der linearen Hülle der Zeilenvektoren nennt man den
+{\color{red} Zeilenrang} von $A$. Er ist höchstens gleich $m$.
+\item Zeilenrang und Spaltenrang von Matrizen sind gleich und man
+spricht deshalb vom {\color{red} Rang} einer Matrix. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\begin{itemize}
+\item Bestimmen des Ranges einer Matrix
+\begin{sage}
+>> S:=matrix([[1,0,0],[0,1,1],[1,1,1]])
+>> linalg::rank(S)
+\end{sage}
+\begin{sage}
+  2
+\end{sage}
+
+\item Ist eine Matrix unitär ?
+\begin{sage}
+>> linalg::isUnitary(S)
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage}
+\begin{sage}
+>> F:=matrix([[I,0],[0,-I]])
+>> linalg::isUnitary(F)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Normen auf Vektorräumen}
+Sei $V$ ein Vektorraum über $K=\mathbb{R}$ oder $K=\mathbb{C}$.\\
+Eine {\color{red} Norm} auf $V$ ist eine Abbildung
+\[ \| \cdot \|: V \ \rightarrow \mathbb{R}, v \mapsto \| v \|, \]
+so dass für  alle $\alpha \in K$, $u,v \in V$ gilt 
+\[ \begin{array} {rcl}
+\| v \| & \geq & 0 \\
+\| v \| & = & 0 \mbox{ impliziert } v=0\\
+\| \alpha v \| & = & | \alpha | \| v \|\\
+\| u + v \| & \leq & \| u \| + \| v \| \mbox{ (Dreiecksungleichung)}.\\
+\end{array} \]
+$(V,\| \cdot \|)$
+heißt {\color{red} normierter Raum}.
+\end{frame}
+
+\begin{frame}[fragile]{Skalarprodukt}
+Eine skalarwertige binäre Abbildung
+\[ ( \cdot, \cdot ): V \times V: \ \rightarrow \ K\]
+auf einem Vektorraum $V$ über $K=\mathbb{R}$ oder $K=\mathbb{C}$ heißt
+{\color{red} Skalarprodukt}, wenn für alle $x,y,z \in V$, $\alpha, \beta \in
+K$ gilt 
+\begin{eqnarray*}{rcl}
+(x,x) & \geq & 0\\
+(x,x) & = & 0 \mbox{ impliziert } x=0.\\
+(x,y) & = & \overline{(y,x)}\\
+(\alpha x+\beta y,z) & = & \alpha (x,z)+ \beta (y,z)
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Ein VR $V$ mit Skalarprodukt heißt {\color{red} Prä-Hilbert-Raum}. Ist
+$K=\mathbb{R}$ so heißt der Raum auch {\color{red} euklidisch}.
+\item Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm
+definieren. Es gilt die {\color{red} Cauchy-Schwarzsche Ungleichung}
+\[ |(u,v)| \leq \| u \| \|v\|. \]
+\item Im euklidischen Raum ist der Winkel $\alpha$ zwischen zwei Vektoren
+$u,v \in V\smallsetminus \{ 0 \}$ definiert durch
+\[ \cos(\alpha) = \frac{(u,v)}{\|u\| \|v \|}. \]
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Zwei Vektoren $u,v \in V$ heißen {\color{red} orthogonal}, wenn
+$(u,v)=0$ gilt. 
+\item Eine Basis aus paarweise orthogonalen Vektoren heißt {\color{red}
+Orthogonalbasis}. 
+\item Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
+haben, nennt man {\color{red} Orthonormalbasis}.
+\item Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
+Orthonormalbasis. 
+\item Ist $U$ ein Unterraum von $V$, so ist
+\[
+{U}^\perp := \{ v \in V \ | \ (v,u)=0 \mbox{ für alle } u \in U \}
+\]
+der {\color{red} Orthogonalraum} zu $U$. Er ist ein Untervektorraum.
+\item Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD}
+\begin{itemize}
+\item Die $p$-Norm $\|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}$, $p\in [1,\infty)$ auf dem
+$K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
+\begin{sage}
+>> x:=matrix([1,2,3,4,5]): p:=2:
+>> norm(x,p)
+\end{sage}
+\item Orthogonalisieren von Vektoren:
+\begin{sage}
+>> a1:=matrix([1,2,3]):
+>> a2:=matrix([0,4,1]):
+>> a3:=matrix([1,1,1]):
+>> linalg::orthog([a1,a2,a3])
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{MuPAD}
+\begin{itemize}
+\item Berechnen des Skalarprodukts
+\begin{sage}
+>> linalg::scalarProduct(a2,a3)
+\end{sage}
+\begin{sage}
+  5
+\end{sage}
+\item Berechnen des Winkels zwischen zwei Vektoren
+\begin{sage}
+>> float(linalg::angle(a2,a3))
+\end{sage}
+\begin{sage}
+  0.7952027133
+\end{sage}
+\item Berechnen der Determinante
+\begin{sage}
+>> A:=matrix([[1,2,3],[4,5,6],[7,8,0]]):
+>> linalg::det(A)
+\end{sage}
+\begin{sage}
+  27
+\end{sage}
+\end{itemize}
+\end{frame}
+
+%===============================
+\section{Etwas Programmieren}
+%===============================
+
+\begin{frame}[fragile]{Ein erstes Programm}
+\begin{sage}
+
+MyMax:=proc(a,b)
+     /* Maximum von a und b*/
+     begin
+       if a<b then return(b) 
+       else return(a) end_if
+     end_proc:
+\end{sage}
+\begin{itemize}
+\item Das erste Beispiel berechnet das Maximum zweier Zahlen $a$ und
+$b$. 
+\item Aufruf in MuPAD ist {\color{blue} \verb+MyMax(a,b)+}. 
+\item Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
+  zurück.
+ \end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Aufbau von Prozeduren}
+\begin{itemize}
+\item Eine Prozedur beginnt mit dem Namen der Prozedur (hier:
+  \verb+MyMax+).
+\item Diese wird dann durch die rechte Seite als Objekt vom Typ
+  \verb+DOM_PROC+ definiert.
+\item Eine Prozedur beginnt mit \verb+proc(...) begin+ und endet mit
+  \verb+end_proc+. 
+\item \verb+proc(a,b,c..)+ gibt an, wie die Input-Argumente aussehen. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Return}
+\begin{itemize}
+\item Mittels \verb+return(a)+ wird die Prozedur abgebrochen und der
+Wert \verb+a+ züruckgegeben.
+\item Wird kein \verb+return+ aufgerufen, so gibt die Funktion den
+Wert des letzten Befehls zurück, der innerhalb der Prozedur
+ausgewertet wurde. 
+\item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird
+\verb+NIL+ zurückgegeben. \verb+NIL+ steht für das Nichts. Man kann es
+auffassen als die leere Menge.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Erkärungen}
+\begin{itemize}
+\item Der zwischen \verb+/*+ und \verb+*/+ eingeschlossene Text ist
+  Kommentar. Er wird vom System völlig ignoriert.
+\item Die durch \verb+if bedingung then+ eingeleitete Zeile ist eine
+  sogenannte Verzweigung. Ist die  Bedingung \verb+bedingung+ wahr, so wird der
+  Teil hinter \verb+then+ ausgeführt. Ist \verb+bedingung+ falsch, so
+  wird die Alternative ausgeführt. Beendet wird die Verzweigung mit
+  \verb+end_if+. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Erstellen von Prozeduren}
+Bei umfangreicheren Prozeduren ist es sinnvoller die Prozedur mit
+einem Editor zu erstellen. In unserem Beispiel ist die Routine
+\verb+MyMax+ in einer Datei mit dem Namen \verb+mymax.mup+
+abgespeichert. Diese Datei kann nun durch {\color{blue} \verb+read(``mymax.mup'')+}
+eingelesen werden und dann normal verwendet werden. Hierdurch ist auch
+die Wiederverwertbarkeit der Funktion gesichert. 
+\end{frame}
+\end{document}

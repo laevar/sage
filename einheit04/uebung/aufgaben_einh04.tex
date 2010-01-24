@@ -1,0 +1,123 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\input{aufg_header}
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Einheit 3}\\
+WS 2009/2010
+\end{flushright}
+\end{minipage}\\[1cm]
+
+
+\begin{aufg}
+Welche der Vektoren \( v_1, ..., v_4 \in
+\mathbb{R}^5\) sind zueinander orthogonal?
+\[
+v_1 = \left(\begin{array}{c}1\\2\\3\\4\\5\end{array}\right),
+ v_2 = \left(\begin{array}{c}-1\\27\\26\\1\\-27\end{array}\right),
+ v_3 = \left(\begin{array}{c}160\\-48\\112\\-160\\48\end{array}\right),
+ v_4 = \left(\begin{array}{c}120\\234\\-23\\-43\\29\end{array}\right). \]
+\end{aufg} 
+
+\begin{aufg}
+  Bestimmen Sie für die Matrizen \[
+A =\left( \begin{array}{ccc} 1 & 8 & 4\\3 & 1 & 3\\2 & 2 & 2 \end{array}\right),
+B =\left( \begin{array}{ccc} 5 & 5 & 6\\7 & 9 & 1\\8 & 10& 0 \end{array}\right),
+C =\left( \begin{array}{ccc} 1 & 1 & 2\\2 & 1 & 1\\2 & 2 & 2 \end{array}\right),\]
+\[D = AB, E = BC  \mbox{ und } F=B^T C\] 
+
+jeweils den Rang und die Determinante.
+\end{aufg}
+
+
+\begin{aufg}
+Seien $A$,$B$,$C$ $(2 \times 2)$- Matrizen und \( x, y \in \mathbb{R}^2 \).
+Zeigen Sie:
+\[ (AB)^T = B^T A^T,\]
+\[(AB)^{-1} = B^{-1} A^{-1},\]
+\[A( x+ y)=A x + A y,\]
+\[A(B+C) = AB + AC,\]
+\[\det(AB) = \det(A) \det(B).\]
+\end{aufg}
+
+\begin{aufg}
+Welche der folgenden Matrizen sind unitär, orthogonal, invertierbar,
+symmetrisch oder hermitisch (d.h. $A^*=A$, Befehl:
+\verb+linalg::isHermitean+)?
+
+\[A = \left(
+\begin{array}{ccc}1&0&0\\0&\cos(\pi /6 )&-\sin(\pi /6)\\0&\sin(\pi /6)&\cos(\pi /6)\end{array}\right),
+\quad 
+B = \left( \begin{array}{ccc}1&1&i\\1 & i &1 \\i &1 & 1 \end{array}\right),\]
+
+\[C = \left( 
+\begin{array}{ccc}0&0&1\\ \frac{2}{3}+ \frac{1}{3}i & \frac{2}{3}&0\\
+  \frac{2}{3}&-\frac{2}{3}-\frac{1}{3}i&0  
+\end{array}\right).\] 
+\end{aufg}
+
+\begin{aufg}
+  Gegeben seien die Untervektorräume $V:=\operatorname{span} \{ v_1, v_2,   v_3 \}$
+  und  $W:= 
+  \operatorname{span} \{ w_1, w_2, w_3 \}$ mit Vektoren $ v_1, v_2,
+  v_3,    
+  w_1, w_2,  w_3 \in  \mathbb{R}^5$. Bestimmen
+  Sie die Dimension von \(V \cap  W\).
+\[
+ v_1 = \left(\begin{array}{c}3\\4\\-5\\6\\-8\end{array}\right),
+ v_2 = \left(\begin{array}{c}2\\4\\8\\12\\-5\end{array}\right), 
+ v_3 = \left(\begin{array}{c}6\\5\\13\\21\\2\end{array}\right), \]
+\[
+ w_1 = \left(\begin{array}{c}5\\4\\-12\\2\\0\end{array}\right),
+ w_2 = \left(\begin{array}{c}3\\5\\2\\-2\\8\end{array}\right), 
+ w_3 = \left(\begin{array}{c}4\\2\\9\\1\\8\end{array}\right).\]
+\end{aufg}
+
+
+
+\begin{aufg}
+Erzeugen Sie, wenn möglich mit Hilfe des ``.''-Operators, die Matrix: 
+\begin{verbatim}
+          +-                    -+
+          |  a11, a12, a13, a14  |
+          |                      |
+          |  a21, a22, a23, a24  |
+      A = |                      |
+          |  a31, a32, a33, a34  |
+          |                      |
+          |  a41, a42, a43, a44  |
+          +-                    -+
+\end{verbatim}
+Leiten Sie daraus eine allgemeine Determinantenformel für $(4 \times
+4)$ Matrizen her.
+\end{aufg}
+
+
+\begin{aufg}
+\begin{enumerate} 
+\item Erzeugen Sie die $(15 \times 15)$ Hilbert-Matrix $H:=(h_{ij})$
+  mit $h_{ij}:=\frac{1}{i+j-1}$. 
+\item Bestimmen Sie die Determinante von $H$.
+\item Berechnen Sie für den Vektor $r:=(1, \dots, 1)^T$ das
+  Matrix-Vektorprodukt $y:=Hr$.
+\item Lösen Sie das Gleichungssystem $Hx=y$. Vergleichen Sie die
+  berechnete Lösung mit der Referenzlösung $r$.
+\item Ersetzen Sie den Eintrag $h_{11}$ durch die Gleitkommazahl $1.0$
+  und lösen Sie erneut das Gleichungssystem. Was stellen Sie fest ?
+\end{enumerate}
+\end{aufg}
+%-----------------------------------------------------------------------------------
+
+\begin{aufg}
+Berechnen Sie eine Gleitkommadarstellung von
+\[  2 \prod_{i=1}^{1000} \left( \frac{(2i)^2}{(2i-1)(2i+1)} \right ) . \] 
+\end{aufg}
+
+
+%-----------------------------------------------------------------------------------
+\begin{aufg}
+Schreiben Sie eine Prozedur, die zu einer gegebenen Menge von ganzen Zahlen
+die Summe aller Elemente der Menge berechnet und zurückgibt.
+\end{aufg}
+
+\end{document}
+

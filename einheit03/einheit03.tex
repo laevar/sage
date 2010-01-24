@@ -750,73 +750,73 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 \end{frame}
 
 %=======================================
-\section{Ungleichungen}
+%\section{Ungleichungen}
 %=======================================
 
-\begin{frame}[fragile]{Ungleichungen}
-MuPAD kann mittels des Befehls {\color{blue} \verb+solve+} auch
-Ungleichungen lösen.
-\begin{sage}
->> assume(x,Type::Real): solve(x^2<1,x)
-\end{sage}
-\begin{sage}
-  (-1, 1)
-\end{sage}
-\begin{sage}
->> domtype(%)
-\end{sage}
-\begin{sage}
-  Dom::Interval
-\end{sage}
-\begin{sage}
->>assume(x>0): solve({exp(x)<=4, exp(x)>=1},x)
-\end{sage}
-\begin{sage}
-  (0, infinity) intersect (0, 2 ln(2)]               
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Ungleichungen}
+% MuPAD kann mittels des Befehls {\color{blue} \verb+solve+} auch
+% Ungleichungen lösen.
+% \begin{sage}
+% >> assume(x,Type::Real): solve(x^2<1,x)
+% \end{sage}
+% \begin{sage}
+%   (-1, 1)
+% \end{sage}
+% \begin{sage}
+% >> domtype(%)
+% \end{sage}
+% \begin{sage}
+%   Dom::Interval
+% \end{sage}
+% \begin{sage}
+% >>assume(x>0): solve({exp(x)<=4, exp(x)>=1},x)
+% \end{sage}
+% \begin{sage}
+%   (0, infinity) intersect (0, 2 ln(2)]               
+% \end{sage}
+% \end{frame}
 
-\begin{frame}[fragile]{Intervalle}
-\begin{itemize}
-\item Intervalle in MuPAD werden durch {\color{blue} \verb+...+} definiert. 
-\item Datentyp \verb+DOM_Intervall+.
-\item Zu einer Zahl $a$ wird durch {\color{blue} \verb+hull(a)+} ein
-  Intervall bestimmt, in dem $a$ liegt.
-\item Funktionen wie \verb+sin+ oder \verb+exp+ akzeptieren als Eingaben
-  Intervalle. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele I}
-\begin{sage}
->> a:=1/3...1; domtype(a) 
-\end{sage}
-\begin{sage}
-  0.3333333333 ... 1.0
-  DOM_INTERVAL 
-\end{sage}
-\begin{sage}
->> exp(a)+1, sin(a)/a
-\end{sage}
-\begin{sage}
-  2.395612425 ... 3.718281829, 
-  0.3271946967 ... 2.524412955
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele II}
-\begin{sage}
->> DIGITS:=6: hull(PI) 
-\end{sage}
-\begin{sage}
-  3.14159 ... 3.14160 
-\end{sage}
-\begin{sage}
->> DIGITS:=10: hull(PI)
-\end{sage}
-\begin{sage}
-  3.141592653 ... 3.141592654 
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Intervalle}
+% \begin{itemize}
+% \item Intervalle in Sage werden durch {\color{blue} \verb+:+} definiert. 
+% \item Zu einer Zahl $a$ wird durch {\color{blue} \verb+hull(a)+} ein
+%   Intervall bestimmt, in dem $a$ liegt.
+% \item Funktionen wie \verb+sin+ oder \verb+exp+ akzeptieren als Eingaben
+%   Intervalle. 
+% \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Beispiele I}
+% \begin{sage}
+% a = range(1,8)
+% >> a:=1/3...1; domtype(a) 
+% \end{sage}
+% \begin{sage}
+%   0.3333333333 ... 1.0
+%   DOM_INTERVAL 
+% \end{sage}
+% \begin{sage}
+% >> exp(a)+1, sin(a)/a
+% \end{sage}
+% \begin{sage}
+%   2.395612425 ... 3.718281829, 
+%   0.3271946967 ... 2.524412955
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Beispiele II}
+% \begin{sage}
+% >> DIGITS:=6: hull(PI) 
+% \end{sage}
+% \begin{sage}
+%   3.14159 ... 3.14160 
+% \end{sage}
+% \begin{sage}
+% >> DIGITS:=10: hull(PI)
+% \end{sage}
+% \begin{sage}
+%   3.141592653 ... 3.141592654 
+% \end{sage}
+% \end{frame}
 
 \end{document}

@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=einheit03/einheit03.tex
+lastDocument=einheit04/uebung/aufgaben_einh04.tex
 masterDocument=
 name=sage
 pkg_extIsRegExp=false
@@ -35,10 +35,10 @@ order=-1
 
 [item:einheit02/einheit02.tex]
 archive=true
-column=10
+column=47
 encoding=UTF-8
 highlight=LaTeX
-line=322
+line=324
 open=true
 order=0
 
@@ -48,7 +48,7 @@ column=19
 encoding=UTF-8
 highlight=LaTeX
 line=1
-open=true
+open=false
 order=1
 
 [item:einheit03/einheit03.tex]
@@ -56,16 +56,34 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=746
+line=0
 open=true
-order=2
+order=1
 
 [item:einheit03/uebung/aufgaben_einh03.tex]
+archive=true
+column=21
+encoding=UTF-8
+highlight=LaTeX
+line=7
+open=true
+order=4
+
+[item:einheit04/einheit04.tex]
 archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
 line=0
+open=true
+order=2
+
+[item:einheit04/uebung/aufgaben_einh04.tex]
+archive=true
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=1
 open=true
 order=3
 
