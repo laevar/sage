@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=einheit04/uebung/aufgaben_einh04.tex
+lastDocument=einheit04/einheit04.tex
 masterDocument=
 name=sage
 pkg_extIsRegExp=false
@@ -14,6 +14,15 @@ src_extensions=.tex .ltx .latex .dtx .ins
 [Tools]
 MakeIndex=
 QuickBuild=
+
+[item:aufg_header.tex]
+archive=true
+column=32
+encoding=UTF-8
+highlight=LaTeX
+line=0
+open=false
+order=-1
 
 [item:einheit01/einheit01.tex]
 archive=true
@@ -66,15 +75,15 @@ column=21
 encoding=UTF-8
 highlight=LaTeX
 line=7
-open=true
+open=false
 order=4
 
 [item:einheit04/einheit04.tex]
 archive=true
-column=0
+column=55
 encoding=UTF-8
 highlight=LaTeX
-line=0
+line=177
 open=true
 order=2
 
