@@ -73,7 +73,8 @@ für $\alpha \in K$, $f,g:M \mapsto K$.
 \end{frame} 
 
 
-\begin{frame}[fragile]{Vektoren in MuPAD}
+\subsection{Vektoren und Basen}
+\begin{frame}[fragile]{Vektoren in Sage}
 \begin{itemize}
 \item Konstruktion von Vektoren
 \begin{sage}
@@ -126,6 +127,7 @@ unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}{Beispiele für Basen}
 \begin{itemize}
 \item Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
@@ -153,103 +155,98 @@ die {\color{red} Summe} von $W$ und $Z$. Es gilt:
 
 \begin{frame}[fragile]{Sage}
 \begin{itemize}
-\item In der Bibliothek \verb+linalg+ finden sich viele Befehle zur
-linearen Algebra ({\color{blue} \verb+? linalg+}).
 \item Bestimmen einer Basis von $span(s1,s2,s3)$
 \begin{sage}
->> s1 = matrix([1,0,0])
->> s2 = matrix([0,1,1])
->> s3 = matrix([1,1,1])
->> linalg::basis([s1,s2,s3])
+>> s1 = vector([1,0,0])
+>> s2 = vector([0,1,1])
+>> s3 = vector([1,1,1])
+>> V = VectorSpace(QQ,3); S = V.subspace([s1,s2,s3]); S
 \end{sage}
 \begin{sage}
-  -- +-   -+  +-   -+ --
-  |  |  1  |  |  0  |  |
-  |  |     |  |     |  |
-  |  |  0  |, |  1  |  |
-  |  |     |  |     |  |
-  |  |  0  |  |  1  |  |
-  -- +-   -+  +-   -+ --
+Vector space of degree 3 and dimension 2 over Rational Field
+Basis matrix:
+[1 0 0]
+[0 1 1]
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{MuPAD}
+\begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
 \begin{sage}
->> linalg::intBasis([s1],[s2,s3])
+>> (V.subspace([s1])).intersection(V.subspace([s2,s3]))
 \end{sage}
 \item Testen der linearen Unabhängigkeit
 \begin{sage}
->> student::isFree([s1,s2,s3])
+>> matrix.([s1,s2,s3]).rank() >= len(s1)
 \end{sage}
 \begin{sage}
-  FALSE
+  False
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Exkurs: Bibliotheken in MuPAD}
-\begin{itemize}
-\item Eine Bibliothek besteht aus einer Sammlung von Funktionen zur
-Lösung von Problemen eines speziellen Gebietes (z.B. Lineare Algebra,
-Zahlentheorie, Numerik).
-\item Eine Übersicht aller Bibliotheken findet man in der 
-Kurzreferenz (über die  Hilfe erreichbar).
-\item Durch {\color{blue} \verb+?bib+} enthält man eine Auflistung der Funktionen
-in der Bibliothek {\color{blue}\verb+bib+}.
-\item Die Standardbibliothek {\color{blue}\verb+stdlib+} enthält die wichtigsten
-Basisfunktionen, die nicht im Kern implementiert sind. Diese
-Funktionen können direkt benutzt werden.
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Exkurs: Bibliotheken in MuPAD}
+% \begin{itemize}
+% \item Eine Bibliothek besteht aus einer Sammlung von Funktionen zur
+% Lösung von Problemen eines speziellen Gebietes (z.B. Lineare Algebra,
+% Zahlentheorie, Numerik).
+% \item Eine Übersicht aller Bibliotheken findet man in der 
+% Kurzreferenz (über die  Hilfe erreichbar).
+% \item Durch {\color{blue} \verb+?bib+} enthält man eine Auflistung der Funktionen
+% in der Bibliothek {\color{blue}\verb+bib+}.
+% \item Die Standardbibliothek {\color{blue}\verb+stdlib+} enthält die wichtigsten
+% Basisfunktionen, die nicht im Kern implementiert sind. Diese
+% Funktionen können direkt benutzt werden.
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}[fragile]{Übersicht: Einige Bibliotheken}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\verb+stdlib+ & Standardbibliothek \\
-\verb+linalg+ &  Lineare Algebra \\
-\verb+plot+   & Erzeugen von Grafiken\\
-\verb+numeric+ & Numerische Berechnungen\\
-\verb+stats+ & Statistische Berechnungen\\
-\verb+numlib+ & Zahlentheorie\\
-\verb+student+ & elementare Algorithmen\\ 
-\verb+fp+ & Umgang mit Funktionen\\  
-\hline
-\end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Benutzen der Bibliotheken}
-\begin{itemize}
-\item Eine Bibliotheksfunktion wird in der Form
-\verb+Bibliothek::Funktion+ aufgerufen, z.B. {\color{blue}
-\verb+linalg::basis([s1,s2,s3])+}.
-\item Durch den Befehl {\color{blue} \verb+export(Bibliothek,Funktion)+} 
-
-können Funktionen einer
-Bibliothek global bekannt gemacht werden. Dies bedeutet, dass die
-Funktion ohne Voranstellen des Bibliotheksnamen aufgerufen werden kann, z.B.
-\begin{sage}
->> export(student,isFree): 
->> isFree([s1,s2,s3])
-\end{sage}
-\begin{sage}
-  FALSE
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Benutzen der Bibliotheken}
-\begin{itemize}
-\item Wird {\color{blue} \verb+export(Bibliothek)+} aufgerufen, so werden
-alle Funktionen der Bibliothek exportiert.
-\item Die Bibliotheken werden ständig aktualisiert und erweitert. In
-ihnen steckt das eigentliche mathematische Wissen. 
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Übersicht: Einige Bibliotheken}
+% \begin{center}
+% \begin{tabular}{|l|l|}
+% \hline
+% \verb+stdlib+ & Standardbibliothek \\
+% \verb+linalg+ &  Lineare Algebra \\
+% \verb+plot+   & Erzeugen von Grafiken\\
+% \verb+numeric+ & Numerische Berechnungen\\
+% \verb+stats+ & Statistische Berechnungen\\
+% \verb+numlib+ & Zahlentheorie\\
+% \verb+student+ & elementare Algorithmen\\ 
+% \verb+fp+ & Umgang mit Funktionen\\  
+% \hline
+% \end{tabular}
+% \end{center}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Benutzen der Bibliotheken}
+% \begin{itemize}
+% \item Eine Bibliotheksfunktion wird in der Form
+% \verb+Bibliothek::Funktion+ aufgerufen, z.B. {\color{blue}
+% \verb+linalg::basis([s1,s2,s3])+}.
+% \item Durch den Befehl {\color{blue} \verb+export(Bibliothek,Funktion)+} 
+% 
+% können Funktionen einer
+% Bibliothek global bekannt gemacht werden. Dies bedeutet, dass die
+% Funktion ohne Voranstellen des Bibliotheksnamen aufgerufen werden kann, z.B.
+% \begin{sage}
+% >> export(student,isFree): 
+% >> isFree([s1,s2,s3])
+% \end{sage}
+% \begin{sage}
+%   FALSE
+% \end{sage}
+% \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Benutzen der Bibliotheken}
+% \begin{itemize}
+% \item Wird {\color{blue} \verb+export(Bibliothek)+} aufgerufen, so werden
+% alle Funktionen der Bibliothek exportiert.
+% \item Die Bibliotheken werden ständig aktualisiert und erweitert. In
+% ihnen steckt das eigentliche mathematische Wissen. 
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}{Matrizen}
 Eine {\color{red} $m \times n$ Matrix} $A$ über einen Körper $K$ ist ein rechteckiges
