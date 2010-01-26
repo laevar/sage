@@ -21,6 +21,259 @@
 %===================================================
 \section{Vektoren}
 %==================================================
+\subsection{Matrizen}
+
+\begin{frame}{Matrizen}
+Eine {\color{red} $m \times n$ Matrix} $A$ über einen Körper $K$ ist ein rechteckiges
+Schema mit Einträgen $a_{ij} \in K$, $ 1 \leq i \leq m$, $1 \leq j
+\leq n$  der Form
+\[ A = \left( \begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{array} \right) \] 
+mit dem Zeilenindex $i$ mit Werten zwischen $1$ und $m$ und
+Spaltenindex $j$ mit Werten zwischen $1$ und $n$. Man schreibt kurz
+$A=(a_{ij}) \in K^{m\times n}$. 
+\end{frame}
+
+\begin{frame}{Definitionen}
+\begin{itemize}
+\item Die {\color{red} Transponierte } von $A=(a_{ij})$ ist $A^T:=(a_{ji})$.
+\item $A$ heißt {\color{red} symmetrisch}, wenn $A=A^T$ gilt.
+\item Für Matrizen $A=(a_{ij})\in \mathbb{C}^{m\times n}$ ist $A^* :=
+(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
+\item Die {\color{red} Einheitsmatrix} $I:=I_n:=(\delta_{ij}) \in K^{n \times
+n}$
+\item Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$. Dann ist die {\color{red} Addition}
+definiert durch 
+\[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
+mit $c_{ij}=a_{ij}+b_{ij}$.  
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Definitionen}
+\begin{itemize}
+\item Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+\in {K}^{n \times p}$. Dann ist die {\color{red} Multiplikation}
+gegeben durch  
+\[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
+mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
+\item $A\in K^{n \times n}$ heißt {\color{red} orthogonal}, wenn $A \cdot
+A^T=A^T \cdot A=I_n$ gilt.
+\item $A\in \mathbb{C}^{n \times n}$ heißt {\color{red} unitär}, wenn $A \cdot
+A^*=A^* \cdot A=I_n$ gilt.
+\item $A\in K^{n \times n}$ heißt {\color{red} invertierbar}, wenn eine
+Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
+A^{-1}=A^{-1} \cdot A=I_n$.
+\end{itemize}
+\end{frame} 
+
+\begin{frame}{Definitionen und Bemerkungen}
+\begin{itemize}
+\item Die Multiplikation ist assoziativ aber in der Regel \alert{nicht kommutativ}. 
+\item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
+$K$ (mit komponentenweiser Skalarmultiplikation).
+\item Die Menge der invertierbaren Matrizen aus $K^{n \times n}$
+bilden bezüglich der Multiplikation eine Gruppe, die {\color{red} allgemeine
+lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definition und Bemerkungen}
+\begin{itemize}
+\item Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
+ eine Untergruppe von  $GL(\mathbb{R},n)$, die {\color{red} orthogonale
+ Gruppe} $O(n)$. 
+
+\item Die entsprechende Untergruppe der unitären Matrizen
+ in $GL(\mathbb{C},n)$ ist die {\color{red} unitäre Gruppe} $U(n)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen in Sage}
+\begin{itemize}
+\item Matrizen werden in Sage mit Hilfe des Befehls \verb+matrix()+
+konstruiert. 
+\item Der Rückgabewert ist vom Typ \verb+matrix+.
+\item Die Einträge der Matrix können beliebige Ausdrücke sein.
+\item Es ist auch möglich Matrizen über bestimmten Bereichen
+(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
+konstruieren. 
+\item Es gibt auch spezielle Datenstrukturen für quadratische Matrizen
+und für dünnbesetzte Matrizen. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Konstruktion von Matrizen I}
+Es gibt in Sage verschiedene Möglichkeiten eine Matrix zu
+konstruieren. Beispiel:
+\[ A:= \left( \begin{array}{cccc}
+1 & 2 & 3 & 4\\
+a & 0 & 1 & b\\ 
+\end{array} \right), \quad a,b\in \mathbb{R} \]
+\begin{itemize}
+\item Eingabe der Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
+Spalten dann wieder in eckigen Klammern $[ ..]$.
+\begin{sage}
+>> A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
+\end{sage}
+\item Mit expliziter Größenangabe
+\begin{sage}
+>> A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Matrizen II}
+\begin{itemize}
+\item Erzeugen einer Nullmatrix der Größe $n \times m$
+\begin{sage}
+>> n = 3; m = 4; B = matrix(n,m)
+\end{sage}
+\item Erzeuge eine $n \times m$ - Matrix $A$ mit Hilfe einer Funktion
+$f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
+\begin{sage}
+>> f(i,j) = i*j
+>> C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
+\end{sage}
+\item Eingabe von Zeilen- und Spaltenvektoren
+\begin{sage}
+>> matrix(3,1,[1,2,3])
+>> matrix(1,3,[4,5,6])
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zeilen- und Spaltenzahl}
+\begin{itemize}
+\item Abfragen der Spaltenanzahl: \verb+<matrix>.ncols()+
+\begin{sage}
+>> C.ncols()
+\end{sage}
+\begin{sage}
+  5
+\end{sage}
+\item Abfragen der Zeilenanzahl: \verb+<matrix>.nrows()+
+\begin{sage}
+>> C.nrows()
+\end{sage}
+\begin{sage}
+  3
+\end{sage}
+\item Informationen über die Matrix: \verb+<matrix>.parent()+
+\begin{sage}
+>> C.parent()
+\end{sage}
+\begin{sage}
+Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf die Einträge I}
+\begin{itemize}
+\item Abfragen von Einträgen in Zeile $i$ und Spalte $j$:
+\begin{sage}
+>> i=1; j=2; C[i,j]
+\end{sage}
+\begin{sage}
+  6
+\end{sage}
+\item Ändern des Eintrags in Zeile $i$ und Spalte $j$:
+\begin{sage}
+>> i=1; j=2; C[i,j]=22
+\end{sage}
+\item Extrahieren von Zeilen/Spalten
+\begin{sage}
+>> zeile = C.row(0)
+>> spalte = C.column(4)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf die Einträge II}
+\begin{itemize}
+\item Extrahieren von Teilmatrizen
+\begin{sage}
+>> C[1:3,1:3]
+\end{sage}
+\item Erzeugen von Diagonalmatrizen
+\begin{sage}
+>> x = [1,2,3,4,5]
+>> Diag = diagonal_matrix(x); Diag
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Rechnen mit Matrizen}
+\begin{itemize} 
+\item Addieren, Multiplizieren
+\begin{sage}
+>> var('a,b,c,d,g,h,f')
+>> A = matrix([[a, b], [c,d]])
+>> B = matrix([[e, f], [g,h]])
+>> A+B; A*B
+\end{sage}
+\item Bestimmung der Inversen und der Transponierten
+\begin{sage}
+>> A^(-1); A.transpose()
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rang von Matrizen}
+Sei $A \in K^{m \times n}$. 
+\begin{itemize}
+\item Die Dimension der linearen Hülle der Spaltenvektoren nennt man
+den {\color{red} Spaltenrang} von $A$. Er ist höchstens gleich $n$.
+\item Die Dimension der linearen Hülle der Zeilenvektoren nennt man den
+{\color{red} Zeilenrang} von $A$. Er ist höchstens gleich $m$.
+\item Zeilenrang und Spaltenrang von Matrizen sind gleich und man
+spricht deshalb vom {\color{red} Rang} einer Matrix. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Matrizen}
+\begin{itemize}
+\item Bestimmen des Ranges einer Matrix
+\begin{sage}
+>> S = matrix([[1,0,0],[0,1,1],[1,1,1]])
+>> S.rank()
+\end{sage}
+\begin{sage}
+  2
+\end{sage}
+\item ist S symmetrisch ? ist S invertierbar ?
+\begin{sage}
+>> S.is_symmetric() 
+>> S.is_invertible()
+\end{sage}
+\begin{sage}
+False
+False
+\end{sage}
+
+% \item Ist eine Matrix unitär ?
+% \begin{sage}
+% >> linalg::isUnitary(S)
+% \end{sage}
+% \begin{sage}
+%   FALSE
+% \end{sage}
+% \begin{sage}
+% >> F:=matrix([[I,0],[0,-I]])
+% >> linalg::isUnitary(F)
+% \end{sage}
+% \begin{sage}
+%   TRUE
+% \end{sage}
+\end{itemize}
+\end{frame}
+
+
 
 \subsection{Vektorräume}
 \begin{frame}{Vektorraum}
@@ -73,25 +326,26 @@ für $\alpha \in K$, $f,g:M \mapsto K$.
 \end{frame} 
 
 
-\subsection{Vektoren und Basen}
+%\subsection{Vektoren und Basen}
 \begin{frame}[fragile]{Vektoren in Sage}
 \begin{itemize}
 \item Konstruktion von Vektoren
 \begin{sage}
->> a=matrix([1,2,3,4]); b=matrix([5,6,7]); a,b
+>> a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sage}
 \begin{small}
 \begin{sage}
-([1 2 3 4], [5 6 7])
+((1, 2, 3, 4), (5, 6, 7))
 \end{sage}
 \end{small}
-\item Datentyp: \verb+Matrix_integer_dense+ (für dichte Matrizen)
+\item Datentyp: \verb+vector_integer_dense+ (für dichte Vektoren)
 \begin{sage}
 >> type(a)
 \end{sage}
+\scriptsize{
 \begin{sage}
-<type 'sage.matrix.matrix_integer_dense.Matrix_integer_dense'>
-\end{sage}
+<type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
+\end{sage}}
 \end{itemize}
 \end{frame}
 
@@ -187,6 +441,14 @@ Basis matrix:
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}[fragile]{Sage}
+\begin{sage}
+test.apply_map(sqrt) 
+\end{sage}
+\end{frame}
+
+
 % \begin{frame}[fragile]{Exkurs: Bibliotheken in MuPAD}
 % \begin{itemize}
 % \item Eine Bibliothek besteht aus einer Sammlung von Funktionen zur
@@ -248,258 +510,19 @@ Basis matrix:
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}{Matrizen}
-Eine {\color{red} $m \times n$ Matrix} $A$ über einen Körper $K$ ist ein rechteckiges
-Schema mit Einträgen $a_{ij} \in K$, $ 1 \leq i \leq m$, $1 \leq j
-\leq n$  der Form
-\[ A = \left( \begin{array}{cccc}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn} 
-\end{array} \right) \] 
-mit dem Zeilenindex $i$ mit Werten zwischen $1$ und $m$ und
-Spaltenindex $j$ mit Werten zwischen $1$ und $n$. Man schreibt kurz
-$A=(a_{ij}) \in K^{m\times n}$. 
-\end{frame}
 
-\begin{frame}{Definitionen}
-\begin{itemize}
-\item Die {\color{red} Transponierte } von $A=(a_{ij})$ ist $A^T:=(a_{ji})$.
-\item $A$ heißt {\color{red} symmetrisch}, wenn $A=A^T$ gilt.
-\item Für Matrizen $A=(a_{ij})\in \mathbb{C}^{m\times n}$ ist $A^* :=
-(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
-\item Die {\color{red} Einheitsmatrix} $I:=I_n:=(\delta_{ij}) \in K^{n \times
-n}$
-\item Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$. Dann ist die {\color{red} Addition}
-definiert durch 
-\[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
-mit $c_{ij}=a_{ij}+b_{ij}$.  
-\end{itemize}
-\end{frame} 
+% \begin{frame}[fragile]{Systemfunktionen}
+% Viele Systemfunktionen lassen sich auf Matrizen anwenden. Beispiele:
+% \begin{itemize}
+% \item \verb+conjugate(A)+ ersetzt die Komponenten durch ihre komplex
+% konjugierten Einträge.
+% \item \verb+expand(A)+ wendet \verb+expand+ auf alle Komponenten an.
+% \item \verb+float(A)+ wendet \verb+float+ auf alle Komponenten  an.
+% \item \verb+has(A,Ausdruck)+ prüft, ob ein Ausdruck \verb+Ausdruck+ in
+% mind. einer Komponente von $A$ enthalten ist.
+% \end{itemize} 
+% \end{frame}
 
-\begin{frame}{Definitionen}
-\begin{itemize}
-\item Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
-\in {K}^{n \times p}$. Dann ist die {\color{red} Multiplikation}
-gegeben durch  
-\[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
-mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
-\item $A\in K^{n \times n}$ heißt {\color{red} orthogonal}, wenn $A \cdot
-A^T=A^T \cdot A=I_n$ gilt.
-\item $A\in \mathbb{C}^{n \times n}$ heißt {\color{red} unitär}, wenn $A \cdot
-A^*=A^* \cdot A=I_n$ gilt.
-\item $A\in K^{n \times n}$ heißt {\color{red} invertierbar}, wenn eine
-Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
-A^{-1}=A^{-1} \cdot A=I_n$.
-\end{itemize}
-\end{frame} 
-
-\begin{frame}{Definitionen und Bemerkungen}
-\begin{itemize}
-\item Die Multiplikation ist assoziativ aber in der Regel \alert{nicht kommutativ}. 
-\item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
-$K$ (mit komponentenweiser Skalarmultiplikation).
-\item Die Menge der invertierbaren Matrizen aus $K^{n \times n}$
-bilden bezüglich der Multiplikation eine Gruppe, die {\color{red} allgemeine
-lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Definition und Bemerkungen}
-\begin{itemize}
-\item Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
- eine Untergruppe von  $GL(\mathbb{R},n)$, die {\color{red} orthogonale
- Gruppe} $O(n)$. 
-
-\item Die entsprechende Untergruppe der unitären Matrizen
- in $GL(\mathbb{C},n)$ ist die {\color{red} unitäre Gruppe} $U(n)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Matrizen in MuPAD}
-\begin{itemize}
-\item Matrizen werden in MuPAD mit Hilfe des Befehls \verb+matrix+
-konstruiert. 
-\item Der Rückgabewert ist vom Typ \verb+Dom::Matrix()+.
-\item Die Einträge der Matrix können beliebige Ausdrücke sein.
-\item Es ist auch möglich Matrizen über bestimmten Bereichen
-(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
-konstruieren. 
-\item Es gibt auch spezielle Datenstrukturen für quadratische Matrizen
-und für dünnbesetzte Matrizen. 
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Konstruktion von Matrizen I}
-Es gibt in MuPAD verschiedene Möglichkeiten eine Matrix zu
-konstruieren. Beispiel:
-\[ A:= \left( \begin{array}{cccc}
-1 & 2 & 3 & 4\\
-a & 0 & 1 & b\\ 
-\end{array} \right), \quad a,b\in \mathbb{R} \]
-\begin{itemize}
-\item Eingabe der Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
-Spalten dann wieder in eckigen Klammern $[ ..]$.
-\begin{sage}
-A:=matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
-\end{sage}
-\item Mit expliziter Größenangabe
-\begin{sage}
-A:=matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Matrizen II}
-\begin{itemize}
-\item Erzeugen einer Nullmatrix der Größe $n \times m$
-\begin{sage}
->> n:=3: m:=4: B:=matrix(n,m)
-\end{sage}
-\item Erzeuge eine $n \times m$ - Matrix $A$ mit Hilfe einer Funktion
-$f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
-\begin{sage}
->> f:=(i,j) -> i*j:
->> C:=matrix(3,5,f)
-\end{sage}
-\item Eingabe von Zeilen- und Spaltenvektoren
-\begin{sage}
->> matrix(3,1,[1,2,3])
->> matrix(1,3,[4,5,6])
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zeilen- und Spaltenzahl}
-\begin{itemize}
-\item Abfragen der Spaltenanzahl: \verb+linalg::ncols+
-\begin{sage}
->> linalg::ncols(A)
-\end{sage}
-\begin{sage}
-  4
-\end{sage}
-\item Abfragen der Zeilenanzahl: \verb+linalg::nrows+
-\begin{sage}
->> linalg::nrows(A)
-\end{sage}
-\begin{sage}
-  2
-\end{sage}
-\item Dimension der Matrix: \verb+linalg::matdim+
-\begin{sage}
->> linalg::matdim(A)
-\end{sage}
-\begin{sage}
-  [2, 4]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zugriff auf die Einträge I}
-\begin{itemize}
-\item Abfragen von Einträgen in Zeile $i$ und Spalte $j$:
-\begin{sage}
->> i:=1: j:=2: A[i,j]
-\end{sage}
-\begin{sage}
-  2
-\end{sage}
-\item Ändern des Eintrags in Zeile $i$ und Spalte $j$:
-\begin{sage}
->> i:=1: j:=2: A[i,j]:=22
-\end{sage}
-\item Extrahieren von Zeilen/Spalten
-\begin{sage}
->> zeile:=linalg::row(A,2)
->> spalte:=linalg::col(A,4)
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zugriff auf die Einträge II}
-\begin{itemize}
-\item Extrahieren von Teilmatrizen
-\begin{sage}
->> zeilen:=1..2: spalten:=2..4:
->> A[zeilen,spalten]
-\end{sage}
-\item Erzeugen von Diagonalmatrizen
-\begin{sage}
->> x:=[1,2,3,4,5]:
->> Diag:=matrix(5,5,x,Diagonal)
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Rechnen mit Matrizen}
-\begin{itemize} 
-\item Addieren, Multiplizieren
-\begin{sage}
->> A:=matrix([[a, b], [c,d]])
->> B:=matrix([[e, f], [g,h]])
->> A+B; A*B
-\end{sage}
-\item Bestimmung der Inversen und der Transponierten
-\begin{sage}
->> A^(-1); linalg::transpose(A)
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Systemfunktionen}
-Viele Systemfunktionen lassen sich auf Matrizen anwenden. Beispiele:
-\begin{itemize}
-\item \verb+conjugate(A)+ ersetzt die Komponenten durch ihre komplex
-konjugierten Einträge.
-\item \verb+expand(A)+ wendet \verb+expand+ auf alle Komponenten an.
-\item \verb+float(A)+ wendet \verb+float+ auf alle Komponenten  an.
-\item \verb+has(A,Ausdruck)+ prüft, ob ein Ausdruck \verb+Ausdruck+ in
-mind. einer Komponente von $A$ enthalten ist.
-\end{itemize} 
-\end{frame}
-
-\begin{frame}{Rang von Matrizen}
-Sei $A \in K^{m \times n}$. 
-\begin{itemize}
-\item Die Dimension der linearen Hülle der Spaltenvektoren nennt man
-den {\color{red} Spaltenrang} von $A$. Er ist höchstens gleich $n$.
-\item Die Dimension der linearen Hülle der Zeilenvektoren nennt man den
-{\color{red} Zeilenrang} von $A$. Er ist höchstens gleich $m$.
-\item Zeilenrang und Spaltenrang von Matrizen sind gleich und man
-spricht deshalb vom {\color{red} Rang} einer Matrix. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Matrizen}
-\begin{itemize}
-\item Bestimmen des Ranges einer Matrix
-\begin{sage}
->> S:=matrix([[1,0,0],[0,1,1],[1,1,1]])
->> linalg::rank(S)
-\end{sage}
-\begin{sage}
-  2
-\end{sage}
-
-\item Ist eine Matrix unitär ?
-\begin{sage}
->> linalg::isUnitary(S)
-\end{sage}
-\begin{sage}
-  FALSE
-\end{sage}
-\begin{sage}
->> F:=matrix([[I,0],[0,-I]])
->> linalg::isUnitary(F)
-\end{sage}
-\begin{sage}
-  TRUE
-\end{sage}
-\end{itemize}
-\end{frame}
 
 \begin{frame}{Normen auf Vektorräumen}
 Sei $V$ ein Vektorraum über $K=\mathbb{R}$ oder $K=\mathbb{C}$.\\
@@ -563,44 +586,44 @@ der {\color{red} Orthogonalraum} zu $U$. Er ist ein Untervektorraum.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{MuPAD}
+\begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Die $p$-Norm $\|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}$, $p\in [1,\infty)$ auf dem
 $K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
 \begin{sage}
->> x:=matrix([1,2,3,4,5]): p:=2:
->> norm(x,p)
+>> x = vector([1,2,3,4,5]); p=2
+>> x.norm(p)
 \end{sage}
 \item Orthogonalisieren von Vektoren:
 \begin{sage}
->> a1:=matrix([1,2,3]):
->> a2:=matrix([0,4,1]):
->> a3:=matrix([1,1,1]):
->> linalg::orthog([a1,a2,a3])
+>> a1 = vector([1,2,3])
+>> a2 = vector([0,4,1])
+>> a3 = vector([1,1,1])
+>> linalg::orthog([a1,a2,a3]) ??
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{MuPAD}
+\begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Berechnen des Skalarprodukts
 \begin{sage}
->> linalg::scalarProduct(a2,a3)
+>> a2.dot_product(a3), a2*a3
 \end{sage}
 \begin{sage}
-  5
+  (5, 5)
 \end{sage}
 \item Berechnen des Winkels zwischen zwei Vektoren
 \begin{sage}
->> float(linalg::angle(a2,a3))
+>> float(acos(a2*a3/(abs(a2)*abs(a3))))
 \end{sage}
 \begin{sage}
-  0.7952027133
+  0.79520271328967818
 \end{sage}
 \item Berechnen der Determinante
 \begin{sage}
->> A:=matrix([[1,2,3],[4,5,6],[7,8,0]]):
->> linalg::det(A)
+>> A = matrix([[1,2,3],[4,5,6],[7,8,0]])
+>> A.det()
 \end{sage}
 \begin{sage}
   27
