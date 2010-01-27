@@ -61,8 +61,12 @@
 \usepackage{amsthm}
 % \usepackage{latexsym}
 \usepackage{amsmath}
+\usepackage{amsxtra} %Weitere Extrasymbole
+\usepackage{empheq} %Gleichungen hervorheben
+\usepackage{bm}                 
+ %\bm{A} Boldface im Mathemodus
 %\usepackage{listings}
-\usepackage[framed]{mcode}
+%\usepackage[framed]{mcode}
 %\usepackage{mcode}
 
 \usepackage{mydef}
@@ -132,32 +136,8 @@
 \usepackage{listings}
 \definecolor{lgray}{gray}{0.80}
 %\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true,escapechar=§}}{}
+\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray},language=Python, emphstyle=\color{red}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true,escapechar=§}}{}
 
-%\newcommand{\dollar}{\$}
-
-%%%%%%%%%%%%%%%%
-%Mathematisches
-%%%%%%%%%%%%%%%%
-%Diagramme mit Taylor-Packet (ist nicht in tetex enthalten!)
-%\usepackage[size=2em,nohug]{diagrams} 
-
-%%%%%%%%%%%%%%%%
-%Mathematisches
-%%%%%%%%%%%%%%%%
-
-\usepackage{amssymb}		
- %mathfrak+amsfonts+spezielle Symbole
-
-\usepackage{amsxtra}		
- %Weitere Extrasymbole
-
-
-\usepackage{empheq}		
- %Gleichungen hervorheben
-
-\usepackage{bm}                 
- %\bm{A} Boldface im Mathemodus
 
 %%%%%%%%%%%%%%%%%%%
 %Neue Definitionen

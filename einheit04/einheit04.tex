@@ -637,45 +637,37 @@ $K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
 
 \begin{frame}[fragile]{Ein erstes Programm}
 \begin{sage}
-
-MyMax:=proc(a,b)
-     /* Maximum von a und b*/
-     begin
-       if a<b then return(b) 
-       else return(a) end_if
-     end_proc:
+def MyMax(a,b):
+    #Maximum von a und b
+    if a<b:
+        return (b)
+    else: 
+        return (a)
 \end{sage}
 \begin{itemize}
 \item Das erste Beispiel berechnet das Maximum zweier Zahlen $a$ und
 $b$. 
-\item Aufruf in MuPAD ist {\color{blue} \verb+MyMax(a,b)+}. 
+\item Aufruf in Sage ist {\color{blue} \verb+MyMax(a,b)+}. 
 \item Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
   zurück.
  \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{Aufbau von Prozeduren}
+\begin{frame}[fragile]{Aufbau von Funktionen}
 \begin{itemize}
-\item Eine Prozedur beginnt mit dem Namen der Prozedur (hier:
-  \verb+MyMax+).
-\item Diese wird dann durch die rechte Seite als Objekt vom Typ
-  \verb+DOM_PROC+ definiert.
-\item Eine Prozedur beginnt mit \verb+proc(...) begin+ und endet mit
-  \verb+end_proc+. 
-\item \verb+proc(a,b,c..)+ gibt an, wie die Input-Argumente aussehen. 
+\item Eine Funktion beginnt mit \verb+def+ und dem Namen der Prozedur (hier:
+  \verb+MyMax+) gefolgt von den möglichen Übergabeparameter \verb+(a,b,c..)+
+\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \verb+:+ abgeschlossen werden.
+\item Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Return}
 \begin{itemize}
-\item Mittels \verb+return(a)+ wird die Prozedur abgebrochen und der
+\item Mittels \verb+return(a)+ wird die Funktion abgebrochen und der
 Wert \verb+a+ züruckgegeben.
-\item Wird kein \verb+return+ aufgerufen, so gibt die Funktion den
-Wert des letzten Befehls zurück, der innerhalb der Prozedur
-ausgewertet wurde. 
-\item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird
-\verb+NIL+ zurückgegeben. \verb+NIL+ steht für das Nichts. Man kann es
-auffassen als die leere Menge.  
+\item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird eine leere Variable des Typs
+\verb+NoneType+ zurückgegeben.  
 \end{itemize}
 \end{frame}
 

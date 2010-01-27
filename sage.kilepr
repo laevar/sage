@@ -80,10 +80,10 @@ order=4
 
 [item:einheit04/einheit04.tex]
 archive=true
-column=21
+column=31
 encoding=UTF-8
 highlight=LaTeX
-line=620
+line=669
 open=true
 order=2
 
@@ -107,9 +107,9 @@ order=-1
 
 [item:slide_header.tex]
 archive=true
-column=45
+column=103
 encoding=UTF-8
 highlight=LaTeX
-line=78
-open=false
-order=-1
+line=138
+open=true
+order=4
