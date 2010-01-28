@@ -1,0 +1,120 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\input{aufg_header}
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Einheit 5}\\
+WS 2009/2010
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\begin{aufg}
+  Gegeben seien die Listen \(L1=[x,x^3,x^5,x^7,x^9]\) und
+  \(L2=[x,x^2,x^6,x^{24},x^{120}]\). 
+  \begin{enumerate}
+  \item
+    Erstellen Sie diese beiden Listen mit Hilfe des \$-Operators.
+  \item
+    Erstellen Sie eine sortierte Liste L3, die die Elemente aus L1 und L2
+    enthält. 
+  \item
+    Bilden Sie von jedem Eintrag von L3 die Ableitung und  die Stammfunktion.
+  \item
+Bestimmen Sie von jedem Element von $L3$ den Funktionswert an der
+Stelle $x=3$. 
+Entfernen Sie den größten Eintrag aus der resultierenden Liste.
+  \end{enumerate}
+\end{aufg}
+
+\begin{aufg}
+  Gegeben sei:
+\begin{sage}
+L=[16,81,125,512,729,4096,19683,78125,262144,390625, 505,22343243,512]
+\end{sage}
+\begin{enumerate}
+\item
+Bestimmen Sie aus L alle Elemente, die durch $3$ teilbar sind und
+entfernen Sie diese
+aus der Liste.
+\item
+Bestimmen Sie aus den restlichen Elementen alle Elemente, die durch $2$ teilbar
+sind, und entfernen diese 
+aus der Liste.
+\item
+Bestimmen Sie zuletzt alle Elemente, die durch $5$ teilbar sind.
+
+\end{enumerate}
+
+\end{aufg}
+
+\begin{aufg}
+  \begin{enumerate}
+  \item
+    Bestimmen Sie das charakteristische Polynom, die Eigenwerte und die
+    Eigenvektoren der Matrizen:\[ 
+    A = \left(\begin{array}{ccc}19&-2&4\\4&10&-2\\4&-8&25\end{array}\right), 
+    B = \left(\begin{array}{ccc}1&-3&3\\3&-5&3\\6&-6&4\end{array}\right), 
+    C = \left(\begin{array}{ccc}-3&1&-1\\-7&5&-1\\-6&6&-2\end{array}\right). 
+    \]
+    \"Uberpr\"ufen Sie diese Matrizen ebenfalls auf Diagonalisierbarkeit.
+  \item
+    Bestimmen Sie die Eigenwerte der $(2\times 2)$-Drehmatrix aus der
+    Vorlesung. Überlegen Sie sich, für welche Winkel reelle
+    Eigenwerte existieren. Überlegen Sie sich eine geometrische
+    Begründung. 
+  \end{enumerate}
+\end{aufg}
+
+\begin{aufg}
+  Gegeben seien Basen $V=( v_1, v_2, v_3)$, $W=(
+  w_1, w_2, w_3)$   des
+  $\mathbb{R}^3$ mit Vektoren 
+  \[
+   v_1 = \left(\begin{array}{c}2\\0\\2\end{array}\right),
+   v_2 = \left(\begin{array}{c}0\\2\\0\end{array}\right), 
+   v_3 = \left(\begin{array}{c}1\\2\\3\end{array}\right) \mbox{ und }
+   w_1 = \left(\begin{array}{c}1\\1\\1\end{array}\right),
+   w_2 = \left(\begin{array}{c}0\\0\\1\end{array}\right), 
+   w_3 = \left(\begin{array}{c}1\\0\\1\end{array}\right).\]
+ Berechnen Sie die Basiswechselmatrix bzgl. eines Basiswechsels von
+  $V$ nach $W$!
+\end{aufg}
+
+\begin{aufg}
+    Gegeben seien die Matrizen \(
+    A = \left(\begin{array}{ccc}0&2&-2\\3&x&4\\-1&y&1\end{array}\right),
+    B = \left(\begin{array}{ccc}1&8&x\\3&2&y\\6&4&4\end{array}\right) 
+    \). 
+    Bestimmen Sie x und y so, dass $AB$ invertierbar ist. \"Uberpr\"ufen Sie
+    das Ergebnis durch Einsetzen.
+\end{aufg}
+
+\begin{aufg}
+Untersuchen Sie für $m=0,1,\dots ,41$ jeweils, wieviele  der Zahlen
+$n^2+n+m^2$ mit $n=1,2,\dots,100$ Primzahlen sind.
+\end{aufg}
+
+\begin{aufg}
+Berechnen Sie mit Hilfe des Punkt-Operators die ersten 10 Glieder der Folge
+\[ x_{n+1}=x_n - \frac{x_n^2-2}{2 x_n}, n \in \mathbb{N}   \]
+mit Startwert $x_0=1$. Erraten Sie den Grenzwert der Folge!
+Ersetzen Sie den Startwert $x_0$ durch den Gleitkommawert $x_0=1.0$
+und berechnen Sie nun die ersten $50$ Folgenglieder (Benutzen Sie $DIGITS:=50$).
+\end{aufg}
+
+
+\begin{aufg}
+Erstellen Sie eine Tridiagonalmatrix $A$ der Größe  $20 \times 20$ mit
+$2$ auf der Diagonalen und $-1$ und auf den Nebendiagonalen.
+
+Berechnen Sie mit Hilfe von Gleitkommaberechnungen bei $10$ signifikanten
+Stellen den größten und den kleinsten Eigenwert von $A$. Benutzen Sie
+die Funktion \verb+numeric::eigenvalues+.
+\end{aufg}
+
+\begin{aufg}
+Schreiben Sie eine Prozedur \verb+fak+, die die Fakultät 
+\[ a!= \prod_{i=1}^a i\]
+von einer natürlichen Zahl $a$ berechnet. 
+\end{aufg}
+\end{document}
+

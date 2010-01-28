@@ -665,7 +665,7 @@ $b$.
 \begin{frame}[fragile]{Return}
 \begin{itemize}
 \item Mittels \verb+return(a)+ wird die Funktion abgebrochen und der
-Wert \verb+a+ züruckgegeben.
+Wert \verb+a+ zurückgegeben.
 \item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird eine leere Variable des Typs
 \verb+NoneType+ zurückgegeben.  
 \end{itemize}
@@ -673,22 +673,24 @@ Wert \verb+a+ züruckgegeben.
 
 \begin{frame}[fragile]{Erkärungen}
 \begin{itemize}
-\item Der zwischen \verb+/*+ und \verb+*/+ eingeschlossene Text ist
-  Kommentar. Er wird vom System völlig ignoriert.
-\item Die durch \verb+if bedingung then+ eingeleitete Zeile ist eine
-  sogenannte Verzweigung. Ist die  Bedingung \verb+bedingung+ wahr, so wird der
-  Teil hinter \verb+then+ ausgeführt. Ist \verb+bedingung+ falsch, so
-  wird die Alternative ausgeführt. Beendet wird die Verzweigung mit
-  \verb+end_if+. 
+\item Kommentarzeilen: Diese beginnen mit \verb+#+. Sie werden vom System ignoriert.
+\item Die durch \verb+if <bedingung>:+ eingeleitete Zeile ist eine
+  sogenannte Verzweigung. Ist die  Bedingung \verb+<bedingung>+ wahr, so wird der
+  Block hinter \verb+:+ ausgeführt. Ist \verb+<bedingung>+ falsch, so
+  wird die Alternative \verb+else:+ ausgeführt.
+\item \emph{Achtung:} in Sage (und Python) wird der Block durch die Einrückung definiert. 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Erstellen von Prozeduren}
-Bei umfangreicheren Prozeduren ist es sinnvoller die Prozedur mit
-einem Editor zu erstellen. In unserem Beispiel ist die Routine
-\verb+MyMax+ in einer Datei mit dem Namen \verb+mymax.mup+
-abgespeichert. Diese Datei kann nun durch {\color{blue} \verb+read(``mymax.mup'')+}
-eingelesen werden und dann normal verwendet werden. Hierdurch ist auch
-die Wiederverwertbarkeit der Funktion gesichert. 
+\begin{frame}[fragile]{Erstellen von Funktionen}
+Bei umfangreicheren Funktionen oder richtigen Programmen ist es evtl. sinnvoller dies mit
+einem Editor zu erstellen. 
+
+\begin{itemize}
+ \item Erstellen einer \verb+<name>.sage+-Datei in \verb+~/.sage+. Diese mit Sage-Code füllen
+\item In sage diese mit \verb+attach <name>.sage+ an das Notebook anhängen $\Rightarrow$ wird automatisch geladen und aktuell gehalten.
+\item als Editor empfehle ich zum Einstieg \verb+geany+. Prinzipiell sind alle Editoren geeignet die Python unterstützen.
+\end{itemize}
+
 \end{frame}
 \end{document}

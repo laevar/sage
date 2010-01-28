@@ -1,0 +1,815 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 5}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+% \begin{frame}[fragile]{Übersicht}
+% \begin{itemize}
+% \item Datencontainer in MuPAD
+% \item Lineare Abbildungen und Matrizen
+% \item Eigenwerte und Eigenvektoren
+% \item Lineare Gleichungssysteme
+% \end{itemize}
+% \end{frame}
+
+
+%===============================================
+\section{Datencontainer in Sage}
+%===============================================
+
+\begin{frame}{Datencontainer in Sage}
+ \begin{itemize}
+\item Matrizen (bereits besprochen)
+\item Mengen (bereits besprochen)
+\item Folgen/Tuple
+\item Listen
+\item Wörterbücher
+\item Felder
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Folgen}
+\begin{itemize}
+\item  Folgen sind ein grundlegender Typ. Zum Beispiel werden Listen
+  und Mengen aus Folgen aufgebaut.
+\item Folgen sind Sage-Ausdrücke vom Typ \verb+tuple+.
+\item Eine Folge ist eine Aneinanderreihung beliebiger Sage-Objekte,
+  welche durch Kommata getrennt sind.
+\item Wir kennen Folgen bereits durch die Eingabe mehrerer Befehle in
+  einer Zeile.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Folgen I}
+\begin{itemize}
+\item Einfache Definition
+\begin{sage}
+>> t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = c,d,e; Folge1 ; Folge2
+\end{sage}
+\begin{sage}
+(a, b, c)
+(c, d, e)
+\end{sage}
+\item Verbinden von Folgen
+\begin{sage}
+>> Folge3 = Folge1+Folge2; Folge3
+\end{sage}
+\begin{sage}
+(a, b, c, c, d, e)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Folgen II}
+\begin{itemize}
+\item Konstruktion durch \verb+tuple()+:  Der Aufruf 
+{\color{red}tuple(range(a,b)+}, für
+  $a,b \in \mathbb{Z}$
+  erzeugt die Folge $a,a+1,\dots,b-1$:
+\begin{sage}
+>> tuple(range(-1,7))
+\end{sage}
+\begin{sage}
+  (-1, 0, 1, 2, 3, 4, 5, 6)
+\end{sage}
+\item Der Aufruf {\color{red}\verb+tuple(Objekt(i) for i in range(m,n))+} erzeugt die Folge
+
+\centering{Objekt(m), Objekt(m+1), $\ldots$ ,Objekt(n-1)}
+\begin{sage}
+>> tuple(i^2 for i in range(2,8))
+\end{sage}
+\begin{sage}
+(4, 9, 16, 25, 36, 49)
+\end{sage}
+\begin{sage}
+>> tuple(x^i for i in range(4,8))
+\end{sage}
+\begin{sage}
+(x^4, x^5, x^6, x^7)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Folgen III}
+\begin{itemize}
+\item Erzeugen von $n$ identischen Objekten
+\begin{sage}
+>> tuple(sin(x) for i in range(0,5))
+\end{sage}
+\begin{sage}
+  (sin(x),sin(x),sin(x),sin(x),sin(x))
+\end{sage}
+\item Erzeugen von $n$ funktionalen Objekten
+\begin{sage}
+>> x = tuple(sin(i) for i in range(1,5)); x
+\end{sage}
+\begin{sage}
+(sin(1), sin(2), sin(3), sin(4))
+\end{sage}  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion und Zugriff}
+\begin{itemize}
+\item Erzeugen einer leeren Folge
+\begin{sage}
+>> folge = (); folge2 = folge,2,3; folge2
+\end{sage}
+\begin{sage}
+ ((), 2, 3)
+\end{sage}
+\item Zugriff auf Elemente
+\begin{sage}
+>> x = 1,2,3,4; x[2] 
+\end{sage}
+\begin{sage}
+  3
+\end{sage}
+\begin{sage}
+>> x[2]; x[0:2]
+\end{sage}
+\begin{sage}
+3
+(1, 2)
+\end{sage}
+\end{itemize}
+\end{frame}
+
+% \begin{frame}[fragile]{Konstruktion und Zugriff}
+% \begin{itemize}
+% \item Löschen von Einträgen -- Folge verkürzt sich:
+% \begin{sage}
+% >> delete x[2]: x
+% \end{sage}
+% \begin{sage}
+%   1, 3, 4
+% \end{sage}
+% \begin{sage}
+% >> delete x[2]: x
+% \end{sage}
+% \begin{sage}
+%   1, 4
+% \end{sage}
+% \begin{sage}
+% >> delete x[2]: x
+% \end{sage}
+% \begin{sage}
+%   1
+% \end{sage}
+% \begin{sage}
+% >> delete x[2]: x
+% \end{sage}
+% \begin{sage}
+%   Error: Invalid index [delete]
+% \end{sage}
+% \end{itemize}
+% \end{frame}
+
+\begin{frame}[fragile]{Listen}
+\begin{itemize}
+\item Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
+\item In Sage ist eine Liste in eckigen Klammern eingeschlossen.
+\item Listen haben den Datentyp \verb+list+.
+\item Matrizen werden als geschachtelte Liste definiert.
+\item Sie baut auf den eben beschriebenen Folgen auf.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Listen}
+\begin{itemize}
+\item Konstruktion 'per Hand'
+\begin{sage}
+>> Liste = [1,[1,2], Set([1,2,3]),x]; Liste
+\end{sage}
+\begin{sage}
+[1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
+\end{sage}
+\item Listen können leer sein:
+\begin{sage}
+>> Liste = []; Liste
+\end{sage}
+\begin{sage}
+  []
+\end{sage}
+
+\item Erzeugen von Listen mit funktionalen Objekten
+\begin{sage}
+>> Liste = [2^i for i in range(1,9)]; Liste
+\end{sage}
+\begin{sage}
+[2, 4, 8, 16, 32, 64, 128, 256]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{map}
+Mit Hilfe der Funktion {\color{blue} \verb+map(<f>,<Liste>)+} kann eine Funktion \verb+f+
+auf alle Elemente
+der Liste \verb+<Liste>+ angewendet werden. Erwartet eine Funktion
+mehrere Argumente, muss diese Funktion erst gekapselt werden.
+\begin{sage}
+>> map(sin,[x,1,0,pi,0.3])
+\end{sage}
+\begin{sage}
+[sin(x), sin(1), 0, 0, 0.295520206661340]
+\end{sage}
+\begin{sage}
+>> map(is_prime,[2,3,4,5,6,7])
+\end{sage}
+\begin{sage}
+[True, True, False, True, False, True]
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf Listen}
+Der Zugriff funktioniert genau wie bei  Folgen.
+Beispiele:
+\begin{sage}
+>> Liste = [(x,i) for x in range(1,4) for i in range(0,x)];  Liste
+\end{sage}
+\begin{sage}
+[(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), (3, 2)]
+\end{sage}
+\begin{sage}
+>> Liste[3], Liste[5]
+\end{sage}
+\begin{sage}
+((3, 0), (3, 2))
+\end{sage}
+\begin{sage}
+>> Liste[5] = 42; Liste
+\end{sage}
+\begin{sage}
+  [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Weitere Befehle für Listen I}
+\begin{itemize}
+\item Entfernen eines Elements aus der Liste
+\begin{sage}
+>> Liste = [a,b,c]; del Liste[1]; Liste 
+\end{sage}
+\begin{sage}
+  [a, c]
+\end{sage}
+\item Anhängen von Elementen mittels \verb+append+
+\begin{sage}
+>> Liste.append([3,4,5]); print Liste
+\end{sage}
+\begin{sage}
+[a, c, [3, 4, 5]]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Weitere Befehle für Listen II}
+\begin{itemize}
+\item Zusammenfügen von Listen mit dem $+$- und $*$-Operator. 
+\begin{sage}
+>> Liste2 = Liste+[3,4,5]; Liste2
+\end{sage}
+\begin{sage}
+[a, c, 3, 4, 5]
+\end{sage}
+\begin{sage}
+>> Liste*2
+\end{sage}
+\begin{sage}
+ [a, c, [3, 4, 5], a, c, [3, 4, 5]]
+\end{sage}
+\item Sortieren von Listen mit {\color{blue} \verb+sort+}
+\begin{sage}
+>> Liste = [4,23,1,3]; Liste.sort(); Liste
+\end{sage}
+\begin{sage}
+[1, 3, 4, 23]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{contains}
+Mit {\color{blue} \verb+<Objekt> in <Liste>+} kann geprüft werden, ob ein
+            Objekt \verb+<Objekt>+ in der Liste \verb+<Liste>+ enthalten ist.
+\begin{sage}
+>> Liste = [x+1,a,x+1,sin(b)]
+>> x+1 in Liste
+\end{sage}
+\begin{sage}
+  True
+\end{sage}
+Mit {\color{blue} \verb+<Liste>.index(<Objekt>)+} erhält man die Position des Objektes in der Liste. Ist es nicht vorhanden, bekommt man eine enstprechende Meldung.
+\begin{sage}
+>> Liste.index(sin(b))
+\end{sage}
+\begin{sage}
+  3
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{filter ?? gabs schon..}
+\begin{itemize}
+\item Mittels {\color{blue} \verb+select(Liste, Funktion, Parameter)+} können Objekte mit bestimmten Eigenschaften aus einer
+Liste ausgewählt werden. 
+\item Dabei fungiert eine Funktion \verb+Funktion+
+als Auswahlkriterium. Sie muss Boolsche Werte zurückliefern. 
+\item Die
+\verb+Parameter+ sind Eingabewerte für die Funktion \verb+Funktion+ 
+\item Der Befehl \verb+select+ funktioniert auch für Mengen, Tabellen oder Ausdrücke.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für select ??}
+\begin{sage}
+>> filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
+\end{sage}
+\begin{sage}
+[True, True, True]
+\end{sage}
+\begin{sage}
+>> select([a+2,x,y,z,sin(a)],has,a)
+\end{sage}
+\begin{sage}
+  [a + 2, sin(a)]
+\end{sage}
+\begin{sage}
+>> select(11*x*y*(1-x)^2*5,has,x)
+\end{sage}
+\begin{sage}
+           2
+  x (x - 1)
+\end{sage}
+\end{frame}
+
+% \begin{frame}[fragile]{split}
+% Durch \verb+split+ wird eine Liste bezüglich eines Kriteriums in drei
+% Teillisten $A,B,C$ aufgeteilt.
+% $A$ steht für \verb+TRUE+, $B$ für
+% \verb+FALSE+ und $C$ für \verb+UNKNOWN+.
+% Durch den Befehl
+% \begin{center}
+% {\color{blue} \verb+split(Liste, f, par)+}
+% \end{center}
+% wird die \verb+Liste+ bzglüglich einer Boolschen Funktion  \verb+f+ mit
+% Parameter \verb+par+ aufgeteilt.
+% \begin{sage}
+% >> [A,B,C]:=split([sin(x),x+y,y,11],has,x):
+% >> A,B,C
+% \end{sage}
+% \begin{sage}
+%  [sin(x), x + y], [y, 11], []
+% \end{sage}
+% \end{frame}
+
+\begin{frame}[fragile]{zip}
+Mittels {\color{blue} \verb+zip(<Liste1>, <Liste2>)+} werden die Elemente zweier Listen
+                        paarweise zu einer neuen Liste verknüpft.
+\begin{sage}
+>> Liste1 = [a,b,c]; Liste2 = [e,f,g]
+>> zip(Liste1,Liste2)
+\end{sage}
+\begin{sage}
+[(a, e), (b, f), (c, g)]
+\end{sage}
+% \begin{sage}
+% >> zip(Liste1,Liste2,_power)
+% \end{sage}
+% \begin{sage}
+%     e   f   g
+%   [a , b , c ]
+% \end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Wörterbücher (Dictonaries)}
+\begin{itemize}
+\item Eine Tabelle besteht aus einer Ansammlung von \glq Assoziationen\grq\  der 
+Form \verb+<Index>:<Wert>+. Indizes und Werte können dabei beliebige Sage
+Objekte sein. 
+\item Tabellen haben den Typ \verb+dict+.
+\item  Tabellen sind Datenstrukturen, die für das Speichern großer
+Datenmengen gut geeignet sind.
+\item In Sage ist der indizierte Zugriff auf einzelne Elemente sehr
+schnell, da intern nicht die gesamte Datenstruktur durchsucht wird.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Dictonaries I}
+\begin{itemize}
+\item Konstruktion: ({\color{blue} \verb+{<Index>:<Wert>, ... }+})
+\begin{sage}
+>> T = {a: b, c: d}; T
+\end{sage}
+\begin{sage}
+{c: d, a: b}
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Dictonaries II}
+\begin{itemize}
+\item Einträge können durch Zuweisungen der Form \verb+<Dict>[<Index>] = <Wert>+ erzeugt oder verändert werden. 
+\begin{sage}
+>> T[f(x)] = sin(x); T[1,2] = 5
+>> T[1,2,3] = [a,b,c]; T[a] = d;
+>> T
+\end{sage}
+\begin{sage}
+{(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
+\end{sage}
+\item Erzeugen einer leeren Tabelle
+\begin{sage}
+>> T1 = {}; T1
+\end{sage}
+\begin{sage}
+  {}
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion und Zugriff}
+\begin{itemize}
+\item Zugriff auf ein Dictonary
+\begin{sage}
+>> T[a],T[1,2],T[c]
+\end{sage}
+\begin{sage}
+(d, 5, d)
+\end{sage}
+\begin{sage}
+ float(T[f](4))
+\end{sage}
+\begin{sage}
+ -0.7568024953079282
+\end{sage}
+Wird ein \verb+Index+ nicht gefunden, gibt es eine Fehlermeldung
+\item Löschen von Einträgen
+\begin{sage}
+>> del T[a]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Befehle wie bei Listen}
+\begin{center}
+\begin{tabular}{|l|p{7cm}|}
+\hline
+\verb+contains+ & Es wird überprüft, ob ein \verb+Index+ in einer
+Tabelle vorkommt. \\
+\verb+select+ & Filtert eine Tabelle nach Kriterien. Prüft sowohl
+\verb+Werte+ als auch \verb+Indizes+.\\
+\verb+split+ & Sortiert die Tabelle in Teiltabellen bzgl. eines
+Kriteriums.  Prüft sowohl
+\verb+Werte+ als auch \verb+Indizes+.\\
+\verb+map+ & Wendet eine Funktion auf die Werte an.\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+
+\verb+contains+ prüft ob \verb+a+ oder \verb+b+ als Index in einer Tabelle auftaucht.
+\begin{sage}
+>> Z[a]:=b: Z[c]:=d: Z[x] := b
+>> contains(Z,a), contains(Z,b)
+\end{sage}
+\begin{sage}
+  TRUE, FALSE
+\end{sage}
+\verb+a+ taucht als Index auf, \verb+b+ nur als Wert.
+
+\verb+select+ prüft sowohl den Index als auch den Wert auf \verb+a+ oder \verb+b+ ab und liefert eine Tabelle die nur noch den entsprechenden Index=Wert Eintrag enthält zurück.
+\begin{sage}
+>> select(Z,has,a), select(Z,has,b)
+\end{sage}
+\begin{sage}
+  table(    table(
+    a = b,    a = b,
+  )           x = b
+            )
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Felder}
+\begin{itemize}
+\item Felder sind spezielle Tabellen. Die Indizes müssen
+           cartesische Produkte von ganzen (!) Zahlen sein (Multiindizes).
+\item Matrizen lassen sich als zweidimensionale Felder interpretieren, d.h. die Indizes sind Paare von ganzen Zahlen.
+\item Es können Felder beliebiger Dimension erzeugt werden. Felder
+sind geeignet
+für Datenmengen fixierter Größe.
+\item Felder haben den Datentyp \verb+DOM_ARRAY+.
+\item Die Matrixklasse hat den Vorteil, dass man dort Matrizen
+addieren und multiplizieren kann.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion und Zugriff I}
+\begin{sage}
+>> A:=array(0..1,1..3)
+\end{sage}
+\begin{sage}
+  +-                           -+
+  |  ?[0, 1], ?[0, 2], ?[0, 3]  |
+  |                             |
+  |  ?[1, 1], ?[1, 2], ?[1, 3]  |
+  +-                           -+
+\end{sage}
+Das \verb+?+ bedeutet, dass die entsprechenden Werte nicht belegt sind.
+\end{frame}
+
+
+\begin{frame}[fragile]{Konstruktion und Zugriff II}
+\begin{sage}
+>> A[0,1]:=1: A[1,3]:=HALLO: A
+\end{sage}
+\begin{sage}
+  +-                           -+
+  |     1,    ?[0, 2], ?[0, 3]  |
+  |                             |
+  |  ?[1, 1], ?[1, 2],  HALLO   |
+  +-                           -+
+\end{sage}
+\begin{sage}
+>> A[1,3]
+\end{sage}
+\begin{sage}
+  HALLO
+\end{sage}
+\end{frame}
+
+
+%===============================================
+\section{Lineare Abbildungen}
+%===============================================
+
+\begin{frame}{Lineare Abbildungen}
+Seien $K$-Vektorräume $V$ und $W$ gegeben. Eine Abbildung
+\[ F: \ V \rightarrow \ W \]
+heißt {\color{red} linear}, falls für $v,w\in V$ und $\lambda \in K$ gilt:
+\begin{itemize}
+\item [(L1)] $F(v+w)=F(v)+F(w)$
+\item [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
+\end{itemize} 
+Ist $F$ bijektiv, so heißt $F$ {\color{red} Isomorphismus}. 
+
+Gilt $V=W$, so
+spricht man von einem {\color{red} Endomorphismus}. Im Falle von $V=W$ und
+Bijektivität spricht man von einem {\color{red} Automorphismus}. 
+\end{frame}
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
+seien Vektoren in $W$. Dann gibt es genau eine lineare Abbildung $F:V
+\rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.
+\item Das {\color{red} Bild} von $F$  ist $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
+\item Der {\color{red} Kern} von F ist $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
+\item Kern und Bild sind Untervektorräume.
+\item Dimensionsformel:
+\[\dim V = \dim F(V) + \dim Ker(F)\]
+\item Die Menge der linearen Abbildungen von $V$ nach $W$ wird mit
+{\color{red} $\operatorname{Hom}_K(V,W)$} bezeichnet. Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lineare Abbildungen und Matrizen}
+\begin{itemize}
+\item Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
+\[
+ L_A: K^n \rightarrow K^m,\; 
+\begin{pmatrix}
+ x_1\\
+\vdots\\
+x_n
+\end{pmatrix}
+%\rMapsto
+A
+\begin{pmatrix}
+ x_1\\
+\vdots\\
+x_n
+\end{pmatrix}
+\]
+eine lineare Abbildung zuordnen.
+\item Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Koordinatenvektor}
+Sei $V$ ein $K$-Vektorraum mit Basis $\mathcal{V}=(v_1, \dots
+,v_n)$.
+\begin{itemize}
+\item Die lineare Abbildung 
+$\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
+\[\Phi_\mathcal{V}(x_1,\dots ,x_n)=x_1v_1+ \dots +x_nv_n\]
+ist ein Isomorphismus. Man nennt $\Phi_\mathcal{V}$ ein
+{\color{red} Koordinatensystem} in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
+den {\color{red} Koordinatenvektor} zu $v \in V$.
+\item Ist $\mathcal{Z}$ eine weitere Basis in $V$, so erhält man die
+Basiswechselabbildung von $\mathcal{V}$ nach $\mathcal{Z}$ durch $T:=
+ \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}$.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Isomorphismus}
+Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
+,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ gegeben. 
+
+ Für eine Matrix $A\in K^{m
+ \times n}$ wird durch
+\begin{eqnarray*}{ccc}
+F(v_1) & := & a_{11}w_1 + \dots +a_{m1} w_m\\
+\vdots &    & \vdots     \\
+F(v_n) & := & a_{1n} w_1 + \dots + a_{mn}w_m
+\end{eqnarray*}
+eine lineare Abbildung $F$ definiert. Dies ergibt einen Isomorphismus
+\[
+L^\mathcal{V}_\mathcal{W}: K^{m \times n} \ \rightarrow \
+\mathrm{Hom}_K(V,W), \quad A \ \mapsto \ F.
+\] 
+\end{frame}
+
+\begin{frame}{Kanonisches Beispiel}
+Seien $K^n$ und $K^m$ mit den kanonischen Basen $\mathcal{K}_n$ und
+$\mathcal{K}_m$ versehen.
+\begin{itemize}
+\item Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
+sind Identitäten.
+\item  Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
+durch 
+\[ L^{\mathcal{K}_n}_{\mathcal{K}_m} (A)(x)=Ax,\; x \in K^n. \]
+\item Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
+unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Kommutierendes Diagramm}
+  Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
+,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ und eine lineare Abbildung
+$F$ gegeben. Dann kommutiert das folgende Diagramm:
+%\begin{diagram}
+% V & \rTo^F & W\\
+% \uTo^{\Phi_V} && \uTo^_{\Phi_W}\\
+%K^n & \rTo_{(L_\mathcal{W}^\mathcal{V})^{-1}(F)} & K^m
+%\end{diagram}
+\end{frame}
+
+\begin{frame}[fragile]{Drehung und Spiegelung I}
+Drehung um den Winkel $\alpha$ -- Drehmatrix $G$:
+\[ G(\alpha):= \left ( \begin{array}{cc}
+\cos(\alpha) & -\sin(\alpha) \\
+\sin(\alpha) & \cos(\alpha)
+\end{array} \right)
+\]
+\begin{sage}
+>> A:=matrix([[cos(a),-sin(a)],
+[sin(a),cos(a)]]):
+>>B:=matrix([[cos(b),-sin(b)],
+[sin(b),cos(b)]]):
+>>simplify(A*B)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Drehung und Spiegelung II}
+Spiegelung bezüglich der Ebene 
+\[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
+ durch \[S(a):=I - 2 a a^T.\] 
+\begin{sage}
+>> a:=matrix(3,1,[1,2,3]):
+>> a:=a/norm(a,2):
+>> I_n:=matrix(3,3,[1,1,1],Diagonal)
+>> S:=I_n-2*a*linalg::transpose(a)
+>> norm(S*S-I_n)
+\end{sage}
+\begin{sage}
+   0
+\end{sage}
+\end{frame}
+
+\section{Eigenwerte und Eigenvektoren}
+
+\begin{frame}{Eigenwerte und Eigenvektoren}
+Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt {\color{red} Eigenwert} von
+$A$, wenn ein $x \in K^n\smallsetminus \{0 \}$ existiert, 
+\[ {\color{red}A x = \lambda x} \] 
+gilt. Der Vektor $x \in K^n$ heißt {\color{red} Eigenvektor} zum Eigenwert $\lambda$.
+\begin{itemize}
+\item Die Eigenwerte sind die Nullstellen des {\color{red} charakteristischen
+Polynoms} 
+\[p(t):=\det(A-t \ I_n).\] 
+\item Es gibt höchstens $n$ Eigenwerte.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
+unabhängig.
+\item Gibt es eine Basis aus Eigenvektoren, so ist $A$
+{\color{red} diagonalisierbar}, d.h. man kann die Abbildung $L_A$ bei
+geeigneter Basiswahl durch eine Diagonalmatrix repräsentieren.
+\item Jeder Endomorphismus eines komplexen Vektorraums läßt sich durch
+eine Matrix in \alert{Jordanscher Normalform} darstellen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eigenwerte in MuPAD}
+\begin{itemize}
+\item Bestimmung von Eigenwerten
+\begin{sage}
+>> A:=matrix([[cos(al), sin(al)],
+[sin(al),-cos(al)]]):
+>> simplify(linalg::eigenvalues(A))
+\end{sage}
+\begin{sage}
+  {-1, 1}
+\end{sage}
+\item Bestimmung von Eigenvektoren
+\begin{sage}
+>> simplify(linalg::eigenvectors(A))
+\end{sage} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eigenwerte in MuPAD}
+\begin{itemize}
+\item Bestimmung des charakteristischen Polynoms
+\begin{sage}
+>> I_n:=matrix(2,2,[1,1],Diagonal):
+>> p:=linalg::det(A-lambda*I_n)
+\end{sage}
+\begin{sage}
+        2          2          2
+  lambda  - sin(al)  - cos(al)
+\end{sage}
+\begin{sage}
+>> simplify(solve(p=0,lambda))
+\end{sage}
+\begin{sage}
+  {-1, 1}
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lineare Gleichungssysteme (LGS)}
+Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
+Lösungen (Lösungsraum): 
+\[ \{ x \in K^n \;|\; A x = b\} \]
+\begin{itemize}
+\item Ist $b=0$, so spricht man von einem {\color{red} homogenen
+System}. Ansonsten spricht man von einem {\color{red} inhomogenen System}.
+\item Der Lösungsraum $W$ des homogenen Systems bildet einen
+Untervektorraum des $K^n$. Die Dimension ist 
+\[ \dim (W)=n - \mathop{rang}(A). \] 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Struktur des Lösungsraums}
+\begin{itemize}
+\item Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
+Unterraum des $K^n$. $X \subset K^n$  heißt {\color{red} affiner Unterraum}, wenn ein
+Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
+\[X=v+W\]
+gilt. Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
+\item Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
+eine beliebige Lösung von $Ax=b$, dann ist der Lösungsraum $X$ von $Ax=b$
+gegeben durch  $X=v+W$.
+\item Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
+eine Lösung des homogenen Systems.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lösbarkeit}
+\begin{itemize}
+\item Das inhomogene System ist genau dann für alle $b$
+lösbar, wenn $\mathop{rang}(A)=m$ gilt.
+\item Das homogene bzw. das inhomogene System besitzt höchstens eine
+Lösung, genau dann wenn $\mathop{rang}(A)=n$ gilt.
+\item Der Lösungsraum des inhomogenen Systems ist genau dann nicht
+leer, wenn $rang(A)=rang(A, b)$ gilt.
+\item Praktisch kann ein LGS mit dem {\color{red} Gausschen
+Eliminationsverfahren} gelöst werden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{LGS in MuPAD}
+Berechnung der Lösungen von $Ax=b$ mit \verb+linalg::matlinsolve+. Der
+erste Rückgabewert ist eine spezielle Lösung. Dann wird ein Basis des
+Lösungsraums des homogenen Systems zurückgegeben.
+\begin{sage}
+>> A:=matrix([[1,2,3],[4,5,6],[7,8,9]]):
+>> b1:=matrix(3,1,[0,0,0]):
+>> b2:=matrix(3,1,[1,0,0]):
+>> b3:=A*b2:
+>> linalg::matlinsolve(A,b1)
+>> linalg::matlinsolve(A,b2)
+>> linalg::matlinsolve(A,b3)
+>> linalg::gaussElim(A)
+\end{sage}
+\end{frame}
+\end{document}
