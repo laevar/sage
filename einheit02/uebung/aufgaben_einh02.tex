@@ -15,15 +15,6 @@ WS 2009/2010
     Welchen Wert hat dieser Bruch an der Stelle \(x=\sqrt{2}\)?  
 \item
     Wie können Sie das Objekt $x$ aus dem Speicher löschen ?
-  \item
-    folgendes macht keinen Sinn! ersetzen
-    Geben Sie folgende Zeilen in MuPAD ein: 
-\begin{sage}    
->> f=  1/(x^2-2);
->> g=f*g;
->> g 
-\end{sage} 
-    Erklären Sie die Ausgaben von MuPAD.
   \end{enumerate}
 \end{aufg}
 %-----------------------------------------------------------------------------------
@@ -52,36 +43,17 @@ Bestimmen Sie die Linearfaktoren von
 $$1458ax + 2430 a^2 - 315a^3+5a^4-972x^2+126ax^2-189a^2x+3a^3x-2a^2x^2.$$
 \end{aufg}
 %-----------------------------------------------------------------------------------
-\begin{aufg}
-Welche Werte haben die Bezeichner $a,b$ und $c$ nach den folgenden
-Eingaben? Zu welchen Auswertungen führt der jeweils letzte Aufruf?
-\begin{sage}
->> a = a1; a1 = a2; a2 = a3; a
-\end{sage}
-\begin{sage}
->> b1=b2; b=b2; b2=b3; b 
-\end{sage}
-\begin{sage}
->> c3=c1; c=c3; c1=10; c
-\end{sage}
-\end{aufg}
+%\begin{aufg}
+%\end{aufg}
 
 %-----------------------------------------------------------------------------------
-\begin{aufg}
-Was erwarten Sie bei der Ausführung der folgenden Eingabesequenzen?
-\begin{sage}
->> u=v; v=w; w=u; u
-\end{sage}
-\begin{sage}
->> u=v; u=u^2-1; u
-\end{sage}
-\end{aufg}
+%\begin{aufg}
+%\end{aufg}
 %-----------------------------------------------------------------------------------
 \begin{aufg}
-macht so keinen sinn in sage, es gibt kein ``.'' und ``\$'' also ersetzen, aber ruhig durch eine technische aufgabe
- Definieren Sie die folgenden Variablen mit Hilfe der Operatoren \verb+.+ und \verb+$+. 
-\[x1:=2^1, x2:=2^2, x3:=2^3, \dots, x50:=2^{50} \]
-
+Erzeugen sie eine Liste, die folgende Elemente enthält:
+\[x^1, x^2, x^3, \dots, x^9 \]
+Benutzen sie dafür den range-Befehl.
 \end{aufg}
 %-----------------------------------------------------------------------------------
 \begin{aufg}
@@ -89,38 +61,37 @@ Geben Sie eine Näherungslösung für die Gleichung  $x=\exp(-x)$ an!
 \end{aufg} 
 %-----------------------------------------------------------------------------------
 %---------------------------------------------------------------------------------
-\newpage
+%\newpage
 \begin{aufg} 
 Geben Sie folgende Zeilen ein:
 \begin{sage}
->> f(x) =  exp(-x):
->> y=1.0; (y= f(y))  i=1..10
->> y=1.0; y= f(y)  i=1..10
+[ (x == m) for m in range(1,4)]
+[ (x == m) for m in range(1,4) if is_prime(m) ]
 \end{sage}
-Erklären Sie die unterschiedlichen Ausgaben!
+Erklären Sie die beiden Ausgaben!
 \end{aufg}
 %-----------------------------------------------------------------------------------
 
 %-----------------------------------------------------------------------------------
-\begin{aufg}
-Zerlegen Sie \verb+Ausdruck1+, \verb+Ausdruck2+, \verb+Ausdruck3+ in ihre Bestandteile:
-\begin{sage}
->> Ausdruck1 := sin(x + cos(a*b))
-\end{sage}
-\begin{sage}
->> Ausdruck2 := a+b+sin(x)+c^2
-\end{sage}
-\begin{sage}
->> a:=1: b:=1:
->> Ausdruck3 := a+b+sin(x)+c^2
-\end{sage}
-Zerlegen Sie \verb+Ausdruck4+ in seine Bestandteile, nachdem der
-letzte Befehl ausgeführt wurde:
-\begin{sage}
->> a:=1: b:=1:
->> Ausdruck4 := hold(a+b+sin(x)+c^2)
-\end{sage}
-\end{aufg}
+% \begin{aufg}
+% Zerlegen Sie \verb+Ausdruck1+, \verb+Ausdruck2+, \verb+Ausdruck3+ in ihre Bestandteile:
+% \begin{sage}
+% >> Ausdruck1 := sin(x + cos(a*b))
+% \end{sage}
+% \begin{sage}
+% >> Ausdruck2 := a+b+sin(x)+c^2
+% \end{sage}
+% \begin{sage}
+% >> a:=1: b:=1:
+% >> Ausdruck3 := a+b+sin(x)+c^2
+% \end{sage}
+% Zerlegen Sie \verb+Ausdruck4+ in seine Bestandteile, nachdem der
+% letzte Befehl ausgeführt wurde:
+% \begin{sage}
+% >> a:=1: b:=1:
+% >> Ausdruck4 := hold(a+b+sin(x)+c^2)
+% \end{sage}
+% \end{aufg}
 
 \end{document}
 

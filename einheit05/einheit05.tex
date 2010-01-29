@@ -457,12 +457,9 @@ Wird ein \verb+Index+ nicht gefunden, gibt es eine Fehlermeldung
 \begin{center}
 \begin{tabular}{|l|p{7cm}|}
 \hline
-\verb+contains+ & Es wird überprüft, ob ein \verb+Index+ in einer
+\verb+in+ & Es wird überprüft, ob ein \verb+Index+ in einer
 Tabelle vorkommt. \\
-\verb+select+ & Filtert eine Tabelle nach Kriterien. Prüft sowohl
-\verb+Werte+ als auch \verb+Indizes+.\\
-\verb+split+ & Sortiert die Tabelle in Teiltabellen bzgl. eines
-Kriteriums.  Prüft sowohl
+\verb+filter+ & Filtert eine Tabelle nach Kriterien. Prüft sowohl
 \verb+Werte+ als auch \verb+Indizes+.\\
 \verb+map+ & Wendet eine Funktion auf die Werte an.\\
 \hline
@@ -472,75 +469,80 @@ Kriteriums.  Prüft sowohl
 
 \begin{frame}[fragile]{Beispiele}
 
-\verb+contains+ prüft ob \verb+a+ oder \verb+b+ als Index in einer Tabelle auftaucht.
+\verb+in+ prüft ob \verb+a+ oder \verb+b+ als Index in einer Tabelle auftaucht.
 \begin{sage}
->> Z[a]:=b: Z[c]:=d: Z[x] := b
->> contains(Z,a), contains(Z,b)
+>> Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
+>> a in Z, b in Z
 \end{sage}
 \begin{sage}
-  TRUE, FALSE
+(True, False)
 \end{sage}
 \verb+a+ taucht als Index auf, \verb+b+ nur als Wert.
 
-\verb+select+ prüft sowohl den Index als auch den Wert auf \verb+a+ oder \verb+b+ ab und liefert eine Tabelle die nur noch den entsprechenden Index=Wert Eintrag enthält zurück.
+\verb+filter+ prüft ebenfalls nur den Index.
 \begin{sage}
->> select(Z,has,a), select(Z,has,b)
+>> f(y) = y == c; filter(f,Z)
 \end{sage}
 \begin{sage}
-  table(    table(
-    a = b,    a = b,
-  )           x = b
-            )
+[c]
 \end{sage}
+
+\begin{sage}
+f(y) = y == d; filter(f,Z)
+\end{sage}
+\begin{sage}
+[]
+\end{sage}
+
 \end{frame}
 
-\begin{frame}[fragile]{Felder}
-\begin{itemize}
-\item Felder sind spezielle Tabellen. Die Indizes müssen
-           cartesische Produkte von ganzen (!) Zahlen sein (Multiindizes).
-\item Matrizen lassen sich als zweidimensionale Felder interpretieren, d.h. die Indizes sind Paare von ganzen Zahlen.
-\item Es können Felder beliebiger Dimension erzeugt werden. Felder
-sind geeignet
-für Datenmengen fixierter Größe.
-\item Felder haben den Datentyp \verb+DOM_ARRAY+.
-\item Die Matrixklasse hat den Vorteil, dass man dort Matrizen
-addieren und multiplizieren kann.
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Felder}
+% \begin{itemize}
+% \item Felder sind spezielle Tabellen. Die Indizes müssen
+%            cartesische Produkte von ganzen (!) Zahlen sein (Multiindizes).
+% \item Matrizen lassen sich als zweidimensionale Felder interpretieren, d.h. die Indizes sind Paare von ganzen Zahlen.
+% \item Es können Felder beliebiger Dimension erzeugt werden. Felder
+% sind geeignet
+% für Datenmengen fixierter Größe.
+% \item Felder haben den Datentyp \verb+DOM_ARRAY+.
+% \item Die Matrixklasse hat den Vorteil, dass man dort Matrizen
+% addieren und multiplizieren kann.
+% \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Konstruktion und Zugriff I}
+% \begin{sage}
+% >> A:=array(0..1,1..3)
+% \end{sage}
+% \begin{sage}
+%   +-                           -+
+%   |  ?[0, 1], ?[0, 2], ?[0, 3]  |
+%   |                             |
+%   |  ?[1, 1], ?[1, 2], ?[1, 3]  |
+%   +-                           -+
+% \end{sage}
+% Das \verb+?+ bedeutet, dass die entsprechenden Werte nicht belegt sind.
+% \end{frame}
 
-\begin{frame}[fragile]{Konstruktion und Zugriff I}
-\begin{sage}
->> A:=array(0..1,1..3)
-\end{sage}
-\begin{sage}
-  +-                           -+
-  |  ?[0, 1], ?[0, 2], ?[0, 3]  |
-  |                             |
-  |  ?[1, 1], ?[1, 2], ?[1, 3]  |
-  +-                           -+
-\end{sage}
-Das \verb+?+ bedeutet, dass die entsprechenden Werte nicht belegt sind.
-\end{frame}
 
-
-\begin{frame}[fragile]{Konstruktion und Zugriff II}
-\begin{sage}
->> A[0,1]:=1: A[1,3]:=HALLO: A
-\end{sage}
-\begin{sage}
-  +-                           -+
-  |     1,    ?[0, 2], ?[0, 3]  |
-  |                             |
-  |  ?[1, 1], ?[1, 2],  HALLO   |
-  +-                           -+
-\end{sage}
-\begin{sage}
->> A[1,3]
-\end{sage}
-\begin{sage}
-  HALLO
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Konstruktion und Zugriff II}
+% \begin{sage}
+% >> A[0,1]:=1: A[1,3]:=HALLO: A
+% \end{sage}
+% \begin{sage}
+%   +-                           -+
+%   |     1,    ?[0, 2], ?[0, 3]  |
+%   |                             |
+%   |  ?[1, 1], ?[1, 2],  HALLO   |
+%   +-                           -+
+% \end{sage}
+% \begin{sage}
+% >> A[1,3]
+% \end{sage}
+% \begin{sage}
+%   HALLO
+% \end{sage}
+% \end{frame}
 
 
 %===============================================
