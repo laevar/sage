@@ -669,11 +669,9 @@ Drehung um den Winkel $\alpha$ -- Drehmatrix $G$:
 \end{array} \right)
 \]
 \begin{sage}
->> A:=matrix([[cos(a),-sin(a)],
-[sin(a),cos(a)]]):
->>B:=matrix([[cos(b),-sin(b)],
-[sin(b),cos(b)]]):
->>simplify(A*B)
+>> var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
+>> B = matrix([[cos(b),-sin(b)],[sin(b),cos(b)]])
+>> A*B
 \end{sage}
 \end{frame}
 
@@ -682,14 +680,14 @@ Spiegelung bezüglich der Ebene
 \[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
  durch \[S(a):=I - 2 a a^T.\] 
 \begin{sage}
->> a:=matrix(3,1,[1,2,3]):
->> a:=a/norm(a,2):
->> I_n:=matrix(3,3,[1,1,1],Diagonal)
->> S:=I_n-2*a*linalg::transpose(a)
+>> a = vector([1,2,3])
+>> a = a/norm(a)
+>> I_n = identity_matrix(3)
+>> S = I_n - (2*a*a.transpose()).list()[0]
 >> norm(S*S-I_n)
 \end{sage}
 \begin{sage}
-   0
+   0.0
 \end{sage}
 \end{frame}
 
@@ -720,40 +718,38 @@ eine Matrix in \alert{Jordanscher Normalform} darstellen.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Eigenwerte in MuPAD}
+\begin{frame}[fragile]{Eigenwerte in Sage}
 \begin{itemize}
 \item Bestimmung von Eigenwerten
 \begin{sage}
->> A:=matrix([[cos(al), sin(al)],
-[sin(al),-cos(al)]]):
->> simplify(linalg::eigenvalues(A))
+>> _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
+>> [ m.full_simplify() for m in  A.eigenvalues()]
 \end{sage}
 \begin{sage}
-  {-1, 1}
+  [-1, 1]
 \end{sage}
 \item Bestimmung von Eigenvektoren
 \begin{sage}
->> simplify(linalg::eigenvectors(A))
+>> A.eigenvectors_right()
 \end{sage} 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Eigenwerte in MuPAD}
+\begin{frame}[fragile]{Eigenwerte in Sage}
 \begin{itemize}
 \item Bestimmung des charakteristischen Polynoms
 \begin{sage}
->> I_n:=matrix(2,2,[1,1],Diagonal):
->> p:=linalg::det(A-lambda*I_n)
+>> E = identity_matrix(2)
+>> p = (A-x*E).det(); p
 \end{sage}
 \begin{sage}
-        2          2          2
-  lambda  - sin(al)  - cos(al)
+(x - cos(al))*(x + cos(al)) - sin(al)^2
 \end{sage}
 \begin{sage}
->> simplify(solve(p=0,lambda))
+>> [m.full_simplify() for m in solve(p==0,x)]
 \end{sage}
 \begin{sage}
-  {-1, 1}
+  [x == -1, x == 1]
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -767,7 +763,7 @@ Lösungen (Lösungsraum):
 System}. Ansonsten spricht man von einem {\color{red} inhomogenen System}.
 \item Der Lösungsraum $W$ des homogenen Systems bildet einen
 Untervektorraum des $K^n$. Die Dimension ist 
-\[ \dim (W)=n - \mathop{rang}(A). \] 
+\[ \dim (W)=n - \rang(A). \] 
 \end{itemize}
 \end{frame}
 
@@ -789,29 +785,26 @@ eine Lösung des homogenen Systems.
 \begin{frame}{Lösbarkeit}
 \begin{itemize}
 \item Das inhomogene System ist genau dann für alle $b$
-lösbar, wenn $\mathop{rang}(A)=m$ gilt.
+lösbar, wenn $\rang(A)=m$ gilt.
 \item Das homogene bzw. das inhomogene System besitzt höchstens eine
-Lösung, genau dann wenn $\mathop{rang}(A)=n$ gilt.
+Lösung, genau dann wenn $\rang(A)=n$ gilt.
 \item Der Lösungsraum des inhomogenen Systems ist genau dann nicht
-leer, wenn $rang(A)=rang(A, b)$ gilt.
+leer, wenn $\rang(A)=\rang(A, b)$ gilt.
 \item Praktisch kann ein LGS mit dem {\color{red} Gausschen
 Eliminationsverfahren} gelöst werden.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{LGS in MuPAD}
-Berechnung der Lösungen von $Ax=b$ mit \verb+linalg::matlinsolve+. Der
-erste Rückgabewert ist eine spezielle Lösung. Dann wird ein Basis des
-Lösungsraums des homogenen Systems zurückgegeben.
+\begin{frame}[fragile]{LGS in Sage}
+Berechnung der Lösungen von $Ax=b$: 
 \begin{sage}
->> A:=matrix([[1,2,3],[4,5,6],[7,8,9]]):
->> b1:=matrix(3,1,[0,0,0]):
->> b2:=matrix(3,1,[1,0,0]):
->> b3:=A*b2:
->> linalg::matlinsolve(A,b1)
->> linalg::matlinsolve(A,b2)
->> linalg::matlinsolve(A,b3)
->> linalg::gaussElim(A)
+>> A = matrix([[1,2,3],[4,5,6],[7,8,9]])
+>> b1 = vector([0,0,0])
+>> b2 = vector([1,0,0])
+>> b3 = A*b2
+>> print A\b1
+>> print A\b3
 \end{sage}
+%>> linalg::gaussElim(A)
 \end{frame}
 \end{document}

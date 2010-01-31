@@ -40,9 +40,8 @@ Zeigen Sie:
 \end{aufg}
 
 \begin{aufg}
-Welche der folgenden Matrizen sind unitär, orthogonal, invertierbar,
-symmetrisch oder hermitisch (d.h. $A^*=A$, Befehl:
-\verb+linalg::isHermitean+)?
+Welche der folgenden Matrizen sind unitär (d.h. $A^*A = I$), orthogonal, invertierbar,
+symmetrisch oder hermitisch (d.h. $A^*=A$)?
 
 \[A = \left(
 \begin{array}{ccc}1&0&0\\0&\cos(\pi /6 )&-\sin(\pi /6)\\0&\sin(\pi /6)&\cos(\pi /6)\end{array}\right),
@@ -75,18 +74,15 @@ B = \left( \begin{array}{ccc}1&1&i\\1 & i &1 \\i &1 & 1 \end{array}\right),\]
 
 
 \begin{aufg}
-Erzeugen Sie, wenn möglich mit Hilfe des ``.''-Operators, die Matrix: 
-\begin{verbatim}
-          +-                    -+
-          |  a11, a12, a13, a14  |
-          |                      |
-          |  a21, a22, a23, a24  |
-      A = |                      |
-          |  a31, a32, a33, a34  |
-          |                      |
-          |  a41, a42, a43, a44  |
-          +-                    -+
-\end{verbatim}
+%var("a%i%i" % (i,j) in der vorlesung erklaeren!
+Erzeugen Sie mit Hilfe von \verb+var()+ die Matrix: 
+\[
+      A =\left(\begin{array}{cccc}a11 &a12 &a13 &a14\\
+                a21& a22& a23& a24\\
+		a31& a32& a33& a34\\
+		a41& a42& a43& a44
+               \end{array}\right)
+\]
 Leiten Sie daraus eine allgemeine Determinantenformel für $(4 \times
 4)$ Matrizen her.
 \end{aufg}

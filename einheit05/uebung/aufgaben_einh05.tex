@@ -12,9 +12,10 @@ WS 2009/2010
   \(L2=[x,x^2,x^6,x^{24},x^{120}]\). 
   \begin{enumerate}
   \item
-    Erstellen Sie diese beiden Listen mit Hilfe des \$-Operators.
+    Erstellen Sie diese beiden Listen mit Hilfe des \verb+[... for ...]+ Konstruktes.
+  \item Bilden sie $L3=L1+L2$
   \item
-    Bilden Sie von jedem Eintrag von L3 die Ableitung und  die Stammfunktion.
+    Bilden Sie von jedem Eintrag von $L3$ die Ableitung und  die Stammfunktion.
   \item
 Bestimmen Sie von jedem Element von $L3$ den Funktionswert an der
 Stelle $x=3$. 
@@ -25,7 +26,7 @@ Entfernen Sie den größten Eintrag aus der resultierenden Liste.
 \begin{aufg}
   Gegeben sei:
 \begin{sage}
-L=[16,81,125,512,729,4096,19683,78125,262144,390625, 505,22343243,512]
+L=[16,81,125,512,729,4096,19683,78125,262144,390625,505,22343243,512]
 \end{sage}
 \begin{enumerate}
 \item
@@ -91,11 +92,10 @@ $n^2+n+m^2$ mit $n=1,2,\dots,100$ Primzahlen sind.
 \end{aufg}
 
 \begin{aufg}
-Berechnen Sie mit Hilfe des Punkt-Operators die ersten 10 Glieder der Folge
+Berechnen Sie mit Hilfe einer \verb+for+-Schleife die ersten 10 Glieder der Folge
 \[ x_{n+1}=x_n - \frac{x_n^2-2}{2 x_n}, n \in \mathbb{N}   \]
 mit Startwert $x_0=1$. Erraten Sie den Grenzwert der Folge!
-Ersetzen Sie den Startwert $x_0$ durch den Gleitkommawert $x_0=1.0$
-und berechnen Sie nun die ersten $50$ Folgenglieder (Benutzen Sie $DIGITS:=50$).
+Ersetzen Sie den Startwert $x_0$ durch den Gleitkommawert $x_0=1.0$..
 \end{aufg}
 
 

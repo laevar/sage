@@ -29,7 +29,7 @@ $M3=\lbrace1,2,a,b,f,g\rbrace$.
   \item
     Bestimmen Sie die Differenz zwischen $M1$ und $M2$.
   \item
-    Bestimmen Sie die Teilmenge der Potenzmenge von $M1$, die sowohl $2$ als auch $c$
+    Bestimmen Sie die Teilmenge der Potenzmenge von $M1$, die sowohl $2$ als auch $b$
     enth\"alt. 
   \end{enumerate}
 \end{aufg}
@@ -44,10 +44,10 @@ $M3=\lbrace1,2,a,b,f,g\rbrace$.
     die Dezimaldarstellung von $b$.
  \item
     Sei $c=0.123456*7^6$ eine Darstellung zur Basis $7$. Erstellen Sie
-    die $8$-adische Darstellung von $c$.
+    die $11$-adische Darstellung von $c$.
   \end{enumerate}
 
-Vorlesung: Zahlen! 
+%Vorlesung: Zahlen! Zp, QQ, RR, etc. 
 
 \end{aufg}
 
@@ -78,9 +78,8 @@ Berechnen die Summe
 \end{aufg}
 
 \begin{aufg}
-Nach \verb+x:=10^50/3.0+ sind nur die ersten DIGITS Dezimalstellen in
-$x$ garantiert richtig. Was passiert beim Abschneiden der
-Nachkommastellen mit \verb+trunc+? Was passiert, wenn man die Anzahl
+Nach \verb+x = (10^50/3.0).n(digits=100)+ sind nur die ersten Dezimalstellen in
+$x$ garantiert richtig. Was passiert wenn man die Anzahl
 der signifikanten Stellen erhöht?
 \end{aufg}
 
@@ -98,13 +97,12 @@ Sie, was jeweils passierte.
 \begin{aufg}
 Geben Sie folgende Zeilen ein:
 \begin{sage}
->> reset(): a1:=1:
->> (a.(i+1):=a.i+1/i) dollar i=1..200
->> a150
+>> def f(x):
+>> 	return f(x+1)
+>> f(0)
 \end{sage}
-Erklären Sie den Fehler. Wie können Sie die Voreinstellungen ändern, damit der
-Fehler nicht mehr auftritt? Wie muss die Eingabe modifiziert  werden, so dass
-es auch ohne Änderungen der Voreinstellungen funktioniert? 
+Erklären Sie den Fehler. Wie können Sie die Funktion \verb+f(x)+ anpassen, damit der
+Fehler nicht mehr auftritt?  
 \end{aufg}
 \end{document}
 
