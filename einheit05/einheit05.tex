@@ -496,6 +496,33 @@ f(y) = y == d; filter(f,Z)
 
 \end{frame}
 
+\begin{frame}[fragile]{Tabellen - Nachtrag}
+ \begin{enumerate}
+  \item Tabellen können ohne das Schlüsselwort \verb+table+ erzeugt werden:
+\begin{sage}
+>> T[2]:=a: domtype(T)
+\end{sage}
+\begin{sage}
+ DOM_TABLE
+\end{sage}
+\item Tabellen können aneinander gehängt werden:
+\begin{sage}
+>> T:=table(1=a,2=b): S:=table(3=c,4=d):
+>> TundS:=table(T,S)
+\end{sage}
+\begin{sage}
+  table(
+   4 = d,
+   3 = c,
+   2 = b,
+   1 = a
+  )
+\end{sage}
+\alert{Vorsicht: Doppelt auftretenden Indizes werden überschrieben!}
+\end{enumerate}
+\end{frame}
+
+
 % \begin{frame}[fragile]{Felder}
 % \begin{itemize}
 % \item Felder sind spezielle Tabellen. Die Indizes müssen

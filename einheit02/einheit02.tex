@@ -27,13 +27,13 @@
 \begin{sage}
 [x == 6, x == -3]
 \end{sage}
-\begin{sage}
->> solve(f<=0,x) ??
-\end{sage}
-\begin{sage}
- [-3, 6] union 
- {I x + 3/2 | x in (-infinity, infinity)}
-\end{sage}
+% \begin{sage}
+% >> solve(f<=0,x) ??
+% \end{sage}
+% \begin{sage}
+%  [-3, 6] union 
+%  {I x + 3/2 | x in (-infinity, infinity)}
+% \end{sage}
 \begin{sage}
 >> assume(x,Type::Real): solve(f<=0,x) ??
 \end{sage}
@@ -794,14 +794,13 @@ Gleichungen zurückgegeben.
 \end{frame}
 
 \begin{frame}[fragile]{Numerisches Lösen von Gleichungssystemen}
-\begin{itemize}
-\end{itemize}
 \begin{sage}
  (x == sin(x)).find_root(-2,2)
 \end{sage}
 \begin{sage}
 0.0
 \end{sage}
+\end{frame}
 
 \end{document}
 

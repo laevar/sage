@@ -1,0 +1,109 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\input{aufg_header}
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Einheit 6}\\
+WS 2009/2010
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\begin{aufg}
+Berechnen Sie die folgenden Grenzwerte
+\[ \lim_{n \rightarrow \infty} \left( \frac{(n+1)^2-n^2}{n} \right),
+\quad 
+\lim_{n \rightarrow \infty} \left( \sqrt{n+1} - \sqrt{n} \right),  \quad 
+\lim_{n \rightarrow \infty} \left( \frac{\sum_{i=1}^n i^{99}}{n^{100}} \right).
+\] 
+\end{aufg}
+
+\begin{aufg}
+Bestimmen Sie die Werte der folgenden Summen
+\[ \sum_{i=1}^\infty \frac{1}{i^3}, \quad \sum_{i=0}^\infty x^i,
+0<x<1, \quad \sum_{i=1}^\infty \frac{1}{i+2i^2}.
+\]
+\end{aufg}
+
+\begin{aufg}
+Bestimmen Sie den Konvergenzradius der folgenden Potenzreihen
+\[  \sum_{n=1}^\infty (n^4 - 4n^3)x^n, \quad \sum_{n=1}^\infty
+n^{\log(n)/n}x^n, \quad \sum_{n=1}^\infty \left( \sum_{k=1}^n
+\frac{1}{k} \right) x^n.\]
+\end{aufg}
+
+
+\begin{aufg}
+\begin{itemize}
+\item Berechnen Sie die ersten $100$ Glieder der Fibonacci-Folge
+\[ a_1=a_2:=1, \quad a_{n+2}:=a_{n+1}+a_n, \ n \in \mathbb{N}. \]
+\item Berechnen Sie für $n=1, \dots, 100$
+\[ b_n:=\frac{a_{n}}{a_{n+1}}. \]
+Geben Sie für die Glieder $b_n$ eine obere Schranke an, und raten Sie
+den Grenzwert!  
+\item Berechnen Sie die ersten $100$ Glieder der Folge 
+\[ c_n = \frac{\left( \frac{1+\sqrt{5}}{2}\right)^n - 
+\left( \frac{1-\sqrt{5}}{2}\right)^n}{\sqrt{5}}. \]
+\item Bestimmen Sie $c_n-a_n$ und $\frac{c_n}{a_n}$ für $n=1,\dots
+  ,100$.
+\item Berechnen Sie den Grenzwert von $c_{n+1}/c_n$ approximativ.
+\end{itemize}
+\end{aufg}
+
+\begin{aufg}
+Erzeugen Sie die Tabelle \verb+table(1=ln(1),2=ln(2),...,10=ln(10))+.
+Erweitern Sie die Tabelle um den Eintrag \verb+11=ln(11)+. 
+Erstellen Sie aus
+der Tabelle eine Liste aller Indizes und eine Liste aller Werte!
+Sortieren Sie beide Listen!
+\end{aufg}
+\begin{aufg}
+  Zeigen Sie 
+  \[\lim_{x \rightarrow \infty} x^a = \left\{ \begin{array}{c}\infty, \mbox{ für } a > 0
+        \\1, \mbox{ für } a = 0
+        \\0, \mbox{ für } a < 0 \end{array}\right. .\]
+
+\end{aufg}
+
+
+\begin{aufg}
+  Bestimmen Sie von der Potenzreihe
+  $f(x)=\sum_{n=0}^\infty(-1)^n\frac{x^{2n+1}}{2n+1}$ den Konvergenzradius.
+  Berechnen Sie $4(4f(\frac{1}{5})-f(\frac{1}{239}))$.
+\end{aufg}
+
+%-----------------------------------------------------------------------------------
+
+\begin{aufg}
+Bestimmen Sie die Funktion dritten Grades, die folgende Eigenschaften erf\"ullt:
+\begin{enumerate}
+\item
+  Die Funktion besitzt ein Maximum im Punkt $(-2,3)$.
+\item
+  Der Graph der Funktion berührt die Parabel $ f(x) = -x^2+2x+4 $ an der
+  Stelle $ x = -1$.
+\end{enumerate}
+Zeichnen Sie alle Eigenschaften sowie die zugeh\"orige Funktion in einem Plot.
+\end{aufg}
+%-----------------------------------------------------------------------------------
+
+\begin{aufg}
+Schreiben Sie eine Prozedur, die als Eingabeparameter eine Liste mit
+beliebigen Einträgen hat. Die Prozedur soll daraus eine Tabelle berechnen und
+zurückgeben, die die verschiedenen Elemente der Liste (als Indizes) versehen mit ihrer
+Häufigkeit (als Werte) enthält.
+\end{aufg}
+
+%-----------------------------------------------------------------------------------
+
+\begin{aufg}
+Schreiben Sie eine Prozedur, die zu einem gegebenen Startwert $x_0$ und einer
+gegebenen Funktion $f$ die ersten 20 Iterationen
+\[ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_{k})}, \quad k=0,1,\dots ,19  \]
+berechnet. \\
+
+Wenden Sie die Prozedur auf $f(x)=\exp(-x)-x$ und $g(x)=x^3-2x+3$
+an. Verwenden Sie jeweils $x_0=0$ und pr\"ufen Sie, ob $x_{20}$ eine gute
+Approximation einer Nullstelle von $f$ ist.
+\end{aufg}
+%-----------------------------------------------------------------------------------
+\end{document}
+

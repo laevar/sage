@@ -69,6 +69,24 @@
 %\usepackage[framed]{mcode}
 %\usepackage{mcode}
 
+\usepackage{cellspace}
+\setlength{\cellspacetoplimit}{2pt}
+\setlength{\cellspacebottomlimit}{2pt}
+
+%%%%%%%%%%%%%%%%%% Fuer Frames [fragile]-Option verwenden!
+%Programm-Listing
+%%%%%%%%%%%%%%%%%%
+%Listingsumgebung fuer verbatim
+%Grauhinterlegeter Text
+%Automatischer Zeilenumbruch ist aktiviert
+%Alles zwischen $ .. $ wird im Latex-Mathe-Modus gesetzt
+%Den Dollar macht man mit $\text{\dollar}$
+\usepackage{listings}
+\definecolor{lgray}{gray}{0.80}
+%\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
+\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray},language=Python, emphstyle=\color{red}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true,escapechar=§}}{}
+
+
 \usepackage{mydef}
 %\usepackage{cmap} % you can search in the pdf for umlauts and ligatures
 %\usepackage{colonequals} %corrects the definition-symbols \colonequals (besides others)
@@ -89,8 +107,6 @@
 \subject{Sage}
 % This is only inserted into the PDF information catalog. Can be left
 % out. 
-
-
 
 % If you have a file called "university-logo-filename.xxx", where xxx
 % is a graphic format that can be processed by latex or pdflatex,
@@ -125,18 +141,6 @@
   \end{frame}
 }
 
-%%%%%%%%%%%%%%%%%% Fuer Frames [fragile]-Option verwenden!
-%Programm-Listing
-%%%%%%%%%%%%%%%%%%
-%Listingsumgebung fuer verbatim
-%Grauhinterlegeter Text
-%Automatischer Zeilenumbruch ist aktiviert
-%Alles zwischen $ .. $ wird im Latex-Mathe-Modus gesetzt
-%Den Dollar macht man mit $\text{\dollar}$
-\usepackage{listings}
-\definecolor{lgray}{gray}{0.80}
-%\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray},language=Python, emphstyle=\color{red}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true,escapechar=§}}{}
 
 
 %%%%%%%%%%%%%%%%%%%
