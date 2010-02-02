@@ -1,0 +1,110 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\input{aufg_header}
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Einheit 7}\\
+WS 2009/2010
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\begin{aufg}
+\begin{quotation}
+ Goldbachsche Vermutung: Jede gerade Zahl größer als 2 kann als Summe zweier Primzahlen geschrieben werden.
+\end{quotation}
+\begin{enumerate}
+ \item Erzeugen Sie eine Menge \verb+P+ mit den ersten 100 Primzahlen mit der Funktion \verb+ithprime+.
+\item Erzeugen Sie eine Menge \verb+L+ aller geraden Zahlen zwischen $4$ und $800$.
+\item Testen Sie mit dieser Mengen die Goldbachsche Vermutung.
+\item Geben  Sie an wie viele Darstellungen jede Zahl hat (Reihenfolge mitzählen).
+\item Erhöhen Sie die Menge der geraden Zahlen bis $1000$ und finden Sie heraus welche Zahlen nicht mehr dargestellt werden können.
+\end{enumerate}
+
+  
+\end{aufg}
+
+\begin{aufg}
+Die {\it Tschebyscheff-Polynome} sind rekursiv durch die folgenden
+Formeln definiert:
+\[ T_0(x)=1, \quad T_1(x)=x, \quad T_k(x)=2x T_{k-1}(x) -
+T_{k-2}(x). \] 
+Berechnen Sie die Liste bestehend aus $T_0(x),\dots ,T_{9}(x)$, in dem Sie
+sukzessive Elemente anhängen. Bestimmen
+Sie jeweils den Funktionswert an $x=1/3$ und $x=0.33$ und bestimmen
+Sie die Nullstellen!
+\end{aufg}
+
+
+\begin{aufg}
+  \begin{enumerate}
+    \item
+      Gegeben seien die Funktionen \(f(x)=4x^2+3x^6, g(x)=12x^6-2x+1 \mbox{
+      und } h(x)=21x^4-2x^2+12\). Erstellen Sie 
+      damit die Funktionen \(k(x)={f(g(g(x)))} \mbox{ und } l(x)=f(g(h(x)))
+      \).  
+    \item
+      Erstellen Sie dann mit Hilfe einer Liste die Wertetabelle
+      der Funktionen $f,g,k,l$ für $-10,-9,\dots ,-2, -1,0,1,2,\dots ,9,10$. 
+    \item
+      Bestimmen Sie von den Funktionen g und k die Funktionswerte, welche
+      Primzahlen sind.
+  \end{enumerate}
+\end{aufg}
+
+
+\begin{aufg}
+  Gegeben seien die stetigen Funktionen $f:x\rightarrow-x^2+2$ und
+  $g:x\rightarrow-4\sqrt{x}+5$. Pr\"ufen Sie folgende Funktion auf Stetigkeit:
+  \[h:x\rightarrow \left\{ \begin{array}{c} f(x), \mbox{ f\"ur } x<1 \\g(x),
+  \mbox{ f\"ur } x\ge1 \end{array} \right.. \] 
+\end{aufg}
+
+
+\begin{aufg}
+  Plotten Sie folgende Funktionen:
+  \[f:x\rightarrow \frac{4}{\pi}\sum_{n=0}^k{\frac{\sin((2n+1)x)}{2n+1}}\]
+  für $k=4\ldots15$. Legen Sie die Graphen \"ubereinander. Erstellen Sie auch
+  eine Animation. \\
+{\it Hinweis:} Bentzen Sie zur Animation die Funktion \verb+floor+, um zu
+  garantieren,  dass
+  $k$ nur ganze Werte annimmt
+\end{aufg}
+
+
+
+\begin{aufg}
+  Plotten Sie die Funktion $f:=x \rightarrow \left( \begin{array} {c}
+  5\cos(x)\\2\sin(x)\\4x  \end{array} 
+  \right)$ f\"ur $0\leq x \leq 100$. Wählen Sie 
+  eine geeignete Aufl\"osung.
+\end{aufg}
+
+
+\begin{aufg}
+  Machen Sie sich mit den Funktionen in der \verb+plot+-Bibliothek vertraut. Versuchen
+  Sie dann einen Oktaeder mit Sage zu plotten. Ein Oktaeder hat die Eckpunkte
+  $\pm e_1,\pm e_2,\pm e_3 $.
+\end{aufg}
+
+\begin{aufg}
+Schreiben Sie eine Prozedur, die mit Hilfe einer Liste von Vektoren
+$v_1,v_2,w_1,w_2,w_3 \in \mathbb{R}^3$ die Gerade
+\[ G:=\{ v_1+ \alpha v_2 \ | \ \alpha \in \mathbb{R} \} \]
+und die Ebene 
+\[ E:=\{ w_1+ \alpha w_2 +\beta w_3 \ | \ \alpha,\beta  \in \mathbb{R}
+\} \]
+in eine Grafik zeichnet. ($\alpha \in (-5,5)$, $\beta \in (-4,4))$
+\end{aufg}
+
+\begin{aufg}
+Wir betrachten die folgende Oberfläche:
+\begin{eqnarray*}
+ x (u,v) & = & \cos(2u) \cos(u+v)\\
+ y (u,v) & = & \cos(2u) \sin(u+v)\\
+ z (u,v) & = & \sin (v) 
+\end{eqnarray*}
+Stellen Sie die Oberfläche für $-\pi <u,v< \pi$ grafisch dar. Wählen Sie dabei
+ein $80 \times 80$-Gitter.
+\end{aufg}
+
+\end{document}
+
