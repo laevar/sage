@@ -306,7 +306,7 @@ Limes berechnet; für \verb+dir='plus'+ der rechtsseitige.
 \begin{sage}
   ind
 \end{sage}
-Der Grenzwert existiert nicht. Sage gibt in diesem Fall \verb+ind+ (indefinite) zurück. 
+Der Grenzwert existiert nicht. Sage gibt in diesem Fall \verb+ind+ (indefinite aber beschränkt) zurück. 
 \item Bestimme den Grenzwert $\lim_{x \rightarrow 0} |x|' $
 \begin{sage}
 >> limit(diff(abs(x),x),x=0),
@@ -374,55 +374,71 @@ gleichmäßig stetig.
 \begin{frame}[fragile]{Stetigkeit in MuPAD}
 Für die Diskussion der Stetigkeit einer Funktion $f$ an einer Stelle
 $x_0$ sei auf den Abschnitt zu Grenzwerten verwiesen. \\
-(Komplexe) Unstetigkeitsstellen oder Definitionslücken können mittels
-\verb+discont+ aufgespürt werden:
 \begin{sage}
->> discont(sin(1/x)*x,x)
+limit(1/x,x=0,dir='plus') 
 \end{sage}
 \begin{sage}
-  {0}
+ +Infinity
 \end{sage}
 \begin{sage}
->> discont(exp(x),x)
+ limit(1/x,x=0,dir='minus')
 \end{sage}
 \begin{sage}
-  {}
+ -Infinity
 \end{sage}
-\begin{sage}
->> discont(tan(x),x)
-\end{sage}
-\begin{sage}
-  { 1/2*PI + X1*PI |  X1 in Z_ }
-\end{sage}
+
 \end{frame}
 
-\begin{frame}[fragile]{Stetigkeit in MuPAD}
-\begin{sage}
->> discont(1/sin(x),x=-1..10)
-\end{sage}
-\begin{sage}
-  {PI, 0, 2 PI, 3 PI}
-\end{sage}
-Vorsicht! Es werden komplexe Unstetigkeitsstellen gesucht!
-\begin{sage}
->> discont(ln(x),x)
-\end{sage}
-\begin{sage}
-  (-infinity, 0]
-\end{sage}
-\begin{sage}
->> discont(ln(x),x,Dom::Real)
-\end{sage}
-\begin{sage}
-  {0}
-\end{sage}
-\begin{sage}
->> ln(-2)
-\end{sage}
-\begin{sage}
-  I PI + ln(2)
-\end{sage}
-\end{frame}
+
+% (Komplexe) Unstetigkeitsstellen oder Definitionslücken können mittels
+% \verb+discont+ aufgespürt werden:
+% \begin{sage}
+% >> discont(sin(1/x)*x,x)
+% \end{sage}
+% \begin{sage}
+%   {0}
+% \end{sage}
+% \begin{sage}
+% >> discont(exp(x),x)
+% \end{sage}
+% \begin{sage}
+%   {}
+% \end{sage}
+% \begin{sage}
+% >> discont(tan(x),x)
+% \end{sage}
+% \begin{sage}
+%   { 1/2*PI + X1*PI |  X1 in Z_ }
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Stetigkeit in MuPAD}
+% \begin{sage}
+% >> discont(1/sin(x),x=-1..10)
+% \end{sage}
+% \begin{sage}
+%   {PI, 0, 2 PI, 3 PI}
+% \end{sage}
+% Vorsicht! Es werden komplexe Unstetigkeitsstellen gesucht!
+% \begin{sage}
+% >> discont(ln(x),x)
+% \end{sage}
+% \begin{sage}
+%   (-infinity, 0]
+% \end{sage}
+% \begin{sage}
+% >> discont(ln(x),x,Dom::Real)
+% \end{sage}
+% \begin{sage}
+%   {0}
+% \end{sage}
+% \begin{sage}
+% >> ln(-2)
+% \end{sage}
+% \begin{sage}
+%   I PI + ln(2)
+% \end{sage}
+% \end{frame}
 
 %----------------------------------------
 \section{Funktionenfolgen}
@@ -492,105 +508,101 @@ eine Funktionenreihe. Aussagen über die Funktionenreihe sind, analog zum Fall d
 
 \begin{frame}[fragile]{Grafiken}
 \begin{itemize}
-\item Die Funktionen \verb+plotfunc2d+ und \verb+plotfunc3d+ dienen
+\item Die Funktionen \verb+plot+ und \verb+plot3d+ dienen
              zur Darstellung von Graphen von Funktionen mit einem
              bzw. zwei Argumenten. 
 \item Grafiken werden im Notebook integriert.
-\item Die Grafiken können interaktiv bearbeitet werden.
-\item Die meisten Grafikbefehle sind in der Bibliothek \verb+plot+
-             untergebracht. 
+\item Die meisten 3D-Grafiken können interaktiv bearbeitet werden.
 \end{itemize}
 \end{frame} 
 
-\begin{frame}[fragile]{plotfunc2d}
+\begin{frame}[fragile]{plot()}
 Skalare Funktionen $f1,f2,\ldots$, können durch den Befehl
 \begin{sage}
->> plotfunc2d(f1,f2,...,x=a..b,Mesh=n)
+>> plot(f1,(x,a,b))
 \end{sage}
-auf dem Intervall $[a,b]$ mit Hilfe von $n$ Gitterpunkten gezeichnet
-werden. Dabei ist die Angabe  von
-\verb+x=a..b+ und \verb+Mesh=n+ optional. Beispiele:
+auf dem Intervall $x \in [a,b]$. Dabei ist die Angabe  von
+\verb+(x,a,b)+ optional. Beispiele:
 \begin{sage}
->> plotfunc2d(x^2-1)
->> plotfunc2d(sin(1/x),x=-1..1)
->> plotfunc2d(sin(1/x),x=-1..1,Mesh=21)
->> plotfunc2d(sin(x),cos(x),Mesh=10)
+>> plot(x^2-1)
+>> plot(sin(1/x),(x,-1,1))
+>> plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
+\end{sage}
+
+\begin{sage}
+>> p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
+>> p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{plotfunc3d}
+\begin{frame}[fragile]{plot3d()}
 Es werden Funktionen
 $f:\mathbb{R}^2 \ \rightarrow \mathbb{R}$
 grafisch dargestellt. (Genauer gesagt wird auch hier der Funktionsgraph als Teilmenge des $\mathbb{R}^3$ gezeichnet). Der Funktionsaufruf ist
 \begin{sage}
->> plotfunc3d(f1,f2,...,x=a..b,y=c..d,
-   Mesh=[nx,ny])
+>> plot3d(f,(x,a,b),(y,c,d), plot_points=[nx,ny])
 \end{sage}
 Hierdurch werden  Ausdrücke $f1, f2,\ldots$, auf 
 $[a,b]\times [c,d]$ mit Hilfe  von $nx$ Gitterpunkten in $x$-Richtung
-und $ny$ Punkten in $y$-Richtung dargestellt. Default ist $a=c=-5$,
-$b=d=5$ und $nx=ny=20$.  
+und $ny$ Punkten in $y$-Richtung dargestellt. 
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
 Plot von $f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
 \begin{sage}
->> f:=sin(y^2+x)-cos(y-x^2):
->> plotfunc3d(f,x=0..PI,y=0..PI)
->> plotfunc3d(f,x=0..PI,y=0..PI,Mesh=[60,30])
+>> f(x,y) = sin(y^2+x)-cos(y-x^2)
+>> plot3d(f,(x,0,pi),(y,0,pi))
+>> plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
 \end{sage}
 \medskip
-Plot von $f(x,y)=\cos (\mbox{20} \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
+Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
 \begin{sage}
->> g:=cos(20*exp(-x^2-y^2)):
->> plotfunc3d(g,x=-1..1,y=-1..1)
->> plotfunc3d(g,x=-1..1,y=-1..1,Mesh=[60,60])
+>> g(x,y) = cos(20*exp(-x^2-y^2))
+>> plot3d(g,(x,-1,1),(y,-1,1))
+>> plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Grafische Szene}
-Die Herangehensweise zur Erstellung komplexer Grafiken ist etwas
-ungewohnt. Grafiken werden nicht direkt erzeugt, d.h. ausgegeben. 
+Grafiken werden nicht direkt erzeugt, d.h. ausgegeben, sondern erst werden 
+{\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven 
+erzeugt. 
 
-Anstatt dessen werden
-zuerst {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven als
-grafische Objekte erzeugt. 
-
-Erst zuletzt werden die Objekte zu einer gemeinsamen {\color{red} grafischen
-Szene} zusammengefaßt und durch den Befehl \verb+plot+ gezeichnet.
+Erst beim \verb+show()+ oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
+Szene} zusammengefaßt.
 \begin{sage}
->> plot(Objekt1,Objekt2,...,SzeneOption1, SzeneOption2,...)
+>> W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
+>> S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
+>> show(W + S, figsize=8)
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Optionen für grafische Szenen}
 \begin{tabular}{lp{8cm}}
-ViewingBox & Dargestellter Achsenbereich \newline
-              {\color{blue} \verb+ViewingBox = [x1..x2,y1..y2]+}\\
-Scaling    & Verhältnis der Achsen
-             \verb+Constrained+ (verzerrt), \verb+Unconstrained+
-              (unverzerrt)\newline
-                  {\color{blue} \verb+Scaling = Unconstrained+}\\          
-Header & Überschrift der Grafik \newline
-{\color{blue} \verb+Header = ''Ein Titel''+}\\
-GridVisible & Sichtbarkeit von Gitterlinien\newline
-              {\color{blue} \verb+GridVisible = TRUE+}
+\verb+aspect_ratio+ & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. \newline
+              {\color{blue} \verb+aspect_ratio = 2+}\\
+\verb+figsize+    & Grösse des Bildes \newline
+                  {\color{blue} \verb+figsize = [width, height]+}\\          
+\verb+axes_labels+ &  Tuple oder Liste der Achsenbeschriftungen \newline
+{\color{blue} \verb+axes_labels = ('$x$','$y$')+}\\
+\verb+gridlines+ & Gitterlinien\newline
+              {\color{blue} \verb+gridlines = True+}
 \end{tabular}
 \end{frame}
 
-\begin{frame}[fragile]{Optionen für grafische Objekte}
+\begin{frame}[fragile]{(ein paar) Optionen für grafische Objekte}
 \begin{tabular}{lp{8cm}}
-LineStyle  & Darstellung von Linien\newline
-           (\verb+Solid+ (Def.), \verb+Dashed+, \verb+Dotted+)\newline
-                {\color{blue} \verb+LineStyle = Dashed+}\\
-LineWidth  & Linienstärke in mm\newline
-              {\color{blue} \verb+LineWidth = 4+}\\
-Color      & Zuweisung einer Farbe\newline
-              {\color{blue} \verb+Color = RGB::Red+}\\
-Mesh       & Anzahl Stützstellen\newline
-              {\color{blue} \verb+Mesh = [nx,ny]+} (2 Parameter)\\
-Legend     & Legende\newline
-     {\color{blue} \verb+Legend = "Ein Titel"+}\\
+\verb+linestyle+  & Darstellung von Linien\newline
+           (\verb+'-'+ (solid), \verb+'-.'+ (dashed), \verb+':'+) (dotted)\newline
+                {\color{blue} \verb+linestyle = '.'+}\\
+\verb+thickness+  & Linienstärke in mm\newline
+              {\color{blue} \verb+thickness = 4+}\\
+\verb+color+      & Zuweisung einer Farbe\newline
+              {\color{blue} \verb+color='red'+}\\
+\verb+plot_points+        & Anzahl Stützstellen\newline
+              {\color{blue} \verb+plot_points  = [nx,ny]+} (2 Parameter)\\
+\verb+alpha+  & Transparent\newline
+     {\color{blue} \verb+alpha = 0.8+}\\
 \end{tabular}
 \end{frame}
 
@@ -603,7 +615,7 @@ Eine Kurve des $\mathbb{R}^2$ in Parameterdarstellung sei gegeben durch Funktion
 \in [a,b]$ durch $t,f(t)$ mit  $t \in
 [a,b]$. Der Befehl zum Erzeugen des Objekts ist 
 \begin{sage}
->> Objekt:=plot::Curve2d([x,y],t=a..b)
+>> Objekt = parametric_plot([x,y],(t,a,b))
 \end{sage}
 $x$ und $y$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
 noch Optionen übergeben werden.
@@ -611,18 +623,13 @@ noch Optionen übergeben werden.
 
 \begin{frame}[fragile]{Beispiele}
 \begin{sage}
->> f1:=plot::Curve2d([t,sin(t)],t=0..2*PI):
->> f2:=plot::Curve2d([t,cos(t)],t=0..2*PI):
->> f3:=plot::Curve2d([cos(t),sin(t)],t=0..2*PI):
->> SzeneOptionen:=Header="EinBeispiel",
-   HeaderFont=[24],Width=20*unit::cm,
-   Height=10*unit::cm: 
->> plot(f1,f2,f3,SzeneOptionen)
+>> _=var('t');f1 = parametric_plot([t,sin(t)],(t,0,2*pi),color='red')
+>> f2 = parametric_plot([t,cos(t)],(t,0,2*pi),color='green')
+>> f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
+>> (f1+f2+f3).show(figsize=7)
 \end{sage}
 \begin{sage}
->> vielecke:=plot::Curve2d([cos(t),sin(t)],
-      t=0..2*PI,Mesh=2*i+1 ) $\text{dollar}$ i=2..10:
->> plot(vielecke)
+>> [parametric_plot([cos(t),sin(t)],(t,0,2*pi),plot_points=2*k+1,randomize=False,adaptive_recursion=0 ) for k in [2..10]]
 \end{sage}
 \end{frame}
 
@@ -633,16 +640,12 @@ Das Erzeugen einer dreidimensionaler Kurve, d.h. einer Kurve des $\mathbb{R}^3$ 
 \]
 Der Befehl ist  
 \begin{sage}
-Objekt:=plot::Curve3d([x,y,z],t=a..b)
+>> Objekt = parametric_plot([x,y,z],(t,a,b))
 \end{sage}
 $x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
 noch Optionen übergeben werden. Beispiel:
 \begin{sage}
->> objekt:=plot::Curve3d(
-   [(1-t*t)*cos(99*t), 
-    (1-t*t)*sin(99*t),t], 
-   t=0..1,Mesh=400):
->> plot(objekt)
+>> parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
 \end{sage}
 \end{frame}
 
@@ -671,24 +674,19 @@ mit $a \leq t_1 \leq b, \ c \leq
 \end{frame}
 
 \begin{frame}[fragile]{Flächen}
-Flächen werden in MuPAD erzeugt durch
+Flächen werden in Sage erzeugt durch
 \begin{sage}
-plot::Surface(
-  [x(t1,t2), y(t1,t2), z(t1,t2)],
-  t1=a..b, t2=c..d, Optionen):
+parametric_plot3d( [x(t1,t2), y(t1,t2), z(t1,t2)],(t1,a,b), (t2,c,d), Optionen):
 \end{sage}
 \bigskip
-Beispiel: Kugeloberfläche
+Beispiel: Ellipsoid-Oberfläche
 \begin{sage}
->> x:=r*cos(t1)*sin(t2):
->> y:=r*sin(t1)*sin(t2):
->> z:=r*cos(t2):
->> r:=1
->> Objekt:=plot::Surface(
-   [x,y,z], t1=0..2*PI, t2=0..PI,
-  MeshVisible=TRUE, Filled=FALSE,
-  Mesh=[10,30])
->> plot(Objekt)
+>> _=var('t1,t2')
+>> r=1
+>> x=r*cos(t1)*sin(t2)
+>> y=2*r*sin(t1)*sin(t2)
+>> z=r*cos(t2)
+>> parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 \end{sage}
 \end{frame}
 
@@ -699,10 +697,9 @@ auch zweidimensionale Grafiken erstellen.
 \item Man zeichnet die Niveaulinien (wie die Höhenmeter auf einer
 Landkarte), d.h. man sucht zu $c \in \mathbb{R}$ die Menge von Punkten
 $(x,y)$ mit $f(x,y)=c$.
-\item In MuPAD geschieht das mit dem Befehl
+\item In Sage geschieht das mit dem Befehl
 \begin{sage}
->> plot::Implicit2d(f,x=a..b,y=a..b,
-    Contours=[c1,c2,...], Optionen)
+>> contour_plot(f, (x,,), (y,,), contours=[c1,c2,...], options)
 \end{sage}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
 \end{itemize}
@@ -711,27 +708,19 @@ Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
 \begin{frame}[fragile]{Beispiel}
 Wir betrachten die Funktion $\sin(4\pi x)y$ und zeichnen die Niveaulinien für $-0.5, 0, 0.5$. 
 \begin{sage}
->> objekt:=plot::Implicit2d(
-  sin(PI*4*x)*y,x=-1..1,y=-1..1,
-       Mesh=[10,10],
-       Contours = [-0.5, 0, 0.5])
->> plot(objekt)
+>> contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
 \end{sage}
-Die Angabe vieler Stützstellen mit Hilfe von \verb+Mesh+ erhöht hier die Genauigkeit (und die Rechenzeit) der Niveaulinien zum Teil gravierend!
+\verb+fill=True+ würde die Flächen zwischen den Linien ausfüllen.
 \end{frame}
 
 \begin{frame}[fragile]{Punkte zeichnen}
-Mittels {\color{blue} \verb+plot::PointList2d+} 
+Mittels {\color{blue} \verb+point+} 
 können Punkte gezeichnet werden.
 
 Beispiel:
 \begin{sage}
->> Objekt:=plot::PointList2d(
- [[i,sin(i*6.28/50)] $\text{dollar}$ i=0..50],
- PointStyle=FilledSquares, 
- PointSize=2,
- Color=RGB::Blue): 
->> plot(Objekt) 
+>> point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30) 
+>> point2d.options
 \end{sage}
 \end{frame}
 
@@ -749,40 +738,36 @@ Man kann zeigen, dass für alle Startwerte ein $N_0$ existiert mit $x_{N_0}=1$.
 \begin{frame}[fragile]{Programm}
 \begin{small}
 \begin{sage}
-collatz:=proc(n)
-begin /* Collatz problem */
-   sequence := [n]; next_value := n;
-   while next_value > 1 do
-         if next_value mod 2 =0 then
-            next_value := next_value/2;
-         else
-             next_value := 3*next_value+1;
-         end_if;
-         sequence := sequence.[next_value];
-   end_while;
-   Objekt:=plot::PointList2d([[i,sequence[i]] 
-           $\text{dollar}$ i=1..nops(sequence)],
-           PointStyle=FilledSquares,PointSize=1): 
-   plot(Objekt);   
-   return(sequence);
-end_proc
+def collatz(n):
+    """ Collatz problem """
+    sequence = [n]; next_value = n;
+    while next_value > 1:
+        if next_value % 2 == 0:
+            next_value = next_value/2
+        else:
+            next_value = 3*next_value+1
+        sequence.append(next_value)
+    Objekt = point([(i,sequence[i]) for i in [0..len(sequence)-1] ]) 
+    Objekt.show()   
+    return sequence
 \end{sage}
 \end{small}
 \end{frame}
 
 \begin{frame}[fragile]{Animationen}
-Es ist mit MuPAD sehr einfach Animationen zu erstellen. Man betrachte die
-folgenden beiden Beispiele:
+mit dem Befehl \verb+animate()+ lassen sich einfach Animationen erstellen. 
+Beispiele:
 \begin{itemize}
 \item Zweidimensionales Beispiel
 \begin{sage}
->> plotfunc2d(a*x^2, x=-5..5, a=-10..10)
+>> a = animate([plot(a*x^2, (x,-5,5)) for a in [-10..10]],ymin=-100,ymax=100)
+>> a.show(iterations=1)
 \end{sage}
-\item Dreidimensionales Beispiel
-\begin{sage}
->> plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
-   x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
-\end{sage}
+% \item Dreidimensionales Beispiel
+% \begin{sage}
+% >> plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
+%    x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
+% \end{sage}
 \end{itemize}
 \end{frame}
 \end{document}
