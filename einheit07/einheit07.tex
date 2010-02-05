@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\usepackage[xetex,dvipdfmx]{animate}
 \input{../slide_header}
-\subtitle{Einheit 6}
+\subtitle{Einheit 7}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -92,9 +93,9 @@ aufgerufen werden. Funktionen haben den Datentyp \verb+expression+.
 Wie gewohnt können Abbildungen addiert, subtrahiert, multipliziert und
 dividiert werden:
 \begin{sage}
-f(x) = 1/(1+x); g(x) = sin(x^2)
-h = f+g; k = f*g; l = f/g
-h(a),k(a),l(a)
+>> f(x) = 1/(1+x); g(x) = sin(x^2)
+>> h = f+g; k = f*g; l = f/g
+>> h(a),k(a),l(a)
 \end{sage}
 \begin{sage}
 (1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
@@ -105,8 +106,8 @@ h(a),k(a),l(a)
 \begin{frame}[fragile]{Kompositionen in Sage I}
 Eine Komposition $f\circ g$ wird in Sage durch Ineinanderschachteln gelöst.
 \begin{sage}
-f_g(x) = f(g); g_f(x) = g(f)
-f_g(x), g_f(x)
+>> f_g(x) = f(g); g_f(x) = g(f)
+>> f_g(x), g_f(x)
 \end{sage}
 \begin{sage}
 (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
@@ -114,7 +115,7 @@ f_g(x), g_f(x)
 Mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
 \circ f(\cdot)$ wird in Sage ebenso druchgeführt.
 \begin{sage}
-g4(x) = g(g(g(g))); g4
+>> g4(x) = g(g(g(g))); g4
 \end{sage}
 \begin{sage}
 x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
@@ -144,7 +145,7 @@ als Ausdruck darstellt. Die Funktionsauswertung ist i.A. allerdings unterschiedl
   2*cos(1)
 \end{sage}
 \begin{sage}
-Ausdruck = 2*x*cos(x); Ausdruck(x=1)
+>> Ausdruck = 2*x*cos(x); Ausdruck(x=1)
 \end{sage}
 \begin{sage}
   2*cos(1)
@@ -175,7 +176,7 @@ Ausdruck = 2*x*cos(x); Ausdruck(x=1)
 \begin{frame}[fragile]{Ausdrücke und Funktionen II}
 Auch mehrere Veränderliche  sind möglich:
 \begin{sage}
-_=var('y');Funktion2(x) = x+sin(y); Funktion2
+>> _=var('y');Funktion2(x) = x+sin(y); Funktion2
 \end{sage}
 \begin{sage}
  x |--> x + sin(y)
@@ -261,8 +262,8 @@ Die Syntax des Befehls lautet
 \end{sage}
 Hierdurch wird der Grenzwert eines Ausdrucks mit Unbekannten $x$ an
 der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (in
-Sage \verb+infinity+ oder \verb+oo+).
-
+Sage \verb+infinity+ oder \verb+oo+).\\
+\bigskip
 Ruft man \verb+limit+ ohne \verb+option+ auf, so wird der beidseitige
 Limes berechnet. Falls \verb+dir='minus'+ ist, wird der linksseitige
 Limes berechnet; für \verb+dir='plus'+ der rechtsseitige.
@@ -371,7 +372,7 @@ gleichmäßig stetig.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Stetigkeit in MuPAD}
+\begin{frame}[fragile]{Stetigkeit in Sage}
 Für die Diskussion der Stetigkeit einer Funktion $f$ an einer Stelle
 $x_0$ sei auf den Abschnitt zu Grenzwerten verwiesen. \\
 \begin{sage}
@@ -508,18 +509,25 @@ eine Funktionenreihe. Aussagen über die Funktionenreihe sind, analog zum Fall d
 
 \begin{frame}[fragile]{Grafiken}
 \begin{itemize}
-\item Die Funktionen \verb+plot+ und \verb+plot3d+ dienen
+\item Die Funktionen \verb+<parametric_>plot()+ und \verb+<parametric_>plot3d()+ dienen
              zur Darstellung von Graphen von Funktionen mit einem
              bzw. zwei Argumenten. 
 \item Grafiken werden im Notebook integriert.
-\item Die meisten 3D-Grafiken können interaktiv bearbeitet werden.
+\item 3D-Grafiken können interaktiv bearbeitet werden.
 \end{itemize}
+Grafiken werden nicht direkt erzeugt, d.h. ausgegeben, sondern erst werden 
+{\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven 
+erzeugt. 
+
+Erst beim \verb+show()+ oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
+Szene} zusammengefaßt.
+
 \end{frame} 
 
 \begin{frame}[fragile]{plot()}
 Skalare Funktionen $f1,f2,\ldots$, können durch den Befehl
 \begin{sage}
->> plot(f1,(x,a,b))
+>> plot(f1,(x,a,b),optionen)
 \end{sage}
 auf dem Intervall $x \in [a,b]$. Dabei ist die Angabe  von
 \verb+(x,a,b)+ optional. Beispiele:
@@ -564,20 +572,18 @@ Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
 \end{frame}
 
 \begin{frame}[fragile]{Grafische Szene}
-Grafiken werden nicht direkt erzeugt, d.h. ausgegeben, sondern erst werden 
-{\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven 
-erzeugt. 
 
-Erst beim \verb+show()+ oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
-Szene} zusammengefaßt.
 \begin{sage}
 >> W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
 >> S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
 >> show(W + S, figsize=8)
 \end{sage}
+\begin{center}
+\includegraphics[width=7cm]{figures/ball.jpg} 
+\end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Optionen für grafische Szenen}
+\begin{frame}[fragile]{Ausgewählte Optionen für grafische Szenen}
 \begin{tabular}{lp{8cm}}
 \verb+aspect_ratio+ & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. \newline
               {\color{blue} \verb+aspect_ratio = 2+}\\
@@ -590,7 +596,7 @@ Szene} zusammengefaßt.
 \end{tabular}
 \end{frame}
 
-\begin{frame}[fragile]{(ein paar) Optionen für grafische Objekte}
+\begin{frame}[fragile]{Ausgewählte Optionen für grafische Objekte}
 \begin{tabular}{lp{8cm}}
 \verb+linestyle+  & Darstellung von Linien\newline
            (\verb+'-'+ (solid), \verb+'-.'+ (dashed), \verb+':'+) (dotted)\newline
@@ -621,16 +627,27 @@ $x$ und $y$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
 noch Optionen übergeben werden.
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
+\begin{frame}[fragile]{2D Kurven - Beispiele}
 \begin{sage}
 >> _=var('t');f1 = parametric_plot([t,sin(t)],(t,0,2*pi),color='red')
 >> f2 = parametric_plot([t,cos(t)],(t,0,2*pi),color='green')
 >> f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
 >> (f1+f2+f3).show(figsize=7)
 \end{sage}
+\begin{center}
+\includegraphics[width=7cm]{figures/parametric2d.pdf} 
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{2D Kurven - Beispiele}
 \begin{sage}
 >> [parametric_plot([cos(t),sin(t)],(t,0,2*pi),plot_points=2*k+1,randomize=False,adaptive_recursion=0 ) for k in [2..10]]
 \end{sage}
+\begin{center}
+\includegraphics[width=7cm]{figures/parametric2d_2.pdf} 
+\end{center}
+
 \end{frame}
 
 \begin{frame}[fragile]{Dreidimensionale Kurven}
@@ -640,13 +657,19 @@ Das Erzeugen einer dreidimensionaler Kurve, d.h. einer Kurve des $\mathbb{R}^3$ 
 \]
 Der Befehl ist  
 \begin{sage}
->> Objekt = parametric_plot([x,y,z],(t,a,b))
+>> Objekt = parametric_plot3d([x,y,z],(t,a,b))
 \end{sage}
 $x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
-noch Optionen übergeben werden. Beispiel:
+noch Optionen übergeben werden. 
+\end{frame}
+
+\begin{frame}[fragile]{3D Kurven - Beispiel}
 \begin{sage}
 >> parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
 \end{sage}
+\begin{center}
+\includegraphics[width=7cm]{figures/parametric3d.jpg} 
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Flächen}
@@ -655,39 +678,41 @@ noch Optionen übergeben werden. Beispiel:
 \item Die $x,y,z$ Koordinaten sind als Funktionen $x(t_1,t_2)$,
    $y(t_1,t_2)$, $z(t_1,t_2)$ zweier Parameter $t_1 \in [a,b]$ und $t_2 \in [c,d]$
    definiert. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Flächen}
-\begin{itemize}
 \item Beispielsweise lassen sich Graphen von Funktionen $f:[a
    ,b]\times [c,d]
    \ \rightarrow \ \mathbb{R}$ als Flächen
 \[ x=t_1, \ y=t_2, \ z=f(t_1,t_2) \]
 mit $a \leq t_1 \leq b, \ c \leq
    t_2 \leq d$ erklären.
-\item Die Oberfläche einer Kugel mit Radius $r$ ist gegeben durch:
-\[ x=r \cos(t_1) \sin(t_2), \ y=r \sin (t_1) \sin (t_2), z =r
-  \cos(t_2) \]
- mit $0 \leq t_1 \leq 2 \pi, 0 \leq t_2 \leq \pi.$ 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Flächen}
-Flächen werden in Sage erzeugt durch
+\begin{itemize}
+\item Die Oberfläche einer Kugel mit Radius $r$ ist gegeben durch:
+\[ x=r \cos(t_1) \sin(t_2), \ y=r \sin (t_1) \sin (t_2), z =r
+  \cos(t_2) \]
+ mit $0 \leq t_1 \leq 2 \pi, 0 \leq t_2 \leq \pi.$ 
+\item Flächen werden in Sage erzeugt durch
 \begin{sage}
 parametric_plot3d( [x(t1,t2), y(t1,t2), z(t1,t2)],(t1,a,b), (t2,c,d), Optionen):
 \end{sage}
-\bigskip
-Beispiel: Ellipsoid-Oberfläche
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Flächen - Beispiel}
+Ellipsoid-Oberfläche
 \begin{sage}
->> _=var('t1,t2')
->> r=1
+>> _=var('t1,t2');r=1
 >> x=r*cos(t1)*sin(t2)
 >> y=2*r*sin(t1)*sin(t2)
 >> z=r*cos(t2)
 >> parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 \end{sage}
+\begin{center}
+\includegraphics[width=5.5cm]{figures/surface.jpg} 
+\end{center}
+
 \end{frame}
 
 \begin{frame}[fragile]{Konturen}
@@ -705,23 +730,30 @@ Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiel}
+\begin{frame}[fragile]{Konturen - Beispiel}
 Wir betrachten die Funktion $\sin(4\pi x)y$ und zeichnen die Niveaulinien für $-0.5, 0, 0.5$. 
 \begin{sage}
 >> contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
 \end{sage}
 \verb+fill=True+ würde die Flächen zwischen den Linien ausfüllen.
+\begin{center}
+\includegraphics[width=6cm]{figures/contour.pdf} 
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Punkte zeichnen}
 Mittels {\color{blue} \verb+point+} 
 können Punkte gezeichnet werden.
 
-Beispiel:
+\textbf{Beispiel:}
 \begin{sage}
 >> point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30) 
 >> point2d.options
 \end{sage}
+\begin{center}
+\includegraphics[width=6cm]{figures/point2d.pdf} 
+\end{center}
+
 \end{frame}
 
 \begin{frame}{Ein Beispiel: Das Collatz Problem}
@@ -735,7 +767,7 @@ Man kann zeigen, dass für alle Startwerte ein $N_0$ existiert mit $x_{N_0}=1$.
 \end{frame}
 
 
-\begin{frame}[fragile]{Programm}
+\begin{frame}[fragile]{}
 \begin{small}
 \begin{sage}
 def collatz(n):
@@ -752,22 +784,27 @@ def collatz(n):
     return sequence
 \end{sage}
 \end{small}
+\begin{center}
+\includegraphics[width=5cm]{figures/collatz.pdf} 
+\end{center}
+
 \end{frame}
 
 \begin{frame}[fragile]{Animationen}
-mit dem Befehl \verb+animate()+ lassen sich einfach Animationen erstellen. 
-Beispiele:
-\begin{itemize}
-\item Zweidimensionales Beispiel
+mit dem Befehl \verb+animate()+ lassen sich einfach Animationen erstellen. Dies funktioniert nur für zweidimensionale plots.
+
+\textbf{Beispiel:}
 \begin{sage}
 >> a = animate([plot(a*x^2, (x,-5,5)) for a in [-10..10]],ymin=-100,ymax=100)
 >> a.show(iterations=1)
 \end{sage}
+\begin{center}
+\animategraphics[height=4cm]{2}{figures/anime_}{0}{20}
+\end{center}
 % \item Dreidimensionales Beispiel
 % \begin{sage}
 % >> plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
 %    x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
 % \end{sage}
-\end{itemize}
 \end{frame}
 \end{document}
