@@ -1,0 +1,695 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 8}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+% \begin{frame}[fragile]{Übersicht}
+% \begin{itemize}
+% \item Ableitungen
+% \item Mittelwertsatz
+% \item Taylorsche Formel und Taylorreihen
+% \item Das Riemannsche Integral
+% \item Uneigentliche Integrale
+% \end{itemize}
+% \end{frame}
+
+%======================================================
+\section{Differenzieren}
+%======================================================
+
+\begin{frame}{Ableitungen}
+Eine Funktion $f: D \ \rightarrow \mathbb{R}$ heißt {\color{red}  differenzierbar} an
+der Stelle $x_0 \in D$, wenn 
+\[ \lim_{x \rightarrow x_0} \frac{f(x)-f(x_0)}{x -x_0} \]
+existiert. \\
+Der Grenzwert wird {\color{red} Ableitung} oder {\color{red} Differentialquotient}
+von $f$ an $x_0$ genannt und mit $f'(x_0)=f^{(1)} (x_0)$ bezeichnet.
+\end{frame}
+
+
+\begin{frame}{Bemerkungen}
+\begin{itemize}
+\item Man sagt, dass $f$ {\color{red} differenzierbar} (auf $D$) ist, wenn $f$ an jeder
+Stelle von $D$ differenzierbar ist. Die so auf $D$ erklärte Funktion $f'$
+heißt {\color{red} Ableitung} von $f$.
+\item Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
+genau dann differenzierbar, wenn es eine lineare Abbildung
+$T:\mathbb{R} \rightarrow \mathbb{R}$ gibt, so dass 
+\[ f(x_0+h)=f(x_0) +Th + R(h)h, \quad \lim_{h \rightarrow 0} R(h)=0 \]
+gilt ($T$ und $R$ hängen i.A. von $x_0$ ab). 
+\item Ist $f$ an $x_0 \in D$ differenzierbar, so ist sie dort auch stetig.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiele}
+\begin{itemize}
+\item $(x^n)'=n x^{n-1}$
+\item $(e^x)'=e^x$
+\item $(\log(x))'= \frac{1}{x}$, $x>0$
+\item $(\sin(x))'=\cos(x)$
+\item $(\cos(x))'=-\sin(x)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Landau-Symbol}
+Sei $f$ eine Funktion, die auf einem Intervall definiert ist, das $0$
+enthält. Man schreibt {\color{red} $f(x)=O(x^n)$}, wenn es eine Kontante $C >0$
+gibt, so dass
+\[  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n} \leq C\]
+gilt. Man schreibt {\color{red} $f(x)=o(x^n)$}, wenn
+\[  
+ \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n}=0
+\]
+gilt.
+
+\textbf{Bedeutung:} $f(x)=O(x^n)$ bedeutet, dass $f$ für $x$ gegen
+$0$ mindestens so schnell gegen $0$ geht wie $x^n$. Im  Fall $f(x)=o(x^n)$
+fällt die Funktion schneller als $x^n$.
+\end{frame}
+
+\begin{frame}{Höhere Ableitungen}
+\begin{itemize}
+\item Man kann induktiv höhere Ableitungen definieren. Ist $f:D
+\rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
+$(n-1)$-ten Ableitung $f^{(n-1)}$ und ist $f^{(n-1)}$ wiederum
+differenzierbar, so nennen wir $f$ $n$-mal differenzierbar und
+bezeichnen die $n$-te Ableitung durch $f^{(n)}$. 
+\item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{(n)}$
+stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
+\item $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
+differenzierbar ist für alle $n\in \mathbb{N}$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ableitungen in Sage I}
+Durch {\color{blue} \verb+diff(<Ausdruck>,x)+} wird ein Ausdruck oder eine Funktion
+nach $x$ abgeleitet. \\
+\textbf{Beispiele:}
+\begin{sage}
+>> diff(sin(x),x)
+\end{sage}
+\begin{sage}
+cos(x)
+\end{sage}
+\begin{sage}
+>> diff(x^x,x)
+\end{sage}
+\begin{sage}
+(log(x) + 1)*x^x
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Ableitungen in Sage II}
+Höhere Ableitungen können auch bestimmt werden. Durch {\color{blue}
+\verb+diff(<Ausdruck>,x1,x2,x3,...)+}
+wird die Ableitung von \verb+<Ausdruck>+ bzgl. der Unbekannten $x1$
+berechnet. Dann wird der entstehende Ausdruck nach $x2$ differenziert,
+und so fort. 
+\begin{sage}
+>> _=var('x,y,a'); diff(x^2*y^2+a,x,y)
+\end{sage}
+\begin{sage}
+4*x*y
+\end{sage}
+\begin{sage}
+>> diff(1/x,x,10)
+\end{sage}
+\begin{sage}
+3628800/x^11
+\end{sage}
+
+\end{frame}
+
+
+% \begin{frame}[fragile]{Ableitungen in MuPAD III}
+% Sind mathematische Abbildungen nicht als Ausdrücke sondern als
+% Funktionen $f$ realisiert, so können sie durch den Befehl 
+% \begin{sage}
+% D([i],f) 
+% \end{sage} 
+% nach der $i$-ten Variablen differenziert werden. Rückgabewert ist
+% eine Funktion.
+% 
+% \verb+D([i,j,..],f)+ steht für
+% \verb+D(..D([j],D([i],f))..)+. 
+% 
+% Kurzschreibweise für \verb+D([1],f)+ ist $f'$ oder \verb+D(f)+, falls
+% $f$ eine Funktion bezüglich einer Unbekannten ist.
+% \end{frame}
+
+\begin{frame}[fragile]{Ableitungen - Beispiele}
+\begin{sage}
+>> f(x) = log(cos(x))
+>> f.diff(); diff(f); diff(f,x,x)
+\end{sage}
+\begin{sage}
+x |--> -sin(x)/cos(x)
+x |--> -sin(x)/cos(x)
+x |--> -sin(x)^2/cos(x)^2 - 1
+\end{sage}
+\begin{sage}
+>> g(x,y) = sin(x^2+y^2)
+>> g.diff(x,x,y)
+\end{sage}
+\begin{sage}
+(x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
+\end{sage}
+\end{frame}
+
+\begin{frame}{Differentationsregeln}
+Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
+$x_0 \in D$. Dann gilt
+\begin{itemize}
+\item $(f+g)'(x_0)=f'(x_0)+ g'(x_0)$,
+\item $(f \cdot g)'(x_0) = f'(x_0) \cdot g(x_0) + f(x_0)g'(x_0)$ (Produktregel),
+\item $(\frac{f}{g})'(x_0) = \frac{f'(x_0) g(x_0) - f(x_0)
+g'(x_0)}{(g(x_0))^2}$, falls $g(x_0) \neq 0$ (Quotientenregel).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Differentationsregeln}
+\begin{itemize}
+\item Kettenregel: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
+\rightarrow \mathbb{R}$ mit $f(D_f) \subset D_g$. Ferner seien $f$ an
+$x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
+\[ (g \circ f)(x_0) = g'(y_0) \cdot f'(x_0).  \]
+\item Leibnizsche Regel
+\[
+(f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{(k)} g^{(n-k)}.
+\]
+\item Es gilt für die Umkehrfunktion $f^{-1}$:
+\[(f^{-1})' \circ f = \frac{1}{f'}.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wichtige Sätze}
+\begin{itemize}
+\item Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie ein
+lokales Extremum, so gilt $f'(x_0)=0$.
+\item (Mittelwertsatz) Sei $f$ eine in dem Intervall $[a,b]$ stetige
+und in $(a,b)$ differenzierbare Funktion. Dann gibt es ein $\xi \in
+(a,b)$, so dass gilt
+\[ \frac{f(b)-f(a)}{b-a}= f'(\xi). \] 
+\item Eine differenzierbare Funktion auf dem Intervall $I$ ist genau
+dann konstant, wenn $f'(x)$ auf $I$ identisch verschwindet.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Regel von L'Hospital} 
+Seien $f,g: D \rightarrow \mathbb{R}$
+differenzierbar, und $g'(x) \neq 0$, $x \in D$ und 
+{\color{red} $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$}. Dann gilt
+\[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} =  \lim_{x \rightarrow a}
+\frac{f'(x)}{g'(x)}, \]
+falls der Limes auf der rechten Seite existiert.
+
+Der Fall $a=\pm\infty$ ist auch erlaubt!
+
+\textbf{Bemerkung}: Die Aussage gilt auch für $\lim_{x \rightarrow a} f(x)=\lim_{x \rightarrow a} g(x)= \infty$ 
+\end{frame}
+
+
+\begin{frame}[fragile]{L'Hospital - Beispiele}
+\begin{itemize}
+\item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
+\begin{sage}
+>> var('a');f(x) = log(x); g(x) = x^a
+>> assume (a>0)
+>> limit(diff(f(x),x)/diff(g(x),x),x=oo)
+\end{sage}
+\begin{sage}
+  0
+\end{sage}
+\begin{sage}
+>> assume(a,'integer') ??
+>> limit(f(x)/g(x),x=oo)
+\end{sage}
+\begin{sage}
+  0
+\end{sage}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{L'Hospital - Beispiele}
+\begin{itemize}
+\item Bestimmung von $\lim_{x \rightarrow 0} \frac{1-\cos (x/2)}
+{1 - \cos(x)}$:
+\begin{sage}
+>> f(x) = -cos(x/2)
+>> g(x) = 1-cos(x)
+>> limit(f(x)/g(x),x=0)
+\end{sage}
+\begin{sage}
+  -Infinity ??
+\end{sage}
+\begin{sage}
+>> limit(diff(f(x),x,x)/diff(g(x),x,x),x=0)
+\end{sage}
+\begin{sage}
+  1/4
+\end{sage}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------------------
+\section{Taylorsche Formel}
+%-------------------------------------------------------------
+
+\begin{frame}{Taylorsche Formel}
+Sei $f:I \rightarrow \mathbb{R}$ $(n+1)$-mal differenzierbar und seien
+$x,x_0 \in I$, $x \neq x_0$. Dann gibt es $\xi \in \mathbb{R}$, so
+dass
+\begin{eqnarray*}
+f(x)& = & f(x_0) + \frac{f'(x_0)}{1!}(x-x_0)+
+\frac{f''(x_0)}{2!}(x-x_0)^2\\[0.5cm]
+ & & + \cdots + \frac{f^n(x_0)}{n!}(x-x_0)^n +R_n(x,x_0) 
+\end{eqnarray*}
+gilt mit dem  {\color{red} Lagrangschen Restglied}
+\[ R_n(x,x_0) := \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}. \]
+\end{frame}
+
+\begin{frame}[fragile]{Restglied}
+Für das Restglied gibt es noch andere Darstellungen:
+\begin{itemize}
+\item Darstellung von \alert{Cauchy}
+\[ R_n(x,x_0)= \frac{f^{(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
+\item \alert{Integraldarstellung}
+\[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{(n+1)}(t)}{n!}  (x-t)^n dt.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Taylorreihe}
+Sei $f:I \rightarrow \mathbb{R}$ unendlich oft  differenzierbar und seien
+$x,x_0 \in I$, $x \neq x_0$. Dann nennt man die Reihe
+\[ \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n \]
+die {\color{red} Taylorreihe} von $f(x)$ um den Entwicklungspunkt
+{\color{red} $x_0$}.
+
+\textbf{Frage:} Wann stellt die Taylorreihe die Funktion $f$ dar
+und wann nicht?
+
+\textbf{Antwort:} Wenn das Restglied $R_n(x,x_0)$ für $n
+\rightarrow \infty$ gegen $0$ geht.
+\end{frame}
+
+\begin{frame}{Hinreichende Bedingungen}
+\begin{itemize}
+\item Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
+$ \delta:= \frac{1}{\limsup_{n \rightarrow \infty}
+\sqrt[n]{A_n}}>0$ mit $A_n=\sup_{x \in I}  \frac{|f^{(n)}(x)|}{n!}$ gilt.
+\item Gibt es ein $M>0$, so dass $|f^{(n)}(x)|\leq M^n$ ist für $x \in
+I$, $n \in \mathbb{N}$, so läßt sich $f$ auf $I$ durch die Taylorreihe
+darstellen.
+\item Es gebe ein $M$ mit  $f^{(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
+gilt die Taylorreihendarstellung für alle $x \in [a,b]$ mit
+$|x-x_0|<b-x$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiele}
+\begin{itemize}
+\item Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
+\[
+ f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n 
+ = \sum_{n=0}^k  \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\]
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Beispiele}
+\begin{itemize}
+\item Für $f(x)=\exp(x)$ und $x_0 \in \mathbb{R}$ gilt 
+\[ \exp(x)= \sum_{n=0}^\infty \frac{\exp(x_0)}{n!} (x-x_0)^n, \quad x
+\in \mathbb{R}.\]
+\item Für $f(x)=\log(x)$ und $x_0=1$ gilt
+\[ \log (x) = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}(x-1)^n, \quad 0 <
+x \leq 2.\]
+\item Für $f(x)= (1+x)^a$, $a\in \mathbb{R}$  und $x_0=0$ gilt
+\[ (1+x)^a= \sum_{n =0}^\infty \binom{a}{n}{x^n}, \quad -1 <
+x < 1. \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Visualisierung I}
+Entwickle $f(x)=exp(x)$ um $x_0=0$. Wir entwickeln gemäß der Taylorformel und erhalten die
+Approximationen $g_0(x):=1$, $g_1(x):=1+x$,
+$g_2(x):=1+x+\frac{1}{2}x^2$, $g_3(x)=\sum_{i=0}^3 \frac{x^i}{i!}$ und 
+$g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$.
+
+\begin{sage}
+>> var('n,k');f(x) = exp(x)
+>> g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
+\end{sage}
+\begin{sage}
+[1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
+1/6*x^3 + 1/2*x^2 + x + 1]
+\end{sage}
+\begin{sage}
+>> p = plot(f,(-3,2),color='black')
+>> for n in [0..4]:
+>>     p += plot(g[n],(-3,2),rgbcolor=hue(n/5),label=n)
+>> p.show()
+\end{sage}
+\end{frame} 
+
+\begin{frame}[fragile]{Visualisierung II}
+ \begin{center}
+  \includegraphics[width=\textwidth]{figures/taylorexp.pdf}
+ \end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Gegenbeispiel}
+Die Funktion
+\[ f(x) = \left \{ \begin{array}{ll}
+\exp(-1/x^2), & \mbox{ für } x \neq 0\\
+0, & \mbox{ für } x = 0\\
+\end{array} \right. \]
+ist nicht durch ihre Taylorreihe an $x_0=0$ darstellbar. Die Taylorreihe zu $f$
+ist identisch $0$, da $f^n(0)=0$ ist für alle $n \in \mathbb{N}$. \\
+Plot: {\color{blue} \verb+plot(exp(-1/x^2),(-0.5,0.5))+}.
+\begin{center}
+  \includegraphics[height=4cm]{figures/taylorgegen.pdf}
+ \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Taylorformel in MuPAD}
+MuPAD ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
+berechnen. Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
+(mit Unbekannten $x$)
+am Entwicklungspunkt $x0$ kann durch
+\begin{sage}
+>> taylor(f,x=x0,n)
+\end{sage}
+berechnet werden. Rückgabewert ist ein Objekt vom Typ \verb+Series::Puiseux+.
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>> taylor1:=taylor(1/(1-x),x=0,5)
+\end{sage}
+\begin{sage}
+           2    3    4      5
+  1 + x + x  + x  + x  + O(x )
+\end{sage}
+\begin{sage}
+>> taylor2:=taylor(sin(x),x=2,5)
+\end{sage}
+\begin{sage}
+  sin(2) + cos(2) (x - 2) -
+                 2                 3
+   sin(2) (x - 2)    cos(2) (x - 2)
+   --------------- - --------------- +
+          2                 6
+                 4
+   sin(2) (x - 2)             5
+   --------------- + O((x - 2) )
+         24
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Bemerkungen}
+\begin{itemize}
+\item Das in den Darstellungen auftretende Symbol \verb+O+ ist das
+               Landau-Symbol. Mit ihm kann man in MuPAD rechnen. 
+\begin{sage}
+>> o1:=O(x^2): o2:=O(x^3):
+>> o1*o2, o1+o2, o1/o2
+\end{sage}
+\begin{sage}
+     5      2    / 1 \
+  O(x ), O(x ), O| - |
+                 \ x /
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Bemerkungen}
+\begin{itemize}
+\item Man kann mit den  Objekten des Typs  \verb+Series::Puiseux+
+             rechnen, insofern sie denselben Entwicklungspunkt haben. Z. B., können sie addiert oder
+             multipliziert werden.
+\begin{sage}
+>> taylor1+taylor2
+\end{sage}
+\begin{small}
+\begin{sage}
+  Error: different series variables or 
+   expansion points [Series::Puiseux::plus] 
+\end{sage}
+\end{small}
+\begin{sage}
+>> taylor3:=taylor(exp(x),x=2,5):
+>> taylor2*taylor3
+\end{sage}
+\begin{scriptsize}
+\begin{sage}
+                                                    2        3 
+      2          2                2       2  4 exp(2)  (x - 2) 
+exp(2) + 2 exp(2)(x - 2) + 2exp(2) (x - 2) + -----------------  
+                                                     3  
+           2        4 
+   2 exp(2)  (x - 2)             5 
+ + ------------------ + O((x - 2) ) 
+            3 
+\end{sage}
+\end{scriptsize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------
+\section{Integration}
+%------------------------------------------------
+
+\begin{frame}{Begriffe I}
+\begin{itemize}
+\item  Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
+                                 a_n=b$, so nennt man $Z=(a_0, \dots
+                                 ,a_n)$ eine {\color{red} Zerlegung} von
+                                 $[a,b]$.
+\item Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
+                                 Treppenfunktion}, wenn es eine
+                                 Zerlegung $Z$ von $[a,b]$ gibt, so dass
+                                 $\phi$ konstant ist auf jedem
+                                 Teilintervall $(a_i,a_{i+1})$ von $Z$.
+\item Wir erklären das Integral einer Treppenfunktion $\phi$ durch
+\[\int_Z \phi := \sum_{k=1}^n c_k (a_k -a_{k-1}).\]
+Dabei ist $Z$ die zugehörige Zerlegung und $c_k=\phi(x)$, $x\in
+(a_{k-1},a_k)$.  
+\item Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Begriffe II}
+Für eine beschränkte Funktion $f[a,b]\rightarrow \mathbb{R}$
+heißt
+\[ \int^*f:= \inf  \{ \int \psi \ | \ \psi \in T[a,b], f \leq \psi \}. \]
+das {\color{red} Oberintegral} und 
+\[ \int_*f:= \sup  \{ \int \psi \ | \ \psi \in T[a,b], f \geq \psi \}.\]
+das {\color{red} Unterintegral}. Es gilt für $\phi, \psi \in T[a,b]$ mit
+$\phi \leq f \leq \psi$ die Ungleichung
+\[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
+\end{frame}
+
+\begin{frame}[fragile]{Visualiserung mit MuPAD I}
+\begin{sage}
+>> p:=student::plotRiemann(cos(x), x = -PI..PI): 
+>> plot(p)
+\end{sage}
+\begin{center}
+%\includegraphics[width=8cm]{figures/riemann.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Visualiserung mit MuPAD II}
+\begin{sage}
+>> p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
+>> plot(p)
+\end{sage}
+\begin{center}
+%\includegraphics[width=8cm]{figures/riemann1.png}
+\end{center}
+\end{frame} 
+
+\begin{frame}{Das Riemannsche Integral}
+Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
+integrierbar}, wenn Ober- und Unterintegral von $f$ auf $[a,b]$ übereinstimmen.\\
+Der gemeinsame Wert heißt das {\color{red} Integral} von $f$ und wird mit 
+\[ \int_a^b f(x)dx \]
+bezeichnet. Dabei heißt $f$ der Integrand, $x$ die
+Integrationsvariable, und $a$, $b$ sind die Integrationsgrenzen.
+\end{frame}
+
+\begin{frame}{Eigenschaften}
+\begin{itemize}
+\item Linearität
+\[ \int_a^b (\alpha f + \beta g) dx = \alpha \int_a^b fdx + \beta
+\int_a^b g dx \]
+\item Monotonie
+\[  f \leq g \quad \Rightarrow \quad \int_a^b f dx \leq \int_a^b g
+dx.\]
+\item Ist $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
+$\max\{f,g\}$, $\min \{f,g \}$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wichtige Sätze}
+\begin{itemize}
+\item Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
+$F(x)= \int_a^x f(t) dt, x \in I $ eine differenzierbare Funktion mit
+$F'(x)=f(x)$. 
+\item Jede stetige Funktion besitzt eine {\color{red} Stammfunktion} $F$, also eine
+Funktion mit $F'(x)=f(x)$. 
+\item Für eine Stammfunktion $F$ benutzt man auch die Notation $\int
+f(x) dx$ und spricht von einem unbestimmten Integral.
+\item Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
+$ \int_a^b f(x)dx = f(\xi) (b-a)$.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Integrieren in MuPAD}
+\begin{itemize}
+ \item Bestimmte Integrale der Form $\int_a^b f(x) dx$ können in MuPAD
+berechnet werden durch: {\color{blue} \verb+int(f(x),x=a..b)+}
+Dabei ist \verb+f(x)+ ein unbestimmter Ausdruck.
+\item Unbestimmte Integrale können durch {\color{blue} \verb+int(f(x),x)+} bestimmt
+werden.
+\item Numerische Approximationen können durch die Funktion
+{\color{blue}\verb+numeric::int+} berechnet werden. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>>  int(sin(x),x=0..6)
+\end{sage}
+\begin{sage}
+  1 - cos(6)
+\end{sage}
+\begin{sage}
+>> int(exp(x)*x,x=2..3)
+\end{sage}
+\begin{sage}
+  2 exp(3) - exp(2)
+\end{sage}
+\begin{sage}
+>> int(1/x^2,x=1..infinity)
+\end{sage}
+\begin{sage}
+  1
+\end{sage}
+\begin{sage}
+>> numeric::int(sin(1/x)*x,x=1..2)
+\end{sage}
+\begin{sage}
+  0.9190591676
+\end{sage}
+\end{frame}
+
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>> int(x^2 *sin(x),x); int(sin(x)^4,x)
+\end{sage}
+\begin{small}
+\begin{sage}
+                        2
+  2 x sin(x) - cos(x) (x  - 2)
+
+                 3
+    cos(x) sin(x)    3 x   3 sin(2 x)
+  - -------------- + --- - ----------
+           4          8        16
+\end{sage}
+\end{small}
+\begin{sage}
+>> int(x^a*b,x)
+\end{sage}
+\begin{small}
+\begin{sage}
+         /    a + 1                               \
+         | b x                                    |
+piecewise| -------- if a <> -1, b ln(x) if a = -1 |
+         \   a + 1                                /
+\end{sage}
+\end{small}
+\end{frame}
+
+\begin{frame}{Uneigentliche Integrale}
+Sei $f$ auf $[a,b)$ erklärt (eventuell $b=\infty$) und sei $f$ auf jedem
+abgeschlossenen Teilintervall integrierbar. Man definiert
+\[  \int_a^b f(x)dx := \lim_{z \rightarrow b (-0)} \int_a^z f(x)dx,\]
+falls der Limes existiert. Man spricht von einem {\color{red}
+uneigentlichen Integral}.
+\end{frame}
+
+\begin{frame}{Funktionenfolgen}
+\begin{itemize}
+\item Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
+$[a,b]$. Konvergiert $(f_n)_n$ gleichmäßig, so ist die Grenzfunktion
+integrierbar mit
+\[ \int_a^b \lim_{n \rightarrow \infty} f_n(x) dx = \lim_{n
+\rightarrow \infty} \int_a^b f_n(x) dx .\]
+\item Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
+$[a,b]$. $(f'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
+\in [a,b]$ für den $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
+gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
+\rightarrow \infty} f_n'(x)$.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nützliches}
+Man kann das Verhalten von MuPAD an vielen Stellen den eigenen
+Wünschen anpassen. Dazu dienen die sogenannten {\color{red} Preferences}, die
+man sich durch \verb+Pref()+
+anzeigen lassen kann. Ändern kann man die Eigenschaften durch Aufruf
+der \verb+Eigenschaft+ mit der gewünschten neuen \verb+Einstellung+.
+\begin{sage}
+>> Pref::Eigenschaft(Einstellung)
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Einige Einstellungen}
+\begin{itemize}
+\item Die  Voreinstellung \verb+report+ steuert die regelmäßig
+angezeigten Informationen über reservierten Speicher, benutzten Speicher und
+Rechenzeit. Erlaubt sind Werte zwischen $0$ (Default)
+und $9$. Bei $9$ bekommt man ständig Informationen, bei $0$ nie.
+\begin{sage}
+>> Pref::report(9): int((x*sin(x)),x)
+\end{sage} 
+\item Darstellung von Gleitkommazahlen: \verb+floatFormat+. Dies funktioniert nur
+  bei ASCII-Darstellung.
+\begin{sage}
+>> Pref::floatFormat("e"): float(exp(-50))
+\end{sage}
+\begin{sage}
+  1.928749848e-22
+\end{sage}
+\begin{sage}
+>> Pref::floatFormat("f"): float(exp(-50))
+\end{sage}
+\begin{sage}
+  0.0000000000000000000001928749848
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nützliches}
+\begin{itemize}
+\item Durch {\color{blue} \verb+reset()+} wird MuPAD in den Anfangszustand
+zurückgesetzt. 
+\item Nach {\color{blue} \verb+setuserinfo(Any,n)+} gibt MuPAD weitere
+Informationen (je nach $n$) über die Funktionen zurück.
+\item Durch Voranstellen von {\color{blue}\verb+!+} kann man UNIX-Befehle innerhalb
+MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
+Verzeichnisses durch {\color{blue} \verb+!ls+} anzeigen lassen.
+\end{itemize}
+\end{frame}
+\end{document}
