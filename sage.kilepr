@@ -152,10 +152,10 @@ order=-1
 
 [item:einheit08/einheit08.tex]
 archive=true
-column=30
+column=10
 encoding=UTF-8
 highlight=LaTeX
-line=381
+line=593
 open=true
 order=6
 

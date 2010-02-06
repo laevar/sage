@@ -379,89 +379,80 @@ Plot: {\color{blue} \verb+plot(exp(-1/x^2),(-0.5,0.5))+}.
  \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Taylorformel in MuPAD}
-MuPAD ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
+\begin{frame}[fragile]{Taylorformel in Sage}
+Sage ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
 berechnen. Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
-(mit Unbekannten $x$)
-am Entwicklungspunkt $x0$ kann durch
+(mit Unbekannten $x$) am Entwicklungspunkt $x0$ kann durch
 \begin{sage}
->> taylor(f,x=x0,n)
+>> taylor(f, x, x0, n)
 \end{sage}
-berechnet werden. Rückgabewert ist ein Objekt vom Typ \verb+Series::Puiseux+.
+berechnet werden. 
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
 \begin{sage}
->> taylor1:=taylor(1/(1-x),x=0,5)
+>> taylor(1/(1-x),x,0,5)
 \end{sage}
 \begin{sage}
-           2    3    4      5
-  1 + x + x  + x  + x  + O(x )
+x^5 + x^4 + x^3 + x^2 + x + 1
 \end{sage}
 \begin{sage}
->> taylor2:=taylor(sin(x),x=2,5)
+>> taylor(sin(x),x,2,5)
 \end{sage}
 \begin{sage}
-  sin(2) + cos(2) (x - 2) -
-                 2                 3
-   sin(2) (x - 2)    cos(2) (x - 2)
-   --------------- - --------------- +
-          2                 6
-                 4
-   sin(2) (x - 2)             5
-   --------------- + O((x - 2) )
-         24
+1/120*(x - 2)^5*cos(2) + 1/24*(x - 2)^4*sin(2) - 1/6*(x - 2)^3*cos(2) -
+1/2*(x - 2)^2*sin(2) + (x - 2)*cos(2) + sin(2)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Bemerkungen}
-\begin{itemize}
-\item Das in den Darstellungen auftretende Symbol \verb+O+ ist das
-               Landau-Symbol. Mit ihm kann man in MuPAD rechnen. 
-\begin{sage}
->> o1:=O(x^2): o2:=O(x^3):
->> o1*o2, o1+o2, o1/o2
-\end{sage}
-\begin{sage}
-     5      2    / 1 \
-  O(x ), O(x ), O| - |
-                 \ x /
-\end{sage}
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Bemerkungen}
+% \begin{itemize}
+% \item Das in den Darstellungen auftretende Symbol \verb+O+ ist das
+%                Landau-Symbol. Mit ihm kann man in MuPAD rechnen. 
+% \begin{sage}
+% >> o1:=O(x^2): o2:=O(x^3):
+% >> o1*o2, o1+o2, o1/o2
+% \end{sage}
+% \begin{sage}
+%      5      2    / 1 \
+%   O(x ), O(x ), O| - |
+%                  \ x /
+% \end{sage}
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}[fragile]{Bemerkungen}
-\begin{itemize}
-\item Man kann mit den  Objekten des Typs  \verb+Series::Puiseux+
-             rechnen, insofern sie denselben Entwicklungspunkt haben. Z. B., können sie addiert oder
-             multipliziert werden.
-\begin{sage}
->> taylor1+taylor2
-\end{sage}
-\begin{small}
-\begin{sage}
-  Error: different series variables or 
-   expansion points [Series::Puiseux::plus] 
-\end{sage}
-\end{small}
-\begin{sage}
->> taylor3:=taylor(exp(x),x=2,5):
->> taylor2*taylor3
-\end{sage}
-\begin{scriptsize}
-\begin{sage}
-                                                    2        3 
-      2          2                2       2  4 exp(2)  (x - 2) 
-exp(2) + 2 exp(2)(x - 2) + 2exp(2) (x - 2) + -----------------  
-                                                     3  
-           2        4 
-   2 exp(2)  (x - 2)             5 
- + ------------------ + O((x - 2) ) 
-            3 
-\end{sage}
-\end{scriptsize}
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Bemerkungen}
+% \begin{itemize}
+% \item Man kann mit den  Objekten des Typs  \verb+Series::Puiseux+
+%              rechnen, insofern sie denselben Entwicklungspunkt haben. Z. B., können sie addiert oder
+%              multipliziert werden.
+% \begin{sage}
+% >> taylor1+taylor2
+% \end{sage}
+% \begin{small}
+% \begin{sage}
+%   Error: different series variables or 
+%    expansion points [Series::Puiseux::plus] 
+% \end{sage}
+% \end{small}
+% \begin{sage}
+% >> taylor3:=taylor(exp(x),x=2,5):
+% >> taylor2*taylor3
+% \end{sage}
+% \begin{scriptsize}
+% \begin{sage}
+%                                                     2        3 
+%       2          2                2       2  4 exp(2)  (x - 2) 
+% exp(2) + 2 exp(2)(x - 2) + 2exp(2) (x - 2) + -----------------  
+%                                                      3  
+%            2        4 
+%    2 exp(2)  (x - 2)             5 
+%  + ------------------ + O((x - 2) ) 
+%             3 
+% \end{sage}
+% \end{scriptsize}
+% \end{itemize}
+% \end{frame}
 
 %-------------------------------------------------
 \section{Integration}
@@ -497,25 +488,29 @@ $\phi \leq f \leq \psi$ die Ungleichung
 \[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
 \end{frame}
 
-\begin{frame}[fragile]{Visualiserung mit MuPAD I}
+\begin{frame}[fragile]{Visualisierung in Sage I}
 \begin{sage}
->> p:=student::plotRiemann(cos(x), x = -PI..PI): 
->> plot(p)
+>> f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
+>> rsf = f.riemann_sum(10,mode="midpoint")
+>> P = f.plot(rgbcolor=(0.7,0.1,0.5), plot_points=40)
+>> Q = rsf.plot(rgbcolor=(0.7,0.6,0.6), plot_points=40)
+>> L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]],rgbcolor=(0.7,0.6,0.6)) for (a,b),f in rsf.list()])
+>> (P + Q +L)
 \end{sage}
 \begin{center}
-%\includegraphics[width=8cm]{figures/riemann.png}
+\includegraphics[width=4.5cm]{figures/riemann.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Visualiserung mit MuPAD II}
-\begin{sage}
->> p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
->> plot(p)
-\end{sage}
-\begin{center}
-%\includegraphics[width=8cm]{figures/riemann1.png}
-\end{center}
-\end{frame} 
+% \begin{frame}[fragile]{Visualiserung mit MuPAD II}
+% \begin{sage}
+% >> p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
+% >> plot(p)
+% \end{sage}
+% \begin{center}
+% %\includegraphics[width=8cm]{figures/riemann1.png}
+% \end{center}
+% \end{frame} 
 
 \begin{frame}{Das Riemannsche Integral}
 Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
@@ -553,72 +548,59 @@ $ \int_a^b f(x)dx = f(\xi) (b-a)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Integrieren in MuPAD}
+\begin{frame}[fragile]{Integrieren in Sage}
 \begin{itemize}
- \item Bestimmte Integrale der Form $\int_a^b f(x) dx$ können in MuPAD
-berechnet werden durch: {\color{blue} \verb+int(f(x),x=a..b)+}
-Dabei ist \verb+f(x)+ ein unbestimmter Ausdruck.
-\item Unbestimmte Integrale können durch {\color{blue} \verb+int(f(x),x)+} bestimmt
+ \item Bestimmte Integrale der Form $\int_a^b f(x) dx$ können in Sage
+berechnet werden durch: {\color{blue} \verb+integrate(f,x,a,b)+}
+Dabei ist \verb+f+ ein Ausdruck.
+\item Unbestimmte Integrale können durch {\color{blue} \verb+integrate(f,x)+} bestimmt
 werden.
 \item Numerische Approximationen können durch die Funktion
-{\color{blue}\verb+numeric::int+} berechnet werden. 
+{\color{blue}\verb+numerical_integral(f,a,b)+} berechnet werden (benutzt die GSL-library). 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
+\begin{frame}[fragile]{Integrieren - Beispiele I}
 \begin{sage}
->>  int(sin(x),x=0..6)
+>>  integrate(sin(x),x,0,6)
 \end{sage}
 \begin{sage}
-  1 - cos(6)
+-cos(6) + 1
 \end{sage}
 \begin{sage}
->> int(exp(x)*x,x=2..3)
+>> integrate(exp(x)*x,x,2,3)
 \end{sage}
 \begin{sage}
-  2 exp(3) - exp(2)
+-e^2 + 2*e^3
 \end{sage}
 \begin{sage}
->> int(1/x^2,x=1..infinity)
+>> integrate(1/x^2,x,1,oo)
 \end{sage}
 \begin{sage}
   1
 \end{sage}
 \begin{sage}
->> numeric::int(sin(1/x)*x,x=1..2)
+>> numerical_integral(sin(1/x)*x,1,2)
 \end{sage}
 \begin{sage}
-  0.9190591676
+  (0.91905916759870254, 1.0203606488609102e-14)
 \end{sage}
 \end{frame}
 
 
-\begin{frame}[fragile]{Beispiele}
+\begin{frame}[fragile]{Integrieren - Beispiele II}
 \begin{sage}
->> int(x^2 *sin(x),x); int(sin(x)^4,x)
+>> assume(a<>-1);integrate(x^a*b,x)
 \end{sage}
-\begin{small}
 \begin{sage}
-                        2
-  2 x sin(x) - cos(x) (x  - 2)
-
-                 3
-    cos(x) sin(x)    3 x   3 sin(2 x)
-  - -------------- + --- - ----------
-           4          8        16
+b*x^(a + 1)/(a + 1)
 \end{sage}
-\end{small}
 \begin{sage}
->> int(x^a*b,x)
+>> forget();a=-1;integrate(x^a*b,x)
 \end{sage}
-\begin{small}
 \begin{sage}
-         /    a + 1                               \
-         | b x                                    |
-piecewise| -------- if a <> -1, b ln(x) if a = -1 |
-         \   a + 1                                /
+ b*log(x)
 \end{sage}
-\end{small}
 \end{frame}
 
 \begin{frame}{Uneigentliche Integrale}
