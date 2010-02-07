@@ -218,14 +218,13 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
 \begin{sage}
 >> var('a');f(x) = log(x); g(x) = x^a
->> assume (a>0)
+>> assume (a>0);assume(a,'integer')
 >> limit(diff(f(x),x)/diff(g(x),x),x=oo)
 \end{sage}
 \begin{sage}
   0
 \end{sage}
 \begin{sage}
->> assume(a,'integer') ??
 >> limit(f(x)/g(x),x=oo)
 \end{sage}
 \begin{sage}
@@ -240,18 +239,24 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \item Bestimmung von $\lim_{x \rightarrow 0} \frac{1-\cos (x/2)}
 {1 - \cos(x)}$:
 \begin{sage}
->> f(x) = -cos(x/2)
->> g(x) = 1-cos(x)
->> limit(f(x)/g(x),x=0)
+>> f(x) = sin(x); g(x) = x 
+>> limit(f(x)/g(x), x=0)
 \end{sage}
 \begin{sage}
-  -Infinity ??
+  1
 \end{sage}
 \begin{sage}
->> limit(diff(f(x),x,x)/diff(g(x),x,x),x=0)
+>> diff(f(x),x);diff(g(x),x)
 \end{sage}
 \begin{sage}
-  1/4
+cos(x) 
+1
+\end{sage}
+\begin{sage}
+>> limit(diff(f(x),x)/diff(g(x),x),x=0)
+\end{sage}
+\begin{sage}
+1
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -626,52 +631,52 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Nützliches}
-Man kann das Verhalten von MuPAD an vielen Stellen den eigenen
-Wünschen anpassen. Dazu dienen die sogenannten {\color{red} Preferences}, die
-man sich durch \verb+Pref()+
-anzeigen lassen kann. Ändern kann man die Eigenschaften durch Aufruf
-der \verb+Eigenschaft+ mit der gewünschten neuen \verb+Einstellung+.
-\begin{sage}
->> Pref::Eigenschaft(Einstellung)
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Einige Einstellungen}
-\begin{itemize}
-\item Die  Voreinstellung \verb+report+ steuert die regelmäßig
-angezeigten Informationen über reservierten Speicher, benutzten Speicher und
-Rechenzeit. Erlaubt sind Werte zwischen $0$ (Default)
-und $9$. Bei $9$ bekommt man ständig Informationen, bei $0$ nie.
-\begin{sage}
->> Pref::report(9): int((x*sin(x)),x)
-\end{sage} 
-\item Darstellung von Gleitkommazahlen: \verb+floatFormat+. Dies funktioniert nur
-  bei ASCII-Darstellung.
-\begin{sage}
->> Pref::floatFormat("e"): float(exp(-50))
-\end{sage}
-\begin{sage}
-  1.928749848e-22
-\end{sage}
-\begin{sage}
->> Pref::floatFormat("f"): float(exp(-50))
-\end{sage}
-\begin{sage}
-  0.0000000000000000000001928749848
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Nützliches}
-\begin{itemize}
-\item Durch {\color{blue} \verb+reset()+} wird MuPAD in den Anfangszustand
-zurückgesetzt. 
-\item Nach {\color{blue} \verb+setuserinfo(Any,n)+} gibt MuPAD weitere
-Informationen (je nach $n$) über die Funktionen zurück.
-\item Durch Voranstellen von {\color{blue}\verb+!+} kann man UNIX-Befehle innerhalb
-MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
-Verzeichnisses durch {\color{blue} \verb+!ls+} anzeigen lassen.
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Nützliches}
+% Man kann das Verhalten von MuPAD an vielen Stellen den eigenen
+% Wünschen anpassen. Dazu dienen die sogenannten {\color{red} Preferences}, die
+% man sich durch \verb+Pref()+
+% anzeigen lassen kann. Ändern kann man die Eigenschaften durch Aufruf
+% der \verb+Eigenschaft+ mit der gewünschten neuen \verb+Einstellung+.
+% \begin{sage}
+% >> Pref::Eigenschaft(Einstellung)
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Einige Einstellungen}
+% \begin{itemize}
+% \item Die  Voreinstellung \verb+report+ steuert die regelmäßig
+% angezeigten Informationen über reservierten Speicher, benutzten Speicher und
+% Rechenzeit. Erlaubt sind Werte zwischen $0$ (Default)
+% und $9$. Bei $9$ bekommt man ständig Informationen, bei $0$ nie.
+% \begin{sage}
+% >> Pref::report(9): int((x*sin(x)),x)
+% \end{sage} 
+% \item Darstellung von Gleitkommazahlen: \verb+floatFormat+. Dies funktioniert nur
+%   bei ASCII-Darstellung.
+% \begin{sage}
+% >> Pref::floatFormat("e"): float(exp(-50))
+% \end{sage}
+% \begin{sage}
+%   1.928749848e-22
+% \end{sage}
+% \begin{sage}
+% >> Pref::floatFormat("f"): float(exp(-50))
+% \end{sage}
+% \begin{sage}
+%   0.0000000000000000000001928749848
+% \end{sage}
+% \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Nützliches}
+% \begin{itemize}
+% \item Durch {\color{blue} \verb+reset()+} wird MuPAD in den Anfangszustand
+% zurückgesetzt. 
+% \item Nach {\color{blue} \verb+setuserinfo(Any,n)+} gibt MuPAD weitere
+% Informationen (je nach $n$) über die Funktionen zurück.
+% \item Durch Voranstellen von {\color{blue}\verb+!+} kann man UNIX-Befehle innerhalb
+% MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
+% Verzeichnisses durch {\color{blue} \verb+!ls+} anzeigen lassen.
+% \end{itemize}
+% \end{frame}
 \end{document}
