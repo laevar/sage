@@ -1,0 +1,85 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\input{aufg_header}
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Einheit 9}\\
+WS 2009/2010
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\begin{aufg}
+Geben Sie fünf Funktionen an, mit denen Sie symbolische Ausdrücke
+manipulieren können. Erklären Sie die Wirkungsweise der genannten
+Funktionen jeweils in einem Satz.
+\end{aufg}
+
+\begin{aufg}
+
+\end{aufg}
+
+\begin{aufg}
+
+\end{aufg}
+
+
+\begin{aufg}
+Erklären Sie in groben Zügen, was die Funktion \verb+assume+ bewirkt!
+Überlegen Sie sich sinnvolle Beispiele zur Veranschaulichung!
+\end{aufg}
+
+
+\begin{aufg}
+Geben Sie an, wie Sie die folgenden Terme mit Hilfe von MuPAD
+berechnen (angeben) können:
+\begin{enumerate}
+\item $\sqrt{2}$, $\sin (\pi/4)$.
+\item $\pi$ mit  $20$ signifikanten Stellen.
+\item Die $20$.te Ableitung des Ausdrucks $f$ bzgl. der Unbestimmten
+  $x$.
+\item Die Gleichung $x^3-2x^2+4=0$.
+\item Die Stammfunktion von $\sin(x)\cos(x)$.
+\end{enumerate}
+\end{aufg}
+
+\begin{aufg}
+Wie würden Sie mit MuPAD die folgende Reihe berechnen?
+\[ \sum_{n=1}^\infty \frac{1}{n^2+2n} \]
+\end{aufg}
+
+\begin{aufg}
+Schreiben Sie eine Funktion, die aus einer beliebigen Menge von Zahlen
+die Menge der Primzahlen bestimmt und zurückgibt. Wie würden Sie in
+MuPAD die Menge $\{1, 2, \dots, 100\}$ erzeugen? Welche Datencontainer
+in MuPAD kennen sie außer Mengen noch?
+\end{aufg}
+
+\begin{aufg}
+Welche Werte haben die Bezeichner \verb+x+, \verb+y+ und \verb+z+ nach
+den folgenden Eingaben. Zu welchen Auswertungen führt der jeweils
+letzte Aufruf?
+\begin{itemize}
+\item a.1:= 2: x:=a2 :a2:=a1: x
+\item y:=1: b1:=y: y:=b1-1: y
+\item c1:=3: c.c1:=c1 :z:=c3: c1
+\end{itemize}
+\end{aufg}
+
+\begin{aufg}
+Wo liegt der Fehler in den folgenden Programmzeilen?
+\begin{sage}
+>> x:=y: y:=z :z:=z-x:
+>> h:=x/z
+\end{sage}
+\end{aufg}
+
+\begin{aufg}
+Betrachten Sie die quadratische Gleichung
+\[  x^2 + px + q = 0 \]
+für $p,q \in \mathbb{R}$. Schreiben Sie eine Prozedur \verb+quadGl+, 
+die aus  $p,q \in \mathbb{R}$ mit Hilfe der $pq$-Formel eine Liste der reellen Lösungen 
+berechnet und zurückgibt. Wenn es keine reelle Lösung  gibt, soll eine leere
+Liste zurückgegeben werden.
+\end{aufg}
+
+\end{document}
+

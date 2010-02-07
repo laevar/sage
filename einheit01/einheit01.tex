@@ -36,8 +36,8 @@ auf den Rechnern \texttt{s1.math.uni-goettingen.de} bis \texttt{s8.math.uni-goet
 und \texttt{s241.math.uni-goettingen.de} bis \texttt{s245.math.uni-goettingen.de}
 \item Starten von Sage: Im Terminal 
 \begin{itemize}
- \item \texttt{sage} (Notebook)
-\item \texttt{sagetext}  (Textversion)
+ \item \texttt{sagenotebook} (Notebook)
+\item \texttt{sage}  (Kommandozeilen-Version)
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -201,6 +201,7 @@ program that he is not allowed to see?
 GAP, R, Magma, ..., wovon einige bereits bei Sage enthalten sind)
 \item Viele freie (Unterrichts-)materialien im Netz 
 \end{itemize}
+\pause
 \alert{Schwächen}
 \begin{itemize}
 \item Befehlsumfang nicht so mächtig wie bei Maple oder Mathematica
@@ -214,7 +215,7 @@ GAP, R, Magma, ..., wovon einige bereits bei Sage enthalten sind)
 %\end{center}
 %\end{frame}
 
-\begin{frame}{Kern von Sage}
+\begin{frame}{Kern von Sage ??}
 \begin{itemize}
 \item \alert{Parser:} Liest die Eingaben und überprüft die Syntax;
   Umwandlung in MuPAD-Datentyp
@@ -405,11 +406,12 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
 
 \begin{frame}[fragile]{Zusammenfassung}
 \begin{itemize}
+ \item Deklarieren von Variablen mir \verb+var()+, z.B.{\verb~var('a')~} 
 \item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
 \item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
 \item Symbolisches Rechnen 
 \begin{itemize}
-\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='plus')~}
+\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
 \item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
 \item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
 \end{itemize} 
@@ -703,8 +705,14 @@ Zahl $F_n$, die keine Primzahl ist!
 \begin{sage}
 >> def F(n): return 2^(2^n)+1
 >> [[F(m),is_prime(F(m))] for m in xrange(1,6) if is_prime (F(m))]
+\end{sage}
+\begin{sage}
 [[5, True], [17, True], [257, True], [65537, True]]
+\end{sage}
+\begin{sage}
 >> divisors(int(F(5)))
+\end{sage}
+\begin{sage}
 [1, 641, 6700417, 4294967297]
 \end{sage}
 \end{frame}
@@ -766,6 +774,7 @@ Teiler der Zahl $840$:
 \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
   Zeilenumbruch durch {\color{blue} <ENTER>} erreicht werden.
 \item Das Auswerten eines Blocks erfolgt mit {\color{blue} <SHIFT>+<ENTER>}.
+\item listen, tuple, for, if
 \end{itemize}
 \end{frame} 
 
@@ -775,10 +784,9 @@ Teiler der Zahl $840$:
 \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} reset()}
 %\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
 %\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
-\item typeset, 
-\item profiler und debugger -> commandline
-\item LaTex-doku : shift+klick auf blauen balken, dann einfach tex-notation
-\item dokumentieren ? editor?
+\item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben ``schön'' erscheinen (\LaTeX gerendert)
+%\item profiler und debugger -> commandline
+\item Html- \LaTeX-Dokumentation: \verb~shift+klick~ auf den blauen Balken über einer Textbox.
 \item publish
 \end{itemize}
 \end{frame}
@@ -789,6 +797,9 @@ Teiler der Zahl $840$:
 \item {\color{blue} Autocompletion :} mit der <TAB>-Taste erhält man alle möglichen Funktionen und/oder Variablen im gegebenen Kontext.
 \item {\color{blue} \textit{command}? :} gibt ausführliche Hilfe zu \textit{command} an.
 \item {\color{blue} help(\textit{command}) :} öffnet ein Hilfefenster zu \textit{command}.
+\item Hilfe für eine Funktion: \verb+limit?+ 
+\item Vorhandene Unterfunktionen: \verb+expr.<tab key>+
+
 \end{itemize}
 \end{frame}
 \end{document}

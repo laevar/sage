@@ -1,0 +1,787 @@
+\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\input{../slide_header}
+\subtitle{Einheit 9}
+\maketitle
+
+\begin{frame}{Aufbau}
+\tableofcontents
+\end{frame}
+
+% \begin{frame}{Übersicht}
+% \begin{itemize}
+% \item Klausur
+% \item Strings
+% \item Bedingungen
+% \item Schleifen
+% \item Gültigkeitsbereich von Variablen
+% \item Beispiele
+% \end{itemize}
+% \end{frame}
+
+\begin{frame}{Klausur}
+ \begin{itemize}
+\item Zeit: 10:00 --- 12:00
+\item  Ort: HS1 (A bis J) und AudiMax (K bis Z)
+\item  Hilfsmittlel: Papier, Schreibgerät(e) und Unterlagen in Papierform
+\item  Studenten-Ausweis mitbringen
+%\item  Ab 10:30 keine vorzeitige Abgabe möglich
+\end{itemize}
+
+\end{frame}
+
+%===================================================
+\section{Umgang mit Strings}
+%==================================================
+
+\begin{frame}[fragile]{Strings}
+\begin{itemize}
+\item Zeichenketten (engl. {\color{red} strings}) sind eine geordnete
+Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
+Sonderzeichen,...
+\item Mit ihnen kann man in MuPAD Texte gestalten. Sie sind wichtig
+für die Ausgabe der Ergebnisse.
+\item Sie haben den Datentyp \verb+DOM_STRING+.
+\item Sie werden innerhalb der  Begrenzer \verb+"+ angegeben.
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}[fragile]{Beispiele für Strings}
+\begin{sage}
+>> text1:="Dies ist ein String."
+\end{sage}
+\begin{sage}
+  "Dies ist ein String."
+\end{sage}
+\begin{sage}
+>> text2:="Dies ist noch ein String."
+\end{sage}
+\begin{sage}
+  "Dies ist noch ein String." 
+\end{sage}
+\begin{sage}
+>> domtype(text1)
+\end{sage}
+\begin{sage}
+  DOM_STRING
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff}
+Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
+extrahiert werden oder auch geändert werden.
+\begin{sage}
+>> text1[1], text1[4], text1[5]
+\end{sage}
+\begin{sage}
+  "D", "s", " "
+>> text1[4]:="i": text1
+\end{sage}
+\begin{sage}
+  "Diei ist ein String."
+\end{sage}
+Die extrahierten Teile sind wieder Strings.
+
+{\color{red} Vorsicht: In älteren Versionen von MuPAD beginnt die Indizierung bei $0$.}
+\end{frame}
+
+\begin{frame}[fragile]{Operationen für Strings I}
+\begin{itemize}
+\item Zusammenhängen von Strings
+\begin{sage}
+> A:="Letzte ": B:="Vorlesung": A.B
+\end{sage}
+\begin{sage}
+  "Letzte Vorlesung"
+\end{sage} 
+\item Ausgabe von Zeichenketten
+\begin{sage}
+>> print(Unquoted,A.B)
+\end{sage}
+\begin{sage}
+  Letzte Vorlesung
+\end{sage}
+\item Strings können nicht addiert oder multipliziert werden.
+\begin{sage}
+>> A+B
+\end{sage}
+\begin{sage}
+  Error: Illegal operand [_plus]
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Der .-Operator }
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\verb+obj1+ & \verb+obj2+  & \verb+obj1.obj2+ \\
+\hline 
+Zeichenkette  & Zeichenkette  & Zeichenkette \\
+Zeichenkette  & Bezeichner    & Zeichenkette \\
+Zeichenkette  & ganze Zahl   & Zeichenkette \\
+Zeichenkette  & Ausdruck  & Zeichenkette \\
+Bezeichner  & Zeichenkette  & Bezeichner \\
+Bezeichner  & Bezeichner  & Bezeichner  \\
+Bezeichner  & ganze Zahl  & Bezeichner  \\
+Bezeichner  & Ausdruck  & Bezeichner \\
+Liste  & Liste  & Liste \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Operationen für Strings II}
+\begin{itemize}
+\item \verb+length+ gibt die Anzahl der Zeichen in einer Zeichenkette
+an.
+\begin{sage}
+> a:=length(A.B); 
+\end{sage}
+\begin{sage}
+  16
+\end{sage}
+\begin{sage}
+>> (A.B)[a]
+\end{sage}
+\begin{sage}
+  "g"
+\end{sage}
+\item Beliebige MuPAD-Objekte können durch {\color{blue} \verb+expr2text+} in
+einen String verwandelt werden.
+\begin{sage}
+>> expr2text(x^2+2), expr2text([1,2,3])
+\end{sage}
+\begin{sage}
+  "x^2 + 2", "[1, 2, 3]"
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operationen für Strings III} 
+\begin{itemize}
+\item Nachfolgend ein Beispiel zur Maskierung von Sonderzeichen.
+\begin{sage}
+>> a:=expr2text("hallo"), a[1]
+\end{sage}
+\begin{sage}
+  "\"hallo\"" ,  "\""
+\end{sage}
+\item Weitere Befehle zur Manipulation von Strings findet man in
+der Bibliothek \verb+stringlib+. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Anwendungen}
+\begin{itemize}
+\item Geben Sie alle Bezeichner in alphabetischer Reihenfolge an!
+Erstellen Sie eine Liste aller Bezeichner!
+\begin{sage}
+>> A:=map(anames(All),expr2text)
+>> L:=[op(A)]
+>> sort(L)
+\end{sage}
+\item Schreiben Sie eine Funktion, die eine Zeichenkette rückwärts
+berechnet. 
+\begin{sage}
+>> revers:= A->_concat(A[length(A)-i+1]
+   $\text{dollar}$ i=1..length(A))
+\end{sage}
+\begin{sage}
+>> revers("Hallo")
+\end{sage}
+\begin{sage}
+  "ollaH"
+\end{sage}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Programmierung}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Größter gemeinsamer Teiler (ggT)}
+Berechnung des ggT von natürlichen Zahlen $a$ und $b$ mit Hilfe des
+euklidischen Algorithmus.
+\bigskip
+
+\textbf{Idee:} Es gilt:
+\begin{enumerate}
+ \item $ggT(a,b)=ggT(a,b-a)$ für $a<b$.
+\item $ggT(a,b)=ggT(b,a)$.
+\item $ggT(a,a)=a$.
+\end{enumerate}
+
+\textbf{Algorithmus:}
+
+Wiederhole,  bis $a=b$
+ \begin{itemize}
+\item Ist $a>b$, so $a=a-b$.
+\item Ist $a<b$, so $b=b-a$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung}
+\begin{sage}
+ggT:= proc(a,b) 
+/* Bestimme den ggT von a und b */
+begin
+  while (a<>b) do
+    if (a>b) 
+         then a:=a-b;
+         else b:=b-a;
+    end_if;
+  end_while;
+  return(a);
+end_proc:
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Logische Ausdrücke}
+\begin{itemize}
+\item Es gibt die drei logische (Boolsche) Werte {\color{blue}\verb+TRUE+},
+{\color{blue}\verb+FALSE+} und {\color{blue}\verb+UNKNOWN+}.
+\item Sie haben den Datentyp {\color{blue}\verb+DOM_BOOL+}.
+\item Gleichungen $(=)$, Ungleichungen $(<>)$ oder Größenvergleiche 
+(\verb+<,>,<=,>=+) können durch
+\verb+bool+ zu \verb+TRUE+ oder \verb+FALSE+ ausgewertet werden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Logische Ausdrücke}
+\begin{sage}
+>> bool(3<=4)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool(TRUE=TRUE)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool("AS"<="B")
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> bool(TRUE<>UNKNOWN)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Verknüpfungen}
+Logische Ausdrücke können durch logisches 'und' (\verb+and+),
+logisches 'oder' (\verb+or+) oder logisches 'nicht' (\verb+not+)
+miteinander verknüpft werden.
+\begin{sage}
+>> TRUE and FALSE, TRUE or FALSE
+\end{sage}
+\begin{sage}
+  FALSE, TRUE
+\end{sage}
+\begin{sage}
+>> TRUE and UNKNOWN, TRUE or UNKNOWN
+\end{sage}
+\begin{sage}
+  UNKNOWN, TRUE
+\end{sage}
+\begin{sage}
+>> not TRUE, not UNKNOWN
+\end{sage}
+\begin{sage}
+  FALSE, UNKNOWN
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Wahrheitstabellen}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+{\color{red} and} & TRUE & FALSE & UNKNOWN \\\hline
+TRUE & TRUE & FALSE & UNKNOWN \\\hline
+FALSE & FALSE & FALSE & FALSE \\\hline
+UNKNOWN & UNKNOWN & FALSE & UNKNOWN\\\hline
+\end{tabular}
+\bigskip
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+{\color{red} or} & TRUE & FALSE & UNKNOWN \\\hline
+TRUE & TRUE & TRUE & TRUE \\\hline
+FALSE & TRUE & FALSE & UNKNOWN \\\hline
+UNKNOWN & TRUE & UNKNOWN & UNKNOWN\\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-----------------------------
+\subsection{Schleifen}
+%----------------------------
+
+\begin{frame}[fragile]{Repeat}
+Neben \verb+for+ ist durch  \verb+repeat+ eine weitere Schleifenvariante gegeben:
+\begin{sage}
+x:=1.1:
+repeat
+  i:=x; x:=i^2; print(i,x)
+until x>100 end_repeat:
+\end{sage}
+Die Befehle zwischen \verb+repeat+ und \verb+until+ werden so lange
+wiederholt, bis die Bedingung (hier $x>100$) wahr wird.
+\end{frame}
+
+\begin{frame}[fragile]{while}
+So ähnlich wie die \verb+repeat+-Schleife funktioniert die
+\verb+while+-Schleife. 
+\begin{sage}
+x:=2:
+while x<=100 do
+ i:=x; x:=i^2; print(i,x)
+end_while:
+\end{sage}
+Die Befehle zwischen \verb+while+ und \verb+end_while+ werden so lange
+wiederholt, wie die Bedingung (hier $x<=100$) wahr ist.
+\end{frame}
+
+\begin{frame}[fragile]{Verzweigung}
+\begin{itemize}
+\item Ein wichtiges Werkzeug jeder Programmiersprache sind
+Verzweigungen. 
+\item Je
+nach Wert oder Bedeutung von Variablen werden unterschiedliche Befehle
+ausgeführt. 
+\item In MuPAD gibt es das \verb+if+-Konstrukt und das \verb+case+-Konstrukt. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel}
+\begin{sage}
+for i from 2 to 100 do
+ if isprime(i)
+   then print(i,"ist Primzahl")
+   else print(i,"ist keine Primzahl")
+ end_if
+end_for:
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{if-Konstrukt}
+Die Verzweigung \verb+if+ hat die folgende Struktur:
+\begin{sage}
+if Bedingung
+    then Befehle1
+    else Befehle2
+end_if
+\end{sage}
+Ist die \verb+Bedingung+ wahr, so wird \verb+Befehle1+ ausgeführt,
+ansonsten \verb+Befehle2+. Befehle in den Befehlsfolgen sind durch
+\verb+:+ oder \verb+;+ zu trennen. Der \verb+else+ Aufruf ist
+optional. 
+\end{frame}
+
+\begin{frame}[fragile]{Berechnung von Primzahlzwillingen}
+\begin{sage}
+T:=[]: anz:=0:
+for i from 2 to 10000 do
+ if (isprime(i) and isprime(i+2))
+     then anz:=anz+1;
+     T:=T.[[i,i+2]];
+ end_if:
+end_for:
+print("Anzahl = ",anz);
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Case}
+Hat man eine Verzweigung mit mehreren Alternativen, so kann man
+entweder geschachtelte \verb+if+ Konstrukte verwenden, oder das
+Konstrukt \verb+case+ verwenden. 
+
+\begin{sage}
+case var
+ of wert1 do ...
+ of wert2 do ...
+    ...
+ otherwise
+    ...
+end_case
+\end{sage}
+\verb+Case+ funktioniert wie die \verb+switch+ Anweisung in C.
+\end{frame}
+
+\begin{frame}[fragile]{Erklärung}
+\begin{itemize}
+\item Ist keiner der \verb+of+-Zweige richtig, so wird die
+ Befehlssequenz zwischen \verb+otherwise+ und \verb+end_case+
+ ausgeführt. 
+\item Durch den Befehl \verb+break+ kann ein vorzeitiges Verlassen
+ der \verb+case+-Anweisung bewirkt werden.
+\item Stimmt der Wert von \verb+var+ mit einem der Werte \verb+wert1+,
+\verb+wert2+, \ldots,  überein, werden von dieser Stelle an alle nachfolgenden Befehle 
+ausgeführt, insbesondere also auch von \alert{allen} anderen \verb+of+ und \verb+otherwise+ Sequenzen). Sogenanntes {\it 'fall-through'}. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiel: Betrag}
+\begin{sage}
+betrag:=proc(a) 
+     begin
+       case(domtype(a))
+         of DOM_INT do 
+         of DOM_RAT do
+         of DOM_FLOAT do
+           if a>0 then y:=a: else y:=-a: end_if:
+           break;
+         of DOM_COMPLEX do
+           y:=sqrt(Re(a)^2+Im(a)^2);
+           break;
+         otherwise
+           print("Falscher Eingabetyp");
+         end_case:
+         return(y);
+     end_proc:
+\end{sage}
+\end{frame}
+
+\begin{frame}{Gültigkeit von Variablen I}
+\begin{itemize}
+\item Mit der Gültigkeit von Variablen ist die Bestandsdauer von
+   Variablen bzw. der Werten dieser Variablen gemeint.
+\item Beim interaktiven Gebrauch von MuPAD sind alle Variablen {\it
+global}, d.h. die den Variablen zugewiesenen Werte bleiben für die
+gesamte Laufzeit von MuPAD erhalten bis sie geändert werden. Man kann
+auf die Variablen jederzeit zugreifen und die Werte der Variablen
+ändern.
+\item Daneben gibt es aber auch {\it lokale Variablen}, die nur
+innerhalb einer Prozedur gültig sind. Nach Beenden der Prozedur werden
+diese Variablen wieder gelöscht. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gültigkeit von Variablen II}
+\begin{itemize}
+\item In MuPAD sind in Prozeduren definierte Variablen standardmäßig
+\alert{global}. Die interaktiv erstellten Variablen sind sowieso
+global.
+\item Mit dem Schlüsselwort \verb+local+ können in Prozeduren lokale 
+Variablen erzeugt werden. \verb+local+ steht zwischen \verb+proc()+
+und \verb+begin+.
+\item Die lokalen Bezeichner sind vom Typ \verb+DOM_VAR+ (nicht wie
+erwartet \verb+DOM_IDENT+).  
+\item Die Input-Argumente von Prozeduren sind lokale Variablen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Goldene Regel}
+\begin{huge}
+\begin{block}{}
+ Die Verwendung von globalen Variablen in Prozeduren ist
+schlechter Programmierstil und sollte vermieden werden.
+\end{block}
+\end{huge}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+Ein Beispiel mit globalen Variablen
+\begin{sage}
+>> a:=b: 
+>> f:=proc() 
+      begin 
+        a:=1+a^2: 
+      end_proc:
+>> f(); f(); f()
+\end{sage}
+ Ein Beispiel mit lokalen Variablen
+\begin{sage}
+>> a:=b: 
+>> f:=proc() 
+      local a; 
+        begin a:=2 
+      end_proc:
+>> f(); a
+\end{sage}
+\end{frame}
+
+
+\begin{frame}[fragile]{Rekursives Beispiel}
+Berechnung der Fakultät einer natürlichen Zahl
+\begin{sage}
+/* Berechnung der Fakultaet */
+fakultaet := proc(n) begin
+       if domtype(n)=DOM_INT and n>0
+           then 
+              if n=1 then return(1)
+              else n*fakultaet(n-1)
+              end_if
+            else 
+              print("Falscher Datentyp");
+            end_if
+end_proc:
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Symbolische Rückgabe}
+\begin{sage}
+>> fakultaet(9)
+\end{sage}
+\begin{sage}
+  362880
+\end{sage}
+\begin{sage}
+>> x!
+\end{sage}
+\begin{sage}
+  fact(x)
+\end{sage}
+\begin{sage}
+>> fakultaet(x)
+\end{sage}
+\begin{sage}
+  "Falscher Datentyp"
+\end{sage}
+\begin{itemize}
+\item Viele Systemfunktionen wie \verb+fact+, geben den Prozeduraufruf
+               symbolisch zurück, wenn er nicht auszuwerten ist.
+\item Die Auswertung kann dann später erfolgen.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fakultät II}
+\begin{sage}
+/* Berechnung der Fakultaet */
+fakultaet2 := proc(n) 
+  begin
+       if testtype(n,Type::PosInt)
+           then 
+              if n=1 then return(1)
+              else n*fakultaet2(n-1)
+              end_if
+            else 
+              return(procname(args()));
+            end_if
+  end_proc:
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Erklärungen}
+\begin{itemize}
+\item Durch \verb+args()+ erhält man die Folge der Argumente. 
+\item \verb+args(0)+ ist die Anzahl der Argumente.
+\item Durch \verb+args(i)+ erhält man das $i$-te Element.
+\item Mit diesen Befehlen kann man Prozeduren mit einer beliebigen
+Anzahl von Argumenten programmieren.
+\item \verb+procname+ ist der Name der Prozedur.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Testen des Typs}
+Durch den Aufruf
+\begin{sage}
+testtype(Objekt, Typenbezeichner)
+\end{sage}
+wird getestet, ob ein \verb+Objekt+ dem Typenbezeichner
+entspricht. Rückgabewert ist \verb+TRUE+ oder \verb+FALSE+.
+\begin{itemize}
+\item Prinzipiell kann man auch \verb+domtype+ zum Überprüfen des Typs
+benutzen. 
+\item Die Typenbezeichner sind aber differenzierter.
+\item Übersicht der verfügbaren Typenbezeichner erhält man durch
+{\color{blue} \verb+? Type+}. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{sage}
+>> testtype(sqrt(3),Type::Real)
+\end{sage}
+\begin{sage}
+  FALSE
+\end{sage}
+\begin{sage}
+>> testtype(float(sqrt(3)),Type::Real)
+\end{sage}
+\begin{sage}
+  TRUE
+\end{sage}
+\begin{sage}
+>> testtype(3,Type::Real)
+\end{sage}
+\begin{sage}
+  TRUE 
+\end{sage}
+\begin{sage}
+>> select([i $\text{dollar}$ i=100..120],testtype,Type::Prime)
+\end{sage}
+\begin{sage}
+  [101, 103, 107, 109, 113]
+\end{sage} 
+\end{frame}
+
+
+\begin{frame}[fragile]{Mandelbrot-Menge}
+Die Mandelbrot-Menge ist die Menge von Punkten $c \in \mathbb{C}$
+bei denen die Folge $(z_n)_n$, die durch
+\[ z_0:=c, \qquad  z_{n+1} = z_n^2 +c, \quad n \in \mathbb{N}\]
+definiert ist, beschränkt ist.
+\end{frame}
+
+\begin{frame}[fragile]{Programm - Mandelbrot}
+\begin{small}
+\begin{sage}
+mandel:=proc(x,y)
+  local it,a0,a,MAX_IT;
+  begin
+    if not (testtype(x,Type::Real) and 
+           testtype(x,Type::Real))
+     then procname(x,y)
+    else
+      MAX_IT := 150;
+      it := 0;
+      a0 := x + I*y;
+      a := a0;
+      while (abs(a)<2 and it<MAX_IT) do
+        a := a^2 + a0;
+        it := it + 1;
+      end_while;
+      return(float(it/MAX_IT));
+    end_if;
+  end_proc:
+\end{sage}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]{Plot - Mandelbrot}
+Die Funktion \verb+mandel+ gibt zu $x+iy$ die relative Anzahl der
+Iterationsschritte zurück.\\
+
+Geplottet wird die Funktion nun wie folgt:
+ 
+\begin{sage}
+PlotteMandel:=proc()
+  begin
+    mandelPlot:=plot::Function3d(mandel(x,y),
+      x=-2.1..1.2, y=-1.1..1.1, Mesh=[100,100]);
+    plot(mandelPlot,Width=20*unit::cm, 
+      Height=15*unit::cm);
+  end_proc:
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Programmierregeln}
+\begin{itemize}
+\item Falls möglich, nur lokale Variablen benutzen.
+\item Programme vollständig kommentieren. Das heißt zum einen das eine
+Kommentarzeile zu Beginn steht, was das Programm macht und wieviele
+und welche Eingabeparameter es erhalten darf und was die Prozedur
+zurückgibt. Zusätzlich sollten auch alle wesentlichen Operationen
+kommentiert werden.
+\item Werte explizit mit \verb+return()+ zürückgeben.
+\item Programme übersichtlich gestalten, z.B. Schleifen oder
+Verzweigungen einrücken.
+\item Keine Umlaute in Programmkommentaren verwenden.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Letztes Beispiel I}
+\begin{sage}
+Gadisch:=proc(x,basis)
+  /*---------------------------------------
+   Berechnung der  Darstellung
+   einer natuerlichen Zahl x zur Basis b
+   Rueckgabe des Ergebnis als Liste! 
+  -----------------------------------------*/
+  local T,T_r,i;  /* lokale Variablen*/
+  begin /* Beginn lokale Prozedur */
+  /* Abfangen der Eingabe */
+    if not testtype(x,Type::PosInt) 
+       then return(procname(args()));
+    end_if;
+    if (not testtype(basis,Type::PosInt)) or basis=1
+       then return(procname(args()));
+    end_if;  
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Letztes Beispiel II}
+\begin{sage}
+    T:=[];  /* leere Liste */ 
+    /* Beginn Schleife */
+    while x>0 do  
+      T:=[x mod basis].T;
+      print(Unquoted,expr2text(x)." : "
+        .expr2text(basis)." = "
+        .expr2text(x div basis)." Rest "
+        .expr2text(x mod basis));
+      x:=(x div basis);
+    end_while;
+    /* Rueckgabe der Liste */
+    return(T);
+  end_proc:  
+\end{sage}
+\end{frame}
+
+\begin{frame}{Allerletztes Beispiel: Kochsche Kurven I}
+\begin{itemize}
+\item Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. 
+\item Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$.  
+\item Ersetze  diese Strecke durch 4 Strecken 
+$\overline{y_1 z_1}$, $\overline{z_1 z_2}$, $\overline{z_2 z_3}$,
+$\overline{z_3 y_2}$ mit Endpunkten 
+\begin{eqnarray*}
+ z_1 &=\frac23 y_1 + \frac13 y_2\\[0.5cm]
+ z_2 &= \frac{\sqrt{3}}{6} \left( \begin{array}{cc}
+ 0 & 1 \\ -1 & 0 \\
+ \end{array} \right)
+ (y_1 - y_2) + \frac12 (y_1 + y_2)\\[0.5cm]
+ z_3 &=\frac13 y_1 + \frac23 y_2
+\end{eqnarray*}
+\item Dieses Prozedere wird nun für jede einzelne Teilstrecke wiederholt.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Allerletztes Beispiel II}
+\begin{small}
+\begin{sage}
+koch:=proc(y1,y2,lev)
+  local z1,z2,z3;
+  begin
+    if (lev = 0)
+      then Listelinien:=append(Listelinien,
+        plot::Line2d([y1[1],y1[2]],[y2[1],y2[2]]));
+    else
+      /* Definieren der neuen Punkte */
+      z1 := 2/3 * y1 + 1/3 * y2;
+      z3 := 1/3 * y1 + 2/3 * y2;
+      z2 := sqrt(3)/6*matrix([[0, 1],[ -1, 0]])*
+              (y1-y2) + 1/2 * ( y1 + y2);
+      /* Definieren der 4 Strecken */
+      koch(y1, z1, lev-1);
+      koch(z1, z2, lev-1);
+      koch(z2, z3, lev-1);
+      koch(z3, y2, lev-1);
+    end_if;
+  end_proc:
+\end{sage}
+\end{small}
+\end{frame}
+
+\begin{frame}[fragile]{Allerletztes Beispiel III}
+\begin{sage}
+/* Einfacher Fall einer Linie */
+plotKoch1:=proc(lev)
+           begin
+             Listelinien := [];
+             y1 := matrix([0,0]);
+             y2 := matrix([1,0]);
+             koch(y1,y2,lev);
+             plot(Listelinien, Axes = None);
+           end_proc:
+\end{sage}
+\end{frame}
+\end{document}
