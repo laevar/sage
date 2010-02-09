@@ -76,15 +76,24 @@
 %Grauhinterlegeter Text
 %Automatischer Zeilenumbruch ist aktiviert
 \usepackage{listings}
+% This command allows you to typeset syntax highlighted Matlab
+% code ``inline''.
+\newcommand{\isage}[1]{\lstinline|#1|}
+
 \definecolor{lgray}{gray}{0.80}
+\definecolor{gray}{gray}{0.3}
+\definecolor{darkgreen}{rgb}{0,0.4,0}
+\definecolor{darkblue}{rgb}{0,0,0.8}
+\definecolor{key}{rgb}{0,0.5,0} 
 %\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray},language=Python, emphstyle=\color{red}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true,escapechar=§}}{}
+\lstnewenvironment{sage}[1][]{\lstset{xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{} 
+\lstnewenvironment{sagein}[1][]{\lstset{#1}}{} 
+%\lstnewenvironment{sage}{\lstset{,language=python, keywordstyle=color{blue},    commentstyle=color{green}, emphstyle=\color{red}, %frame=single, stringstyle=\color{red}, basicstyle=\ttfamily, ,mathescape =true,escapechar=§}}{}
 
 
 \usepackage{mydef}
 %\usepackage{cmap} % you can search in the pdf for umlauts and ligatures
 \usepackage{colonequals} %corrects the definition-symbols \colonequals (besides others)
-\title{Einführung in Sage}
 %
 %\subtitle{Disputation} % (optional)
 
@@ -96,7 +105,7 @@
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
-\date{\today}
+%\date{\today}
 
 \subject{Sage}
 % This is only inserted into the PDF information catalog. Can be left
@@ -159,5 +168,25 @@
 %\usepackage{sagetex}
 
 \begin{document}
-\lstset{basicstyle={\lstbasicfont\footnotesize}}
-
+\lstset{
+language=python,
+backgroundcolor=\color{lgray},
+breaklines=true,
+basicstyle=\ttfamily\small,
+%otherkeywords={ =},
+keywordstyle=\color{blue},
+stringstyle=\color{darkgreen},
+showstringspaces=false,
+emph={class, pass, in, for, while, if, is, elif, else, not, and, or,
+def, print, exec, break, continue, return},
+emphstyle=\color{blue},
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{key},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+%framexleftmargin=1mm, framextopmargin=1mm, 
+frame=single
+}

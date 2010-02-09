@@ -1,58 +1,50 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 2}
+\subtitle{Grundlagen, Symbolisches Rechnen, Gleichungen}
 \input{../slide_header}
-\subtitle{Einheit 2}
 \maketitle
 
 \begin{frame}{Aufbau}
 \tableofcontents
 \end{frame}
 
-%\begin{frame}{Übersicht}
-%\begin{enumerate}
-%\item Bezeichner, Zuweisungen, Datentypen und Objekte
-%\item Zerlegen von Objekten in seine Bestandteile
-%\item Symbolisches Rechnen
-%\item Gleichungen
-%\end{enumerate}
-%\end{frame}
-
 %=================================================
 \section{Grundlagen von Sage}
 %=================================================
 
-\begin{frame}[fragile]{Ein erstes Beispiel}
-\begin{sage}
->> f = x^2-3*x-18; solve(f==0,x)
-\end{sage}
-\begin{sage}
-[x == 6, x == -3]
-\end{sage}
+% \begin{frame}[fragile]{Ein erstes Beispiel}
+% \begin{sagein}
+% f = x^2-3*x-18; solve(f==0,x)
+% \end{sagein}
 % \begin{sage}
-% >> solve(f<=0,x) ??
+% [x == 6, x == -3]
 % \end{sage}
+% \begin{sagein}
+% solve(f<=0,x) ??
+% \end{sagein}
 % \begin{sage}
 %  [-3, 6] union 
 %  {I x + 3/2 | x in (-infinity, infinity)}
 % \end{sage}
-\begin{sage}
->> assume(x,Type::Real): solve(f<=0,x) ??
-\end{sage}
-\begin{sage}
- [-3, 6]
-   \end{sage}
-\begin{sage}   
->> x:=1: f  ??
-\end{sage}
-\begin{sage}
- -20
-\end{sage}
-\end{frame}
+% \begin{sagein}
+% assume(x,'real'): solve(f<=0,x) ??
+% \end{sagein}
+% \begin{sage}
+%  [-3, 6]
+%    \end{sage}
+% \begin{sagein}   
+% f(x=1)
+% \end{sagein}
+% \begin{sage}
+%  -20
+% \end{sage}
+% \end{frame}
 
 \begin{frame}[fragile]{Beispiel} 
 Betrachte:
-\begin{sage}
->> f = x^2-3*x-18
-\end{sage}
+\begin{sagein}
+f = x^2-3*x-18
+\end{sagein}
 \begin{itemize}
 \item Wie geht Sage mit der Unbekannten $x$ um?
 \item Welchen Datentyp hat $f$?
@@ -69,12 +61,12 @@ Unterstrich \_ zusammengesetzt.
 \item Sage unterscheidet zwischen Groß- und Kleinschreibung.
 \item Bezeichner dürfen nicht mit einer Ziffer beginnen
 \end{itemize}
-Beispiele für Bezeichner
+\textbf{Beispiele}
 \begin{itemize}
 \item zulässige Bezeichner:
-\verb+x+, \verb+f+, \verb+x23+, \verb+_x_1+
+\isage{x}, \isage{f}, \isage{x23}, \isage{_x_1}
 \item unzulässige Bezeichner:
-\verb+12x+, \verb+p~+, \verb+x>y+, \verb+Das System+
+\isage{12x}, \isage{p~}, \isage{x>y}, \isage{Das System}
 \end{itemize}
 \end{frame}
 
@@ -84,116 +76,66 @@ Beispiele für Bezeichner
 \item Der \alert{Wert} eines Bezeichners  ist ein \alert{Objekt} eines bestimmten
 \alert{Datentyps}.
 \item Ein \alert{Datentyp} ist durch seine Eigenschaften gegeben. \\
-Beispiel: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
+\textbf{Beispiel}: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
 \item Ein \alert{Objekt} ist eine Instanz (Einheit) eines Datentyps.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Zuweisungsoperator $:=$}
+\begin{frame}[fragile]{Zuweisungsoperator $=$}
 \begin{itemize}
-\item Die Operation {\color{blue} \verb+bez=wert+} weist dem Bezeichner
-\verb+bez+ den Wert \verb+wert+ zu.  
-\item Beispiele: {\color{blue} \verb+N=5+}, {\color{blue} \verb+f = x^2-3*x-18+}
-\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
+\item Die Operation {\color{blue} \isage{bez=wert}} weist dem Bezeichner
+\isage{bez} den Wert \isage{wert} zu.  
+\item {\color{blue} \isage{func(arg)=expr(arg)}} definiert die Funktion \isage{func} mit dem Argument \isage{arg} und weist dieser den Ausdruck \isage{expr} zu, der von \isage{arg} abhängen sollte
+%\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
 \item Warnung: Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
 dem logischen Operator {\color{blue} $==$}.   
+\item Löschen von Zuweisungen/Variablen: {\color{blue} \isage{reset('bezeichner')}}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{sage}
->> N=6; N
-\end{sage}
+\begin{frame}[fragile]{Beispiele: Zuweisung}
+\begin{sagein}
+N=6; N
+\end{sagein}
 \begin{sage}
   6
 \end{sage}
+\begin{sagein}
+x,y = var('x,y'); f = x+2*x*x-y; g(x) = x^2; f,g
+\end{sagein}
 \begin{sage}
->> x,y = var('x,y'); f = x+2*x*x-y; f
+(2*x^2 + x - y, x |--> x^2)
 \end{sage}
-\begin{sage}
-    2*x^2 + x - y
-\end{sage}
-\begin{sage}
->> x=pi;y = cos(x); x,y
-\end{sage}
+\begin{sagein}
+x=pi;y = cos(x); x,y
+\end{sagein}
 \begin{sage}
   (pi, -1)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Datentypen}
-
-\begin{sage}
->> type(5)
-\end{sage}
-\begin{sage}
-  <type 'sage.rings.integer.Integer'>
-\end{sage}
-\begin{sage}
->> f= x^2-3*x-18; type(f)
-\end{sage}
-\begin{sage}
-  <type 'sage.symbolic.expression.Expression'>
-\end{sage}
-\begin{sage}
->> type(x)
-\end{sage}
-\begin{sage}
-  <type 'sage.symbolic.expression.Expression'>
-\end{sage}
-\begin{sage}
->> f+f
-\end{sage}
-\begin{sage}
-2*x^2 - 6*x - 36
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Einige Datentypen}
-\begin{center}
-\begin{tabular}{|lll|}
-\hline
-Domain-Typ & Bedeutung & Beispiel\\
-\hline
-\verb+integer+ & ganze Zahlen & \verb+-3,0,100+\\
-\verb+rational+ & rationale Zahlen & \verb+7/11+\\
-\verb+float+ & Gleitpunktzahl & \verb+0.123+\\
-\verb+complex+ & komplexe Zahlen & \verb+complex(1,3)+\\
-\verb+symbolic.expression+ & symbolische Ausdrücke & \verb!x+y!\\
-\verb+bool+ & logische Werte: true/false&\verb+bool(1<2)+\\
-\hline
-\end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Befehle im Umgang mit $=$}
-\begin{itemize}
-\item Löschen von Zuweisungen: {\color{blue} \verb+reset('bezeichner')+}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiel: Auswertung}
-\begin{sage}
->> var('a') ; f(x) = x*x-3*x-a
-\end{sage}
+\begin{frame}[fragile]{Beispiele: Auswertung}
+\begin{sagein}
+var('a') ; f(x) = x*x-3*x-a
+\end{sagein}
 \begin{sage}
 x |--> x^2 - a - 3*x
 \end{sage}
-\begin{sage}
->> f(a=2)
-\end{sage}
+\begin{sagein}
+f(a=2)
+\end{sagein}
 \begin{sage}
  x^2 - 3*x - 2  2
 \end{sage}
-\begin{sage}
->> f(1)
-\end{sage}
+\begin{sagein}
+f(1)
+\end{sagein}
 \begin{sage}
   -a - 2
 \end{sage}
-\begin{sage}
->> f(1,a=2)
-\end{sage}
+\begin{sagein}
+f(1,a=2)
+\end{sagein}
 \begin{sage}
   -4
 \end{sage}
@@ -207,6 +149,53 @@ x |--> x^2 - a - 3*x
 Zeitpunkt der Zuweisung. 
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}[fragile]{Beispiele für Datentypen}
+
+\begin{sagein}
+type(5)
+\end{sagein}
+\begin{sage}
+  <type 'sage.rings.integer.Integer'>
+\end{sage}
+\begin{sagein}
+f = x^2-3*x-18; type(f)
+\end{sagein}
+\begin{sage}
+  <type 'sage.symbolic.expression.Expression'>
+\end{sage}
+\begin{sagein}
+type(x)
+\end{sagein}
+\begin{sage}
+  <type 'sage.symbolic.expression.Expression'>
+\end{sage}
+\begin{sagein}
+f+f
+\end{sagein}
+\begin{sage}
+2*x^2 - 6*x - 36
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Einige Datentypen}
+\begin{center}
+\begin{tabular}{|lll|}
+\hline
+Typ & Bedeutung & Beispiel\\
+\hline
+\isage{integer} & ganze Zahlen & \isage{-3,0,100}\\
+\isage{rational} & rationale Zahlen & \isage{7/11}\\
+\isage{float} & Gleitpunktzahl & \isage{0.123}\\
+\isage{complex} & komplexe Zahlen & \isage{complex(1,3)}\\
+\isage{expression} & symbolische Ausdrücke & \isage{x+y} \\
+\isage{bool} & logische Werte: true/false& \isage{bool(1<2)} \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
 
 %\begin{frame}{Auswertung}
 %\begin{itemize}
@@ -229,41 +218,41 @@ Zeitpunkt der Zuweisung.
 %\item Auswertungen können durch {\color{blue} eval} erzwungen werden.
 %\item Auswertungen können durch {\color{blue} hold} unterbunden werden.
 %\item Die Auswertungstiefe eines Bezeichners $a$ kann gezielt durch den Befehl
-%  {\color{blue} \verb+level(a,n)+} gesteuert werden ($n$ Auswertungstiefe).
+%  {\color{blue} \isage{level(a,n)}} gesteuert werden ($n$ Auswertungstiefe).
 %\end{itemize}
 %\end{frame}
 
 % \begin{frame}[fragile]{Beispiele I}
-% \begin{sage}
-% >> a:=sin(b)
-% \end{sage}
+% \begin{sagein}
+% a:=sin(b)
+% \end{sagein}
 % \begin{sage}
 %   sin(b)
 % \end{sage}
-% \begin{sage}
-% >> b:=0
-% \end{sage}
+% \begin{sagein}
+% b:=0
+% \end{sagein}
 % \begin{sage}
 %   0
 % \end{sage}
-% \begin{sage}
-% >> a
-% \end{sage}
+% \begin{sagein}
+% a
+% \end{sagein}
 % \begin{sage}
 %   0
 % \end{sage}
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Beispiele II}
-% \begin{sage}
-% >> %3,eval(%3)
-% \end{sage}
+% \begin{sagein}
+% %3,eval(%3)
+% \end{sagein}
 % \begin{sage}
 %   sin(b), 0
 % \end{sage}
-% \begin{sage}
-% >> a,hold(a)
-% \end{sage}
+% \begin{sagein}
+% a,hold(a)
+% \end{sagein}
 % \begin{sage}
 %   0, a
 % \end{sage} 
@@ -271,7 +260,7 @@ Zeitpunkt der Zuweisung.
 
 \begin{frame}{Operatoren}
 \begin{itemize}
-\item Typische Operatoren sind \verb~+,-,*,/,...~
+\item Typische Operatoren sind \verb~+,-,*,/,..~
 \item In Sage werden Objekte immer durch Funktionen miteinander
 verbunden. 
 %\item Operatoren sind in Sage auch als Funktionen realisiert.
@@ -295,79 +284,71 @@ Operator/Funktion &  Erklärung\\
 \verb!*! & Multiplikation \\
 \verb!/! & Division\\
 \verb!^! & Potenz\\
+\verb!%! &  Rest bei Division\\
 \verb!factorial()! & Fakultät \\
-\verb!mod()! &  Rest bei Division\\
 \hline
 \end{tabular}
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Zerlegen von Objekten}
+\begin{frame}[fragile]{Zerlegen von Ausdrücken}
 \begin{itemize}
-\item Viele Objekte sind zusammengesetzt. Ihre Bausteine heißen {\color{red}
+\item Viele Ausdrücke sind zusammengesetzt. Ihre Bausteine heißen {\color{red}
 Operanden.}
-%\item Durch {\color{blue} \verb+nops(Objekt)+} erhält man die Anzahl der
-%Operanden. 
-%\item Durch {\color{blue} \verb+op(Objekt)+} bzw. {\color{blue} \verb+op(Objekt,i)+}
-%erhält man alle Operanden bzw. den $i$-ten Operand.
-%\item Mittels {\color{blue} \verb+has(Objekt,a)+} kann untersucht werden, ob
-%$a$ ein Operand von \verb+Objekt+ ist.
-%\item Die Befehle beziehen sich jeweils auf die automatisch
-%vereinfachten Objekte.
-coeff
-arguments
-has
-nops()
-number\_of\_operands()
-operands()
-operator()
-: operator
-python grundlagen (lists, sets, for, while, if)
+\item Durch {\color{blue} \isage{Ausdruck.nops()}} erhält man die Anzahl der
+Operanden. 
+\item Durch {\color{blue} \isage{Ausdruck.operands()}} erhält man alle 
+Operanden
+\item Mittels {\color{blue} \isage{Ausdruck.has(a)}} kann untersucht werden, ob
+$a$ ein Operand vom \isage{Ausdruck} ist.
+\item Die Befehle beziehen sich jeweils auf die automatisch
+vereinfachten Objekte.
 \end{itemize}
 \end{frame}
 
-% \begin{frame}[fragile]{Beispiele I}
-% \begin{sage}
-% >> f:=_plus(a,b,c)
-% \end{sage}
-% \begin{sage}
-%   a + b + c
-% \end{sage}
-% \begin{sage}
-% >> nops(f), op(f), op(f,2)
-% \end{sage}
-% \begin{sage}
-%   3, a, b, c, b
-% \end{sage}
-% \begin{sage}
-% >> op(f,0)
-% \end{sage}
-% \begin{sage}
-%   _plus
-% \end{sage}
-% \begin{sage}
-% >> has(f,a), has(f,a+b)
-% \end{sage}
-% \begin{sage}
-%   TRUE, FALSE
-% \end{sage}
-% \end{frame}
-% 
-% \begin{frame}[fragile]{Beispiele II}
-% \begin{sage}
-% >> f:=x*z+3*x+sqrt(y):
-% >> op(f), nops(op(f,2))
-% \end{sage}
-% \begin{sage}
-%              1/2
-%   3 x, x z, y   , 2
-% \end{sage}
-% \end{frame}
+\begin{frame}[fragile]{Beispiele I ???}
+\begin{sagein}
+f:=_plus(a,b,c)
+\end{sagein}
+\begin{sage}
+  a + b + c
+\end{sage}
+\begin{sagein}
+nops(f), op(f), op(f,2)
+\end{sagein}
+\begin{sage}
+  3, a, b, c, b
+\end{sage}
+\begin{sagein}
+op(f,0)
+\end{sagein}
+\begin{sage}
+  _plus
+\end{sage}
+\begin{sagein}
+has(f,a), has(f,a+b)
+\end{sagein}
+\begin{sage}
+  TRUE, FALSE
+\end{sage}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele II}
+\begin{sagein}
+_=var('z,y');f = x*z+3*x+sqrt(y)
+f.operands(),(f.operands())[1], ((f.operands())[1]).nops()
+\end{sagein}
+\begin{sage}
+([x*z, 3*x, sqrt(y)], 3*x, 2)
+\end{sage}
+\end{frame}
+
+python grundlagen (lists, sets, for, while, if)
 
 % \begin{frame}[fragile]{Darstellungsbaum}
-% \begin{sage}
-% >> a = numerical_integral(exp(x^4),0,1)
-% \end{sage}
+% \begin{sagein}
+% a = numerical_integral(exp(x^4),0,1)
+% \end{sagein}
 % \begin{center}
 % \includegraphics[width=8cm, height=6cm]{figures/baum.png}
 % \end{center}
@@ -375,29 +356,26 @@ python grundlagen (lists, sets, for, while, if)
 
 % \begin{frame}[fragile]{Beispiel}
 % so unsinnig..
-% \begin{sage}
-% >> a:=int(exp(x^4),x=0..1):
-% >> op(a)
-% \end{sage}
+% \begin{sagein}
+% a:=int(exp(x^4),x=0..1):
+% op(a)
+% \end{sagein}
 % \begin{sage}
 %        4
 %   exp(x ), x = 0..1
 % \end{sage}
-% \begin{sage}
-% >> op(a,0)
-% \end{sage}
+% \begin{sagein}
+% op(a,0)
+% \end{sagein}
 % \begin{sage}
 %   int
 % \end{sage}
-% \begin{sage}
-% >> op(op(a,1))
-% \end{sage}
+% \begin{sagein}
+% op(op(a,1))
+% \end{sagein}
 % \begin{sage}
 %    4
 %   x
-% \end{sage}
-% \begin{sage}
-% >> prog::exprtree(a)
 % \end{sage}
 % \end{frame}
 
@@ -405,27 +383,27 @@ python grundlagen (lists, sets, for, while, if)
 Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
 der Benutzer gezielt Vereinfachungen anfordern.
 
-\begin{sage}
->> sin(15*pi), exp(0)
-\end{sage}
+\begin{sagein}
+sin(15*pi), exp(0)
+\end{sagein}
 \begin{sage}
   (0, 1)
 \end{sage}
-\begin{sage}
->> 2*Infinity-5
-\end{sage}
+\begin{sagein}
+2*Infinity-5
+\end{sagein}
 \begin{sage}
   +Infinity
 \end{sage}
-\begin{sage}
->> y = (-4*x+x^2+4)*(7*x+x^2+12); y
-\end{sage}
+\begin{sagein}
+y = (-4*x+x^2+4)*(7*x+x^2+12); y
+\end{sagein}
 \begin{sage}
  (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
 \end{sage}
-\begin{sage}
+\begin{sagein}
 y.full_simplify()
-\end{sage}
+\end{sagein}
 \begin{sage}
 x^4 + 3*x^3 - 12*x^2 - 20*x + 48
 \end{sage}
@@ -450,13 +428,13 @@ Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
 dividiert werden. 
 \begin{itemize}
 \item Definition
-\begin{sage}
->> var('x,y'); f = x*x+3*x+y; g = x-y
-\end{sage}
+\begin{sagein}
+var('x,y'); f = x*x+3*x+y; g = x-y
+\end{sagein}
 \item Potenz
-\begin{sage}
->> f^g
-\end{sage}
+\begin{sagein}
+f^g
+\end{sagein}
 \begin{sage}
    (x^2 + 3*x + y)^(x - y)
 \end{sage}
@@ -466,16 +444,16 @@ dividiert werden.
 \begin{frame}[fragile]{Verbinden von Ausdrücken II}
 \begin{itemize}
 \item Addition / Subtraktion
-\begin{sage}
->> f+g, f-g
-\end{sage}
+\begin{sagein}
+f+g, f-g
+\end{sagein}
 \begin{sage}
    (x^2 + 4*x, x^2 + 2*x + 2*y)
 \end{sage}
 \item Multiplikation/ Division
-\begin{sage}
->> f*g, f/g
-\end{sage}
+\begin{sagein}
+f*g, f/g
+\end{sagein}
 \begin{sage}
     ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
 \end{sage}
@@ -483,27 +461,27 @@ dividiert werden.
 \end{frame}
 
 \begin{frame}[fragile]{collect()}
-Durch {\color{blue} \verb+a.collect(Unbestimmte)+} wird der Ausdruck
-\verb+a+ bzgl. der \verb+Unbestimmten+ sortiert.
-\begin{sage}
->> f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
->> f.collect(x)
-\end{sage}
+Durch {\color{blue} \isage{a.collect(Unbestimmte)}} wird der Ausdruck
+\isage{a} bzgl. der \isage{Unbestimmten} sortiert.
+\begin{sagein}
+f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
+f.collect(x)
+\end{sagein}
 \begin{sage}
    a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
 \end{sage}
-\begin{sage}
->> f.collect(x*sin(x))
-\end{sage}
+\begin{sagein}
+f.collect(x*sin(x))
+\end{sagein}
 \begin{sage}
   a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
 \end{sage} 
-Durch {\color{blue} \verb+a.combine()+} wird der Ausdruck
+Durch {\color{blue} \isage{a.combine()}} wird der Ausdruck
 durch die Potenzgesetze zusammengefaßt.
-\begin{sage}
->> g = x^(a)*x^(b)
->> g.combine()
-\end{sage}
+\begin{sagein}
+g = x^(a)*x^(b)
+g.combine()
+\end{sagein}
 \begin{sage}
     x^(a + b)
 \end{sage}
@@ -512,45 +490,45 @@ durch die Potenzgesetze zusammengefaßt.
 
 \begin{frame}[fragile]{expand()}
 Ausmultiplizieren von  Ausdrücken erfolgt durch {\color{blue}
-\verb+a.expand()+} und {\color{blue} \verb+a.expand_trig()+}. \\
-\begin{sage}
->> expand((x+2)^4)
-\end{sage}
+\isage{a.expand()}} und {\color{blue} \isage{a.expand_trig()}}. \\
+\begin{sagein}
+expand((x+2)^4)
+\end{sagein}
 \begin{sage}
  x^4 + 8*x^3 + 24*x^2 + 32*x + 16
 \end{sage}
-\begin{sage}
->> (sin(x+y)).expand_trig()
-\end{sage}
+\begin{sagein}
+(sin(x+y)).expand_trig()
+\end{sagein}
 \begin{sage}
   sin(x)*cos(y) + sin(y)*cos(x)
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{expand() bei Gleichungen}
-\begin{sage}
->> a = (16*x-13)^2 == (3*x+5)^2/2
->> a.expand()
-\end{sage}
+\begin{sagein}
+a = (16*x-13)^2 == (3*x+5)^2/2
+a.expand()
+\end{sagein}
 \begin{sage}
   256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
 \end{sage}
-\begin{sage}
->> a.expand('left')
-\end{sage}
+\begin{sagein}
+a.expand('left')
+\end{sagein}
 \begin{sage}
   256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
 \end{sage}
-\begin{sage}
->> a.expand('right')
-\end{sage}
+\begin{sagein}
+a.expand('right')
+\end{sagein}
 \begin{sage}
   (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{factor()}
-Der Befehl {\color{blue} \verb+factor(Ausdruck)+} faktorisiert Polynome und
+Der Befehl {\color{blue} \isage{factor(Ausdruck)}} faktorisiert Polynome und
 Ausdrücke. 
 \begin{itemize}
 \item Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
@@ -558,27 +536,27 @@ Zahlen sind.
 \item Auch anwendbar auf rationale Funktionen. Es wird ein gemeinsamer
 Hauptnenner gesucht.
 \end{itemize}
-\begin{sage}
->> factor(x^2-2), factor(x^2-9/4)
-\end{sage}
+\begin{sagein}
+factor(x^2-2), factor(x^2-9/4)
+\end{sagein}
 \begin{sage}
 (x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
 \end{sage}
-\begin{sage}
->> factor(2 - 2/(x^2-1))
-\end{sage}
+\begin{sagein}
+factor(2 - 2/(x^2-1))
+\end{sagein}
 \begin{sage}
 2*(x^2 - 2)/((x - 1)*(x + 1))
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{partial\_fraction()}
-Durch {\color{blue} \verb+a.partial_fraction()+} wird ein rationaler Ausdruck in eine
+Durch {\color{blue} \isage{a.partial_fraction()}} wird ein rationaler Ausdruck in eine
 Summe rationaler Terme zerlegt, in denen jeweils der Zählergrad
 kleiner als der Nennergrad ist. (Partialbruchzerlegung)
-\begin{sage}
->> f = x^2/(x^2-1); f.partial_fraction()
-\end{sage}
+\begin{sagein}
+f = x^2/(x^2-1); f.partial_fraction()
+\end{sagein}
 \begin{sage}
  1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
@@ -593,15 +571,15 @@ f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f
 
 
 % \begin{frame}[fragile]{simplify}
-% Durch {\color{blue} \verb+rewrite(Ausdruck, Option)+} wird versucht, den
-% \verb+Ausdruck+ so umzuformen, das gewisse Funktionen aus dem Ausdruck
+% Durch {\color{blue} \isage{rewrite(Ausdruck, Option)}} wird versucht, den
+% \isage{Ausdruck} so umzuformen, das gewisse Funktionen aus dem Ausdruck
 % eliminiert werden. 
 % \begin{itemize}
-% \item Beispielsweise können \verb+sin+ und \verb+cos+ immer
-% durch \verb+tan+ ausgedrückt werden (Option: \verb+tan+).\\
-% \item Optionen sind \verb+diff+, \verb+exp+, \verb+fact+, \verb+gamma+, 
-% \verb+heavyside+, \verb+ln+, \verb+sign+,
-% \verb+sincos+, \verb+sinhcosh+, \verb+tan+.\\
+% \item Beispielsweise können \isage{sin} und \isage{cos} immer
+% durch \isage{tan} ausgedrückt werden (Option: \isage{tan}).\\
+% \item Optionen sind \isage{diff}, \isage{exp}, \isage{fact}, \isage{gamma}, 
+% \isage{heavyside}, \isage{ln}, \isage{sign},
+% \isage{sincos}, \isage{sinhcosh}, \isage{tan}.\\
 % \item Man versucht die Ausdrücke mit Hilfe der in der Option genannten
 % Funktion(en) auszudrücken.
 % \end{itemize}
@@ -609,30 +587,30 @@ f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f
 
 \begin{frame}[fragile]{Simplify}
 \begin{itemize}
-\item Durch {\color{blue} \verb+simplify_<target>(f)+} wird versucht den Ausdruck $f$
-zu vereinfachen. \verb+target+ entspricht verschiedenen Vereinfachungen.
-\item Mögliche \verb+target+ sind \verb+trig+, \verb+rational+,\verb+radical+, \verb+factorial+, \verb+full+
+\item Durch {\color{blue} \isage{simplify_<target>(f)}} wird versucht den Ausdruck $f$
+zu vereinfachen. \isage{target} entspricht verschiedenen Vereinfachungen.
+\item Mögliche \isage{target} sind \isage{trig}, \isage{rational},\isage{radical}, \isage{factorial}, \isage{full}
 \end{itemize}
-\begin{sage}
->> (2 - 2/(x^2-1)).simplify_rational()
-\end{sage}
+\begin{sagein}
+(2 - 2/(x^2-1)).simplify_rational()
+\end{sagein}
 \begin{sage}
  2*(x^2 - 2)/(x^2 - 1)
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Simplify I}
-\begin{sage}
->> f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
->> f.simplify()
-\end{sage}
+\begin{sagein}
+f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
+f.simplify()
+\end{sagein}
 \begin{sage}
 -sin(x)^2 - cos(x)^2 + x/(x + y) + y/(x + y)
 \end{sage}
-\begin{sage}
->> g = sqrt(997)-(997^3)^(1/6)
->> g.simplify()
-\end{sage}
+\begin{sagein}
+g = sqrt(997)-(997^3)^(1/6)
+g.simplify()
+\end{sagein}
 \begin{sage}
 0
 \end{sage}
@@ -640,16 +618,16 @@ zu vereinfachen. \verb+target+ entspricht verschiedenen Vereinfachungen.
 
 
 \begin{frame}[fragile]{Beispiele - Simplify II}
-\begin{sage}
->> (tan(x)).simplify_trig()
-\end{sage}
+\begin{sagein}
+(tan(x)).simplify_trig()
+\end{sagein}
 \begin{sage}
 sin(x)/cos(x)
 \end{sage}
-\begin{sage}
->> a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
->> a.simplify_full() 
-\end{sage}
+\begin{sagein}
+a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
+a.simplify_full() 
+\end{sagein}
 \begin{sage}
  0
 \end{sage}
@@ -665,19 +643,19 @@ sin(x)/cos(x)
 \begin{frame}[fragile]{Gleichungen}
 \begin{itemize}
 \item lineares Beispiel
-\begin{sage}
->> var('x,y')
->> Gleichungen = [x+y == 1, x-y == 1]
->> solve(Gleichungen,x,y)
-\end{sage}
+\begin{sagein}
+var('x,y')
+Gleichungen = [x+y == 1, x-y == 1]
+solve(Gleichungen,x,y)
+\end{sagein}
 \begin{sage}
   [[x == 1, y == 0]]
 \end{sage}
 \item nichtlineares Beispiel
-\begin{sage}
->> Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
->> solve(Gleichungen1,x,y)
-\end{sage}
+\begin{sagein}
+Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
+solve(Gleichungen1,x,y)
+\end{sagein}
 \begin{sage}
   [[x == 0, y == 1], [x == 1, y == 0]]
 \end{sage}
@@ -686,36 +664,36 @@ sin(x)/cos(x)
 
 \begin{frame}[fragile]{Vergleiche}
 \begin{itemize}
-\item Der Operator {\color{blue} \verb+==+} vergleicht zwei Objekte. 
+\item Der Operator {\color{blue} \isage{==}} vergleicht zwei Objekte. 
 \item {\color{blue}
-\verb+a==b+} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
+\isage{a==b}} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
 besitzen (und vom gleichen Typ sind). 
 \item Zur Überprüfung von Aussagen gibt es die Funktion
-{\color{blue} \verb+bool(Ausdruck)+}. Sie liefert als Ergebnis \verb+True+ oder
-\verb+False+.
-\item Die inverse Operation zu {\color{blue} \verb+'=='+} ist {\color{blue}
-\verb+'<>'+}, also \verb+a<>b+ ist \verb+True+, falls $a$ nicht gleich $b$
+{\color{blue} \isage{bool(Ausdruck)}}. Sie liefert als Ergebnis \isage{True} oder
+\isage{False}.
+\item Die inverse Operation zu {\color{blue} \isage{'=='}} ist {\color{blue}
+\isage{'<>'}}, also \isage{a<>b} ist \isage{True}, falls $a$ nicht gleich $b$
 ist. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Vergleiche I}
-\begin{sage}
->> bool(4-3==1)
-\end{sage}
+\begin{sagein}
+bool(4-3==1)
+\end{sagein}
 \begin{sage}
   True
 \end{sage}
-\begin{sage}
->> bool(4*x==x); x=0; bool(4*x==x)
-\end{sage}
+\begin{sagein}
+bool(4*x==x); x=0; bool(4*x==x)
+\end{sagein}
 \begin{sage}
  False
  True
 \end{sage}
-\begin{sage}
->> bool(x==0); bool(x<>0)
-\end{sage}
+\begin{sagein}
+bool(x==0); bool(x<>0)
+\end{sagein}
 \begin{sage}
  True
  False
@@ -723,9 +701,9 @@ ist.
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Vergleiche II}
-\begin{sage}
->> bool(0.5==1/2)
-\end{sage}
+\begin{sagein}
+bool(0.5==1/2)
+\end{sagein}
 \begin{sage}
   True
 \end{sage}
@@ -739,55 +717,55 @@ ist.
 
 \begin{frame}[fragile]{Lösen von Gleichungssystemen}
 \begin{itemize}
-\item \verb+solve+ ist der Befehl zum Lösen von Gleichungen und Gleichungssystemen.
-\item Der Befehl ist von der Form {\color{blue} \verb+solve(Gleichungen,Variablen,solution_dict)+}. 
-\item {\color{blue}\verb+Gleichungen+} kann ein System von Gleichungen sein.
-\item  {\color{blue}\verb+Variablen+} gibt an, wonach aufgelöst wird.
+\item \isage{solve} ist der Befehl zum Lösen von Gleichungen und Gleichungssystemen.
+\item Der Befehl ist von der Form {\color{blue} \isage{solve(Gleichungen,Variablen,solution_dict)}}. 
+\item {\color{blue}\isage{Gleichungen}} kann ein System von Gleichungen sein.
+\item  {\color{blue}\isage{Variablen}} gibt an, wonach aufgelöst wird.
 \item Bei einzelnen Gleichungen wird der Lösungswert
 zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
 Gleichungen zurückgegeben.
-\item Mit \verb+multiplicities=True+ erhält man alle möglichen Lösungen.
-\item {\color{blue}\verb+solution_dict=true+} gibt die Lösung als Dictonary zurück (Dazu später mehr)
+\item Mit \isage{multiplicities=True} erhält man alle möglichen Lösungen.
+\item {\color{blue}\isage{solution_dict=true}} gibt die Lösung als Dictonary zurück (Dazu später mehr)
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Solve I} 
-\begin{sage}
->> solve(x^2+x == y/4,x)
-\end{sage}
+\begin{sagein}
+solve(x^2+x == y/4,x)
+\end{sagein}
 \begin{sage}
 [x == -1/2*sqrt(y + 1) - 1/2, x == 1/2*sqrt(y + 1) - 1/2]
 \end{sage}
-\begin{sage}
->> solve(f == 0, x)
-\end{sage}
+\begin{sagein}
+solve(f == 0, x)
+\end{sagein}
 \begin{sage}
 [x == -I, x == I, x == 1]
 \end{sage}
-\begin{sage}
->> solve(f == 0, x, multiplicities=True)
-\end{sage}
+\begin{sagein}
+solve(f == 0, x, multiplicities=True)
+\end{sagein}
 \begin{sage}
 ([x == -I, x == I, x == 1], [1, 1, 5])
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele - Solve II} 
-\begin{sage}
->> assume(x>0); solve(x^2+x == y/4,y)
-\end{sage}
+\begin{sagein}
+assume(x>0); solve(x^2+x == y/4,y)
+\end{sagein}
 \begin{sage}
  [y == 4*x^2 + 4*x]
 \end{sage}
-\begin{sage}
->> solve([x^2-y^2 == 0],[x,y])
-\end{sage}
+\begin{sagein}
+solve([x^2-y^2 == 0],[x,y])
+\end{sagein}
 \begin{sage}
 ([x == -y, x == y], [1, 1])
 \end{sage}
-\begin{sage}
->> solve([x^2-y^2 == 0, x+y == 1],x,y)
-\end{sage}
+\begin{sagein}
+solve([x^2-y^2 == 0, x+y == 1],x,y)
+\end{sagein}
 \begin{sage}     
   {[x = 1/2, y = 1/2]}
 \end{sage}
