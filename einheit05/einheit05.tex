@@ -389,14 +389,15 @@ Mittels {\color{blue} \verb+zip(<Liste1>, <Liste2>)+} werden die Elemente zweier
 
 \begin{frame}[fragile]{Wörterbücher (Dictonaries)}
 \begin{itemize}
-\item Eine Tabelle besteht aus einer Ansammlung von \glq Assoziationen\grq\  der 
-Form \verb+<Index>:<Wert>+. Indizes und Werte können dabei beliebige Sage
+\item Eine Dictonary besteht aus einer Ansammlung von \glq Assoziationen\grq\  der 
+Form \verb+<Index>:<Wert>+. Indizes und Werte können dabei (fast) beliebige Sage
 Objekte sein. 
-\item Tabellen haben den Typ \verb+dict+.
-\item  Tabellen sind Datenstrukturen, die für das Speichern großer
+\item Dictonaries haben den Typ \verb+dict+.
+\item  Dictonaries sind Datenstrukturen, die für das Speichern großer
 Datenmengen gut geeignet sind.
 \item In Sage ist der indizierte Zugriff auf einzelne Elemente sehr
 schnell, da intern nicht die gesamte Datenstruktur durchsucht wird.
+\item der \verb+key+ ist eindeutig
 \end{itemize}
 \end{frame}
 
@@ -423,7 +424,7 @@ schnell, da intern nicht die gesamte Datenstruktur durchsucht wird.
 \begin{sage}
 {(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
 \end{sage}
-\item Erzeugen einer leeren Tabelle
+\item Erzeugen eines leeren Dictonaries
 \begin{sage}
 >> T1 = {}; T1
 \end{sage}

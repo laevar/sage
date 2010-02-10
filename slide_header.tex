@@ -31,12 +31,11 @@
 %rightskip=.3cm plus1fil]{title in head/foot}%
 %    \usebeamerfont{title in head/foot}\insertshorttitle\hfill
 
-\hfill\insertframenumber  \hspace{3pt}
-
-%\inserttotalframenumber
+%\hbox{\color{gray}\insertshorttitle\hfill\insertframenumber/\inserttotalframenumber}%\hspace{3pt}}
+\color{gray}\hfill\insertframenumber/\inserttotalframenumber\hspace{3pt}%
 %\hspace*{2ex}
 %  \end{beamercolorbox}}%
-  \vskip3pt%
+\vskip2pt%
 }
 
 \author{Jochen Schulz}

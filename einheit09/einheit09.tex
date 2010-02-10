@@ -18,7 +18,7 @@
 % \end{itemize}
 % \end{frame}
 
-interact , waermeleitungsgleichugn
+interact , waermeleitungsgleichugn, code-schnipsel aus sage-code
 
 \begin{frame}{Klausur}
  \begin{itemize}
@@ -277,50 +277,7 @@ end_proc:
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Verknüpfungen}
-Logische Ausdrücke können durch logisches 'und' (\verb+and+),
-logisches 'oder' (\verb+or+) oder logisches 'nicht' (\verb+not+)
-miteinander verknüpft werden.
-\begin{sage}
->> TRUE and FALSE, TRUE or FALSE
-\end{sage}
-\begin{sage}
-  FALSE, TRUE
-\end{sage}
-\begin{sage}
->> TRUE and UNKNOWN, TRUE or UNKNOWN
-\end{sage}
-\begin{sage}
-  UNKNOWN, TRUE
-\end{sage}
-\begin{sage}
->> not TRUE, not UNKNOWN
-\end{sage}
-\begin{sage}
-  FALSE, UNKNOWN
-\end{sage}
-\end{frame}
 
-\begin{frame}[fragile]{Wahrheitstabellen}
-\begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-{\color{red} and} & TRUE & FALSE & UNKNOWN \\\hline
-TRUE & TRUE & FALSE & UNKNOWN \\\hline
-FALSE & FALSE & FALSE & FALSE \\\hline
-UNKNOWN & UNKNOWN & FALSE & UNKNOWN\\\hline
-\end{tabular}
-\bigskip
-
-\begin{tabular}{|c|c|c|c|}
-\hline
-{\color{red} or} & TRUE & FALSE & UNKNOWN \\\hline
-TRUE & TRUE & TRUE & TRUE \\\hline
-FALSE & TRUE & FALSE & UNKNOWN \\\hline
-UNKNOWN & TRUE & UNKNOWN & UNKNOWN\\\hline
-\end{tabular}
-\end{center}
-\end{frame}
 
 %-----------------------------
 \subsection{Schleifen}

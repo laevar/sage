@@ -255,7 +255,6 @@ spricht deshalb vom {\color{red} Rang} einer Matrix.
 False
 False
 \end{sage}
-
 % \item Ist eine Matrix unitär ?
 % \begin{sage}
 % >> linalg::isUnitary(S)
@@ -272,6 +271,21 @@ False
 % \end{sage}
 \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]{Maps auf Matrizen}
+Mittels \verb+<matrix>.apply_map(<function>)+ kann auf jeden Eintrag von der Matrix \verb+<matrix>+ die Funktion \verb+<function>+ angewendet werden (wie bei \verb+map()+)
+\begin{sage}
+>> map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
+\end{sage}
+  	
+\begin{sage}
+[1.00000000000000 1.41421356237310]
+[1.73205080756888 2.00000000000000] 
+\end{sage}
+
+\end{frame}
+
+
 
 
 
@@ -433,7 +447,7 @@ Basis matrix:
 \end{sage}
 \item Testen der linearen Unabhängigkeit
 \begin{sage}
->> matrix.([s1,s2,s3]).rank() >= min(len(s1) ??
+>> m = matrix([s1,s2,s3]); m.rank() >= min(m.ncols, m.nrows)
 \end{sage}
 \begin{sage}
   False
@@ -441,12 +455,6 @@ Basis matrix:
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}[fragile]{Sage ??}
-\begin{sage}
-test.apply_map(sqrt) 
-\end{sage}
-\end{frame}
 
 
 % \begin{frame}[fragile]{Exkurs: Bibliotheken in MuPAD}
