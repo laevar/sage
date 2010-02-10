@@ -1,42 +1,22 @@
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-%\usepackage{latexsym}
-\usepackage{theorem}
-
-
-\usepackage{fontspec,xunicode,xltxtra}
-\usepackage[ngerman]{babel}
-\selectlanguage{ngerman}
-
-
 \usepackage[svgnames]{xcolor} %color definitions
+
+\input{../../common_header.tex}
+
 %\usepackage{tikz}
 %\usetikzlibrary{shadows}
 %\usetikzlibrary{fit}
 %\usetikzlibrary{shapes}
 %\usetikzlibrary{backgrounds}
 
-
-\usepackage{mcode}
-%\usepackage{pstricks,pst-node,pst-text,pst-3d}
 \parindent0cm % Abs�tze nicht einr�cken 
-
-%---- neue Umgebung f�r Aufgaben
-\theoremstyle{break}
-\theoremheaderfont{\Large \bf}
-\theorembodyfont{\normalfont}
-\DeclareMathOperator{\Real}{Re}
 
 % Definieren einer neuen Farbe
 \definecolor{light-gray}{gray}{.9}
 
 \newcounter{zaehler}     % neuen Z�hler einf�hren
 \stepcounter{zaehler}    % Z�hler einen hochz�hlen
-
-\usepackage{listings}
-\definecolor{lgray}{gray}{0.80}
-%\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sage}{\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true,mathescape =true}}{}
 
 \newenvironment{aufg}%
 %---- Header

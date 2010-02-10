@@ -9,7 +9,7 @@
 \end{frame}
 
 %=================================================
-\section{Grundlagen von Sage}
+\section{Grundlagen}
 %=================================================
 
 % \begin{frame}[fragile]{Ein erstes Beispiel}
@@ -39,6 +39,8 @@
 %  -20
 % \end{sage}
 % \end{frame}
+
+\subsection{Sage}
 
 \begin{frame}[fragile]{Beispiel} 
 Betrachte:
@@ -306,44 +308,79 @@ vereinfachten Objekte.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele I ???}
-\begin{sagein}
-f:=_plus(a,b,c)
-\end{sagein}
-\begin{sage}
-  a + b + c
-\end{sage}
-\begin{sagein}
-nops(f), op(f), op(f,2)
-\end{sagein}
-\begin{sage}
-  3, a, b, c, b
-\end{sage}
-\begin{sagein}
-op(f,0)
-\end{sagein}
-\begin{sage}
-  _plus
-\end{sage}
-\begin{sagein}
-has(f,a), has(f,a+b)
-\end{sagein}
-\begin{sage}
-  TRUE, FALSE
-\end{sage}
-\end{frame}
-
 \begin{frame}[fragile]{Beispiele II}
 \begin{sagein}
 _=var('z,y');f = x*z+3*x+sqrt(y)
-f.operands(),(f.operands())[1], ((f.operands())[1]).nops()
+f.operands(),(f.operands())[1],((f.operands())[1]).nops()
 \end{sagein}
 \begin{sage}
 ([x*z, 3*x, sqrt(y)], 3*x, 2)
 \end{sage}
+\begin{sagein}
+f.has(z), f.has(6) 
+\end{sagein}
+
+\begin{sage}
+ (True, False)
+\end{sage}
+
 \end{frame}
 
-python grundlagen (lists, sets, for, while, if)
+\begin{frame}[fragile]{Automatische Vereinfachung}
+Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
+der Benutzer gezielt Vereinfachungen anfordern.
+
+\begin{sagein}
+sin(15*pi), exp(0)
+\end{sagein}
+\begin{sage}
+  (0, 1)
+\end{sage}
+\begin{sagein}
+2*Infinity-5
+\end{sagein}
+\begin{sage}
+  +Infinity
+\end{sage}
+\begin{sagein}
+y = (-4*x+x^2+4)*(7*x+x^2+12); y
+\end{sagein}
+\begin{sage}
+ (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
+\end{sage}
+\begin{sagein}
+y.full_simplify()
+\end{sagein}
+\begin{sage}
+x^4 + 3*x^3 - 12*x^2 - 20*x + 48
+\end{sage}
+
+\subsection{Python}
+
+% \begin{frame}[fragile]{Beispiele II}
+%  \begin{sagein}
+% 
+% \end{sagein}
+% \begin{sage}
+% 
+% \end{sage}
+% \end{frame}
+
+\begin{frame}[fragile]{Datentypen}
+\begin{itemize}
+ \item lists
+\item tuples
+\end{itemize}
+
+ \begin{sagein}
+
+\end{sagein}
+\begin{sage}
+
+\end{sage}
+\end{frame}
+
+python grundlagen (lambda , objekt.methoden/funktionen ,for, while, if, syntax!)
 
 % \begin{frame}[fragile]{Darstellungsbaum}
 % \begin{sagein}
@@ -379,34 +416,6 @@ python grundlagen (lists, sets, for, while, if)
 % \end{sage}
 % \end{frame}
 
-\begin{frame}[fragile]{Automatische Vereinfachung}
-Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
-der Benutzer gezielt Vereinfachungen anfordern.
-
-\begin{sagein}
-sin(15*pi), exp(0)
-\end{sagein}
-\begin{sage}
-  (0, 1)
-\end{sage}
-\begin{sagein}
-2*Infinity-5
-\end{sagein}
-\begin{sage}
-  +Infinity
-\end{sage}
-\begin{sagein}
-y = (-4*x+x^2+4)*(7*x+x^2+12); y
-\end{sagein}
-\begin{sage}
- (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
-\end{sage}
-\begin{sagein}
-y.full_simplify()
-\end{sagein}
-\begin{sage}
-x^4 + 3*x^3 - 12*x^2 - 20*x + 48
-\end{sage}
 
 \end{frame} 
 

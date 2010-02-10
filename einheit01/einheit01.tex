@@ -386,9 +386,9 @@ x |--> -Infinity
 \end{sage}
 \item Definiere $f_{0}$, $f_{1}$, $f_{2}$
 \begin{sagein}
-f0 = f(x, a=0)
-f1 = f(x, a=-20)
-f2 = f(x, a=20);f0,f1,f2
+ f0 = f(x, a=0)
+ f1 = f(x, a=-20)
+ f2 = f(x, a=20);f0,f1,f2
 \end{sagein}
 \begin{scriptsize}
 \begin{sage}
@@ -399,11 +399,11 @@ f2 = f(x, a=20);f0,f1,f2
 \end{frame}
 
 \begin{frame}[fragile]{Plot}
-\begin{sagein}
+\begin{sage}
 p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
 p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
 p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
-\end{sagein}
+\end{sage}
 \begin{center}
 \includegraphics[height=4.5cm]{figures/graphen}
 \end{center}
@@ -411,7 +411,7 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
 
 \begin{frame}[fragile]{Zusammenfassung}
 \begin{itemize}
- \item Deklarieren von Variablen mir \isage{\1}, z.B.{\verb~var('a')~} 
+ \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
 \item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
 \item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
 \item Symbolisches Rechnen 
@@ -510,21 +510,21 @@ g.simplify_radical()
 % 
 % Beispiele:
 % 
-% \begin{sage}
+% \begin{sagein}
 % f:= x -> sin(x)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %  x -> sin(x)
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % g:=sin(x)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   sin(x)
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % f(1),g(1)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %  sin(1), sin(x)(1)
 % \end{sage}
@@ -532,27 +532,27 @@ g.simplify_radical()
 
 % \begin{frame}[fragile]{MuPAD unterscheidet 
 % strikt zwischen Funktionen und Ausdrücken II}
-% \begin{sage}
+% \begin{sagein}
 % int(f,x)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   Error: Illegal integrand [int]
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % int(f(x),x)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   -cos(x)
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % f(x)-g
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   0
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % h:=fp::unapply(g)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   x -> sin(x)
 % \end{sage}
@@ -582,9 +582,9 @@ g: \vec{x}=
 \end{frame}
 
 \begin{frame}[fragile]{Grafische Darstellung}
-\begin{sagein}
+\begin{sage}
 var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
-\end{sagein}
+\end{sage}
 \begin{sagein}
 p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
 \end{sagein}
@@ -648,13 +648,13 @@ b = vector([1,-1,2])
 \begin{frame}[fragile]
 \begin{itemize}
 \item Lösen von  $A \ L=b$
-\begin{sagein}
+\begin{sage}
 A.solve_right(b)
-\end{sagein}
+\end{sage}
 oder 
-\begin{sagein}
+\begin{sage}
 A\b
-\end{sagein}
+\end{sage}
 ergibt
 \begin{sage}
 (6/5, 3/5, -2/5)
@@ -724,8 +724,8 @@ fd(x^2)
 
 \begin{frame}[fragile]{Listen und Tuple}
  \begin{itemize}
-  \item Eine Liste ist in Sage (und Python) mit \isage{\1} gekennzeichnet 
-  \item Ein Tuple ist in Sage (und Python) mit \isage{\1} gekennzeichnet 
+  \item Eine Liste ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
+  \item Ein Tuple ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
 \item Beispiel:
 \begin{sagein}
 liste = [21,22,24,23]
@@ -735,7 +735,6 @@ tuple, tuple[0]
 \begin{sage}
 ((21, 24), 21) 
 \end{sage}
-
 \begin{sagein}
 liste.sort(); liste 
 \end{sagein}
@@ -750,7 +749,7 @@ liste.sort(); liste
 \begin{frame}[fragile]{Schleifen und Abfragen}
 
  \begin{itemize}
-  \item mit dem Konstrukt  \isage{\1} kann man einfache Schleifen konstruieren..
+  \item mit dem Konstrukt  \isage{[<expr(var)> for <var> in <range\|liste>]} kann man einfache Schleifen konstruieren..
 \begin{sagein}
 [m^2 for m in [1..5] ]
 \end{sagein}
@@ -838,6 +837,7 @@ divisors(840)
 \end{sagein}
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Nützliches und Hilfe}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -877,24 +877,3 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \end{itemize}
 \end{frame}
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
