@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 3}
+\subtitle{Mengen, Zahlen}
 \input{../slide_header}
-\subtitle{Einheit 3}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -31,27 +32,27 @@ $M \subset N$.
 
 \begin{frame}[fragile]{Mengen in Sage}
 \begin{itemize}
-\item Mengen in Sage haben den Typ \verb+sets.set+.
+\item Mengen in Sage haben den Typ \isage{sets.set}.
 \item Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
   Objekten. 
-\item Mengen werden als Listen in der Funktion \verb+Set([])+ angegeben.
-\item Leere Mengen werden durch \verb+leere_menge = Set([])+ definiert. 
+\item Mengen werden als Listen in der Funktion \isage{Set([])} angegeben.
+\item Leere Mengen werden durch \isage{leere_menge = Set([])} definiert. 
 \item Einträge werden durch Kommata getrennt.
-\item (Nummerierter) Zugriff auf Elemente der Menge $M$ kann durch \verb+M[n]+ erfolgen ($n\ge0$)
-\item Mit \verb+M[i:j]+ können auch Intervalle ausgegeben werden.
+\item (Nummerierter) Zugriff auf Elemente der Menge $M$ kann durch \isage{M[n]} erfolgen ($n\ge0$)
+\item Mit \isage{M[i:j]} können auch Intervalle ausgegeben werden.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele für Mengen}
-\begin{sage}
->> M1 = Set([x, 2,3,pi,sqrt(2)]); M1
-\end{sage}
+\begin{sagein}
+M1 = Set([x, 2,3,pi,sqrt(2)]); M1
+\end{sagein}
 \begin{sage}
   {x, 2, 3, pi, sqrt(2)}
 \end{sage}
-\begin{sage}
->> var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
-\end{sage}
+\begin{sagein}
+var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
+\end{sagein}
 \begin{sage}
   {y, 1, 2, {y, 1}, x}
 \end{sage}
@@ -60,24 +61,24 @@ $M \subset N$.
 \begin{frame}[fragile]{Befehle für Mengen I}
 \begin{itemize}
 \item Die Anzahl der Elemente in einer Menge:
-\begin{sage}
->> M1.cardinality()
-\end{sage}
+\begin{sagein}
+M1.cardinality()
+\end{sagein}
 \begin{sage}
   5
 \end{sage}
 \item Zugriff auf Elemente:
-\begin{sage}
->> M2[1]; M2[1:4]
-\end{sage}
+\begin{sagein}
+M2[1]; M2[1:4]
+\end{sagein}
 \begin{sage}
 1
 [1, 2, {y, 1}]
 \end{sage}
-%\item Ändern von Einträgen mit \verb+op+ und \verb+subsop+ ohne Nebeneffekt:
-%\begin{sage}
-%>> op(M2,3), subsop(M2,3=neu)
-%\end{sage}
+%\item Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
+%\begin{sagein}
+%op(M2,3), subsop(M2,3=neu)
+%\end{sagein}
 %\begin{sage}
 %  {1, y}, {1, 2, neu, x, y}
 %\end{sage}
@@ -87,23 +88,23 @@ $M \subset N$.
 \begin{frame}[fragile]{Befehle für Mengen II}
 \begin{itemize}
 \item Vereinigung, Differenz, Schnitt.
-\begin{sage}
->> L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
->> L1.union(L2), L1.difference(L2), L1.intersection(L2)
-\end{sage}
+\begin{sagein}
+L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
+L1.union(L2), L1.difference(L2), L1.intersection(L2)
+\end{sagein}
 \begin{sage}
 ({1, 2, 3, c, 5, a, b, 4}, {1, 2, 3}, {b, a})
 \end{sage}
 \item Prüfen, ob  ein Element enthalten ist:
-\begin{sage}
->> a in L1, c in L1
-\end{sage}
+\begin{sagein}
+a in L1, c in L1
+\end{sagein}
 \begin{sage}
 (True, False)
 \end{sage}
-\begin{sage}
->> Set([1,y]) in M2
-\end{sage}
+\begin{sagein}
+Set([1,y]) in M2
+\end{sagein}
 \begin{sage}
 True
 \end{sage}
@@ -113,18 +114,18 @@ True
 \begin{frame}[fragile]{Befehle für Mengen III}
 \begin{itemize}
 \item Auswählen von Elementen mit bestimmten Eigenschaften
-\begin{sage}
->> M = Set(range(1,15))
->> filter(is_prime,M)
-\end{sage}
+\begin{sagein}
+M = Set(range(1,15))
+filter(is_prime,M)
+\end{sagein}
 \begin{sage}
   [2, 3, 5, 7, 11, 13]
 \end{sage}
 \item Erzeugen der Potenzmenge
-\begin{sage}
->> Set(powerset([1,2,3]))
->> [s for s in Set([1..3]).subsets()]
-\end{sage}
+\begin{sagein}
+Set(powerset([1,2,3]))
+[s for s in Set([1..3]).subsets()]
+\end{sagein}
 \begin{sage}
  Set of elements of [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 \end{sage}
@@ -134,51 +135,52 @@ True
 \begin{frame}[fragile]{filter()}
 Äußerst nützlich und häufig verwendet ist es Mengen durch bestimmte Vorschriften als Teilmengen einer größeren Menge zu erzeugen.
 Durch den Aufruf 
-\begin{sage}
->> M1 = filter(f,M)
-\end{sage}
-wird aus der Menge \verb+M+ eine Menge \verb+M1+ extrahiert, die aus den
-Elementen $x\in M$ besteht, für die \verb+f(x)+ eine wahre Aussage
+\begin{sagein}
+M1 = filter(f,M)
+\end{sagein}
+wird aus der Menge \isage{M} eine Menge \isage{M1} extrahiert, die aus den
+Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
 ergibt. \\
-\verb+f+ ist eine Abbildung auf die Boolschen Werte True/False. 
+\isage{f} ist eine Abbildung auf die Boolschen Werte True/False. 
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel - filter()}
-\begin{sage}
->> M = Set(range(1,101))
->> def f(x): return bool(mod(x,2)==0)
->> M2 = Set(filter(f,M))
->> def f(x): return bool(mod(x,15)==0)
->> M15 = Set(filter(f,M))
->> M2.intersection(M15)
-\end{sage} 
+\begin{sagein}
+M = Set(range(1,101))
+def f(x): return bool(mod(x,2)==0)
+M2 = Set(filter(f,M))
+def f(x): return bool(mod(x,15)==0)
+M15 = Set(filter(f,M))
+M2.intersection(M15)
+\end{sagein} 
 \begin{sage}
  {90, 60, 30}
 \end{sage}
-\begin{sage}
+Alternative:
+\begin{sagein}
 M2 = Set([m for m in M if mod(m,2)==0])
 M15 = Set([m for m in M if mod(m,15)==0])
-\end{sage}
+\end{sagein}
 
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel}
-Wie kann ich prüfen, ob eine Menge \verb+A1+ eine Teilmenge einer Menge \verb+A+
+Wie kann ich prüfen, ob eine Menge \isage{A1} eine Teilmenge einer Menge \isage{A}
 ist?
-\begin{sage}
->> A = Set(range(1,11))
->> A1 = Set(range(1,3))
->> A2 = Set(range(9,12))
-\end{sage}
-\begin{sage}
->> A.intersection(A1) == A1
-\end{sage}
+\begin{sagein}
+A = Set(range(1,11))
+A1 = Set(range(1,3))
+A2 = Set(range(9,12))
+\end{sagein}
+\begin{sagein}
+A.intersection(A1) == A1
+\end{sagein}
 \begin{sage}
   True
 \end{sage}
-\begin{sage}
->> A.intersection(A2) == A2
-\end{sage}
+\begin{sagein}
+A.intersection(A2) == A2
+\end{sagein}
 \begin{sage}
   False
 \end{sage} 
@@ -186,16 +188,16 @@ ist?
 
 % \begin{frame}[fragile]{Multimengen}
 %  Oft ist es nützlich Elemente von Mengen mit Vielfachheit zu zählen. In MuPAD 
-%  gibt es deshalb den Datentyp  \verb+Dom::Multiset+. Die Elemente der Menge werden mit Vielfachheit aufgeführt.
-% \begin{sage}
-% >> Multimenge := Dom::Multiset(a,a,b,c,a,c,d)
-% \end{sage}
+%  gibt es deshalb den Datentyp  \isage{Dom::Multiset}. Die Elemente der Menge werden mit Vielfachheit aufgeführt.
+% \begin{sagein}
+% Multimenge := Dom::Multiset(a,a,b,c,a,c,d)
+% \end{sagein}
 % \begin{sage}
 %   {[a, 3], [b, 1], [c, 2], [d, 1]}
 % \end{sage}
-% \begin{sage}
-% >> Multimenge union {a}; Multimenge minus {c}
-% \end{sage}
+% \begin{sagein}
+% Multimenge union {a}; Multimenge minus {c}
+% \end{sagein}
 % \begin{sage}
 %   {[a, 4], [b, 1], [c, 2], [d, 1]}
 %   {[a, 3], [b, 1], [c, 1], [d, 1]}
@@ -293,21 +295,21 @@ der Äquivalenzklassen.
 \end{frame}
 
 \begin{frame}[fragile]{Ganze Zahlen in Sage}
-Ganze Zahlen in Sage haben den Datentyp \verb+Integer+. Man kann
+Ganze Zahlen in Sage haben den Datentyp \isage{Integer}. Man kann
 sie addieren, subtrahieren und multiplizieren. Das Ergebnis ist
-wieder vom Typ \verb+Integer+. 
-\begin{sage}
->> type(5), type(0), type(-5)
-\end{sage}
+wieder vom Typ \isage{Integer}. 
+\begin{sagein}
+type(5), type(0), type(-5)
+\end{sagein}
 \begin{sage}
 (<type 'sage.rings.integer.Integer'>, <type
 'sage.rings.integer.Integer'>, <type
 'sage.rings.integer.Integer'>)
 \end{sage}
 Division?
-\begin{sage}
->> type(5*4), type(5/4)
-\end{sage}
+\begin{sagein}
+type(5*4), type(5/4)
+\end{sagein}
 \begin{sage}
 (<type 'sage.rings.integer.Integer'>, <type
 'sage.rings.rational.Rational'>)
@@ -317,15 +319,15 @@ Division?
 \begin{frame}[fragile]{Division mit Rest}
 Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
 $n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. (Beispiele: $x=45$, $a=7$ und $x=-34$, $a=8$)
-\begin{sage}
+\begin{sagein}
 mod(45,7), floor(45/7)
-\end{sage}
+\end{sagein}
 \begin{sage}
   6, 3
 \end{sage}
-\begin{sage}
+\begin{sagein}
 mod(-34,8), floor(-34/8)
-\end{sage}
+\end{sagein}
 \begin{sage}
 (6, -5)
 \end{sage}
@@ -353,20 +355,20 @@ Multiplikation:
 \end{frame}
 
 \begin{frame}[fragile]{rationale Zahlen in Sage}
-Rationale Zahlen in Sage haben den Datentyp \verb+rational+. Man kann
+Rationale Zahlen in Sage haben den Datentyp \isage{rational}. Man kann
 sie in Sage beliebig addieren, subtrahieren, multiplizieren und
 dividieren. Das Ergebnis ist wieder eine rationale Zahl. Die rationalen
 Zahlen bilden einen \alert{Körper}.
-\begin{sage}
->> var('a,b,c,d'); a/b+c/d == (a/b+c/d).simplify_rational()
-\end{sage}
+\begin{sagein}
+var('a,b,c,d'); a/b+c/d == (a/b+c/d).simplify_rational()
+\end{sagein}
 \begin{sage}
 a/b + c/d == (a*d + b*c)/(b*d)
 \end{sage}
 
-\begin{sage}
->> a/b*c/d == (a/b*c/d).simplify_rational()
-\end{sage}
+\begin{sagein}
+a/b*c/d == (a/b*c/d).simplify_rational()
+\end{sagein}
 \begin{sage}
 a*c/(b*d) == a*c/(b*d)
 \end{sage}
@@ -491,7 +493,7 @@ definieren.
 $\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
 \item Die rationalen Zahlen sind als Äquivalenzklassen der
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-\item Der Datentyp in Sage ist \verb+RealNumber+
+\item Der Datentyp in Sage ist \isage{RealNumber}
  \end{itemize}
 \end{frame}
 
@@ -507,9 +509,9 @@ Computer arbeiten also in der Regel nur mit
 Approximationen an die gesuchte reelle Zahl. 
 
 \textbf{Beispiel:} $\sqrt{2}$
-\begin{sage}
->> (sqrt(2)).n(digits=200)
-\end{sage}
+\begin{sagein}
+(sqrt(2)).n(digits=200)
+\end{sagein}
 \begin{sage}
 1.4142135623730950488016887
 242096980785696718753769480731767
@@ -574,14 +576,12 @@ $\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
 $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
 \end{frame}
 
-\begin{frame}[fragile]{Sage}
+\begin{frame}[fragile]{Genauigkeit}
 \begin{itemize}
 \item Gleitkommazahlen haben in Sage den Datentyp
-\verb+float+. 
+\isage{float}. 
 \item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
-\item Die Anzahl der signifikanten Stellen kann man durch die globale
-Variable \verb+DIGITS+ steuern (Default: $10$). Möglich sind Werte
-zwischen $1$ und $2^{31}-1$.  ??  .n () 
+\item Die Anzahl der signifikanten Stellen kann durch die Methode \isage{n(digits=<digits>)} gesteuert werden
 \item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
 bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
 \end{itemize}
@@ -589,25 +589,25 @@ bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
 
 \begin{frame}[fragile]{Rechnen mit Zahlen I}
 \begin{itemize}
- \item Approximation durch \verb+float+. Berechnen einer numerischen
+ \item Approximation durch \isage{float}. Berechnen einer numerischen
  Näherung zu einem Ausdruck.
-\begin{sage}
->> (pi).n(digits=22), (exp(1)).n(digits=22)
-\end{sage}
+\begin{sagein}
+(pi).n(digits=22), (exp(1)).n(digits=22)
+\end{sagein}
 \begin{sage}
 (3.14159, 2.71828)
 \end{sage}
 \item Sage rechnet näherungsweise, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
-\begin{sage}
->> (1.0+(5/2*3))/(1/7+7/9)^2
-\end{sage}
+\begin{sagein}
+(1.0+(5/2*3))/(1/7+7/9)^2
+\end{sagein}
 \begin{sage}
 10.0286860879905
 \end{sage}
-\begin{sage}
->> (1+(5/2*3))/(1/7+7/9)^2
-\end{sage}
+\begin{sagein}
+(1+(5/2*3))/(1/7+7/9)^2
+\end{sagein}
 \begin{sage}
 67473/6728
 \end{sage}
@@ -617,23 +617,23 @@ Gleitkommadarstellung gegeben ist
 \begin{frame}[fragile]{Rechnen mit Zahlen II}
 \begin{itemize}
 \item Ausdrücke werden nicht automatisch umgewandelt
-\begin{sage}
->> 2/3*sin(2), 0.666666666666666*sin(2)
-\end{sage}
+\begin{sagein}
+2/3*sin(2), 0.666666666666666*sin(2)
+\end{sagein}
 \begin{sage}
 (2/3*sin(2), 0.666666666666666*sin(2))
 \end{sage}
-\begin{sage}
->> float(2/3*sin(2))
-\end{sage}
+\begin{sagein}
+float(2/3*sin(2))
+\end{sagein}
 \begin{sage}
 0.60619828455045444
 \end{sage}
 \item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
      von Gleitkommazahlen.
-\begin{sage}
->> sqrt(64.0), sin(3.14), sin(7/5)
-\end{sage}
+\begin{sagein}
+sqrt(64.0), sin(3.14), sin(7/5)
+\end{sagein}
 \begin{sage}
 (8.0000000000000, 0.00159265291648683, sin(7/5))
 \end{sage}
@@ -641,21 +641,21 @@ Gleitkommadarstellung gegeben ist
 \end{frame}
 
 \begin{frame}[fragile]{Auslöschung}
-\begin{sage}
->> x = 10^(-2); ((1.0+x)-1.0)/x
-\end{sage}
+\begin{sagein}
+x = 10^(-2); ((1.0+x)-1.0)/x
+\end{sagein}
 \begin{sage}
   1.00000000000000
 \end{sage}
-\begin{sage}
->> x = 10^(-4); ((1.0+x)-1.0)/x
-\end{sage}
+\begin{sagein}
+x = 10^(-4); ((1.0+x)-1.0)/x
+\end{sagein}
 \begin{sage}
  0.999999999999890
 \end{sage}
-\begin{sage}
->> x = 10^(-16); ((1.0+x)-1.0)/x
-\end{sage}
+\begin{sagein}
+x = 10^(-16); ((1.0+x)-1.0)/x
+\end{sagein}
 \begin{sage}
   0.000000000000000
 \end{sage}
@@ -665,15 +665,15 @@ Gleitkommadarstellung gegeben ist
 \begin{center}
 \begin{tabular}{|ll|}
 \hline
-\verb+abs+ & Absolutbetrag\\
-\verb+ceil+ & Aufrunden\\
-\verb+floor+ & Abrunden\\
-%\verb+frac+ & Abschneiden der Vorkommastellen\\
-%\verb+trunc+ & Abschneiden der Nachkommastellen\\
-\verb+round+ & Runden\\
-%\verb+sign+ & Vorzeichen\\
+\isage{abs} & Absolutbetrag\\
+\isage{ceil} & Aufrunden\\
+\isage{floor} & Abrunden\\
+%\isage{frac} & Abschneiden der Vorkommastellen\\
+%\isage{trunc} & Abschneiden der Nachkommastellen\\
+\isage{round} & Runden\\
+%\isage{sign} & Vorzeichen\\
 mehr!
-\verb+sqrt+ & Wurzel\\
+\isage{sqrt} & Wurzel\\
 \hline
 \end{tabular}
 \end{center}
@@ -697,7 +697,7 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 \item Fundamentalsatz der Algebra: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
 \item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
 \[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
-\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \verb+abs+)
+\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
 \item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
 \item $\mathbb{C}$ ist kein angeordneter Körper!
 \end{itemize}
@@ -705,18 +705,18 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 
 \begin{frame}[fragile]{$\mathbb{C}$ in Sage I}
 \begin{itemize}
-\item Datentyp in Sage: \verb+complex+
-\item Die imaginäre Einheit $i=(0,1)$ ist in Sage \verb+I+.
-\begin{sage}
->> sqrt(-1), I^2
-\end{sage}
+\item Datentyp in Sage: \isage{complex}
+\item Die imaginäre Einheit $i=(0,1)$ ist in Sage \isage{I}.
+\begin{sagein}
+sqrt(-1), I^2
+\end{sagein}
 \begin{sage}
 (I, -1)
 \end{sage}
 \item Rechnen mit komplexen Zahlen
-\begin{sage}
->> (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
-\end{sage}
+\begin{sagein}
+(1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
+\end{sagein}
 \begin{sage}
  (9*I + 2, -0.4500000000 + 0.3500000000*I)
 \end{sage}
@@ -727,7 +727,7 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 \begin{itemize}
 \item  Ergebnisse werden nicht automatisch bzgl. Realteil und
         Imaginärteil getrennt
-\item Mittels \verb+real()+ und \verb+imag()+ erhält man Real- und
+\item Mittels \isage{real()} und \isage{imag()} erhält man Real- und
                   Imaginärteil.
 \begin{sage}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
@@ -736,9 +736,9 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 1/(sqrt(2) + I)
 1/3*sqrt(2) - 1/3*I
 \end{sage}
-\begin{sage}
->> real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
-\end{sage}
+\begin{sagein}
+real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
+\end{sagein}
 \begin{sage}
 (1/3*sqrt(2), -1/3)
 \end{sage}
@@ -750,23 +750,23 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 %=======================================
 
 % \begin{frame}[fragile]{Ungleichungen}
-% MuPAD kann mittels des Befehls {\color{blue} \verb+solve+} auch
+% MuPAD kann mittels des Befehls {\color{blue} \isage{solve}} auch
 % Ungleichungen lösen.
-% \begin{sage}
-% >> assume(x,Type::Real): solve(x^2<1,x)
-% \end{sage}
+% \begin{sagein}
+% assume(x,Type::Real): solve(x^2<1,x)
+% \end{sagein}
 % \begin{sage}
 %   (-1, 1)
 % \end{sage}
-% \begin{sage}
-% >> domtype(%)
-% \end{sage}
+% \begin{sagein}
+% domtype(%)
+% \end{sagein}
 % \begin{sage}
 %   Dom::Interval
 % \end{sage}
-% \begin{sage}
+% \begin{sagein}
 % >>assume(x>0): solve({exp(x)<=4, exp(x)>=1},x)
-% \end{sage}
+% \end{sagein}
 % \begin{sage}
 %   (0, infinity) intersect (0, 2 ln(2)]               
 % \end{sage}
@@ -774,26 +774,26 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 
 % \begin{frame}[fragile]{Intervalle}
 % \begin{itemize}
-% \item Intervalle in Sage werden durch {\color{blue} \verb+:+} definiert. 
-% \item Zu einer Zahl $a$ wird durch {\color{blue} \verb+hull(a)+} ein
+% \item Intervalle in Sage werden durch {\color{blue} \isage{:}} definiert. 
+% \item Zu einer Zahl $a$ wird durch {\color{blue} \isage{hull(a)}} ein
 %   Intervall bestimmt, in dem $a$ liegt.
-% \item Funktionen wie \verb+sin+ oder \verb+exp+ akzeptieren als Eingaben
+% \item Funktionen wie \isage{sin} oder \isage{exp} akzeptieren als Eingaben
 %   Intervalle. 
 % \end{itemize}
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Beispiele I}
-% \begin{sage}
+% \begin{sagein}
 % a = range(1,8)
-% >> a:=1/3...1; domtype(a) 
-% \end{sage}
+% a:=1/3...1; domtype(a) 
+% \end{sagein}
 % \begin{sage}
 %   0.3333333333 ... 1.0
 %   DOM_INTERVAL 
 % \end{sage}
-% \begin{sage}
-% >> exp(a)+1, sin(a)/a
-% \end{sage}
+% \begin{sagein}
+% exp(a)+1, sin(a)/a
+% \end{sagein}
 % \begin{sage}
 %   2.395612425 ... 3.718281829, 
 %   0.3271946967 ... 2.524412955
@@ -801,15 +801,15 @@ Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Beispiele II}
-% \begin{sage}
-% >> DIGITS:=6: hull(PI) 
-% \end{sage}
+% \begin{sagein}
+% DIGITS:=6: hull(PI) 
+% \end{sagein}
 % \begin{sage}
 %   3.14159 ... 3.14160 
 % \end{sage}
-% \begin{sage}
-% >> DIGITS:=10: hull(PI)
-% \end{sage}
+% \begin{sagein}
+% DIGITS:=10: hull(PI)
+% \end{sagein}
 % \begin{sage}
 %   3.141592653 ... 3.141592654 
 % \end{sage}
