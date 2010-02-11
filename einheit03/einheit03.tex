@@ -421,6 +421,7 @@ a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
 a,b,c \in K.
 \end{eqnarray*}
 \end{itemize}
+(Ein Körper ist ein kommutativer unitärer Ring)
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
@@ -438,8 +439,29 @@ Körper:
 \item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
 \item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
 \end{itemize}
-
 \end{frame}
+
+\begin{frame}[fragile]{Körper und Gruppen in Sage}
+\begin{itemize}
+\item Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
+\item Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
+\item Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
+\item Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
+\end{itemize}
+\begin{sagein}
+QQ(5.01), RR(5/3) 
+\end{sagein}
+\begin{sage}
+(501/100, 1.66666666666667)
+\end{sage}
+\begin{sagein}
+RR.is_field(),ZZ.is_field()
+\end{sagein}
+\begin{sage}
+(True, False)
+\end{sage}
+\end{frame}
+
 
 \begin{frame}[fragile]{Anordnung}
 Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
@@ -534,7 +556,7 @@ Approximationen an die gesuchte reelle Zahl.
 \end{itemize} 
 \end{frame}
 
-\begin{frame}{Gleitkommazahlen}
+\begin{frame}[fragile]{Gleitkommazahlen III}
 
 \textbf{Beispiele:}
 \[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
@@ -546,11 +568,25 @@ $\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
 73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
 \]
  $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
+\begin{sagein}
+Zp(2,print_mode='digits')(73)
+\end{sagein}
+\begin{sage}
+...1001001
+\end{sage}
+\begin{sagein}
+Zp(8,print_mode='digits',check=False)(73) 
+\end{sagein}
+\begin{sage}
+...111
+\end{sage}
+
+
 \end{frame}
 
 \begin{frame}[fragile]{Rundungsfehler}
 \begin{itemize}
-\item Sei $rd(x)$ die 'gerundete' Gleitkomm-Zahl zu $x \in \mathbb{R}$.  Es
+\item Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Es
  gilt für den {\it relativen Fehler} 
 \[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
 mit $\varepsilon=b^{1-t}$.
@@ -563,7 +599,7 @@ Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen
 vermeiden.}
 \end{frame}
 
-\begin{frame}{Beispiele}
+\begin{frame}[fragile]{Beispiele}
 
 \[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
   2^{-1} + {\color{red} 1} \cdot 2^{-2}+
@@ -574,6 +610,12 @@ $\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
   8^{-1} + {\color{red} 4} \cdot 8^{-2}+
 {\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
 $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
+% \begin{sagein}
+%  Zp(2,print_mode='digits')(245)/Zp(2,print_mode='digits')(100)
+% \end{sagein}
+% \begin{sage}
+% ...1100110011001111.01 
+% \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Genauigkeit}
@@ -581,9 +623,9 @@ $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
 \item Gleitkommazahlen haben in Sage den Datentyp
 \isage{float}. 
 \item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
-\item Die Anzahl der signifikanten Stellen kann durch die Methode \isage{n(digits=<digits>)} gesteuert werden
-\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
-bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
+\item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
+%\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
+%bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
 \end{itemize}
 \end{frame}
 
@@ -595,7 +637,7 @@ bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
 (pi).n(digits=22), (exp(1)).n(digits=22)
 \end{sagein}
 \begin{sage}
-(3.14159, 2.71828)
+(3.141592653589793238463, 2.718281828459045235360)
 \end{sage}
 \item Sage rechnet näherungsweise, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
@@ -672,8 +714,9 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 %\isage{trunc} & Abschneiden der Nachkommastellen\\
 \isage{round} & Runden\\
 %\isage{sign} & Vorzeichen\\
-mehr!
 \isage{sqrt} & Wurzel\\
+\isage{digits} & Anzahl Stellen\\
+\isage{parent} & Vaterobjekt; Typ der Zahl\\
 \hline
 \end{tabular}
 \end{center}
@@ -729,9 +772,9 @@ sqrt(-1), I^2
         Imaginärteil getrennt
 \item Mittels \isage{real()} und \isage{imag()} erhält man Real- und
                   Imaginärteil.
-\begin{sage}
+\begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
-\end{sage}
+\end{sagein}
 \begin{sage}
 1/(sqrt(2) + I)
 1/3*sqrt(2) - 1/3*I

@@ -71,10 +71,10 @@ order=2
 
 [item:einheit03/einheit03.tex]
 archive=true
-column=0
+column=49
 encoding=UTF-8
 highlight=LaTeX
-line=584
+line=495
 open=true
 order=5
 
