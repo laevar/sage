@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 4}
+\subtitle{Matrizen, Vektorräume, Programmieren I}
 \input{../slide_header}
-\subtitle{Einheit 4}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -94,9 +95,9 @@ lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname
 
 \begin{frame}[fragile]{Matrizen in Sage}
 \begin{itemize}
-\item Matrizen werden in Sage mit Hilfe des Befehls \verb+matrix()+
+\item Matrizen werden in Sage mit Hilfe des Befehls \isage{matrix()}
 konstruiert. 
-\item Der Rückgabewert ist vom Typ \verb+matrix+.
+\item Der Rückgabewert ist vom Typ \isage{matrix}.
 \item Die Einträge der Matrix können beliebige Ausdrücke sein.
 \item Es ist auch möglich Matrizen über bestimmten Bereichen
 (z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
@@ -117,56 +118,56 @@ a & 0 & 1 & b\\
 \begin{itemize}
 \item Eingabe der Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
 Spalten dann wieder in eckigen Klammern $[ ..]$.
-\begin{sage}
->> A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
-\end{sage}
+\begin{sagein}
+A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
+\end{sagein}
 \item Mit expliziter Größenangabe
-\begin{sage}
->> A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
-\end{sage}
+\begin{sagein}
+A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
+\end{sagein}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Konstruktion von Matrizen II}
 \begin{itemize}
 \item Erzeugen einer Nullmatrix der Größe $n \times m$
-\begin{sage}
->> n = 3; m = 4; B = matrix(n,m)
-\end{sage}
+\begin{sagein}
+n = 3; m = 4; B = matrix(n,m)
+\end{sagein}
 \item Erzeuge eine $n \times m$ - Matrix $A$ mit Hilfe einer Funktion
 $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
-\begin{sage}
->> f(i,j) = i*j
->> C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
-\end{sage}
-\item Eingabe von Zeilen- und Spaltenvektoren
-\begin{sage}
->> matrix(3,1,[1,2,3])
->> matrix(1,3,[4,5,6])
-\end{sage}
+\begin{sagein}
+f(i,j) = i*j
+C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
+\end{sagein}
+\item Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig)
+\begin{sagein}
+matrix(3,1,[1,2,3])
+matrix(1,3,[4,5,6])
+\end{sagein}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Zeilen- und Spaltenzahl}
 \begin{itemize}
-\item Abfragen der Spaltenanzahl: \verb+<matrix>.ncols()+
-\begin{sage}
->> C.ncols()
-\end{sage}
+\item Abfragen der Spaltenanzahl: \isage{<matrix>.ncols()}
+\begin{sagein}
+C.ncols()
+\end{sagein}
 \begin{sage}
   5
 \end{sage}
-\item Abfragen der Zeilenanzahl: \verb+<matrix>.nrows()+
-\begin{sage}
->> C.nrows()
-\end{sage}
+\item Abfragen der Zeilenanzahl: \isage{<matrix>.nrows()}
+\begin{sagein}
+C.nrows()
+\end{sagein}
 \begin{sage}
   3
 \end{sage}
-\item Informationen über die Matrix: \verb+<matrix>.parent()+
-\begin{sage}
->> C.parent()
-\end{sage}
+\item Informationen über die Matrix: \isage{<matrix>.parent()}
+\begin{sagein}
+C.parent()
+\end{sagein}
 \begin{sage}
 Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 \end{sage}
@@ -176,51 +177,51 @@ Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 \begin{frame}[fragile]{Zugriff auf die Einträge I}
 \begin{itemize}
 \item Abfragen von Einträgen in Zeile $i$ und Spalte $j$:
-\begin{sage}
->> i=1; j=2; C[i,j]
-\end{sage}
+\begin{sagein}
+i=1; j=2; C[i,j]
+\end{sagein}
 \begin{sage}
   6
 \end{sage}
 \item Ändern des Eintrags in Zeile $i$ und Spalte $j$:
-\begin{sage}
->> i=1; j=2; C[i,j]=22
-\end{sage}
+\begin{sagein}
+i=1; j=2; C[i,j]=22
+\end{sagein}
 \item Extrahieren von Zeilen/Spalten
-\begin{sage}
->> zeile = C.row(0)
->> spalte = C.column(4)
-\end{sage}
+\begin{sagein}
+zeile = C.row(0)
+spalte = C.column(4)
+\end{sagein}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Zugriff auf die Einträge II}
 \begin{itemize}
 \item Extrahieren von Teilmatrizen
-\begin{sage}
->> C[1:3,1:3]
-\end{sage}
+\begin{sagein}
+C[1:3,1:3]
+\end{sagein}
 \item Erzeugen von Diagonalmatrizen
-\begin{sage}
->> x = [1,2,3,4,5]
->> Diag = diagonal_matrix(x); Diag
-\end{sage}
+\begin{sagein}
+x = [1,2,3,4,5]
+Diag = diagonal_matrix(x); Diag
+\end{sagein}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Rechnen mit Matrizen}
 \begin{itemize} 
 \item Addieren, Multiplizieren
-\begin{sage}
->> var('a,b,c,d,g,h,f')
->> A = matrix([[a, b], [c,d]])
->> B = matrix([[e, f], [g,h]])
->> A+B; A*B
-\end{sage}
+\begin{sagein}
+var('a,b,c,d,g,h,f')
+A = matrix([[a, b], [c,d]])
+B = matrix([[e, f], [g,h]])
+A+B; A*B
+\end{sagein}
 \item Bestimmung der Inversen und der Transponierten
-\begin{sage}
->> A^(-1); A.transpose()
-\end{sage}
+\begin{sagein}
+A^(-1); A.transpose()
+\end{sagein}
 \end{itemize}
 \end{frame}
 
@@ -239,33 +240,33 @@ spricht deshalb vom {\color{red} Rang} einer Matrix.
 \begin{frame}[fragile]{Matrizen}
 \begin{itemize}
 \item Bestimmen des Ranges einer Matrix
-\begin{sage}
->> S = matrix([[1,0,0],[0,1,1],[1,1,1]])
->> S.rank()
-\end{sage}
+\begin{sagein}
+S = matrix([[1,0,0],[0,1,1],[1,1,1]])
+S.rank()
+\end{sagein}
 \begin{sage}
   2
 \end{sage}
 \item ist S symmetrisch ? ist S invertierbar ?
-\begin{sage}
->> S.is_symmetric() 
->> S.is_invertible()
-\end{sage}
+\begin{sagein}
+S.is_symmetric() 
+S.is_invertible()
+\end{sagein}
 \begin{sage}
 False
 False
 \end{sage}
 % \item Ist eine Matrix unitär ?
-% \begin{sage}
-% >> linalg::isUnitary(S)
-% \end{sage}
+% \begin{sagein}
+% linalg::isUnitary(S)
+% \end{sagein}
 % \begin{sage}
 %   FALSE
 % \end{sage}
-% \begin{sage}
-% >> F:=matrix([[I,0],[0,-I]])
-% >> linalg::isUnitary(F)
-% \end{sage}
+% \begin{sagein}
+% F:=matrix([[I,0],[0,-I]])
+% linalg::isUnitary(F)
+% \end{sagein}
 % \begin{sage}
 %   TRUE
 % \end{sage}
@@ -273,10 +274,11 @@ False
 \end{frame}
 
 \begin{frame}[fragile]{Maps auf Matrizen}
-Mittels \verb+<matrix>.apply_map(<function>)+ kann auf jeden Eintrag von der Matrix \verb+<matrix>+ die Funktion \verb+<function>+ angewendet werden (wie bei \verb+map()+)
-\begin{sage}
->> map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
-\end{sage}
+Mittels \isage{map_threaded(<function>,<matrix>)} kann auf jeden Eintrag von der Matrix \isage{<matrix>} die Funktion \isage{<function>} angewendet werden (wie bei \isage{map()})\\
+Beispiel:
+\begin{sagein}
+map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
+\end{sagein}
   	
 \begin{sage}
 [1.00000000000000 1.41421356237310]
@@ -344,18 +346,18 @@ für $\alpha \in K$, $f,g:M \mapsto K$.
 \begin{frame}[fragile]{Vektoren in Sage}
 \begin{itemize}
 \item Konstruktion von Vektoren
-\begin{sage}
->> a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
-\end{sage}
+\begin{sagein}
+a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
+\end{sagein}
 \begin{small}
 \begin{sage}
 ((1, 2, 3, 4), (5, 6, 7))
 \end{sage}
 \end{small}
-\item Datentyp: \verb+vector_integer_dense+ (für dichte Vektoren)
-\begin{sage}
->> type(a)
-\end{sage}
+\item Datentyp: \isage{vector_integer_dense} (für dichte Vektoren)
+\begin{sagein}
+type(a)
+\end{sagein}
 \scriptsize{
 \begin{sage}
 <type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
@@ -424,12 +426,12 @@ die {\color{red} Summe} von $W$ und $Z$. Es gilt:
 \begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Bestimmen einer Basis von $span(s1,s2,s3)$
-\begin{sage}
->> s1 = vector([1,0,0])
->> s2 = vector([0,1,1])
->> s3 = vector([1,1,1])
->> V = VectorSpace(QQ,3); S = V.subspace([s1,s2,s3]); S
-\end{sage}
+\begin{sagein}
+s1 = vector([1,0,0])
+s2 = vector([0,1,1])
+s3 = vector([1,1,1])
+span([s1,s2,s3],QQ)
+\end{sagein}
 \begin{sage}
 Vector space of degree 3 and dimension 2 over Rational Field
 Basis matrix:
@@ -442,13 +444,19 @@ Basis matrix:
 \begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
+\begin{sagein}
+span([s1],QQ).intersection(span([s2,s3],QQ))
+\end{sagein}
 \begin{sage}
->> (V.subspace([s1])).intersection(V.subspace([s2,s3]))
+Vector space of degree 3 and dimension 1 over Rational Field
+Basis matrix:
+[1 0 0]
 \end{sage}
+
 \item Testen der linearen Unabhängigkeit
-\begin{sage}
->> m = matrix([s1,s2,s3]); m.rank() >= min(m.ncols, m.nrows)
-\end{sage}
+\begin{sagein}
+m = matrix([s1,s2,s3]); m.rank() >= min(m.ncols, m.nrows)
+\end{sagein}
 \begin{sage}
   False
 \end{sage}
@@ -464,9 +472,9 @@ Basis matrix:
 % Zahlentheorie, Numerik).
 % \item Eine Übersicht aller Bibliotheken findet man in der 
 % Kurzreferenz (über die  Hilfe erreichbar).
-% \item Durch {\color{blue} \verb+?bib+} enthält man eine Auflistung der Funktionen
-% in der Bibliothek {\color{blue}\verb+bib+}.
-% \item Die Standardbibliothek {\color{blue}\verb+stdlib+} enthält die wichtigsten
+% \item Durch {\color{blue} \isage{?bib}} enthält man eine Auflistung der Funktionen
+% in der Bibliothek {\color{blue}\isage{bib}}.
+% \item Die Standardbibliothek {\color{blue}\isage{stdlib}} enthält die wichtigsten
 % Basisfunktionen, die nicht im Kern implementiert sind. Diese
 % Funktionen können direkt benutzt werden.
 % \end{itemize}
@@ -476,14 +484,14 @@ Basis matrix:
 % \begin{center}
 % \begin{tabular}{|l|l|}
 % \hline
-% \verb+stdlib+ & Standardbibliothek \\
-% \verb+linalg+ &  Lineare Algebra \\
-% \verb+plot+   & Erzeugen von Grafiken\\
-% \verb+numeric+ & Numerische Berechnungen\\
-% \verb+stats+ & Statistische Berechnungen\\
-% \verb+numlib+ & Zahlentheorie\\
-% \verb+student+ & elementare Algorithmen\\ 
-% \verb+fp+ & Umgang mit Funktionen\\  
+% \isage{stdlib} & Standardbibliothek \\
+% \isage{linalg} &  Lineare Algebra \\
+% \isage{plot}   & Erzeugen von Grafiken\\
+% \isage{numeric} & Numerische Berechnungen\\
+% \isage{stats} & Statistische Berechnungen\\
+% \isage{numlib} & Zahlentheorie\\
+% \isage{student} & elementare Algorithmen\\ 
+% \isage{fp} & Umgang mit Funktionen\\  
 % \hline
 % \end{tabular}
 % \end{center}
@@ -492,17 +500,17 @@ Basis matrix:
 % \begin{frame}[fragile]{Benutzen der Bibliotheken}
 % \begin{itemize}
 % \item Eine Bibliotheksfunktion wird in der Form
-% \verb+Bibliothek::Funktion+ aufgerufen, z.B. {\color{blue}
-% \verb+linalg::basis([s1,s2,s3])+}.
-% \item Durch den Befehl {\color{blue} \verb+export(Bibliothek,Funktion)+} 
+% \isage{Bibliothek::Funktion} aufgerufen, z.B. {\color{blue}
+% \isage{linalg::basis([s1,s2,s3])}}.
+% \item Durch den Befehl {\color{blue} \isage{export(Bibliothek,Funktion)}} 
 % 
 % können Funktionen einer
 % Bibliothek global bekannt gemacht werden. Dies bedeutet, dass die
 % Funktion ohne Voranstellen des Bibliotheksnamen aufgerufen werden kann, z.B.
-% \begin{sage}
-% >> export(student,isFree): 
-% >> isFree([s1,s2,s3])
-% \end{sage}
+% \begin{sagein}
+% export(student,isFree): 
+% isFree([s1,s2,s3])
+% \end{sagein}
 % \begin{sage}
 %   FALSE
 % \end{sage}
@@ -511,7 +519,7 @@ Basis matrix:
 % 
 % \begin{frame}[fragile]{Benutzen der Bibliotheken}
 % \begin{itemize}
-% \item Wird {\color{blue} \verb+export(Bibliothek)+} aufgerufen, so werden
+% \item Wird {\color{blue} \isage{export(Bibliothek)}} aufgerufen, so werden
 % alle Funktionen der Bibliothek exportiert.
 % \item Die Bibliotheken werden ständig aktualisiert und erweitert. In
 % ihnen steckt das eigentliche mathematische Wissen. 
@@ -522,11 +530,11 @@ Basis matrix:
 % \begin{frame}[fragile]{Systemfunktionen}
 % Viele Systemfunktionen lassen sich auf Matrizen anwenden. Beispiele:
 % \begin{itemize}
-% \item \verb+conjugate(A)+ ersetzt die Komponenten durch ihre komplex
+% \item \isage{conjugate(A)} ersetzt die Komponenten durch ihre komplex
 % konjugierten Einträge.
-% \item \verb+expand(A)+ wendet \verb+expand+ auf alle Komponenten an.
-% \item \verb+float(A)+ wendet \verb+float+ auf alle Komponenten  an.
-% \item \verb+has(A,Ausdruck)+ prüft, ob ein Ausdruck \verb+Ausdruck+ in
+% \item \isage{expand(A)} wendet \isage{expand} auf alle Komponenten an.
+% \item \isage{float(A)} wendet \isage{float} auf alle Komponenten  an.
+% \item \isage{has(A,Ausdruck)} prüft, ob ein Ausdruck \isage{Ausdruck} in
 % mind. einer Komponente von $A$ enthalten ist.
 % \end{itemize} 
 % \end{frame}
@@ -598,41 +606,42 @@ der {\color{red} Orthogonalraum} zu $U$. Er ist ein Untervektorraum.
 \begin{itemize}
 \item Die $p$-Norm $\|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}$, $p\in [1,\infty)$ auf dem
 $K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
-\begin{sage}
->> x = vector([1,2,3,4,5]); p=2
->> x.norm(p)
-\end{sage}
-\item Orthogonalisieren von Vektoren:
-\begin{sage}
->> a1 = vector([1,2,3])
->> a2 = vector([0,4,1])
->> a3 = vector([1,1,1])
->> linalg::orthog([a1,a2,a3]) ??
-\end{sage}
+\begin{sagein}
+x = vector([1,2,3,4,5]); p=2
+x.norm(p)
+\end{sagein}
+\item sind Vektoren orthogonal zueinander ?
+\begin{sagein}
+a1 = vector([1,2,3])
+a2 = vector([0,4,1])
+a3 = vector([1,1,1])
+X = matrix([a1,a2,a3])
+(X.transpose()*X-identity_matrix(3)).is_zero()
+\end{sagein}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Sage}
 \begin{itemize}
 \item Berechnen des Skalarprodukts
-\begin{sage}
->> a2.dot_product(a3), a2*a3
-\end{sage}
+\begin{sagein}
+a2.dot_product(a3), a2*a3
+\end{sagein}
 \begin{sage}
   (5, 5)
 \end{sage}
 \item Berechnen des Winkels zwischen zwei Vektoren
-\begin{sage}
->> float(acos(a2*a3/(abs(a2)*abs(a3))))
-\end{sage}
+\begin{sagein}
+float(acos(a2*a3/(abs(a2)*abs(a3))))
+\end{sagein}
 \begin{sage}
   0.79520271328967818
 \end{sage}
 \item Berechnen der Determinante
-\begin{sage}
->> A = matrix([[1,2,3],[4,5,6],[7,8,0]])
->> A.det()
-\end{sage}
+\begin{sagein}
+A = matrix([[1,2,3],[4,5,6],[7,8,0]])
+A.det()
+\end{sagein}
 \begin{sage}
   27
 \end{sage}
@@ -640,53 +649,53 @@ $K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
 \end{frame}
 
 %===============================
-\section{Etwas Programmieren}
+\section{Programmieren I}
 %===============================
 
 \begin{frame}[fragile]{Ein erstes Programm}
-\begin{sage}
+\begin{sagein}
 def MyMax(a,b):
     """Maximum von a und b"""
     if a<b:
         return (b)
     else: 
         return (a)
-\end{sage}
+\end{sagein}
 \begin{itemize}
 \item Das erste Beispiel berechnet das Maximum zweier Zahlen $a$ und
 $b$. 
-\item Aufruf in Sage ist {\color{blue} \verb+MyMax(a,b)+}. 
+\item Aufruf in Sage ist {\color{blue} \isage{MyMax(a,b)}}. 
 \item Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
   zurück.
-\item in \verb+""" ... """+ eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \verb+MyMax?+ abgefragt werden.
+\item in \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{MyMax?} abgefragt werden.
  \end{itemize} 
 \end{frame}
 
 \begin{frame}[fragile]{Aufbau von Funktionen}
 \begin{itemize}
-\item Eine Funktion beginnt mit \verb+def+ und dem Namen der Prozedur (hier:
-  \verb+MyMax+) gefolgt von den möglichen Übergabeparameter \verb+(a,b,c..)+
-\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \verb+:+ abgeschlossen werden.
+\item Eine Funktion beginnt mit \isage{def} und dem Namen der Prozedur (hier:
+  \isage{MyMax}) gefolgt von den möglichen Übergabeparameter \isage{(a,b,c..)}
+\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
 \item Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Return}
 \begin{itemize}
-\item Mittels \verb+return(a)+ wird die Funktion abgebrochen und der
-Wert \verb+a+ zurückgegeben.
+\item Mittels \isage{return(a)} wird die Funktion abgebrochen und der
+Wert \isage{a} zurückgegeben.
 \item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird eine leere Variable des Typs
-\verb+NoneType+ zurückgegeben.  
+\isage{NoneType} zurückgegeben.  
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Erkärungen}
 \begin{itemize}
-\item Kommentarzeilen: Diese beginnen mit \verb+#+. Sie werden vom System ignoriert.
-\item Die durch \verb+if <bedingung>:+ eingeleitete Zeile ist eine
-  sogenannte Verzweigung. Ist die  Bedingung \verb+<bedingung>+ wahr, so wird der
-  Block hinter \verb+:+ ausgeführt. Ist \verb+<bedingung>+ falsch, so
-  wird die Alternative \verb+else:+ ausgeführt.
+\item Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
+\item Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
+  sogenannte Verzweigung. Ist die  Bedingung \isage{<bedingung>} wahr, so wird der
+  Block hinter \isage{:} ausgeführt. Ist \isage{<bedingung>} falsch, so
+  wird die Alternative \isage{else:} ausgeführt.
 \item \emph{Achtung:} in Sage (und Python) wird der Block durch die Einrückung definiert. 
 \end{itemize}
 \end{frame}
@@ -697,7 +706,7 @@ einem Editor zu erstellen.
 
 \begin{itemize}
  \item Erstellen einer \verb+<name>.sage+-Datei in \verb+~/.sage+. Diese mit Sage-Code füllen
-\item In sage diese mit \verb+attach <name>.sage+ an das Notebook anhängen $\Rightarrow$ wird automatisch geladen und aktuell gehalten.
+\item In sage diese mit \isage{attach <name>.sage} an das Notebook anhängen $\Rightarrow$ wird automatisch geladen und aktuell gehalten.
 \item als Editor empfehle ich zum Einstieg \verb+geany+. Prinzipiell sind alle Editoren geeignet die Python unterstützen.
 \end{itemize}
 
