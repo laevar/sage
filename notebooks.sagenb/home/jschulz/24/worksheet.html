@@ -1,0 +1,205 @@
+
+
+{{{id=1|
+_=var('k');sum(1/k^2,k,1,oo)
+///
+1/6*pi^2
+}}}
+
+{{{id=3|
+sum((-1)^(k+1)/k,k,1,oo)
+///
+log(2)
+}}}
+
+{{{id=4|
+sum(1/k,k,1,oo)
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_16.py", line 5, in <module>
+    exec compile(ur'sum(_sage_const_1 /k,k,_sage_const_1 ,oo)' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/misc/functional.py", line 657, in symbolic_sum
+    return expression.sum(*args, **kwds)
+  File "expression.pyx", line 6480, in sage.symbolic.expression.Expression.sum (sage/symbolic/expression.cpp:25834)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/calculus/calculus.py", line 476, in symbolic_sum
+    raise ValueError, "Sum is divergent."
+ValueError: Sum is divergent.
+}}}
+
+{{{id=5|
+sum(x^k,k,0,oo)
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_17.py", line 5, in <module>
+    exec compile(ur'sum(x**k,k,_sage_const_0 ,oo)' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/misc/functional.py", line 657, in symbolic_sum
+    return expression.sum(*args, **kwds)
+  File "expression.pyx", line 6480, in sage.symbolic.expression.Expression.sum (sage/symbolic/expression.cpp:25834)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/calculus/calculus.py", line 470, in symbolic_sum
+    result = maxima.simplify_sum(sum)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1381, in __call__
+    return self._parent.function_call(self._name, list(args), kwds)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1316, in function_call
+    return self.new(s)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1097, in new
+    return self(code)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1032, in __call__
+    return cls(self, x, name=name)
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1451, in __init__
+    raise TypeError, x
+TypeError: Computation failed since Maxima requested additional constraints (try the command 'assume(abs(x)-1>0)' before integral or limit evaluation, for example):
+Is  abs(x)-1  positive, negative, or zero?
+}}}
+
+{{{id=7|
+x = 1/2; sum(x^k,k,0,oo)
+///
+2
+}}}
+
+{{{id=8|
+del x;_=var('x,n')
+s = sum(x^k,k,0,n); s
+///
+(x^(n + 1) - 1)/(x - 1)
+}}}
+
+{{{id=9|
+assume(x<>1); [s(n=m) for m in [1..6]]
+///
+[(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x - 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
+}}}
+
+{{{id=10|
+forget();assume(abs(x)<1);limit(s,n=oo)
+///
+-1/(x - 1)
+}}}
+
+{{{id=11|
+forget();assume(x>1);limit(s,n=oo)
+///
++Infinity
+}}}
+
+{{{id=12|
+forget();limit(s,n=oo)
+///
+limit(x^(n + 1)/(x - 1) - 1/(x - 1), n, +Infinity)
+}}}
+
+{{{id=14|
+forget(); assume(x,'real'); _=var('a');assume(x>a)
+///
+}}}
+
+{{{id=15|
+assumptions()
+///
+[x is real, x > a]
+}}}
+
+{{{id=13|
+forget(x>a)
+///
+}}}
+
+{{{id=16|
+assumptions()
+///
+[x is real]
+}}}
+
+{{{id=20|
+forget();var('c'); assumptions()
+///
+c
+[]
+}}}
+
+{{{id=17|
+c = 2; assume(c>0)
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_71.py", line 5, in <module>
+    exec compile(ur'forget();c = _sage_const_2 ; assume(c>_sage_const_0 )' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/symbolic/assumptions.py", line 276, in assume
+    x.assume()
+AttributeError: 'bool' object has no attribute 'assume'
+}}}
+
+{{{id=18|
+assumptions()
+///
+[]
+}}}
+
+{{{id=19|
+forget();del c;_=var('c')
+assume(c,'integer'); assumptions()
+///
+[c is integer]
+}}}
+
+{{{id=21|
+sin(c*pi)
+///
+sin(pi*c)
+}}}
+
+{{{id=29|
+sin(c*pi).simplify()
+///
+0
+}}}
+
+{{{id=27|
+sqrt(x^2).simplify()
+///
+sqrt(x^2)
+}}}
+
+{{{id=30|
+assume(x>0)
+sqrt(x^2).simplify()
+///
+x
+}}}
+
+{{{id=34|
+assumptions()
+///
+[c is integer, x > 0]
+}}}
+
+{{{id=33|
+assume?
+///
+}}}
+
+{{{id=35|
+reset();forget()
+f(n) = n^4.*exp(-n*n)
+g(n) = f(n+1)/f(n)
+limit(g(n),n=oo)
+///
+0
+}}}
+
+{{{id=36|
+f(n) = 1/(n*(ln(n)^2))
+g(n) = 2^n*f(2^n)
+h(n) = 2^n*g(2^n)
+limit(h(n+1)/h(n),n=oo)
+///
+1/2
+}}}

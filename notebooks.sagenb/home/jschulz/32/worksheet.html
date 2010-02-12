@@ -1,0 +1,59 @@
+
+
+{{{id=1|
+f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
+rsf = f.riemann_sum(10,mode="midpoint")
+P = f.plot(rgbcolor=(0.7,0.1,0.5), plot_points=40)
+Q = rsf.plot(rgbcolor=(0.7,0.6,0.6), plot_points=40)
+L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]],rgbcolor=(0.7,0.6,0.6)) for (a,b),f in rsf.list()])
+(P + Q +L)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=3|
+Piecewise?
+///
+<type 'sage.symbolic.expression.Expression'>
+}}}
+
+{{{id=6|
+integrate(sin(x),x,0,6)
+///
+-cos(6) + 1
+}}}
+
+{{{id=7|
+integrate(exp(x)*x,x,2,3)
+///
+-e^2 + 2*e^3
+}}}
+
+{{{id=8|
+integrate(1/x^2,x,1,oo)
+///
+1
+}}}
+
+{{{id=9|
+numerical_integral(sin(1/x)*x,1,2)
+///
+(0.91905916759870254, 1.0203606488609102e-14)
+}}}
+
+{{{id=4|
+reset();_=var('a,b');assume(a<>-1);integrate(x^a*b,x)
+///
+b*x^(a + 1)/(a + 1)
+}}}
+
+{{{id=11|
+forget();a=-1;integrate(x^a*b,x)
+///
+b*log(x)
+}}}
+
+{{{id=13|
+
+///
+}}}

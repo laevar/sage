@@ -47,8 +47,6 @@ $M3=\lbrace1,2,a,b,f,g\rbrace$.
     die $11$-adische Darstellung von $c$.
   \end{enumerate}
 
-%Vorlesung: Zahlen! Zp, QQ, RR, etc. 
-
 \end{aufg}
 
 \begin{aufg}
@@ -78,7 +76,7 @@ Berechnen die Summe
 \end{aufg}
 
 \begin{aufg}
-Nach \verb+x = (10^50/3.0).n(digits=100)+ sind nur die ersten Dezimalstellen in
+Nach \isage{x = (10^50/3.0).n(digits=100)} sind nur die ersten Dezimalstellen in
 $x$ garantiert richtig. Was passiert wenn man die Anzahl
 der signifikanten Stellen erhöht?
 \end{aufg}
@@ -96,12 +94,12 @@ Sie, was jeweils passierte.
 
 \begin{aufg}
 Geben Sie folgende Zeilen ein:
-\begin{sage}
->> def f(x):
->> 	return f(x+1)
->> f(0)
-\end{sage}
-Erklären Sie den Fehler. Wie können Sie die Funktion \verb+f(x)+ anpassen, damit der
+\begin{sagein}
+def f(x):
+    return f(x+1)
+f(0)
+\end{sagein}
+Erklären Sie den Fehler. Wie können Sie die Funktion \isage{f(x)} anpassen, damit der
 Fehler nicht mehr auftritt?  
 \end{aufg}
 \end{document}

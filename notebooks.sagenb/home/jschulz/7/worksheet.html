@@ -1,0 +1,289 @@
+
+
+{{{id=3|
+x = [1,2]; y = [2,3]; x.extend(y)
+///
+}}}
+
+{{{id=18|
+var('n');F(n) = 2^(2^n)+1
+///
+n
+}}}
+
+<p>$\sin(x^2) \int_0^\infty$</p>
+
+{{{id=25|
+pi
+///
+pi
+}}}
+
+{{{id=12|
+[[F(m),is_prime(F(m))] for m in xrange(1,6) if is_prime (F(m))]
+///
+[[5, True], [17, True], [257, True], [65537, True]]
+}}}
+
+{{{id=17|
+plot(sin,(0,4))
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=22|
+x = 5; x
+///
+5
+}}}
+
+{{{id=23|
+float(sin(_))
+///
+-0.95892427466313845
+}}}
+
+{{{id=24|
+var('a');factor(1458*a*x+2430*a^2-315*a^3+5*a^4-972*x^2+126*a*x^2-189*a^2*x+3*a^3*x-2*a^2*x^2)
+///
+a
+5*(a - 54)*(a - 9)*(a - 2)*(a + 5)
+}}}
+
+{{{id=26|
+show(latex(x^2/2))
+///
+<html><div class="math">\frac{25}{2}</div></html>
+}}}
+
+{{{id=28|
+f=  1/(x^2-2);
+g=f*g
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_13.py", line 6, in <module>
+    exec compile(ur'g=f*g' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+NameError: name 'g' is not defined
+}}}
+
+{{{id=31|
+k, m = var('k, m')
+sum(1/k^4, k, 1, oo)
+///
+1/90*pi^4
+}}}
+
+{{{id=32|
+reset()
+f = x^2-3*x-18; f(x=1)
+///
+-20
+}}}
+
+{{{id=33|
+type(f)
+///
+<type 'sage.symbolic.expression.Expression'>
+}}}
+
+{{{id=34|
+N=6; N
+///
+6
+}}}
+
+{{{id=35|
+x= 5+I;type(x);type(imag(x))
+///
+<type 'sage.symbolic.expression.Expression'>
+<type 'sage.symbolic.expression.Expression'>
+}}}
+
+{{{id=36|
+var('y')
+g = x+2*x*x-y
+show(latex(g))
+///
+<html><div class="math">-y + 21 I + 53</div></html>
+}}}
+
+{{{id=38|
+type(float(pi))
+///
+<type 'float'>
+}}}
+
+{{{id=39|
+type(1 +1/2)
+///
+<type 'sage.rings.rational.Rational'>
+}}}
+
+{{{id=40|
+bool(1<2)
+///
+True
+}}}
+
+{{{id=41|
+complex(1,3)
+///
+(1+3j)
+}}}
+
+{{{id=43|
+x =5; x; reset('x')
+///
+5
+}}}
+
+{{{id=46|
+factorial(3)
+///
+6
+}}}
+
+{{{id=48|
+type(5.)
+///
+<type 'sage.rings.real_mpfr.RealLiteral'>
+}}}
+
+{{{id=49|
+floor(13/3)
+///
+4
+}}}
+
+{{{id=50|
+
+///
+}}}
+
+{{{id=52|
+f^g
+///
+(x^2 - 3*x - 18)^(-y + 21*I + 53)
+}}}
+
+{{{id=53|
+a = (16*x-13)^2 == (3*x+5)^2/2
+show(a.expand())
+///
+<html><div class="math">256 \, x^{2} - 416 \, x + 169 = \frac{9}{2} \, x^{2} + 15 \, x + \frac{25}{2}</div></html>
+}}}
+
+{{{id=56|
+a = (2^(1/3) + 4^(1/3))^3 - 6*(2^(1/3) + 4^(1/3)) - 6; a.simplify_full()
+///
+0
+}}}
+
+{{{id=57|
+a = [1 ,2 ,3 ]; type(a)
+///
+<type 'list'>
+}}}
+
+{{{id=51|
+
+///
+}}}
+
+{{{id=58|
+test = matrix([[2,0],[0,1]])
+test.echelon_form()
+kernel(test)
+///
+Free module of degree 2 and rank 0 over Integer Ring
+Echelon basis matrix:
+[]
+}}}
+
+{{{id=59|
+kernel?
+///
+}}}
+
+{{{id=60|
+GF?
+///
+}}}
+
+{{{id=63|
+test.apply_map(sqrt)
+///
+[sqrt(2)       0]
+[      0       1]
+}}}
+
+{{{id=64|
+span?
+///
+}}}
+
+{{{id=65|
+t = [1,2,3,1]; t.count(34)
+///
+0
+}}}
+
+{{{id=66|
+limit(cos(x)/(x-pi),x=pi)
+///
++Infinity
+}}}
+
+{{{id=67|
+limit(diff(cos(x),x)/diff(x-pi,x),x=pi)
+///
+0
+}}}
+
+{{{id=77|
+_x_1 = 2
+///
+}}}
+
+{{{id=78|
+_x_1
+///
+2
+}}}
+
+{{{id=79|
+
+///
+line 3
+    12x = _sage_const_2
+      ^
+SyntaxError: invalid syntax
+}}}
+
+{{{id=80|
+f = 1 +x -x^2; f.operands(); operands(f)
+///
+[-x^2, x, 1]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_18.py", line 5, in <module>
+    exec compile(ur'f = _sage_const_1  +x -x**_sage_const_2 ; f.operands(); operands(f)' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+NameError: name 'operands' is not defined
+}}}
+
+{{{id=81|
+map_threaded(sqrt,matrix([[1,2],[3,4]]))
+///
+[      1 sqrt(2)]
+[sqrt(3)       2]
+}}}
+
+{{{id=82|
+solve?
+///
+}}}

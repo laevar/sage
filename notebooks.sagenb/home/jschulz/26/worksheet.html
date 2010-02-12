@@ -1,0 +1,144 @@
+
+
+{{{id=1|
+reset()
+for k in [1..4]:
+    x = k^2
+    print("Das Quadrat von {0} ist {1}").format(k,x)
+///
+Das Quadrat von 1 ist 1
+Das Quadrat von 2 ist 4
+Das Quadrat von 3 ist 9
+Das Quadrat von 4 ist 16
+}}}
+
+{{{id=2|
+L = [1..10]
+for i in L:
+    x = i^2
+    print("Das Quadrat von {0} ist {1}").format(i,x)
+///
+Das Quadrat von 1 ist 1
+Das Quadrat von 2 ist 4
+Das Quadrat von 3 ist 9
+Das Quadrat von 4 ist 16
+Das Quadrat von 5 ist 25
+Das Quadrat von 6 ist 36
+Das Quadrat von 7 ist 49
+Das Quadrat von 8 ist 64
+Das Quadrat von 9 ist 81
+Das Quadrat von 10 ist 100
+}}}
+
+{{{id=3|
+Liste = [1..1000]
+def anz_teiler(n): return len(divisors(n))
+Liste2 = map(anz_teiler,Liste)
+for k in [1..50]:
+    print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
+print divisors(840)
+///
+1 , 1
+2 , 168
+3 , 11
+4 , 292
+5 , 3
+6 , 110
+7 , 2
+8 , 180
+9 , 8
+10 , 22
+11 , 0
+12 , 97
+13 , 0
+14 , 5
+15 , 4
+16 , 48
+17 , 0
+18 , 17
+19 , 0
+20 , 11
+21 , 1
+22 , 0
+23 , 0
+24 , 16
+25 , 0
+26 , 0
+27 , 1
+28 , 1
+29 , 0
+30 , 1
+31 , 0
+32 , 1
+33 , 0
+34 , 0
+35 , 0
+36 , 0
+37 , 0
+38 , 0
+39 , 0
+40 , 0
+41 , 0
+42 , 0
+43 , 0
+44 , 0
+45 , 0
+46 , 0
+47 , 0
+48 , 0
+49 , 0
+50 , 0
+[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 15, 20, 21, 24, 28, 30, 35, 40, 42, 56, 60, 70, 84, 105, 120, 140, 168, 210, 280, 420, 840]
+}}}
+
+{{{id=5|
+var('x')
+for j in reversed([2,4]):
+    print("{0}, {1}").format(x,x^j)
+///
+x, x^4
+x, x^2
+}}}
+
+{{{id=7|
+for j in range(3,10,2):
+    print(x,x^j)
+///
+(x, x^3)
+(x, x^5)
+(x, x^7)
+(x, x^9)
+}}}
+
+{{{id=8|
+p = plot(x,(0,2))
+p += plot(cos,(0,2),color='red')
+p += text('-- $\cos(x)$', (0.5, 1.5), color='red',horizontal_alignment='left')
+p += text('-- $x$', (0.5, 1.4),horizontal_alignment='left')
+p.show()
+p.save('iter1.pdf')
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=9|
+def fixpunkt(f,In,x0,n):
+    y = [x0]
+    p = plot(f,(In[0],In[1]))
+    p += plot(x,(In[0],In[1]))
+    for i in [0..n-1]:
+        y.append(float(f(y[i])))
+        p += line( [ (y[i],y[i]), (y[i],y[i+1]) ],linestyle='--', color='red')
+        p += line( [ (y[i],y[i+1]), (y[i+1],y[i+1]) ],linestyle='--', color='red')
+    p.show()
+    p.save('fixpunkt.pdf')
+    return(y)
+///
+}}}
+
+{{{id=10|
+fixpunkt(lambda x: cos(x),[0,1],0.2,10)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+[0.200000000000000, 0.98006657784124163, 0.55696725280964243, 0.84886216565827077, 0.66083755111661502, 0.78947843776686832, 0.70421571334199318, 0.76211956176066087, 0.72337417210557109, 0.74957657633149311, 0.73197742525819132]
+}}}

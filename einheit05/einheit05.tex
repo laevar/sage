@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
 \title{Einführung in Sage - Einheit 5}
 \subtitle{Datencontainer, Lineare Abbildungen, Eigenwert und Eigenvektoren}
+\usepackage{tikz}
 \input{../slide_header}
 \maketitle
 
@@ -664,7 +665,7 @@ Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
 
  Für eine Matrix $A\in K^{m
  \times n}$ wird durch
-\begin{eqnarray*}{ccc}
+\begin{eqnarray*}
 F(v_1) & := & a_{11}w_1 + \dots +a_{m1} w_m\\
 \vdots &    & \vdots     \\
 F(v_n) & := & a_{1n} w_1 + \dots + a_{mn}w_m
@@ -693,16 +694,23 @@ unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
 \begin{frame}[fragile]{Kommutierendes Diagramm}
   Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
 ,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ und eine lineare Abbildung
-$F$ gegeben. Dann kommutiert das folgende Diagramm:
-%\begin{diagram}
-% V & \rTo^F & W\\
-% \uTo^{\Phi_V} && \uTo^_{\Phi_W}\\
-%K^n & \rTo_{(L_\mathcal{W}^\mathcal{V})^{-1}(F)} & K^m
-%\end{diagram}
+$F$ gegeben. Dann kommutiert das folgende Diagramm:\\
+\begin{center}
+  \begin{tikzpicture}
+  \draw (0,2) node[] (a) {$V$}
+   (5,2) node[] (b) {$W$}
+   (0,0)  node[] (c) {$K^n$}
+   (5,0)  node[] (d) {$K^m$};
+  \draw[-latex,thick] (a) -- (b) node[midway, above] {$F$};
+ \draw[-latex,thick] (d) -- (b) node[midway,right] {$\Phi_W$};
+  \draw[-latex,thick] (c) -- (d) node[midway,below] {$(L_\mathcal{W}^\mathcal{V})^{-1}(F)$};
+  \draw[-latex,thick] (c) -- (a) node[midway,left] {$\Phi_V$};
+  \end{tikzpicture}
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Drehung und Spiegelung I}
-Drehung um den Winkel $\alpha$ -- Drehmatrix $G$:
+Drehung um den Winkel $\alpha$ - Drehmatrix $G$:
 \[ G(\alpha):= \left ( \begin{array}{cc}
 \cos(\alpha) & -\sin(\alpha) \\
 \sin(\alpha) & \cos(\alpha)
@@ -710,9 +718,12 @@ Drehung um den Winkel $\alpha$ -- Drehmatrix $G$:
 \]
 \begin{sagein}
 var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
-B = matrix([[cos(b),-sin(b)],[sin(b),cos(b)]])
-A*B
+A(a=pi/2)*vector([1,1])
 \end{sagein}
+\begin{sage}
+ (-1, 1)
+\end{sage}
+
 \end{frame}
 
 \begin{frame}[fragile]{Drehung und Spiegelung II}
@@ -720,10 +731,10 @@ Spiegelung bezüglich der Ebene
 \[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
  durch \[S(a):=I - 2 a a^T.\] 
 \begin{sagein}
-a = vector([1,2,3])
+a = matrix(3,1,[1,2,3])
 a = a/norm(a)
 I_n = identity_matrix(3)
-S = I_n - (2*a*a.transpose()).list()[0]
+S = I_n - 2*a*a.transpose()
 norm(S*S-I_n)
 \end{sagein}
 \begin{sage}

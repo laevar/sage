@@ -1,0 +1,31 @@
+
+
+{{{id=1|
+var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
+B = matrix([[cos(b),-sin(b)],[sin(b),cos(b)]])
+A*B
+///
+[-sin(a)*sin(b) + cos(a)*cos(b) -sin(a)*cos(b) - sin(b)*cos(a)]
+[ sin(a)*cos(b) + sin(b)*cos(a) -sin(a)*sin(b) + cos(a)*cos(b)]
+}}}
+
+{{{id=11|
+A(a=pi/2)*vector([1,1])
+///
+(-1, 1)
+}}}
+
+{{{id=2|
+a = matrix(3,1,[1,2,3])
+a = a/norm(a)
+I_n = identity_matrix(3)
+S = I_n - 2*a*a.transpose()
+round(norm(S*S-I_n))
+///
+0.0
+}}}
+
+{{{id=14|
+
+///
+}}}

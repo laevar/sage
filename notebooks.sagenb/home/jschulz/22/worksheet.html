@@ -1,0 +1,70 @@
+
+
+{{{id=1|
+_=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
+[ m.full_simplify() for m in  A.eigenvalues()]
+///
+[-1, 1]
+}}}
+
+{{{id=2|
+A.eigenvectors_right()
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_29.py", line 4, in <module>
+    exec compile(ur'A.eigenvectors_right()' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "matrix2.pyx", line 3877, in sage.matrix.matrix2.Matrix.eigenvectors_right (sage/matrix/matrix2.c:22838)
+  File "matrix2.pyx", line 3821, in sage.matrix.matrix2.Matrix.eigenvectors_left (sage/matrix/matrix2.c:22260)
+  File "matrix2.pyx", line 3558, in sage.matrix.matrix2.Matrix.eigenspaces_left (sage/matrix/matrix2.c:20894)
+TypeError: degree() takes exactly one argument (0 given)
+}}}
+
+{{{id=3|
+E = identity_matrix(2)
+p = (A-x*E).det(); p
+///
+(x - cos(al))*(x + cos(al)) - sin(al)^2
+}}}
+
+{{{id=4|
+[m.full_simplify() for m in solve(p==0,x)]
+///
+[x == -1, x == 1]
+}}}
+
+{{{id=5|
+A = matrix([[1,2,3],[4,5,6],[7,8,9]])
+b1 = vector([0,0,0])
+b2 = vector([1,0,0])
+b3 = A*b2
+print A\b1
+print A\b3
+///
+(0, 0, 0)
+(1, 0, 0)
+}}}
+
+{{{id=7|
+A\b2
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_34.py", line 4, in <module>
+    exec compile(ur'A * BackslashOperator() * b2' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/misc/preparser.py", line 1164, in __mul__
+    return self.left._backslash_(right)
+  File "matrix2.pyx", line 65, in sage.matrix.matrix2.Matrix._backslash_ (sage/matrix/matrix2.c:2623)
+  File "matrix2.pyx", line 294, in sage.matrix.matrix2.Matrix.solve_right (sage/matrix/matrix2.c:3565)
+  File "matrix2.pyx", line 414, in sage.matrix.matrix2.Matrix._solve_right_general (sage/matrix/matrix2.c:4345)
+ValueError: matrix equation has no solutions
+}}}
+
+{{{id=8|
+
+///
+}}}

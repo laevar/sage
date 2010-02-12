@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 6}
+\subtitle{Folgen, Reihen, Potenzreihen, Vertiefung Schleifen}
 \input{../slide_header}
-\subtitle{Einheit 6}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -19,23 +20,23 @@
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Datentypen}
-\begin{enumerate}
-\item Bezeichner -- \verb+DOM_IDENT+
-\item Ausdrücke -- \verb+DOM_EXPR+
-\item Ganze Zahlen -- \verb+DOM_INT+
-\item Rationale Zahlen -- \verb+DOM_RAT+
-\item Complexe Zahlen -- \verb+DOM_COMPLEX+
-\item Gleitkommazahlen -- \verb+DOM_FLOAT+
-\item Mengen -- \verb+DOM_SET+
-\item Listen -- \verb+DOM_LIST+
-\item Matrizen -- \verb+Dom::Matrix()+
-\item Tabellen -- \verb+DOM_TABLE+
-\item Arrays -- \verb+DOM_ARRAY+
-\item Funktionen/Prozeduren -- \verb+DOM_PROC+
-\item Zeichenketten -- \verb+DOM_STRING+
-\end{enumerate}
-\end{frame}
+% \begin{frame}[fragile]{Datentypen}
+% \begin{enumerate}
+% \item Bezeichner -- \isage{DOM_IDENT}
+% \item Ausdrücke -- \isage{DOM_EXPR}
+% \item Ganze Zahlen -- \isage{DOM_INT}
+% \item Rationale Zahlen -- \isage{DOM_RAT}
+% \item Complexe Zahlen -- \isage{DOM_COMPLEX}
+% \item Gleitkommazahlen -- \isage{DOM_FLOAT}
+% \item Mengen -- \isage{DOM_SET}
+% \item Listen -- \isage{DOM_LIST}
+% \item Matrizen -- \isage{Dom::Matrix()}
+% \item Tabellen -- \isage{DOM_TABLE}
+% \item Arrays -- \isage{DOM_ARRAY}
+% \item Funktionen/Prozeduren -- \isage{DOM_PROC}
+% \item Zeichenketten -- \isage{DOM_STRING}
+% \end{enumerate}
+% \end{frame}
 
 %===================================================
 \section{Folgen}
@@ -107,53 +108,53 @@ $(e_n)_n$ divergieren.
 
 \begin{frame}[fragile]{Folgen in Sage I}
 Grenzwerte von Folgen $(a_n)_n$ können in Sage mit Hilfe von 
-\begin{sage}
->> limit(expr(x), x = oo, dir='above')
-\end{sage}
+\begin{sagein}
+limit(expr(x), x = oo, dir='above')
+\end{sagein}
 berechnet werden. Dabei ist $expr(x)$ ein Ausdruck.
 
 \textbf{Beispiele:}
-\begin{sage}
->> _=var('n');limit(1/(n+1),n=oo)
-\end{sage}
+\begin{sagein}
+_=var('n');limit(1/(n+1),n=oo)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
-\begin{sage}
->> limit(((n+2)/(n+1))^(n+1),n=oo)
-\end{sage}
+\begin{sagein}
+limit(((n+2)/(n+1))^(n+1),n=oo)
+\end{sagein}
 \begin{sage}
   e
 \end{sage}
-\begin{sage}
->> limit((-1)^n,n=oo)
-\end{sage}
+\begin{sagein}
+limit((-1)^n,n=oo)
+\end{sagein}
 \begin{sage}
   ind
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Folgen in Sage II}
-\begin{sage}
->> limit(2^n,n=oo)
-\end{sage}
+\begin{sagein}
+limit(2^n,n=oo)
+\end{sagein}
 \begin{sage}
   +Infinity
 \end{sage}
-\begin{sage}
->> lim(x*sin(1/x), x=0)
-\end{sage}
+\begin{sagein}
+lim(x*sin(1/x), x=0)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Visualiseren von Folgen}
-Folgen können in Sage durch {\color{blue} \verb+points+} visualisiert werden.
-\begin{sage}
->> var('n');
->> point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
-\end{sage}
+Folgen können in Sage durch {\color{blue} \isage{points}} visualisiert werden.
+\begin{sagein}
+var('n');
+point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
+\end{sagein}
 \begin{center}
 \includegraphics[width=9.5cm]{figures/folge.pdf}
 \end{center}
@@ -201,15 +202,15 @@ für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 Rekursive Folgen können durch rekursive Funktionen erzeugt werden.
 \textbf{Beispiel:}
 \[ y_{n+2}:=2y_{n+1}-y_n+2, \quad y_0=-1, y_1=a. \]
-\begin{sage}
+\begin{sagein}
 >>var('a')
 >>def y(n):
->>    if n==0:
->>        return -1
->>    if n==1:
->>        return a
->>    return 2*y(n-1)-y(n-2)+2
-\end{sage}
+   if n==0:
+       return -1
+   if n==1:
+       return a
+   return 2*y(n-1)-y(n-2)+2
+\end{sagein}
 \begin{sage}
 4*a + 15
 \end{sage}
@@ -270,27 +271,27 @@ für $s>1$ und divergiert für $s=1$.
 \end{frame}
 
 \begin{frame}[fragile]{Reihen mit Sage I}
-Der Befehl {\color{blue} \verb+sum(f,i=a..b)+} sucht eine geschlossene
+Der Befehl {\color{blue} \isage{sum(f,i=a..b)}} sucht eine geschlossene
 Darstellung der Summe $\sum_{i=a}^b f(i)$. Dabei sind $a$,$b$ ganze
- Zahlen, wobei auch unendlich (also \verb+infinity+) erlaubt
-ist und \verb+f+ ist ein Ausdruck in $i$.
-\begin{sage}
->> _=var('k');sum(1/k^2,k,1,oo)
-\end{sage}
+ Zahlen, wobei auch unendlich (also \isage{infinity}) erlaubt
+ist und \isage{f} ist ein Ausdruck in $i$.
+\begin{sagein}
+_=var('k');sum(1/k^2,k,1,oo)
+\end{sagein}
 \begin{small}
 \begin{sage}
 1/6*pi^2
 \end{sage}
 \end{small}
-\begin{sage}
->> sum((-1)^(k+1)/k,k,1,oo)
-\end{sage}
+\begin{sagein}
+sum((-1)^(k+1)/k,k,1,oo)
+\end{sagein}
 \begin{sage}
   log(2)
 \end{sage}
-\begin{sage}
->> sum(1/k,k,1,oo)
-\end{sage}
+\begin{sagein}
+sum(1/k,k,1,oo)
+\end{sagein}
 \begin{sage}
 ValueError: Sum is divergent
 \end{sage}
@@ -301,16 +302,16 @@ ValueError: Sum is divergent
 Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern,
 wie z.B. bei der geometrischen Reihe. Und je nach Parameterwert zeigt die Reihe
 unterschiedliches Konvergenzverhalten
-\begin{sage}
->> sum(x^k,k,0,oo)
-\end{sage}
+\begin{sagein}
+sum(x^k,k,0,oo)
+\end{sagein}
 \begin{sage}
 Is  abs(x)-1  positive, negative, or zero?
 \end{sage}
 Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt jedoch
-\begin{sage}
->> x = 1/2; sum(x^k,k,0,oo)
-\end{sage}
+\begin{sagein}
+x = 1/2; sum(x^k,k,0,oo)
+\end{sagein}
 \begin{sage}
   2
 \end{sage}
@@ -319,19 +320,19 @@ Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt jedoch
 \begin{frame}[fragile]{Etwas mehr Sage}
 \begin{itemize}
 \item Definieren der Partialsumme
-\begin{sage}
->> del x;_=var('x,n')
->> s = sum(x^k,k,0,n); s
-\end{sage}
+\begin{sagein}
+del x;_=var('x,n')
+s = sum(x^k,k,0,n); s
+\end{sagein}
 \begin{small}
 \begin{sage}
 (x^(n + 1) - 1)/(x - 1)
 \end{sage}
 \end{small}
 \item Die ersten $5$ Glieder der Partialsumme
-\begin{sage}
->> assume(x<>1); [s(n=m) for m in [1..6]]
-\end{sage}
+\begin{sagein}
+assume(x<>1); [s(n=m) for m in [1..6]]
+\end{sagein}
 \begin{sage}
 [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
@@ -342,15 +343,15 @@ Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt jedoch
 \begin{frame}[fragile]{Etwas mehr Sage II}
 \begin{itemize}
 \item Bestimmen des Grenzwertes der Folge der Partialsummen
-\begin{sage}
->> forget();assume(abs(x)<1);limit(s,n=oo)
-\end{sage}
+\begin{sagein}
+forget();assume(abs(x)<1);limit(s,n=oo)
+\end{sagein}
 \begin{sage}
 -1/(x - 1)
 \end{sage}
-\begin{sage}
->> forget();assume(x>1);limit(s,n=oo)
-\end{sage}
+\begin{sagein}
+forget();assume(x>1);limit(s,n=oo)
+\end{sagein}
 \begin{sage}
 +Infinity
 \end{sage}
@@ -358,21 +359,21 @@ Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt jedoch
 \end{frame}
 
 \begin{frame}[fragile]{assume}
-Mit der Funktion \verb+assume+ kann man Funktionen wie \verb+expand+,
-\verb+simplify+ oder  \verb+solve+ mitteilen, dass für gewisse Bezeichner
+Mit der Funktion \isage{assume} kann man Funktionen wie \isage{expand},
+\isage{simplify} oder  \isage{solve} mitteilen, dass für gewisse Bezeichner
 Annahmen über ihre Bedeutung gemacht wurden. 
 
 \textbf{Beispiele:}
  
 {\color{blue} 
 \begin{tabular}{ll}
-\verb+assume(x,'real')+ & $x$ wird auf $\mathbb{R}$ eingeschränkt!\\
-\verb+assume(x>a)+ & $x$ wird auf  $\{y \in \mathbb{R}\ |\ y>a\}$
+\isage{assume(x,'real')} & $x$ wird auf $\mathbb{R}$ eingeschränkt!\\
+\isage{assume(x>a)} & $x$ wird auf  $\{y \in \mathbb{R}\ |\ y>a\}$
 eingeschr"ankt!
 \end{tabular}
 }
 
-Ruft man \verb+assume+ mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
+Ruft man \isage{assume} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
 Widersprüchlich erhält man eine entsprechende Meldung.
 \end{frame}
 
@@ -382,47 +383,47 @@ Widersprüchlich erhält man eine entsprechende Meldung.
 werden i.A. nur dann durchgeführt,
 wenn sie für alle komplexen Zahlen gelten. Hier kann ein Einschränken
 des Definitionsbereichs helfen.
-\item Mittels {\color{blue} \verb+forget(x>a)+} wird die Annahme \verb+x>a+ gelöscht.
-\item Durch {\color{blue} \verb+assumptions()+} können alle Annahmen ausgegeben werden.
-%\item Durch den speziellen Bezeichner \verb+Global+ können Annahmen
+\item Mittels {\color{blue} \isage{forget(x>a)}} wird die Annahme \isage{x>a} gelöscht.
+\item Durch {\color{blue} \isage{assumptions()}} können alle Annahmen ausgegeben werden.
+%\item Durch den speziellen Bezeichner \isage{Global} können Annahmen
 %für alle Bezeichner gesteuert werden. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele zu assume I}
-\begin{sage}
->> var('c'); assumptions()
-\end{sage}
+\begin{sagein}
+var('c'); assumptions()
+\end{sagein}
 \begin{sage}
 c
 []
 \end{sage}
 
-\begin{sage}
->> c = 2; assume(c>0)
-\end{sage}
+\begin{sagein}
+c = 2; assume(c>0)
+\end{sagein}
 \begin{sage}
  AttributeError: 'bool' object has no attribute 'assume'
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele zu assume II}
-\begin{sage}
->> del c;_=var('c')
->> assume(c,'integer'); assumptions()
-\end{sage}
+\begin{sagein}
+del c;_=var('c')
+assume(c,'integer'); assumptions()
+\end{sagein}
 \begin{sage}
 [c is integer]
 \end{sage}
-\begin{sage}
->> sin(c*pi)
-\end{sage}
+\begin{sagein}
+sin(c*pi)
+\end{sagein}
 \begin{sage}
 sin(pi*c)
 \end{sage}
-\begin{sage}
->> sin(c*pi).simplify()
-\end{sage}
+\begin{sagein}
+sin(c*pi).simplify()
+\end{sagein}
 \begin{sage}
    0
 \end{sage}
@@ -430,28 +431,28 @@ sin(pi*c)
 
 \begin{frame}[fragile]{Beispiele zu assume III}
 
-\begin{sage}
->> assume(x>0)
->> sqrt(x^2).simplify()
-\end{sage}
+\begin{sagein}
+assume(x>0)
+sqrt(x^2).simplify()
+\end{sagein}
 \begin{sage}
   x
 \end{sage}
-\begin{sage}
->> ??
-\end{sage}
-\begin{sage}
-  
-\end{sage}
-\begin{sage}
->> ??
-\end{sage}
+\begin{sagein}
+??
+\end{sagein}
 \begin{sage}
   
 \end{sage}
+\begin{sagein}
+??
+\end{sagein}
 \begin{sage}
+  
+\end{sage}
+\begin{sagein}
 >>
-\end{sage}
+\end{sagein}
 \begin{sage}
 
 \end{sage}
@@ -462,15 +463,15 @@ sin(pi*c)
 \hline
 Grundbereich & Erklärung\\
 \hline
-\verb+Type::Real+ & $\mathbb{R}$ \\
-\verb+Type::Rational+ & $\mathbb{Q}$\\
-\verb+Type::Integer+ &  $\mathbb{Z}$\\
-\verb+Type::Prime+   & Primzahlen \\
-\verb+Type::+ \verb+Intervall(a,b,T)+ & $\{ x \in T | a < x < b\}$, 
+\isage{Type::Real} & $\mathbb{R}$ \\
+\isage{Type::Rational} & $\mathbb{Q}$\\
+\isage{Type::Integer} &  $\mathbb{Z}$\\
+\isage{Type::Prime}   & Primzahlen \\
+\isage{Type::} \isage{Intervall(a,b,T)} & $\{ x \in T | a < x < b\}$, 
 $T$ Grundbereich \\
-\verb+Type::Positive+ & $\mathbb{R}_+$ \\
-\verb+Type::NonZero+ & $\mathbb{C} \smallsetminus \{ 0 \}$\\
-\verb+Type::NegRat+ & $\mathbb{Q}_-$\\
+\isage{Type::Positive} & $\mathbb{R}_+$ \\
+\isage{Type::NonZero} & $\mathbb{C} \smallsetminus \{ 0 \}$\\
+\isage{Type::NegRat} & $\mathbb{Q}_-$\\
 \hline
 \end{tabular}
 \end{frame}
@@ -520,21 +521,21 @@ fallende  Nullfolge ist.
 \begin{frame}[fragile]{Beispiele}
 \begin{itemize}
 \item Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
-\begin{sage}
->> f(n) = n^4.*exp(-n*n)
->> g(n) = f(n+1)/f(n)
->> limit(g(n),n=oo)
-\end{sage}
+\begin{sagein}
+f(n) = n^4.*exp(-n*n)
+g(n) = f(n+1)/f(n)
+limit(g(n),n=oo)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
 \item Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
-\begin{sage}
->> f(n) = 1/(n*(ln(n)^2))
->> g(n) = 2^n*f(2^n)
->> h(n) = 2^n*g(2^n)
->> limit(h(n+1)/h(n),n=oo)
-\end{sage}
+\begin{sagein}
+f(n) = 1/(n*(ln(n)^2))
+g(n) = 2^n*f(2^n)
+h(n) = 2^n*g(2^n)
+limit(h(n+1)/h(n),n=oo)
+\end{sagein}
 \begin{sage}
   1/2
  \end{sage}
@@ -590,19 +591,19 @@ Mathematik.
 \begin{frame}[fragile]{Beispiele}
 \begin{itemize}
 \item $\sum_{n=1}^\infty \frac{x^n}{n!}$
-\begin{sage}
->> f(n) = 1/factorial(n)
->> rho = limit(expand(f(n+1)/f(n)),n=oo); rho
-\end{sage}
+\begin{sagein}
+f(n) = 1/factorial(n)
+rho = limit(expand(f(n+1)/f(n)),n=oo); rho
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
 Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$. 
 \item $\sum_{n=0}^\infty n^s x^n$, $s>0$
-\begin{sage}
->> _=var('s');f(n)= n^s; assume(s>0)
->> limit(expand(f(n)^(1/n)),n=infinity)
-\end{sage}
+\begin{sagein}
+_=var('s');f(n)= n^s; assume(s>0)
+limit(expand(f(n)^(1/n)),n=infinity)
+\end{sagein}
 \begin{sage}
   1
 \end{sage}
@@ -615,9 +616,9 @@ Wir erklären die \alert{Exponentialfunktion} durch
 \[  exp(x) := \sum_{i=0}^\infty \frac{x^n}{n!}= 1 + \frac{x}{1!} +
 \frac{x^2}{2!}+ \frac{x^3}{3!}+ \dots, x \in \mathbb{R}. \]
  Die Funktion ist auf ganz $\mathbb{R}$ definiert. Plot:
-\begin{sage}
->> plot(exp,(-5,5))
-\end{sage}
+\begin{sagein}
+plot(exp,(-5,5))
+\end{sagein}
 \begin{center}
 \includegraphics[width=6cm]{figures/fexp.pdf}
 \end{center}
@@ -638,28 +639,28 @@ definiert.
 \end{frame}
 
 \begin{frame}[fragile]{Sage}
-\begin{sage}
->> sum(x^n/factorial(n),n,0,oo)
-\end{sage}
+\begin{sagein}
+sum(x^n/factorial(n),n,0,oo)
+\end{sagein}
 \begin{sage}
   e^x
 \end{sage}
-\begin{sage}
->> exp(log(x))
-\end{sage}
+\begin{sagein}
+exp(log(x))
+\end{sagein}
 \begin{sage}
   x
 \end{sage}
-\begin{sage}
->>  ??
-\end{sage}
+\begin{sagein}
+ ??
+\end{sagein}
 \begin{sage}
   
 \end{sage}
-\begin{sage}
->> ??
->> ??
-\end{sage}
+\begin{sagein}
+??
+??
+\end{sagein}
 \begin{sage}
   
 \end{sage}
@@ -704,9 +705,9 @@ von $\cos(x)$ als $\pi/2$ definieren.
 \end{frame}
 
 \begin{frame}[fragile]{Sage}
-\begin{sage}
->> solve(cos(x)==0,x)
-\end{sage}
+\begin{sagein}
+solve(cos(x)==0,x)
+\end{sagein}
 \begin{sage}
 [x == 1/2*pi]
 \end{sage}
@@ -722,14 +723,14 @@ von $\cos(x)$ als $\pi/2$ definieren.
 \begin{itemize}
 %\item Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
 \item Die Umkehrfunktionen von Sinus und Cosinus werden mit $\arcsin$
-und $\arccos$ bezeichnet. In Sage: \verb+arcsin+ und \verb+arccos+. 
+und $\arccos$ bezeichnet. In Sage: \isage{arcsin} und \isage{arccos}. 
 Plotten: 
-\begin{sage}
->> p = plot(arcsin,-1,1,color='red')
->> p += plot(arccos,-1,1); 
->> p += text('-- $arcsin(x)$', (-0.7, 1.0), color='red')
->> p += text('-- $arccos(x)$', (-0.7, 0.75)); p.show()
-\end{sage}
+\begin{sagein}
+p = plot(arcsin,-1,1,color='red')
+p += plot(arccos,-1,1); 
+p += text('-- $arcsin(x)$', (-0.7, 1.0), color='red')
+p += text('-- $arccos(x)$', (-0.7, 0.75)); p.show()
+\end{sagein}
 \begin{center}
 \includegraphics[width=5.5cm]{figures/arcsinarccos.pdf}
 \end{center}
@@ -740,9 +741,9 @@ Plotten:
 \begin{itemize}
 \item Der {\color{red} Tangens} ist definiert durch
 $\tan(x) :=\frac{\sin(x)}{\cos(x)}$.
-\begin{sage}
->> plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
-\end{sage}
+\begin{sagein}
+plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
+\end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/tan.pdf}
 \end{center}
@@ -754,7 +755,7 @@ $\tan(x) :=\frac{\sin(x)}{\cos(x)}$.
 %-------------------
 
 \begin{frame}[fragile]{Schleifen I}
-Wir kennen bereits Schleifen durch das \verb+[.. for ..]+-Konstrukt. Mit \verb+for+ können aber auch
+Wir kennen bereits Schleifen durch das \isage{[.. for ..]}-Konstrukt. Mit \isage{for} können aber auch
 ganze Blöcke wiederholt werden.
 \begin{sage} 
 for k in [1..4]:
@@ -766,10 +767,10 @@ for k in [1..4]:
 \begin{frame}[fragile]{Schleifen II}
 \begin{itemize}
 \item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
-  $4$. Dabei wird alles was ab \verb+:+ eingerückt ist $k$-mal durchlaufen.
+  $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
 \item Ergebnisse, die in jedem Schleifenschritt berechnet werden,
   werden \alert{nicht} auf dem Bildschirm ausgegeben. 
-\item Eine Ausgabe wird durch den \verb+print+-Befehl erzielt.
+\item Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
 \end{itemize}
 \end{frame}
 
@@ -787,28 +788,28 @@ for i in L:
 \begin{frame}[fragile]{Etwas Zahlentheorie}
 Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
 $1,2,3,\dots $ Teiler haben.
-\begin{sage}
->> Liste = [1..1000]
->> def anz_teiler(n): return len(divisors(n))
->> Liste2 = map(anz_teiler,Liste)
->> for k in [1..50]:
->>     print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
->> print divisors(840)
-\end{sage}
+\begin{sagein}
+Liste = [1..1000]
+def anz_teiler(n): return len(divisors(n))
+Liste2 = map(anz_teiler,Liste)
+for k in [1..50]:
+    print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
+print divisors(840)
+\end{sagein}
 \end{frame}
 
 \begin{frame}[fragile]{Alternative Schleifenkonstruktionen}
 \begin{itemize}
 \item Schleifen abwärts zählen
-\begin{sage}
->> for j in reversed([2,4]):
->>    print("{0}, {1}").format(x,x^j) 
-\end{sage}
+\begin{sagein}
+for j in reversed([2,4]):
+   print("{0}, {1}").format(x,x^j) 
+\end{sagein}
 \item Schrittweite modifizieren
-\begin{sage}
->> for j in range(3,10,2):
->>     print(x,x^j) 
-\end{sage}
+\begin{sagein}
+for j in range(3,10,2):
+    print(x,x^j) 
+\end{sagein}
 \end{itemize}
 \end{frame}
 
@@ -831,18 +832,18 @@ bei geeignetem Startwert $x_0 = 0.2$.  \\
 
 \begin{frame}[fragile]{Implementierung}
 \begin{small}
-\begin{sage}
->> def fixpunkt(f,In,x0,n):
->>     y = [x0]
->>     p = plot(f,(In[0],In[1]))
->>     p += plot(x,(In[0],In[1]))
->>     for i in [0..n-1]:
->>         y.append(float(f(y[i])))
->>         p += line( [ (y[i],y[i]), (y[i],y[i+1]) ],linestyle='--', color='red')
->>         p += line( [ (y[i],y[i+1]), (y[i+1],y[i+1]) ],linestyle='--', color='red')
->>     p.show()
->>     return(y)
-\end{sage}
+\begin{sagein}
+def fixpunkt(f,In,x0,n):
+    y = [x0]
+    p = plot(f,(In[0],In[1]))
+    p += plot(x,(In[0],In[1]))
+    for i in [0..n-1]:
+        y.append(float(f(y[i])))
+        p += line( [ (y[i],y[i]), (y[i],y[i+1]) ],linestyle='--', color='red')
+        p += line( [ (y[i],y[i+1]), (y[i+1],y[i+1]) ],linestyle='--', color='red')
+    p.show()
+    return(y)
+\end{sagein}
 \end{small}
 \end{frame}
 

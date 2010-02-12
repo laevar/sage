@@ -1,0 +1,98 @@
+
+
+{{{id=1|
+var('a')
+///
+a
+}}}
+
+{{{id=2|
+f(x) = (2*x^2-20*x +42)/(x-1)+a; f
+///
+x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
+}}}
+
+{{{id=34|
+f.limit(x=1, dir='plus')
+///
+x |--> +Infinity
+}}}
+
+{{{id=3|
+f.limit(x=1, dir='minus')
+///
+x |--> -Infinity
+}}}
+
+{{{id=35|
+f.full_simplify()
+///
+x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
+}}}
+
+{{{id=4|
+solve(f==0,x); f.roots(x)
+///
+[x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
+[(-1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, 1), (-1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5, 1)]
+}}}
+
+{{{id=5|
+g = f.differentiate(x)
+///
+}}}
+
+{{{id=7|
+maxi = solve(f.differentiate(x)==0,x); maxi
+///
+[x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
+}}}
+
+{{{id=9|
+float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
+///
+-1.1547005383792501
+}}}
+
+{{{id=10|
+float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
+///
+1.1547005383792515
+}}}
+
+{{{id=11|
+f.limit(x=oo); f.limit(x=-oo)
+///
+x |--> +Infinity
+x |--> -Infinity
+}}}
+
+{{{id=13|
+f0 = f(x, a=0)
+///
+}}}
+
+{{{id=15|
+f1 = f(x, a=-20)
+///
+}}}
+
+{{{id=16|
+f2 = f(x, a=20);f0,f1,f2
+///
+(2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
+}}}
+
+{{{id=17|
+p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
+p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
+p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue')
+p.show(ymin=-80, ymax=80)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=37|
+
+///
+}}}

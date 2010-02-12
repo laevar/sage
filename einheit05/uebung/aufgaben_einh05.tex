@@ -12,7 +12,7 @@ WS 2009/2010
   \(L2=[x,x^2,x^6,x^{24},x^{120}]\). 
   \begin{enumerate}
   \item
-    Erstellen Sie diese beiden Listen mit Hilfe des \verb+[... for ...]+ Konstruktes.
+    Erstellen Sie diese beiden Listen mit Hilfe des \isage{[... for ...]} Konstruktes.
   \item Bilden sie $L3=L1+L2$
   \item
     Bilden Sie von jedem Eintrag von $L3$ die Ableitung und  die Stammfunktion.
@@ -25,9 +25,9 @@ Entfernen Sie den größten Eintrag aus der resultierenden Liste.
 
 \begin{aufg}
   Gegeben sei:
-\begin{sage}
+\begin{sagein}
 L=[16,81,125,512,729,4096,19683,78125,262144,390625,505,22343243,512]
-\end{sage}
+\end{sagein}
 \begin{enumerate}
 \item
 Bestimmen Sie aus L alle Elemente, die durch $3$ teilbar sind und
@@ -76,7 +76,7 @@ Bestimmen Sie zuletzt alle Elemente, die durch $5$ teilbar sind.
  Berechnen Sie die Basiswechselmatrix bzgl. eines Basiswechsels von
   $V$ nach $W$!
 \end{aufg}
-
+\clearpage
 \begin{aufg}
     Gegeben seien die Matrizen \(
     A = \left(\begin{array}{ccc}0&2&-2\\3&x&4\\-1&y&1\end{array}\right),
@@ -92,7 +92,7 @@ $n^2+n+m^2$ mit $n=1,2,\dots,100$ Primzahlen sind.
 \end{aufg}
 
 \begin{aufg}
-Berechnen Sie mit Hilfe einer \verb+for+-Schleife die ersten 10 Glieder der Folge
+Berechnen Sie mit Hilfe einer \isage{for}-Schleife die ersten 10 Glieder der Folge
 \[ x_{n+1}=x_n - \frac{x_n^2-2}{2 x_n}, n \in \mathbb{N}   \]
 mit Startwert $x_0=1$. Erraten Sie den Grenzwert der Folge!
 Ersetzen Sie den Startwert $x_0$ durch den Gleitkommawert $x_0=1.0$..
@@ -100,7 +100,7 @@ Ersetzen Sie den Startwert $x_0$ durch den Gleitkommawert $x_0=1.0$..
 
 
 \begin{aufg}
-Schreiben Sie eine Prozedur \verb+fak+, die die Fakultät 
+Schreiben Sie eine Funktion \isage{fak}, die die Fakultät 
 \[ a!= \prod_{i=1}^a i\]
 von einer natürlichen Zahl $a$ berechnet. 
 \end{aufg}

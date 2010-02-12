@@ -1,0 +1,88 @@
+
+
+{{{id=1|
+f(x,y) = x^2+y^2; f
+///
+(x, y) |--> x^2 + y^2
+}}}
+
+{{{id=4|
+type(f)
+///
+<type 'sage.symbolic.expression.Expression'>
+}}}
+
+{{{id=5|
+_=var('a,b');f(a,b+1)
+///
+1/(a + 1)
+}}}
+
+{{{id=6|
+f(x) = 1/(1+x); g(x) =sin(x^2)
+h = f+g; k = f*g; l = f/g
+h(a),k(a),l(a)
+///
+(1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
+}}}
+
+{{{id=7|
+f_g(x) = f(g); g_f(x) = g(f)
+f_g(x), g_f(x)
+///
+(1/(sin(x^2) + 1), sin((x + 1)^(-2)))
+}}}
+
+{{{id=8|
+g4(x) = g(g(g(g))); g4
+///
+x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
+}}}
+
+{{{id=10|
+abs(real(-2+3*I))
+///
+2
+}}}
+
+{{{id=12|
+Funktion(x) = 2*x*cos(x); Funktion(1)
+///
+2*cos(1)
+}}}
+
+{{{id=13|
+Ausdruck = 2*x*cos(x); Ausdruck(x=1)
+///
+2*cos(1)
+}}}
+
+{{{id=16|
+Funktion, Ausdruck
+///
+(x |--> 2*x*cos(x), 2*x*cos(x))
+}}}
+
+{{{id=17|
+_=var('y');Funktion2(x) = x+sin(y); Funktion2
+///
+x |--> x + sin(y)
+}}}
+
+{{{id=18|
+Funktion3(x,y) = x+sin(y); Funktion3
+///
+(x, y) |--> x + sin(y)
+}}}
+
+{{{id=9|
+
+///
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_3.py", line 4, in <module>
+    exec compile(ur'y' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+NameError: name 'y' is not defined
+}}}

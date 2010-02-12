@@ -1,0 +1,63 @@
+
+
+{{{id=20|
+integrate(x^4*exp(-x),x,0,oo)
+///
+24
+}}}
+
+{{{id=21|
+f = (1+sin(x))/(1+cos(x)); f
+///
+(sin(x) + 1)/(cos(x) + 1)
+}}}
+
+{{{id=22|
+g = f.integrate(x); g
+///
+sin(x)/(cos(x) + 1) - log(cos(x) + 1)
+}}}
+
+{{{id=23|
+g.full_simplify()
+///
+-((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
+}}}
+
+{{{id=24|
+expand((x-1)*(x-2)*(x-3)*(x-4))
+///
+x^4 - 10*x^3 + 35*x^2 - 50*x + 24
+}}}
+
+{{{id=25|
+factor(_)
+///
+(x - 4)*(x - 3)*(x - 2)*(x - 1)
+}}}
+
+{{{id=28|
+var('b,a')
+g = x^2+2*x+b*x^2+sin(x)+a*x
+g.collect(x)
+///
+(b + 1)*x^2 + (a + 2)*x + sin(x)
+}}}
+
+{{{id=27|
+g = x^ 2/( x^ 2- 1)
+g.partial_fraction()
+///
+1/2/(x - 1) - 1/2/(x + 1) + 1
+}}}
+
+{{{id=29|
+g = (exp(x)-1)/(exp(x/2)+1); g.simplify_radical ()
+///
+e^(1/2*x) - 1
+}}}
+
+{{{id=35|
+
+///
+}}}

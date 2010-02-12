@@ -62,13 +62,24 @@ Geben Sie eine Näherungslösung für die Gleichung  $x=\exp(-x)$ an!
 %\newpage
 \begin{aufg} 
 Geben Sie folgende Zeilen ein:
-\begin{sage}
+\begin{sagein}
 [ (x == m) for m in range(1,4)]
 [ (x == m) for m in range(1,4) if is_prime(m) ]
-\end{sage}
+\end{sagein}
 Erklären Sie die beiden Ausgaben!
 \end{aufg}
 %-----------------------------------------------------------------------------------
+\clearpage
+\begin{aufg}
+Bestimmen sie näherungsweise die Zahl $\pi$. Nutzen sie dafür die Formel
+\[
+\pi = 4\frac{A_K}{A_Q}
+\]
+mit $A_K$ Flächeninhalt des Kreises und $A_Q$ Flächeninhalt des Quadrates. Berechnen sie mit Hilfe einer \isage{for}-Schleife und
+einer \isage{if}-Abfrage das Verhältnis der beiden Flächen und damit die Näherung an $\pi$. Nutzen sie dafür aus, dass man für jeden beliebigen Punkt
+innerhalb des Quadrates bestimmen kann ob er innerhalb des Kreises liegt oder nicht.
+\end{aufg}
+
 
 %-----------------------------------------------------------------------------------
 % \begin{aufg}
