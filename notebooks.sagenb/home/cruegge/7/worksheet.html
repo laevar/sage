@@ -1,0 +1,268 @@
+
+
+<h2>Aufgabe 1</h2>
+
+{{{id=1|
+reset()
+v1 = vector([5,-3,4])
+v2 = vector([7,6,8])
+v3 = vector([9,2,-13])
+///
+}}}
+
+{{{id=4|
+norm( (v2-v1).cross_product(v3-v1) )/2
+///
+1/2*sqrt(33105)
+}}}
+
+{{{id=5|
+n(norm( (v2-v1).cross_product(v3-v1) )/2)
+///
+90.9738973552304
+}}}
+
+{{{id=9|
+polygon3d([v1,v2,v3])
+///
+}}}
+
+<h2>Aufgabe 2</h2>
+
+{{{id=10|
+reset()
+var('x,y')
+///
+(x, y)
+}}}
+
+{{{id=12|
+f(x,y) = 0.1*y^4 - 0.3*y^3 - 1.5*y^2 + sin(3*x) + 1.9*y + 3
+///
+}}}
+
+{{{id=13|
+plot3d(f(x,y), (x,-4,4), (y,-4,4))
+///
+}}}
+
+{{{id=14|
+contour_plot(f(x,y), (x,-4,4), (y,-4,4), contours=[-2,0,2,4,6], fill=False, labels=True)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+<h2>Aufgabe 3</h2>
+
+{{{id=15|
+reset()
+var('x')
+f = 1/(1-x)
+g = 1/(1+x+x^2+x^3+x^4+x^5)
+///
+}}}
+
+{{{id=24|
+sum([diff(f,x,n)(x=3)/n.factorial()*(x-3)^n for n in [0..3]])
+///
+1/16*(x - 3)^3 - 1/8*(x - 3)^2 + 1/4*x - 5/4
+}}}
+
+{{{id=25|
+taylor(f,x,3,3)
+///
+1/16*(x - 3)^3 - 1/8*(x - 3)^2 + 1/4*x - 5/4
+}}}
+
+{{{id=26|
+sum([diff(g,x,n)(x=3)/n.factorial()*(x-3)^n for n in [0..3]])
+///
+-44310267/17555190016*(x - 3)^3 + 177633/48228544*(x - 3)^2 - 547/132496*x + 2005/132496
+}}}
+
+{{{id=27|
+taylor(g,x,3,3)
+///
+-44310267/17555190016*(x - 3)^3 + 177633/48228544*(x - 3)^2 - 547/132496*x + 2005/132496
+}}}
+
+<h2></h2>
+
+<h2>Aufgabe 4</h2>
+
+{{{id=29|
+reset()
+var('x,n')
+f(x) = x*exp(-n*x)
+///
+}}}
+
+{{{id=30|
+solve(diff(f,x)==0, x)
+///
+[x == (1/n)]
+}}}
+
+{{{id=75|
+# Wegen eines Bugs ist forget() hier möglicherweise wesentlich
+# Als Grundregel sollte reset() immer mit forget() verwendet werden
+forget()
+assume(n>0)
+bool(diff(f,x,2)(1/n) < 0)
+///
+True
+}}}
+
+{{{id=77|
+f(0), f(1/n), f.limit(x=oo)
+///
+(0, e^(-1)/n, x |--> 0)
+}}}
+
+<h2>Aufgabe 5</h2>
+
+{{{id=41|
+reset()
+var('x')
+///
+x
+}}}
+
+{{{id=49|
+(cos(x)).limit(x=pi/2), (pi/2-x).limit(x=pi/2)
+///
+(0, 0)
+}}}
+
+{{{id=45|
+( diff(cos(x),x) / diff(pi/2-x,x) ).limit(x=pi/2)
+///
+1
+}}}
+
+{{{id=50|
+(sin(x)-x).limit(x=0), (x*sin(x)).limit(x=0)
+///
+(0, 0)
+}}}
+
+{{{id=47|
+( diff(sin(x)-x,x) / diff(x*sin(x),x) ).limit(x=0)
+///
+0
+}}}
+
+<h2>Aufgabe 6</h2>
+
+{{{id=51|
+reset()
+var('x')
+///
+x
+}}}
+
+{{{id=48|
+limit(sqrt(x), x=1, dir='plus'), limit(x^3+2.5*x-2, x=1, dir='minus')
+///
+(1, 1.5)
+}}}
+
+{{{id=53|
+limit(x^2, x=0, dir='plus'), limit(-x, x=0, dir='minus')
+///
+(0, 0)
+}}}
+
+{{{id=54|
+limit(diff(x^2,x), x=0, dir='plus'), limit(diff(-x,x), x=0, dir='minus')
+///
+(0, -1)
+}}}
+
+<h2>Aufgabe 7</h2>
+
+{{{id=56|
+reset()
+var('x')
+///
+x
+}}}
+
+{{{id=55|
+show( diff(exp(sin(2*x)/sin(x)/( (ln(8)/(2+2*cos(x)))^(-1) - 8/ln(x^4) )), x) )
+///
+<html><div class="math">\frac{1}{2} \, {\left(\frac{{\left(\frac{\sin\left(x\right)}{\log\left(8\right)} - 16 \, \frac{1}{x \log\left(x^{4}\right)^{2}}\right)} \sin\left(2 \, x\right)}{{\left(\frac{{\left(\cos\left(x\right) + 1\right)}}{\log\left(8\right)} - 4 \, \frac{1}{\log\left(x^{4}\right)}\right)}^{2} \sin\left(x\right)} - \frac{\sin\left(2 \, x\right) \cos\left(x\right)}{{\left(\frac{{\left(\cos\left(x\right) + 1\right)}}{\log\left(8\right)} - 4 \, \frac{1}{\log\left(x^{4}\right)}\right)} \sin\left(x\right)^{2}} + 2 \, \frac{\cos\left(2 \, x\right)}{{\left(\frac{{\left(\cos\left(x\right) + 1\right)}}{\log\left(8\right)} - 4 \, \frac{1}{\log\left(x^{4}\right)}\right)} \sin\left(x\right)}\right)} e^{\left(\frac{1}{2} \, \frac{\sin\left(2 \, x\right)}{{\left(\frac{{\left(\cos\left(x\right) + 1\right)}}{\log\left(8\right)} - 4 \, \frac{1}{\log\left(x^{4}\right)}\right)} \sin\left(x\right)}\right)}</div></html>
+}}}
+
+{{{id=58|
+show( diff(sin(2^(cos(3*x))), x) )
+///
+<html><div class="math">-3 \, 2^{\cos\left(3 \, x\right)} \log\left(2\right) \sin\left(3 \, x\right) \cos\left(2^{\cos\left(3 \, x\right)}\right)</div></html>
+}}}
+
+{{{id=59|
+4*integral(1/(1+x^2), x,0,1)
+///
+pi
+}}}
+
+{{{id=60|
+integral(sin(x)*exp(x), x,0,pi)
+///
+1/2*e^pi + 1/2
+}}}
+
+{{{id=61|
+integral(1/(exp(x)+exp(-x)), x)
+///
+arctan(e^x)
+}}}
+
+{{{id=62|
+diff(sin(2*x)*exp(x), x,20)
+///
+-9653287*e^x*sin(2*x) - 1476984*e^x*cos(2*x)
+}}}
+
+<h2>Aufgabe 8</h2>
+
+{{{id=66|
+reset()
+var('x')
+///
+x
+}}}
+
+{{{id=63|
+def nullstelle(f, a0, b0, TOL):
+    k = 0
+    ak = a0
+    bk = b0
+    while abs(b0-a0) > 2^(k+1)*TOL:
+        if f(ak)*f((ak+bk)/2) < 0:
+            bk = (ak+bk)/2
+        else:
+            ak = (ak+bk)/2
+        k += 1
+    return (ak+bk)/2
+///
+}}}
+
+{{{id=65|
+f(x) = x^3 - 2
+n(2^(1/3))
+///
+1.25992104989487
+}}}
+
+{{{id=67|
+n(nullstelle(f, 0,3, 10^(-4)))
+///
+1.25985717773438
+}}}
+
+{{{id=68|
+n(nullstelle(f, 0,3, 10^(-6)))
+///
+1.25992083549500
+}}}
