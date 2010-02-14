@@ -20,7 +20,7 @@
 Jochen Schulz\\
 NAM, Zimmer 04 (Erdgescho{\ss})\\
 Telefon: 39-4525
-Email: \url{schulz@math.uni-goettingen.de}\\
+Email: \href{mailto:schulz@math.uni-goettingen.de}{\texttt{schulz@math.uni-goettingen.de}}\\
 XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
 
 \end{block}
@@ -128,8 +128,9 @@ gesuchte Lösung
  \alert{Maxima} &Free, GPL, von Sage benutzt\\
 \alert{Mathematica} &einer der Grossen\\
  \alert{Maple} &einer der Grossen\\
-\alert{Matlab/Octave} &Für große numerische Rechnungen, inkl. Mupad\\
-\alert{Magma} &Spezielle mathematische Rechungen (z.B. Algebra)\\
+\alert{Matlab} &Für große numerische Rechnungen (inkl. Mupad)\\
+\alert{Octave} &Für große numerische Rechnungen (GPL)\\
+\alert{Magma} &Spezielle mathematische Rechnungen (z.B. Algebra)\\
  \alert{SymPy} &Phython-Bibliotheken; als CAS-Verwendbar\\
  \alert{SymbolicC++} &Bibliotheken zur CA in C++
 \end{tabular}
@@ -210,7 +211,7 @@ GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
 \alert{Schwächen}
 \begin{itemize}
 \item Befehlsumfang nicht so mächtig wie bei Maple, Mathematica oder Matlab
-\item es fehlt (noch) eine gute Entwicklungsumgebung
+\item es fehlt (noch) eine gute Entwicklungsumgebung (in Entwicklung: \alert{Cantor})
 \end{itemize}
 \end{frame}
 
@@ -399,11 +400,11 @@ x |--> -Infinity
 \end{frame}
 
 \begin{frame}[fragile]{Plot}
-\begin{sage}
+\begin{sagein}
 p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
 p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
 p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
-\end{sage}
+\end{sagein}
 \begin{center}
 \includegraphics[height=4.5cm]{figures/graphen}
 \end{center}
@@ -582,9 +583,9 @@ g: \vec{x}=
 \end{frame}
 
 \begin{frame}[fragile]{Grafische Darstellung}
-\begin{sage}
+\begin{sagein}
 var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
-\end{sage}
+\end{sagein}
 \begin{sagein}
 p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
 \end{sagein}
@@ -648,13 +649,13 @@ b = vector([1,-1,2])
 \begin{frame}[fragile]
 \begin{itemize}
 \item Lösen von  $A \ L=b$
-\begin{sage}
+\begin{sagein}
 A.solve_right(b)
-\end{sage}
+\end{sagein}
 oder 
-\begin{sage}
+\begin{sagein}
 A\b
-\end{sage}
+\end{sagein}
 ergibt
 \begin{sage}
 (6/5, 3/5, -2/5)
@@ -746,7 +747,7 @@ liste.sort(); liste
 
 \end{frame}
 
-\begin{frame}[fragile]{einfache Schleifen und Abfragen}
+\begin{frame}[fragile]{Einfache Schleifen und Abfragen}
 
  \begin{itemize}
   \item mit dem Konstrukt  \isage{[<expr(var)> for <var> in <range\|liste>]} kann man einfache Schleifen konstruieren..
@@ -780,10 +781,10 @@ Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
 Zahl $F_n$, die keine Primzahl ist!
 \begin{sagein}
 def F(n): return 2^(2^n)+1
-[[F(m),is_prime(F(m))] for m in range(1,6) if is_prime (F(m))]
+[[F(m),is_prime(F(m))] for m in range(1,6)]
 \end{sagein}
 \begin{sage}
-[[5, True], [17, True], [257, True], [65537, True]]
+[[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
 \end{sage}
 \begin{sagein}
 divisors(int(F(5)))
@@ -797,7 +798,7 @@ divisors(int(F(5)))
 \begin{itemize}
 \item Eine Liste der ersten  Primzahlen bis $100$
 \begin{sagein}
-menge = set(range(1,101))
+menge = range(1,101)
 [m for m in menge if is_prime(m)]
 oder filter(is_prime,menge)
 \end{sagein}
@@ -807,12 +808,14 @@ oder filter(is_prime,menge)
 \item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
 Mersenne Primzahlen im Bereich $\leq 200$.
 \begin{sagein}
-menge = set(range(1,201))
+menge = range(1,201)
 primes = [m for m in menge if is_prime(m)]
-[m for m in primes if is_prime(2^m-1)]
+[2^m-1 for m in primes if is_prime(2^m-1)]
 \end{sagein}
 \begin{sage}
-[2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127]
+[3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
+618970019642690137449562111, 162259276829213363391578010288127,
+170141183460469231731687303715884105727]
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -821,9 +824,9 @@ primes = [m for m in menge if is_prime(m)]
 Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
 $1,2,3,\dots $ Teiler haben.
 \begin{sagein}
-menge = set(range(1,1001))
+menge = range(1,1001)
 liste = [number_of_divisors(int(m)) for m in menge]
-[(i,len([m for m in liste if m==i])) for i in range(1,51)]
+[(i,len([m for m in liste if m==i]))for i in range(1,51)]
 \end{sagein}
 
 \begin{sage}
