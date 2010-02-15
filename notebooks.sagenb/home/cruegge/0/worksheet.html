@@ -118,10 +118,22 @@ ind
 
 <h2>Aufgabe 4</h2>
 
-{{{id=27|
-integral(x/(2*a*x-x^2)^(3/2),x)
+{{{id=43|
+var('a')
 ///
-x/(sqrt(2*a*x - x^2)*a)
+a
+}}}
+
+{{{id=27|
+integral(x/(2*a*x-x^2)^(3/2),x).full_simplify()
+///
+sqrt(x)/(sqrt(2*a - x)*a)
+}}}
+
+{{{id=42|
+integral((x/sqrt((2*a*x-x^2)^3)).full_simplify(),x)
+///
+sqrt(x)/(sqrt(2*a - x)*a)
 }}}
 
 {{{id=28|

@@ -15,7 +15,7 @@ p8
 I2
 sS'pretty_print'
 p9
-I00
+I01
 sS'system'
 p10
 S'sage'
@@ -46,9 +46,9 @@ p24
 I00
 sS'last_change'
 p25
-(S'admin'
+(S'jschulz'
 p26
-F1263658453.0722101
+F1266225336.6772709
 tp27
 sS'worksheet_that_was_published'
 p28
