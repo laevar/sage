@@ -64,7 +64,7 @@ x = 1/2; sum(x^k,k,0,oo)
 }}}
 
 {{{id=8|
-del x;_=var('x,n')
+reset();_=var('x,n,k')
 s = sum(x^k,k,0,n); s
 ///
 (x^(n + 1) - 1)/(x - 1)
@@ -144,7 +144,7 @@ assumptions()
 }}}
 
 {{{id=19|
-forget();del c;_=var('c')
+forget();reset('c');_=var('c')
 assume(c,'integer'); assumptions()
 ///
 [c is integer]
@@ -181,11 +181,6 @@ assumptions()
 [c is integer, x > 0]
 }}}
 
-{{{id=33|
-assume?
-///
-}}}
-
 {{{id=35|
 reset();forget()
 f(n) = n^4.*exp(-n*n)
@@ -202,4 +197,9 @@ h(n) = 2^n*g(2^n)
 limit(h(n+1)/h(n),n=oo)
 ///
 1/2
+}}}
+
+{{{id=40|
+
+///
 }}}

@@ -203,13 +203,14 @@ Rekursive Folgen können durch rekursive Funktionen erzeugt werden.
 \textbf{Beispiel:}
 \[ y_{n+2}:=2y_{n+1}-y_n+2, \quad y_0=-1, y_1=a. \]
 \begin{sagein}
->>var('a')
->>def y(n):
+var('a')
+def y(n):
    if n==0:
        return -1
    if n==1:
        return a
    return 2*y(n-1)-y(n-2)+2
+y(4)
 \end{sagein}
 \begin{sage}
 4*a + 15
@@ -225,9 +226,11 @@ Sei $(a_n)_n$ eine Folge reeller Zahlen. Eine {\color{red} (unendliche)
 Reihe} mit den {\color{red} Gliedern} $a_n$, in Zeichen
 \[ \sum_{n=1}^\infty a_n =a_1 + a_2 + a_3 + \dots, \]
 ist definiert durch die Folge $(s_n)_n$ der {\color{red} Partialsummen}\\
-\centering{$s_n=\sum_{k=1}^n a_k = a_1+a_2+ \dots +a_n$.}\\
-Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder {\color{red}
-Summe} der Reihe bezeichnet. Man schreibt
+\[
+s_n=\sum_{k=1}^n a_k = a_1+a_2+ \dots +a_n 
+\]
+Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder 
+{\color{red} Summe} der Reihe bezeichnet. Man schreibt
 \[s= \sum_{n=1}^\infty a_n.\] 
 \end{frame}
 
@@ -321,7 +324,7 @@ x = 1/2; sum(x^k,k,0,oo)
 \begin{itemize}
 \item Definieren der Partialsumme
 \begin{sagein}
-del x;_=var('x,n')
+_=var('x,n,k')
 s = sum(x^k,k,0,n); s
 \end{sagein}
 \begin{small}
@@ -409,7 +412,7 @@ c = 2; assume(c>0)
 
 \begin{frame}[fragile]{Beispiele zu assume II}
 \begin{sagein}
-del c;_=var('c')
+_=var('c')
 assume(c,'integer'); assumptions()
 \end{sagein}
 \begin{sage}
@@ -427,10 +430,6 @@ sin(c*pi).simplify()
 \begin{sage}
    0
 \end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele zu assume III}
-
 \begin{sagein}
 assume(x>0)
 sqrt(x^2).simplify()
@@ -438,42 +437,32 @@ sqrt(x^2).simplify()
 \begin{sage}
   x
 \end{sage}
-\begin{sagein}
-??
-\end{sagein}
-\begin{sage}
-  
-\end{sage}
-\begin{sagein}
-??
-\end{sagein}
-\begin{sage}
-  
-\end{sage}
-\begin{sagein}
->>
-\end{sagein}
-\begin{sage}
-
-\end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Einige Grundbereiche ??}
-\begin{tabular}{|l|l|}
+
+\begin{frame}[fragile]{Einige Annahmen für assume}
+% integer,
+% noninteger, even, odd, rational, irrational, real, imaginary, complex,
+% analytic, increasing, decreasing, oddfun, evenfun, posfun, constant,
+% commutative, lassociative, rassociative, symmetric, antisymmetric,
+% integervalued, one_to_one
+\begin{center}
+ \begin{tabular}{|l|l|}
 \hline
-Grundbereich & Erklärung\\
+Annahme & Erklärung\\
 \hline
-\isage{Type::Real} & $\mathbb{R}$ \\
-\isage{Type::Rational} & $\mathbb{Q}$\\
-\isage{Type::Integer} &  $\mathbb{Z}$\\
-\isage{Type::Prime}   & Primzahlen \\
-\isage{Type::} \isage{Intervall(a,b,T)} & $\{ x \in T | a < x < b\}$, 
-$T$ Grundbereich \\
-\isage{Type::Positive} & $\mathbb{R}_+$ \\
-\isage{Type::NonZero} & $\mathbb{C} \smallsetminus \{ 0 \}$\\
-\isage{Type::NegRat} & $\mathbb{Q}_-$\\
+\isage{'real'} & $\mathbb{R}$ \\
+\isage{'rational'} & $\mathbb{Q}$\\
+\isage{'integer'} &  $\mathbb{Z}$\\
+\isage{'complex'} & $\mathbb{C}$\\
+\isage{'even'}   & gerade Zahl \\
+\isage{'odd'} & ungerade Zahl\\
+\isage{'increasing'} & wachsend \\
+\isage{'analytic'} & analytisch\\
 \hline
 \end{tabular}
+\end{center}
+
 \end{frame}
 
 \begin{frame}{Konvergenzkriterien}
@@ -652,18 +641,18 @@ exp(log(x))
   x
 \end{sage}
 \begin{sagein}
- ??
+_=var('n');limit((1+x/n)^n,n=oo)
 \end{sagein}
 \begin{sage}
-  
+  e^x
 \end{sage}
-\begin{sagein}
-??
-??
-\end{sagein}
-\begin{sage}
-  
-\end{sage}
+% \begin{sagein}
+% ??
+% ??
+% \end{sagein}
+% \begin{sage}
+%   
+% \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Trigonometrische Funktionen}
@@ -674,12 +663,12 @@ durch
 \cos(x) := \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}. 
 \end{eqnarray*}
 Die Potenzreihen konvergieren für alle $x \in \mathbb{R}$. Plotten:
-\begin{sage}
+\begin{sagein}
 p = plot(sin,0,4*pi,color='red')
 p += plot(cos,0,4*pi); 
 p += text('-- $\sin(x)$', (10, 1.0), color='red')
 p += text('-- $\cos(x)$', (10, 0.85)); p.show()
-\end{sage}
+\end{sagein}
 \begin{center}
 \includegraphics[width=5.5cm]{figures/sincos.pdf}
 \end{center}
@@ -711,11 +700,11 @@ solve(cos(x)==0,x)
 \begin{sage}
 [x == 1/2*pi]
 \end{sage}
+\begin{sagein}
+sin(x+pi/2).simplify()
+\end{sagein}
 \begin{sage}
-??
-\end{sage}
-\begin{sage}
-??
+cos(x)
 \end{sage}
 \end{frame}
 
@@ -751,28 +740,24 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 \end{frame}
 
 %-----------
-\section{Vertiefung Schleifen ??}
+\section{Vertiefung Schleifen}
 %-------------------
 
-\begin{frame}[fragile]{Schleifen I}
-Wir kennen bereits Schleifen durch das \isage{[.. for ..]}-Konstrukt. Mit \isage{for} können aber auch
-ganze Blöcke wiederholt werden.
-\begin{sage} 
-for k in [1..4]:
-    x = k^2
-    print("Das Quadrat von {0} ist {1}").format(k,x)
-\end{sage}
-\end{frame}
+while
 
-\begin{frame}[fragile]{Schleifen II}
-\begin{itemize}
-\item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
-  $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
-\item Ergebnisse, die in jedem Schleifenschritt berechnet werden,
-  werden \alert{nicht} auf dem Bildschirm ausgegeben. 
-\item Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
-\end{itemize}
-\end{frame}
+case ?
+
+beliebige listen als iterator 
+
+% \begin{frame}[fragile]{Schleifen II}
+% \begin{itemize}
+% \item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
+%   $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
+% \item Ergebnisse, die in jedem Schleifenschritt berechnet werden,
+%   werden \alert{nicht} auf dem Bildschirm ausgegeben. 
+% \item Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}[fragile]{Schleifen III}
  Eine elegante Möglichkeit sind Schleifen über Listen oder Mengen.

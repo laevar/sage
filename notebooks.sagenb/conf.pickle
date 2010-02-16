@@ -11,12 +11,12 @@ I72
 sS'save_interval'
 p5
 I360
-sS'server_pool'
+sS'email'
 p6
-NsS'idle_check_interval'
+I00
+sS'idle_check_interval'
 p7
 I360
-sS'email'
+sS'server_pool'
 p8
-I00
-s.
+Ns.
