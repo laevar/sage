@@ -83,7 +83,7 @@ archive=true
 column=16
 encoding=UTF-8
 highlight=LaTeX
-line=100
+line=78
 open=false
 order=8
 
@@ -125,10 +125,10 @@ order=3
 
 [item:einheit06/einheit06.tex]
 archive=true
-column=23
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=394
+line=744
 open=true
 order=3
 

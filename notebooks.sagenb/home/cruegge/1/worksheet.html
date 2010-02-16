@@ -162,6 +162,15 @@ print 4*(c/n).n()
 }}}
 
 {{{id=71|
+seitenlaenge =300
+liste = [0..seitenlaenge]
+anzquadrat = len(liste)^2
+anzkreis = len([(i,j) for i in liste for j in liste if sqrt(i^2+j^2) <= seitenlaenge])
+float(4*anzkreis/anzquadrat)
+///
+}}}
+
+{{{id=75|
 
 ///
 }}}
