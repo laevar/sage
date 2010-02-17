@@ -743,7 +743,28 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 \section{Vertiefung Schleifen}
 %-------------------
 
-while
+\begin{frame}[fragile]{\isage{while}-Schleifen}
+Eine andere Form einer Schleife ist 
+\begin{sagein}
+while <expression> : <block>
+\end{sagein}
+Diese wiederholt \isage{<block>} solange wie die \isage{<expression>} als 
+\isage{True} ausgewertet wird.
+
+Beispiel:
+\begin{sagein}
+f(x) = 1/x
+x=0.1
+while f(x) > 0.1:
+    x += 0.1
+x
+\end{sagein}
+\begin{sage}
+ 10.1000000000000
+\end{sage}
+
+
+\end{frame}
 
 case ?
 
