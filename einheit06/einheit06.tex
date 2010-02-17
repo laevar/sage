@@ -743,7 +743,7 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 \section{Vertiefung Schleifen}
 %-------------------
 
-\begin{frame}[fragile]{\isage{while}-Schleifen}
+\begin{frame}[fragile]{while-Schleifen}
 Eine andere Form einer Schleife ist 
 \begin{sagein}
 while <expression> : <block>
@@ -766,10 +766,6 @@ x
 
 \end{frame}
 
-case ?
-
-beliebige listen als iterator 
-
 % \begin{frame}[fragile]{Schleifen II}
 % \begin{itemize}
 % \item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
@@ -780,29 +776,29 @@ beliebige listen als iterator
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Schleifen III}
- Eine elegante Möglichkeit sind Schleifen über Listen oder Mengen.
-\begin{sage}
-L = [1..10]
-for i in L:
-    x = i^2
-    print("Das Quadrat von {0} ist {1}").format(i,x)
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Schleifen III}
+%  Eine elegante Möglichkeit sind Schleifen über Listen oder Mengen.
+% \begin{sage}
+% L = [1..10]
+% for i in L:
+%     x = i^2
+%     print("Das Quadrat von {0} ist {1}").format(i,x)
+% \end{sage}
+% \end{frame}
 
 
-\begin{frame}[fragile]{Etwas Zahlentheorie}
-Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
-$1,2,3,\dots $ Teiler haben.
-\begin{sagein}
-Liste = [1..1000]
-def anz_teiler(n): return len(divisors(n))
-Liste2 = map(anz_teiler,Liste)
-for k in [1..50]:
-    print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
-print divisors(840)
-\end{sagein}
-\end{frame}
+% \begin{frame}[fragile]{Etwas Zahlentheorie}
+% Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
+% $1,2,3,\dots $ Teiler haben.
+% \begin{sagein}
+% Liste = [1..1000]
+% def anz_teiler(n): return len(divisors(n))
+% Liste2 = map(anz_teiler,Liste)
+% for k in [1..50]:
+%     print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
+% print divisors(840)
+% \end{sagein}
+% \end{frame}
 
 \begin{frame}[fragile]{Alternative Schleifenkonstruktionen}
 \begin{itemize}
@@ -813,9 +809,15 @@ for j in reversed([2,4]):
 \end{sagein}
 \item Schrittweite modifizieren
 \begin{sagein}
-for j in range(3,10,2):
+for j in srange(3,10,2.6):
     print(x,x^j) 
 \end{sagein}
+\begin{sage}
+(x, x^3.00000000000000)
+(x, x^5.60000000000000)
+(x, x^8.20000000000000)
+\end{sage}
+
 \end{itemize}
 \end{frame}
 
@@ -854,9 +856,9 @@ def fixpunkt(f,In,x0,n):
 \end{frame}
 
 \begin{frame}[fragile]{Aufruf}
-\begin{sage}
+\begin{sagein}
 fixpunkt(lambda x: cos(x),[0,1],0.2,10)
-\end{sage}
+\end{sagein}
 \begin{sage}
 [0.200000000000000, 0.98006657784124163, 0.55696725280964243, 0.84886216565827077, 0.66083755111661502, 0.78947843776686832, 0.70421571334199318, 0.76211956176066087, 0.72337417210557109, 0.74957657633149311, 0.73197742525819132]
 \end{sage}
