@@ -121,20 +121,9 @@ var('x')
 
 {{{id=39|
 reset()
-find_root(x-exp(-x), 0,.5)
+find_root(x-exp(-x), 0,1)
 ///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_4.py", line 6, in <module>
-    exec compile(ur'find_root(x-exp(-x), _sage_const_0 ,_sage_const_p5 )' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/numerical/optimize.py", line 67, in find_root
-    return f.find_root(a=a,b=b,xtol=xtol,rtol=rtol,maxiter=maxiter,full_output=full_output)
-  File "expression.pyx", line 6085, in sage.symbolic.expression.Expression.find_root (sage/symbolic/expression.cpp:24080)
-  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/numerical/optimize.py", line 99, in find_root
-    raise RuntimeError, "f appears to have no zero on the interval"
-RuntimeError: f appears to have no zero on the interval
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0.56714329041</span></html>
 }}}
 
 <h2>Aufgabe 7</h2>
@@ -173,7 +162,7 @@ print 4*(c/n).n()
 }}}
 
 {{{id=71|
-seitenlaenge =300
+seitenlaenge = 300
 liste = [0..seitenlaenge]
 anzquadrat = len(liste)^2
 anzkreis = len([(i,j) for i in liste for j in liste if i^2+j^2 <= seitenlaenge^2])
