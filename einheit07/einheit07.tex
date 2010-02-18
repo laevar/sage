@@ -1,7 +1,8 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
 \usepackage[xetex,dvipdfmx]{animate}
+\title{Einführung in Sage - Einheit 7}
+\subtitle{Funktionen, Grenzwerte, Funktionenfolgen, Grafiken}
 \input{../slide_header}
-\subtitle{Einheit 7}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -66,24 +67,24 @@ Z.B.
 
 
 \begin{frame}[fragile]{Abbildungen in Sage I}
-In Sage wird eine Abbildung $f$ durch einen Ausdruck der Form {\color{red}\verb+f(x,y,...)+} gebildet, wobei $x$,$y$ die sind.
-\begin{sage}
->> f(x,y) = x^2+y^2; f
-\end{sage}
+In Sage wird eine Abbildung $f$ durch einen Ausdruck der Form {\color{red}\isage{f(x,y,...)}} gebildet, wobei $x$,$y$ die sind.
+\begin{sagein}
+f(x,y) = x^2+y^2; f
+\end{sagein}
 \begin{sage}
 (x, y) |--> x^2 + y^2
 \end{sage}
 Die so definierte Funktion $f$ kann wie jede beliebige andere Funktion
-aufgerufen werden. Funktionen haben den Datentyp \verb+expression+.
-\begin{sage}
->> _=var('a,b');f(a,b+1)
-\end{sage}
+aufgerufen werden. Funktionen haben den Datentyp \isage{expression}.
+\begin{sagein}
+_=var('a,b');f(a,b+1)
+\end{sagein}
 \begin{sage}
 (b + 1)^2 + a^2
 \end{sage}
-\begin{sage}
->> type(f)
-\end{sage}
+\begin{sagein}
+type(f)
+\end{sagein}
 \begin{sage}
 <type 'sage.symbolic.expression.Expression'>
 \end{sage}
@@ -92,11 +93,11 @@ aufgerufen werden. Funktionen haben den Datentyp \verb+expression+.
 \begin{frame}[fragile]{Abbildungen in Sage II}
 Wie gewohnt können Abbildungen addiert, subtrahiert, multipliziert und
 dividiert werden:
-\begin{sage}
->> f(x) = 1/(1+x); g(x) = sin(x^2)
->> h = f+g; k = f*g; l = f/g
->> h(a),k(a),l(a)
-\end{sage}
+\begin{sagein}
+f(x) = 1/(1+x); g(x) = sin(x^2)
+h = f+g; k = f*g; l = f/g
+h(a),k(a),l(a)
+\end{sagein}
 \begin{sage}
 (1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
 \end{sage}
@@ -105,18 +106,18 @@ dividiert werden:
 
 \begin{frame}[fragile]{Kompositionen in Sage I}
 Eine Komposition $f\circ g$ wird in Sage durch Ineinanderschachteln gelöst.
-\begin{sage}
->> f_g(x) = f(g); g_f(x) = g(f)
->> f_g(x), g_f(x)
-\end{sage}
+\begin{sagein}
+f_g(x) = f(g); g_f(x) = g(f)
+f_g(x), g_f(x)
+\end{sagein}
 \begin{sage}
 (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
 \end{sage}
 Mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
 \circ f(\cdot)$ wird in Sage ebenso druchgeführt.
-\begin{sage}
->> g4(x) = g(g(g(g))); g4
-\end{sage}
+\begin{sagein}
+g4(x) = g(g(g(g))); g4
+\end{sagein}
 \begin{sage}
 x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
 \end{sage}
@@ -124,29 +125,29 @@ x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
 
 \begin{frame}[fragile]{Kompositionen in Sage II}
 Diese Konstruktionen funktionieren auch mit Systemfunktionen:
-\begin{sage}
->> abs(real(-2+3*I))
-\end{sage}
+\begin{sagein}
+abs(real(-2+3*I))
+\end{sagein}
 \begin{sage}
   2
 \end{sage}
 Kompliziertere Funktionen können besser durch selbst definierte Funktionen erklärt
 werden. Dies sind im Wesentlichen kleine Programme, die mit
-\verb+def <func>():+ beginnen (vgl. letzte Vorlesung).
+\isage{def <func>():} beginnen (vgl. letzte Vorlesung).
 \end{frame}
 
 \begin{frame}[fragile]{Ausdrücke und Funktionen I}
 Man kann in Sage wählen, ob man eine Funktion $f$ als Funktion oder
 als Ausdruck darstellt. Die Funktionsauswertung ist i.A. allerdings unterschiedlich:
-\begin{sage}
->> Funktion(x) = 2*x*cos(x); Funktion(1)
-\end{sage}
+\begin{sagein}
+Funktion(x) = 2*x*cos(x); Funktion(1)
+\end{sagein}
 \begin{sage}
   2*cos(1)
 \end{sage}
-\begin{sage}
->> Ausdruck = 2*x*cos(x); Ausdruck(x=1)
-\end{sage}
+\begin{sagein}
+Ausdruck = 2*x*cos(x); Ausdruck(x=1)
+\end{sagein}
 \begin{sage}
   2*cos(1)
 \end{sage}
@@ -155,19 +156,19 @@ als Ausdruck darstellt. Die Funktionsauswertung ist i.A. allerdings unterschiedl
 
 % \begin{frame}[fragile]{Ausdrücke und Funktionen II}
 % Man kann durch Einsetzen aus einer Funktion einen Ausdruck machen:
-% \begin{sage}
-% >> bool(Funktion=Ausdruck), bool(Funktion(x)=Ausdruck)
-% \end{sage}
+% \begin{sagein}
+% bool(Funktion=Ausdruck), bool(Funktion(x)=Ausdruck)
+% \end{sagein}
 % \begin{sage}
 %   FALSE, TRUE
 % \end{sage}
 % Umgekehrt kann man aber auch aus einem Ausdruck eine Funktion
-% machen. Dazu gibt es in der Bibliothek \verb+fp+ den Befehl
-% \verb+unapply+. 
-% \begin{sage}
-% >> Ausdruck:=2*x*cos(x):
-% >> (h:=fp::unapply(Ausdruck)), h(2), Ausdruck(2)
-% \end{sage}
+% machen. Dazu gibt es in der Bibliothek \isage{fp} den Befehl
+% \isage{unapply}. 
+% \begin{sagein}
+% Ausdruck:=2*x*cos(x):
+% (h:=fp::unapply(Ausdruck)), h(2), Ausdruck(2)
+% \end{sagein}
 % \begin{sage}
 %   x -> 2*x*cos(x), 4*cos(2), 2*x(2)*cos(x)(2)
 % \end{sage}
@@ -175,15 +176,15 @@ als Ausdruck darstellt. Die Funktionsauswertung ist i.A. allerdings unterschiedl
 
 \begin{frame}[fragile]{Ausdrücke und Funktionen II}
 Auch mehrere Veränderliche  sind möglich:
-\begin{sage}
->> _=var('y');Funktion2(x) = x+sin(y); Funktion2
-\end{sage}
+\begin{sagein}
+_=var('y');Funktion2(x) = x+sin(y); Funktion2
+\end{sagein}
 \begin{sage}
  x |--> x + sin(y)
 \end{sage}
-\begin{sage}
->> Funktion3(x,y) = x+sin(y); Funktion3
-\end{sage}
+\begin{sagein}
+Funktion3(x,y) = x+sin(y); Funktion3
+\end{sagein}
 \begin{sage}
   (x, y) |--> x + sin(y)
 \end{sage}
@@ -192,26 +193,26 @@ Auch mehrere Veränderliche  sind möglich:
 % \begin{frame}[fragile]{Warnung im Umgang mit Funktionen}
 % 
 % {\color{red} Funktionen werden bei der Zuweisung nicht vollständig ausgewertet.}
-% \begin{sage}
-% >> n:=1: f.n := x -> x^2+n
-% \end{sage}
+% \begin{sagein}
+% n:=1: f.n := x -> x^2+n
+% \end{sagein}
 % \begin{sage}
 %  x -> x^2 + n
 % \end{sage}
-% \begin{sage}
-% >> f1(4); n:=0: f1(4)
+% \begin{sagein}
+% f1(4); n:=0: f1(4)
 %    17  16
-% \end{sage}
-% \begin{sage}
-% >> (f.n := x -> x^2+n) $\text{dollar}$ n=4..5
-% \end{sage}
+% \end{sagein}
+% \begin{sagein}
+% (f.n := x -> x^2+n) $\text{dollar}$ n=4..5
+% \end{sagein}
 % \begin{sage}
 %   x -> x^2 + n, x -> x^2 + n
 % \end{sage}
-% Ausweg: Verwendung des Operators {\color{red}\verb+-->+}
-% \begin{sage}
-% >> (f.n := x --> x^2+n) $\text{dollar}$ n=4..5 
-% \end{sage}
+% Ausweg: Verwendung des Operators {\color{red}\isage{-->}}
+% \begin{sagein}
+% (f.n := x --> x^2+n) $\text{dollar}$ n=4..5 
+% \end{sagein}
 % \begin{sage}
 %   x -> x^2 + 4, x -> x^2 + 5
 % \end{sage} 
@@ -254,43 +255,43 @@ folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
 \end{frame}
 
 \begin{frame}[fragile]{Sage}
-Grenzwerte werden in Sage mit dem Befehl \verb+limit+ gebildet. 
+Grenzwerte werden in Sage mit dem Befehl \isage{limit} gebildet. 
 Die Syntax des Befehls lautet
-\begin{sage}
->> expr.limit(x = a, dir=None, taylor=False)
->> limit(expr, x = a, dir=None, taylor=False)
-\end{sage}
+\begin{sagein}
+expr.limit(x = a, dir=None, taylor=False)
+limit(expr, x = a, dir=None, taylor=False)
+\end{sagein}
 Hierdurch wird der Grenzwert eines Ausdrucks mit Unbekannten $x$ an
 der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (in
-Sage \verb+infinity+ oder \verb+oo+).\\
+Sage \isage{infinity} oder \isage{oo}).\\
 \bigskip
-Ruft man \verb+limit+ ohne \verb+option+ auf, so wird der beidseitige
-Limes berechnet. Falls \verb+dir='minus'+ ist, wird der linksseitige
-Limes berechnet; für \verb+dir='plus'+ der rechtsseitige.
+Ruft man \isage{limit} ohne \isage{option} auf, so wird der beidseitige
+Limes berechnet. Falls \isage{dir='minus'} ist, wird der linksseitige
+Limes berechnet; für \isage{dir='plus'} der rechtsseitige.
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele in Sage I}
 \begin{itemize}
 \item Bestimme den Grenzwert $\lim_{x \rightarrow 0}
 \frac{\sin(x)}{x}$
-\begin{sage}
->> limit(sin(x)/x,x=0)
-\end{sage}
+\begin{sagein}
+limit(sin(x)/x,x=0)
+\end{sagein}
 \begin{sage}
   1
 \end{sage}
 \item Bestimme den Grenzwert $\lim_{x \rightarrow \infty}
 \frac{\log(x)}{x}$
-\begin{sage}
->> limit(log(x)/x,x=infinity)
-\end{sage}
+\begin{sagein}
+limit(log(x)/x,x=infinity)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
 \item Bestimme den Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
-\begin{sage}
->> limit(x^(1/x),x=infinity)
-\end{sage}
+\begin{sagein}
+limit(x^(1/x),x=infinity)
+\end{sagein}
 \begin{sage}
   1
 \end{sage}
@@ -301,19 +302,19 @@ Limes berechnet; für \verb+dir='plus'+ der rechtsseitige.
 \begin{itemize}
 \item Bestimme den Grenzwert $\lim_{x \rightarrow 0}
 \sin(1/x)$
-\begin{sage}
->> limit(sin(1/x),x=0)
-\end{sage}
+\begin{sagein}
+limit(sin(1/x),x=0)
+\end{sagein}
 \begin{sage}
   ind
 \end{sage}
-Der Grenzwert existiert nicht. Sage gibt in diesem Fall \verb+ind+ (indefinite aber beschränkt) zurück. 
+Der Grenzwert existiert nicht. Sage gibt in diesem Fall \isage{ind} (indefinite aber beschränkt) zurück. 
 \item Bestimme den Grenzwert $\lim_{x \rightarrow 0} |x|' $
-\begin{sage}
->> limit(diff(abs(x),x),x=0),
+\begin{sagein}
+limit(diff(abs(x),x),x=0),
 limit(diff(abs(x),x),x=0,dir='minus'),
 limit(diff(abs(x),x),x=0,dir='plus')
-\end{sage}
+\end{sagein}
 \begin{sage}
   (und, -1, 1)
 \end{sage}
@@ -392,50 +393,50 @@ limit(1/x,x=0,dir='plus')
 
 
 % (Komplexe) Unstetigkeitsstellen oder Definitionslücken können mittels
-% \verb+discont+ aufgespürt werden:
-% \begin{sage}
-% >> discont(sin(1/x)*x,x)
-% \end{sage}
+% \isage{discont} aufgespürt werden:
+% \begin{sagein}
+% discont(sin(1/x)*x,x)
+% \end{sagein}
 % \begin{sage}
 %   {0}
 % \end{sage}
-% \begin{sage}
-% >> discont(exp(x),x)
-% \end{sage}
+% \begin{sagein}
+% discont(exp(x),x)
+% \end{sagein}
 % \begin{sage}
 %   {}
 % \end{sage}
-% \begin{sage}
-% >> discont(tan(x),x)
-% \end{sage}
+% \begin{sagein}
+% discont(tan(x),x)
+% \end{sagein}
 % \begin{sage}
 %   { 1/2*PI + X1*PI |  X1 in Z_ }
 % \end{sage}
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Stetigkeit in MuPAD}
-% \begin{sage}
-% >> discont(1/sin(x),x=-1..10)
-% \end{sage}
+% \begin{sagein}
+% discont(1/sin(x),x=-1..10)
+% \end{sagein}
 % \begin{sage}
 %   {PI, 0, 2 PI, 3 PI}
 % \end{sage}
 % Vorsicht! Es werden komplexe Unstetigkeitsstellen gesucht!
-% \begin{sage}
-% >> discont(ln(x),x)
-% \end{sage}
+% \begin{sagein}
+% discont(ln(x),x)
+% \end{sagein}
 % \begin{sage}
 %   (-infinity, 0]
 % \end{sage}
-% \begin{sage}
-% >> discont(ln(x),x,Dom::Real)
-% \end{sage}
+% \begin{sagein}
+% discont(ln(x),x,Dom::Real)
+% \end{sagein}
 % \begin{sage}
 %   {0}
 % \end{sage}
-% \begin{sage}
-% >> ln(-2)
-% \end{sage}
+% \begin{sagein}
+% ln(-2)
+% \end{sagein}
 % \begin{sage}
 %   I PI + ln(2)
 % \end{sage}
@@ -509,7 +510,7 @@ eine Funktionenreihe. Aussagen über die Funktionenreihe sind, analog zum Fall d
 
 \begin{frame}[fragile]{Grafiken}
 \begin{itemize}
-\item Die Funktionen \verb+<parametric_>plot()+ und \verb+<parametric_>plot3d()+ dienen
+\item Die Funktionen \isage{<parametric_>plot()} und \isage{<parametric_>plot3d()} dienen
              zur Darstellung von Graphen von Funktionen mit einem
              bzw. zwei Argumenten. 
 \item Grafiken werden im Notebook integriert.
@@ -519,37 +520,37 @@ Grafiken werden nicht direkt erzeugt, d.h. ausgegeben, sondern erst werden
 {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven 
 erzeugt. 
 
-Erst beim \verb+show()+ oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
+Erst beim \isage{show()} oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
 Szene} zusammengefaßt.
 
 \end{frame} 
 
 \begin{frame}[fragile]{plot()}
 Skalare Funktionen $f1,f2,\ldots$, können durch den Befehl
-\begin{sage}
->> plot(f1,(x,a,b),optionen)
-\end{sage}
+\begin{sagein}
+plot(f1,(x,a,b),optionen)
+\end{sagein}
 auf dem Intervall $x \in [a,b]$. Dabei ist die Angabe  von
-\verb+(x,a,b)+ optional. Beispiele:
-\begin{sage}
->> plot(x^2-1)
->> plot(sin(1/x),(x,-1,1))
->> plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
-\end{sage}
+\isage{(x,a,b)} optional. Beispiele:
+\begin{sagein}
+plot(x^2-1)
+plot(sin(1/x),(x,-1,1))
+plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
+\end{sagein}
 
-\begin{sage}
->> p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
->> p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
-\end{sage}
+\begin{sagein}
+p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
+p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
+\end{sagein}
 \end{frame}
 
 \begin{frame}[fragile]{plot3d()}
 Es werden Funktionen
 $f:\mathbb{R}^2 \ \rightarrow \mathbb{R}$
 grafisch dargestellt. (Genauer gesagt wird auch hier der Funktionsgraph als Teilmenge des $\mathbb{R}^3$ gezeichnet). Der Funktionsaufruf ist
-\begin{sage}
->> plot3d(f,(x,a,b),(y,c,d), plot_points=[nx,ny])
-\end{sage}
+\begin{sagein}
+plot3d(f,(x,a,b),(y,c,d), plot_points=[nx,ny])
+\end{sagein}
 Hierdurch werden  Ausdrücke $f1, f2,\ldots$, auf 
 $[a,b]\times [c,d]$ mit Hilfe  von $nx$ Gitterpunkten in $x$-Richtung
 und $ny$ Punkten in $y$-Richtung dargestellt. 
@@ -557,27 +558,27 @@ und $ny$ Punkten in $y$-Richtung dargestellt.
 
 \begin{frame}[fragile]{Beispiele}
 Plot von $f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
-\begin{sage}
->> f(x,y) = sin(y^2+x)-cos(y-x^2)
->> plot3d(f,(x,0,pi),(y,0,pi))
->> plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
-\end{sage}
+\begin{sagein}
+f(x,y) = sin(y^2+x)-cos(y-x^2)
+plot3d(f,(x,0,pi),(y,0,pi))
+plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
+\end{sagein}
 \medskip
 Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
-\begin{sage}
->> g(x,y) = cos(20*exp(-x^2-y^2))
->> plot3d(g,(x,-1,1),(y,-1,1))
->> plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
-\end{sage}
+\begin{sagein}
+g(x,y) = cos(20*exp(-x^2-y^2))
+plot3d(g,(x,-1,1),(y,-1,1))
+plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
+\end{sagein}
 \end{frame}
 
 \begin{frame}[fragile]{Grafische Szene}
 
-\begin{sage}
->> W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
->> S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
->> show(W + S, figsize=8)
-\end{sage}
+\begin{sagein}
+W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
+S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
+show(W + S, figsize=8)
+\end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/ball.jpg} 
 \end{center}
@@ -585,30 +586,30 @@ Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
 
 \begin{frame}[fragile]{Ausgewählte Optionen für grafische Szenen}
 \begin{tabular}{lp{8cm}}
-\verb+aspect_ratio+ & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. \newline
-              {\color{blue} \verb+aspect_ratio = 2+}\\
-\verb+figsize+    & Grösse des Bildes \newline
-                  {\color{blue} \verb+figsize = [width, height]+}\\          
-\verb+axes_labels+ &  Tuple oder Liste der Achsenbeschriftungen \newline
-{\color{blue} \verb+axes_labels = ('$x$','$y$')+}\\
-\verb+gridlines+ & Gitterlinien\newline
-              {\color{blue} \verb+gridlines = True+}
+\isage{aspect_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. \newline
+              {\color{blue} \isage{aspect_ratio = 2}}\\
+\isage{figsize}    & Grösse des Bildes \newline
+                  {\color{blue} \isage{figsize = [width, height]}}\\          
+\isage{axes_labels} &  Tuple oder Liste der Achsenbeschriftungen \newline
+{\color{blue} \isage{axes_labels = ('$x$','$y$')}}\\
+\isage{gridlines} & Gitterlinien\newline
+              {\color{blue} \isage{gridlines = True}}
 \end{tabular}
 \end{frame}
 
 \begin{frame}[fragile]{Ausgewählte Optionen für grafische Objekte}
 \begin{tabular}{lp{8cm}}
-\verb+linestyle+  & Darstellung von Linien\newline
-           (\verb+'-'+ (solid), \verb+'-.'+ (dashed), \verb+':'+) (dotted)\newline
-                {\color{blue} \verb+linestyle = '.'+}\\
-\verb+thickness+  & Linienstärke in mm\newline
-              {\color{blue} \verb+thickness = 4+}\\
-\verb+color+      & Zuweisung einer Farbe\newline
-              {\color{blue} \verb+color='red'+}\\
-\verb+plot_points+        & Anzahl Stützstellen\newline
-              {\color{blue} \verb+plot_points  = [nx,ny]+} (2 Parameter)\\
-\verb+alpha+  & Transparent\newline
-     {\color{blue} \verb+alpha = 0.8+}\\
+\isage{linestyle}  & Darstellung von Linien\newline
+           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)\newline
+                {\color{blue} \isage{linestyle = '.'}}\\
+\isage{thickness}  & Linienstärke in mm\newline
+              {\color{blue} \isage{thickness = 4}}\\
+\isage{color}      & Zuweisung einer Farbe\newline
+              {\color{blue} \isage{color='red'}}\\
+\isage{plot_points}        & Anzahl Stützstellen\newline
+              {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
+\isage{alpha}  & Transparent\newline
+     {\color{blue} \isage{alpha = 0.8}}\\
 \end{tabular}
 \end{frame}
 
@@ -620,20 +621,20 @@ Eine Kurve des $\mathbb{R}^2$ in Parameterdarstellung sei gegeben durch Funktion
  Zum Beispiel ergibt sich der Graph einer Funktion $f(x)$, $x
 \in [a,b]$ durch $t,f(t)$ mit  $t \in
 [a,b]$. Der Befehl zum Erzeugen des Objekts ist 
-\begin{sage}
->> Objekt = parametric_plot([x,y],(t,a,b))
-\end{sage}
+\begin{sagein}
+Objekt = parametric_plot([x,y],(t,a,b))
+\end{sagein}
 $x$ und $y$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
 noch Optionen übergeben werden.
 \end{frame}
 
 \begin{frame}[fragile]{2D Kurven - Beispiele}
-\begin{sage}
->> _=var('t');f1 = parametric_plot([t,sin(t)],(t,0,2*pi),color='red')
->> f2 = parametric_plot([t,cos(t)],(t,0,2*pi),color='green')
->> f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
->> (f1+f2+f3).show(figsize=7)
-\end{sage}
+\begin{sagein}
+_=var('t');f1 = parametric_plot([t,sin(t)],(t,0,2*pi),color='red')
+f2 = parametric_plot([t,cos(t)],(t,0,2*pi),color='green')
+f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
+(f1+f2+f3).show(figsize=7)
+\end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/parametric2d.pdf} 
 \end{center}
@@ -641,9 +642,9 @@ noch Optionen übergeben werden.
 \end{frame}
 
 \begin{frame}[fragile]{2D Kurven - Beispiele}
-\begin{sage}
->> [parametric_plot([cos(t),sin(t)],(t,0,2*pi),plot_points=2*k+1,randomize=False,adaptive_recursion=0 ) for k in [2..10]]
-\end{sage}
+\begin{sagein}
+[parametric_plot([cos(t),sin(t)],(t,0,2*pi),plot_points=2*k+1,randomize=False,adaptive_recursion=0 ) for k in [2..10]]
+\end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/parametric2d_2.pdf} 
 \end{center}
@@ -656,17 +657,17 @@ Das Erzeugen einer dreidimensionaler Kurve, d.h. einer Kurve des $\mathbb{R}^3$ 
  \{(x(t),y(t),z(t)) \in \mathbb{R}^3 \;|\; t \in [a,b] \}.
 \]
 Der Befehl ist  
-\begin{sage}
->> Objekt = parametric_plot3d([x,y,z],(t,a,b))
-\end{sage}
+\begin{sagein}
+Objekt = parametric_plot3d([x,y,z],(t,a,b))
+\end{sagein}
 $x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
 noch Optionen übergeben werden. 
 \end{frame}
 
 \begin{frame}[fragile]{3D Kurven - Beispiel}
-\begin{sage}
->> parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
-\end{sage}
+\begin{sagein}
+parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
+\end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/parametric3d.jpg} 
 \end{center}
@@ -702,13 +703,13 @@ parametric_plot3d( [x(t1,t2), y(t1,t2), z(t1,t2)],(t1,a,b), (t2,c,d), Optionen):
 
 \begin{frame}[fragile]{Flächen - Beispiel}
 Ellipsoid-Oberfläche
-\begin{sage}
->> _=var('t1,t2');r=1
->> x=r*cos(t1)*sin(t2)
->> y=2*r*sin(t1)*sin(t2)
->> z=r*cos(t2)
->> parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
-\end{sage}
+\begin{sagein}
+_=var('t1,t2');r=1
+x=r*cos(t1)*sin(t2)
+y=2*r*sin(t1)*sin(t2)
+z=r*cos(t2)
+parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
+\end{sagein}
 \begin{center}
 \includegraphics[width=5.5cm]{figures/surface.jpg} 
 \end{center}
@@ -723,33 +724,33 @@ auch zweidimensionale Grafiken erstellen.
 Landkarte), d.h. man sucht zu $c \in \mathbb{R}$ die Menge von Punkten
 $(x,y)$ mit $f(x,y)=c$.
 \item In Sage geschieht das mit dem Befehl
-\begin{sage}
->> contour_plot(f, (x,,), (y,,), contours=[c1,c2,...], options)
-\end{sage}
+\begin{sagein}
+contour_plot(f, (x,,), (y,,), contours=[c1,c2,...], options)
+\end{sagein}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Konturen - Beispiel}
 Wir betrachten die Funktion $\sin(4\pi x)y$ und zeichnen die Niveaulinien für $-0.5, 0, 0.5$. 
-\begin{sage}
->> contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
-\end{sage}
-\verb+fill=True+ würde die Flächen zwischen den Linien ausfüllen.
+\begin{sagein}
+contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
+\end{sagein}
+\isage{fill=True} würde die Flächen zwischen den Linien ausfüllen.
 \begin{center}
 \includegraphics[width=6cm]{figures/contour.pdf} 
 \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Punkte zeichnen}
-Mittels {\color{blue} \verb+point+} 
+Mittels {\color{blue} \isage{point}} 
 können Punkte gezeichnet werden.
 
 \textbf{Beispiel:}
-\begin{sage}
->> point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30) 
->> point2d.options
-\end{sage}
+\begin{sagein}
+point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30) 
+point2d.options
+\end{sagein}
 \begin{center}
 \includegraphics[width=6cm]{figures/point2d.pdf} 
 \end{center}
@@ -791,20 +792,20 @@ def collatz(n):
 \end{frame}
 
 \begin{frame}[fragile]{Animationen}
-mit dem Befehl \verb+animate()+ lassen sich einfach Animationen erstellen. Dies funktioniert nur für zweidimensionale plots.
+mit dem Befehl \isage{animate()} lassen sich einfach Animationen erstellen. Dies funktioniert nur für zweidimensionale plots.
 
 \textbf{Beispiel:}
-\begin{sage}
->> a = animate([plot(a*x^2, (x,-5,5)) for a in [-10..10]],ymin=-100,ymax=100)
->> a.show(iterations=1)
-\end{sage}
+\begin{sagein}
+a = animate([plot(a*x^2, (x,-5,5)) for a in [-10..10]],ymin=-100,ymax=100)
+a.show(iterations=1)
+\end{sagein}
 \begin{center}
 \animategraphics[height=4cm]{2}{figures/anime_}{0}{20}
 \end{center}
 % \item Dreidimensionales Beispiel
-% \begin{sage}
-% >> plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
+% \begin{sagein}
+% plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
 %    x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
-% \end{sage}
+% \end{sagein}
 \end{frame}
 \end{document}

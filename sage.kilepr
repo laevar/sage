@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=einheit04/einheit04.tex
+lastDocument=einheit07/einheit07.tex
 masterDocument=
 name=sage
 pkg_extIsRegExp=false
@@ -107,10 +107,10 @@ order=4
 
 [item:einheit05/einheit05.tex]
 archive=true
-column=12
+column=50
 encoding=UTF-8
 highlight=LaTeX
-line=448
+line=696
 open=true
 order=2
 
@@ -125,10 +125,10 @@ order=3
 
 [item:einheit06/einheit06.tex]
 archive=true
-column=11
+column=37
 encoding=UTF-8
 highlight=LaTeX
-line=860
+line=1
 open=true
 order=3
 
@@ -143,12 +143,12 @@ order=4
 
 [item:einheit07/einheit07.tex]
 archive=true
-column=14
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=407
-open=false
-order=6
+line=6
+open=true
+order=5
 
 [item:einheit07/uebung/aufgaben_einh07.tex]
 archive=true
