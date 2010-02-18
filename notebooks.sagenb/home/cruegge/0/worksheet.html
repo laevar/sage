@@ -64,9 +64,9 @@ WP = solve(fdprime==0,x); WP
 }}}
 
 {{{id=18|
-float((fdprime.differentiate())(WP[0].rhs()))
+float((f.differentiate())(WP[0].rhs()))
 ///
-6.0778504015171162
+-0.44794670438792339
 }}}
 
 {{{id=11|
@@ -146,9 +146,9 @@ integral(1/(x*sqrt(1+x^2)),x)
 
 {{{id=29|
 var('n,x,y')
-assume(real(x) > 0, real(y) > 0)
+#assume(real(x) > 0, real(y) > 0)
 f = x^(1/n)*y^(1/n)-(x*y)^(1/n)
-f.simplify()
+f.full_simplify()
 ///
 0
 }}}

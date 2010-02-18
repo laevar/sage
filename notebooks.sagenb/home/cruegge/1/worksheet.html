@@ -5,9 +5,9 @@
 {{{id=37|
 reset()
 var('x')
-f(x) = (x^2-3*x+5) / (x^3-2*x^2+x); f
+f = (x^2-3*x+5) / (x^3-2*x^2+x); f
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x \ {\mapsto}\ \frac{{\left(x^{2} - 3 \, x + 5\right)}}{{\left(x^{3} - 2 \, x^{2} + x\right)}}</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{{\left(x^{2} - 3 \, x + 5\right)}}{{\left(x^{3} - 2 \, x^{2} + x\right)}}</span></html>
 }}}
 
 {{{id=47|
@@ -21,13 +21,12 @@ f(x=1)
 ///
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "_sage_input_16.py", line 5, in <module>
+  File "_sage_input_86.py", line 5, in <module>
     exec compile(ur'f(x=_sage_const_1 )' + '\n', '', 'single')
   File "", line 1, in <module>
     
   File "expression.pyx", line 3139, in sage.symbolic.expression.Expression.__call__ (sage/symbolic/expression.cpp:14371)
-  File "/usr/local/sage-4.3/local/lib/python2.6/site-packages/sage/symbolic/callable.py", line 448, in _call_element_
-    return SR(_the_element.substitute(**d))
+  File "ring.pyx", line 559, in sage.symbolic.ring.SymbolicRing._call_element_ (sage/symbolic/ring.cpp:5900)
   File "expression.pyx", line 2990, in sage.symbolic.expression.Expression.substitute (sage/symbolic/expression.cpp:13761)
 RuntimeError: power::eval(): division by zero
 }}}
@@ -45,12 +44,6 @@ var('x,y')
 (sin(x)^2 + cos(x)^2).full_simplify()
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}1</span></html>
-}}}
-
-{{{id=74|
-bool(sin(x)^2 + cos(x)^2 == 1)
-///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\rm True}</span></html>
 }}}
 
 {{{id=10|
@@ -81,21 +74,21 @@ var('k,n')
 }}}
 
 {{{id=20|
-sum(k, k,1,n).factor()
+sum(k, k,1,n)
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{2} \, {\left(n + 1\right)} n</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{2} \, n^{2} + \frac{1}{2} \, n</span></html>
 }}}
 
 {{{id=21|
-sum(2*k-1, k,1,n).factor()
+sum(2*k-1, k,1,n)
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}n^{2}</span></html>
 }}}
 
 {{{id=54|
-sum(k^2, k,1,n).factor()
+sum(k^2, k,1,n)
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{6} \, {\left(n + 1\right)} {\left(2 \, n + 1\right)} n</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{3} \, n^{3} + \frac{1}{2} \, n^{2} + \frac{1}{6} \, n</span></html>
 }}}
 
 {{{id=51|
@@ -104,17 +97,11 @@ sum(k^2, k,1,n).factor()
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0</span></html>
 }}}
 
-{{{id=76|
-bool(sum(k^3, k,1,n) == sum(k, k,1,n)^2)
-///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\rm True}</span></html>
-}}}
-
 <h2>Aufgabe 4</h2>
 
 {{{id=29|
 reset()
-var('a')
+var('a,x')
 factor(1458*a*x+2430*a^2-315*a^3+5*a^4-972*x^2+126*a*x^2-189*a^2*x+3*a^3*x-2*a^2*x^2)
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\left(a - 54\right)} {\left(a - 9\right)} {\left(a + x\right)} {\left(5 \, a - 2 \, x\right)}</span></html>
@@ -125,7 +112,7 @@ factor(1458*a*x+2430*a^2-315*a^3+5*a^4-972*x^2+126*a*x^2-189*a^2*x+3*a^3*x-2*a^2
 {{{id=57|
 reset()
 var('x')
-[x^n for n in [1..9]]
+[x^n for n in range(1,10)]
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x, x^{2}, x^{3}, x^{4}, x^{5}, x^{6}, x^{7}, x^{8}, x^{9}\right]</span></html>
 }}}
@@ -134,7 +121,7 @@ var('x')
 
 {{{id=39|
 reset()
-find_root(x==exp(-x), 0,1)
+find_root(x-exp(-x), 0,1)
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0.56714329041</span></html>
 }}}
@@ -149,13 +136,13 @@ reset()
 {{{id=63|
 [(x == m) for m in range(1,4)]
 ///
-[x == 1, x == 2, x == 3]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = 1, x = 2, x = 3\right]</span></html>
 }}}
 
 {{{id=64|
 [(x == m) for m in range(1,4) if is_prime(m)]
 ///
-[x == 2, x == 3]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = 2, x = 3\right]</span></html>
 }}}
 
 <h2>Aufgabe 8</h2>
@@ -167,11 +154,11 @@ c = 0
 for i in [1..n]:
     x = random()
     y = random()
-    if x^2+y^2 < 1:
+    if x^2+y^2 <= 1:
         c = c + 1
-print float(4*(c/n))
+print 4*(c/n).n()
 ///
-3.14976
+3.13896000000000
 }}}
 
 {{{id=71|
@@ -181,5 +168,5 @@ anzquadrat = len(liste)^2
 anzkreis = len([(i,j) for i in liste for j in liste if i^2+j^2 <= seitenlaenge^2])
 float(4*anzkreis/anzquadrat)
 ///
-3.1335194975772893
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}3.13351949758</span></html>
 }}}

@@ -334,7 +334,7 @@ Liste.index(sin(b))
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{filter ?? gabs schon..}
+\begin{frame}[fragile]{select}
 \begin{itemize}
 \item Mittels {\color{blue} \isage{select(Liste, Funktion, Parameter)}} können Objekte mit bestimmten Eigenschaften aus einer
 Liste ausgewählt werden. 
@@ -342,17 +342,17 @@ Liste ausgewählt werden.
 als Auswahlkriterium. Sie muss Boolsche Werte zurückliefern. 
 \item Die
 \isage{Parameter} sind Eingabewerte für die Funktion \isage{Funktion} 
-\item Der Befehl \isage{select} funktioniert auch für Mengen, Tabellen oder Ausdrücke.
+\item Der Befehl \isage{select} funktioniert auch für Mengen, Dictionaries oder Ausdrücken.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für select ??}
-\begin{sagein}
-filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
-\end{sagein}
-\begin{sage}
-[True, True, True]
-\end{sage}
+\begin{frame}[fragile]{Beispiele für select}
+% \begin{sagein}
+% filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
+% \end{sagein}
+% \begin{sage}
+% [True, True, True]
+% \end{sage}
 \begin{sagein}
 select([a+2,x,y,z,sin(a)],has,a)
 \end{sagein}
@@ -407,23 +407,23 @@ zip(Liste1,Liste2)
 % \end{sage}
 \end{frame}
 
-\subsection*{Dictonaries}
+\subsection*{Dictionaries}
 
-\begin{frame}[fragile]{Wörterbücher (Dictonaries)}
+\begin{frame}[fragile]{Wörterbücher (Dictionaries)}
 \begin{itemize}
 \item Eine Dictonary besteht aus einer Ansammlung von \glq Assoziationen\grq\  der 
 Form \isage{<Index>:<Wert>}. Indizes und Werte können dabei (fast) beliebige Sage
 Objekte sein. 
-\item Dictonaries haben den Typ \isage{dict}.
-\item  Dictonaries sind Datenstrukturen, die für das Speichern großer
+\item Dictionaries haben den Typ \isage{dict}.
+\item  Dictionaries sind Datenstrukturen, die für das Speichern großer
 Datenmengen gut geeignet sind.
 \item In Sage ist der indizierte Zugriff auf einzelne Elemente sehr
 schnell, da intern nicht die gesamte Datenstruktur durchsucht wird.
-\item der \isage{key} ist eindeutig
+\item der \isage{Index} ist eindeutig
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Dictonaries I}
+\begin{frame}[fragile]{Konstruktion von Dictionaries I}
 \begin{itemize}
 \item Konstruktion: ({\color{blue} \isage{{<Index>:<Wert>, ... }}})
 \begin{sagein}
@@ -435,7 +435,7 @@ T = {a: b, c: d}; T
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Dictonaries II}
+\begin{frame}[fragile]{Konstruktion von Dictionaries II}
 \begin{itemize}
 \item Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
 \begin{sagein}
@@ -446,7 +446,7 @@ T
 \begin{sage}
 {(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
 \end{sage}
-\item Erzeugen eines leeren Dictonaries
+\item Erzeugen eines leeren Dictionaries
 \begin{sagein}
 T1 = {}; T1
 \end{sagein}
@@ -458,16 +458,16 @@ T1 = {}; T1
 
 \begin{frame}[fragile]{Konstruktion und Zugriff}
 \begin{itemize}
-\item Zugriff auf ein Dictonary
+\item Zugriff auf ein Dictionary
 \begin{sagein}
 T[a],T[1,2],T[c]
 \end{sagein}
 \begin{sage}
 (d, 5, d)
 \end{sage}
-\begin{sage}
+\begin{sagein}
  float(T[f](4))
-\end{sage}
+\end{sagein}
 \begin{sage}
  -0.7568024953079282
 \end{sage}
@@ -694,7 +694,7 @@ unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
 \begin{frame}[fragile]{Kommutierendes Diagramm}
   Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
 ,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ und eine lineare Abbildung
-$F$ gegeben. Dann kommutiert das folgende Diagramm:\\
+$F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
 \begin{center}
   \begin{tikzpicture}
   \draw (0,2) node[] (a) {$V$}
