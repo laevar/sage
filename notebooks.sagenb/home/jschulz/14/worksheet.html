@@ -223,9 +223,11 @@ float(acos(a2*a3/(abs(a2)*abs(a3))))
 
 {{{id=55|
 X = matrix([a1,a2,a3])
-(X.transpose()*X-identity_matrix(3)).is_zero()
+X*X.transpose()
 ///
-False
+[14 11  6]
+[11 17  5]
+[ 6  5  3]
 }}}
 
 {{{id=47|

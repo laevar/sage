@@ -26,7 +26,8 @@ S'sage'
 p13
 sS'published_id_number'
 p14
-NsS'owner'
+I0
+sS'owner'
 p15
 S'jschulz'
 p16
@@ -50,7 +51,7 @@ sS'last_change'
 p26
 (S'jschulz'
 p27
-F1266489812.8884971
+F1266519218.037674
 tp28
 sS'worksheet_that_was_published'
 p29

@@ -145,15 +145,15 @@ map_threaded(lambda x: x.full_simplify(), (A*B).inverse() - B.inverse()*A.invers
 }}}
 
 {{{id=65|
-( (A*B).inverse() - B.inverse()*A.inverse() ).simplify_full()
+( (A*B).inverse() - B.inverse()*A.inverse() ).full_simplify()
 ///
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "_sage_input_30.py", line 4, in <module>
-    exec compile(ur'( (A*B).inverse() - B.inverse()*A.inverse() ).simplify_full()' + '\n', '', 'single')
+  File "_sage_input_11.py", line 4, in <module>
+    exec compile(ur'( (A*B).inverse() - B.inverse()*A.inverse() ).full_simplify()' + '\n', '', 'single')
   File "", line 1, in <module>
     
-AttributeError: 'sage.matrix.matrix_symbolic_dense.Matrix_symbolic_' object has no attribute 'simplify_full'
+AttributeError: 'sage.matrix.matrix_symbolic_dense.Matrix_symbolic_' object has no attribute 'full_simplify'
 }}}
 
 <h2>Aufgabe 4</h2>
