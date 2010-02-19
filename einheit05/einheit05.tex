@@ -334,38 +334,39 @@ Liste.index(sin(b))
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{select}
+\begin{frame}[fragile]{filter()}
 \begin{itemize}
-\item Mittels {\color{blue} \isage{select(Liste, Funktion, Parameter)}} können Objekte mit bestimmten Eigenschaften aus einer
+\item Mittels {\color{blue} \isage{filter(Liste, Funktion)}} können Objekte mit bestimmten Eigenschaften aus einer
 Liste ausgewählt werden. 
 \item Dabei fungiert eine Funktion \isage{Funktion}
 als Auswahlkriterium. Sie muss Boolsche Werte zurückliefern. 
-\item Die
-\isage{Parameter} sind Eingabewerte für die Funktion \isage{Funktion} 
-\item Der Befehl \isage{select} funktioniert auch für Mengen, Dictionaries oder Ausdrücken.
+\item Der Befehl \isage{filter} funktioniert auch für Mengen, Dictionaries oder Ausdrücken.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für select}
-% \begin{sagein}
-% filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
-% \end{sagein}
-% \begin{sage}
-% [True, True, True]
-% \end{sage}
+\begin{frame}[fragile]{Beispiele für filter}
+ \begin{sagein}
+ filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
+ \end{sagein}
+ \begin{sage}
+ [True, True, True]
+ \end{sage}
 \begin{sagein}
-select([a+2,x,y,z,sin(a)],has,a)
+var('x,y,z,a')
+def f(x): return a in x.operands()
+filter(f,[a+2,x,y,z,sin(a)])
 \end{sagein}
 \begin{sage}
   [a + 2, sin(a)]
 \end{sage}
-\begin{sagein}
-select(11*x*y*(1-x)^2*5,has,x)
-\end{sagein}
-\begin{sage}
-           2
-  x (x - 1)
-\end{sage}
+% \begin{sagein}
+% def f(arg): return x in [arg]
+% filter(f,(11*x*y*(1-x)^2*5).operands())
+% \end{sagein}
+% \begin{sage}
+%            2
+%   x (x - 1)
+% \end{sage}
 \end{frame}
 
 % \begin{frame}[fragile]{split}

@@ -172,48 +172,29 @@ Liste.index(sin(b))
 }}}
 
 {{{id=35|
-filter(f,Liste)
+reset();var('x,y,z,a')
+def f(x): return a in x.operands()
+filter(f,[a+2,x,y,z,sin(a)])
 ///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_152.py", line 4, in <module>
-    exec compile(ur'filter(f,Liste)' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-NameError: name 'f' is not defined
+[a + 2, sin(a)]
+}}}
+
+{{{id=61|
+(11*x*y*(1-x)^2*5).operands()
+///
+[(x - 1)^2, x, y, 55]
 }}}
 
 {{{id=36|
-t= filter(bool,[1=1, 1==2, 3==3, 4==5, 7==7]) ;t
+t= filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7]) ;t
 ///
-line 3
-    t= filter(bool,[_sage_const_1 =_sage_const_1 , _sage_const_1 ==_sage_const_2 , _sage_const_3 ==_sage_const_3 , _sage_const_4 ==_sage_const_5 , _sage_const_7 ==_sage_const_7 ]) ;t
-                                  ^
-SyntaxError: invalid syntax
+[True, True, True]
 }}}
 
 {{{id=37|
 vars=var('a,b,c,d,e,f,g');Liste1 = [a,b,c]; Liste2 = [e,f,g]; zip(Liste1,Liste2)
 ///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_152.py", line 4, in <module>
-    exec compile(ur'filter(f,Liste)' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-NameError: name 'f' is not defined
-}}}
-
-{{{id=39|
-zip?
-///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_301.py", line 4, in <module>
-    exec compile(ur'Liste1[:]**Liste2[:]' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-TypeError: unsupported operand type(s) for ** or pow(): 'list' and 'list'
+[(a, e), (b, f), (c, g)]
 }}}
 
 {{{id=40|

@@ -15,7 +15,7 @@ type(f)
 {{{id=5|
 _=var('a,b');f(a,b+1)
 ///
-1/(a + 1)
+(b + 1)^2 + a^2
 }}}
 
 {{{id=6|
@@ -75,14 +75,13 @@ Funktion3(x,y) = x+sin(y); Funktion3
 (x, y) |--> x + sin(y)
 }}}
 
-{{{id=9|
+{{{id=19|
+Funktion3(1,2)
+///
+sin(2) + 1
+}}}
+
+{{{id=20|
 
 ///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_3.py", line 4, in <module>
-    exec compile(ur'y' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-NameError: name 'y' is not defined
 }}}

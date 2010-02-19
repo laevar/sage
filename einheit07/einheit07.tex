@@ -114,7 +114,7 @@ f_g(x), g_f(x)
 (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
 \end{sage}
 Mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
-\circ f(\cdot)$ wird in Sage ebenso druchgeführt.
+\circ f(\cdot)$ wird in Sage ebenso durchgeführt.
 \begin{sagein}
 g4(x) = g(g(g(g))); g4
 \end{sagein}
@@ -131,9 +131,9 @@ abs(real(-2+3*I))
 \begin{sage}
   2
 \end{sage}
-Kompliziertere Funktionen können besser durch selbst definierte Funktionen erklärt
-werden. Dies sind im Wesentlichen kleine Programme, die mit
-\isage{def <func>():} beginnen (vgl. letzte Vorlesung).
+Kompliziertere Funktionen können besser durch selbst definierte Funktionen/Prozeduren erklärt
+werden. Diese sind im wesentlichen eine Abarbeitungsvorschrift, die mit
+\isage{def <func>():} beginnen (vgl. Einheit 4).
 \end{frame}
 
 \begin{frame}[fragile]{Ausdrücke und Funktionen I}
@@ -376,15 +376,15 @@ gleichmäßig stetig.
 \begin{frame}[fragile]{Stetigkeit in Sage}
 Für die Diskussion der Stetigkeit einer Funktion $f$ an einer Stelle
 $x_0$ sei auf den Abschnitt zu Grenzwerten verwiesen. \\
-\begin{sage}
+\begin{sagein}
 limit(1/x,x=0,dir='plus') 
-\end{sage}
+\end{sagein}
 \begin{sage}
  +Infinity
 \end{sage}
-\begin{sage}
+\begin{sagein}
  limit(1/x,x=0,dir='minus')
-\end{sage}
+\end{sagein}
 \begin{sage}
  -Infinity
 \end{sage}
