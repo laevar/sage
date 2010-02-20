@@ -1,6 +1,7 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 8}
+\subtitle{Differentation, Taylorsche Formel, Integration}
 \input{../slide_header}
-\subtitle{Einheit 8}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -18,7 +19,7 @@
 % \end{frame}
 
 %======================================================
-\section{Differenzieren}
+\section{Differentation}
 %======================================================
 
 \begin{frame}{Ableitungen}
@@ -86,18 +87,18 @@ differenzierbar ist für alle $n\in \mathbb{N}$.
 \end{frame}
 
 \begin{frame}[fragile]{Ableitungen in Sage I}
-Durch {\color{blue} \verb+diff(<Ausdruck>,x)+} wird ein Ausdruck oder eine Funktion
+Durch {\color{blue} \isage{diff(<Ausdruck>,x)}} wird ein Ausdruck oder eine Funktion
 nach $x$ abgeleitet. \\
 \textbf{Beispiele:}
-\begin{sage}
->> diff(sin(x),x)
-\end{sage}
+\begin{sagein}
+diff(sin(x),x)
+\end{sagein}
 \begin{sage}
 cos(x)
 \end{sage}
-\begin{sage}
->> diff(x^x,x)
-\end{sage}
+\begin{sagein}
+diff(x^x,x)
+\end{sagein}
 \begin{sage}
 (log(x) + 1)*x^x
 \end{sage}
@@ -105,19 +106,19 @@ cos(x)
 
 \begin{frame}[fragile]{Ableitungen in Sage II}
 Höhere Ableitungen können auch bestimmt werden. Durch {\color{blue}
-\verb+diff(<Ausdruck>,x1,x2,x3,...)+}
-wird die Ableitung von \verb+<Ausdruck>+ bzgl. der Unbekannten $x1$
+\isage{diff(<Ausdruck>,x1,x2,x3,...)}}
+wird die Ableitung von \isage{<Ausdruck>} bzgl. der Unbekannten $x1$
 berechnet. Dann wird der entstehende Ausdruck nach $x2$ differenziert,
 und so fort. 
-\begin{sage}
->> _=var('x,y,a'); diff(x^2*y^2+a,x,y)
-\end{sage}
+\begin{sagein}
+_=var('x,y,a'); diff(x^2*y^2+a,x,y)
+\end{sagein}
 \begin{sage}
 4*x*y
 \end{sage}
-\begin{sage}
->> diff(1/x,x,10)
-\end{sage}
+\begin{sagein}
+diff(1/x,x,10)
+\end{sagein}
 \begin{sage}
 3628800/x^11
 \end{sage}
@@ -134,27 +135,27 @@ und so fort.
 % nach der $i$-ten Variablen differenziert werden. Rückgabewert ist
 % eine Funktion.
 % 
-% \verb+D([i,j,..],f)+ steht für
-% \verb+D(..D([j],D([i],f))..)+. 
+% \isage{D([i,j,..],f)} steht für
+% \isage{D(..D([j],D([i],f))..)}. 
 % 
-% Kurzschreibweise für \verb+D([1],f)+ ist $f'$ oder \verb+D(f)+, falls
+% Kurzschreibweise für \isage{D([1],f)} ist $f'$ oder \isage{D(f)}, falls
 % $f$ eine Funktion bezüglich einer Unbekannten ist.
 % \end{frame}
 
 \begin{frame}[fragile]{Ableitungen - Beispiele}
-\begin{sage}
->> f(x) = log(cos(x))
->> f.diff(); diff(f); diff(f,x,x)
-\end{sage}
+\begin{sagein}
+f(x) = log(cos(x))
+f.diff(); diff(f); diff(f,x,x)
+\end{sagein}
 \begin{sage}
 x |--> -sin(x)/cos(x)
 x |--> -sin(x)/cos(x)
 x |--> -sin(x)^2/cos(x)^2 - 1
 \end{sage}
-\begin{sage}
->> g(x,y) = sin(x^2+y^2)
->> g.diff(x,x,y)
-\end{sage}
+\begin{sagein}
+g(x,y) = sin(x^2+y^2)
+g.diff(x,x,y)
+\end{sagein}
 \begin{sage}
 (x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
 \end{sage}
@@ -216,17 +217,17 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \begin{frame}[fragile]{L'Hospital - Beispiele}
 \begin{itemize}
 \item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
-\begin{sage}
->> var('a');f(x) = log(x); g(x) = x^a
->> assume (a>0);assume(a,'integer')
->> limit(diff(f(x),x)/diff(g(x),x),x=oo)
-\end{sage}
+\begin{sagein}
+var('a');f(x) = log(x); g(x) = x^a
+assume (a>0);assume(a,'integer')
+limit(diff(f(x),x)/diff(g(x),x),x=oo)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
-\begin{sage}
->> limit(f(x)/g(x),x=oo)
-\end{sage}
+\begin{sagein}
+limit(f(x)/g(x),x=oo)
+\end{sagein}
 \begin{sage}
   0
 \end{sage}
@@ -238,23 +239,23 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \begin{itemize}
 \item Bestimmung von $\lim_{x \rightarrow 0} \frac{1-\cos (x/2)}
 {1 - \cos(x)}$:
-\begin{sage}
->> f(x) = sin(x); g(x) = x 
->> limit(f(x)/g(x), x=0)
-\end{sage}
+\begin{sagein}
+f(x) = sin(x); g(x) = x 
+limit(f(x)/g(x), x=0)
+\end{sagein}
 \begin{sage}
   1
 \end{sage}
-\begin{sage}
->> diff(f(x),x);diff(g(x),x)
-\end{sage}
+\begin{sagein}
+diff(f(x),x);diff(g(x),x)
+\end{sagein}
 \begin{sage}
 cos(x) 
 1
 \end{sage}
-\begin{sage}
->> limit(diff(f(x),x)/diff(g(x),x),x=0)
-\end{sage}
+\begin{sagein}
+limit(diff(f(x),x)/diff(g(x),x),x=0)
+\end{sagein}
 \begin{sage}
 1
 \end{sage}
@@ -347,20 +348,20 @@ Approximationen $g_0(x):=1$, $g_1(x):=1+x$,
 $g_2(x):=1+x+\frac{1}{2}x^2$, $g_3(x)=\sum_{i=0}^3 \frac{x^i}{i!}$ und 
 $g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$.
 
-\begin{sage}
->> var('n,k');f(x) = exp(x)
->> g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
-\end{sage}
+\begin{sagein}
+var('n,k');f(x) = exp(x)
+g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
+\end{sagein}
 \begin{sage}
 [1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
 1/6*x^3 + 1/2*x^2 + x + 1]
 \end{sage}
-\begin{sage}
->> p = plot(f,(-3,2),color='black')
->> for n in [0..4]:
->>     p += plot(g[n],(-3,2),rgbcolor=hue(n/5),label=n)
->> p.show()
-\end{sage}
+\begin{sagein}
+p = plot(f,(-3,2),color='black')
+for n in [0..4]:
+    p += plot(g[n],(-3,2),rgbcolor=hue(n/5),label=n)
+p.show()
+\end{sagein}
 \end{frame} 
 
 \begin{frame}[fragile]{Visualisierung II}
@@ -378,7 +379,7 @@ Die Funktion
 \end{array} \right. \]
 ist nicht durch ihre Taylorreihe an $x_0=0$ darstellbar. Die Taylorreihe zu $f$
 ist identisch $0$, da $f^n(0)=0$ ist für alle $n \in \mathbb{N}$. \\
-Plot: {\color{blue} \verb+plot(exp(-1/x^2),(-0.5,0.5))+}.
+Plot: {\color{blue} \isage{plot(exp(-1/x^2),(-0.5,0.5))}}.
 \begin{center}
   \includegraphics[height=4cm]{figures/taylorgegen.pdf}
  \end{center}
@@ -388,22 +389,22 @@ Plot: {\color{blue} \verb+plot(exp(-1/x^2),(-0.5,0.5))+}.
 Sage ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
 berechnen. Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
 (mit Unbekannten $x$) am Entwicklungspunkt $x0$ kann durch
-\begin{sage}
->> taylor(f, x, x0, n)
-\end{sage}
+\begin{sagein}
+taylor(f, x, x0, n)
+\end{sagein}
 berechnet werden. 
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
-\begin{sage}
->> taylor(1/(1-x),x,0,5)
-\end{sage}
+\begin{sagein}
+taylor(1/(1-x),x,0,5)
+\end{sagein}
 \begin{sage}
 x^5 + x^4 + x^3 + x^2 + x + 1
 \end{sage}
-\begin{sage}
->> taylor(sin(x),x,2,5)
-\end{sage}
+\begin{sagein}
+taylor(sin(x),x,2,5)
+\end{sagein}
 \begin{sage}
 1/120*(x - 2)^5*cos(2) + 1/24*(x - 2)^4*sin(2) - 1/6*(x - 2)^3*cos(2) -
 1/2*(x - 2)^2*sin(2) + (x - 2)*cos(2) + sin(2)
@@ -412,12 +413,12 @@ x^5 + x^4 + x^3 + x^2 + x + 1
 
 % \begin{frame}[fragile]{Bemerkungen}
 % \begin{itemize}
-% \item Das in den Darstellungen auftretende Symbol \verb+O+ ist das
+% \item Das in den Darstellungen auftretende Symbol \isage{O} ist das
 %                Landau-Symbol. Mit ihm kann man in MuPAD rechnen. 
-% \begin{sage}
-% >> o1:=O(x^2): o2:=O(x^3):
-% >> o1*o2, o1+o2, o1/o2
-% \end{sage}
+% \begin{sagein}
+% o1:=O(x^2): o2:=O(x^3):
+% o1*o2, o1+o2, o1/o2
+% \end{sagein}
 % \begin{sage}
 %      5      2    / 1 \
 %   O(x ), O(x ), O| - |
@@ -428,22 +429,22 @@ x^5 + x^4 + x^3 + x^2 + x + 1
 
 % \begin{frame}[fragile]{Bemerkungen}
 % \begin{itemize}
-% \item Man kann mit den  Objekten des Typs  \verb+Series::Puiseux+
+% \item Man kann mit den  Objekten des Typs  \isage{Series::Puiseux}
 %              rechnen, insofern sie denselben Entwicklungspunkt haben. Z. B., können sie addiert oder
 %              multipliziert werden.
-% \begin{sage}
-% >> taylor1+taylor2
-% \end{sage}
+% \begin{sagein}
+% taylor1+taylor2
+% \end{sagein}
 % \begin{small}
 % \begin{sage}
 %   Error: different series variables or 
 %    expansion points [Series::Puiseux::plus] 
 % \end{sage}
 % \end{small}
-% \begin{sage}
-% >> taylor3:=taylor(exp(x),x=2,5):
-% >> taylor2*taylor3
-% \end{sage}
+% \begin{sagein}
+% taylor3:=taylor(exp(x),x=2,5):
+% taylor2*taylor3
+% \end{sagein}
 % \begin{scriptsize}
 % \begin{sage}
 %                                                     2        3 
@@ -494,24 +495,24 @@ $\phi \leq f \leq \psi$ die Ungleichung
 \end{frame}
 
 \begin{frame}[fragile]{Visualisierung in Sage I}
-\begin{sage}
->> f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
->> rsf = f.riemann_sum(10,mode="midpoint")
->> P = f.plot(rgbcolor=(0.7,0.1,0.5), plot_points=40)
->> Q = rsf.plot(rgbcolor=(0.7,0.6,0.6), plot_points=40)
->> L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]],rgbcolor=(0.7,0.6,0.6)) for (a,b),f in rsf.list()])
->> (P + Q +L)
-\end{sage}
+\begin{sagein}
+f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
+rsf = f.riemann_sum(10,mode="midpoint")
+P = f.plot(rgbcolor=(0.7,0.1,0.5), plot_points=40)
+Q = rsf.plot(rgbcolor=(0.7,0.6,0.6), plot_points=40)
+L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]],rgbcolor=(0.7,0.6,0.6)) for (a,b),f in rsf.list()])
+(P + Q +L)
+\end{sagein}
 \begin{center}
 \includegraphics[width=4.5cm]{figures/riemann.pdf}
 \end{center}
 \end{frame}
 
 % \begin{frame}[fragile]{Visualiserung mit MuPAD II}
-% \begin{sage}
-% >> p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
-% >> plot(p)
-% \end{sage}
+% \begin{sagein}
+% p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
+% plot(p)
+% \end{sagein}
 % \begin{center}
 % %\includegraphics[width=8cm]{figures/riemann1.png}
 % \end{center}
@@ -556,37 +557,37 @@ $ \int_a^b f(x)dx = f(\xi) (b-a)$.
 \begin{frame}[fragile]{Integrieren in Sage}
 \begin{itemize}
  \item Bestimmte Integrale der Form $\int_a^b f(x) dx$ können in Sage
-berechnet werden durch: {\color{blue} \verb+integrate(f,x,a,b)+}
-Dabei ist \verb+f+ ein Ausdruck.
-\item Unbestimmte Integrale können durch {\color{blue} \verb+integrate(f,x)+} bestimmt
+berechnet werden durch: {\color{blue} \isage{integrate(f,x,a,b)}}
+Dabei ist \isage{f} ein Ausdruck.
+\item Unbestimmte Integrale können durch {\color{blue} \isage{integrate(f,x)}} bestimmt
 werden.
 \item Numerische Approximationen können durch die Funktion
-{\color{blue}\verb+numerical_integral(f,a,b)+} berechnet werden (benutzt die GSL-library). 
+{\color{blue}\isage{numerical_integral(f,a,b)}} berechnet werden (benutzt die GSL-library). 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Integrieren - Beispiele I}
-\begin{sage}
->>  integrate(sin(x),x,0,6)
-\end{sage}
+\begin{sagein}
+ integrate(sin(x),x,0,6)
+\end{sagein}
 \begin{sage}
 -cos(6) + 1
 \end{sage}
-\begin{sage}
->> integrate(exp(x)*x,x,2,3)
-\end{sage}
+\begin{sagein}
+integrate(exp(x)*x,x,2,3)
+\end{sagein}
 \begin{sage}
 -e^2 + 2*e^3
 \end{sage}
-\begin{sage}
->> integrate(1/x^2,x,1,oo)
-\end{sage}
+\begin{sagein}
+integrate(1/x^2,x,1,oo)
+\end{sagein}
 \begin{sage}
   1
 \end{sage}
-\begin{sage}
->> numerical_integral(sin(1/x)*x,1,2)
-\end{sage}
+\begin{sagein}
+numerical_integral(sin(1/x)*x,1,2)
+\end{sagein}
 \begin{sage}
   (0.91905916759870254, 1.0203606488609102e-14)
 \end{sage}
@@ -594,15 +595,15 @@ werden.
 
 
 \begin{frame}[fragile]{Integrieren - Beispiele II}
-\begin{sage}
->> assume(a<>-1);integrate(x^a*b,x)
-\end{sage}
+\begin{sagein}
+assume(a<>-1);integrate(x^a*b,x)
+\end{sagein}
 \begin{sage}
 b*x^(a + 1)/(a + 1)
 \end{sage}
-\begin{sage}
->> forget();a=-1;integrate(x^a*b,x)
-\end{sage}
+\begin{sagein}
+forget();a=-1;integrate(x^a*b,x)
+\end{sagein}
 \begin{sage}
  b*log(x)
 \end{sage}
@@ -634,34 +635,34 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 % \begin{frame}[fragile]{Nützliches}
 % Man kann das Verhalten von MuPAD an vielen Stellen den eigenen
 % Wünschen anpassen. Dazu dienen die sogenannten {\color{red} Preferences}, die
-% man sich durch \verb+Pref()+
+% man sich durch \isage{Pref()}
 % anzeigen lassen kann. Ändern kann man die Eigenschaften durch Aufruf
-% der \verb+Eigenschaft+ mit der gewünschten neuen \verb+Einstellung+.
-% \begin{sage}
-% >> Pref::Eigenschaft(Einstellung)
-% \end{sage}
+% der \isage{Eigenschaft} mit der gewünschten neuen \isage{Einstellung}.
+% \begin{sagein}
+% Pref::Eigenschaft(Einstellung)
+% \end{sagein}
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Einige Einstellungen}
 % \begin{itemize}
-% \item Die  Voreinstellung \verb+report+ steuert die regelmäßig
+% \item Die  Voreinstellung \isage{report} steuert die regelmäßig
 % angezeigten Informationen über reservierten Speicher, benutzten Speicher und
 % Rechenzeit. Erlaubt sind Werte zwischen $0$ (Default)
 % und $9$. Bei $9$ bekommt man ständig Informationen, bei $0$ nie.
-% \begin{sage}
-% >> Pref::report(9): int((x*sin(x)),x)
-% \end{sage} 
-% \item Darstellung von Gleitkommazahlen: \verb+floatFormat+. Dies funktioniert nur
+% \begin{sagein}
+% Pref::report(9): int((x*sin(x)),x)
+% \end{sagein} 
+% \item Darstellung von Gleitkommazahlen: \isage{floatFormat}. Dies funktioniert nur
 %   bei ASCII-Darstellung.
-% \begin{sage}
-% >> Pref::floatFormat("e"): float(exp(-50))
-% \end{sage}
+% \begin{sagein}
+% Pref::floatFormat("e"): float(exp(-50))
+% \end{sagein}
 % \begin{sage}
 %   1.928749848e-22
 % \end{sage}
-% \begin{sage}
-% >> Pref::floatFormat("f"): float(exp(-50))
-% \end{sage}
+% \begin{sagein}
+% Pref::floatFormat("f"): float(exp(-50))
+% \end{sagein}
 % \begin{sage}
 %   0.0000000000000000000001928749848
 % \end{sage}
@@ -670,13 +671,13 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 % 
 % \begin{frame}[fragile]{Nützliches}
 % \begin{itemize}
-% \item Durch {\color{blue} \verb+reset()+} wird MuPAD in den Anfangszustand
+% \item Durch {\color{blue} \isage{reset()}} wird MuPAD in den Anfangszustand
 % zurückgesetzt. 
-% \item Nach {\color{blue} \verb+setuserinfo(Any,n)+} gibt MuPAD weitere
+% \item Nach {\color{blue} \isage{setuserinfo(Any,n)}} gibt MuPAD weitere
 % Informationen (je nach $n$) über die Funktionen zurück.
-% \item Durch Voranstellen von {\color{blue}\verb+!+} kann man UNIX-Befehle innerhalb
+% \item Durch Voranstellen von {\color{blue}\isage{!}} kann man UNIX-Befehle innerhalb
 % MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
-% Verzeichnisses durch {\color{blue} \verb+!ls+} anzeigen lassen.
+% Verzeichnisses durch {\color{blue} \isage{!ls}} anzeigen lassen.
 % \end{itemize}
 % \end{frame}
 \end{document}

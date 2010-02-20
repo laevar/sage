@@ -472,12 +472,12 @@ sind spezielle Funktionenfolgen.
 \end{frame}
 
 \begin{frame}[fragile]{Gleichmäßige Konvergenz}
-\begin{Definition}
+\begin{definition}
 $(f_n)_n$ konvergiert {\color{red} gleichmäßig} auf $D$ gegen $f$, wenn es zu
 jedem $\varepsilon >0$ ein $n_0 \in \mathbb{N}$ gibt, so dass für alle
 $x \in D$ und $n\geq n_0$ gilt:
 \[ |f_n(x) -f(x)| < \varepsilon.\]
-\end{Definition}
+\end{definition}
 
 \begin{Satz}
  Konvergiert $(f_n)_n$ gleichmäßig auf $D$ und existiert $\lim_{x
@@ -508,80 +508,38 @@ eine Funktionenreihe. Aussagen über die Funktionenreihe sind, analog zum Fall d
 \section{Grafiken}
 %----------------------------------------
 
-\begin{frame}[fragile]{Grafiken}
+\begin{frame}[fragile]{Grafiken - Allgemein}
 \begin{itemize}
-\item Die Funktionen \isage{<parametric_>plot()} und \isage{<parametric_>plot3d()} dienen
-             zur Darstellung von Graphen von Funktionen mit einem
-             bzw. zwei Argumenten. 
+
 \item Grafiken werden im Notebook integriert.
 \item 3D-Grafiken können interaktiv bearbeitet werden.
+\item Grafikbefehle erzeugen {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven.
+\item Darstellung: \isage{<grafikobjekt>.show()} (oder letzte Zeile) stellt die {\color{red} grafische
+Szene} dar
+\item Speichern:
+\begin{itemize}
+\item[2D] \isage{<grafikobjekt>.save('filename.extension')} speichert im Format \isage{<extension>}
+\item[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
 \end{itemize}
-Grafiken werden nicht direkt erzeugt, d.h. ausgegeben, sondern erst werden 
-{\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven 
-erzeugt. 
-
-Erst beim \isage{show()} oder falls sie in der letzten Zeile ohne Zuweisung stehen, werden die Objekte zu einer gemeinsamen {\color{red} grafischen
-Szene} zusammengefaßt.
+\item es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
+\end{itemize}
 
 \end{frame} 
 
-\begin{frame}[fragile]{plot()}
-Skalare Funktionen $f1,f2,\ldots$, können durch den Befehl
-\begin{sagein}
-plot(f1,(x,a,b),optionen)
-\end{sagein}
-auf dem Intervall $x \in [a,b]$. Dabei ist die Angabe  von
-\isage{(x,a,b)} optional. Beispiele:
-\begin{sagein}
-plot(x^2-1)
-plot(sin(1/x),(x,-1,1))
-plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
-\end{sagein}
-
-\begin{sagein}
-p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
-p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
-\end{sagein}
-\end{frame}
-
-\begin{frame}[fragile]{plot3d()}
-Es werden Funktionen
-$f:\mathbb{R}^2 \ \rightarrow \mathbb{R}$
-grafisch dargestellt. (Genauer gesagt wird auch hier der Funktionsgraph als Teilmenge des $\mathbb{R}^3$ gezeichnet). Der Funktionsaufruf ist
-\begin{sagein}
-plot3d(f,(x,a,b),(y,c,d), plot_points=[nx,ny])
-\end{sagein}
-Hierdurch werden  Ausdrücke $f1, f2,\ldots$, auf 
-$[a,b]\times [c,d]$ mit Hilfe  von $nx$ Gitterpunkten in $x$-Richtung
-und $ny$ Punkten in $y$-Richtung dargestellt. 
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele}
-Plot von $f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
-\begin{sagein}
-f(x,y) = sin(y^2+x)-cos(y-x^2)
-plot3d(f,(x,0,pi),(y,0,pi))
-plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
-\end{sagein}
-\medskip
-Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
-\begin{sagein}
-g(x,y) = cos(20*exp(-x^2-y^2))
-plot3d(g,(x,-1,1),(y,-1,1))
-plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
-\end{sagein}
-\end{frame}
-
-\begin{frame}[fragile]{Grafische Szene}
-
-\begin{sagein}
-W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
-S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
-show(W + S, figsize=8)
-\end{sagein}
-\begin{center}
-\includegraphics[width=7cm]{figures/ball.jpg} 
-\end{center}
+\begin{frame}[fragile]{Ausgewählte Optionen für grafische Objekte}
+\begin{tabular}{lp{8cm}}
+\isage{linestyle}  & Darstellung von Linien\newline
+           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)\newline
+                {\color{blue} \isage{linestyle = '.'}}\\
+\isage{thickness}  & Linienstärke in mm\newline
+              {\color{blue} \isage{thickness = 4}}\\
+\isage{color}      & Zuweisung einer Farbe\newline
+              {\color{blue} \isage{color='red'}}\\
+\isage{plot_points}        & Anzahl Stützstellen\newline
+              {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
+\isage{alpha}  & Transparenzfaktor\newline
+     {\color{blue} \isage{alpha = 0.8}}\\
+\end{tabular}
 \end{frame}
 
 \begin{frame}[fragile]{Ausgewählte Optionen für grafische Szenen}
@@ -597,35 +555,107 @@ show(W + S, figsize=8)
 \end{tabular}
 \end{frame}
 
-\begin{frame}[fragile]{Ausgewählte Optionen für grafische Objekte}
-\begin{tabular}{lp{8cm}}
-\isage{linestyle}  & Darstellung von Linien\newline
-           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)\newline
-                {\color{blue} \isage{linestyle = '.'}}\\
-\isage{thickness}  & Linienstärke in mm\newline
-              {\color{blue} \isage{thickness = 4}}\\
-\isage{color}      & Zuweisung einer Farbe\newline
-              {\color{blue} \isage{color='red'}}\\
-\isage{plot_points}        & Anzahl Stützstellen\newline
-              {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
-\isage{alpha}  & Transparent\newline
-     {\color{blue} \isage{alpha = 0.8}}\\
-\end{tabular}
+
+
+
+\begin{frame}[fragile]{plot() und plot3d()}
+Skalare Funktionen 
+$f:\mathbb{R}^n \ \rightarrow \mathbb{R},\, n=2,3$
+können durch die respektiven Befehle
+\begin{sagein}
+plot(f2,(x,a,b),optionen,...)
+plot3d(f3,(x,a,b),(y,c,d),optionen,...)
+\end{sagein}
+auf dem Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$ dargestellt werden. 
+
+\begin{itemize}
+\item Die Angabe des Intervalls ist optional. 
+\item \isage{plot.options} gibt einem die Default-Optionen aus (2D)
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}[fragile]{Zweidimensionale Kurven}
-Eine Kurve des $\mathbb{R}^2$ in Parameterdarstellung sei gegeben durch Funktionen $x(t),y(t)$, also die Menge aller Punkte: 
+\begin{frame}[fragile]{plot() - Beispiele}
+\begin{sagein}
+plot(x^2-1)
+plot(sin(1/x),(x,-1,1))
+plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
+\end{sagein}
+
+\begin{sagein}
+p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
+p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
+\end{sagein}
+\begin{center}
+\includegraphics[width=6cm]{figures/sincos.pdf} 
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{plot3d() - Beispiele}
+Plot von $f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
+\begin{sagein}
+f(x,y) = sin(y^2+x)-cos(y-x^2)
+plot3d(f,(x,0,pi),(y,0,pi))
+plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
+\end{sagein}
+\medskip
+Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
+\begin{sagein}
+g(x,y) = cos(20*exp(-x^2-y^2))
+plot3d(g,(x,-1,1),(y,-1,1))
+plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
+\end{sagein}
+\begin{center}
+\includegraphics[width=4cm]{figures/cosexp_trim.jpg} 
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{plot3d() - Beispiele }
+
+\begin{sagein}
+W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
+S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
+show(W + S, figsize=8)
+\end{sagein}
+\begin{center}
+\includegraphics[width=7cm]{figures/ball.jpg} 
+\end{center}
+\end{frame}
+
+
+
+% \begin{frame}[fragile]{parametric\_plot()}
+% \begin{itemize}
+% \item Darstellung von Graphen von Funktionen mit einem bzw. zwei Argumenten.
+% \begin{sagein}
+% parametric_plot([f_x, f_y, f_z)], (u,  u_min, u_max),(v,  v_min, v_max), ...)  
+% \end{sagein}
+% \end{itemize}
+% \end{frame} 
+
+
+
+\begin{frame}[fragile]{Kurven - parametric\_plot()}
+Kurve des $\mathbb{R}^2$ in Parameterdarstellung: 
 \[
  \{(x(t),y(t)) \in \mathbb{R}^2 \;|\; t \in [a,b]\}.
 \]
- Zum Beispiel ergibt sich der Graph einer Funktion $f(x)$, $x
+Kurve des $\mathbb{R}^3$ in Parameterdarstellung:
+\[
+ \{(x(t),y(t),z(t)) \in \mathbb{R}^3 \;|\; t \in [a,b] \}.
+\]
+
+Zum Beispiel ergibt sich der Graph einer Funktion $f(x)$, $x
 \in [a,b]$ durch $t,f(t)$ mit  $t \in
-[a,b]$. Der Befehl zum Erzeugen des Objekts ist 
+[a,b]$. 
+
+Der Befehl zum Erzeugen des Objekts ist 
 \begin{sagein}
-Objekt = parametric_plot([x,y],(t,a,b))
+Objekt = parametric_plot([x,y], (t,a,b), optionen, ...)
+Objekt = parametric_plot([x,y,z], (t,a,b), optionen, ...)
 \end{sagein}
-$x$ und $y$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
-noch Optionen übergeben werden.
+$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. 
 \end{frame}
 
 \begin{frame}[fragile]{2D Kurven - Beispiele}
@@ -651,58 +681,40 @@ f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
 
 \end{frame}
 
-\begin{frame}[fragile]{Dreidimensionale Kurven}
-Das Erzeugen einer dreidimensionaler Kurve, d.h. einer Kurve des $\mathbb{R}^3$ geschieht analog durch die Angabe von drei Funktionen $x(t),y(t),z(t)$:
-\[
- \{(x(t),y(t),z(t)) \in \mathbb{R}^3 \;|\; t \in [a,b] \}.
-\]
-Der Befehl ist  
-\begin{sagein}
-Objekt = parametric_plot3d([x,y,z],(t,a,b))
-\end{sagein}
-$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. Zusätzlich können
-noch Optionen übergeben werden. 
-\end{frame}
 
 \begin{frame}[fragile]{3D Kurven - Beispiel}
 \begin{sagein}
-parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
+parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
 \end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{figures/parametric3d.jpg} 
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Flächen}
-\begin{itemize}
-\item Typische dreidimensionale Grafikobjekte sind {\it parametrisierte Flächen}.
-\item Die $x,y,z$ Koordinaten sind als Funktionen $x(t_1,t_2)$,
-   $y(t_1,t_2)$, $z(t_1,t_2)$ zweier Parameter $t_1 \in [a,b]$ und $t_2 \in [c,d]$
-   definiert. 
-\item Beispielsweise lassen sich Graphen von Funktionen $f:[a
-   ,b]\times [c,d]
-   \ \rightarrow \ \mathbb{R}$ als Flächen
-\[ x=t_1, \ y=t_2, \ z=f(t_1,t_2) \]
-mit $a \leq t_1 \leq b, \ c \leq
-   t_2 \leq d$ erklären.
-\end{itemize}
-\end{frame}
+\begin{frame}[fragile]{Flächen - parametric\_plot()}
+Fläche des $\mathbb{R}^3$ in Parameterdarstellung:
+\[
+ \{(x(t1,t2),y(t1,t2),z(t1,t2)) \in \mathbb{R}^3 \;|\; t1 \in [a,b], t2 \in [c,d] \}.
+\]
+Befehl: 
+\begin{sagein}
+Objekt = parametric_plot([x(t1,t2),y(t1,t2),z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ...)
+\end{sagein}
+% \item Beispielsweise lassen sich Graphen von Funktionen $f:[a
+%    ,b]\times [c,d]
+%    \ \rightarrow \ \mathbb{R}$ als Flächen
+% \[ x=t_1, \ y=t_2, \ z=f(t_1,t_2) \]
+% mit $a \leq t_1 \leq b, \ c \leq
+%    t_2 \leq d$ erklären.
 
-\begin{frame}[fragile]{Flächen}
-\begin{itemize}
-\item Die Oberfläche einer Kugel mit Radius $r$ ist gegeben durch:
-\[ x=r \cos(t_1) \sin(t_2), \ y=r \sin (t_1) \sin (t_2), z =r
-  \cos(t_2) \]
- mit $0 \leq t_1 \leq 2 \pi, 0 \leq t_2 \leq \pi.$ 
-\item Flächen werden in Sage erzeugt durch
-\begin{sage}
-parametric_plot3d( [x(t1,t2), y(t1,t2), z(t1,t2)],(t1,a,b), (t2,c,d), Optionen):
-\end{sage}
-\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Flächen - Beispiel}
 Ellipsoid-Oberfläche
+\[ 
+x=r \cos(t_1) \sin(t_2), \ y=2r \sin (t_1) \sin (t_2),\ z =r \cos(t_2) 
+\]
+ mit $0 \leq t_1 \leq 2 \pi, 0 \leq t_2 \leq \pi.$ 
 \begin{sagein}
 _=var('t1,t2');r=1
 x=r*cos(t1)*sin(t2)
@@ -711,24 +723,24 @@ z=r*cos(t2)
 parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 \end{sagein}
 \begin{center}
-\includegraphics[width=5.5cm]{figures/surface.jpg} 
+\includegraphics[width=4.5cm]{figures/surface.jpg} 
 \end{center}
 
 \end{frame}
 
 \begin{frame}[fragile]{Konturen}
-\begin{itemize}
-\item Man kann für Funktionen $f:\mathbb{R}^2 \rightarrow \mathbb{R}$
-auch zweidimensionale Grafiken erstellen.
-\item Man zeichnet die Niveaulinien (wie die Höhenmeter auf einer
-Landkarte), d.h. man sucht zu $c \in \mathbb{R}$ die Menge von Punkten
-$(x,y)$ mit $f(x,y)=c$.
-\item In Sage geschieht das mit dem Befehl
+Zweidimensionale Grafik für $f:\mathbb{R}^2 \rightarrow \mathbb{R}$:
+\alert{Niveaulinien} (z.B. Höhenmeter auf einer
+Landkarte):
+\[ 
+\{(x,y) \in \mathbb{R}^2 \;|\; f(x,y)=c, c \in \mathbb{R}\}
+\]
+
+In Sage
 \begin{sagein}
-contour_plot(f, (x,,), (y,,), contours=[c1,c2,...], options)
+contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
 \end{sagein}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
-\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Konturen - Beispiel}
@@ -757,7 +769,7 @@ point2d.options
 
 \end{frame}
 
-\begin{frame}{Ein Beispiel: Das Collatz Problem}
+\begin{frame}{Ein komplizierteres Beispiel: Das Collatz Problem}
 
 Sei $x_0\in \mathbb{N}$. Dann definiert man die folgende Folge
 \[ x_n:= \left \{ \begin{array}{ll}
@@ -769,8 +781,7 @@ Man kann zeigen, dass für alle Startwerte ein $N_0$ existiert mit $x_{N_0}=1$.
 
 
 \begin{frame}[fragile]{}
-\begin{small}
-\begin{sage}
+\begin{sagein}
 def collatz(n):
     """ Collatz problem """
     sequence = [n]; next_value = n;
@@ -783,8 +794,7 @@ def collatz(n):
     Objekt = point([(i,sequence[i]) for i in [0..len(sequence)-1] ]) 
     Objekt.show()   
     return sequence
-\end{sage}
-\end{small}
+\end{sagein}
 \begin{center}
 \includegraphics[width=5cm]{figures/collatz.pdf} 
 \end{center}
@@ -792,7 +802,11 @@ def collatz(n):
 \end{frame}
 
 \begin{frame}[fragile]{Animationen}
-mit dem Befehl \isage{animate()} lassen sich einfach Animationen erstellen. Dies funktioniert nur für zweidimensionale plots.
+Der Befehl 
+\begin{sagein}
+animate([<graph1,graph2,...>], optionen, ... ) 
+\end{sagein}
+erstellt Animationen aus 2D plots. Optionen: \isage{xmin, xmax, ymin, ymax}.
 
 \textbf{Beispiel:}
 \begin{sagein}

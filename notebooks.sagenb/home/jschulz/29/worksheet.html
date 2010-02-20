@@ -1,5 +1,11 @@
 
 
+{{{id=36|
+plot.options
+///
+{'fillalpha': 0.5, 'detect_poles': False, 'plot_points': 200, 'thickness': 1, 'adaptive_tolerance': 0.01, 'fillcolor': 'automatic', 'alpha': 1, 'adaptive_recursion': 5, 'rgbcolor': (0, 0, 1), 'fill': None}
+}}}
+
 {{{id=2|
 plot(x^2-1)
 ///
@@ -20,7 +26,7 @@ plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
 
 {{{id=10|
 p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
-p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
+p += plot(cos(x),xmin=-pi,xmax=pi); p.show();p.save('sincos.pdf')
 ///
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
@@ -80,7 +86,7 @@ f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
 }}}
 
 {{{id=22|
-parametric_plot3d([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
+parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
 ///
 }}}
 
@@ -90,7 +96,7 @@ r=1
 x=r*cos(t1)*sin(t2)
 y=2*r*sin(t1)*sin(t2)
 z=r*cos(t2)
-parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
+parametric_plot([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 ///
 }}}
 
@@ -101,20 +107,9 @@ contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=Fals
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
 
-{{{id=20|
-parametric_plot3d?
-///
-}}}
-
 {{{id=25|
 point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30).save('point2d.pdf')
 ///
-}}}
-
-{{{id=26|
-plot.options
-///
-{'fillalpha': 0.5, 'detect_poles': False, 'plot_points': 200, 'thickness': 1, 'adaptive_tolerance': 0.01, 'fillcolor': 'automatic', 'alpha': 1, 'adaptive_recursion': 5, 'rgbcolor': (0, 0, 1), 'fill': None}
 }}}
 
 {{{id=27|
@@ -152,7 +147,7 @@ plot3d(cos(20^0.5*pi*exp(-x^2-y^2)),(x,-1,1), (y,-1,1))
 ///
 }}}
 
-{{{id=34|
+{{{id=35|
 
 ///
 }}}
