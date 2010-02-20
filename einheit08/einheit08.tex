@@ -28,14 +28,14 @@ der Stelle $x_0 \in D$, wenn
 \[ \lim_{x \rightarrow x_0} \frac{f(x)-f(x_0)}{x -x_0} \]
 existiert. \\
 Der Grenzwert wird {\color{red} Ableitung} oder {\color{red} Differentialquotient}
-von $f$ an $x_0$ genannt und mit $f'(x_0)=f^{(1)} (x_0)$ bezeichnet.
+von $f$ an $x_0$ genannt und mit $f\,'(x_0)=f^{\,(1)} (x_0)$ bezeichnet.
 \end{frame}
 
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
 \item Man sagt, dass $f$ {\color{red} differenzierbar} (auf $D$) ist, wenn $f$ an jeder
-Stelle von $D$ differenzierbar ist. Die so auf $D$ erklärte Funktion $f'$
+Stelle von $D$ differenzierbar ist. Die so auf $D$ erklärte Funktion $f\,'$
 heißt {\color{red} Ableitung} von $f$.
 \item Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
 genau dann differenzierbar, wenn es eine lineare Abbildung
@@ -76,10 +76,10 @@ fällt die Funktion schneller als $x^n$.
 \begin{itemize}
 \item Man kann induktiv höhere Ableitungen definieren. Ist $f:D
 \rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
-$(n-1)$-ten Ableitung $f^{(n-1)}$ und ist $f^{(n-1)}$ wiederum
+$(n-1)$-ten Ableitung $f^{\,(n-1)}$ und ist $f^{\,(n-1)}$ wiederum
 differenzierbar, so nennen wir $f$ $n$-mal differenzierbar und
-bezeichnen die $n$-te Ableitung durch $f^{(n)}$. 
-\item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{(n)}$
+bezeichnen die $n$-te Ableitung durch $f^{\,(n)}$. 
+\item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
 stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
 \item $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
 differenzierbar ist für alle $n\in \mathbb{N}$. 
@@ -165,9 +165,9 @@ g.diff(x,x,y)
 Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
 $x_0 \in D$. Dann gilt
 \begin{itemize}
-\item $(f+g)'(x_0)=f'(x_0)+ g'(x_0)$,
-\item $(f \cdot g)'(x_0) = f'(x_0) \cdot g(x_0) + f(x_0)g'(x_0)$ (Produktregel),
-\item $(\frac{f}{g})'(x_0) = \frac{f'(x_0) g(x_0) - f(x_0)
+\item $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$,
+\item $(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)$ (Produktregel),
+\item $(\frac{f}{g})'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
 g'(x_0)}{(g(x_0))^2}$, falls $g(x_0) \neq 0$ (Quotientenregel).
 \end{itemize}
 \end{frame}
@@ -504,7 +504,7 @@ L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]]
 (P + Q +L)
 \end{sagein}
 \begin{center}
-\includegraphics[width=4.5cm]{figures/riemann.pdf}
+\includegraphics[width=6cm]{figures/riemann.pdf}
 \end{center}
 \end{frame}
 
