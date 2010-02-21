@@ -1,0 +1,50 @@
+
+
+{{{id=6|
+var('x')
+x0  = 0
+f   = sin(x)*e^(-x)
+p   = plot(f,-1,5, thickness=2)
+dot = point((x0,f(x=x0)),pointsize=80,rgbcolor=(1,0,0))
+@interact
+def tayl(order=(1..12)):
+    ft = f.taylor(x,x0,order)
+    pt = plot(ft,-1, 5, color='green', thickness=2)
+    html('$f(x)\;=\;%s$'%latex(f))
+    html('$\hat{f}(x;%s)\;=\;%s+\mathcal{O}(x^{%s})$'%(x0,latex(ft),order+1))
+    show(dot + p + pt, ymin = -.5, ymax = 1)
+///
+<html><!--notruncate--><div padding=6 id='div-interact-6'> <table width=800px height=20px bgcolor='#c5c5c5'
+                 cellpadding=15><tr><td bgcolor='#f9f9f9' valign=top align=left><table><tr><td align=right><font color="black">order&nbsp;</font></td><td><table><tr><td>
+        <div id='slider-order-6' style='margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 15.0em;'></div>
+        </td><td><font color='black' id='slider-order-6-lbl'></font></td></tr></table><script>(function(){ var values = ["1","2","3","4","5","6","7","8","9","10","11","12"]; setTimeout(function() {
+    $('#slider-order-6').slider({
+        step: 1, min: 0, max: 11, value: 0,
+        change: function (e,ui) { var position = ui.value; if(values!=null) $('#slider-order-6-lbl').text(values[position]); interact(6, "_interact_.update(6, \"order\", 23, _interact_.standard_b64decode(\""+encode64(position)+"\"), globals());_interact_.recompute(6)"); },
+        slide: function(e,ui) { if(values!=null) $('#slider-order-6-lbl').text(values[ui.value]); }
+    });
+    if(values != null) $('#slider-order-6-lbl').text(values[$('#slider-order-6').slider('value')]);
+    }, 1); })();</script></td></tr>
+</table><div id='cell-interact-6'><?__SAGE__START>
+        <table border=0 bgcolor='#white' width=100% height=100%>
+        <tr><td bgcolor=white align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
+        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
+        </table><?__SAGE__END></div></td>
+                 </tr></table></div>
+                 </html>
+}}}
+
+{{{id=3|
+
+///
+}}}
+
+{{{id=4|
+
+///
+}}}
+
+{{{id=7|
+
+///
+}}}
