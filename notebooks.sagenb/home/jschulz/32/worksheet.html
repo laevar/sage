@@ -42,13 +42,15 @@ numerical_integral(sin(1/x)*x,1,2)
 }}}
 
 {{{id=4|
-reset();_=var('a,b');assume(a<>-1);integrate(x^a*b,x)
+reset();_=var('a,b');assume(a<>-1)
+integrate(x^a*b,x)
 ///
 b*x^(a + 1)/(a + 1)
 }}}
 
 {{{id=11|
-forget();a=-1;integrate(x^a*b,x)
+forget();a=-1
+integrate(x^a*b,x)
 ///
 b*log(x)
 }}}

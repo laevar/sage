@@ -16,7 +16,7 @@ p8
 I1
 assS'id_number'
 p10
-I30
+I26
 sS'pretty_print'
 p11
 I00
@@ -43,20 +43,19 @@ S'cruegge'
 p23
 asS'name'
 p24
-S'08_Differentation'
+S'06_schleifen I'
 p25
 sS'auto_publish'
 p26
 I00
 sS'last_change'
 p27
-(S'jschulz'
-p28
-F1266748885.8252981
-tp29
-sS'worksheet_that_was_published'
-p30
 (g4
-I30
-tp31
+F1265049873.4286349
+tp28
+sS'worksheet_that_was_published'
+p29
+(g4
+I26
+tp30
 s.

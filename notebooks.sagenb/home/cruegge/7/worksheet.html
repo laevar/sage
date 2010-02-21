@@ -62,7 +62,17 @@ g = 1/(1+x+x^2+x^3+x^4+x^5)
 ///
 }}}
 
+{{{id=78|
+t = 0
+for n in [0..3]:
+    t = t + diff(f,x,n)(x=3) / n.factorial() * (x-3)^n
+t
+///
+1/16*(x - 3)^3 - 1/8*(x - 3)^2 + 1/4*x - 5/4
+}}}
+
 {{{id=24|
+# oder:
 sum([diff(f,x,n)(x=3)/n.factorial()*(x-3)^n for n in [0..3]])
 ///
 1/16*(x - 3)^3 - 1/8*(x - 3)^2 + 1/4*x - 5/4
@@ -104,12 +114,12 @@ solve(diff(f,x)==0, x)
 }}}
 
 {{{id=75|
-# Wegen eines Bugs ist forget() hier möglicherweise wesentlich
-# Als Grundregel sollte reset() immer mit forget() verwendet werden
 forget()
 assume(n>0)
-bool(diff(f,x,2)(1/n) < 0)
+print diff(f,x,2)(1/n)
+print bool(diff(f,x,2)(1/n) < 0)
 ///
+-n*e^(-1)
 True
 }}}
 
@@ -244,6 +254,9 @@ def nullstelle(f, a0, b0, TOL):
         else:
             ak = (ak+bk)/2
         k += 1
+        if k>1000:
+            print "Maximale Anzahl an Iterationen erreicht."
+            return
     return (ak+bk)/2
 ///
 }}}
