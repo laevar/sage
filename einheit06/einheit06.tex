@@ -367,14 +367,11 @@ Mit der Funktion \isage{assume} kann man Funktionen wie \isage{expand},
 Annahmen über ihre Bedeutung gemacht wurden. 
 
 \textbf{Beispiele:}
- 
-{\color{blue} 
-\begin{tabular}{ll}
-\isage{assume(x,'real')} & $x$ wird auf $\mathbb{R}$ eingeschränkt!\\
-\isage{assume(x>a)} & $x$ wird auf  $\{y \in \mathbb{R}\ |\ y>a\}$
-eingeschr"ankt!
-\end{tabular}
-}
+\begin{sagein}
+assume(x,'real') # §$x$§ wird auf §$\mathbb{R}$§ eingeschränkt!
+assume(x>a) # §$x$§ wird auf  §$\{y \in \mathbb{R}\ |\ y>a\}$§ eingeschränkt!
+\end{sagein}
+
 
 Ruft man \isage{assume} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
 Widersprüchlich erhält man eine entsprechende Meldung.
@@ -386,8 +383,16 @@ Widersprüchlich erhält man eine entsprechende Meldung.
 werden i.A. nur dann durchgeführt,
 wenn sie für alle komplexen Zahlen gelten. Hier kann ein Einschränken
 des Definitionsbereichs helfen.
-\item Mittels {\color{blue} \isage{forget(x>a)}} wird die Annahme \isage{x>a} gelöscht.
-\item Durch {\color{blue} \isage{assumptions()}} können alle Annahmen ausgegeben werden.
+\item Mittels 
+\begin{sagein}
+forget(x>a)
+\end{sagein}
+wird die Annahme \isage{x>a} gelöscht.
+\item Durch 
+\begin{sagein}
+assumptions() 
+\end{sagein}
+können alle Annahmen ausgegeben werden.
 %\item Durch den speziellen Bezeichner \isage{Global} können Annahmen
 %für alle Bezeichner gesteuert werden. 
 \end{itemize}

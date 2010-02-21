@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=einheit08/einheit08.tex
+lastDocument=einheit06/einheit06.tex
 masterDocument=
 name=sage
 pkg_extIsRegExp=false
@@ -17,21 +17,21 @@ QuickBuild=
 
 [item:aufg_header.tex]
 archive=true
-column=0
+column=17
 encoding=UTF-8
 highlight=LaTeX
-line=3
+line=22
 open=false
 order=-1
 
 [item:common_header.tex]
 archive=true
-column=1
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=8
+line=78
 open=true
-order=5
+order=3
 
 [item:einheit01/einheit01.tex]
 archive=true
@@ -125,10 +125,10 @@ order=3
 
 [item:einheit06/einheit06.tex]
 archive=true
-column=37
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=1
+line=394
 open=true
 order=1
 
@@ -139,7 +139,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=90
 open=true
-order=3
+order=2
 
 [item:einheit07/einheit07.tex]
 archive=true
@@ -147,7 +147,7 @@ column=23
 encoding=UTF-8
 highlight=LaTeX
 line=4
-open=true
+open=false
 order=2
 
 [item:einheit07/uebung/aufgaben_einh07.tex]
@@ -161,11 +161,11 @@ order=-1
 
 [item:einheit08/einheit08.tex]
 archive=true
-column=1
+column=38
 encoding=UTF-8
 highlight=LaTeX
-line=170
-open=true
+line=1
+open=false
 order=4
 
 [item:einheit08/uebung/aufgaben_einh08.tex]
@@ -179,10 +179,10 @@ order=5
 
 [item:einheit09/einheit09.tex]
 archive=true
-column=0
+column=14
 encoding=UTF-8
 highlight=LaTeX
-line=279
+line=135
 open=true
 order=0
 
