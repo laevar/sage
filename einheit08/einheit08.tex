@@ -86,9 +86,12 @@ differenzierbar ist für alle $n\in \mathbb{N}$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Ableitungen in Sage I}
-Durch {\color{blue} \isage{diff(<Ausdruck>,x)}} wird ein Ausdruck oder eine Funktion
-nach $x$ abgeleitet. \\
+\begin{frame}[fragile]{Ableitungen in Sage}
+Durch 
+\begin{sagein}
+diff(<Ausdruck>,x) 
+\end{sagein}
+wird ein Ausdruck oder eine Funktion nach $x$ abgeleitet. \\
 \textbf{Beispiele:}
 \begin{sagein}
 diff(sin(x),x)
@@ -104,12 +107,15 @@ diff(x^x,x)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Ableitungen in Sage II}
-Höhere Ableitungen können auch bestimmt werden. Durch {\color{blue}
-\isage{diff(<Ausdruck>,x1,x2,x3,...)}}
-wird die Ableitung von \isage{<Ausdruck>} bzgl. der Unbekannten $x1$
-berechnet. Dann wird der entstehende Ausdruck nach $x2$ differenziert,
-und so fort. 
+\begin{frame}[fragile]{Höhere Ableitungen in Sage}
+Höhere Ableitungen:
+\begin{sagein}
+diff(<Ausdruck>,x1,x2,x3,...)
+diff(<Ausdruck>,x,<anzabl>) 
+\end{sagein}
+Ableitung bzgl. der Unbekannten $x1$, dann der entstehende Ausdruck bzgl. $x2$, etc. 
+In der 2ten Form gibt \isage{<anzabl>} die Anzahl der Ableitung bzgl. \isage{x} an.\\
+\textbf{Beispiele:} 
 \begin{sagein}
 _=var('x,y,a'); diff(x^2*y^2+a,x,y)
 \end{sagein}
@@ -125,22 +131,6 @@ diff(1/x,x,10)
 
 \end{frame}
 
-
-% \begin{frame}[fragile]{Ableitungen in MuPAD III}
-% Sind mathematische Abbildungen nicht als Ausdrücke sondern als
-% Funktionen $f$ realisiert, so können sie durch den Befehl 
-% \begin{sage}
-% D([i],f) 
-% \end{sage} 
-% nach der $i$-ten Variablen differenziert werden. Rückgabewert ist
-% eine Funktion.
-% 
-% \isage{D([i,j,..],f)} steht für
-% \isage{D(..D([j],D([i],f))..)}. 
-% 
-% Kurzschreibweise für \isage{D([1],f)} ist $f'$ oder \isage{D(f)}, falls
-% $f$ eine Funktion bezüglich einer Unbekannten ist.
-% \end{frame}
 
 \begin{frame}[fragile]{Ableitungen - Beispiele}
 \begin{sagein}
@@ -166,46 +156,50 @@ Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
 $x_0 \in D$. Dann gilt
 \begin{itemize}
 \item $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$,
-\item $(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)$ (Produktregel),
-\item $(\frac{f}{g})'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
-g'(x_0)}{(g(x_0))^2}$, falls $g(x_0) \neq 0$ (Quotientenregel).
+\item \alert{Produktregel}: $(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)$ ,
+\item \alert{Quotientenregel}: $(\frac{f}{g})'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
+g'(x_0)}{(g(x_0))^2}$, falls $g(x_0) \neq 0$ .
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Differentationsregeln}
 \begin{itemize}
-\item Kettenregel: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
+\item \alert{Kettenregel}: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
 \rightarrow \mathbb{R}$ mit $f(D_f) \subset D_g$. Ferner seien $f$ an
 $x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
-\[ (g \circ f)(x_0) = g'(y_0) \cdot f'(x_0).  \]
-\item Leibnizsche Regel
+\[ (g \circ f)(x_0) = g\,'(y_0) \cdot f\,'(x_0).  \]
+\item \alert{Leibnizsche Regel}:
 \[
-(f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{(k)} g^{(n-k)}.
+(f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{\,(k)} g^{\,(n-k)}.
 \]
-\item Es gilt für die Umkehrfunktion $f^{-1}$:
-\[(f^{-1})' \circ f = \frac{1}{f'}.\]
+\item Es gilt für die Umkehrfunktion $f^{\,-1}$:
+\[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wichtige Sätze}
-\begin{itemize}
-\item Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie ein
-lokales Extremum, so gilt $f'(x_0)=0$.
-\item (Mittelwertsatz) Sei $f$ eine in dem Intervall $[a,b]$ stetige
+\begin{Satz}
+Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie ein
+lokales Extremum, so gilt $f\,'(x_0)=0$.
+\end{Satz}
+\begin{Satz}[Mittelwertsatz] 
+Sei $f$ eine in dem Intervall $[a,b]$ stetige
 und in $(a,b)$ differenzierbare Funktion. Dann gibt es ein $\xi \in
 (a,b)$, so dass gilt
-\[ \frac{f(b)-f(a)}{b-a}= f'(\xi). \] 
-\item Eine differenzierbare Funktion auf dem Intervall $I$ ist genau
-dann konstant, wenn $f'(x)$ auf $I$ identisch verschwindet.
-\end{itemize}
+\[ \frac{f(b)-f(a)}{b-a}= f\,'(\xi). \]  
+\end{Satz}
+\begin{Satz}
+Eine differenzierbare Funktion auf dem Intervall $I$ ist genau
+dann konstant, wenn $f\,'(x)$ auf $I$ identisch verschwindet.
+ \end{Satz}
 \end{frame}
 
 \begin{frame}{Regel von L'Hospital} 
 Seien $f,g: D \rightarrow \mathbb{R}$
-differenzierbar, und $g'(x) \neq 0$, $x \in D$ und 
+differenzierbar, und $g\,'(x) \neq 0$, $x \in D$ und 
 {\color{red} $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$}. Dann gilt
 \[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} =  \lim_{x \rightarrow a}
-\frac{f'(x)}{g'(x)}, \]
+\frac{f\,'(x)}{g\,'(x)}, \]
 falls der Limes auf der rechten Seite existiert.
 
 Der Fall $a=\pm\infty$ ist auch erlaubt!
@@ -219,13 +213,14 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
 \begin{sagein}
 var('a');f(x) = log(x); g(x) = x^a
-assume (a>0);assume(a,'integer')
+assume(a > 0)
 limit(diff(f(x),x)/diff(g(x),x),x=oo)
 \end{sagein}
 \begin{sage}
   0
 \end{sage}
 \begin{sagein}
+assume(a,'integer')
 limit(f(x)/g(x),x=oo)
 \end{sagein}
 \begin{sage}
@@ -271,47 +266,47 @@ Sei $f:I \rightarrow \mathbb{R}$ $(n+1)$-mal differenzierbar und seien
 $x,x_0 \in I$, $x \neq x_0$. Dann gibt es $\xi \in \mathbb{R}$, so
 dass
 \begin{eqnarray*}
-f(x)& = & f(x_0) + \frac{f'(x_0)}{1!}(x-x_0)+
-\frac{f''(x_0)}{2!}(x-x_0)^2\\[0.5cm]
- & & + \cdots + \frac{f^n(x_0)}{n!}(x-x_0)^n +R_n(x,x_0) 
+f(x)& = & f(x_0) + \frac{f\,'(x_0)}{1!}(x-x_0)+
+\frac{f\,''(x_0)}{2!}(x-x_0)^2\\[0.5cm]
+ & & + \cdots + \frac{f^{\,n}(x_0)}{n!}(x-x_0)^n +R_n(x,x_0) 
 \end{eqnarray*}
 gilt mit dem  {\color{red} Lagrangschen Restglied}
-\[ R_n(x,x_0) := \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}. \]
+\[ R_n(x,x_0) := \frac{f^{\,(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}. \]
 \end{frame}
 
 \begin{frame}[fragile]{Restglied}
 Für das Restglied gibt es noch andere Darstellungen:
 \begin{itemize}
 \item Darstellung von \alert{Cauchy}
-\[ R_n(x,x_0)= \frac{f^{(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
+\[ R_n(x,x_0)= \frac{f^{\,(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
 \item \alert{Integraldarstellung}
-\[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{(n+1)}(t)}{n!}  (x-t)^n dt.\]
+\[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{\,(n+1)}(t)}{n!}  (x-t)^n dt.\]
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Taylorreihe}
 Sei $f:I \rightarrow \mathbb{R}$ unendlich oft  differenzierbar und seien
 $x,x_0 \in I$, $x \neq x_0$. Dann nennt man die Reihe
-\[ \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n \]
+\[ \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n \]
 die {\color{red} Taylorreihe} von $f(x)$ um den Entwicklungspunkt
 {\color{red} $x_0$}.
 
-\textbf{Frage:} Wann stellt die Taylorreihe die Funktion $f$ dar
-und wann nicht?
-
-\textbf{Antwort:} Wenn das Restglied $R_n(x,x_0)$ für $n
+\bigskip
+Die Taylorreihe stellt die Funktion $f$, wenn das Restglied $R_n(x,x_0)$ für $n
 \rightarrow \infty$ gegen $0$ geht.
 \end{frame}
 
 \begin{frame}{Hinreichende Bedingungen}
 \begin{itemize}
 \item Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
-$ \delta:= \frac{1}{\limsup_{n \rightarrow \infty}
-\sqrt[n]{A_n}}>0$ mit $A_n=\sup_{x \in I}  \frac{|f^{(n)}(x)|}{n!}$ gilt.
-\item Gibt es ein $M>0$, so dass $|f^{(n)}(x)|\leq M^n$ ist für $x \in
+\[
+\delta:= \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{A_n}}>0
+ \]
+mit $A_n=\sup_{x \in I}  \frac{|f^{\,(n)}(x)|}{n!}$ gilt.
+\item Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
 I$, $n \in \mathbb{N}$, so läßt sich $f$ auf $I$ durch die Taylorreihe
 darstellen.
-\item Es gebe ein $M$ mit  $f^{(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
+\item Es gebe ein $M$ mit  $f^{\,(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
 gilt die Taylorreihendarstellung für alle $x \in [a,b]$ mit
 $|x-x_0|<b-x$. 
 \end{itemize}
@@ -321,8 +316,8 @@ $|x-x_0|<b-x$.
 \begin{itemize}
 \item Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
 \[
- f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n 
- = \sum_{n=0}^k  \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+ f(x) = \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n 
+ = \sum_{n=0}^k  \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n
 \]
 \end{itemize}
 \end{frame}
@@ -378,8 +373,10 @@ Die Funktion
 0, & \mbox{ für } x = 0\\
 \end{array} \right. \]
 ist nicht durch ihre Taylorreihe an $x_0=0$ darstellbar. Die Taylorreihe zu $f$
-ist identisch $0$, da $f^n(0)=0$ ist für alle $n \in \mathbb{N}$. \\
-Plot: {\color{blue} \isage{plot(exp(-1/x^2),(-0.5,0.5))}}.
+ist identisch $0$, da $f^{\,n}(0)=0$ ist für alle $n \in \mathbb{N}$. \\
+\begin{sagein}
+plot(exp(-1/x^2),(-0.5,0.5)) 
+\end{sagein}
 \begin{center}
   \includegraphics[height=4cm]{figures/taylorgegen.pdf}
  \end{center}
@@ -387,7 +384,9 @@ Plot: {\color{blue} \isage{plot(exp(-1/x^2),(-0.5,0.5))}}.
 
 \begin{frame}[fragile]{Taylorformel in Sage}
 Sage ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
-berechnen. Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
+berechnen. 
+
+Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
 (mit Unbekannten $x$) am Entwicklungspunkt $x0$ kann durch
 \begin{sagein}
 taylor(f, x, x0, n)
@@ -395,7 +394,7 @@ taylor(f, x, x0, n)
 berechnet werden. 
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
+\begin{frame}[fragile]{taylor - Beispiele}
 \begin{sagein}
 taylor(1/(1-x),x,0,5)
 \end{sagein}
@@ -544,9 +543,9 @@ $\max\{f,g\}$, $\min \{f,g \}$.
 \begin{itemize}
 \item Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
 $F(x)= \int_a^x f(t) dt, x \in I $ eine differenzierbare Funktion mit
-$F'(x)=f(x)$. 
+$F\,'(x)=f(x)$. 
 \item Jede stetige Funktion besitzt eine {\color{red} Stammfunktion} $F$, also eine
-Funktion mit $F'(x)=f(x)$. 
+Funktion mit $F\,'(x)=f(x)$. 
 \item Für eine Stammfunktion $F$ benutzt man auch die Notation $\int
 f(x) dx$ und spricht von einem unbestimmten Integral.
 \item Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
@@ -556,13 +555,20 @@ $ \int_a^b f(x)dx = f(\xi) (b-a)$.
 
 \begin{frame}[fragile]{Integrieren in Sage}
 \begin{itemize}
- \item Bestimmte Integrale der Form $\int_a^b f(x) dx$ können in Sage
-berechnet werden durch: {\color{blue} \isage{integrate(f,x,a,b)}}
+ \item Bestimmte Integrale der Form $\int_a^b f(x) dx$
+\begin{sagein}
+integrate(f,x,a,b) 
+\end{sagein}
 Dabei ist \isage{f} ein Ausdruck.
-\item Unbestimmte Integrale können durch {\color{blue} \isage{integrate(f,x)}} bestimmt
-werden.
-\item Numerische Approximationen können durch die Funktion
-{\color{blue}\isage{numerical_integral(f,a,b)}} berechnet werden (benutzt die GSL-library). 
+\item Unbestimmte Integrale:
+\begin{sagein}
+integrate(f,x)
+\end{sagein}
+\item Numerische Approximationen:
+\begin{sagein}
+numerical_integral(f,a,b) 
+\end{sagein}
+(benutzt die GSL-library). 
 \end{itemize}
 \end{frame}
 
@@ -596,13 +602,15 @@ numerical_integral(sin(1/x)*x,1,2)
 
 \begin{frame}[fragile]{Integrieren - Beispiele II}
 \begin{sagein}
-assume(a<>-1);integrate(x^a*b,x)
+assume(a<>-1)
+integrate(x^a*b,x)
 \end{sagein}
 \begin{sage}
 b*x^(a + 1)/(a + 1)
 \end{sage}
 \begin{sagein}
-forget();a=-1;integrate(x^a*b,x)
+forget();a=-1
+integrate(x^a*b,x)
 \end{sagein}
 \begin{sage}
  b*log(x)
@@ -625,10 +633,10 @@ integrierbar mit
 \[ \int_a^b \lim_{n \rightarrow \infty} f_n(x) dx = \lim_{n
 \rightarrow \infty} \int_a^b f_n(x) dx .\]
 \item Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
-$[a,b]$. $(f'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
+$[a,b]$. $(f\,'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
 \in [a,b]$ für den $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
 gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
-\rightarrow \infty} f_n'(x)$.  
+\rightarrow \infty} f\,'_n(x)$.  
 \end{itemize}
 \end{frame}
 

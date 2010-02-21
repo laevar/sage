@@ -1,28 +1,16 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\title{Einführung in Sage - Einheit 9}
+\subtitle{Strings, interaktive Grafiken, Wärmeleitungsgleichung, Sage-Code}
 \input{../slide_header}
-\subtitle{Einheit 9}
 \maketitle
 
 \begin{frame}{Aufbau}
 \tableofcontents
 \end{frame}
 
-% \begin{frame}{Übersicht}
-% \begin{itemize}
-% \item Klausur
-% \item Strings
-% \item Bedingungen
-% \item Schleifen
-% \item Gültigkeitsbereich von Variablen
-% \item Beispiele
-% \end{itemize}
-% \end{frame}
-
-interact , waermeleitungsgleichugn, code-schnipsel aus sage-code
-
 \begin{frame}{Klausur}
  \begin{itemize}
-\item Zeit: 10:00 --- 12:00
+\item Zeit: 01.03.2010 von 10:00 --- 12:00
 \item  Ort: HS1 (A bis J) und AudiMax (K bis Z)
 \item  Hilfsmittlel: Papier, Schreibgerät(e) und Unterlagen in Papierform
 \item  Studenten-Ausweis mitbringen
@@ -42,28 +30,28 @@ Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
 Sonderzeichen,...
 \item Mit ihnen kann man in MuPAD Texte gestalten. Sie sind wichtig
 für die Ausgabe der Ergebnisse.
-\item Sie haben den Datentyp \verb+DOM_STRING+.
-\item Sie werden innerhalb der  Begrenzer \verb+"+ angegeben.
+\item Sie haben den Datentyp \isage{DOM_STRING}.
+\item Sie werden innerhalb der  Begrenzer \isage{"} angegeben.
 \end{itemize}
 \end{frame} 
 
 
 \begin{frame}[fragile]{Beispiele für Strings}
-\begin{sage}
->> text1:="Dies ist ein String."
-\end{sage}
+\begin{sagein}
+text1:="Dies ist ein String."
+\end{sagein}
 \begin{sage}
   "Dies ist ein String."
 \end{sage}
-\begin{sage}
->> text2:="Dies ist noch ein String."
-\end{sage}
+\begin{sagein}
+text2:="Dies ist noch ein String."
+\end{sagein}
 \begin{sage}
   "Dies ist noch ein String." 
 \end{sage}
-\begin{sage}
->> domtype(text1)
-\end{sage}
+\begin{sagein}
+domtype(text1)
+\end{sagein}
 \begin{sage}
   DOM_STRING
 \end{sage}
@@ -72,13 +60,13 @@ für die Ausgabe der Ergebnisse.
 \begin{frame}[fragile]{Zugriff}
 Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
 extrahiert werden oder auch geändert werden.
-\begin{sage}
->> text1[1], text1[4], text1[5]
-\end{sage}
-\begin{sage}
+\begin{sagein}
+text1[1], text1[4], text1[5]
+\end{sagein}
+\begin{sagein}
   "D", "s", " "
->> text1[4]:="i": text1
-\end{sage}
+text1[4]:="i": text1
+\end{sagein}
 \begin{sage}
   "Diei ist ein String."
 \end{sage}
@@ -97,16 +85,16 @@ Die extrahierten Teile sind wieder Strings.
   "Letzte Vorlesung"
 \end{sage} 
 \item Ausgabe von Zeichenketten
-\begin{sage}
->> print(Unquoted,A.B)
-\end{sage}
+\begin{sagein}
+print(Unquoted,A.B)
+\end{sagein}
 \begin{sage}
   Letzte Vorlesung
 \end{sage}
 \item Strings können nicht addiert oder multipliziert werden.
-\begin{sage}
->> A+B
-\end{sage}
+\begin{sagein}
+A+B
+\end{sagein}
 \begin{sage}
   Error: Illegal operand [_plus]
 \end{sage}
@@ -117,7 +105,7 @@ Die extrahierten Teile sind wieder Strings.
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
-\verb+obj1+ & \verb+obj2+  & \verb+obj1.obj2+ \\
+\isage{obj1} & \isage{obj2}  & \isage{obj1.obj2} \\
 \hline 
 Zeichenkette  & Zeichenkette  & Zeichenkette \\
 Zeichenkette  & Bezeichner    & Zeichenkette \\
@@ -135,7 +123,7 @@ Liste  & Liste  & Liste \\
 
 \begin{frame}[fragile]{Operationen für Strings II}
 \begin{itemize}
-\item \verb+length+ gibt die Anzahl der Zeichen in einer Zeichenkette
+\item \isage{length} gibt die Anzahl der Zeichen in einer Zeichenkette
 an.
 \begin{sage}
 > a:=length(A.B); 
@@ -143,17 +131,17 @@ an.
 \begin{sage}
   16
 \end{sage}
-\begin{sage}
->> (A.B)[a]
-\end{sage}
+\begin{sagein}
+(A.B)[a]
+\end{sagein}
 \begin{sage}
   "g"
 \end{sage}
-\item Beliebige MuPAD-Objekte können durch {\color{blue} \verb+expr2text+} in
+\item Beliebige MuPAD-Objekte können durch {\color{blue} \isage{expr2text}} in
 einen String verwandelt werden.
-\begin{sage}
->> expr2text(x^2+2), expr2text([1,2,3])
-\end{sage}
+\begin{sagein}
+expr2text(x^2+2), expr2text([1,2,3])
+\end{sagein}
 \begin{sage}
   "x^2 + 2", "[1, 2, 3]"
 \end{sage}
@@ -163,14 +151,14 @@ einen String verwandelt werden.
 \begin{frame}[fragile]{Operationen für Strings III} 
 \begin{itemize}
 \item Nachfolgend ein Beispiel zur Maskierung von Sonderzeichen.
-\begin{sage}
->> a:=expr2text("hallo"), a[1]
-\end{sage}
+\begin{sagein}
+a:=expr2text("hallo"), a[1]
+\end{sagein}
 \begin{sage}
   "\"hallo\"" ,  "\""
 \end{sage}
 \item Weitere Befehle zur Manipulation von Strings findet man in
-der Bibliothek \verb+stringlib+. 
+der Bibliothek \isage{stringlib}. 
 \end{itemize}
 \end{frame}
 
@@ -178,20 +166,20 @@ der Bibliothek \verb+stringlib+.
 \begin{itemize}
 \item Geben Sie alle Bezeichner in alphabetischer Reihenfolge an!
 Erstellen Sie eine Liste aller Bezeichner!
-\begin{sage}
->> A:=map(anames(All),expr2text)
->> L:=[op(A)]
->> sort(L)
-\end{sage}
+\begin{sagein}
+A:=map(anames(All),expr2text)
+L:=[op(A)]
+sort(L)
+\end{sagein}
 \item Schreiben Sie eine Funktion, die eine Zeichenkette rückwärts
 berechnet. 
-\begin{sage}
->> revers:= A->_concat(A[length(A)-i+1]
+\begin{sagein}
+revers:= A->_concat(A[length(A)-i+1]
    $\text{dollar}$ i=1..length(A))
-\end{sage}
-\begin{sage}
->> revers("Hallo")
-\end{sage}
+\end{sagein}
+\begin{sagein}
+revers("Hallo")
+\end{sagein}
 \begin{sage}
   "ollaH"
 \end{sage}
@@ -241,37 +229,37 @@ end_proc:
 
 \begin{frame}[fragile]{Logische Ausdrücke}
 \begin{itemize}
-\item Es gibt die drei logische (Boolsche) Werte {\color{blue}\verb+TRUE+},
-{\color{blue}\verb+FALSE+} und {\color{blue}\verb+UNKNOWN+}.
-\item Sie haben den Datentyp {\color{blue}\verb+DOM_BOOL+}.
+\item Es gibt die drei logische (Boolsche) Werte {\color{blue}\isage{TRUE}},
+{\color{blue}\isage{FALSE}} und {\color{blue}\isage{UNKNOWN}}.
+\item Sie haben den Datentyp {\color{blue}\isage{DOM_BOOL}}.
 \item Gleichungen $(=)$, Ungleichungen $(<>)$ oder Größenvergleiche 
-(\verb+<,>,<=,>=+) können durch
-\verb+bool+ zu \verb+TRUE+ oder \verb+FALSE+ ausgewertet werden.
+(\isage{<,>,<=,>=}) können durch
+\isage{bool} zu \isage{TRUE} oder \isage{FALSE} ausgewertet werden.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Logische Ausdrücke}
-\begin{sage}
->> bool(3<=4)
-\end{sage}
-\begin{sage}
-  TRUE
-\end{sage}
-\begin{sage}
->> bool(TRUE=TRUE)
-\end{sage}
+\begin{sagein}
+bool(3<=4)
+\end{sagein}
 \begin{sage}
   TRUE
 \end{sage}
-\begin{sage}
->> bool("AS"<="B")
-\end{sage}
+\begin{sagein}
+bool(TRUE=TRUE)
+\end{sagein}
 \begin{sage}
   TRUE
 \end{sage}
+\begin{sagein}
+bool("AS"<="B")
+\end{sagein}
 \begin{sage}
->> bool(TRUE<>UNKNOWN)
+  TRUE
 \end{sage}
+\begin{sagein}
+bool(TRUE<>UNKNOWN)
+\end{sagein}
 \begin{sage}
   TRUE
 \end{sage}
@@ -284,27 +272,27 @@ end_proc:
 %----------------------------
 
 \begin{frame}[fragile]{Repeat}
-Neben \verb+for+ ist durch  \verb+repeat+ eine weitere Schleifenvariante gegeben:
+Neben \isage{for} ist durch  \isage{repeat} eine weitere Schleifenvariante gegeben:
 \begin{sage}
 x:=1.1:
 repeat
   i:=x; x:=i^2; print(i,x)
 until x>100 end_repeat:
 \end{sage}
-Die Befehle zwischen \verb+repeat+ und \verb+until+ werden so lange
+Die Befehle zwischen \isage{repeat} und \isage{until} werden so lange
 wiederholt, bis die Bedingung (hier $x>100$) wahr wird.
 \end{frame}
 
 \begin{frame}[fragile]{while}
-So ähnlich wie die \verb+repeat+-Schleife funktioniert die
-\verb+while+-Schleife. 
+So ähnlich wie die \isage{repeat}-Schleife funktioniert die
+\isage{while}-Schleife. 
 \begin{sage}
 x:=2:
 while x<=100 do
  i:=x; x:=i^2; print(i,x)
 end_while:
 \end{sage}
-Die Befehle zwischen \verb+while+ und \verb+end_while+ werden so lange
+Die Befehle zwischen \isage{while} und \isage{end_while} werden so lange
 wiederholt, wie die Bedingung (hier $x<=100$) wahr ist.
 \end{frame}
 
@@ -315,7 +303,7 @@ Verzweigungen.
 \item Je
 nach Wert oder Bedeutung von Variablen werden unterschiedliche Befehle
 ausgeführt. 
-\item In MuPAD gibt es das \verb+if+-Konstrukt und das \verb+case+-Konstrukt. 
+\item In MuPAD gibt es das \isage{if}-Konstrukt und das \isage{case}-Konstrukt. 
 \end{itemize}
 \end{frame}
 
@@ -331,16 +319,16 @@ end_for:
 \end{frame}
 
 \begin{frame}[fragile]{if-Konstrukt}
-Die Verzweigung \verb+if+ hat die folgende Struktur:
+Die Verzweigung \isage{if} hat die folgende Struktur:
 \begin{sage}
 if Bedingung
     then Befehle1
     else Befehle2
 end_if
 \end{sage}
-Ist die \verb+Bedingung+ wahr, so wird \verb+Befehle1+ ausgeführt,
-ansonsten \verb+Befehle2+. Befehle in den Befehlsfolgen sind durch
-\verb+:+ oder \verb+;+ zu trennen. Der \verb+else+ Aufruf ist
+Ist die \isage{Bedingung} wahr, so wird \isage{Befehle1} ausgeführt,
+ansonsten \isage{Befehle2}. Befehle in den Befehlsfolgen sind durch
+\isage{:} oder \isage{;} zu trennen. Der \isage{else} Aufruf ist
 optional. 
 \end{frame}
 
@@ -359,8 +347,8 @@ print("Anzahl = ",anz);
 
 \begin{frame}[fragile]{Case}
 Hat man eine Verzweigung mit mehreren Alternativen, so kann man
-entweder geschachtelte \verb+if+ Konstrukte verwenden, oder das
-Konstrukt \verb+case+ verwenden. 
+entweder geschachtelte \isage{if} Konstrukte verwenden, oder das
+Konstrukt \isage{case} verwenden. 
 
 \begin{sage}
 case var
@@ -371,19 +359,19 @@ case var
     ...
 end_case
 \end{sage}
-\verb+Case+ funktioniert wie die \verb+switch+ Anweisung in C.
+\isage{Case} funktioniert wie die \isage{switch} Anweisung in C.
 \end{frame}
 
 \begin{frame}[fragile]{Erklärung}
 \begin{itemize}
-\item Ist keiner der \verb+of+-Zweige richtig, so wird die
- Befehlssequenz zwischen \verb+otherwise+ und \verb+end_case+
+\item Ist keiner der \isage{of}-Zweige richtig, so wird die
+ Befehlssequenz zwischen \isage{otherwise} und \isage{end_case}
  ausgeführt. 
-\item Durch den Befehl \verb+break+ kann ein vorzeitiges Verlassen
- der \verb+case+-Anweisung bewirkt werden.
-\item Stimmt der Wert von \verb+var+ mit einem der Werte \verb+wert1+,
-\verb+wert2+, \ldots,  überein, werden von dieser Stelle an alle nachfolgenden Befehle 
-ausgeführt, insbesondere also auch von \alert{allen} anderen \verb+of+ und \verb+otherwise+ Sequenzen). Sogenanntes {\it 'fall-through'}. 
+\item Durch den Befehl \isage{break} kann ein vorzeitiges Verlassen
+ der \isage{case}-Anweisung bewirkt werden.
+\item Stimmt der Wert von \isage{var} mit einem der Werte \isage{wert1},
+\isage{wert2}, \ldots,  überein, werden von dieser Stelle an alle nachfolgenden Befehle 
+ausgeführt, insbesondere also auch von \alert{allen} anderen \isage{of} und \isage{otherwise} Sequenzen). Sogenanntes {\it 'fall-through'}. 
 \end{itemize}
 \end{frame}
 
@@ -428,11 +416,11 @@ diese Variablen wieder gelöscht.
 \item In MuPAD sind in Prozeduren definierte Variablen standardmäßig
 \alert{global}. Die interaktiv erstellten Variablen sind sowieso
 global.
-\item Mit dem Schlüsselwort \verb+local+ können in Prozeduren lokale 
-Variablen erzeugt werden. \verb+local+ steht zwischen \verb+proc()+
-und \verb+begin+.
-\item Die lokalen Bezeichner sind vom Typ \verb+DOM_VAR+ (nicht wie
-erwartet \verb+DOM_IDENT+).  
+\item Mit dem Schlüsselwort \isage{local} können in Prozeduren lokale 
+Variablen erzeugt werden. \isage{local} steht zwischen \isage{proc()}
+und \isage{begin}.
+\item Die lokalen Bezeichner sind vom Typ \isage{DOM_VAR} (nicht wie
+erwartet \isage{DOM_IDENT}).  
 \item Die Input-Argumente von Prozeduren sind lokale Variablen.
 \end{itemize}
 \end{frame}
@@ -448,23 +436,23 @@ schlechter Programmierstil und sollte vermieden werden.
 
 \begin{frame}[fragile]{Beispiele}
 Ein Beispiel mit globalen Variablen
-\begin{sage}
->> a:=b: 
->> f:=proc() 
+\begin{sagein}
+a:=b: 
+f:=proc() 
       begin 
         a:=1+a^2: 
       end_proc:
->> f(); f(); f()
-\end{sage}
+f(); f(); f()
+\end{sagein}
  Ein Beispiel mit lokalen Variablen
-\begin{sage}
->> a:=b: 
->> f:=proc() 
+\begin{sagein}
+a:=b: 
+f:=proc() 
       local a; 
         begin a:=2 
       end_proc:
->> f(); a
-\end{sage}
+f(); a
+\end{sagein}
 \end{frame}
 
 
@@ -486,26 +474,26 @@ end_proc:
 \end{frame}
 
 \begin{frame}[fragile]{Symbolische Rückgabe}
-\begin{sage}
->> fakultaet(9)
-\end{sage}
+\begin{sagein}
+fakultaet(9)
+\end{sagein}
 \begin{sage}
   362880
 \end{sage}
-\begin{sage}
->> x!
-\end{sage}
+\begin{sagein}
+x!
+\end{sagein}
 \begin{sage}
   fact(x)
 \end{sage}
-\begin{sage}
->> fakultaet(x)
-\end{sage}
+\begin{sagein}
+fakultaet(x)
+\end{sagein}
 \begin{sage}
   "Falscher Datentyp"
 \end{sage}
 \begin{itemize}
-\item Viele Systemfunktionen wie \verb+fact+, geben den Prozeduraufruf
+\item Viele Systemfunktionen wie \isage{fact}, geben den Prozeduraufruf
                symbolisch zurück, wenn er nicht auszuwerten ist.
 \item Die Auswertung kann dann später erfolgen.
 \end{itemize}
@@ -530,12 +518,12 @@ fakultaet2 := proc(n)
 
 \begin{frame}[fragile]{Erklärungen}
 \begin{itemize}
-\item Durch \verb+args()+ erhält man die Folge der Argumente. 
-\item \verb+args(0)+ ist die Anzahl der Argumente.
-\item Durch \verb+args(i)+ erhält man das $i$-te Element.
+\item Durch \isage{args()} erhält man die Folge der Argumente. 
+\item \isage{args(0)} ist die Anzahl der Argumente.
+\item Durch \isage{args(i)} erhält man das $i$-te Element.
 \item Mit diesen Befehlen kann man Prozeduren mit einer beliebigen
 Anzahl von Argumenten programmieren.
-\item \verb+procname+ ist der Name der Prozedur.
+\item \isage{procname} ist der Name der Prozedur.
 \end{itemize}
 \end{frame}
 
@@ -544,39 +532,39 @@ Durch den Aufruf
 \begin{sage}
 testtype(Objekt, Typenbezeichner)
 \end{sage}
-wird getestet, ob ein \verb+Objekt+ dem Typenbezeichner
-entspricht. Rückgabewert ist \verb+TRUE+ oder \verb+FALSE+.
+wird getestet, ob ein \isage{Objekt} dem Typenbezeichner
+entspricht. Rückgabewert ist \isage{TRUE} oder \isage{FALSE}.
 \begin{itemize}
-\item Prinzipiell kann man auch \verb+domtype+ zum Überprüfen des Typs
+\item Prinzipiell kann man auch \isage{domtype} zum Überprüfen des Typs
 benutzen. 
 \item Die Typenbezeichner sind aber differenzierter.
 \item Übersicht der verfügbaren Typenbezeichner erhält man durch
-{\color{blue} \verb+? Type+}. 
+{\color{blue} \isage{? Type}}. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
-\begin{sage}
->> testtype(sqrt(3),Type::Real)
-\end{sage}
+\begin{sagein}
+testtype(sqrt(3),Type::Real)
+\end{sagein}
 \begin{sage}
   FALSE
 \end{sage}
-\begin{sage}
->> testtype(float(sqrt(3)),Type::Real)
-\end{sage}
+\begin{sagein}
+testtype(float(sqrt(3)),Type::Real)
+\end{sagein}
 \begin{sage}
   TRUE
 \end{sage}
-\begin{sage}
->> testtype(3,Type::Real)
-\end{sage}
+\begin{sagein}
+testtype(3,Type::Real)
+\end{sagein}
 \begin{sage}
   TRUE 
 \end{sage}
-\begin{sage}
->> select([i $\text{dollar}$ i=100..120],testtype,Type::Prime)
-\end{sage}
+\begin{sagein}
+select([i $\text{dollar}$ i=100..120],testtype,Type::Prime)
+\end{sagein}
 \begin{sage}
   [101, 103, 107, 109, 113]
 \end{sage} 
@@ -616,7 +604,7 @@ mandel:=proc(x,y)
 \end{frame}
 
 \begin{frame}[fragile]{Plot - Mandelbrot}
-Die Funktion \verb+mandel+ gibt zu $x+iy$ die relative Anzahl der
+Die Funktion \isage{mandel} gibt zu $x+iy$ die relative Anzahl der
 Iterationsschritte zurück.\\
 
 Geplottet wird die Funktion nun wie folgt:
@@ -640,7 +628,7 @@ Kommentarzeile zu Beginn steht, was das Programm macht und wieviele
 und welche Eingabeparameter es erhalten darf und was die Prozedur
 zurückgibt. Zusätzlich sollten auch alle wesentlichen Operationen
 kommentiert werden.
-\item Werte explizit mit \verb+return()+ zürückgeben.
+\item Werte explizit mit \isage{return()} zürückgeben.
 \item Programme übersichtlich gestalten, z.B. Schleifen oder
 Verzweigungen einrücken.
 \item Keine Umlaute in Programmkommentaren verwenden.

@@ -30,11 +30,6 @@ reset();_=var('f,g');diff(f/g,x)
 0
 }}}
 
-{{{id=8|
-f(x) = sin(x)
-///
-}}}
-
 {{{id=9|
 f(x) = log(cos(x))
 f.diff(); diff(f); diff(f,x,x)
@@ -51,15 +46,28 @@ g.diff(x,x,y)
 (x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
 }}}
 
+{{{id=30|
+def f(x): return x^3
+diff(f(x),x)
+///
+3*x^2
+}}}
+
+{{{id=33|
+forget();reset()
+///
+}}}
+
 {{{id=11|
 var('a');f(x) = log(x); g(x) = x^a
-assume (a>0);assume(a,'integer')
+assume(a > 0)
 limit(diff(f(x),x)/diff(g(x),x),x=oo)
 ///
 0
 }}}
 
 {{{id=12|
+assume(a,'integer')
 limit(f(x)/g(x),x=oo)
 ///
 0
@@ -120,6 +128,11 @@ taylor(sin(x),x,2,5)
 }}}
 
 {{{id=25|
+
+///
+}}}
+
+{{{id=29|
 
 ///
 }}}
