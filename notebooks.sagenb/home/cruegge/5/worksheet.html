@@ -31,6 +31,7 @@ limit( sum(i^99, i,1,n)/n^100, n=oo )
 
 {{{id=8|
 reset()
+forget()
 var('i')
 ///
 i
@@ -229,7 +230,7 @@ forget(); assume(a<0); limit(x^a, x=oo)
 <h2>Aufgabe 7</h2>
 
 {{{id=45|
-reset()
+reset();forget()
 var('n')
 ///
 n
@@ -239,6 +240,19 @@ n
 1/limit( (1/(2*n+1))^(1/(2*n+1)), n=oo )
 ///
 1
+}}}
+
+{{{id=88|
+assume(abs(x)<1, x<>0)
+f(x) = sum((-1)^n * x^(2*n+1)/(2*n+1), n,0,oo); f
+///
+x |--> arctan(x)
+}}}
+
+{{{id=89|
+4*(4*f(1/5)-f(1/239))
+///
+-4*arctan(1/239) + 16*arctan(1/5)
 }}}
 
 {{{id=64|

@@ -123,7 +123,7 @@ str(x^2+2), str([1,2,3])
 
 \begin{frame}[fragile]{Operationen für Strings III} 
 \begin{itemize}
-\item ??split. 
+\item ??split. , mehr ueber formate
 \end{itemize}
 \end{frame}
 
@@ -156,11 +156,19 @@ dot = point((x0,f(x=x0)),pointsize=80,rgbcolor=(1,0,0))
 def tayl(order=(1..12)):
     ft = f.taylor(x,x0,order)
     pt = plot(ft,-1, 5, color='green', thickness=2)
-    html('$f(x)\;=\;%s$'%latex(f))
-    html('$\hat{f}(x;%s)\;=\;%s+\mathcal{O}(x^{%s})$'%(x0,latex(ft),order+1))
+    html('f(x)\;=\;%s'%latex(f))
+    html('\hat{f}(x;%s)\;=\;%s+\mathcal{O}(x^{%s})'%(x0,latex(ft),order+1))
     show(dot + p + pt, ymin = -.5, ymax = 1)
 \end{sagein}
 \end{frame}
+
+\begin{frame}[fragile]{interact}
+\begin{center}
+%\includegraphics[width=6cm]{figures/fexp.pdf}
+\end{center}
+ 
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Programmierung}

@@ -20,7 +20,7 @@ def tayl(order=(1..12)):
         </td><td><font color='black' id='slider-order-6-lbl'></font></td></tr></table><script>(function(){ var values = ["1","2","3","4","5","6","7","8","9","10","11","12"]; setTimeout(function() {
     $('#slider-order-6').slider({
         step: 1, min: 0, max: 11, value: 0,
-        change: function (e,ui) { var position = ui.value; if(values!=null) $('#slider-order-6-lbl').text(values[position]); interact(6, "_interact_.update(6, \"order\", 23, _interact_.standard_b64decode(\""+encode64(position)+"\"), globals());_interact_.recompute(6)"); },
+        change: function (e,ui) { var position = ui.value; if(values!=null) $('#slider-order-6-lbl').text(values[position]); interact(6, "_interact_.update(6, \"order\", 1, _interact_.standard_b64decode(\""+encode64(position)+"\"), globals());_interact_.recompute(6)"); },
         slide: function(e,ui) { if(values!=null) $('#slider-order-6-lbl').text(values[ui.value]); }
     });
     if(values != null) $('#slider-order-6-lbl').text(values[$('#slider-order-6').slider('value')]);
