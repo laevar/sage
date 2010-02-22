@@ -125,10 +125,10 @@ order=3
 
 [item:einheit06/einheit06.tex]
 archive=true
-column=0
+column=11
 encoding=UTF-8
 highlight=LaTeX
-line=394
+line=534
 open=true
 order=1
 

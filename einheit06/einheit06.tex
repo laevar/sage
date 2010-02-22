@@ -149,7 +149,7 @@ lim(x*sin(1/x), x=0)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Visualiseren von Folgen}
+\begin{frame}[fragile]{Visualisieren von Folgen}
 Folgen können in Sage durch {\color{blue} \isage{points}} visualisiert werden.
 \begin{sagein}
 var('n');
@@ -274,7 +274,7 @@ für $s>1$ und divergiert für $s=1$.
 \end{frame}
 
 \begin{frame}[fragile]{Reihen mit Sage I}
-Der Befehl {\color{blue} \isage{sum(f,i=a..b)}} sucht eine geschlossene
+Der Befehl {\color{blue} \isage{sum(f,i,a,b)}} sucht eine geschlossene
 Darstellung der Summe $\sum_{i=a}^b f(i)$. Dabei sind $a$,$b$ ganze
  Zahlen, wobei auch unendlich (also \isage{infinity}) erlaubt
 ist und \isage{f} ist ein Ausdruck in $i$.
@@ -516,7 +516,7 @@ fallende  Nullfolge ist.
 \begin{itemize}
 \item Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
 \begin{sagein}
-f(n) = n^4.*exp(-n*n)
+f(n) = n^4*exp(-n*n)
 g(n) = f(n+1)/f(n)
 limit(g(n),n=oo)
 \end{sagein}
@@ -587,10 +587,10 @@ Mathematik.
 \item $\sum_{n=1}^\infty \frac{x^n}{n!}$
 \begin{sagein}
 f(n) = 1/factorial(n)
-rho = limit(expand(f(n+1)/f(n)),n=oo); rho
+rho = limit(expand(f(n)/f(n+1)),n=oo); rho
 \end{sagein}
 \begin{sage}
-  0
++Infinity
 \end{sage}
 Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$. 
 \item $\sum_{n=0}^\infty n^s x^n$, $s>0$
