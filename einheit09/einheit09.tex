@@ -127,6 +127,11 @@ str(x^2+2), str([1,2,3])
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}[fragile]{} 
+ 
+\end{frame}
+
 % \begin{frame}[fragile]{Anwendungen}
 % \item Schreiben Sie eine Funktion, die eine Zeichenkette rückwärts
 % berechnet. 
@@ -145,7 +150,7 @@ str(x^2+2), str([1,2,3])
 
 \section{Interaktive Elemente}
 
-\begin{frame}[fragile]{interact}
+\begin{frame}[fragile]{interact I}
 \begin{sagein}
 var('x')
 x0  = 0
@@ -162,14 +167,40 @@ def tayl(order=(1..12)):
 \end{sagein}
 \end{frame}
 
-\begin{frame}[fragile]{interact}
+\begin{frame}[fragile]{interact I}
 \begin{center}
 %\includegraphics[width=6cm]{figures/fexp.pdf}
+
+% Hier interact online zeigen
+% ein weiteres beispiel zeigen
+
 \end{center}
- 
 \end{frame}
 
+\begin{frame}[fragile]{interact II}
+\begin{sagein}
+@interact
+def _(q1=(-1,(-3,3)), q2=(-2,(-3,3)),
+      cmap=['autumn', 'bone', 'cool', 'copper', 'gray', 'hot', 'hsv',
+           'jet', 'pink', 'prism', 'spring', 'summer', 'winter']):
+     x,y = var('x,y')
+     f = q1/sqrt((x+1)^2 + y^2) + q2/sqrt((x-1)^2+(y+0.5)^2)
+     C = contour_plot(f, (x,-2,2), (y,-2,2), plot_points=30, contours=15, cmap=cmap)
+     show(C, figsize=3, aspect_ratio=1)
+     show(plot3d(f, (x,-2,2), (y,-2,2)), figsize=5, viewer='tachyon') 
+\end{sagein}
 
+\end{frame}
+
+\begin{frame}[fragile]{interact II}
+\begin{center}
+%\includegraphics[width=6cm]{figures/fexp.pdf}
+
+% Hier interact online zeigen
+% ein weiteres beispiel zeigen
+
+\end{center}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Programmierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -440,119 +471,119 @@ erwartet \isage{DOM_IDENT}).
 % \end{frame}
 
 
-\begin{frame}[fragile]{Rekursives Beispiel}
-Berechnung der Fakultät einer natürlichen Zahl
-\begin{sage}
-/* Berechnung der Fakultaet */
-fakultaet := proc(n) begin
-       if domtype(n)=DOM_INT and n>0
-           then 
-              if n=1 then return(1)
-              else n*fakultaet(n-1)
-              end_if
-            else 
-              print("Falscher Datentyp");
-            end_if
-end_proc:
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Rekursives Beispiel}
+% Berechnung der Fakultät einer natürlichen Zahl
+% \begin{sage}
+% /* Berechnung der Fakultaet */
+% fakultaet := proc(n) begin
+%        if domtype(n)=DOM_INT and n>0
+%            then 
+%               if n=1 then return(1)
+%               else n*fakultaet(n-1)
+%               end_if
+%             else 
+%               print("Falscher Datentyp");
+%             end_if
+% end_proc:
+% \end{sage}
+% \end{frame}
 
-\begin{frame}[fragile]{Symbolische Rückgabe}
-\begin{sagein}
-fakultaet(9)
-\end{sagein}
-\begin{sage}
-  362880
-\end{sage}
-\begin{sagein}
-x!
-\end{sagein}
-\begin{sage}
-  fact(x)
-\end{sage}
-\begin{sagein}
-fakultaet(x)
-\end{sagein}
-\begin{sage}
-  "Falscher Datentyp"
-\end{sage}
-\begin{itemize}
-\item Viele Systemfunktionen wie \isage{fact}, geben den Prozeduraufruf
-               symbolisch zurück, wenn er nicht auszuwerten ist.
-\item Die Auswertung kann dann später erfolgen.
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Symbolische Rückgabe}
+% \begin{sagein}
+% fakultaet(9)
+% \end{sagein}
+% \begin{sage}
+%   362880
+% \end{sage}
+% \begin{sagein}
+% x!
+% \end{sagein}
+% \begin{sage}
+%   fact(x)
+% \end{sage}
+% \begin{sagein}
+% fakultaet(x)
+% \end{sagein}
+% \begin{sage}
+%   "Falscher Datentyp"
+% \end{sage}
+% \begin{itemize}
+% \item Viele Systemfunktionen wie \isage{fact}, geben den Prozeduraufruf
+%                symbolisch zurück, wenn er nicht auszuwerten ist.
+% \item Die Auswertung kann dann später erfolgen.
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}[fragile]{Fakultät II}
-\begin{sage}
-/* Berechnung der Fakultaet */
-fakultaet2 := proc(n) 
-  begin
-       if testtype(n,Type::PosInt)
-           then 
-              if n=1 then return(1)
-              else n*fakultaet2(n-1)
-              end_if
-            else 
-              return(procname(args()));
-            end_if
-  end_proc:
-\end{sage}
-\end{frame}
+% \begin{frame}[fragile]{Fakultät II}
+% \begin{sage}
+% /* Berechnung der Fakultaet */
+% fakultaet2 := proc(n) 
+%   begin
+%        if testtype(n,Type::PosInt)
+%            then 
+%               if n=1 then return(1)
+%               else n*fakultaet2(n-1)
+%               end_if
+%             else 
+%               return(procname(args()));
+%             end_if
+%   end_proc:
+% \end{sage}
+% \end{frame}
 
-\begin{frame}[fragile]{Erklärungen}
-\begin{itemize}
-\item Durch \isage{args()} erhält man die Folge der Argumente. 
-\item \isage{args(0)} ist die Anzahl der Argumente.
-\item Durch \isage{args(i)} erhält man das $i$-te Element.
-\item Mit diesen Befehlen kann man Prozeduren mit einer beliebigen
-Anzahl von Argumenten programmieren.
-\item \isage{procname} ist der Name der Prozedur.
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Erklärungen}
+% \begin{itemize}
+% \item Durch \isage{args()} erhält man die Folge der Argumente. 
+% \item \isage{args(0)} ist die Anzahl der Argumente.
+% \item Durch \isage{args(i)} erhält man das $i$-te Element.
+% \item Mit diesen Befehlen kann man Prozeduren mit einer beliebigen
+% Anzahl von Argumenten programmieren.
+% \item \isage{procname} ist der Name der Prozedur.
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}[fragile]{Testen des Typs}
-Durch den Aufruf
-\begin{sage}
-testtype(Objekt, Typenbezeichner)
-\end{sage}
-wird getestet, ob ein \isage{Objekt} dem Typenbezeichner
-entspricht. Rückgabewert ist \isage{TRUE} oder \isage{FALSE}.
-\begin{itemize}
-\item Prinzipiell kann man auch \isage{domtype} zum Überprüfen des Typs
-benutzen. 
-\item Die Typenbezeichner sind aber differenzierter.
-\item Übersicht der verfügbaren Typenbezeichner erhält man durch
-{\color{blue} \isage{? Type}}. 
-\end{itemize}
-\end{frame}
+% \begin{frame}[fragile]{Testen des Typs}
+% Durch den Aufruf
+% \begin{sage}
+% testtype(Objekt, Typenbezeichner)
+% \end{sage}
+% wird getestet, ob ein \isage{Objekt} dem Typenbezeichner
+% entspricht. Rückgabewert ist \isage{TRUE} oder \isage{FALSE}.
+% \begin{itemize}
+% \item Prinzipiell kann man auch \isage{domtype} zum Überprüfen des Typs
+% benutzen. 
+% \item Die Typenbezeichner sind aber differenzierter.
+% \item Übersicht der verfügbaren Typenbezeichner erhält man durch
+% {\color{blue} \isage{? Type}}. 
+% \end{itemize}
+% \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{sagein}
-testtype(sqrt(3),Type::Real)
-\end{sagein}
-\begin{sage}
-  FALSE
-\end{sage}
-\begin{sagein}
-testtype(float(sqrt(3)),Type::Real)
-\end{sagein}
-\begin{sage}
-  TRUE
-\end{sage}
-\begin{sagein}
-testtype(3,Type::Real)
-\end{sagein}
-\begin{sage}
-  TRUE 
-\end{sage}
-\begin{sagein}
-select([i $\text{dollar}$ i=100..120],testtype,Type::Prime)
-\end{sagein}
-\begin{sage}
-  [101, 103, 107, 109, 113]
-\end{sage} 
-\end{frame}
+% \begin{frame}[fragile]{Beispiele}
+% \begin{sagein}
+% testtype(sqrt(3),Type::Real)
+% \end{sagein}
+% \begin{sage}
+%   FALSE
+% \end{sage}
+% \begin{sagein}
+% testtype(float(sqrt(3)),Type::Real)
+% \end{sagein}
+% \begin{sage}
+%   TRUE
+% \end{sage}
+% \begin{sagein}
+% testtype(3,Type::Real)
+% \end{sagein}
+% \begin{sage}
+%   TRUE 
+% \end{sage}
+% \begin{sagein}
+% select([i $\text{dollar}$ i=100..120],testtype,Type::Prime)
+% \end{sagein}
+% \begin{sage}
+%   [101, 103, 107, 109, 113]
+% \end{sage} 
+% \end{frame}
 
 
 \begin{frame}[fragile]{Mandelbrot-Menge}

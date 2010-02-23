@@ -36,11 +36,6 @@ A='Letzte '; B='Vorlesung'; A+B
 'Letzte Vorlesung'
 }}}
 
-{{{id=9|
-A.split?
-///
-}}}
-
 {{{id=12|
 a=len(A+B); a
 ///
@@ -48,7 +43,7 @@ a=len(A+B); a
 }}}
 
 {{{id=13|
-(A+B)[a-1]
+(A+B)[-1:]
 ///
 'g'
 }}}
@@ -60,6 +55,30 @@ str(x^2+2), str([1,2,3])
 }}}
 
 {{{id=11|
+text = 'Dies ist ein Satz, und ein Nebensatz'
+text.split()
+///
+['Dies', 'ist', 'ein', 'Satz,', 'und', 'ein', 'Nebensatz']
+}}}
+
+{{{id=14|
+text.split('i')
+///
+['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
+}}}
+
+{{{id=15|
+print '%5s | %7s' % ('Index','Wert')
+for k in srange(1,25,9.55): 
+    print '%5i | %07.3f' % (k,k^2) 
+///
+Index |    Wert
+    1 | 001.000
+   10 | 111.303
+   20 | 404.010
+}}}
+
+{{{id=17|
 
 ///
 }}}
