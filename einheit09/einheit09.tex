@@ -58,7 +58,8 @@ type(text1)
 \end{frame}
 
 \begin{frame}[fragile]{Zugriff}
-Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
+\begin{itemize}
+\item Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
 extrahiert werden.
 \begin{sagein}
 text1[0], text1[3], text1[4]
@@ -66,13 +67,14 @@ text1[0], text1[3], text1[4]
 \begin{sage}
 ('D', 's', ' ')
 \end{sage}
-Ersetzungen innerhalb des Strings:
+\item Ersetzungen innerhalb des Strings:
 \begin{sagein}
 text1.replace('Dies','Das')
 \end{sagein}
 \begin{sage}
 'Das ist ein String.'
 \end{sage}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Operationen für Strings I}
@@ -83,19 +85,7 @@ A='Letzte '; B='Vorlesung'; A+B
 \end{sagein}
 \begin{sage}
 'Letzte Vorlesung'
-\end{sage} 
-\item Ausgabe von Zeichenketten
-\begin{sagein}
-print(Unquoted,A.B) ??
-\end{sagein}
-\begin{sage}
-  Letzte Vorlesung
 \end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Operationen für Strings II}
-\begin{itemize}
 \item \isage{len} gibt die Anzahl der Zeichen in einer Zeichenkette
 an.
 \begin{sagein}
@@ -104,8 +94,15 @@ a=len(A+B); a
 \begin{sage}
   16
 \end{sage}
+ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operationen für Strings II}
+\begin{itemize}
+\item neue Zugriffsmöglichkeit
 \begin{sagein}
-(A+B)[a-1]
+(A+B)[-1:]
 \end{sagein}
 \begin{sage}
   'g'
@@ -123,14 +120,67 @@ str(x^2+2), str([1,2,3])
 
 \begin{frame}[fragile]{Operationen für Strings III} 
 \begin{itemize}
-\item ??split. , mehr ueber formate
+\item Aufspalten von Texten
+\begin{sagein}
+text = 'Dies ist ein Satz, und ein Nebensatz'
+text.split() 
+\end{sagein}
+\begin{sage}
+ ['Dies', 'ist', 'ein', 'Satz,', 'und', 'ein', 'Nebensatz']
+\end{sage}
+\begin{sagein}
+text.split('i')
+\end{sagein}
+\begin{sage}
+['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
+\end{sage}
+
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{} 
+\begin{frame}[fragile]{Vertiefung print und Formate} 
+ \begin{sagein}
+  print 'Text %<format> und %<format> ... ' % (x,y,...)
+ \end{sagein}
+\isage{<format>}:
+\begin{sagein}
+%[<flag>][<minwidth>][.<precision>]converter 
+\end{sagein}
+\begin{itemize}
+\item \isage{flag}: 0 für das Auffüllen mit Nullen
+\item \isage{minwidth}: Minimale Breite der Darstellung
+\item \isage{precision}: Genauigkeit (Nachkommastellen)
+\item \isage{converter}:
+\begin{tabular}{cp{10cm}}
+\isage{'i'} & ganze Zahl mit Vorzeichen\\
+\isage{'e'} & Gleitkommazahl mit exponentialformat (kleingeschrieben).\\
+\isage{'f'} &Gleitkommazahl im Dezimalformat.\\
+\isage{'g'} &Gleitkommazahl. Benutzt kleingeschriebene Exponentialform wenn der Exponent kleiner als -4 oder der Genauigkeit ist, ansonsten Dezimalformat.
+\end{tabular}
+
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{print - Beispiele}
+\begin{sagein}
+print '%5s | %7s' % ('Index','Wert')
+for k in srange(1,25,9.55): 
+    print '%5i | %07.3f' % (k,k^2) 
+\end{sagein}
+\begin{sage}
+Index |    Wert
+    1 | 001.000
+   10 | 111.303
+   20 | 404.010
+\end{sage}
  
 \end{frame}
+
+
 
 % \begin{frame}[fragile]{Anwendungen}
 % \item Schreiben Sie eine Funktion, die eine Zeichenkette rückwärts
@@ -148,9 +198,62 @@ str(x^2+2), str([1,2,3])
 % \end{itemize}
 % \end{frame}
 
-\section{Interaktive Elemente}
+\section{Interaktive (grafische) Elemente}
 
-\begin{frame}[fragile]{interact I}
+\begin{frame}[fragile]{interact}
+\begin{sagein}
+@interact
+def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
+    plot(sin(x)/x, b[0], b[1]).show(xmin=b[0],xmax=b[1]) 
+\end{sagein}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/interact_basis.png}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{interact}
+\begin{itemize}
+\item
+\begin{sagein}
+u=slider(vmin, vmax=, step_size=1, default=, label=) 
+\end{sagein}
+Regler mit entsprechenden Werten
+\item 
+\begin{sagein}
+u=range_slider(vmin, vmax=, step_size=1, default=, label=)
+\end{sagein}
+Regler eines Intervalles
+\begin{sagein}
+u=checkbox(default=True, label=)
+\end{sagein}
+Eine Ankreuzfeld
+\item 
+\begin{sagein}
+u=selector(values, label=, nrows=, ncols=, buttons=False)
+\end{sagein}
+Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
+\item 
+\begin{sagein}
+u=text_control(value='')
+\end{sagein}
+Ein Textblock
+\end{itemize}
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{interact - Taylor}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/interact1.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{interact - Taylor}
 \begin{sagein}
 var('x')
 x0  = 0
@@ -167,17 +270,14 @@ def tayl(order=(1..12)):
 \end{sagein}
 \end{frame}
 
-\begin{frame}[fragile]{interact I}
+\begin{frame}[fragile]{interact - Kontur und 3D-Plot von einer Abstandsfunktion}
 \begin{center}
-%\includegraphics[width=6cm]{figures/fexp.pdf}
-
-% Hier interact online zeigen
-% ein weiteres beispiel zeigen
-
+\includegraphics[width=7.5cm]{figures/interact2.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{interact II}
+
+\begin{frame}[fragile]{interact - Kontur und 3D-Plot von einer Abstandsfunktion}
 \begin{sagein}
 @interact
 def _(q1=(-1,(-3,3)), q2=(-2,(-3,3)),
@@ -192,15 +292,6 @@ def _(q1=(-1,(-3,3)), q2=(-2,(-3,3)),
 
 \end{frame}
 
-\begin{frame}[fragile]{interact II}
-\begin{center}
-%\includegraphics[width=6cm]{figures/fexp.pdf}
-
-% Hier interact online zeigen
-% ein weiteres beispiel zeigen
-
-\end{center}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Programmierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -226,20 +317,22 @@ Wiederhole,  bis $a=b$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Implementierung}
+\begin{frame}[fragile]{ggT - Implementierung}
+\begin{sagein}
+def ggT(a,b):  
+    """Bestimme den ggT von a und b"""
+    while a<>b:
+        if a>b:
+            a = a-b
+        else: 
+            b = b-a
+    return a
+ggT(6,9)
+\end{sagein}
 \begin{sage}
-ggT:= proc(a,b) 
-/* Bestimme den ggT von a und b */
-begin
-  while (a<>b) do
-    if (a>b) 
-         then a:=a-b;
-         else b:=b-a;
-    end_if;
-  end_while;
-  return(a);
-end_proc:
+3  
 \end{sage}
+
 \end{frame}
 
 % \begin{frame}[fragile]{Logische Ausdrücke}
@@ -322,42 +415,46 @@ end_proc:
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Beispiel}
-\begin{sage}
-for i from 2 to 100 do
- if isprime(i)
-   then print(i,"ist Primzahl")
-   else print(i,"ist keine Primzahl")
- end_if
-end_for:
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{if-Konstrukt}
-Die Verzweigung \isage{if} hat die folgende Struktur:
-\begin{sage}
-if Bedingung
-    then Befehle1
-    else Befehle2
-end_if
-\end{sage}
-Ist die \isage{Bedingung} wahr, so wird \isage{Befehle1} ausgeführt,
-ansonsten \isage{Befehle2}. Befehle in den Befehlsfolgen sind durch
-\isage{:} oder \isage{;} zu trennen. Der \isage{else} Aufruf ist
-optional. 
-\end{frame}
+% \begin{frame}[fragile]{Beispiel}
+% \begin{sage}
+% for i from 2 to 100 do
+%  if isprime(i)
+%    then print(i,"ist Primzahl")
+%    else print(i,"ist keine Primzahl")
+%  end_if
+% end_for:
+% \end{sage}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{if-Konstrukt}
+% Die Verzweigung \isage{if} hat die folgende Struktur:
+% \begin{sage}
+% if Bedingung
+%     then Befehle1
+%     else Befehle2
+% end_if
+% \end{sage}
+% Ist die \isage{Bedingung} wahr, so wird \isage{Befehle1} ausgeführt,
+% ansonsten \isage{Befehle2}. Befehle in den Befehlsfolgen sind durch
+% \isage{:} oder \isage{;} zu trennen. Der \isage{else} Aufruf ist
+% optional. 
+% \end{frame}
 
 \begin{frame}[fragile]{Berechnung von Primzahlzwillingen}
+\begin{sagein}
+T = []; anz = 0
+for i in [2..100]:
+    if (is_prime(i) and is_prime(i+2)):
+        anz += 1
+        T.append([i,i+2])
+print('Anzahl = %s' % anz);T
+\end{sagein}
 \begin{sage}
-T:=[]: anz:=0:
-for i from 2 to 10000 do
- if (isprime(i) and isprime(i+2))
-     then anz:=anz+1;
-     T:=T.[[i,i+2]];
- end_if:
-end_for:
-print("Anzahl = ",anz);
+Anzahl = 8
+[[3, 5], [5, 7], [11, 13], [17, 19], [29, 31], [41, 43], [59, 61], [71,
+73]]
 \end{sage}
+
 \end{frame}
 
 % \begin{frame}[fragile]{Case}
@@ -390,53 +487,35 @@ print("Anzahl = ",anz);
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Beispiel: Betrag}
-\begin{sage}
-betrag:=proc(a) 
-     begin
-       case(domtype(a))
-         of DOM_INT do 
-         of DOM_RAT do
-         of DOM_FLOAT do
-           if a>0 then y:=a: else y:=-a: end_if:
-           break;
-         of DOM_COMPLEX do
-           y:=sqrt(Re(a)^2+Im(a)^2);
-           break;
-         otherwise
-           print("Falscher Eingabetyp");
-         end_case:
-         return(y);
-     end_proc:
-\end{sage}
+\begin{frame}[fragile]{Betrag (noch sehr unschoen)}
+\begin{sagein}
+def betrag(a):
+    if type(a) == Integer or type(a) == Rational or is_RealNumber(a):
+        if a>0:
+            y = a
+        else:
+            y = -a
+    elif is_ComplexNumber(a):
+        y = sqrt(real(a)^2+imag(a)^2)
+    else:
+        print("Falscher Eingabetyp");
+    return y
+betrag(2+I*4)
+\end{sagein}
 \end{frame}
 
-\begin{frame}{Gültigkeit von Variablen I}
+\begin{frame}{Gültigkeit von Variablen}
 \begin{itemize}
 \item Mit der Gültigkeit von Variablen ist die Bestandsdauer von
    Variablen bzw. der Werten dieser Variablen gemeint.
-\item Beim interaktiven Gebrauch von MuPAD sind alle Variablen {\it
-global}, d.h. die den Variablen zugewiesenen Werte bleiben für die
-gesamte Laufzeit von MuPAD erhalten bis sie geändert werden. Man kann
-auf die Variablen jederzeit zugreifen und die Werte der Variablen
+\item Beim interaktiven Gebrauch von Sage sind alle Variablen \alert{global}, 
+d.h. die den Variablen zugewiesenen Werte bleiben für die
+gesamte Laufzeit vom jeweiligen worksheet erhalten bis sie geändert werden. 
+Man kann auf die Variablen jederzeit zugreifen und die Werte der Variablen
 ändern.
-\item Daneben gibt es aber auch {\it lokale Variablen}, die nur
-innerhalb einer Prozedur gültig sind. Nach Beenden der Prozedur werden
+\item Daneben gibt es aber auch \alert{lokale Variablen}, die nur
+innerhalb einer Prozedur/Funktion gültig sind. Nach Beenden der Prozedur werden
 diese Variablen wieder gelöscht. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Gültigkeit von Variablen II}
-\begin{itemize}
-\item In MuPAD sind in Prozeduren definierte Variablen standardmäßig
-\alert{global}. Die interaktiv erstellten Variablen sind sowieso
-global.
-\item Mit dem Schlüsselwort \isage{local} können in Prozeduren lokale 
-Variablen erzeugt werden. \isage{local} steht zwischen \isage{proc()}
-und \isage{begin}.
-\item Die lokalen Bezeichner sind vom Typ \isage{DOM_VAR} (nicht wie
-erwartet \isage{DOM_IDENT}).  
-\item Die Input-Argumente von Prozeduren sind lokale Variablen.
 \end{itemize}
 \end{frame}
 
@@ -594,59 +673,38 @@ definiert ist, beschränkt ist.
 \end{frame}
 
 \begin{frame}[fragile]{Programm - Mandelbrot}
-\begin{small}
-\begin{sage}
-mandel:=proc(x,y)
-  local it,a0,a,MAX_IT;
-  begin
-    if not (testtype(x,Type::Real) and 
-           testtype(x,Type::Real))
-     then procname(x,y)
-    else
-      MAX_IT := 150;
-      it := 0;
-      a0 := x + I*y;
-      a := a0;
-      while (abs(a)<2 and it<MAX_IT) do
-        a := a^2 + a0;
-        it := it + 1;
-      end_while;
-      return(float(it/MAX_IT));
-    end_if;
-  end_proc:
-\end{sage}
-\end{small}
+\begin{sagein}
+def mandel(x,y):
+    c = (x + I*y).n()
+    z = c
+    it = 0
+    max_it = 150
+    while abs(z)<2 and it<max_it:
+        z = z^2 + c
+        it += 1
+    return float(it/max_it)
+\end{sagein}
+Die Funktion \isage{mandel} gibt zu $x+iy$ die relative Anzahl der
+Iterationsschritte zurück.
 \end{frame}
 
 \begin{frame}[fragile]{Plot - Mandelbrot}
-Die Funktion \isage{mandel} gibt zu $x+iy$ die relative Anzahl der
-Iterationsschritte zurück.\\
+\begin{sagein}
+density_plot(m, (-2.1,1.2), (-1.1,1.1), plot_points=100)
+\end{sagein}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figures/mandel.pdf} 
+\end{center}
 
-Geplottet wird die Funktion nun wie folgt:
- 
-\begin{sage}
-PlotteMandel:=proc()
-  begin
-    mandelPlot:=plot::Function3d(mandel(x,y),
-      x=-2.1..1.2, y=-1.1..1.1, Mesh=[100,100]);
-    plot(mandelPlot,Width=20*unit::cm, 
-      Height=15*unit::cm);
-  end_proc:
-\end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Programmierregeln}
+\begin{frame}[fragile]{Programmierregeln ??}
 \begin{itemize}
-\item Falls möglich, nur lokale Variablen benutzen.
 \item Programme vollständig kommentieren. Das heißt zum einen das eine
 Kommentarzeile zu Beginn steht, was das Programm macht und wieviele
 und welche Eingabeparameter es erhalten darf und was die Prozedur
 zurückgibt. Zusätzlich sollten auch alle wesentlichen Operationen
 kommentiert werden.
-\item Werte explizit mit \isage{return()} zürückgeben.
-\item Programme übersichtlich gestalten, z.B. Schleifen oder
-Verzweigungen einrücken.
-\item Keine Umlaute in Programmkommentaren verwenden.
 \end{itemize}
 \end{frame}
 
