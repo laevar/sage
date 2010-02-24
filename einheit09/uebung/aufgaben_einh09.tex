@@ -8,55 +8,39 @@ WS 2009/2010
 \end{minipage}\\[1cm]
 
 \begin{aufg}
-Geben Sie fünf Funktionen an, mit denen Sie symbolische Ausdrücke
-manipulieren können. Erklären Sie die Wirkungsweise der genannten
-Funktionen jeweils in einem Satz.
+Schreiben Sie eine Prozedur, deren Eingabeparameter zwei Strings sind
+und die den kleinsten Index berechnet, ab dem der Erste dieser Strings
+im Zweiten enthalten ist.  Kann der String nicht gefunden werden, so
+soll die Prozedur \verb+False+ zurückgeben.
 \end{aufg}
 
 \begin{aufg}
-
+Schreiben Sie eine Prozedur, deren Eingabeparameter zwei Strings und
+ein Index sind und die den ersten String am gegebenen Index in den
+Zweiten einfügt.
 \end{aufg}
 
 \begin{aufg}
-
-\end{aufg}
-
-
-\begin{aufg}
-Erklären Sie in groben Zügen, was die Funktion \verb+assume+ bewirkt!
-Überlegen Sie sich sinnvolle Beispiele zur Veranschaulichung!
-\end{aufg}
-
-
-\begin{aufg}
-Geben Sie an, wie Sie die folgenden Terme mit Hilfe von MuPAD
-berechnen (angeben) können:
-\begin{enumerate}
-\item $\sqrt{2}$, $\sin (\pi/4)$.
-\item $\pi$ mit  $20$ signifikanten Stellen.
-\item Die $20$.te Ableitung des Ausdrucks $f$ bzgl. der Unbestimmten
-  $x$.
-\item Die Gleichung $x^3-2x^2+4=0$.
-\item Die Stammfunktion von $\sin(x)\cos(x)$.
-\end{enumerate}
+Schreiben Sie eine Prozedur, die für einen String -- z.B. einen
+Sage-Ausdruck in String-Form -- überprüft, ob alle geöffneten Klammern
+auch wieder geschlossen werden.
 \end{aufg}
 
 \begin{aufg}
-Schreiben Sie eine Funktion, die aus einer beliebigen Menge von Zahlen
-die Menge der Primzahlen bestimmt und zurückgibt. Wie würden Sie in
-MuPAD die Menge $\{1, 2, \dots, 100\}$ erzeugen? Welche Datencontainer
-in MuPAD kennen sie außer Mengen noch?
-\end{aufg}
+Betrachten Sie das Newton-Verfahren zum Berechnen der Nullstellen von
+$z^3-1$, d.h.
+\begin{equation*}
+  z_{n+1}=z_n-\frac{z_n^3-1}{3z_n^2}
+\end{equation*}
+mit einem Startwert $z_0=x+iy$. Schreiben Sie eine Funktion, die zu
+gegebenem $x,y\in\mathbb{R}$ überprüft, gegen welche der drei Lösungen
+von $z^3-1=0$ das Newton-Verfahren konvergiert.  Sie können von
+Konvergenz ausgehen, wenn $|z_n^3-1|<0.1$ ist und in dem Fall das
+Argument von $z_n$ als Ergebnis zurückgeben.  Sollte nach 20
+Schritten keine Konvergenz eintreten, geben Sie 0 zurück.
 
-
-
-\begin{aufg}
-Betrachten Sie die quadratische Gleichung
-\[  x^2 + px + q = 0 \]
-für $p,q \in \mathbb{R}$. Schreiben Sie eine Prozedur \verb+quadGl+, 
-die aus  $p,q \in \mathbb{R}$ mit Hilfe der $pq$-Formel eine Liste der reellen Lösungen 
-berechnet und zurückgibt. Wenn es keine reelle Lösung  gibt, soll eine leere
-Liste zurückgegeben werden.
+Erstellen Sie dann einen Plot der Funktion analog zur Mandelbrot-Menge
+in der Vorlesung für $-1\leq x,y \leq 1$ mit \verb+plot_points=60+.
 \end{aufg}
 
 \end{document}
