@@ -24,7 +24,7 @@ p11
 (dp12
 S'next_worksheet_id_number'
 p13
-I11
+I13
 sS'default_system'
 p14
 S'sage'
@@ -163,7 +163,7 @@ p72
 (dp73
 S'next_worksheet_id_number'
 p74
-I44
+I43
 sS'default_system'
 p75
 S'sage'
