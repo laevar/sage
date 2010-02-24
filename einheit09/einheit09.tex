@@ -1,6 +1,6 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
 \title{Einführung in Sage - Einheit 9}
-\subtitle{Strings, interaktive Grafiken, Wärmeleitungsgleichung, Sage-Code, geogebra ?, interface zu anderen}
+\subtitle{Strings, interaktive Grafiken, Komplexe Beispiele, Sage-Code, geogebra ?}
 \input{../slide_header}
 \maketitle
 
@@ -508,13 +508,13 @@ betrag(2+I*4)
 \begin{itemize}
 \item Mit der Gültigkeit von Variablen ist die Bestandsdauer von
    Variablen bzw. der Werten dieser Variablen gemeint.
-\item Beim interaktiven Gebrauch von Sage sind alle Variablen \alert{global}, 
+\item \alert{globale Variablen}: Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
 d.h. die den Variablen zugewiesenen Werte bleiben für die
 gesamte Laufzeit vom jeweiligen worksheet erhalten bis sie geändert werden. 
 Man kann auf die Variablen jederzeit zugreifen und die Werte der Variablen
 ändern.
-\item Daneben gibt es aber auch \alert{lokale Variablen}, die nur
-innerhalb einer Prozedur/Funktion gültig sind. Nach Beenden der Prozedur werden
+\item \alert{lokale Variablen}: Diese sind nur innerhalb einer Prozedur/Funktion 
+gültig. Nach Beenden der Prozedur werden
 diese Variablen wieder gelöscht. 
 \end{itemize}
 \end{frame}
@@ -698,52 +698,52 @@ density_plot(mandel, (-2.1,1.2), (-1.1,1.1), plot_points=100)
 
 \end{frame}
 
-\begin{frame}[fragile]{Programmierregeln ??}
+\begin{frame}[fragile]{Programmierregeln}
 \begin{itemize}
-\item Programme vollständig kommentieren. Das heißt zum einen das eine
-Kommentarzeile zu Beginn steht, was das Programm macht und wieviele
-und welche Eingabeparameter es erhalten darf und was die Prozedur
-zurückgibt. Zusätzlich sollten auch alle wesentlichen Operationen
-kommentiert werden.
+\item \alert{Hilfetext}: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
+\item \alert{Kommentieren}: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
+\item \alert{Passende Benennung von Variablen/Funktionen}: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Letztes Beispiel I}
-\begin{sage}
-Gadisch:=proc(x,basis)
-  /*---------------------------------------
-   Berechnung der  Darstellung
-   einer natuerlichen Zahl x zur Basis b
-   Rueckgabe des Ergebnis als Liste! 
-  -----------------------------------------*/
-  local T,T_r,i;  /* lokale Variablen*/
-  begin /* Beginn lokale Prozedur */
-  /* Abfangen der Eingabe */
-    if not testtype(x,Type::PosInt) 
-       then return(procname(args()));
-    end_if;
-    if (not testtype(basis,Type::PosInt)) or basis=1
-       then return(procname(args()));
-    end_if;  
-\end{sage}
+\begin{sagein}
+def Gadisch(x,basis):
+    """Berechnung der Darstellung einer natuerlichen Zahl 
+x zur Basis b. Rueckgabe des Ergebnis als Liste!"""
+    #Abfangen der Eingabe
+    if not type(x) == Integer or x < 0 or basis==1: 
+        return 'Eingabe nicht korrekt!'
+    T = []  # leere Liste 
+    # Beginn Schleife 
+    while x>0:
+        T.append(x%basis)
+        print '%i : %i = %i Rest %i' % (x,basis,floor(x/basis),x%basis)
+        x = floor(x/basis)
+    # Rueckgabe der Liste
+    return T   
+\end{sagein}
 \end{frame}
 
 \begin{frame}[fragile]{Letztes Beispiel II}
+\begin{sagein}
+Gadisch(6,2)
+\end{sagein}
 \begin{sage}
-    T:=[];  /* leere Liste */ 
-    /* Beginn Schleife */
-    while x>0 do  
-      T:=[x mod basis].T;
-      print(Unquoted,expr2text(x)." : "
-        .expr2text(basis)." = "
-        .expr2text(x div basis)." Rest "
-        .expr2text(x mod basis));
-      x:=(x div basis);
-    end_while;
-    /* Rueckgabe der Liste */
-    return(T);
-  end_proc:  
+6 : 2 = 3 Rest 0
+3 : 2 = 1 Rest 1
+1 : 2 = 0 Rest 1
+[0, 1, 1]
 \end{sage}
+
+\begin{sagein}
+Gadisch(3.4,2)
+\end{sagein}
+\begin{sage}
+'Eingabe nicht korrekt!'
+\end{sage}
+
+
 \end{frame}
 
 \begin{frame}{Allerletztes Beispiel: Kochsche Kurven I}
@@ -754,52 +754,44 @@ Gadisch:=proc(x,basis)
 $\overline{y_1 z_1}$, $\overline{z_1 z_2}$, $\overline{z_2 z_3}$,
 $\overline{z_3 y_2}$ mit Endpunkten 
 \begin{eqnarray*}
- z_1 &=\frac23 y_1 + \frac13 y_2\\[0.5cm]
- z_2 &= \frac{\sqrt{3}}{6} \left( \begin{array}{cc}
+ z_1 &=&\frac23 y_1 + \frac13 y_2\\[0.5cm]
+ z_2 &=& \frac{\sqrt{3}}{6} \left( \begin{array}{cc}
  0 & 1 \\ -1 & 0 \\
  \end{array} \right)
  (y_1 - y_2) + \frac12 (y_1 + y_2)\\[0.5cm]
- z_3 &=\frac13 y_1 + \frac23 y_2
+ z_3 &=&\frac13 y_1 + \frac23 y_2
 \end{eqnarray*}
 \item Dieses Prozedere wird nun für jede einzelne Teilstrecke wiederholt.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Allerletztes Beispiel II}
-\begin{sage}
-koch:=proc(y1,y2,lev)
-  local z1,z2,z3;
-  begin
-    if (lev = 0)
-      then Listelinien:=append(Listelinien,
-        plot::Line2d([y1[1],y1[2]],[y2[1],y2[2]]));
-    else
-      /* Definieren der neuen Punkte */
-      z1 := 2/3 * y1 + 1/3 * y2;
-      z3 := 1/3 * y1 + 2/3 * y2;
-      z2 := sqrt(3)/6*matrix([[0, 1],[ -1, 0]])*
-              (y1-y2) + 1/2 * ( y1 + y2);
-      /* Definieren der 4 Strecken */
-      koch(y1, z1, lev-1);
-      koch(z1, z2, lev-1);
-      koch(z2, z3, lev-1);
-      koch(z3, y2, lev-1);
-    end_if;
-  end_proc:
-\end{sage}
+\begin{sagein}
+def koch(y1,y2,lev):
+    Listelinien = []
+    if (lev == 0):
+        Listelinien.append(line([(y1[0],y1[1]),(y2[0],y2[1])]))
+    else:
+        # Definieren der neuen Punkte 
+        z1 = 2/3 * y1 + 1/3 * y2
+        z3 = 1/3 * y1 + 2/3 * y2
+        z2 = sqrt(3)/6*matrix([[0, 1],[ -1, 0]])*(y1-y2) + 1/2 * (y1 + y2)
+        # Definieren der 4 Strecken
+        Listelinien.append(koch(y1, z1, lev-1))
+        Listelinien.append(koch(z1, z2, lev-1))
+        Listelinien.append(koch(z2, z3, lev-1))
+        Listelinien.append(koch(z3, y2, lev-1))
+    return add(Listelinien)
+\end{sagein}
 \end{frame}
 
 \begin{frame}[fragile]{Allerletztes Beispiel III}
-\begin{sage}
-/* Einfacher Fall einer Linie */
-plotKoch1:=proc(lev)
-           begin
-             Listelinien := [];
-             y1 := matrix([0,0]);
-             y2 := matrix([1,0]);
-             koch(y1,y2,lev);
-             plot(Listelinien, Axes = None);
-           end_proc:
-\end{sage}
+\begin{sagein}
+# Einfacher Fall einer Linie 
+koch(vector([0,0]),vector([1,0]),4)
+\end{sagein}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/koch.pdf} 
+\end{center}
 \end{frame}
 \end{document}
