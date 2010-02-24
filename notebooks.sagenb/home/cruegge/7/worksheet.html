@@ -83,7 +83,7 @@ sum([diff(f,x,n)(x=3)/n.factorial()*(x-3)^n for n in [0..3]])
 }}}
 
 {{{id=79|
-#Vorsicht!
+#Vorsicht! das geht nicht! Faustregel: diese sum nur bei symbolischen Ausdrücken benutzen
 _=var('n');sum( (diff(f,x,n))(x=3)/n.factorial()*(x-3)^n,n,0,3)
 ///
 0
@@ -298,6 +298,22 @@ n(nullstelle(f, 0,3, 10^(-6)))
 }}}
 
 {{{id=85|
-
+#Alternative - Rekursive Funktion
+def nullstelle_rek(f, a0, b0, TOL, ak=0, bk=0, k=0):
+    if k == 0:
+        ak = a0
+        bk = b0
+    if abs(b0-a0) > 2^(k+1)*TOL and k<1000:
+        if f(ak)*f((ak+bk)/2) < 0:
+            return nullstelle_rek(f,a0,b0,TOL,ak,(ak+bk)/2,k+1)
+        else:
+            return nullstelle_rek(f,a0,b0,TOL,(ak+bk)/2,bk,k+1)
+    return (ak+bk)/2.0
 ///
+}}}
+
+{{{id=86|
+nullstelle_rek(f, 0,3, 10^(-4))
+///
+1.25985717773438
 }}}
