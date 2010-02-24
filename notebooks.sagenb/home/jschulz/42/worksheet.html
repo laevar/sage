@@ -28,28 +28,19 @@ Anzahl = 8
 
 {{{id=4|
 def betrag(a):
-    if type(a) == Integer or type(a) == Rational or is_RealNumber(a):
+    if a in ZZ or a in QQ or a in RR:
         if a>0:
             y = a
         else:
             y = -a
-    elif is_ComplexNumber(a):
+    elif a in CC:
         y = sqrt(real(a)^2+imag(a)^2)
     else:
-        print("Falscher Eingabetyp");
+        return 'Falscher Eingabetyp'
     return y
-betrag(2+I*4)
+betrag([1,2]), betrag(2+I*2)
 ///
-Falscher Eingabetyp
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_81.py", line 16, in <module>
-    exec compile(ur'betrag(_sage_const_2 +I*_sage_const_4 )' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "_sage_input_81.py", line 15, in betrag
-    return y
-UnboundLocalError: local variable 'y' referenced before assignment
+('Falscher Eingabetyp', 2*sqrt(2))
 }}}
 
 {{{id=5|
@@ -64,9 +55,9 @@ a = 4.3
 }}}
 
 {{{id=7|
-is_C
+a in RR
 ///
-Real Field with 53 bits of precision
+True
 }}}
 
 {{{id=10|
@@ -74,16 +65,15 @@ def Gadisch(x,basis):
     """Berechnung der Darstellung einer natuerlichen Zahl 
 x zur Basis b. Rueckgabe des Ergebnis als Liste!"""
     #Abfangen der Eingabe
-    if not type(x) == Integer or x < 0 or basis==1: 
+    if not x in ZZ or x < 0 or basis==1: 
         return 'Eingabe nicht korrekt!'
     T = []  # leere Liste 
-    # Beginn Schleife 
     while x>0:
-        T.append(x%basis)
+        T.append(x%basis) # Rest der Division
         print '%i : %i = %i Rest %i' % (x,basis,floor(x/basis),x%basis)
-        x = floor(x/basis)
+        x = floor(x/basis) # Teiler setzen
     # Rueckgabe der Liste
-    return T   
+    return T
 ///
 }}}
 
@@ -127,7 +117,7 @@ koch(vector([0,0]),vector([1,0]),4)
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
 
-{{{id=16|
+{{{id=17|
 
 ///
 }}}

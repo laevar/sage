@@ -55,7 +55,11 @@ contour_plot(f(x,y), (x,-4,4), (y,-4,4), contours=[-2,0,2,4,6], fill=False, labe
 <h2>Aufgabe 3</h2>
 
 {{{id=15|
-reset()
+reset();forget()
+///
+}}}
+
+{{{id=82|
 var('x')
 f = 1/(1-x)
 g = 1/(1+x+x^2+x^3+x^4+x^5)
@@ -76,6 +80,13 @@ t
 sum([diff(f,x,n)(x=3)/n.factorial()*(x-3)^n for n in [0..3]])
 ///
 1/16*(x - 3)^3 - 1/8*(x - 3)^2 + 1/4*x - 5/4
+}}}
+
+{{{id=79|
+#Vorsicht!
+_=var('n');sum( (diff(f,x,n))(x=3)/n.factorial()*(x-3)^n,n,0,3)
+///
+0
 }}}
 
 {{{id=25|
@@ -101,7 +112,7 @@ taylor(g,x,3,3)
 <h2>Aufgabe 4</h2>
 
 {{{id=29|
-reset()
+reset();forget()
 var('x,n')
 f(x) = x*exp(-n*x)
 ///
@@ -127,6 +138,12 @@ True
 f(0), f(1/n), f.limit(x=oo)
 ///
 (0, e^(-1)/n, x |--> 0)
+}}}
+
+{{{id=83|
+plot(f(x,n=2),(x,0.1,0.9))
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
 
 <h2>Aufgabe 5</h2>
@@ -278,4 +295,9 @@ n(nullstelle(f, 0,3, 10^(-4)))
 n(nullstelle(f, 0,3, 10^(-6)))
 ///
 1.25992083549500
+}}}
+
+{{{id=85|
+
+///
 }}}
