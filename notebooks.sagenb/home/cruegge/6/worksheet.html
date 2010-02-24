@@ -226,6 +226,7 @@ x
 
 {{{id=13|
 # hier x^0, damit substitution in der nächsten zelle funktioniert
+# (x^0 ist ein symbolischer Ausdruck, 1 ein Integer)
 T = [x^0, x]
 for k in [2..9]:
     T.append((2*x*T[k-1]-T[k-2]).expand())
@@ -297,6 +298,16 @@ x |--> 3*(12*(21*x^4 - 2*x^2 + 12)^6 - 42*x^4 + 4*x^2 - 23)^6 + 4*(12*(21*x^4 - 
 fwerte = [f(x) for x in [-10..10]]; show(fwerte)
 ///
 <html><div class="math">\left[3000400, 1594647, 786688, 353143, 140112, 46975, 12352, 2223, 208, 7, 0, 7, 208, 2223, 12352, 46975, 140112, 353143, 786688, 1594647, 3000400\right]</div></html>
+}}}
+
+{{{id=85|
+# oder mit dictionaries:
+fdict = {}
+for x in [-10..10]:
+    fdict[x] = f(x)
+show(fdict)
+///
+<html><div class="math">\left\{0:\: 0, 1:\: 7, 2:\: 208, 3:\: 2223, 4:\: 12352, 5:\: 46975, 6:\: 140112, 7:\: 353143, 8:\: 786688, 9:\: 1594647, 10:\: 3000400, -1:\: 7, -10:\: 3000400, -9:\: 1594647, -8:\: 786688, -7:\: 353143, -6:\: 140112, -5:\: 46975, -4:\: 12352, -3:\: 2223, -2:\: 208\right\}</div></html>
 }}}
 
 {{{id=24|
@@ -402,7 +413,7 @@ parametric_plot3d([5*cos(x), 2*sin(x), 4*x], (x,0,100), plot_points=200)
 reset()
 def plot_dreiecke(l):
     ecken = Set(l)
-    dreiecke = [list(s) for s in ecken.subsets() if len(s)==3]
+    dreiecke = [s for s in ecken.subsets() if len(s)==3]
     p = Graphics()
     for d in dreiecke:
         p += polygon3d(d)
