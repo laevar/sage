@@ -163,6 +163,20 @@ factor(2*x^2-2*a^2-x^3-2*x^4+x^5+a^2*x+2*a^2*x^2-a^2*x^3)
 
 <h2>Aufgabe 7</h2>
 
+{{{id=44|
+def f(v1,v2,w1,w2,w3):
+    var('k,l')
+    p = parametric_plot3d(v1+k*v2,(k,-4,4))
+    p += parametric_plot3d(w1+k*w2+l*w3,(k,-4,4),(l,-4,4))
+    p.show()
+///
+}}}
+
+{{{id=45|
+f(vector([3,4,5]),vector([1,1,1]))
+///
+}}}
+
 {{{id=31|
 var('l,k,m')
 e1=2+l-3*m;e2=1-l+m;e3=-1+l+4*m
