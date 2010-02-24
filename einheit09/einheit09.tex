@@ -62,10 +62,10 @@ type(text1)
 \item Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
 extrahiert werden.
 \begin{sagein}
-text1[0], text1[3], text1[4]
+text1[0], text1[3], text1[2:4]
 \end{sagein}
 \begin{sage}
-('D', 's', ' ')
+('D', 's', 'es')
 \end{sage}
 \item Ersetzungen innerhalb des Strings:
 \begin{sagein}
@@ -118,7 +118,26 @@ str(x^2+2), str([1,2,3])
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Operationen für Strings III} 
+\begin{frame}[fragile]{Operationen für Strings III}
+\begin{itemize}
+ \item Strings durchsuchen mit find
+\begin{sagein}
+'Hallo'.find('lo')
+\end{sagein}
+\begin{sage}
+3
+\end{sage}
+\item 
+\begin{sagein}
+'Hallo'.find('gnu')
+\end{sagein}
+\begin{sage}
+-1
+\end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Operationen für Strings IV} 
 \begin{itemize}
 \item Aufspalten von Texten
 \begin{sagein}
@@ -264,8 +283,8 @@ dot = point((x0,f(x=x0)),pointsize=80,rgbcolor=(1,0,0))
 def tayl(order=slider(1,12,1,label='order')):
     ft = f.taylor(x,x0,order)
     pt = plot(ft,-1, 5, color='green', thickness=2)
-    html('f(x)\;=\;%s'%latex(f))
-    html('\hat{f}(x;%s)\;=\;%s+\mathcal{O}(x^{%s})'%(x0,latex(ft),order+1))
+    print ('f(x) = %s'% f)
+    print ('f^(x;%s) = %s + O(x^(%s))'%(x0,ft,order+1))
     show(dot + p + pt, ymin = -.5, ymax = 1)
 \end{sagein}
 \end{frame}
