@@ -1,10 +1,10 @@
 (dp1
-S'save_interval'
+S'doc_pool_size'
 p2
-I360
-sS'doc_pool_size'
-p3
 I128
+sS'save_interval'
+p3
+I360
 sS'server_pool'
 p4
 NsS'idle_timeout'
