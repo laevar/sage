@@ -265,6 +265,10 @@ def nullstelle(f, a0, b0, TOL):
     k = 0
     ak = a0
     bk = b0
+    
+    # Die Bedingung abs(b0-a0) > 2^(k+1)*TOL ist äquivalent
+    # zu abs(bk-ak) > 2*TOL
+    
     while abs(b0-a0) > 2^(k+1)*TOL:
         if f(ak)*f((ak+bk)/2) < 0:
             bk = (ak+bk)/2
@@ -273,7 +277,10 @@ def nullstelle(f, a0, b0, TOL):
         k += 1
         if k>1000:
             print "Maximale Anzahl an Iterationen erreicht."
-            return
+            return False
+            
+    # Wenn die Schleife abbricht ist die Nullstelle weniger
+    # als TOL vom Intervall-Mittelpunkt entfernt.
     return (ak+bk)/2
 ///
 }}}
@@ -292,28 +299,27 @@ n(nullstelle(f, 0,3, 10^(-4)))
 }}}
 
 {{{id=68|
-n(nullstelle(f, 0,3, 10^(-6)))
+n(nullstelle(f, 0,3, 10^(-6)) )
 ///
 1.25992083549500
 }}}
 
-{{{id=85|
-#Alternative - Rekursive Funktion
-def nullstelle_rek(f, a0, b0, TOL, ak=0, bk=0, k=0):
-    if k == 0:
-        ak = a0
-        bk = b0
-    if abs(b0-a0) > 2^(k+1)*TOL and k<1000:
-        if f(ak)*f((ak+bk)/2) < 0:
-            return nullstelle_rek(f,a0,b0,TOL,ak,(ak+bk)/2,k+1)
+{{{id=87|
+# Alternative - Rekursive Funktion
+def nullstelle_rek(f, a, b, TOL, k=0):
+    if k>=1000:
+        return False
+    if abs(b-a) > 2*TOL:
+        if f(a)*f((a+b)/2) < 0:
+            return nullstelle_rek(f,a,(a+b)/2,TOL,k+1)
         else:
-            return nullstelle_rek(f,a0,b0,TOL,(ak+bk)/2,bk,k+1)
-    return (ak+bk)/2.0
+            return nullstelle_rek(f,(a+b)/2,b,TOL,k+1)
+    return (a+b)/2
 ///
 }}}
 
-{{{id=86|
-nullstelle_rek(f, 0,3, 10^(-4))
+{{{id=88|
+n(nullstelle_rek(f, 0,3, 10^(-4)))
 ///
 1.25985717773438
 }}}
