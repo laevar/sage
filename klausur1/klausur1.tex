@@ -38,9 +38,23 @@ numerisch approximiert.
 
 \begin{aufg}{3}
  Was sind die Unterschiede zwischen Listen, Tuple und Dictionaries ? Geben sie auch
-jeweils ein Beispiel an, welches den Unterschied hervorhebt
+jeweils Beispiele an, welches die Unterschiede hervorhebt.
 \end{aufg}
 
+
+\begin{aufg}{2}
+Führen Sie eine Kurvendiskussion durch für die Funktion (andere Funktion!)
+\[  f: x \quad \mapsto \quad \exp(1/x)+\frac{1}{4}x\exp(1/x)\]
+\begin{itemize}
+\item Untersuchen Sie das Verhalten von $f$ bei der Polstelle $x=0$.
+\item Untersuchen Sei das Verhalten von $f$ für $x\r \Rightarrow \pm \infty$.
+\item Berechnen Sie Nullstellen, Extremstellen und
+  Wendepunkte. Überlegen Sie sich, ob lokale/globale Maxima oder Minima an den
+  Extremstellen vorliegen und geben Sie sie an. 
+\item Plotten Sie den Graphen  auf dem Intervall $[-5,10]$.
+\end{itemize}
+
+\end{aufg}
 
 \begin{aufg}{3}
 Mit welcher Befehlsfolge kann man die Vandermonde-Matrix
@@ -56,42 +70,6 @@ V:= \left(\begin{array}{ccccc}
 erstellen?
 \end{aufg}
 
-%-------------------------------------------------------------------------------------
-% \begin{aufg}{4}
-% Die folgenden Eingaben sind fehlerhaft: Erklären Sie jeweils mit einem kurzen Stichwort die
-% Fehlermeldung.
-% \begin{enumerate}
-% \item \verb~L:=[1,2,3]; M:=[2,3,4]; L union M~
-% \item \verb~a:=1, b:=1: a+b~
-% \item \verb~E:=matrix([[1,2],[3,4]]); F:=matrix([2,3]): E*F;~
-% \item \verb~U:=[1,2,3,4]: delete U[4]: U[4]=3~
-% \end{enumerate}
-% \end{aufg}
-%-----------------------------------------------------------------------------------
-% \begin{aufg}{8}
-% Geben Sie an, wie Sie die folgenden Objekte in MuPAD
-% definieren können:
-% \begin{enumerate}
-% \item 
-% $\lim_{n \rightarrow \infty} \frac{5}{n}$
-% \item 
-% $\begin{pmatrix}
-%         1&2&3\\
-% 	4&5&0
-%        \end{pmatrix}$
-% \item 
-% \begin{tabular}{c|c}\hline
-% a&2\\
-% b&3\\
-% 4&1
-% \end{tabular}
-% \item $\sum_{a=2}^{n} \log_b(a)$
-% \item $\prod_{i=2}^k \frac{(2i-1)(2i+1)}{2i(2i-2)}$
-% \item Schaubild des Graphs der Funktion $f(x) = x^2 - 2$ für $-3\leq x \leq 6$
-% \item $\{x \in \N\;|\; 0 \leq x \leq 100 \text{ und } 2 \text{ teilt } x\}$ 
-% \item $\int_1^{100} \sin(xy) \mathop{dy}$
-% \end{enumerate}
-% \end{aufg}
 
 \begin{aufg}{5}
 Schreiben sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
@@ -100,9 +78,6 @@ berechnet und abbricht, wenn $|x_{n}-x_{n-1}| \leq TOL$ ist. Die Funktion soll
 $x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
 \end{aufg}
 
-\begin{aufg}{2}
-Kurvendiskussion?
-\end{aufg}
 
 %-------------------------------------------------------------------------
 \begin{aufg}{2}
@@ -110,53 +85,19 @@ Welche Möglichkeiten stehen zur Verfügung um die Gleichheit bei einer Gleichun
 \isage{<Ausdruck1> == <Ausdruck2>} zu überprüfen ?
 \end{aufg}
 %-------------------------------------------------------------------------
-% \begin{aufg}{2}
+% \begin{aufg}{2}z
 % Schreiben Sie eine MuPAD-Prozedur \isage{programm1} die für eine Zahl $n>10$ die Zeichenkette \isage{MuPAD ist super} und für $n\leq10$ die Zeichenkette   \isage{MuPAD ist Mist} zurückgibt (Typenüberprüfung braucht nicht durchgeführt zu werden).
 % \end{aufg}
 %-----------------------------------------------------------------------------------
 \begin{aufg}{4}
-Schreiben Sie ohne Verwendung der Funktion \isage{max} eine MuPAD-Prozedur\\ \isage{programm2}, die aus einer Liste von Zahlen die größte Zahl zurückliefert (Typenüberprüfung braucht nicht durchgeführt zu werden).
+Schreiben Sie ohne Verwendung der Funktion \isage{max} eine Sage-Prozedur\\ \isage{programm2}, die aus einer Liste von Zahlen die größte Zahl zurückliefert (Typenüberprüfung braucht nicht durchgeführt zu werden).
 \end{aufg}
-\bigskip
 
-% %-------------------------------------------------------------------------
-% Bei den nächsten aufgn, kreuzen Sie jeweils an.
-% Falsche Antworten werden mit $-1$ Punkt bewertet. Richtige Antworten
-% werden mit $+1$ Punkt bewertet. Enthaltungen, falls beide
-% Möglichkeiten angekreuzt sind, oder falls keine Zuordnung erkennbar
-% ist, werden mit null Punkten bewertet.  Insgesamt können nicht weniger
-% als null Punkte erreicht werden.
-% %--------------------------------------------------------
-% \begin{aufg}{4}
-% \begin{tabular}[t]{m{11cm}cc}
-%     &Ja& Nein\\
-%    Es gibt in MuPAD einen Datentyp für die ganzen Zahlen $\Z$. &$\Box$& $\Box$\\[2ex]
-%    Es gibt in MuPAD einen Datentyp für die rationalen Zahlen $\Q$.  &$\Box$& $\Box$\\[2ex]
-%    Funktionen und Prozeduren haben denselben Datentyp.  &$\Box$& $\Box$\\[2ex]
-%    Die Eingabe von $2$ und $2.0$ bei einer Funktion ist gleichbedeutend. &$\Box$& $\Box$
-% \end{tabular}
-% \end{aufg}
-% %--------------------------------------------------------------------------
-% \begin{aufg}{4}
-% \begin{tabular}[t]{m{11cm}cc}
-%     &Ja& Nein\\
-%     Die Auswertung von Bezeichnern kann sich zur Laufzeit ändern.&$\Box$& $\Box$\\[2ex]
-%     MuPAD rechnet bei symbolischen Größen, wie z.B. $\sqrt{2}$ intern mit Gleitkommazahlen.&$\Box$& $\Box$\\[2ex]
-%     Die Konstante \isage{DIGITS} kann nicht verändert werden.&$\Box$& $\Box$\\[2ex]
-%     Die Auswertungstiefe eines Bezeichners kann durch MuPAD-Funktionen und -Konstanten beeinflusst werden.
-%     &$\Box$ &$\Box$
-% \end{tabular}
-% \end{aufg}
-% %------------------------------------------------------------------------
-% \begin{aufg}{4}
-% \begin{tabular}[t]{m{11cm}cc}
-%     &Ja& Nein\\
-%     Innerhalb einer Tabelle können gleiche Indizes mehr als einmal vorkommen.&$\Box$& $\Box$\\[2ex]
-%     Die Funktion \isage{linalg::eigenvalues} berechnet alle Eigenvektoren einer Matrix.&$\Box$& $\Box$\\[2ex]
-%     Der Ausdruck \verb~a+b~ ist ein zulässiger Index einer Tabelle.&$\Box$& $\Box$\\[2ex]
-%     Mit der Funktion \isage{map} können Funktionen auf die Einträge einer Matrix angewendet werden.&$\Box$& $\Box$
-% \end{tabular}
-% \end{aufg}
+\begin{aufg}{2}
+Erklären sie, wie man in Sage die ganzen, rationalen und reellen Zahlen darstellt und welche Unterschiede in der Behandlung seitens des Computers vorhanden sind.
+\end{aufg}
+
+
 %------------------------------------------------------------------------
 \end{document}
 
