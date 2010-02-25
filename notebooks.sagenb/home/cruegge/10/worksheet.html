@@ -19,7 +19,7 @@ def f(an,a0):
         for j in tan:
            a.append(i/j)
            a.append(-i/j)
-    return a 
+    return a
 ///
 }}}
 
@@ -43,6 +43,24 @@ f(2,6)
 }}}
 
 {{{id=18|
+@interact
+def _(f=selector([arctan(x), sin(x)/x], default=arctan(x))):
+    plot(f, (-3,3)).show()
+///
+<html><!--notruncate--><div padding=6 id='div-interact-18'> <table width=800px height=20px bgcolor='#c5c5c5'
+                 cellpadding=15><tr><td bgcolor='#f9f9f9' valign=top align=left><table><tr><td align=right><font color="black">f&nbsp;</font></td><td><select onchange='interact(18, "_interact_.update(18, \"f\", 9, _interact_.standard_b64decode(\""+encode64(this.options[this.selectedIndex].value)+"\"), globals());_interact_.recompute(18)");'><option value='0' selected>arctan(x)</option>
+<option value='1' >sin(x)/x</option>
+</select></td></tr>
+</table><div id='cell-interact-18'><?__SAGE__START>
+        <table border=0 bgcolor='#white' width=100% height=100%>
+        <tr><td bgcolor=white align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
+        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
+        </table><?__SAGE__END></div></td>
+                 </tr></table></div>
+                 </html>
+}}}
+
+{{{id=19|
 
 ///
 }}}
