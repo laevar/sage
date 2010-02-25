@@ -18,12 +18,13 @@ ggT(6,9)
 T = []; anz = 0
 for i in [2..100]:
     if (is_prime(i) and is_prime(i+2)):
-        anz += 1
+        anz = anz + 1
         T.append([i,i+2])
 print('Anzahl = %s' % anz);T
+print 'Anzahl =' + str(anz)
 ///
 Anzahl = 8
-[[3, 5], [5, 7], [11, 13], [17, 19], [29, 31], [41, 43], [59, 61], [71, 73]]
+Anzahl =8
 }}}
 
 {{{id=4|
@@ -112,7 +113,7 @@ def koch(y1,y2,lev):
 }}}
 
 {{{id=15|
-koch(vector([0,0]),vector([1,0]),4)
+koch(vector([0,0]),vector([1,0]),2)
 ///
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}

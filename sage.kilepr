@@ -170,29 +170,29 @@ order=4
 
 [item:einheit08/uebung/aufgaben_einh08.tex]
 archive=true
-column=23
+column=20
 encoding=UTF-8
 highlight=LaTeX
-line=22
+line=87
 open=false
 order=3
 
 [item:einheit09/einheit09.tex]
 archive=true
-column=47
+column=6
 encoding=UTF-8
 highlight=LaTeX
-line=293
+line=104
 open=true
 order=0
 
 [item:einheit09/uebung/aufgaben_einh09.tex]
 archive=true
-column=59
+column=31
 encoding=UTF-8
 highlight=LaTeX
-line=35
-open=true
+line=25
+open=false
 order=2
 
 [item:mydef.sty]
