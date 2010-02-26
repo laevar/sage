@@ -3,6 +3,135 @@
 <h2>Aufgabe 1</h2>
 
 {{{id=1|
+def f(s): var('t'); return integrate(exp(-s*t)*sin(t)^2,t,0,1)
+///
+}}}
+
+{{{id=7|
+f(2)
+///
+-1/8*(sin(2) - cos(2) + 2)*e^(-2) + 1/8
+}}}
+
+<h2>Aufgabe 2</h2>
+<p>&nbsp;</p>
+
+{{{id=2|
+f(x) = x^5 + x^3 +2
+print f.limit(x=oo)
+print f.limit(x=-oo)
+nst = solve(f==0,x)
+print 'nullstellen='+str(nst)
+est = solve(f.diff()==0,x)
+fdprime = f.diff().diff()
+for s in est:
+    if fdprime(s.rhs()) < 0:
+        print 'Maxima='+str(s.rhs())+','+str(f(s.rhs()))
+    elif fdprime(s.rhs()) > 0:
+        print 'Minima='+str(s.rhs())+','+str(f(s.rhs()))
+    elif fdprime(s.rhs()) == 0:        
+        print 'Sattelpunkt='+str(s.rhs())+','+str(f(s.rhs()))
+///
+x |--> +Infinity
+x |--> -Infinity
+nullstellen=[
+x == -1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) - 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
+x == 1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) - 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
+x == -1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) - 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) + 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
+x == 1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) - 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) + 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
+x == -1
+]
+Sattelpunkt=0,2
+}}}
+
+<h2>Aufgabe 3</h2>
+
+{{{id=9|
+var('a,b')
+tuple = (1,2)
+liste = [1,2]
+dict = {a:1, b:2}
+tuple, liste, dict
+///
+((1, 2), [1, 2], {b: 2, a: 1})
+}}}
+
+{{{id=11|
+liste.sort()
+liste.append()
+liste.remove()
+dict.update()
+dict[a]
+///
+Traceback (most recent call last):    liste.remove()
+TypeError: append() takes exactly one argument (0 given)
+}}}
+
+<h2>Aufgabe 4</h2>
+
+{{{id=4|
+n = 5
+var('x0,x1,x2,x3,x4,x5')
+xvec = [x0,x1,x2,x3,x4,x5]
+show(matrix([[xvec[i]^j for j in [0..n]] for i in [0..n]]))
+///
+<html><div class="math">\left(\begin{array}{rrrrrr}
+1 & x_{0} & x_{0}^{2} & x_{0}^{3} & x_{0}^{4} & x_{0}^{5} \\
+1 & x_{1} & x_{1}^{2} & x_{1}^{3} & x_{1}^{4} & x_{1}^{5} \\
+1 & x_{2} & x_{2}^{2} & x_{2}^{3} & x_{2}^{4} & x_{2}^{5} \\
+1 & x_{3} & x_{3}^{2} & x_{3}^{3} & x_{3}^{4} & x_{3}^{5} \\
+1 & x_{4} & x_{4}^{2} & x_{4}^{3} & x_{4}^{4} & x_{4}^{5} \\
+1 & x_{5} & x_{5}^{2} & x_{5}^{3} & x_{5}^{4} & x_{5}^{5}
+\end{array}\right)</div></html>
+}}}
+
+<h2>Aufgabe 5</h2>
+
+{{{id=6|
+def prog(x0, TOL):
+    x = [x0,x0-(x0^2-5.)/(2*x0)]
+    k = 1
+    while abs(x[k]-x[k-1]) > TOL:
+        k += 1
+        x.append(x[k-1]-(x[k-1]^2-5)/(2*x[k-1]))
+    return k,x[k]
+prog(2,10^(-3))
+///
+(3, 2.23606797791580)
+}}}
+
+<h2>Aufgabe 6</h2>
+
+{{{id=14|
+expr = sin(x)^2+cos(x)^2 == 1
+print bool(expr)
+print bool(simplify(expr))
+print bool(expr.full_simplify())
+///
+True
+True
+True
+}}}
+
+<h2>Aufgabe 7</h2>
+
+{{{id=16|
+def prog2(list):
+    max = 0
+    for zahl in list:
+        if zahl > max:
+            max = zahl
+    return max
+prog2([1,6,3,32,4,9])
+///
+32
+}}}
+
+<h2>Aufgabe 8</h2>
+
+<p>Die darstellung mit rationalen Zahlen ist exakt, die mit reellen nicht, da diese nur durch Gleitkommazahlen im computer dargestellt werden k&ouml;nnen. Andererseits ist die Darstellung und Berechnung mit rationalen Zahlen uneffizienter und vor allem auch un&uuml;bersichtlicher</p>
+
+{{{id=18|
 
 ///
 }}}

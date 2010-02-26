@@ -183,7 +183,7 @@ column=12
 encoding=UTF-8
 highlight=LaTeX
 line=307
-open=true
+open=false
 order=0
 
 [item:einheit09/uebung/aufgaben_einh09.tex]
@@ -197,12 +197,12 @@ order=2
 
 [item:klausur1/klausur1.tex]
 archive=true
-column=0
+column=114
 encoding=UTF-8
 highlight=LaTeX
-line=19
+line=64
 open=true
-order=1
+order=0
 
 [item:mydef.sty]
 archive=true
