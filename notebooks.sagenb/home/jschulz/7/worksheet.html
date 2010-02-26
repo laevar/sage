@@ -132,6 +132,77 @@ numerical_integral(x^2,0,2)
 }}}
 
 {{{id=106|
+y = 0
+def f(x):
+    z = 0
+    y = [1,3,4,2]
+    #for i in y:
+    #    print i^2
+    grenze = 10
+    i= 0
+    while i^2 < grenze:
+        print i^2
+        i = i+1
+        if i==2:
+            print "aetsch!"
+            return 
+    return i,i^2
+type(f(4))
+///
+<type 'sage.symbolic.expression.Expression'>
+0
+1
+aetsch!
+<type 'NoneType'>
+}}}
+
+{{{id=107|
+f(x,y) = sin(x)*sin(y)
+v = vector([x,y,sin(x)*sin(y)])
+plot3d(f,(x,0,1),(y,0,1))
+parametric_plot(v,(x,0,1),(y,0,1))
+///
+}}}
+
+{{{id=108|
+var('x,y,n')
+print type(x)
+n = 2
+f = x*y*n;f
+liste = 4
+
+liste = [1,2,3]
+liste
+///
+<type 'sage.symbolic.expression.Expression'>
+[1, 2, 3]
+}}}
+
+{{{id=109|
+forget();reset()
+///
+}}}
+
+{{{id=110|
+var('n,k')
+assume(n>0)
+assume(k>1/n)
+bool(n*k>1)
+bool(((k > 1/n)*n).full_simplify())
+bool(n*(k-1/n)>0)
+///
+True
+}}}
+
+{{{id=111|
+assume(n,'integer')
+assume(k,'integer')
+bool(n*k>1)
+///
+False
+}}}
+
+{{{id=112|
 
 ///
 }}}
