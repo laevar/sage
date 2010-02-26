@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=einheit09/einheit09.tex
+lastDocument=klausur1/klausur1.tex
 masterDocument=
 name=sage
 pkg_extIsRegExp=false
@@ -194,6 +194,15 @@ highlight=LaTeX
 line=25
 open=false
 order=2
+
+[item:klausur1/klausur1.tex]
+archive=true
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=19
+open=true
+order=1
 
 [item:mydef.sty]
 archive=true
