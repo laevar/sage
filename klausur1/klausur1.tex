@@ -1,6 +1,24 @@
 \documentclass[a4paper,12pt,DIV15]{scrartcl}
 \input{../klausur_header}
 
+\begin{aufg}{4}
+\begin{itemize}
+ \item Definieren Sie in Sage eine Liste, ein Tuple, ein Dictionary und eine Menge (\isage{Set}).
+\item Geben Sie jeweils eine kurze Erklärung zum Datentyp. Geben Sie 4 Operationen an, die Sie 
+nur mit jeweils einen der genannten Datentypen durchführen können. 
+\end{itemize}
+\end{aufg}
+
+%-------------------------------------------------------------------------
+\begin{aufg}{2}
+Welche Möglichkeiten stehen zur Verfügung um die Gleichheit bei einer Gleichung des Typs 
+\isage{<Ausdruck1> == <Ausdruck2>} zu überprüfen ?
+\end{aufg}
+%-------------------------------------------------------------------------
+
+\begin{aufg}{3}
+Erklären Sie welche Vor- und Nachteile die Darstellung mit rationalen Zahlen im Vergleich zu reellen Zahlen hat. 
+\end{aufg}
 
 \begin{aufg}{2}
 Schreiben sie eine Funktion mit \isage{def}, die 
@@ -19,14 +37,13 @@ Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktio
 \end{itemize}
 \end{aufg}
 
-\begin{aufg}{4}
-\begin{itemize}
- \item Definieren Sie in Sage eine Liste, ein Tuple, ein Dictionary und eine Menge (\isage{Set}).
-\item Geben Sie jeweils eine kurze Erklärung zum Datentyp. Geben Sie 4 Operationen an, die Sie 
-nur mit jeweils einen der genannten Datentypen durchführen können. 
-\end{itemize}
-\end{aufg}
 
+\begin{aufg}{5}
+Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
+\[ x_{n+1} = x_n - \frac{x_n^2-5}{2 x_n}, \quad n \in \mathbb{N} \]
+berechnet und abbricht, wenn $|x_{n}-x_{n-1}| \leq TOL$ ist. Die Funktion soll
+$x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
+\end{aufg}
 
 \begin{aufg}{3}
 Gegeben sei der Vektor \isage{xvec = [x0,...,xn]} für $n\in \mathbb{N}$.
@@ -43,30 +60,12 @@ erstellen?
 \end{aufg}
 
 
-\begin{aufg}{5}
-Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
-\[ x_{n+1} = x_n - \frac{x_n^2-5}{2 x_n}, \quad n \in \mathbb{N} \]
-berechnet und abbricht, wenn $|x_{n}-x_{n-1}| \leq TOL$ ist. Die Funktion soll
-$x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
-\end{aufg}
-
-
-%-------------------------------------------------------------------------
-\begin{aufg}{2}
-Welche Möglichkeiten stehen zur Verfügung um die Gleichheit bei einer Gleichung des Typs 
-\isage{<Ausdruck1> == <Ausdruck2>} zu überprüfen ?
-\end{aufg}
-%-------------------------------------------------------------------------
 % \begin{aufg}{2}z
 % Schreiben Sie eine MuPAD-Prozedur \isage{programm1} die für eine Zahl $n>10$ die Zeichenkette \isage{MuPAD ist super} und für $n\leq10$ die Zeichenkette   \isage{MuPAD ist Mist} zurückgibt (Typenüberprüfung braucht nicht durchgeführt zu werden).
 % \end{aufg}
 %-----------------------------------------------------------------------------------
 \begin{aufg}{5}
 Schreiben Sie ohne Verwendung der Funktion \isage{max} eine Sage-Prozedur, die aus einer Liste von Zahlen die größte Zahl zurückliefert (Typenüberprüfung braucht nicht durchgeführt zu werden).
-\end{aufg}
-
-\begin{aufg}{3}
-Erklären Sie welche Vor- und Nachteile die Darstellung mit rationalen Zahlen im Vergleich zu reellen Zahlen hat. 
 \end{aufg}
 
 
