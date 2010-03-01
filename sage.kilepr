@@ -197,10 +197,10 @@ order=2
 
 [item:klausur1/klausur1.tex]
 archive=true
-column=10
+column=50
 encoding=UTF-8
 highlight=LaTeX
-line=67
+line=23
 open=true
 order=0
 
