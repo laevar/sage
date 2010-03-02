@@ -26,11 +26,11 @@ order=-1
 
 [item:common_header.tex]
 archive=true
-column=0
+column=24
 encoding=UTF-8
 highlight=LaTeX
-line=78
-open=false
+line=14
+open=true
 order=2
 
 [item:einheit01/einheit01.tex]
@@ -197,19 +197,19 @@ order=2
 
 [item:klausur1/klausur1.tex]
 archive=true
-column=50
+column=13
 encoding=UTF-8
 highlight=LaTeX
-line=23
+line=19
 open=true
 order=0
 
 [item:klausur_header.tex]
 archive=true
-column=103
+column=49
 encoding=UTF-8
 highlight=LaTeX
-line=25
+line=17
 open=true
 order=1
 

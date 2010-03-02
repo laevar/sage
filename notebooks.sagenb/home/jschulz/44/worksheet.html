@@ -127,9 +127,14 @@ True
 
 <h2>Aufgabe 7</h2>
 
+{{{id=30|
+reset()
+///
+}}}
+
 {{{id=16|
 def prog2(list):
-    max = 0
+    max = list[0]
     for zahl in list:
         if zahl > max:
             max = zahl
@@ -139,11 +144,17 @@ prog2([1,6,3,32,4,9])
 32
 }}}
 
+{{{id=27|
+liste = [1,6,3,32,4,9]
+///
+}}}
+
+{{{id=28|
+liste.sort(); liste[-1]
+///
+32
+}}}
+
 <h2>Aufgabe 8</h2>
 
 <p>Die darstellung mit rationalen Zahlen ist exakt, die mit reellen nicht, da diese nur durch Gleitkommazahlen im computer dargestellt werden k&ouml;nnen. Andererseits ist die Darstellung und Berechnung mit rationalen Zahlen uneffizienter und vor allem auch un&uuml;bersichtlicher</p>
-
-{{{id=18|
-
-///
-}}}
