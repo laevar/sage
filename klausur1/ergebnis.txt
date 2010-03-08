@@ -1,57 +1,57 @@
-            Eicke, Nicole :     5.000 
-            Rekate, Laura :     5.000 
-            Yilmaz, Hacer :     5.000 
-             Dogan, Leyla :     5.000 
-          Hemme, Johannes :     5.000 
-      Ceglarek, Christina :     4.000 
-             Grote, Julia :     5.000 
-      Stucke, Ann-Kathrin :     5.000 
-            Brandt, Felix :     4.000 
-           Fetzer, Daniel :     4.000 
-            M�ller, Elisa :     4.000 
-    Schnitter, Friederike :     4.000 
-        Orth, Paul Robert :     4.000 
-            Dehning, Inga :     3.700 
-        Eickschen, Holger :     3.700 
-            Haas, Mareike :     3.700 
-   Hachmeister, Alexander :     3.700 
-    Skorzinski, Sebastian :     3.700 
-             Richter, Ina :     3.700 
-          Wolpers, Sabine :     3.300 
-            Dzialo, Maria :     3.300 
-        Wege, Sarah-Elena :     3.300 
-          Berens, Florian :     3.300 
-         G�rges, Stefanie :     3.300 
-       P�schel, Sebastian :     3.000 
-         Modde, Katharina :     3.000 
-            Meinke, Julia :     3.000 
-           M�ller, Martin :     3.000 
-            Seibel, Elena :     3.000 
-           Huhn, Jennifer :     2.700 
-        Keiper, Sebastian :     2.700 
-         Wilhelm, Susanne :     2.700 
-            Ru�, Nicholas :     2.700 
-            Mende, Torben :     2.700 
-             Wuttke, Axel :     2.700 
-             Galda, Helge :     2.300 
-        Wei�er, Christoph :     2.300 
-           Driebe, Thomas :     2.300 
-            M�tze, Tobias :     2.300 
-          Huchting, Luise :     2.000 
-        Wusterack, Martin :     2.000 
-   Bever, Kerstin Juliane :     2.000 
-            Dietert, Jens :     2.000 
-              Behr, Merle :     2.000 
-         Gelin, Franziska :     2.000 
-         Steinforth, Jana :     2.000 
-       Hildebrandt, Jonas :     1.700 
-           M�ller, Marius :     1.700 
-              Lebert, Jan :     1.700 
-         Haack, Franziska :     1.300 
-         Seemann, Philipp :     1.300 
-         Zimoch, Matthias :     1.300 
-          Groth, Thorsten :     1.300 
-           Lange, Theresa :     1.300 
-           Schulte, Simon :     1.000 
-       Cirkel, Jasper Ole :     1.000 
-        Kowalik, Jonathan :     1.000 
+            Eicke, Nicole :     8.000     5.000 
+            Rekate, Laura :     9.500     5.000 
+            Yilmaz, Hacer :    11.000     5.000 
+             Dogan, Leyla :    12.000     5.000 
+          Hemme, Johannes :    12.000     5.000 
+      Ceglarek, Christina :    14.000     4.000 
+             Grote, Julia :    13.500     5.000 
+      Stucke, Ann-Kathrin :    12.500     5.000 
+            Brandt, Felix :    14.000     4.000 
+           Fetzer, Daniel :    14.000     4.000 
+            M�ller, Elisa :    14.000     4.000 
+    Schnitter, Friederike :    14.000     4.000 
+        Orth, Paul Robert :    14.500     4.000 
+            Dehning, Inga :    15.500     3.700 
+        Eickschen, Holger :    15.500     3.700 
+            Haas, Mareike :    15.500     3.700 
+   Hachmeister, Alexander :    16.000     3.700 
+    Skorzinski, Sebastian :    16.000     3.700 
+             Richter, Ina :    16.500     3.700 
+          Wolpers, Sabine :    17.000     3.300 
+            Dzialo, Maria :    17.500     3.300 
+        Wege, Sarah-Elena :    17.500     3.300 
+          Berens, Florian :    18.000     3.300 
+         G�rges, Stefanie :    18.000     3.300 
+       P�schel, Sebastian :    18.500     3.000 
+         Modde, Katharina :    19.000     3.000 
+            Meinke, Julia :    19.500     3.000 
+           M�ller, Martin :    19.500     3.000 
+            Seibel, Elena :    19.500     3.000 
+           Huhn, Jennifer :    20.000     2.700 
+        Keiper, Sebastian :    20.000     2.700 
+         Wilhelm, Susanne :    20.000     2.700 
+            Ru�, Nicholas :    20.500     2.700 
+            Mende, Torben :    21.000     2.700 
+             Wuttke, Axel :    21.000     2.700 
+             Galda, Helge :    21.500     2.300 
+        Wei�er, Christoph :    21.500     2.300 
+           Driebe, Thomas :    22.500     2.300 
+            M�tze, Tobias :    22.500     2.300 
+          Huchting, Luise :    23.000     2.000 
+        Wusterack, Martin :    23.000     2.000 
+   Bever, Kerstin Juliane :    23.500     2.000 
+            Dietert, Jens :    23.500     2.000 
+              Behr, Merle :    24.000     2.000 
+         Gelin, Franziska :    24.000     2.000 
+         Steinforth, Jana :    24.000     2.000 
+       Hildebrandt, Jonas :    24.500     1.700 
+           M�ller, Marius :    24.500     1.700 
+              Lebert, Jan :    25.000     1.700 
+         Haack, Franziska :    26.000     1.300 
+         Seemann, Philipp :    26.500     1.300 
+         Zimoch, Matthias :    26.500     1.300 
+          Groth, Thorsten :    27.000     1.300 
+           Lange, Theresa :    27.000     1.300 
+           Schulte, Simon :    27.500     1.000 
+       Cirkel, Jasper Ole :    28.500     1.000 
+        Kowalik, Jonathan :    28.500     1.000 

@@ -10,26 +10,28 @@ import sagenb.notebook.notebook
 sagenb.notebook.notebook.JSMATH=True
 import sagenb.notebook.notebook as notebook
 import sagenb.notebook.twist as twist
-twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage2010/notebooks.sagenb",address="localhost",port=8000,secure=True)
-twist.SAGETEX_PATH = ""
+twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage2010/notebooks.sagenb",interface="localhost",port=8000,secure=True)
+twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
-twist.SID_COOKIE = str(hash("/home/schulz/Lehre/sage2010/notebooks.sagenb"))
+twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage2010/notebooks.sagenb'))
+twist.DIR = '/home/schulz'
 twist.init_updates()
 import sagenb.notebook.worksheet as worksheet
 
 import signal, sys, random
 def save_notebook():
     from twisted.internet.error import ReactorNotRunning
+    print "Quitting all running worksheets..."
+    twist.notebook.quit()
     print "Saving notebook..."
     twist.notebook.save()
+    print "Notebook cleanly saved."
+    
+def my_sigint(x, n):
     try:
         reactor.stop()
     except ReactorNotRunning:
         pass
-    print "Notebook cleanly saved."
-    
-def my_sigint(x, n):
-    save_notebook()
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     
     
@@ -64,7 +66,6 @@ rsrc = guard.MySessionWrapper(p)
 log.DefaultCommonAccessLoggingObserver().start()
 site = server.Site(rsrc)
 factory = channel.HTTPFactory(site)
-
 from twisted.web2 import channel
 from twisted.application import service, strports
 application = service.Application("SAGE Notebook")

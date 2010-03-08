@@ -94,45 +94,6 @@ f( (-10,10), sin(x)/x )
 def _(b = range_slider (-20, 20, 1, default=(-19 ,3) , label='Range '), typ = selector ([sin(x)/x,arctan(x)] , label ='Typ')):
     plot(typ, b[0] , b[1]).show()
 ///
-<html><!--notruncate--><div padding=6 id='div-interact-93'> <table width=800px height=20px bgcolor='#c5c5c5'
-                 cellpadding=15><tr><td bgcolor='#f9f9f9' valign=top align=left><table><tr><td align=right><font color="black">Range &nbsp;</font></td><td><table><tr><td>
-        <div id='slider-b-93' style='margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 20.0em;'></div>
-        </td></tr><tr><td><font color='black' id='slider-b-93-lbl'></font></td></tr></table><script>(function()
-    {
-        var values = ["-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
-        var pos = [1, 23];
-        var sel = '#slider-b-93';
-        var updatePos = function()
-        {
-            pos[0]=$(sel).slider('values', 0);
-            pos[1]=$(sel).slider('values', 1);
-            if(values!=null) $(sel+'-lbl').text("("+values[pos[0]]+", "+values[pos[1]]+")");
-        };
-        setTimeout(function()
-        {
-            $(sel).slider(
-            {
-                range: true,
-                step: 1,
-                min: 0,
-                max: 40,
-                values: [1, 23],
-                change: function(e,ui){ updatePos(); interact(93, "_interact_.update(93, \"b\", 9, _interact_.standard_b64decode(\""+encode64(pos[0]+' '+pos[1])+"\"), globals());_interact_.recompute(93)"); },
-                slide: updatePos
-            });
-            updatePos();
-        }, 1);
-    })();</script></td></tr>
-<tr><td align=right><font color="black">Typ&nbsp;</font></td><td><select onchange='interact(93, "_interact_.update(93, \"typ\", 10, _interact_.standard_b64decode(\""+encode64(this.options[this.selectedIndex].value)+"\"), globals());_interact_.recompute(93)");'><option value='0' selected>sin(x)/x</option>
-<option value='1' >arctan(x)</option>
-</select></td></tr>
-</table><div id='cell-interact-93'><?__SAGE__START>
-        <table border=0 bgcolor='#white' width=100% height=100%>
-        <tr><td bgcolor=white align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
-        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
-        </table><?__SAGE__END></div></td>
-                 </tr></table></div>
-                 </html>
 }}}
 
 <h2>Aufgabe 5</h2>
@@ -152,25 +113,6 @@ def _(order=slider(1,12,1,label='order'),ch = checkbox(label='Gitter (an/aus)'))
     print ('f^(x;%s) = %s + O(x^%s)'%(x0,ft,order+1))
     show(dot + p + pt, ymin = -.5, ymax = 1, gridlines=ch)
 ///
-<html><!--notruncate--><div padding=6 id='div-interact-94'> <table width=800px height=20px bgcolor='#c5c5c5'
-                 cellpadding=15><tr><td bgcolor='#f9f9f9' valign=top align=left><table><tr><td align=right><font color="black">order&nbsp;</font></td><td><table><tr><td>
-        <div id='slider-order-94' style='margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 15.0em;'></div>
-        </td><td><font color='black' id='slider-order-94-lbl'></font></td></tr></table><script>(function(){ var values = ["1","2","3","4","5","6","7","8","9","10","11","12"]; setTimeout(function() {
-    $('#slider-order-94').slider({
-        step: 1, min: 0, max: 11, value: 0,
-        change: function (e,ui) { var position = ui.value; if(values!=null) $('#slider-order-94-lbl').text(values[position]); interact(94, "_interact_.update(94, \"order\", 11, _interact_.standard_b64decode(\""+encode64(position)+"\"), globals());_interact_.recompute(94)"); },
-        slide: function(e,ui) { if(values!=null) $('#slider-order-94-lbl').text(values[ui.value]); }
-    });
-    if(values != null) $('#slider-order-94-lbl').text(values[$('#slider-order-94').slider('value')]);
-    }, 1); })();</script></td></tr>
-<tr><td align=right><font color="black">Gitter (an/aus)&nbsp;</font></td><td><input type='checkbox' checked width=200px onchange='interact(94, "_interact_.update(94, \"ch\", 12, _interact_.standard_b64decode(\""+encode64(this.checked)+"\"), globals());_interact_.recompute(94)")'></input></td></tr>
-</table><div id='cell-interact-94'><?__SAGE__START>
-        <table border=0 bgcolor='#white' width=100% height=100%>
-        <tr><td bgcolor=white align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
-        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
-        </table><?__SAGE__END></div></td>
-                 </tr></table></div>
-                 </html>
 }}}
 
 <h2>Aufgabe 6</h2>
@@ -189,7 +131,7 @@ def newton(x,y):
 }}}
 
 {{{id=97|
-density_plot(newton, (-1,1), (-1,1), plot_points=60)
+density_plot(newton, (-1,1), (-1,1), plot_points=100,cmap='Spectral')
 ///
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
@@ -198,6 +140,22 @@ density_plot(newton, (-1,1), (-1,1), plot_points=60)
 <p><img src="http://upload.wikimedia.org/wikipedia/en/e/eb/100Jul.png" alt="" width="600" height="450" /></p>
 
 {{{id=1|
+import matplotlib.cm
+///
+}}}
+
+{{{id=104|
+matplotlib.cm.datad.keys()
+///
+['Spectral', 'summer', 'RdBu', 'gist_earth', 'Set1', 'Set2', 'Set3', 'Dark2', 'hot', 'PuOr_r', 'PuBuGn_r', 'RdPu', 'gist_ncar_r', 'gist_yarg_r', 'Dark2_r', 'YlGnBu', 'RdYlBu', 'hot_r', 'gist_rainbow_r', 'gist_stern', 'cool_r', 'cool', 'gray', 'copper_r', 'Greens_r', 'GnBu', 'gist_ncar', 'spring_r', 'gist_rainbow', 'RdYlBu_r', 'gist_heat_r', 'OrRd_r', 'bone', 'gist_stern_r', 'RdYlGn', 'Pastel2_r', 'spring', 'Accent', 'YlOrRd_r', 'Set2_r', 'PuBu', 'RdGy_r', 'spectral', 'flag_r', 'jet_r', 'RdPu_r', 'gist_yarg', 'BuGn', 'Paired_r', 'hsv_r', 'YlOrRd', 'Greens', 'PRGn', 'gist_heat', 'spectral_r', 'Paired', 'hsv', 'Oranges_r', 'prism_r', 'Pastel2', 'Pastel1_r', 'Pastel1', 'gray_r', 'PuRd_r', 'Spectral_r', 'BuGn_r', 'YlGnBu_r', 'copper', 'gist_earth_r', 'Set3_r', 'OrRd', 'PuBu_r', 'winter_r', 'jet', 'bone_r', 'BuPu', 'Oranges', 'RdYlGn_r', 'PiYG', 'YlGn', 'binary_r', 'gist_gray_r', 'BuPu_r', 'gist_gray', 'flag', 'RdBu_r', 'BrBG', 'Reds', 'summer_r', 'GnBu_r', 'BrBG_r', 'Reds_r', 'RdGy', 'PuRd', 'Accent_r', 'Blues', 'Greys', 'autumn', 'PRGn_r', 'Greys_r', 'pink', 'binary', 'winter', 'pink_r', 'prism', 'YlOrBr', 'Purples_r', 'PiYG_r', 'YlGn_r', 'Blues_r', 'YlOrBr_r', 'Purples', 'autumn_r', 'Set1_r', 'PuOr', 'PuBuGn']
+}}}
+
+{{{id=105|
+
+///
+}}}
+
+{{{id=106|
 
 ///
 }}}

@@ -31,13 +31,24 @@ end
 
 plot(punkte,noten,'x',[studenten{:,2}],notenspiegel,'*')
 grid on
-studenten
 
-file = fopen('test.txt','w');
+piech = zeros(1,5);
 for idx = 1:length(studenten)
-  fprintf(file,'%25s :  %8.3f \n', studenten{idx,1}, studenten{idx,3});
+  %floor(studenten{idx,3})
+  piech(floor(studenten{idx,3})) = piech(floor(studenten{idx,3}))+1;
 end
-fclose(file);
+
+pie (piech)
+legend('1','2','3','4','5')
+%studenten
+
+if true
+  file = fopen('test.txt','w');
+  for idx = 1:length(studenten)
+    fprintf(file,'%25s :  %8.3f  %8.3f \n', studenten{idx,1}, studenten{idx,2},studenten{idx,3});
+  end
+  fclose(file);
+end
 
 %A. Latal : 3.7
 % Max Koellmer: 2.7
