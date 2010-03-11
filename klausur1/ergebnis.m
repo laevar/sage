@@ -15,7 +15,7 @@ end
 
 minpunkte = floor((maxpunkte-reduktion)/2);
 spanne = (maxpunkte-minpunkte)/10;
-punkte = wrev((maxpunkte-reduktion-spanne):-spanne:(minpunkte))
+punkte = wrev((maxpunkte-reduktion-spanne):-spanne:(minpunkte));
 noten = wrev([1 1.3 1.7 2 2.3 2.7 3 3.3 3.7 4]);
 
 for idx = 1: length(studenten)
@@ -35,12 +35,12 @@ grid on
 piech = zeros(1,5);
 for idx = 1:length(studenten)
   %floor(studenten{idx,3})
-  piech(floor(studenten{idx,3})) = piech(floor(studenten{idx,3}))+1;
+  piech(round(studenten{idx,3})) = piech(round(studenten{idx,3}))+1;
 end
-
 pie (piech)
 legend('1','2','3','4','5')
 %studenten
+sprintf('Mittelwert : %.2f', mean([studenten{:,3}],2))
 
 if true
   file = fopen('test.txt','w');

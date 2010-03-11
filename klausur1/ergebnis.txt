@@ -4,7 +4,7 @@
              Dogan, Leyla :    12.000     5.000 
           Hemme, Johannes :    12.000     5.000 
       Ceglarek, Christina :    14.000     4.000 
-             Grote, Julia :    13.500     5.000 
+             Grote, Julia :    14.000     4.000 
       Stucke, Ann-Kathrin :    12.500     5.000 
             Brandt, Felix :    14.000     4.000 
            Fetzer, Daniel :    14.000     4.000 
@@ -50,7 +50,7 @@
          Haack, Franziska :    26.000     1.300 
          Seemann, Philipp :    26.500     1.300 
          Zimoch, Matthias :    26.500     1.300 
-          Groth, Thorsten :    27.000     1.300 
+          Groth, Thorsten :    28.000     1.000 
            Lange, Theresa :    27.000     1.300 
            Schulte, Simon :    27.500     1.000 
        Cirkel, Jasper Ole :    28.500     1.000 
