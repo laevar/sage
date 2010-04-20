@@ -38,9 +38,25 @@ Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktio
 
 \begin{aufg}{5}
 Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
-\[ x_{n+1} = x_n - \frac{x_n^2-5}{2 x_n}, \quad n \in \mathbb{N} \]
-berechnet und abbricht, wenn $|x_{n}-x_{n-1}| \leq TOL$ ist. Die Funktion soll
+\[ x_{n+1} = x_n - \frac{x_n^2-x_n-1}{2 x_n-1}, \quad n \in \mathbb{N} \]
+berechnet und abbricht, wenn $|x_n^2-x_n-1| \leq TOL$ ist. Die Funktion soll
 $x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
+\end{aufg}
+
+\begin{aufg}{5}
+  Schreiben Sie eine ohne Verwendung der Funktion
+  \isage{primes_first_n} eine Funktion mit Input-Variablen $n$, die
+  eine Liste der ersten $n$ Primzahlen berechnet.
+\end{aufg}
+
+\begin{aufg}{5}
+  Schreiben Sie eine Funktion, die den Binomialkoeffizienten $n\choose
+  k$ berechnet. Nutzen Sie dafür die Rekursionsbeziehung
+  \[ {n \choose k} = {n-1 \choose k-1} + {n-1 \choose k},
+     \qquad
+     {n \choose 0} = 1,\,\,
+     {0 \choose k} = 0.
+  \]
 \end{aufg}
 
 % \begin{aufg}{3}
@@ -67,3 +83,7 @@ Schreiben Sie ohne Verwendung der Funktion \isage{index()} eine Sage-Prozedur mi
 \end{aufg}
 \end{document}
 
+% Local Variables:
+% TeX-command-default: "XeLaTeX"
+% auto-fill-function: nil
+% End:
