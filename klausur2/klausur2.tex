@@ -1,11 +1,23 @@
 \documentclass[a4paper,12pt,DIV15]{scrartcl}
 \input{../klausur_header}
 %+1
+% \begin{aufg}{4}
+% \begin{itemize}
+%  \item Definieren Sie in Sage eine Liste, ein Tuple, ein Dictionary und eine Menge (\isage{Set}).
+% \item Geben Sie jeweils eine kurze Erklärung zu den genannten Datentypen. Geben Sie 4 Operationen an, die Sie 
+% nur mit jeweils einen der genannten Datentypen durchführen können. 
+% \end{itemize}
+% \end{aufg}
+
+%-------------------------------------------------------------------------
 \begin{aufg}{4}
 \begin{itemize}
- \item Definieren Sie in Sage eine Liste, ein Tuple, ein Dictionary und eine Menge (\isage{Set}).
-\item Geben Sie jeweils eine kurze Erklärung zu den genannten Datentypen. Geben Sie 4 Operationen an, die Sie 
-nur mit jeweils einen der genannten Datentypen durchführen können. 
+\item Beschreiben Sie, wie man in Sage eine Liste, ein Tuple, ein
+  Dictionary und eine Menge erzeugt. Wie fügt man jeweils Elemente
+  hinzu oder greift auf Elemente zu?
+\item Auf welche dieser Datentypen kann man die Funktionen
+  \isage{sort}, \isage{index}, \isage{values}, \isage{remove} und
+  \isage{intersection} anwenden?
 \end{itemize}
 \end{aufg}
 
@@ -35,29 +47,28 @@ Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktio
 \end{itemize}
 \end{aufg}
 
-
-\begin{aufg}{5}
-Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
-\[ x_{n+1} = x_n - \frac{x_n^2-x_n-1}{2 x_n-1}, \quad n \in \mathbb{N} \]
-berechnet und abbricht, wenn $|x_n^2-x_n-1| \leq TOL$ ist. Die Funktion soll
-$x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
-\end{aufg}
+% \begin{aufg}{5}
+% Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
+% \[ x_{n+1} = x_n - \frac{x_n^2-x_n-1}{2 x_n-1}, \quad n \in \mathbb{N} \]
+% berechnet und abbricht, wenn $|x_n^2-x_n-1| \leq TOL$ ist. Die Funktion soll
+% $x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
+% \end{aufg}
 
 \begin{aufg}{5}
   Schreiben Sie eine ohne Verwendung der Funktion
-  \isage{primes_first_n} eine Funktion mit Input-Variablen $n$, die
+  \isage{primes_first_n()} eine Funktion mit Input-Variablen $n$, die
   eine Liste der ersten $n$ Primzahlen berechnet.
 \end{aufg}
 
-\begin{aufg}{5}
-  Schreiben Sie eine Funktion, die den Binomialkoeffizienten $n\choose
-  k$ berechnet. Nutzen Sie dafür die Rekursionsbeziehung
-  \[ {n \choose k} = {n-1 \choose k-1} + {n-1 \choose k},
-     \qquad
-     {n \choose 0} = 1,\,\,
-     {0 \choose k} = 0.
-  \]
-\end{aufg}
+% \begin{aufg}{5}
+%   Schreiben Sie eine Funktion, die den Binomialkoeffizienten $n\choose
+%   k$ berechnet. Nutzen Sie dafür die Rekursionsbeziehung
+%   \[ {n \choose k} = {n-1 \choose k-1} + {n-1 \choose k},
+%      \qquad
+%      {n \choose 0} = 1,\,\,
+%      {0 \choose k} = 0.
+%   \]
+% \end{aufg}
 
 % \begin{aufg}{3}
 % Gegeben sei der Vektor \isage{xvec = [x0,...,xn]} für $n\in \mathbb{N}$.
