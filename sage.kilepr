@@ -206,10 +206,10 @@ order=0
 
 [item:klausur2/klausur2.tex]
 archive=true
-column=192
+column=14
 encoding=UTF-8
 highlight=LaTeX
-line=65
+line=90
 open=true
 order=0
 
@@ -218,7 +218,7 @@ archive=true
 column=2
 encoding=UTF-8
 highlight=LaTeX
-line=51
+line=47
 open=false
 order=1
 
