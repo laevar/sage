@@ -14,7 +14,7 @@ twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage2010/notebooks.s
 twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
 twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage2010/notebooks.sagenb'))
-twist.DIR = '/home/schulz/Lehre/sage2010'
+twist.DIR = '/home/schulz/Lehre/sage2010/klausur2'
 twist.init_updates()
 import sagenb.notebook.worksheet as worksheet
 

@@ -60,6 +60,7 @@ Dort ist die Steigung 8.00000000000000
 var('a,b')
 tuple = (1,2)
 liste = [1,2]
+menge = Set(liste)
 dict = {a:1, b:2}
 tuple, liste, dict
 ///
@@ -73,7 +74,14 @@ liste.remove()
 dict.update()
 dict[a]
 ///
-Traceback (most recent call last):    liste.remove()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_12.py", line 9, in <module>
+    exec compile(ur'open("___code___.py","w").write("# -*- coding: utf-8 -*-\n" + _support_.preparse_worksheet_cell(base64.b64decode("bGlzdGUuc29ydCgpCmxpc3RlLmFwcGVuZCgpCmxpc3RlLnJlbW92ZSgpCmRpY3QudXBkYXRlKCkKZGljdFthXQ=="),globals())+"\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/tmpKvcJFV/___code___.py", line 3, in <module>
+    liste.append()
 TypeError: append() takes exactly one argument (0 given)
 }}}
 
@@ -82,11 +90,21 @@ tuple[0]=4
 ///
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "_sage_input_29.py", line 5, in <module>
-    exec compile(ur'tuple[_sage_const_0 ]=_sage_const_4' + '\n', '', 'single')
+  File "_sage_input_5.py", line 9, in <module>
+    exec compile(ur'open("___code___.py","w").write("# -*- coding: utf-8 -*-\n" + _support_.preparse_worksheet_cell(base64.b64decode("dHVwbGVbMF09NA=="),globals())+"\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/tmpcvGua8/___code___.py", line 3, in <module>
+    exec compile(ur'tuple[_sage_const_0 ]=_sage_const_4 ' + '\n', '', 'single')
   File "", line 1, in <module>
     
 TypeError: 'tuple' object does not support item assignment
+}}}
+
+{{{id=38|
+dict.values()
+///
+[2, 1]
 }}}
 
 <h2>Aufgabe 6</h2>
@@ -106,6 +124,19 @@ def prog(n):
 prog(10)
 ///
 ([2, 3, 5, 7, 11, 13, 17, 19, 23], 10)
+}}}
+
+{{{id=41|
+def prog3(n):
+    menge = xrange(1,4*n)
+    return filter(is_prime, menge)[0:4]
+///
+}}}
+
+{{{id=42|
+prog3(4)
+///
+[2, 3, 5, 7]
 }}}
 
 <h2>Aufgabe 2</h2>

@@ -206,7 +206,7 @@ p91
 (dp92
 S'next_worksheet_id_number'
 p93
-I2
+I4
 sS'default_system'
 p94
 S'sage'

@@ -216,6 +216,29 @@ f()
 }}}
 
 {{{id=114|
+M = matrix(RDF,[[1,2,3],[4,5,6],[7,8,7]])
+# Matrix M ¨uber dem Real double precision-K¨orper definieren
+show(M) # die Matrix anzeigen
+show(M.QR()) # die QR-Zerlegung anzeigen
+///
+<type 'sage.matrix.matrix_real_double_dense.Matrix_real_double_dense'>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left(\begin{array}{rrr}
+1.0 & 2.0 & 3.0 \\
+4.0 & 5.0 & 6.0 \\
+7.0 & 8.0 & 7.0
+\end{array}\right)</div></html>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left(\left(\begin{array}{rrr}
+-0.123091490979 & 0.904534033733 & 0.408248290464 \\
+-0.492365963917 & 0.301511344578 & -0.816496580928 \\
+-0.861640436855 & -0.301511344578 & 0.408248290464
+\end{array}\right), \left(\begin{array}{rrr}
+-8.12403840464 & -9.60113629639 & -9.35495331443 \\
+0.0 & 0.904534033733 & 2.41209075662 \\
+0.0 & 0.0 & -0.816496580928
+\end{array}\right)\right)</div></html>
+}}}
+
+{{{id=117|
 
 ///
 }}}
