@@ -10,11 +10,11 @@ import sagenb.notebook.notebook
 sagenb.notebook.notebook.JSMATH=True
 import sagenb.notebook.notebook as notebook
 import sagenb.notebook.twist as twist
-twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage2010/notebooks.sagenb",interface="localhost",port=8000,secure=True)
+twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage/notebooks.sagenb",interface="localhost",port=8000,secure=True)
 twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
-twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage2010/notebooks.sagenb'))
-twist.DIR = '/home/schulz/.admin'
+twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage/notebooks.sagenb'))
+twist.DIR = '/home/schulz/vortraege/sourcetalk2010'
 twist.reactor = reactor
 twist.init_updates()
 import sagenb.notebook.worksheet as worksheet

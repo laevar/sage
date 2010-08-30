@@ -3,38 +3,38 @@
 {{{id=1|
 var('a')
 ///
-a
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}a</span></html>
 }}}
 
 {{{id=2|
 f(x) = (2*x^2-20*x +42)/(x-1)+a; f
 ///
-x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x \ {\mapsto}\ a + \frac{2 \, {\left(x^{2} - 10 \, x + 21\right)}}{x - 1}</span></html>
 }}}
 
 {{{id=34|
 f.limit(x=1, dir='plus')
 ///
-x |--> +Infinity
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}+\infty</span></html>
 }}}
 
 {{{id=3|
 f.limit(x=1, dir='minus')
 ///
-x |--> -Infinity
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-\infty</span></html>
 }}}
 
 {{{id=35|
 f.full_simplify()
 ///
-x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x \ {\mapsto}\ \frac{{\left(a - 20\right)} x + 2 \, x^{2} - a + 42}{x - 1}</span></html>
 }}}
 
 {{{id=4|
 solve(f==0,x); f.roots(x)
 ///
-[x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
-[(-1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, 1), (-1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5, 1)]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = -\frac{1}{4} \, a - \frac{1}{4} \, \sqrt{a^{2} - 32 \, a + 64} + 5, x = -\frac{1}{4} \, a + \frac{1}{4} \, \sqrt{a^{2} - 32 \, a + 64} + 5\right]</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[\left(-\frac{1}{4} \, a - \frac{1}{4} \, \sqrt{a^{2} - 32 \, a + 64} + 5, 1\right), \left(-\frac{1}{4} \, a + \frac{1}{4} \, \sqrt{a^{2} - 32 \, a + 64} + 5, 1\right)\right]</span></html>
 }}}
 
 {{{id=5|
@@ -45,26 +45,26 @@ g = f.differentiate(x)
 {{{id=7|
 maxi = solve(f.differentiate(x)==0,x); maxi
 ///
-[x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = -2 \, \sqrt{3} + 1, x = 2 \, \sqrt{3} + 1\right]</span></html>
 }}}
 
 {{{id=9|
 float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
 ///
--1.1547005383792501
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-1.15470053838</span></html>
 }}}
 
 {{{id=10|
 float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
 ///
-1.1547005383792515
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}1.15470053838</span></html>
 }}}
 
 {{{id=11|
 f.limit(x=oo); f.limit(x=-oo)
 ///
-x |--> +Infinity
-x |--> -Infinity
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}+\infty</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-\infty</span></html>
 }}}
 
 {{{id=13|
@@ -80,7 +80,7 @@ f1 = f(x, a=-20)
 {{{id=16|
 f2 = f(x, a=20);f0,f1,f2
 ///
-(2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left(\frac{2 \, {\left(x^{2} - 10 \, x + 21\right)}}{x - 1}, \frac{2 \, {\left(x^{2} - 10 \, x + 21\right)}}{x - 1} - 20, \frac{2 \, {\left(x^{2} - 10 \, x + 21\right)}}{x - 1} + 20\right)</span></html>
 }}}
 
 {{{id=17|
@@ -93,6 +93,16 @@ p.show(ymin=-80, ymax=80)
 }}}
 
 {{{id=37|
+
+///
+}}}
+
+{{{id=38|
+
+///
+}}}
+
+{{{id=39|
 
 ///
 }}}

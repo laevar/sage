@@ -3,37 +3,37 @@
 {{{id=20|
 integrate(x^4*exp(-x),x,0,oo)
 ///
-24
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}24</span></html>
 }}}
 
 {{{id=21|
 f = (1+sin(x))/(1+cos(x)); f
 ///
-(sin(x) + 1)/(cos(x) + 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{\sin\left(x\right) + 1}{\cos\left(x\right) + 1}</span></html>
 }}}
 
 {{{id=22|
 g = f.integrate(x); g
 ///
-sin(x)/(cos(x) + 1) - log(cos(x) + 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{\sin\left(x\right)}{\cos\left(x\right) + 1} - \log\left(\cos\left(x\right) + 1\right)</span></html>
 }}}
 
 {{{id=23|
 g.full_simplify()
 ///
--((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{\log\left(\cos\left(x\right) + 1\right) \cos\left(x\right) + \log\left(\cos\left(x\right) + 1\right) - \sin\left(x\right)}{\cos\left(x\right) + 1}</span></html>
 }}}
 
 {{{id=24|
 expand((x-1)*(x-2)*(x-3)*(x-4))
 ///
-x^4 - 10*x^3 + 35*x^2 - 50*x + 24
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x^{4} - 10 \, x^{3} + 35 \, x^{2} - 50 \, x + 24</span></html>
 }}}
 
 {{{id=25|
 factor(_)
 ///
-(x - 4)*(x - 3)*(x - 2)*(x - 1)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\left(x - 4\right)} {\left(x - 3\right)} {\left(x - 2\right)} {\left(x - 1\right)}</span></html>
 }}}
 
 {{{id=28|
@@ -41,23 +41,33 @@ var('b,a')
 g = x^2+2*x+b*x^2+sin(x)+a*x
 g.collect(x)
 ///
-(b + 1)*x^2 + (a + 2)*x + sin(x)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\left(b + 1\right)} x^{2} + {\left(a + 2\right)} x + \sin\left(x\right)</span></html>
 }}}
 
 {{{id=27|
 g = x^ 2/( x^ 2- 1)
 g.partial_fraction()
 ///
-1/2/(x - 1) - 1/2/(x + 1) + 1
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{2 \, {\left(x - 1\right)}} + \frac{-1}{2 \, {\left(x + 1\right)}} + 1</span></html>
 }}}
 
 {{{id=29|
 g = (exp(x)-1)/(exp(x/2)+1); g.simplify_radical ()
 ///
-e^(1/2*x) - 1
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}e^{\left(\frac{1}{2} \, x\right)} - 1</span></html>
 }}}
 
 {{{id=35|
+
+///
+}}}
+
+{{{id=36|
+
+///
+}}}
+
+{{{id=37|
 
 ///
 }}}
