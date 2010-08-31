@@ -14,7 +14,7 @@ twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage/notebooks.sagen
 twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
 twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage/notebooks.sagenb'))
-twist.DIR = '/home/schulz/vortraege/sourcetalk2010'
+twist.DIR = '/home/schulz'
 twist.reactor = reactor
 twist.init_updates()
 import sagenb.notebook.worksheet as worksheet
