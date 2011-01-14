@@ -10,10 +10,10 @@ import sagenb.notebook.notebook
 sagenb.notebook.notebook.JSMATH=True
 import sagenb.notebook.notebook as notebook
 import sagenb.notebook.twist as twist
-twist.notebook = notebook.load_notebook("/home/schulz/Lehre/sage/notebooks.sagenb",interface="localhost",port=8000,secure=True)
+twist.notebook = notebook.load_notebook("/home/schulz/teaching/sage/notebooks.sagenb",interface="localhost",port=8000,secure=True)
 twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
-twist.SID_COOKIE = str(hash('/home/schulz/Lehre/sage/notebooks.sagenb'))
+twist.SID_COOKIE = str(hash('/home/schulz/teaching/sage/notebooks.sagenb'))
 twist.DIR = '/home/schulz'
 twist.reactor = reactor
 twist.init_updates()
