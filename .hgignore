@@ -1,0 +1,24 @@
+# use glob syntax.
+syntax: glob
+
+\#*# 
+.*~ 
+*~ 
+.#* 
+*_handout.*
+*.aux 
+*.log 
+*.backup 
+*.out 
+*.brf 
+*.bbl 
+tmp.inputs 
+*.idx 
+*.bak
+*.nav
+*.snm
+*.toc
+*.vrb
+*.bz2
+*.pid
+*.zip
