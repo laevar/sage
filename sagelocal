@@ -1,0 +1,2 @@
+#!/bin/bash
+sage -notebook secure=True open_viewer=False require_login=True directory=notebooks.sagenb/
