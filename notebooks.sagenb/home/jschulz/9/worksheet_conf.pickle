@@ -19,7 +19,7 @@ p10
 I9
 sS'pretty_print'
 p11
-I00
+I01
 sS'system'
 p12
 S'sage'
@@ -43,19 +43,20 @@ S'cruegge'
 p23
 asS'name'
 p24
-S'02_symbolisches rechnen'
+V02_symbolisches rechnen
 p25
 sS'auto_publish'
 p26
 I00
 sS'last_change'
 p27
-(g4
-F1263737052.7989781
-tp28
+(S'jschulz'
+p28
+F1296466907.15626
+tp29
 sS'worksheet_that_was_published'
-p29
+p30
 (g4
 I9
-tp30
+tp31
 s.
