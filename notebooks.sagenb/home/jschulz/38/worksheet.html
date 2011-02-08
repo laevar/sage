@@ -5,42 +5,6 @@
 def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
     plot(sin(x)/x, b[0], b[1]).show(xmin=b[0],xmax=b[1])
 ///
-<html><!--notruncate--><div padding=6 id="div-interact-9"> <table width=800px height=20px bgcolor="#c5c5c5"
-                 cellpadding=15><tr><td bgcolor="#f9f9f9" valign=top align=left><table><tr><td align=right><font color="black">Range&nbsp;</font></td><td><table><tr><td>
-        <div id="slider-b-9" style="margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 20.0em;"></div>
-        </td></tr><tr><td><font color="black" id="slider-b-9-lbl"></font></td></tr></table><script>(function()
-    {
-        var values = ["-20","-19","-18","-17","-16","-15","-14","-13","-12","-11","-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
-        var pos = [1, 23];
-        var sel = '#slider-b-9';
-        var updatePos = function()
-        {
-            pos[0]=$(sel).slider('values', 0);
-            pos[1]=$(sel).slider('values', 1);
-            if(values!=null) $(sel+'-lbl').text('('+values[pos[0]]+', '+values[pos[1]]+')');
-        };
-        setTimeout(function()
-        {
-            $(sel).slider(
-            {
-                range: true,
-                step: 1,
-                min: 0,
-                max: 40,
-                values: [1, 23],
-                change: function(e,ui){ updatePos(); interact(9, '_interact_.update(\'9\', \'b\', 1, _interact_.standard_b64decode(\''+encode64(pos[0]+' '+pos[1])+'\'), globals()); _interact_.recompute(\'9\');'); },
-                slide: updatePos
-            });
-            updatePos();
-        }, 1);
-    })();</script></td></tr>
-</table><div id="cell-interact-9"><?__SAGE__START>
-        <table border=0 bgcolor="white" width=100% height=100%>
-        <tr><td bgcolor="white" align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
-        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
-        </table><?__SAGE__END></div></td>
-                 </tr></table></div>
-                 </html>
 }}}
 
 {{{id=6|
@@ -57,24 +21,6 @@ def tayl(order=slider(1,12,1,label='order')):
     print ('f^(x;%s) = %s + O(x^(%s))'%(x0,ft,order+1))
     show(dot + p + pt, ymin = -.5, ymax = 1)
 ///
-<html><!--notruncate--><div padding=6 id="div-interact-6"> <table width=800px height=20px bgcolor="#c5c5c5"
-                 cellpadding=15><tr><td bgcolor="#f9f9f9" valign=top align=left><table><tr><td align=right><font color="black">order&nbsp;</font></td><td><table><tr><td>
-        <div id="slider-order-6" style="margin:0px; margin-left: 1.0em; margin-right: 1.0em; width: 15.0em;"></div>
-        </td><td><font color="black" id="slider-order-6-lbl"></font></td></tr></table><script>(function(){ var values = ["1","2","3","4","5","6","7","8","9","10","11","12"]; setTimeout(function() {
-    $('#slider-order-6').slider({
-        step: 1, min: 0, max: 11, value: 0,
-        change: function (e,ui) { var position = ui.value; if(values!=null) $('#slider-order-6-lbl').text(values[position]); interact(6, '_interact_.update(\'6\', \'order\', 2, _interact_.standard_b64decode(\''+encode64(position)+'\'), globals()); _interact_.recompute(\'6\');'); },
-        slide: function(e,ui) { if(values!=null) $('#slider-order-6-lbl').text(values[ui.value]); }
-    });
-    if(values != null) $('#slider-order-6-lbl').text(values[$('#slider-order-6').slider('value')]);
-    }, 1); })();</script></td></tr>
-</table><div id="cell-interact-6"><?__SAGE__START>
-        <table border=0 bgcolor="white" width=100% height=100%>
-        <tr><td bgcolor="white" align=left valign=top><pre><?__SAGE__TEXT></pre></td></tr>
-        <tr><td  align=left valign=top><?__SAGE__HTML></td></tr>
-        </table><?__SAGE__END></div></td>
-                 </tr></table></div>
-                 </html>
 }}}
 
 {{{id=3|
