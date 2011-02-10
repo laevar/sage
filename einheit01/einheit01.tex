@@ -45,36 +45,37 @@ auf \texttt{login.math.uni-goettingen.de}, \texttt{s242.math.uni-goettingen.de} 
 
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
-\item Blockveranstaltung vom  15.2.-26.2.2010
-\item Vorlesung: 9.15 Uhr bis 11.30 Uhr
-\item Nachmittags: 4 Übungsgruppen \`a je 1h 15min
+\item Blockveranstaltung vom  21.2-4.3.2011
+\item \alert{Vorlesung:} 9.15 Uhr bis 11.30 Uhr
+\item \alert{Übungsbetrieb}: 4 Gruppen \`a je 1h 15min (Besprechung Aufgaben u. Praktikum, Teilnahme freiwillig)
 \begin{itemize}
-\item 13:00-14:15 (Tutor: J. Schulz)	
-\item 14:15-15:30 (Tutor: C. Rügge)
-\item 15:30-16:45 (Tutor: J. Schulz)
-\item 16:45-18:00 (Tutor: C. Rügge)
+\item 13:00-14:15 (Tutor: C. Rügge)	
+\item 14:15-15:30 (Tutor: T. Groth)
+\item 15:30-16:45 (Tutor: A. Behnen)
+\item 16:45-18:00 (Tutor: J. Schulz)
 \end{itemize}
-
-\item Scheinerwerb
+\item \alert{Praktikum:} von 13:15 bis 18:00 Uhr Computerraum Keller.
+\item \alert{Übungsbetrieb:}
 \begin{itemize}
 %\item Projektarbeit durchführen
-\item Klausur am 1.3.2009; 10:00 - 12:00; Anmeldung über FlexNow!
-\item Regelmäßige Teilnahme an den Übungen ist empfohlen
+\item 1 Übungszettel/Tag.
+\item Klausurzulassung: 3 beliebige markierte Aufgaben/Woche testieren lassen. 
 \end{itemize}
+\item \alert{Klausur:} 10.3.2011; 10:00 - 11:30; Anmeldung über FlexNow.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[<+->]{Inhalt der Vorlesung}
 \begin{description}
  \item[1. Tag]Organisatorisches, Aufbau von Sage, Streifzug durch Sage
-\item [2. Tag]Grundlagen Sage (grundlegende Datentypen, Ausdrücke), Lösen von Gleichungen, Symbolisches Rechnen
-\item [3. Tag] Mengen,  natürliche, rationale, reelle und komplexe Zahlen, Gleitkommazahlen
-\item [4. Tag] Vektoren und Matrizen, Lineare Algebra in Sage, Programmieren I
-\item [5. Tag] Datencontainer in Sage, Lineare Abbildungen und Matrizen
-\item [6. Tag] Folgen und Reihen
-\item [7. Tag] Reelle Funktionen, Grafiken
-\item [8. Tag] Differenzial- und Integralrechnung
-\item [9. Tag] Grundlagen der Programmierung,  Zeichenketten (Strings)
+\item [2. Tag] Grundlagen, Symbolisches Rechnen, Gleichungen
+\item [3. Tag] Mengen, Zahlen
+\item [4. Tag] Matrizen, Vektorräume, Funktionen
+\item [5. Tag] Datencontainer, Lineare Abbildungen, Eigenwert und Eigenvektoren
+\item [6. Tag] Folgen, Reihen, Potenzreihen, Vertiefung Schleifen
+\item [7. Tag] Funktionen, Grenzwerte, Funktionenfolgen, Grafiken
+\item [8. Tag] Differentation, Taylorsche Formel, Integration
+\item [9. Tag] Strings, interaktive Grafiken, GeoGebra, Komplexe Beispiele
 \item [10. Tag] Fragestunde
 \end{description}
 \end{frame}
@@ -92,8 +93,7 @@ auf \texttt{login.math.uni-goettingen.de}, \texttt{s242.math.uni-goettingen.de} 
 \begin{frame}{Computeralgebra-Systeme}
 
 \begin{block}{Computeralgebra}
-beschäftigt sich mit \alert{exakten} Berechnungen von
-mathematischen Objekten
+\alert{exakte} Berechnungen von mathematischen Objekten
 \end{block}
 \bigskip
 
@@ -103,15 +103,12 @@ Gruppen, Ringe, \ldots
 \end{block}
 
 \begin{block}{Numerischen Berechnungen}
-Bei numerischen
-Rechnungen (z.B. Taschenrechner) benutzt man Zahlen in 
-{\color{blue}Gleitpunktdarstellung}, also i.A.~nur Näherungen an die
-gesuchte Lösung
+\alert{näherungsweise} Berechnung von mathematischen Objekten. Im Computer 
+{\color{blue}Gleitpunktdarstellung} genannt.
 \end{block}
-\end{frame}
 
-\begin{frame}{Computeralgebra != Numerische Berechnung}
-\begin{block}{Beispiel}
+
+\begin{block}{Computeralgebra != Numerische Berechnung}
 \begin{tabular}{ll}
  Mathematische Objekte & $\pi$, $\sqrt{2}$\\
  Gleitpunktdarstellung (8 Stellen)& $3.1415927$, $1.4142136$
@@ -162,7 +159,7 @@ gesuchte Lösung
 \item Basiert auf Python
 \item Objektorientiert
 \item Besitzt Frontends für viele externe Software 
-\item Interface im Browser 
+\item (Haupt-)Interface im Browser 
 \end{itemize}
 \end{frame}
 
@@ -171,18 +168,18 @@ gesuchte Lösung
 von Joachim Neubüser (Gründer von GAP):
  \begin{small}
 \begin{quote}
-    You can read Sylow’s Theorem and its proof [. . . ] and then
+    \alert{You can read Sylow’s Theorem and its proof [. . . ] and then
     you can use Sylow’s Theorem for the rest of your life free of
     charge, but for many computer algebra systems license fees
-    have to be paid regularly [. . . ]. You press buttons and you get
+    have to be paid regularly [. . . ]}. You press buttons and you get
     answers in the same way as you get the bright pictures from
     your television set but you cannot control how they were
     made in either case. 
 
-With this situation two of the most basic rules of conduct in
+With this situation \alert{two of the most basic rules of conduct in
 mathematics are violated: in mathematics information is
 passed on free of charge and everything is laid open for
-checking. Not applying these rules to computer algebra
+checking}. Not applying these rules to computer algebra
 systems that are made for mathematical research [. . . ]
 means moving in a most undesirable direction. Most
 important: can we expect somebody to believe a result of a
@@ -205,13 +202,13 @@ GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
 \item umfangreiches Hilfesystem
 %\item Einfaches Einbinden von C/C++ Routinen (dynamische Module)
 \item Viele freie (Unterrichts-)materialien im Internet 
-\item Source Code offen und gut dokumentiert
+\item Source Code offen und gut dokumentiert (Peer Review)
 \end{itemize}
 \pause
 \alert{Schwächen}
 \begin{itemize}
 \item Befehlsumfang nicht so mächtig wie bei Maple, Mathematica oder Matlab
-\item es fehlt (noch) eine gute Entwicklungsumgebung (in Entwicklung: \alert{Cantor})
+\item es fehlt eine gute standalone Entwicklungsumgebung\\(Alternative zum Webinterface: \alert{Cantor})
 \end{itemize}
 \end{frame}
 
@@ -319,13 +316,13 @@ f.limit(x=1, dir='plus')
 \begin{sage}
   x |--> +Infinity
 \end{sage}
-\item Umformen
-\begin{sagein}
-f.full_simplify()
-\end{sagein}
-\begin{sage}
-x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
-\end{sage}
+%\item Umformen
+%\begin{sagein}
+%f.full_simplify()
+%\end{sagein}
+%\begin{sage}
+%x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
+%\end{sage}
 \end{itemize}
 \end{frame}
 
@@ -415,14 +412,14 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
  \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
 \item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
 \item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
-\item Symbolisches Rechnen 
-\begin{itemize}
+%\item Symbolisches Rechnen 
+%\begin{itemize}
 \item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
-\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
+%\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
 \item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
-\end{itemize} 
-\end{itemize}
-\begin{itemize}
+%\end{itemize} 
+%\end{itemize}
+%\begin{itemize}
 \item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
 \item Berechnen numerischer Approximationen:
   {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
@@ -447,14 +444,19 @@ integrate(x^4*exp(-x),x,0,oo)
 \begin{sagein}
 f(x) = (1+sin(x))/(1+cos(x))
 g = f.integrate(x)
+\end{sagein}
+\begin{sage}
+x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
+\end{sage}
+\item Vereinfachen
+\begin{sagein}
 g.full_simplify()
 \end{sagein}
-\begin{scriptsize}
-%x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
+%\begin{scriptsize}
 \begin{sage}
 x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
 \end{sage}
-\end{scriptsize}
+%\end{scriptsize}
 \end{itemize}
 \end{frame}
 
@@ -503,6 +505,18 @@ g.simplify_radical()
 \begin{sage}
  e^(1/2*x) - 1
 \end{sage}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zusammenfassung}
+\begin{itemize}
+\item symbolisch Integrieren: {\color{blue} \verb~integrate(f,x,a,b)~}
+ \item numerisch Integrieren: {\color{blue} \verb~integrate(f,x)~}
+\item faktorisieren: {\color{blue} \verb~expand(f)~}
+\item sortieren: {\color{blue} \verb~f.collect(x)~}
+\item partialbruchzerlegung: {\color{blue} \verb~f.partial_fraction(f)~}
+\item vollständiges Vereinfachen: {\color{blue} \verb~f.full_simplify()~}
+\item Vereinfachen mit radicals: {\color{blue} \verb~f.radical_simplify()~}
 \end{itemize}
 \end{frame}
 
@@ -585,17 +599,9 @@ g: \vec{x}=
 \begin{frame}[fragile]{Grafische Darstellung}
 \begin{sagein}
 var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
-\end{sagein}
-\begin{sagein}
 p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
-\end{sagein}
-\begin{sagein}
 var('k'); g1 = 3+4*k; g2 = -k; g3 = 1+2*k
-\end{sagein}
-\begin{sagein}
 p += parametric_plot3d( (g1,g2,g3), (k, -3, 3),thickness='3' ) 
-\end{sagein}
-\begin{sagein}
 p.show()
 \end{sagein}
 \end{frame}
@@ -702,6 +708,18 @@ A^(-1), A*A^(-1)
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Zusammenfassung}
+\begin{itemize}
+\item Matrix eingeben: {\color{blue} \verb~matrix([ [z1s1,z1s2],[z2s1,z2s2] ])~}
+ \item Vektor eingeben: {\color{blue} \verb~vector([a,b,c])~}
+\item LGS lösen: {\color{blue} \verb~A\b~}
+\item Matrixoperationen: {\color{blue} \verb~A+B,A-B,A*B~}
+\item Matrix invertieren: {\color{blue} \verb~A^(-1); A.inverse()~}
+\item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
+\end{itemize}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Etwas Programmieren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -725,39 +743,46 @@ fd(x^2)
 
 \begin{frame}[fragile]{Listen und Tuple}
  \begin{itemize}
-  \item Eine Liste ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
-  \item Ein Tuple ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
-\item Beispiel:
+\item Eine \alert{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
 \begin{sagein}
 liste = [21,22,24,23]
+liste.sort(); liste 
+\end{sagein}
+\begin{sage}
+ [21, 22, 23, 24]
+\end{sage}
+\item Ein \alert{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
+\begin{sagein}
 tuple = (liste[0], liste[2])
 tuple, tuple[0]
 \end{sagein}
 \begin{sage}
 ((21, 24), 21) 
 \end{sage}
+\item Liste von ganzen Zahlen von \isage{a} bis \isage{b}
 \begin{sagein}
-liste.sort(); liste 
+[a..b] ; range(a,b+1)
 \end{sagein}
-\begin{sage}
- [21, 22, 23, 24]
-\end{sage}
-
  \end{itemize}
-
 \end{frame}
+
 
 \begin{frame}[fragile]{Einfache Schleifen und Abfragen}
 
+Einzeilige Schleifen
+\begin{sagein}
+[<expr(var)> for <var> in <range|liste>] 
+[<expr(var)> for <var> in <range|liste> if <expr>] 
+\end{sagein}
  \begin{itemize}
-  \item mit dem Konstrukt  \isage{[<expr(var)> for <var> in <range\|liste>]} kann man einfache Schleifen konstruieren..
+\item Beispiel:
 \begin{sagein}
 [m^2 for m in [1..5] ]
 \end{sagein}
 \begin{sage}
 [1, 4, 9, 16, 25]
 \end{sage}
-\item .. und diese mit Abfragen kombinieren.
+\item Beispiel mit Abfrage:
 \begin{sagein}
 [m^2 for m in [1..5] if m%2==0]
 \end{sagein}
@@ -849,8 +874,8 @@ divisors(840)
 \begin{itemize}
 \item Mehrere Befehle in einer Zeile durch {\color{blue} \isage{;}} trennen. 
 \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-  Zeilenumbruch durch {\color{blue} <ENTER>} erreicht werden.
-\item Das Auswerten eines Blocks erfolgt mit {\color{blue} <SHIFT>+<ENTER>}.
+  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
+\item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
 \item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
 \end{itemize}
 \end{frame} 
@@ -858,14 +883,13 @@ divisors(840)
 \begin{frame}{Nützliches}
 \begin{itemize}
 \item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
-\item \isage{[a..b]} oder \isage{range(a,b+1)} erzeugt eine Liste von ganzen Zahlen von \isage{a} bis \isage{b}
 \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
 %\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
 %\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
 \item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
 %\item profiler und debugger -> commandline
-\item Html- und/oder \LaTeX-Dokumentation: \verb~<SHIFT>+<KLICK>~ auf den blauen Balken
-\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
+\item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
+%\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
 %\item Unter dem Menupunkt \alert{File} kann man 
 \end{itemize}
 \end{frame}

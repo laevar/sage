@@ -3,7 +3,7 @@
 {{{id=20|
 integrate(x^4*exp(-x),x,0,oo)
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}24</span></html>
+24
 }}}
 
 <p>Integriere!</p>
@@ -17,25 +17,25 @@ f = (1+sin(x))/(1+cos(x)); f
 {{{id=22|
 g = f.integrate(x); g
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{\sin\left(x\right)}{\cos\left(x\right) + 1} - \log\left(\cos\left(x\right) + 1\right)</span></html>
+sin(x)/(cos(x) + 1) - log(cos(x) + 1)
 }}}
 
 {{{id=23|
 g.full_simplify()
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{\log\left(\cos\left(x\right) + 1\right) \cos\left(x\right) + \log\left(\cos\left(x\right) + 1\right) - \sin\left(x\right)}{\cos\left(x\right) + 1}</span></html>
+-((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
 }}}
 
 {{{id=24|
 expand((x-1)*(x-2)*(x-3)*(x-4))
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x^{4} - 10 \, x^{3} + 35 \, x^{2} - 50 \, x + 24</span></html>
+x^4 - 10*x^3 + 35*x^2 - 50*x + 24
 }}}
 
 {{{id=25|
 factor(_)
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\left(x - 4\right)} {\left(x - 3\right)} {\left(x - 2\right)} {\left(x - 1\right)}</span></html>
+(x - 4)*(x - 3)*(x - 2)*(x - 1)
 }}}
 
 {{{id=28|
@@ -43,38 +43,28 @@ var('b,a')
 g = x^2+2*x+b*x^2+sin(x)+a*x
 g.collect(x)
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\left(b + 1\right)} x^{2} + {\left(a + 2\right)} x + \sin\left(x\right)</span></html>
+(b + 1)*x^2 + (a + 2)*x + sin(x)
 }}}
 
 {{{id=27|
 g = x^ 2/( x^ 2- 1)
 g.partial_fraction()
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{2 \, {\left(x - 1\right)}} + \frac{-1}{2 \, {\left(x + 1\right)}} + 1</span></html>
+1/2/(x - 1) - 1/2/(x + 1) + 1
 }}}
 
 {{{id=29|
 g = (exp(x)-1)/(exp(x/2)+1); g.simplify_radical ()
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}e^{\left(\frac{1}{2} \, x\right)} - 1</span></html>
+e^(1/2*x) - 1
 }}}
 
-{{{id=35|
+{{{id=41|
 
 ///
 }}}
 
-{{{id=36|
-
-///
-}}}
-
-{{{id=37|
-
-///
-}}}
-
-{{{id=38|
+{{{id=43|
 
 ///
 }}}
