@@ -85,13 +85,12 @@ Unterstrich \_ zusammengesetzt.
 
 \begin{frame}[fragile]{Zuweisungsoperator $=$}
 \begin{itemize}
-\item Die Operation {\color{blue} \isage{bez=wert}} weist dem Bezeichner
-\isage{bez} den Wert \isage{wert} zu.  
-\item {\color{blue} \isage{func(arg)=expr(arg)}} definiert die Funktion \isage{func} mit dem Argument \isage{arg} und weist dieser den Ausdruck \isage{expr} zu, der von \isage{arg} abhängen sollte
+\item {\color{blue} \isage{bez=wert}}: Zuweisung des Wertes \isage{wert} zu dem Bezeichner \isage{bez}.
+\item {\color{blue} \isage{func(arg)=expr(arg)}}: Definition der Funktion \isage{func} mit dem Argument \isage{arg} und Zuweisung des Ausdrucks \isage{expr} zu (abhängig von \isage{arg})
 %\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
-\item Warnung: Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
+\item \textbf{Warnung:} Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
 dem logischen Operator {\color{blue} $==$}.   
-\item Löschen von Zuweisungen/Variablen: {\color{blue} \isage{reset('bezeichner')}}
+\item {\color{blue} \isage{reset('bezeichner')}}: Löschen von Zuweisungen/Variablen.
 \end{itemize}
 \end{frame}
 
@@ -116,6 +115,16 @@ x=pi;y = cos(x); x,y
 \end{sage}
 \end{frame}
 
+\begin{frame}{Auswertung}
+\begin{itemize}
+\item Der \alert{Bezeichner} ist der Name einer Unbekannten.
+\item Die  \alert{Auswertung} eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen.
+\item Der \alert{Wert} bezeichnet die Auswertung zum 
+Zeitpunkt der Zuweisung. 
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}[fragile]{Beispiele: Auswertung}
 \begin{sagein}
 var('a') ; f(x) = x*x-3*x-a
@@ -127,7 +136,7 @@ x |--> x^2 - a - 3*x
 f(a=2)
 \end{sagein}
 \begin{sage}
- x^2 - 3*x - 2  2
+ x^2 - 3*x - 2 
 \end{sage}
 \begin{sagein}
 f(1)
@@ -143,13 +152,21 @@ f(1,a=2)
 \end{sage}
 \end{frame}
 
-\begin{frame}{Auswertung}
-\begin{itemize}
-\item Der {\color{red} \it Bezeichner} ist der Name einer Unbekannten.
-\item Die  {\color{red} \it Auswertung} eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen.
-\item Der {\color{red} \it Wert} bezeichnet die Auswertung zum 
-Zeitpunkt der Zuweisung. 
-\end{itemize}
+\begin{frame}[fragile]{Einige Datentypen}
+\begin{center}
+\begin{tabular}{|lll|}
+\hline
+Typ & Bedeutung & Beispiel\\
+\hline
+\isage{integer} & ganze Zahlen & \isage{-3,0,100}\\
+\isage{rational} & rationale Zahlen & \isage{7/11}\\
+\isage{float} & Gleitpunktzahl & \isage{0.123}\\
+\isage{complex} & komplexe Zahlen & \isage{complex(1,3)}\\
+\isage{expression} & symbolische Ausdrücke & \isage{x+y} \\
+\isage{bool} & logische Werte: true/false& \isage{bool(1<2)} \\
+\hline
+\end{tabular}
+\end{center}
 \end{frame}
 
 
@@ -181,22 +198,6 @@ f+f
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Einige Datentypen}
-\begin{center}
-\begin{tabular}{|lll|}
-\hline
-Typ & Bedeutung & Beispiel\\
-\hline
-\isage{integer} & ganze Zahlen & \isage{-3,0,100}\\
-\isage{rational} & rationale Zahlen & \isage{7/11}\\
-\isage{float} & Gleitpunktzahl & \isage{0.123}\\
-\isage{complex} & komplexe Zahlen & \isage{complex(1,3)}\\
-\isage{expression} & symbolische Ausdrücke & \isage{x+y} \\
-\isage{bool} & logische Werte: true/false& \isage{bool(1<2)} \\
-\hline
-\end{tabular}
-\end{center}
-\end{frame}
 
 
 %\begin{frame}{Auswertung}
@@ -262,14 +263,13 @@ Typ & Bedeutung & Beispiel\\
 
 \begin{frame}{Operatoren}
 \begin{itemize}
-\item Typische Operatoren sind \verb~+,-,*,/,..~
+\item Typische \alert{Operatoren} sind \verb~+,-,*,/,..~
 \item In Sage werden Objekte immer durch Funktionen miteinander
-verbunden. 
+verbunden. Operatoren sind äquivalent zu Funktionen.
 %\item Operatoren sind in Sage auch als Funktionen realisiert.
 %\item Für wichtige Operatoren gibt es die gewohnte
 %Kurzschreibweise.
-\item Bei Kombination verschiedener Operatoren gelten die üblichen
-Regeln der Bindungsstärke (Punktrechnung vor Strichrechnung); Die Ordnung kann
+\item Kombination verschiedener Operatoren: Die Regeln der \alert{Bindungsstärke} gelten (Punktrechnung vor Strichrechnung); Die Ordnung kann
 durch Klammersetzung geändert werden.
 \end{itemize}
 \end{frame}
@@ -295,14 +295,10 @@ Operator/Funktion &  Erklärung\\
 
 \begin{frame}[fragile]{Zerlegen von Ausdrücken}
 \begin{itemize}
-\item Viele Ausdrücke sind zusammengesetzt. Ihre Bausteine heißen {\color{red}
-Operanden.}
-\item Durch {\color{blue} \isage{Ausdruck.nops()}} erhält man die Anzahl der
-Operanden. 
-\item Durch {\color{blue} \isage{Ausdruck.operands()}} erhält man alle 
-Operanden
-\item Mittels {\color{blue} \isage{Ausdruck.has(a)}} kann untersucht werden, ob
-$a$ ein Operand vom \isage{Ausdruck} ist.
+\item Bausteine von Ausdrücken heißen \alert{Operanden}.
+\item {\color{blue} \isage{Ausdruck.nops()}}: Anzahl der Operanden. 
+\item {\color{blue} \isage{Ausdruck.operands()}}: Operanden selbst. 
+\item {\color{blue} \isage{Ausdruck.has(a)}}: Untersuchung ob $a$ ein Operand von \isage{Ausdruck} ist.
 \item Die Befehle beziehen sich jeweils auf die automatisch
 vereinfachten Objekte.
 \end{itemize}
@@ -396,11 +392,18 @@ x = [var("x%i" % k) for k in [1..3]]; x
 
 \begin{frame}[fragile]{Wörterbücher (Dictionaries)}
 \begin{itemize}
-\item Neben Listen und Tuplen kennt Python/Sage noch Dictionaries. Diese bestehen aus \glqq Assoziationen\grqq\  der 
-Form \verb+<Index>:<Wert>+. 
-\item Beispiel:
+\item Dictionaries bestehen aus \alert{Assoziationen} der Form \verb+<Index>:<Wert>+. 
+\item Definition:
 \begin{sagein}
-_=var('x,y,z');d = {x:21,y:5,z:42==y}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+\item Zugriff:
+\begin{sagein}
+d[<Index>]
+\end{sagein}
+\item \textbf{Beispiel:}
+\begin{sagein}
+var('x,y,z');d = {x:21,y:5,z:42==y}
 d[x],d[z],d[z].rhs()
 \end{sagein}
 \begin{sage}
@@ -433,8 +436,7 @@ map(lambda x: x^2,menge)
 
 \begin{frame}[fragile]{Funktionen / Objekt-Methoden}
 \begin{itemize}
- \item Objekte in Sage haben unter anderem die Eigenschaft ihnen zugeordnete Funktionen zu kennen, die sogenannten 
-\alert{Objekt-Methoden}. 
+ \item Objekte besitzen Funktionen, sogenannte \alert{Objekt-Methoden}. 
 \item Ein Objekt kennt alle auf sich selbst anwendbaren Funktionen; Nur einige Methoden sind als globale Funktionen benutzbar (wie z.B. \isage{map()})
 \item Beispiel
  \begin{sagein}
@@ -452,9 +454,16 @@ NameError: name 'operands' is not defined
 \end{frame}
 
 
-\begin{frame}[fragile]{normale Schleifen}
-Wir kennen bereits Schleifen durch das \verb+[.. for .. in ..]+-Konstrukt. Mit \verb+for+ können aber auch
-ganze Blöcke wiederholt werden.
+\begin{frame}[fragile]{normale Schleifen - \verb~for~}
+Bereits bekannte Schleifen: \verb+[.. for .. in ..]+-Konstrukt. Die \verb+for+-Schleife kann  auch
+ganze Blöcke wiederholen.
+\begin{sagein}
+for <indexvar> in <expr>/<list>:
+    <Code-Block>
+else:
+    <Code-Block>
+\end{sagein}
+\textbf{Beispiel:}
 \begin{sagein}
 x = 2; y = 2
 for k in [1..4]:
@@ -468,9 +477,14 @@ x,y
 \alert{Wichtig:} In Python/Sage ist solch ein Code-Block dadurch gekennzeichnet, dass er mit einem \alert{\textbf{:}} eingeleitet wird und um ein TAB eingerückt ist!
 \end{frame}
 
-\begin{frame}[fragile]{Abfragen}
-Wir kennen auch bereits einfache Abfragen mittels \isage{if}. Diese können ebenfalls für ganze Blöcke genutzt werden:
- \begin{sagein}
+\begin{frame}[fragile]{Abfragen - \verb~if/else~}
+einfache Abfragen mittels \isage{if}. Diese können für ganze Blöcke genutzt werden:
+\begin{sagein}
+if <boolean expr>:
+    <Code-Block>
+\end{sagein}
+\textbf{Beispiel:}
+\begin{sagein}
 x = 3; y = 2
 if x > y :
     z = x
@@ -534,7 +548,8 @@ z
 
 \begin{frame}[fragile]{Verbinden von Ausdrücken}
 Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
-dividiert werden. 
+dividiert werden.\\ 
+\textbf{Beispiel:}
 \begin{itemize}
 \item Definition
 \begin{sagein}
@@ -569,9 +584,10 @@ f*g, f/g
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{collect()}
-Durch {\color{blue} \isage{a.collect(Unbestimmte)}} wird der Ausdruck
-\isage{a} bzgl. der \isage{Unbestimmten} sortiert.
+\begin{frame}[fragile]{Sortieren und Zusammenfassen von Ausdrücken}
+ 
+{\color{blue} \isage{a.collect(<unknown>)}}: der Ausdruck \isage{a} wird bzgl. der \isage{unknown} Variablen sortiert.\\
+\textbf{Beispiel:}
 \begin{sagein}
 f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
 f.collect(x)
@@ -585,8 +601,8 @@ f.collect(x*sin(x))
 \begin{sage}
 a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
 \end{sage} 
-Durch {\color{blue} \isage{a.combine()}} wird der Ausdruck
-durch die Potenzgesetze zusammengefaßt.
+{\color{blue} \isage{a.combine()}}:  der Ausdruck wird durch die Potenzgesetze zusammengefaßt.\\
+\textbf{Beispiel:}
 \begin{sagein}
 g = x^(a)*x^(b)
 g.combine()
@@ -597,9 +613,11 @@ x^(a + b)
 
 \end{frame}
 
-\begin{frame}[fragile]{expand()}
-Ausmultiplizieren von  Ausdrücken erfolgt durch {\color{blue}
-\isage{a.expand()}} und {\color{blue} \isage{a.expand_trig()}}. \\
+\begin{frame}[fragile]{Ausmultiplizieren - \verb~expand()~} 
+
+{\color{blue} \isage{a.expand()}}: Ausmultiplizieren.\\
+{\color{blue} \isage{a.expand_trig()}}: Ausmultiplizieren mit Nutzung der trigonometrischen Eigenschaften.\\
+\textbf{Beispiel:}
 \begin{sagein}
 expand((x+2)^4)
 \end{sagein}
@@ -614,7 +632,7 @@ sin(x)*cos(y) + sin(y)*cos(x)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{expand() bei Gleichungen}
+\begin{frame}[fragile]{Ausmultiplizieren bei Gleichungen}
 \begin{sagein}
 a = (16*x-13)^2 == (3*x+5)^2/2
 a.expand()
@@ -636,15 +654,15 @@ a.expand('right')
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{factor()}
-Der Befehl {\color{blue} \isage{factor(Ausdruck)}} faktorisiert Polynome und
-Ausdrücke. 
+\begin{frame}[fragile]{Faktorisieren - \verb~factor()~}
+
+{\color{blue} \isage{factor(Ausdruck)}}:  Faktorisieren von Ausdrücken. 
 \begin{itemize}
 \item Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
 Zahlen sind. 
-\item Auch anwendbar auf rationale Funktionen. Es wird ein gemeinsamer
-Hauptnenner gesucht.
+\item Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
 \end{itemize}
+\textbf{Beispiel:}
 \begin{sagein}
 factor(x^2-2), factor(x^2-9/4)
 \end{sagein}
@@ -659,10 +677,11 @@ factor(2 - 2/(x^2-1))
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{partial\_fraction()}
-Durch {\color{blue} \isage{f.partial_fraction()}} wird ein rationaler Ausdruck $f$ in eine
-Summe rationaler Terme zerlegt, in denen jeweils der Zählergrad
-kleiner als der Nennergrad ist. (Partialbruchzerlegung)
+\begin{frame}[fragile]{Partialbruchzerlegung - \verb~partial\_fraction()~}
+
+{\color{blue} \isage{f.partial_fraction()}}: Zerlegung eines rationalen Ausdruck $f$ in eine
+Summe rationaler Terme (Zählergrad $<$ Nennergrad) (Partialbruchzerlegung).\\
+\textbf{Beispiel:}
 \begin{sagein}
 f = x^2/(x^2-1); f.partial_fraction()
 \end{sagein}
@@ -694,12 +713,18 @@ f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f
 % \end{itemize}
 % \end{frame}
 
-\begin{frame}[fragile]{Simplify}
+\begin{frame}[fragile]{Vereinfachen - \verb~simplify~}
+
+{\color{blue} \isage{f.simplify()}}: simple Vereinfachung (Potenzen).
+{\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. Mögliche targets sind
 \begin{itemize}
-\item Durch {\color{blue} \isage{f.simplify_<target>()}} wird versucht den Ausdruck $f$
-zu vereinfachen. \isage{target} entspricht verschiedenen Vereinfachungen.
-\item Mögliche \isage{target} sind \isage{trig}, \isage{rational},\isage{radical}, \isage{factorial}, \isage{full}
+\item \isage{trig}: trigonometrisch
+\item \isage{rational}: rational
+\item \isage{radical}: log/ln/exp
+\item \isage{factorial}: Nutzung der Fakultät
+\item \isage{full}: alle Vereinfachungen
 \end{itemize}
+\textbf{Beispiel:}
 \begin{sagein}
 (2 - 2/(x^2-1)).simplify_rational()
 \end{sagein}
@@ -711,10 +736,10 @@ zu vereinfachen. \isage{target} entspricht verschiedenen Vereinfachungen.
 \begin{frame}[fragile]{Beispiele - Simplify I}
 \begin{sagein}
 f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
-f.simplify()
+f.simplify_rational()
 \end{sagein}
 \begin{sage}
--sin(x)^2 - cos(x)^2 + x/(x + y) + y/(x + y)
+-sin(x)^2 - cos(x)^2 + 1
 \end{sage}
 \begin{sagein}
 g = sqrt(997)-(997^3)^(1/6)
@@ -773,15 +798,13 @@ solve(Gleichungen1,x,y)
 
 \begin{frame}[fragile]{Vergleiche/Logik}
 \begin{itemize}
-\item Der Operator {\color{blue} \isage{==}} vergleicht zwei Objekte. 
-\item {\color{blue}
-\isage{a==b}} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
+\item Operator {\color{blue} \isage{==}}: Überprüfung zweier Objekte auf Gleichheit.\\
+\isage{a==b} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
 besitzen (und vom gleichen Typ sind). 
-\item Zur Überprüfung von Aussagen gibt es die Funktion
-{\color{blue} \isage{bool(Ausdruck)}}. Sie liefert als Ergebnis \isage{True} oder
+\item {\color{blue} \isage{bool(Ausdruck)}}: Überprüfung von Aussagen. Ergebnis: \isage{True} oder
 \isage{False}.
-\item Die inverse Operation zu {\color{blue} \isage{'=='}} ist {\color{blue}
-\isage{'<>'}}, also \isage{a<>b} ist \isage{True}, falls $a$ nicht gleich $b$
+\item Operator {\color{blue} \isage{<>}}:  Überprüfung zweier Objekte auf Ungleichheit. \\
+\isage{a<>b} ist \isage{True}, falls $a$ nicht gleich $b$
 ist. 
 \end{itemize}
 \end{frame}
@@ -826,16 +849,21 @@ type(0.5); type(1/2)
 \end{frame}
 
 \begin{frame}[fragile]{Verknüpfungen}
-Logische Ausdrücke können durch logisches 'und' (\verb+and+),
-logisches 'oder' (\verb+or+) oder logisches 'nicht' (\verb+not+)
-miteinander verknüpft werden.
+\begin{itemize}
+ \item  Logisches 'und' (\isage{and})
+\item Logisches 'oder' (\isage{or}) 
+\item Logisches 'nicht' (\isage{not})
+\end{itemize}
+\textbf{Beispiel:}
 \begin{sagein}
 true and false, true or false, not true
 \end{sagein}
 \begin{sage}
  (False, True, False)
 \end{sage}
-
+\begin{itemize}
+ \item Logiktabelle:
+\end{itemize}
 \begin{center}
 \begin{tabular}{|c||c|c|}
 \hline
@@ -855,16 +883,20 @@ true and false, true or false, not true
 \end{frame}
 
 \begin{frame}[fragile]{Lösen von Gleichungssystemen}
+\begin{sagein}
+solve(<gleichungen>,<variablen>,<optionen>)
+\end{sagein}
 \begin{itemize}
-\item \isage{solve} ist der Befehl zum Lösen von Gleichungen und Gleichungssystemen.
-\item Der Befehl ist von der Form {\color{blue} \isage{solve(Gleichungen,Variablen,solution_dict)}}. 
-\item {\color{blue}\isage{Gleichungen}} kann ein System von Gleichungen sein.
-\item  {\color{blue}\isage{Variablen}} gibt an, wonach aufgelöst wird.
+\item {\color{blue}\isage{<gleichungen>}}: System von Gleichungen.
+\item  {\color{blue}\isage{<variablen>}}: Danach wird aufgelöst.
+\item {\color{blue}\isage{<optionen>}}:
+\begin{itemize}
+\item {\color{blue}\isage{multiplicities=True}}:  Vielfachheit der Lösungen wird mit ausgegeben.
+\item {\color{blue}\isage{solution_dict=True}}: Lösung wird als Dictonary zurück gegeben.
+\end{itemize}
 \item Bei einzelnen Gleichungen wird der Lösungswert
 zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
 Gleichungen zurückgegeben.
-\item Mit {\color{blue}\isage{multiplicities=True}} erhält man die Vielfachheit der Lösungen.
-\item {\color{blue}\isage{solution_dict=True}} gibt die Lösung als Dictonary zurück
 \end{itemize}
 \end{frame}
 
@@ -929,8 +961,11 @@ sol = solve([x^2-y^2 == 0, x+y == 1],x,y, solution_dict=True); sol
 
 
 
-\begin{frame}[fragile]{Numerisches Lösen von Gleichungen}
-Mittels der Funktion \alert{\isage{find_root(a,b)}} kann eine Gleichung numerisch im Intervall $[a,b]$ gelöst werden.\\
+\begin{frame}[fragile]{numerisches Lösen von Gleichungen (1D)}
+\begin{sagein}
+f.find_root(a,b) 
+\end{sagein}
+Finden von Nullstellen der Gleichung $f$ im Intervall $[a,b]$.\\
 \textbf{Beispiel:}
 \begin{sagein}
  (x == sin(x)).find_root(-2,2)
