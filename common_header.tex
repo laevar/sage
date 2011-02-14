@@ -83,7 +83,7 @@ escapechar=§
 \usepackage{mydef}
 %\usepackage{cmap} % you can search in the pdf for umlauts and ligatures
 \usepackage{colonequals} %corrects the definition-symbols \colonequals (besides others)
-
+\usepackage{ifthen}
 %%%%%%%%%%%%%%%%%%%
 %Neue Definitionen
 %%%%%%%%%%%%%%%%%%%
@@ -112,3 +112,34 @@ escapechar=§
 %Operatoren
 \DeclareMathOperator{\Abb}{Abb}
 %\usepackage{sagetex}
+
+%
+% Aufgaben
+%
+\parindent0cm % Abs�tze nicht einr�cken 
+% Definieren einer neuen Farbe
+\definecolor{light-gray}{gray}{.9}
+
+\newcounter{zaehler}     % neuen Z�hler einf�hren
+\stepcounter{zaehler}    % Z�hler einen hochz�hlen
+
+\newenvironment{aufg}[1][0]
+%---- Header
+{\begin{samepage}%
+%\colorbox{light-gray}{%                         % Box in gray
+% \makebox[\textwidth]{%                           % Box in linewidth
+%\textbf{Aufgabe \arabic{zaehler} } }\hspace{-\textwidth}\makebox[\textwidth]{\hfill #1 Punkte} }\\[0.05cm]       % Header
+\dotfill\\
+{\large\textbf{Aufgabe \arabic{zaehler} }\ifthenelse{0=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
+\begin{minipage}{\textwidth}
+}
+%-----  foot
+{\end{minipage} \nopagebreak %\begin{minipage}{1cm} \end{minipage}
+%\\ 
+%\begin{minipage}{0.1cm} \end{minipage} 
+%\hrulefill \begin{minipage}{1cm} \end{minipage}\\[1cm]  
+\stepcounter{zaehler}                           % increase counter
+\end{samepage}%
+\\%
+\bigskip%
+}
