@@ -25,16 +25,15 @@ mod(-34,8), floor(-34/8)
 }}}
 
 {{{id=7|
-var('a,b,c,d'); a/b+c/d == (a/b+c/d).simplify_rational()
+_=var('a,b,c,d'); (a/b+c/d).simplify_rational()
 ///
-(a, b, c, d)
-a/b + c/d == (a*d + b*c)/(b*d)
+(a*d + b*c)/(b*d)
 }}}
 
 {{{id=8|
-a/b*c/d == (a/b*c/d).simplify_rational()
+bool(a/b+c/d == (a/b+c/d).simplify_rational())
 ///
-a*c/(b*d) == a*c/(b*d)
+True
 }}}
 
 {{{id=38|
@@ -170,7 +169,7 @@ dummy.digits()
 [5]
 }}}
 
-{{{id=37|
+{{{id=45|
 
 ///
 }}}

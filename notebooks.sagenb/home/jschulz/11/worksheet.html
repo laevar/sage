@@ -2,10 +2,6 @@
 
 {{{id=1|
 a = Set([1,2,3]); b = Set([2,3,4])
-///
-}}}
-
-{{{id=2|
 union(a,b)
 ///
 [1, 2, 3, 4]
@@ -14,15 +10,11 @@ union(a,b)
 {{{id=3|
 type(a)
 ///
-<class 'sage.sets.set.Set_object_enumerated'>
+<class 'sage.sets.set.Set_object_enumerated_with_category'>
 }}}
 
 {{{id=4|
 c = Set([4,5,6,7])
-///
-}}}
-
-{{{id=5|
 d = Set([])
 ///
 }}}
@@ -42,7 +34,7 @@ c[1:3]
 {{{id=9|
 M1 = Set([x, 2,3,pi,sqrt(2)]); M1
 ///
-{x, 2, 3, pi, sqrt(2)}
+{pi, 2, 3, sqrt(2), x}
 }}}
 
 {{{id=15|
@@ -55,14 +47,14 @@ M1.cardinality()
 var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
 ///
 y
-{y, 1, 2, {y, 1}, x}
+{1, y, 2, x, {1, y}}
 }}}
 
 {{{id=16|
 M2[1]; M2[1:4]
 ///
-1
-[1, 2, {y, 1}]
+y
+[y, 2, x]
 }}}
 
 {{{id=21|
@@ -74,7 +66,7 @@ var('a,b,c'); L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
 {{{id=25|
 L1.union(L2), L1.difference(L2), L1.intersection(L2)
 ///
-({1, 2, 3, c, 5, a, b, 4}, {1, 2, 3}, {b, a})
+({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
 }}}
 
 {{{id=32|
@@ -84,9 +76,9 @@ a in L1, c in L1
 }}}
 
 {{{id=36|
-set([1,y]) in M2
+Set([1,y]) in M2
 ///
-False
+True
 }}}
 
 {{{id=39|
@@ -102,9 +94,9 @@ filter(is_prime,M)
 }}}
 
 {{{id=43|
-Set(powerset([1,2,3]))
+list(powerset([1,2,3]))
 ///
-Set of elements of [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 }}}
 
 {{{id=55|
@@ -119,10 +111,6 @@ def f(x): return bool(mod(x,2)==0)
 M2 = Set(filter(f,M))
 def f(x): return bool(mod(x,15)==0)
 M15 = Set(filter(f,M))
-///
-}}}
-
-{{{id=48|
 M2.intersection(M15)
 ///
 {90, 60, 30}
@@ -131,7 +119,9 @@ M2.intersection(M15)
 {{{id=47|
 M2 = Set([m for m in M if mod(m,2)==0])
 M15 = Set([m for m in M if mod(m,15)==0])
+M2.intersection(M15)
 ///
+{90, 60, 30}
 }}}
 
 {{{id=49|
@@ -153,13 +143,7 @@ A.intersection(A2) == A2
 False
 }}}
 
-{{{id=53|
-tes = Set([1,1,2,3,1,3,4]); tes
-///
-{1, 2, 3, 4}
-}}}
-
-{{{id=54|
+{{{id=56|
 
 ///
 }}}

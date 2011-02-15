@@ -15,31 +15,27 @@
 
 \begin{frame}{Mengen}
 \begin{quote}
-Unter einer \alert{\glq Menge\grq\ }verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens (welche die \glq Elemente\grq\ von $M$ genannt werden) zu einem Ganzen.\\
-{\footnotesize (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
+Unter einer \alert{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
+{\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
 \end{quote}
  \begin{itemize}
-\item Die Objekte heißen {\color{red} Elemente} der Menge.
-\item Ist $x$ ein Element der Menge $M$, so schreibt man {\color{red} $x \in
-  M$}. 
-\item Man sagt, eine Menge $M$ ist in einer Menge $N$
-enthalten, wenn für alle $x \in M$ auch $x \in N$ gilt. Man schreibt
-$M \subset N$.
-\item Gilt $M\subset N$ und $N \subset M$, so sind die beiden Mengen
-  gleich. Man schreibt $M=N$.
+\item \alert{Element}: Ein Objekt $x$ in der Menge $M$ (\alert{$x \in  M$}). 
+\item \alert{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\alert{$M \subset N$}).
+\item \alert{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\alert{$M=N$}).
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Mengen in Sage}
+\begin{sagein}
+Set([<element1>,<element2>,...])
+\end{sagein}
 \begin{itemize}
-\item Mengen in Sage haben den Typ \isage{set}.
 \item Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
   Objekten. 
-\item Mengen werden als Listen in der Funktion \isage{Set([])} angegeben.
-\item Leere Mengen werden durch \isage{leere_menge = Set([])} definiert. 
-\item Einträge werden durch Kommata getrennt.
-\item (Nummerierter) Zugriff auf Elemente der Menge $M$ kann durch \isage{M[n]} erfolgen ($n\ge0$)
-\item Mit \isage{M[i:j]} können auch Intervalle ausgegeben werden.
+\item Mengen in Sage haben den Typ \alert{\isage{set}}.
+\item Leere Mengen: \isage{leere_menge = Set([])}. 
+\item Zugriff: \isage{M[n]} (Menge $M$, $n\ge0$)
+\item Intervallzugriff: \isage{M[i:j]}.
 \end{itemize}
 \end{frame}
 
@@ -48,32 +44,32 @@ $M \subset N$.
 M1 = Set([x, 2,3,pi,sqrt(2)]); M1
 \end{sagein}
 \begin{sage}
-  {x, 2, 3, pi, sqrt(2)}
+{pi, 2, 3, sqrt(2), x}
 \end{sage}
 \begin{sagein}
 var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
 \end{sagein}
 \begin{sage}
-  {y, 1, 2, {y, 1}, x}
+{1, y, 2, x, {1, y}}
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Befehle für Mengen I}
 \begin{itemize}
-\item Die Anzahl der Elemente in einer Menge:
+\item Anzahl der Elemente in einer Menge:
 \begin{sagein}
 M1.cardinality()
 \end{sagein}
 \begin{sage}
   5
 \end{sage}
-\item Zugriff auf Elemente:
+\item Zugriff:
 \begin{sagein}
 M2[1]; M2[1:4]
 \end{sagein}
 \begin{sage}
-1
-[1, 2, {y, 1}]
+y
+[y, 2, x]
 \end{sage}
 %\item Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
 %\begin{sagein}
@@ -87,13 +83,13 @@ M2[1]; M2[1:4]
 
 \begin{frame}[fragile]{Befehle für Mengen II}
 \begin{itemize}
-\item Vereinigung, Differenz, Schnitt.
+\item Vereinigung, Differenz, Schnitt:
 \begin{sagein}
 L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
 L1.union(L2), L1.difference(L2), L1.intersection(L2)
 \end{sagein}
 \begin{sage}
-({1, 2, 3, c, 5, a, b, 4}, {1, 2, 3}, {b, a})
+({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
 \end{sage}
 \item Prüfen, ob  ein Element enthalten ist:
 \begin{sagein}
@@ -123,28 +119,29 @@ filter(is_prime,M)
 \end{sage}
 \item Erzeugen der Potenzmenge
 \begin{sagein}
-Set(powerset([1,2,3]))
+list(powerset([1,2,3]))
 [s for s in Set([1..3]).subsets()]
 \end{sagein}
 \begin{sage}
- Set of elements of [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+[{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
 \end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{filter()}
-Äußerst nützlich und häufig verwendet ist es Mengen durch bestimmte Vorschriften als Teilmengen einer größeren Menge zu erzeugen.
-Durch den Aufruf 
+\begin{frame}[fragile]{Filter - \verb~filter()~}
+Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
 \begin{sagein}
-M1 = filter(f,M)
+M1 = filter(<f>,<M>)
 \end{sagein}
-wird aus der Menge \isage{M} eine Menge \isage{M1} extrahiert, die aus den
-Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
-ergibt. \\
-\isage{f} ist eine Abbildung auf die Boolschen Werte True/False. 
+\begin{itemize}
+\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
+\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
+ergibt. 
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiel - filter()}
+\begin{frame}[fragile]{Beispiel für Filter I}
 \begin{sagein}
 M = Set(range(1,101))
 def f(x): return bool(mod(x,2)==0)
@@ -164,9 +161,8 @@ M15 = Set([m for m in M if mod(m,15)==0])
 
 \end{frame}
 
-\begin{frame}[fragile]{Beispiel}
-Wie kann ich prüfen, ob eine Menge \isage{A1} eine Teilmenge einer Menge \isage{A}
-ist?
+\begin{frame}[fragile]{Beispiel für Filter II}
+Ist Menge \isage{A1} eine Teilmenge von Menge \isage{A}?
 \begin{sagein}
 A = Set(range(1,11))
 A1 = Set(range(1,3))
@@ -228,21 +224,20 @@ Die Menge $\mathbb{N}$ ist definiert durch:
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Man stelle sich die Nachfolgefunktion $nf$ als $nf(m)=m+1$
-  vor.
+\item Nachfolgefunktion: $nf(m)=m+1$
 \item Es besteht ein enger Zusammenhang zwischen den natürlichen
   Zahlen und vollständiger  Induktion.
+%TODO:erklaerung
 \item Man identifiziert die so erzeugte Folge von Zahlen als
   $0,1,2,3,\dots$.
-\item Sie haben keinen eigenen Datentyp in Sage, aber es gibt ganze Zahlen (Integer). 
+\item Sage: kein eigener Datentyp (aber: ganze Zahlen (Integer)). 
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Äquivalenzrelation}
 Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
 \[R\subseteq M \times M\]
- mit den folgenden Eigenschaften. Für $(x,y) \in R$
-schreibt man auch $x \sim_R y$ oder einfach $x \sim y$. 
+ mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
 \begin{enumerate}
 \item \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
 \item \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
@@ -295,30 +290,30 @@ der Äquivalenzklassen.
 \end{frame}
 
 \begin{frame}[fragile]{Ganze Zahlen in Sage}
-Ganze Zahlen in Sage haben den Datentyp \isage{Integer}. Man kann
-sie addieren, subtrahieren und multiplizieren. Das Ergebnis ist
-wieder vom Typ \isage{Integer}. 
+Datentyp \isage{Integer}. \\
+\textbf{Beispiele:}
 \begin{sagein}
 type(5), type(0), type(-5)
 \end{sagein}
 \begin{sage}
-(<type 'sage.rings.integer.Integer'>, <type
-'sage.rings.integer.Integer'>, <type
-'sage.rings.integer.Integer'>)
+(<type 'sage.rings.integer.Integer'>, 
+<type 'sage.rings.integer.Integer'>, 
+<type 'sage.rings.integer.Integer'>)
 \end{sage}
-Division?
+Division
 \begin{sagein}
 type(5*4), type(5/4)
 \end{sagein}
 \begin{sage}
-(<type 'sage.rings.integer.Integer'>, <type
-'sage.rings.rational.Rational'>)
+(<type 'sage.rings.integer.Integer'>, 
+<type 'sage.rings.rational.Rational'>)
 \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Division mit Rest}
 Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
-$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. (Beispiele: $x=45$, $a=7$ und $x=-34$, $a=8$)
+$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. \\
+\textbf{Beispiele:}
 \begin{sagein}
 mod(45,7), floor(45/7)
 \end{sagein}
@@ -333,8 +328,7 @@ mod(-34,8), floor(-34/8)
 \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{rationale Zahlen $\mathbb{Q}$}
-Die {\color{red} rationalen Zahlen $\mathbb{Q}$} sind gegeben durch die folgende
+\begin{frame}[fragile]{Rationale Zahlen $\mathbb{Q}$}
 Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
 \[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
 Statt $(m,n)$ schreibt man $\frac{m}{n}$.
@@ -351,26 +345,25 @@ Multiplikation:
 \[
 \overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
 \]
+\item Die rationalen Zahlen bilden einen \alert{Körper}.
 \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{rationale Zahlen in Sage}
-Rationale Zahlen in Sage haben den Datentyp \isage{rational}. Man kann
-sie in Sage beliebig addieren, subtrahieren, multiplizieren und
-dividieren. Das Ergebnis ist wieder eine rationale Zahl. Die rationalen
-Zahlen bilden einen \alert{Körper}.
+\begin{frame}[fragile]{Rationale Zahlen in Sage}
+Datentyp \isage{rational}. 
+
 \begin{sagein}
-var('a,b,c,d'); a/b+c/d == (a/b+c/d).simplify_rational()
+var('a,b,c,d'); (a/b+c/d).simplify_rational())
 \end{sagein}
 \begin{sage}
-a/b + c/d == (a*d + b*c)/(b*d)
+(a*d + b*c)/(b*d)
 \end{sage}
 
 \begin{sagein}
-a/b*c/d == (a/b*c/d).simplify_rational()
+bool(a/b+c/d == (a/b+c/d).simplify_rational())
 \end{sagein}
 \begin{sage}
-a*c/(b*d) == a*c/(b*d)
+True
 \end{sage}
 \end{frame}
 
@@ -515,20 +508,25 @@ definieren.
 $\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
 \item Die rationalen Zahlen sind als Äquivalenzklassen der
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-\item Der Datentyp in Sage ist \isage{RealNumber}
+
  \end{itemize}
 \end{frame}
 
 
-\begin{frame}[fragile]{Gleitkommazahlen I}
+\begin{frame}[fragile]{Reelle Zahlen in Sage - Gleitkommazahlen }
+Datentyp \isage{RealNumber}\\
 \textbf{Problem:}
+keine exakte Darstellung möglich => Approximation
+Datentyp float
 
-Die reellen Zahlen werden nicht exakt im
-Computer abgebildet. Es wird nur eine bestimmte Anzahl von
-Nachkommastellen betrachtet und die letzten Stellen gerundet. 
-
-Computer arbeiten also in der Regel nur mit
-Approximationen an die gesuchte reelle Zahl. 
+\begin{itemize}
+\item Gleitkommazahlen haben in Sage den Datentyp
+\isage{float}. 
+\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
+\item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
+%\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
+%bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
+\end{itemize}
 
 \textbf{Beispiel:} $\sqrt{2}$
 \begin{sagein}
@@ -541,6 +539,7 @@ Approximationen an die gesuchte reelle Zahl.
 \end{frame}
 
 \begin{frame}{Gleitkommazahlen II}
+spaeter!
 \textbf{Darstellung von Gleitkommazahlen:}
 \[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
   b^e}, \quad { \color{red} a_1} \neq 0
@@ -584,20 +583,6 @@ Zp(8,print_mode='digits',check=False)(73)
 
 \end{frame}
 
-\begin{frame}[fragile]{Rundungsfehler}
-\begin{itemize}
-\item Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Es
- gilt für den {\it relativen Fehler} 
-\[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
-mit $\varepsilon=b^{1-t}$.
-\item Rundungsfehler können sich innerhalb eines Verfahrens
-verstärken. ({\it Fehlerfortpflanzung}).
-\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
-1996.
-\end{itemize}
-Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
-vermeiden.}
-\end{frame}
 
 \begin{frame}[fragile]{Beispiele}
 
@@ -618,16 +603,21 @@ $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
 % \end{sage}
 \end{frame}
 
-\begin{frame}[fragile]{Genauigkeit}
+\begin{frame}[fragile]{Rundungsfehler}
 \begin{itemize}
-\item Gleitkommazahlen haben in Sage den Datentyp
-\isage{float}. 
-\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
-\item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
-%\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
-%bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
+\item Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Es
+ gilt für den {\it relativen Fehler} 
+\[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
+mit $\varepsilon=b^{1-t}$.
+\item Rundungsfehler können sich innerhalb eines Verfahrens
+verstärken. ({\it Fehlerfortpflanzung}).
+\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
+1996.
 \end{itemize}
+Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
+vermeiden.}
 \end{frame}
+
 
 \begin{frame}[fragile]{Rechnen mit Zahlen I}
 \begin{itemize}
@@ -716,13 +706,13 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 %\isage{sign} & Vorzeichen\\
 \isage{sqrt} & Wurzel\\
 \isage{digits} & Anzahl Stellen\\
-\isage{parent} & Vaterobjekt; Typ der Zahl\\
+%\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
 \hline
 \end{tabular}
 \end{center}
 \end{frame}
 
-\begin{frame}{Komplexe Zahlen}
+\begin{frame}{Komplexe Zahlen $\mathbb{C}$}
  Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ versehen mit der
  Addition
 \[ (k,l)+(n,m)=(k+n,l+m) \] und der Multiplikation
