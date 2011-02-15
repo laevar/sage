@@ -10,11 +10,11 @@ import sagenb.notebook.notebook
 sagenb.notebook.notebook.JSMATH=True
 import sagenb.notebook.notebook as notebook
 import sagenb.notebook.twist as twist
-twist.notebook = notebook.load_notebook("/remotehome/schulz/teaching/sage/notebooks.sagenb",interface="localhost",port=8000,secure=True)
+twist.notebook = notebook.load_notebook("/home/cs/hg/sage/notebooks.sagenb",interface="localhost",port=8000,secure=True)
 twist.SAGETEX_PATH = ''
 twist.OPEN_MODE = False
-twist.SID_COOKIE = str(hash('/remotehome/schulz/teaching/sage/notebooks.sagenb'))
-twist.DIR = '/remotehome/schulz/teaching/sage'
+twist.SID_COOKIE = str(hash('/home/cs/hg/sage/notebooks.sagenb'))
+twist.DIR = '/home/cs/hg/sage'
 twist.reactor = reactor
 twist.init_updates()
 import sagenb.notebook.worksheet as worksheet
@@ -70,7 +70,7 @@ factory = channel.HTTPFactory(site)
 from twisted.web2 import channel
 from twisted.application import service, strports
 application = service.Application("SAGE Notebook")
-s = strports.service('tls:8000:interface=localhost:privateKey=/home/schulz/.sage/notebook/private.pem:certKey=/home/schulz/.sage/notebook/public.pem', factory)
+s = strports.service('tls:8000:interface=localhost:privateKey=/home/cs/.sage/notebook/private.pem:certKey=/home/cs/.sage/notebook/public.pem', factory)
 
 s.setServiceParent(application)
 

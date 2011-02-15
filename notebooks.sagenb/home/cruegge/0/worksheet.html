@@ -3,28 +3,29 @@
 <h2>Aufgabe 1</h2>
 
 {{{id=4|
+reset()
 f(x) = exp(1/x)+1/4*x*exp(1/x) ; f
 ///
-x |--> 1/4*x*e^(1/x) + e^(1/x)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x \ {\mapsto}\ \frac{1}{4} \, x e^{\frac{1}{x}} + e^{\frac{1}{x}}</span></html>
 }}}
 
 {{{id=15|
 f.limit(x=0,dir='minus'),f.limit(x=0,dir='plus')
 ///
-(x |--> 0, x |--> +Infinity)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left(0, +\infty\right)</span></html>
 }}}
 
 {{{id=1|
 f.limit(x=oo);f.limit(x=-oo)
 ///
-x |--> +Infinity
-x |--> -Infinity
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}+\infty</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-\infty</span></html>
 }}}
 
 {{{id=5|
 solve(f==0,x)
 ///
-[x == -4, e^(1/x) == 0]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = \left(-4\right), e^{\frac{1}{x}} = 0\right]</span></html>
 }}}
 
 {{{id=6|
@@ -38,39 +39,39 @@ x |--> 9/4*e^(1/x)/x^3 + e^(1/x)/x^4
 {{{id=7|
 ES = solve(fprime==0,x); ES
 ///
-[x == -1/2*sqrt(17) + 1/2, x == 1/2*sqrt(17) + 1/2, e^(1/x) == 0]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = -\frac{1}{2} \, \sqrt{17} + \frac{1}{2}, x = \frac{1}{2} \, \sqrt{17} + \frac{1}{2}, e^{\frac{1}{x}} = 0\right]</span></html>
 }}}
 
 {{{id=9|
 ES[1].rhs(); float(ES[1].rhs());float(fdprime(ES[1].rhs()));
 ///
-1/2*sqrt(17) + 1/2
-2.5615528128088303
-0.23211397181875526
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{1}{2} \, \sqrt{17} + \frac{1}{2}</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}2.56155281281</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0.232113971819</span></html>
 }}}
 
 {{{id=10|
 ES[0].rhs(); float(ES[0].rhs());float(fdprime(ES[0].rhs()));
 ///
--1/2*sqrt(17) + 1/2
--1.5615528128088303
--0.22280967877805538
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-\frac{1}{2} \, \sqrt{17} + \frac{1}{2}</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-1.56155281281</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-0.222809678778</span></html>
 }}}
 
 {{{id=17|
 WP = solve(fdprime==0,x); WP
 ///
-[x == (-4/9), e^(1/x) == 0]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = \left(-\frac{4}{9}\right), e^{\frac{1}{x}} = 0\right]</span></html>
 }}}
 
 {{{id=18|
 float((f.differentiate())(WP[0].rhs()))
 ///
--0.44794670438792339
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-0.447946704388</span></html>
 }}}
 
 {{{id=11|
-plot(f,xmin=-5,xmax=10,ymin=-1,ymax=4,detect_poles='true')
+plot(f,xmin=-5,xmax=10,ymin=-1,ymax=4)
 ///
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
@@ -78,134 +79,154 @@ plot(f,xmin=-5,xmax=10,ymin=-1,ymax=4,detect_poles='true')
 <h2>Aufgabe 2</h2>
 
 {{{id=40|
-var('s')
+# Definition als Python-Funktion ("black box")
+reset()
 def g(s): return integral(x^(s-1)*exp(-x),x,0,oo)
+g
 ///
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\hbox{ < function g at 0xb64ee64 > }</span></html>
+}}}
+
+{{{id=48|
+# oder als symbolischer Ausdruch:
+reset(); forget()
+var('s')
+assume(s>0)
+g(s) = integral(x^(s-1)*exp(-x),x,0,oo)
+g
+///
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}s \ {\mapsto}\ \Gamma\left(s\right)</span></html>
 }}}
 
 {{{id=22|
 [g(m) for m in range(1,11) ]
 ///
-[1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880\right]</span></html>
 }}}
 
 {{{id=23|
 (8*g(2)*g(5/2)/g(4))^2
 ///
-pi
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\pi</span></html>
 }}}
 
 <h2>Aufgabe 3</h2>
 
 {{{id=24|
+reset()
 var('a')
 limit((1+a/x)^x,x=oo)
 ///
-e^a
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}e^{a}</span></html>
 }}}
 
 {{{id=25|
 limit(sin(1/x)*x,x=0)
 ///
-0
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0</span></html>
 }}}
 
 {{{id=26|
 limit(sin(1/x),x=0)
 ///
-ind
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\mbox{ind}</span></html>
 }}}
 
 <h2>Aufgabe 4</h2>
 
 {{{id=43|
+reset()
 var('a')
 ///
-a
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}a</span></html>
 }}}
 
 {{{id=27|
 integral(x/(2*a*x-x^2)^(3/2),x)
 ///
-x/(sqrt(2*a*x - x^2)*a)
-}}}
-
-{{{id=42|
-integral((x/sqrt((2*a*x-x^2)^3)).full_simplify(),x)
-///
-sqrt(x)/(sqrt(2*a - x)*a)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{x}{\sqrt{2 \, a x - x^{2}} a}</span></html>
 }}}
 
 {{{id=28|
 integral(1/(x*sqrt(1+x^2)),x)
 ///
--arcsinh(1/abs(x))
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-{\rm arcsinh}\left(\frac{1}{{\left| x \right|}}\right)</span></html>
 }}}
 
 <h2>Aufgabe 5</h2>
 
 {{{id=29|
+reset()
 var('n,x,y')
-#assume(real(x) > 0, real(y) > 0)
+assume(real(x) > 0, real(y) > 0)
 f = x^(1/n)*y^(1/n)-(x*y)^(1/n)
 f.full_simplify()
 ///
-0
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0</span></html>
+}}}
+
+{{{id=51|
+# Funktioniert leider auch ohne die Annahme, dass die Realteile positiv sind
+reset(); forget()
+var('n,x,y')
+f = x^(1/n)*y^(1/n)-(x*y)^(1/n)
+f.full_simplify()
+///
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}0</span></html>
 }}}
 
 <h2>Aufgabe 6</h2>
 
 {{{id=30|
+reset()
+var('x,a')
 factor(2*x^2-2*a^2-x^3-2*x^4+x^5+a^2*x+2*a^2*x^2-a^2*x^3)
 ///
--(x - 2)*(x - 1)*(x + 1)*(a - x)*(a + x)
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-{\left(x - 2\right)} {\left(x - 1\right)} {\left(x + 1\right)} {\left(a - x\right)} {\left(a + x\right)}</span></html>
 }}}
 
 <h2>Aufgabe 7</h2>
 
 {{{id=44|
-def f(v1,v2,w1,w2,w3):
-    var('k,l')
-    p = parametric_plot3d(v1+k*v2,(k,-4,4))
-    p += parametric_plot3d(w1+k*w2+l*w3,(k,-4,4),(l,-4,4))
-    p.show()
+reset()
+var('k,l,m')
+
+E0 = vector([2,1,-1])
+E1 = vector([1,-1,1])
+E2 = vector([-3,1,4])
+
+E = E0 + l*E1 + m*E2
+
+g0 = vector([3,4,5])
+g1 = vector([4,-1,2])
+
+g = g0 + k*g1
 ///
+}}}
+
+{{{id=49|
+klm = solve(E - g, [k,l,m], solution_dict=true); klm
+///
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[\left\{m:\: \frac{23}{17}, l:\: -\frac{66}{17}, k:\: -\frac{38}{17}\right\}\right]</span></html>
+}}}
+
+{{{id=50|
+schnittpunkt = g.subs(klm[0]); schnittpunkt
+///
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left(-\frac{101}{17},\frac{106}{17},\frac{9}{17}\right)</span></html>
 }}}
 
 {{{id=45|
-f(vector([3,4,5]),vector([1,1,1]))
-///
-}}}
-
-{{{id=31|
-var('l,k,m')
-e1=2+l-3*m;e2=1-l+m;e3=-1+l+4*m
-g1=3+4*k; g2=4-k; g3=5+2*k
-///
-}}}
-
-{{{id=32|
-p = parametric_plot3d([e1,e2,e3],(l,-5,5),(m,-5,5), color='green', opacity=0.8)
-p += parametric_plot3d( (g1,g2,g3), (k, -5, 5),thickness='3' )
+p = parametric_plot3d(g, (k,-4,0), thickness=3)
+p += parametric_plot3d(E, (l,-6,-2), (m,0,4), color='green', opacity=0.8)
 p.show()
 ///
-}}}
-
-{{{id=33|
-klm = solve([e1-g1,e2-g2,e3-g3],[k,l,m]); klm
-///
-[[k == (-38/17), l == (-66/17), m == (23/17)]]
-}}}
-
-{{{id=34|
-schnittpunkt=vector([g1,g2,g3]).subs(k==klm[0][0].rhs()); schnittpunkt
-///
-(-101/17, 106/17, 9/17)
 }}}
 
 <h2>Aufgabe 8</h2>
 
 {{{id=35|
+reset()
 menge = [1..1000]
 ///
 }}}
@@ -213,5 +234,5 @@ menge = [1..1000]
 {{{id=38|
 [m for m in menge if (mod(m,3)==0) and (mod(m,2)==0) and (mod(m,7) ==0)]
 ///
-[42, 84, 126, 168, 210, 252, 294, 336, 378, 420, 462, 504, 546, 588, 630, 672, 714, 756, 798, 840, 882, 924, 966]
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[42, 84, 126, 168, 210, 252, 294, 336, 378, 420, 462, 504, 546, 588, 630, 672, 714, 756, 798, 840, 882, 924, 966\right]</span></html>
 }}}
