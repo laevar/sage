@@ -7,13 +7,13 @@ reset()
 var('x')
 f = (x^2-3*x+5) / (x^3-2*x^2+x); f
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{{\left(x^{2} - 3 \, x + 5\right)}}{{\left(x^{3} - 2 \, x^{2} + x\right)}}</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\frac{x^{2} - 3 \, x + 5}{x^{3} - 2 \, x^{2} + x}</span></html>
 }}}
 
 {{{id=47|
 f.partial_fraction()
 ///
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-4 \, \frac{1}{{\left(x - 1\right)}} + 3 \, \frac{1}{{\left(x - 1\right)}^{2}} + 5 \, \frac{1}{x}</span></html>
+<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}-\frac{4}{x - 1} + \frac{3}{{\left(x - 1\right)}^{2}} + \frac{5}{x}</span></html>
 }}}
 
 {{{id=4|
@@ -21,13 +21,17 @@ f(x=1)
 ///
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "_sage_input_86.py", line 5, in <module>
-    exec compile(ur'f(x=_sage_const_1 )' + '\n', '', 'single')
+  File "_sage_input_6.py", line 10, in <module>
+    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("Zih4PTEp"),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
   File "", line 1, in <module>
     
-  File "expression.pyx", line 3139, in sage.symbolic.expression.Expression.__call__ (sage/symbolic/expression.cpp:14371)
-  File "ring.pyx", line 559, in sage.symbolic.ring.SymbolicRing._call_element_ (sage/symbolic/ring.cpp:5900)
-  File "expression.pyx", line 2990, in sage.symbolic.expression.Expression.substitute (sage/symbolic/expression.cpp:13761)
+  File "/tmp/tmpZHHPej/___code___.py", line 3, in <module>
+    exec compile(u'f(x=_sage_const_1 )' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "expression.pyx", line 3474, in sage.symbolic.expression.Expression.__call__ (sage/symbolic/expression.cpp:15657)
+  File "ring.pyx", line 640, in sage.symbolic.ring.SymbolicRing._call_element_ (sage/symbolic/ring.cpp:6537)
+  File "expression.pyx", line 3325, in sage.symbolic.expression.Expression.substitute (sage/symbolic/expression.cpp:15036)
 RuntimeError: power::eval(): division by zero
 }}}
 
@@ -158,7 +162,7 @@ for i in [1..n]:
         c = c + 1
 print 4*(c/n).n()
 ///
-3.13896000000000
+3.14272000000000
 }}}
 
 {{{id=71|
