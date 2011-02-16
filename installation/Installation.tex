@@ -1,0 +1,103 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage [ngerman]{babel}
+%Für erweiterte Enumerationseinstellungen
+\usepackage{enumerate}
+
+
+
+\usepackage{xcolor}
+\definecolor{white}{rgb}{1,1,1}
+\usepackage[linkbordercolor=white,urlbordercolor=white ,citebordercolor=white]{hyperref}
+%opening
+\title{Installation von Sage}
+
+
+\begin{document}
+\maketitle
+\section{Windows}
+Leider kann man Sage nicht so unter Windows installieren, wie man es sonst gewohnt ist. Um es trotzdem in seiner gewohnten Windows
+Umgebung nutzen zu können, muss man eine virtuelle Maschiene erstellen, auf der eine Linuxversion installiert ist, auf der dann 
+Sage läuft. 
+Zum Glück gibt es das auch schon fertig installiert. 
+
+\subsection{Virtual Box}
+Um diese diese Methode benutzen zu können, muss zunächst das kostenlose Programm \emph{Virtual Box} heruntergeladen und installiert werden. 
+Das Programm findet sich hier: \url{http://www.virtualbox.org/wiki/Downloads}. Alternativ geht auch das Programm \emph{VMware} aber 
+da man hier für den Download erst die eigene Emailadresse herausrücken muss, ist wohl Virtualbox die einfacher Wahl.
+\paragraph{}
+Das Programm zu installieren sollte keine Schwierigkeiten bereiten. Einfach die Abfragen mit weiter bestätigen. Nun benötigt man noch
+die Datei die ein intalliertes Linux und Sage enthält. Diese bekommt man unter der Adresse:
+ \url{ftp://ftp.fu-berlin.de/unix/misc/sage/win/index.html}. Die etwa 1GB große .zip Datei herunterladen und entpacken.
+Möglichst nicht irgendwo auf dem Desktop, wo man sie vermutlich demnächst versehentlich löscht. 
+\paragraph{}
+Nun müssen wir diese Datei in Virtualbox einlesen. Dafür starten wir das Programm und klicken auf das Zahnradsymbol 
+\emph{neu}. Die Erklärung, das uns der Dialog führen wird quitieren wir mit \emph{weiter}.
+
+Jetzt kann ein Name gewählt werden. 
+Mein Vorschlag \textquotedblleft sage\textquotedblright. Als Betriebsystem wählen wir \emph{Linux} und als Version \emph{ubuntu}.
+Mit \emph{weiter} bestätigen wir diese Angaben. 
+
+Nun gilt es die Menge an Speicher auszuwählen. Dies hängt jetzt etwas vom eigenem 
+System ab. Es sollten schon mindestens 512MB sein und solange der Rechner nicht allzu alt ist kann gerne 1024MB
+ausgewählt werden. Mit einem Klick auf \emph{weiter} sind wir im nächsten Dialogteil.
+
+Den Hacken bei Bootfestplatte lassen wir gesetzt. Aber wählen den Punkt \emph{Festplatte benutzen} aus. Mit einem Klick auf das 
+Ordnersymbol rechts daneben navigieren wir zu dem Ort, an den wir die .zip Datei entpackt haben. Diese wird ausgewählt. Mit 
+\emph{abschließen} wird der Vorgang abgeschlossen (Wer hätte es gedacht).
+\paragraph{}
+Nun ist eigentlich schon alles fertig. Mit einem Klick auf den grünen Pfeil starten wir nun den Linuxrechner.
+
+In einem neuen Fenster sieht man das vertraute Bild eines startenden PCs. Ist dieser fertig gestartet und der Desktop geladen 
+ startet ein Klick auf das Icon Sage-Notebook den Sage Server.
+Hier könnte man nun schon direkt arbeiten, aber der kleine Bildschirm und das extra Fenster sind dann vielleicht doch etwas unkomfortabel.
+Im Idealfall kann man auch, wenn der Sage Server erst einmal gestartet ist, über den Internet Browser seiner Wahl, im Windows System
+das Notebook Fenster öffnen. Dafür die Adresse, die in der Konsole, in Sternchen eingerahmt, angezeigt wird, in die Adressleiste der Browsers 
+kopieren.
+
+In Ausnamfällen kann es sein, dass das nicht funktioniert, weil keine Netzwerkverbindung erkannt wird. Für diesen Fall habe ich eine
+DVD mit einem etwas großzügerem Ubuntu und fertig installiertem Sage vorbereitet. Diese kann sich gerne in einer der ersten Übungen
+ausgeliehen werden.
+\paragraph{}
+Außerdem besteht natürlich auch immer die Möglichkeit sich auf einer Partition Ubuntu zu installieren und Sage darauf laufen zu lassen.
+
+
+
+
+\section{Linux(Ubuntu)}
+Ich erkläre hier einmal die Vorgehensweise für Ubuntu, für andere Distributionen sollte es aber genauso gehen.
+Zunächst muss das Programm heruntergeladen werden. \url{ftp://ftp.fu-berlin.de/unix/misc/sage/linux/index.html}. Hier wählt man die 
+entprechende Version des Betriebsystems aus. Sollte nicht klar sein, ob man ein 32 oder ein 64Bit System verwendet, funktioniert
+im Zweifelsfall die 32Bit Version auch unter 64Bit. 
+\paragraph{}
+Ist das Archiv erstmal heruntergeladen, gilt es dieses zu entpacken. Am besten an einen Ort, wo der Ordner auch weiterhin bestehen kann
+und nicht irgendwo im Download Verzeichnis. Dann am besten noch den Ordnernamen in einen einfachen Titel umbennen, da wir den Namen 
+auch mal eintippen müssen auf Leerzeichen und Umlaute sollte man dabei aber besser verzichten.
+\paragraph{}
+Zum Test ob Sage denn jetzt schon funktioniert, können wir in der Konsole einfach einmal eingeben \verb cd/Pfad/zum/Ordner/Sage  und 
+ \verb ./sage  Das sollte Sage starten. Dann (wie auch angezeigt) muss man einen Augenblick warten. Bis die Eingabe erwartet
+wird \emph{sage:}. Hier gibt man nun \verb notebook()  ein. Beim ersten Start wird dann ein Passwort festgelegt. Nun könnte man Sage
+benutzen. 
+\paragraph{}
+Aber wir können noch eine Abkürzung zum Starten des Programms definieren, denn wer will schon immer den ganzen Pfad mit 
+eingeben.
+
+Dafür müssen dann einfach die folgenden Befehle in die Konsole eingeben werden: \verb PATH=\$PATH:/Pfad/zum/Ordner/Sage  und
+\verb export  \verb PATH  Das war es dann auch schon
+nun kann Sage einfach über den Konsolenaufruf \verb sage  gestartet werden.
+
+Wer will kann sich ja noch eine Desktopverknüpfung oder einen Menüeintrag anlegen. 
+
+
+\section{OS-X}
+Um Sage unter OS-X zu installieren, muss zunächst einmal das .dmg Abbild von Sage heruntergeladen werden. Dieses ist hier
+\url{ftp://ftp.fu-berlin.de/unix/misc/sage/osx/index.html} zu finden. Erst mal den Prozessortyp auswählen. Sollte nicht klar 
+sein, welcher Prozessortyp in dem Mac steckt, hilft ein Blick in \emph{Über diesen Mac} im Finder. Dort sollte das stehen. Dann ist 
+auch gleich klar, ob man einen 32 oder 64Bit Prozessor hat.
+
+Ist die Datei erst einmal heruntergeladen, reicht es die .dmg Datei zu öffnen. Die Dateien werden dann entpackt und man kann sie an 
+die gewünschte Stelle verschieben. Gestartetet wird dann über die Konsole. Zu dem Ordner navigieren und mit \verb ./sage  wird das
+Programm gestartet. Eingabe von \verb notebook()  startet dann das Web-Frontend. Bei der ersten Ausführung sollte man ein wenig
+Geduld aufbringen und warten, bis die Dateipfade richtig gesetzt sind. Beim Start des notebooks muss dann noch ein Passwort vergeben
+werden.
+\end{document}
