@@ -177,11 +177,40 @@ reset(); forget()
 var('n,x,y')
 f = x^(n)*y^(n)-(x*y)^(n)
 assume(n, 'integer')
-print f.simplify()
+print f.full_simplify()
 bool(f == 0)
 ///
-0
-<html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}{\rm True}</span></html>
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "_sage_input_49.py", line 10, in <module>
+    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("cmVzZXQoKTsgZm9yZ2V0KCkKdmFyKCduLHgseScpCmYgPSB4XihuKSp5XihuKS0oeCp5KV4obikKYXNzdW1lKG4sICdpbnRlZ2VyJykKcHJpbnQgZi5mdWxsX3NpbXBsaWZ5KCkKYm9vbChmID09IDAp"),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "/tmp/user/2001/tmp3W6FSN/___code___.py", line 3, in <module>
+    reset(); forget()
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/symbolic/assumptions.py", line 400, in forget
+    _forget_all()
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/symbolic/assumptions.py", line 486, in _forget_all
+    x.forget()
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/symbolic/assumptions.py", line 137, in forget
+    maxima.deactivate(self._context)
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1452, in __call__
+    return self._parent.function_call(self._name, list(args), kwds)
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1378, in function_call
+    return self.new(s)
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1159, in new
+    return self(code)
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1095, in __call__
+    return cls(self, x, name=name)
+  File "/usr/local/sage/local/lib/python2.6/site-packages/sage/interfaces/expect.py", line 1522, in __init__
+    raise TypeError, x
+TypeError: Error executing code in Maxima
+CODE:
+	sage1143 : deactivate(sage1125)$
+Maxima ERROR:
+	
+deactivate: no such context sage1125
+ -- an error. To debug this try: debugmode(true);
 }}}
 
 <h2>Aufgabe 6</h2>
@@ -197,7 +226,6 @@ factor(2*x^2-2*a^2-x^3-2*x^4+x^5+a^2*x+2*a^2*x^2-a^2*x^3)
 }}}
 
 <h2>Aufgabe 7*</h2>
-
 <p>Zeichnen und berechnen Sie den Schnittpunkt der Ebene <br />\[ E: \vec{x}= <br />\left ( \begin{array}{c}&nbsp; 2 \\ 1 \\ -1 \end{array} \right) +l <br />\left ( \begin{array}{c}&nbsp; 1 \\ -1 \\ 1 \end{array} \right) +m<br />\left ( \begin{array}{c}&nbsp; -3 \\ 1 \\ 4 \end{array} \right), \quad l,m<br />\in \mathbb{R}<br />\]<br />mit der Geraden <br />\[<br />g: \vec{x}=<br />\left ( \begin{array}{c}&nbsp; 3 \\ 4 \\ 5 \end{array} \right) +k<br />\left ( \begin{array}{c}&nbsp; 4 \\ -1 \\ 2 \end{array} \right), \quad k \in \mathbb{R}.<br />\]</p>
 
 {{{id=44|
