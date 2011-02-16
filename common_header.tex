@@ -130,7 +130,7 @@ escapechar=§
 % \makebox[\textwidth]{%                           % Box in linewidth
 %\textbf{Aufgabe \arabic{zaehler} } }\hspace{-\textwidth}\makebox[\textwidth]{\hfill #1 Punkte} }\\[0.05cm]       % Header
 \dotfill\\
-{\large\textbf{Aufgabe \arabic{zaehler} }\ifthenelse{0=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
+{\large\textbf{Aufgabe \arabic{zaehler} }\ifthenelse{-1=#1}{(testierbar)}{}\ifthenelse{0=#1 \or -1=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
 \begin{minipage}{\textwidth}
 }
 %-----  foot
