@@ -209,9 +209,9 @@ A.intersection(A2) == A2
 \section{Zahlen}
 %--------------------------------------
 
-\begin{frame}{Natürliche Zahlen (nach Peano)}
+\begin{frame}{Natürliche Zahlen $\mathbb{N}$ (nach Peano)}
 % andere einfuehrung!
-Natürliche Zahlen $\mathbb{N} := 0,1,2,3,\dots$:
+Natürliche Zahlen $\mathbb{N} := \{0,1,2,3,\dots\}$:
 \begin{enumerate}
 \item $0 \in \mathbb{N}$
 \item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
@@ -220,7 +220,6 @@ Natürliche Zahlen $\mathbb{N} := 0,1,2,3,\dots$:
 \item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
   $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
 \end{enumerate}
-\end{frame}
 Bemerkungen:
 \begin{itemize}
 \item Nachfolgefunktion: $nf(m)=m+1$
@@ -261,21 +260,16 @@ $A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklass
 \end{frame}
 
 \begin{frame}{Ganze Zahlen $\mathbb{Z}$}
-Einführung der ganzen Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
+Ganze Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
 % das kann abe rbesser...
 \begin{itemize}
 \item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
 $(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
-\item Die Tupel der Form $(m,0)$ sind paarweise nicht äquivalent
-zueinander. Dies sind die nichtnegativen Zahlen. Die negativen Zahlen
-werden durch $(0,m)$ identifiziert. 
+\item Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
+zueinander.
+\item Negative Zahlen: $(0,m)$. 
 \item Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
 der Äquivalenzklassen.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Verknüpfungen}
-\begin{itemize}
 \item Addition:
 \[
 \overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
@@ -342,7 +336,7 @@ Multiplikation:
 \[
 \overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
 \]
-\item Die rationalen Zahlen bilden einen \alert{Körper}.
+%\item Die rationalen Zahlen bilden einen \alert{Körper}.
 \end{itemize} 
 \end{frame}
 
@@ -379,8 +373,7 @@ $a,b,c \in G$.
 Element}) mit $a' \cdot
 a=e$. 
 \end{itemize}  
-Gilt zusätzlich $a \cdot b = b \cdot a$ \alert{für alle} $a,b \in G$ so heißt
-die Gruppe {\it abelsch}.
+{\it abelsche} Gruppe: $a \cdot b = b \cdot a$ \alert{für alle} $a,b \in G$.
 \end{frame}
 
 \begin{frame}[fragile]{Eigenschaften einer Gruppe}
@@ -473,31 +466,24 @@ Analog definiert man $<$ und $\leq$.
 \begin{frame}{Schranken}
 Sei $K$ ein angeordneter Körper.
 \begin{itemize}
-\item $y\in K$ heißt {\color{red} obere Schranke} von $M \subset
-K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
-\item Hat eine Teilmenge $M$ von $K$ eine obere Schranke, so heißt $M$
-nach oben {\color{red} beschränkt} (analog {\color{red} untere Schranke}).
-\item Eine obere Schranke $y$ einer Teilmenge $M$ von $K$ heißt {\color{red}
-Maximum} von $M$, wenn $y\in M$ (analog {\color{red} Minimum}).
-\item Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M$ von
-$K$ heißt {\color{red} Supremum} (analog {\color{red} Infimum}). Insbesondere müssen sie nicht Element der Menge $M$ sein oder gar als Element von $K$ existieren.  
+\item {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
+\item nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
+\item {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
+\item {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
+(Nicht notwendigerweise in $M$ oder $K$).  
 \end{itemize}
 \end{frame} 
 
-\begin{frame}{Reelle Zahlen}
+\begin{frame}{Reelle Zahlen $\mathbb{R}$}
 \begin{itemize}
 \item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
 Schranke.
-\item Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
-Mengen von oberen Schranken haben. Auf diese Weise kann eine
-Äquivalenzrelation definiert werden.
+\item Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
+Mengen von oberen Schranken haben. 
 \item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
-Zahlen} und die Menge dieser Zahlen bezeichnet man mit $\mathbb{R}$. 
+Zahlen}.
 \end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Bemerkungen}
+Bemerkungen
 \begin{itemize}
 \item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
 definieren. 
@@ -513,13 +499,10 @@ einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
 \begin{frame}[fragile]{Reelle Zahlen in Sage - Gleitkommazahlen }
 Datentyp \isage{RealNumber}\\
 \textbf{Problem:}
-keine exakte Darstellung möglich => Approximation
-Datentyp float
-
+keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
 \begin{itemize}
-\item Gleitkommazahlen haben in Sage den Datentyp
-\isage{float}. 
-\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
+\item Gleitkommazahlen haben in Sage den Datentyp \isage{float}. 
+%\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
 \item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
 %\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
 %bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
@@ -535,77 +518,13 @@ Datentyp float
 \end{sage}
 \end{frame}
 
-\begin{frame}{Gleitkommazahlen II}
-spaeter!
-\textbf{Darstellung von Gleitkommazahlen:}
-\[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
-  b^e}, \quad { \color{red} a_1} \neq 0
-\]
-\begin{itemize}
-\item ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
-\item ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
-\item ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
-\item Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
-\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
-\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
-\item Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
-\end{itemize} 
-\end{frame}
 
-\begin{frame}[fragile]{Gleitkommazahlen III}
-
-\textbf{Beispiele:}
-\[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
-  {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
-  + {\color{red} 0} \cdot 2^1 + {\color{red} 1} \cdot 2^0 
-\]
-$\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
-\[
-73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
-\]
- $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
-\begin{sagein}
-Zp(2,print_mode='digits')(73)
-\end{sagein}
-\begin{sage}
-...1001001
-\end{sage}
-\begin{sagein}
-Zp(8,print_mode='digits',check=False)(73) 
-\end{sagein}
-\begin{sage}
-...111
-\end{sage}
-
-
-\end{frame}
-
-
-\begin{frame}[fragile]{Beispiele}
-
-\[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
-  2^{-1} + {\color{red} 1} \cdot 2^{-2}+
-{\color{red} 1} \cdot 2^{-3} + {\color{red} 1} \cdot 2^{-4}+{\color{red} 0} \cdot 2^{-5}+ \dots \]
-$\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
-
-\[ 2.45 = {\color{red} 2} \cdot 8^0 +  {\color{red} 3} \cdot
-  8^{-1} + {\color{red} 4} \cdot 8^{-2}+
-{\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
-$\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
-% \begin{sagein}
-%  Zp(2,print_mode='digits')(245)/Zp(2,print_mode='digits')(100)
-% \end{sagein}
-% \begin{sage}
-% ...1100110011001111.01 
-% \end{sage}
-\end{frame}
 
 \begin{frame}[fragile]{Rundungsfehler}
 \begin{itemize}
-\item Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Es
- gilt für den {\it relativen Fehler} 
+\item \alert{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
 \[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
-mit $\varepsilon=b^{1-t}$.
+mit $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
 \item Rundungsfehler können sich innerhalb eines Verfahrens
 verstärken. ({\it Fehlerfortpflanzung}).
 \item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
@@ -618,15 +537,14 @@ vermeiden.}
 
 \begin{frame}[fragile]{Rechnen mit Zahlen I}
 \begin{itemize}
- \item Approximation durch \isage{float}. Berechnen einer numerischen
- Näherung zu einem Ausdruck.
+ \item Berechnen einer numerischen  Näherung
 \begin{sagein}
 (pi).n(digits=22), (exp(1)).n(digits=22)
 \end{sagein}
 \begin{sage}
 (3.141592653589793238463, 2.718281828459045235360)
 \end{sage}
-\item Sage rechnet näherungsweise, sobald mindestens eine Zahl in
+\item Sage rechnet mit \isage{floats}, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
 \begin{sagein}
 (1.0+(5/2*3))/(1/7+7/9)^2
@@ -645,6 +563,14 @@ Gleitkommadarstellung gegeben ist
 
 \begin{frame}[fragile]{Rechnen mit Zahlen II}
 \begin{itemize}
+\item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
+     von Gleitkommazahlen.
+\begin{sagein}
+sqrt(64.0), sin(3.14), sin(7/5)
+\end{sagein}
+\begin{sage}
+(8.0000000000000, 0.00159265291648683, sin(7/5))
+\end{sage}
 \item Ausdrücke werden nicht automatisch umgewandelt
 \begin{sagein}
 2/3*sin(2), 0.666666666666666*sin(2)
@@ -657,14 +583,6 @@ float(2/3*sin(2))
 \end{sagein}
 \begin{sage}
 0.60619828455045444
-\end{sage}
-\item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
-     von Gleitkommazahlen.
-\begin{sagein}
-sqrt(64.0), sin(3.14), sin(7/5)
-\end{sagein}
-\begin{sage}
-(8.0000000000000, 0.00159265291648683, sin(7/5))
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -709,27 +627,105 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 \end{center}
 \end{frame}
 
-\begin{frame}{Komplexe Zahlen $\mathbb{C}$}
- Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ versehen mit der
- Addition
-\[ (k,l)+(n,m)=(k+n,l+m) \] und der Multiplikation
-\[ (k,l) \cdot (n,m) = (kn-lm, km+ln) \]
-ist der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}. 
+\begin{frame}{Darstellung von Gleitkommazahlen I}
+\[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
+  b^e}, \quad { \color{red} a_1} \neq 0
+\]
+\begin{itemize}
+\item ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
+\item ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
+\item ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
+\item Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
+\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
+\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
+\item Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
+\end{itemize} 
+\end{frame}
 
-Das Element {\color{red} $i:=(0,1)$} hat die Eigenschaft
-\[ i^2=(0,1) \cdot (0,1) = (-1,0). \]
-Jedes $(x,y) \in \mathbb{C}$ hat die Eigenschaft
-\[  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y.\]
+\begin{frame}[fragile]{Darstellung von Gleitkommazahlen II}
+
+\textbf{Beispiele:}
+\[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
+  {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
+  + {\color{red} 0} \cdot 2^1 + {\color{red} 1} \cdot 2^0 
+\]
+$\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
+\[
+73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
+\]
+ $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
+\begin{sagein}
+73.str(2)
+\end{sagein}
+\begin{sage}
+1001001
+\end{sage}
+\begin{sagein}
+73.str(8)
+\end{sagein}
+\begin{sage}
+111
+\end{sage}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Darstellung von Gleitkommazahlen III}
+
+\[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
+  2^{-1} + {\color{red} 1} \cdot 2^{-2}+
+{\color{red} 1} \cdot 2^{-3} + {\color{red} 1} \cdot 2^{-4}+{\color{red} 0} \cdot 2^{-5}+ \dots \]
+$\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
+
+\[ 2.45 = {\color{red} 2} \cdot 8^0 +  {\color{red} 3} \cdot
+  8^{-1} + {\color{red} 4} \cdot 8^{-2}+
+{\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
+$\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
+ \begin{sagein}
+ (2.45).str(2)
+ \end{sagein}
+ \begin{sage}
+10.011100110011001100110011001100110011001100110011010
+ \end{sage}
+ \begin{sagein}
+ (2.45).str(8)
+ \end{sagein}
+ \begin{sage}
+2.346314631463146320
+ \end{sage}
+
+\end{frame}
+
+
+\begin{frame}{Komplexe Zahlen $\mathbb{C}$}
+Der angeordnete Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
+Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
+\begin{itemize}
+ \item   Addition: $(k,l)+(n,m)=(k+n,l+m)$
+\item Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
+\end{itemize}
+
+\begin{itemize}
+ \item {\color{red} $i:=(0,1)$}  mit 
+\begin{itemize}
+\item $ i^2=(0,1) \cdot (0,1) = (-1,0) $
+\item $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
+\end{itemize}
+\item \alert{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
+\end{itemize}
+
+
+
 \end{frame}
 
 \begin{frame}[fragile]{Eigenschaften von $\mathbb{C}$}
 \begin{itemize}
-\item Fundamentalsatz der Algebra: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
+\item \alert{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
 \item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
 \[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
-\item Betrag $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
+
 \item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
-\item $\mathbb{C}$ ist kein angeordneter Körper!
 \end{itemize}
 \end{frame}
 
@@ -755,10 +751,9 @@ sqrt(-1), I^2
 
 \begin{frame}[fragile]{$\mathbb{C}$ in Sage II}
 \begin{itemize}
-\item  Ergebnisse werden nicht automatisch bzgl. Realteil und
-        Imaginärteil getrennt
-\item Mittels \isage{real()} und \isage{imag()} erhält man Real- und
-                  Imaginärteil.
+\item  Keine automatische Trennung bzgl. Realteil und  Imaginärteil\\
+\item \isage{real()}: Realteil
+\item \isage{imag()}: Imaginärteil
 \begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sagein}

@@ -1,6 +1,7 @@
 
 
 <h2>Aufgabe 1</h2>
+<p>Welche der Vektoren \[v_1=\left(\begin{array}{c} 1\\2\\3\\4\\5 \end{array}\right),\quad v_2=\left(\begin{array}{c}-1\\27\\26\\1\\-27 \end{array}\right),\quad v_3=\left(\begin{array}{c} 160\\-48\\112\\-160\\48 \end{array}\right),\quad v_4=\left(\begin{array}{c} 120\\234\\-23\\-43\\29 \end{array}\right)\] sind zueinander orthogonal?</p>
 
 {{{id=1|
 reset()
@@ -32,6 +33,7 @@ matrix([[vi*vj for vi in v] for vj in v])
 }}}
 
 <h2>Aufgabe 2</h2>
+<p>Bestimmen Sie f&uuml;r die Matrizen \[A=\left(\begin{array}{ccc} 1 &amp; 8 &amp; 4 \\ 3 &amp; 1 &amp; 3 \\ 2 &amp; 2 &amp; 2 \end{array}\right),\quad B=\left(\begin{array}{ccc} 5 &amp; 5 &amp; 6 \\ 7 &amp; 9 &amp; 1 \\ 8 &amp; 10 &amp; 0 \end{array}\right),\quad C=\left(\begin{array}{ccc} 1 &amp; 1 &amp; 2 \\ 2 &amp; 1 &amp; 1 \\ 2 &amp; 2 &amp; 2 \end{array}\right),\] \[D=AB,\quad E=BC,\quad F=B^TC\] jeweils den Rang und die Determinante.</p>
 
 {{{id=4|
 reset()
@@ -58,6 +60,12 @@ Ms = [A,B,C,D,E,F]
 }}}
 
 <h2>Aufgabe 3</h2>
+<p>Seien $A, B, C \in \mathbb{R}^{2 \times 2}$ und $x, y \in \mathbb{R}^2$. Zeigen Sie:&nbsp;</p>
+<p>\[(AB)^T = B^T A^T,\]</p>
+<p>\[A(x+y) = Ax + Ay,\]</p>
+<p>\[A(B+C) = AB + AC,\]</p>
+<p>\[\det(AB) = \det(A) \det(B),\]</p>
+<p>\[(AB)^{-1} = B^{-1} A^{-1}.\]</p>
 
 {{{id=8|
 reset()
@@ -138,6 +146,10 @@ map_threaded(f, (A*B).inverse() - B.inverse()*A.inverse())
 }}}
 
 <h2>Aufgabe 4</h2>
+<p>Welche der folgenden Matrizen sind unit&auml;r (d.h. $A^* A = I$), orthogonal, invertierbar, symmetrisch oder hermitesch (d.h. $A^* = A$)?</p>
+<p>\[A=\left(\begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; cos(\pi/6) &amp; -\sin(\pi/6) \\ 0 &amp; \sin(\pi/6) &amp; \cos(\pi/6) \end{array}\right),\quad</p>
+<p>B=\left(\begin{array}{ccc} 1 &amp; 1 &amp; i \\ 1 &amp; i &amp; 1 \\ i &amp; 1 &amp; 1 \end{array}\right),\quad</p>
+<p>C=\left(\begin{array}{ccc} 0 &amp; 0 &amp; 1 \\ \frac{2}{3}+\frac{i}{3} &amp; \frac{2}{3} &amp; 0 \\ \frac{2}{3} &amp; -\frac{2}{3}-\frac{i}{3} &amp; 0 \end{array}\right)\]</p>
 
 {{{id=23|
 reset()
@@ -185,6 +197,10 @@ Ms = [A,B,C]
 }}}
 
 <h2>Aufgabe 5</h2>
+<p>Gegeben seien die Untervektorr&auml;ume $V:=\mathrm{span}\{v_1,\, v_2,\, v_3\}$ und $W:=\mathrm{span}\{w_1,\, w_2,\, w_3\}$ des $\mathbb{R}^5$, wobei</p>
+<p>\[v_1=\left(\begin{array}{c} 3\\4\\-5\\6\\-8 \end{array}\right),\quad v_2=\left(\begin{array}{c} 2\\4\\8\\12\\-5 \end{array}\right),\quad v_3=\left(\begin{array}{c} 6\\5\\13\\21\\2 \end{array}\right),\]</p>
+<p>\[w_1=\left(\begin{array}{c} 5\\4\\-12\\2\\0 \end{array}\right),\quad w_2=\left(\begin{array}{c} 3\\5\\2\\-2\\8 \end{array}\right),\quad w_3=\left(\begin{array}{c} 4\\2\\9\\1\\8 \end{array}\right).\]</p>
+<p>Bestimmen Sie die Dimension des Durchschnitts $V \cap W$.</p>
 
 {{{id=34|
 reset()
@@ -208,6 +224,7 @@ V.dimension() + W.dimension() - (V+W).dimension()
 }}}
 
 <h2>Aufgabe 6</h2>
+<p>Erzeugen Sie mit Hilfe von&nbsp;<strong>var()</strong>&nbsp;die Matrix \[A=\left(\begin{array}{cccc} a11 &amp; a12 &amp; a13 &amp; a14 \\ a21 &amp; a22 &amp; a23 &amp; a24 \\ a31 &amp; s32 &amp; a33 &amp; a34 \\ a41 &amp; a42 &amp; a43 &amp; a44 \end{array}\right)\] und leiten sie daraus die allgemeine Determinantenformel f&uuml;r $(4 \times 4)$-Matrizen her.</p>
 
 {{{id=38|
 reset()
@@ -223,6 +240,13 @@ a11*a22*a33*a44 - a11*a22*a34*a43 - a11*a23*a32*a44 + a11*a23*a34*a42 + a11*a24*
 }}}
 
 <h2>Aufgabe 7</h2>
+<ol>
+<li>Erzeugen Sie die $(15 \times 15)$ Hilbert-Matrix $H:=(h_{ij})$ mit $h_{ij} := \frac{1}{i+j-1}$.</li>
+<li>Bestimmen Sie die Determinante von $H$.</li>
+<li>Berechnene Sie f&uuml;r den Vektor $r:=(1,\,1,\,\dots,\,1)^T$ das Matrix-Vektor-Produkt $y:=Hr$.</li>
+<li>L&ouml;sen Sie das Gleichungssystem $Hx=y$. Vergleichen Sie die berechnete L&ouml;sung mit der Referenzl&ouml;sung.</li>
+<li>Ersetzen Sie die Matrix durch $H=(h_{ij})$ mit $h_{ij} = \frac{1.0}{i+j-1}$ und l&ouml;sen Sie das Gleichungssystem erneut. Was stellen Sie fest?</li>
+</ol>
 
 {{{id=41|
 reset()
@@ -293,6 +317,7 @@ H\y
 }}}
 
 <h2>Aufgabe 8</h2>
+<p>Bestimmen Sie eine Gleitkommadarstellung von \[2\prod_{i=1}^{1000} \left(\frac{(2i)^2}{(2i-1)(2i+1)}\right).\]</p>
 
 {{{id=49|
 reset()
@@ -312,6 +337,7 @@ float( 2 * prod([(2*i)^2/(2*i-1)/(2*i+1) for i in [1..1000]]) )
 }}}
 
 <h2>Aufgabe 9</h2>
+<p>Schreiben Sie eine Funktion, die zu einer gegebenen Menge (Liste) von Zahlen die Summe aller Elemente berechnet und zur&uuml;ckgibt.</p>
 
 {{{id=52|
 reset()
