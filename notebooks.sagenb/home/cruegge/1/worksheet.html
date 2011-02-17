@@ -1,6 +1,10 @@
 
 
 <h2><strong>Aufgabe 1</strong></h2>
+<ol>
+<li>Erstellen Sie die Partialbruchzerlegung von \[\frac{x^2-3x+5}{x^3-2x^2+x}\]</li>
+<li>Welchen Wert hat dieser Bruch an der Stelle $x=1$?</li>
+</ol>
 
 {{{id=37|
 reset()
@@ -36,6 +40,7 @@ RuntimeError: power::eval(): division by zero
 }}}
 
 <h2>Aufgabe 2</h2>
+<p>&Uuml;berpr&uuml;fen Sie die folgenden Additionstheoreme: \[\sin^2x+\cos^2x=1,\] \[\sin(x+y)=\sin(x)\cos(y)+\cos(x)\sin(y),\] \[\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y),\] \[1+\tan^2x=\frac{1}{\cos^2x}.\]</p>
 
 {{{id=7|
 reset()
@@ -69,6 +74,7 @@ cos(x-y).full_simplify()
 }}}
 
 <h2>Aufgabe 3</h2>
+<p>Machen Sie sich mit dem Befehl <strong>sum</strong>&nbsp;vertraut. Beweisen Sie damit: \[\sum_{k=1}^n k=\frac{n(n+1)}{2}, \quad\sum_{k=1}^n (2k-1)=n^2, \quad\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}{6}, \quad\sum_{k=1}^n k^3=\left(\sum_{k=1}^n k\right)^2</p>
 
 {{{id=16|
 reset()
@@ -102,6 +108,7 @@ sum(k^2, k,1,n)
 }}}
 
 <h2>Aufgabe 4</h2>
+<p>Bestimmen Sie die Linearfaktoren von \[1458ax+2430a^2-315a^3+5a^4-972x^2+126ax^2-189a^2x+3a^3x-2a^2x^2.\]</p>
 
 {{{id=29|
 reset()
@@ -112,6 +119,7 @@ factor(1458*a*x+2430*a^2-315*a^3+5*a^4-972*x^2+126*a*x^2-189*a^2*x+3*a^3*x-2*a^2
 }}}
 
 <h2>Aufgabe 5</h2>
+<p>Erzeugen Sie eine Liste, die die Elemente $x^1, x^2, \dots, x^9$ enth&auml;lt.&nbsp;Benutzen Sie daf&uuml;r den <strong>range</strong>-Befehl.</p>
 
 {{{id=57|
 reset()
@@ -121,7 +129,8 @@ var('x')
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x, x^{2}, x^{3}, x^{4}, x^{5}, x^{6}, x^{7}, x^{8}, x^{9}\right]</span></html>
 }}}
 
-<h2>Aufgabe <strong>6<br /></strong></h2>
+<h2>Aufgabe <strong>6</strong></h2>
+<p>Geben Sie eine N&auml;herungsl&ouml;sung der Gleichung $x=\exp(-x)$ an.</p>
 
 {{{id=39|
 reset()
@@ -131,6 +140,10 @@ find_root(x-exp(-x), 0,1)
 }}}
 
 <h2>Aufgabe 7</h2>
+<p>Geben Sie folgende Zeilen ein:</p>
+<pre>[ (x == m) for m in range(1, 4) ]</pre>
+<pre>[ (x == m) for m in range(1, 4) if is_prime(n) ]</pre>
+<p>Erkl&auml;ren Sie die Ausgaben!</p>
 
 {{{id=62|
 reset()
@@ -149,10 +162,10 @@ reset()
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[x = 2, x = 3\right]</span></html>
 }}}
 
-<h2>Aufgabe 8</h2>
+<h2>Aufgabe 8 *</h2>
+<p>Bestimmen Sie n&auml;herungsweise die Zahl $\pi$. Nutzen Sie daf&uuml;r die Formel \[\pi = 4\frac{A_K}{A_Q},\] wobei $A_K$ der Fl&auml;cheninhalt eines Kreises und $A_Q$ der Fl&auml;cheninhalt des kleinsten Quadrats, das den Kreis enth&auml;lt. Berechnen Sie mit Hilfe einer <strong>for</strong>-Schleife und einer <strong>if</strong>-Abfrage das Verh&auml;ltnis der beiden Fl&auml;chen und damit eine N&auml;herung an $\pi$. Nutzen Sie daf&uuml;r aus, dass man f&uuml;r jeden Punkt innerhalb des Quadrats bestimmen kann, ob er innerhalb des Kreises liegt oder nicht.</p>
 
 {{{id=65|
-# Näherung für pi
 n = 100000
 c = 0
 for i in [1..n]:
@@ -162,7 +175,7 @@ for i in [1..n]:
         c = c + 1
 print 4*(c/n).n()
 ///
-3.13844000000000
+3.14004000000000
 }}}
 
 {{{id=71|
@@ -173,9 +186,4 @@ anzkreis = len([(i,j) for i in liste for j in liste if i^2+j^2 <= seitenlaenge^2
 float(4*anzkreis/anzquadrat)
 ///
 <html><span class="math">\newcommand{\Bold}[1]{\mathbf{#1}}3.13351949758</span></html>
-}}}
-
-{{{id=72|
-
-///
 }}}
