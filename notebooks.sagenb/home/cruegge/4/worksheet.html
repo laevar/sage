@@ -1,6 +1,13 @@
 
 
 <h2><strong>Aufgabe 1</strong></h2>
+<p>Gegeben seien die Listen $L1 = [x, x^3, x^5, x^7, x^9]$ und $L2 = [x, x^2, x^6, x^{24}, x^{120}]$.</p>
+<ol>
+<li>Erstellen Sie diese beiden Listen mit Hilfe des <strong>[... for ...]</strong>&nbsp;Konstruktes.</li>
+<li>Bilden Sie $L3 = L1+L2$.</li>
+<li>Bilden Sie von jedem Eintrag von $L3$ die Ableitung und die Stammfunktion.</li>
+<li>Bestimmen Sie von jedem Element von $L3$ den Funktionswert an der Stelle $x=3$ und entfernen Sie den gr&ouml;&szlig;ten Eintrag aus der resultierenden Liste.</li>
+</ol>
 
 {{{id=1|
 reset()
@@ -37,6 +44,12 @@ L.remove(m); L
 }}}
 
 <h2>Aufgabe 2</h2>
+<p>Gegeben sei $L=[16, 81, 125, 512, 729, 4096, 19683, 78125, 262144, 390625, 505, 22343243, 512]$.</p>
+<ol>
+<li>Bestimmen Sie aus $L$ alle Elemente, die durch 3 teilbar sind, und entfernen Sie sie aus der Liste.</li>
+<li>Bestimmen Sie aus den restlichen Elementen alle Elemente, die durch 2 teilbar sind, und entfernen Sie sie aus der Liste.</li>
+<li>Bestimmen Sie zuletzt alle durch 5 teilbaren Elemente.</li>
+</ol>
 
 {{{id=13|
 reset()
@@ -63,6 +76,10 @@ L = [n for n in L if n%5 == 0]; L
 }}}
 
 <h2>Aufgabe 3</h2>
+<ol>
+<li>Bestimmen Sie das charakteristische Polynom, die Eigenwerte und die Eigenvektoren der Matrizen&nbsp;\[A=\left(\begin{array}{ccc} 19 &amp; -2 &amp; 4 \\ 4 &amp; 10 &amp; -2 \\ 4 &amp; -8 &amp; 25 \end{array}\right),\quad&nbsp;B=\left(\begin{array}{ccc} 1 &amp; -3 &amp; 3 \\ 3 &amp; -5 &amp; 3 \\ 6 &amp; -6 &amp; 4 \end{array}\right),\quad&nbsp;C=\left(\begin{array}{ccc} -3 &amp; 1 &amp; -1 \\ -7 &amp; 5 &amp; -1 \\ -6 &amp; 6 &amp; -2 \end{array}\right).\] &Uuml;berpr&uuml;fen Sie diese Matrizen auf Diagonalisierbarkeit.</li>
+<li>Bestimmen Sie die Eigenwerte der $(2 \times 2)$ Drehmatrix aus der Vorlesung. &nbsp;&Uuml;berlegen Sie sich, f&uuml;r welche Winkel reelle Eigenwerte existieren und geben Sie eine geometrische Begr&uuml;ndung hierf&uuml;r.</li>
+</ol>
 
 {{{id=18|
 reset()
@@ -137,8 +154,12 @@ D.eigenvalues()
 }}}
 
 <p><span id="cell_outer_4">Also reelle Eigenwerte f&uuml;r a=0 und a=pi bzw. a=k*pi, k in N. <br /><br />Also bei einer Punktspiegelung um den Ursprung oder der Selbstabbildung.<br /><br />Der Grund liegt in der Definition der Eigenwerte im Reellen: f(v)=lambda*v. Also &auml;ndern die Eigenvektoren durch die Abbildung f nur ihre L&auml;nge, aber nicht ihre Richtung, dies ist bei einer Drehung nur f&uuml;r eine Drehung um 0&deg; oder 180&deg; m&ouml;glich</span></p>
+<h2></h2>
 
-<h2>Aufgabe 4</h2>
+<h2 style="font-size: 1.5em;">Aufgabe 4</h2>
+<p>Gegeben seien die Basen $V = (v_1,v_2,v_3)$ und $W = (w_1,w_2,w_3)$ des $\mathbb{R}^3$ mit</p>
+<p>\[v_1=\left(\begin{array}{c} 2\\0\\2 \end{array}\right),\quad v_2=\left(\begin{array}{c} 0\\2\\0 \end{array}\right),\quad v_3=\left(\begin{array}{c} 1\\2\\3 \end{array}\right),\quad w_1=\left(\begin{array}{c} 1\\1\\1 \end{array}\right),\quad w_2=\left(\begin{array}{c} 0\\0\\1 \end{array}\right),\quad w_3=\left(\begin{array}{c} 1\\0\\1 \end{array}\right).\]</p>
+<p>Berechnen Sie die Basiswechselmatrix f&uuml;r den Basiswechsel von $V$ nach $W$.</p>
 
 {{{id=32|
 reset()
@@ -156,6 +177,7 @@ W.inverse()*V
 }}}
 
 <h2>Aufgabe 5</h2>
+<p>Gegeben seien $A=\left(\begin{array}{ccc} 0 &amp; 2 &amp; -2 \\ 3 &amp; x &amp; 4 \\ -1 &amp; y &amp; 1 \end{array}\right)$ und $B=\left(\begin{array}{ccc} 1 &amp; 8 &amp; x \\ 3 &amp; 2 &amp; y \\ 6 &amp; 4 &amp; 4 \end{array}\right)$. Bestimmen Sie $x$ und $y$ so, dass $AB$ invertierbar ist. &Uuml;berpr&uuml;fen Sie das Ergebnis durch Einsetzen.</p>
 
 {{{id=35|
 reset()
@@ -194,6 +216,7 @@ expand(det(C(x=-3*y-7)))
 }}}
 
 <h2>Aufgabe 6</h2>
+<p>Untersuchen Sie f&uuml;r $m=0,\,1,\,\dots,\,41$ jeweils, wieviele der Zahlen $n^2+n+m^2$ mit $n=1,\,2,\,\dots,\,100$ Primzahlen sind.</p>
 
 {{{id=43|
 [len(filter(is_prime, [n^2+n+m^2 for n in [1..100]])) for m in [0..41]]
@@ -254,6 +277,7 @@ for m in [0..41]:
 }}}
 
 <h2>Aufgabe 7</h2>
+<p>Berechnen Sie mit Hilfe einer <strong>for</strong>-Schleife die ersten 10 Glieder der Folge \[x_{n+1} = x_n - \frac{x_n^2-2}{2x_n},\quad n\in\mathbb{N}\] mit Startwert $x_0=1$. Erraten Sie den Grenzwert der Folge! Ersetzen Sie den Startwert durch den Gleitkommawert $x_0 = 1.0$.</p>
 
 {{{id=45|
 reset()
@@ -275,6 +299,7 @@ x
 }}}
 
 <h2>Aufgabe 8</h2>
+<p>Schreiben Sie eine Funktion <strong>fak</strong>, die die Fakult&auml;t \[n! = \prod_{i=1}^n i\] einer nat&uuml;rlichen Zahl $n$ berechnet.</p>
 
 {{{id=50|
 reset()
@@ -455,9 +480,4 @@ def fak3(n):
 fak3(5)
 ///
 120
-}}}
-
-{{{id=67|
-
-///
 }}}
