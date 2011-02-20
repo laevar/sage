@@ -269,19 +269,3 @@ float(sum([sum([1/(i+j) for j in [1..i]]) for i in [1..100]]))
 ///
 3.33333333333333e49
 }}}
-
-<h2>Aufgabe 10</h2>
-<p>Geben Sie folgende Zeilen ein:</p>
-<pre>def f(x):</pre>
-<pre>    return f(x+1)</pre>
-<pre>f(0)</pre>
-<p>Erkl&auml;ren Sie den Fehler. Wie k&ouml;nnen Sie die Funktion $f(x)$&nbsp;anpassen, damit der Fehler nicht mehr auftritt?</p>
-
-{{{id=51|
-reset()
-def f(x):
-    if x < 900:
-        return f(x+1)
-f(0)
-///
-}}}

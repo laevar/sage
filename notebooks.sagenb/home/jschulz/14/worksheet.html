@@ -130,6 +130,12 @@ False
 False
 }}}
 
+{{{id=59|
+S.det()
+///
+0
+}}}
+
 {{{id=51|
 map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 ///
@@ -199,9 +205,18 @@ Basis matrix:
 [1 0 0]
 }}}
 
-{{{id=22|
-m = matrix([s1,s2,s3]); m.rank() >= min(m.ncols, m.nrows)
+{{{id=58|
+m = matrix([s1,s2,s3]);m
 ///
+[1 0 0]
+[0 1 1]
+[1 1 1]
+}}}
+
+{{{id=22|
+m.rank() >= min(m.ncols(), m.nrows());m.determinant() <> 0
+///
+False
 False
 }}}
 
@@ -236,34 +251,7 @@ a2.dot_product(a3), a2*a3
 (5, 5)
 }}}
 
-{{{id=48|
-a2.
-///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_34.py", line 10, in <module>
-    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("YTIu"),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "/tmp/user/2001/tmpd3M1bZ/___code___.py", line 2
-    a2.
-      ^
-SyntaxError: invalid syntax
-}}}
-
-{{{id=49|
-A = matrix([[1,2,3],[4,5,6],[7,8,0]])
-A.det()
-///
-27
-}}}
-
-{{{id=45|
-
-///
-}}}
-
-{{{id=56|
+{{{id=57|
 
 ///
 }}}

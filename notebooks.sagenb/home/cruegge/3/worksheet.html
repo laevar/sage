@@ -354,3 +354,19 @@ summe([1..100])
 ///
 5050
 }}}
+
+<h2>Aufgabe 10</h2>
+<p>Geben Sie folgende Zeilen ein:</p>
+<pre>def f(x):</pre>
+<pre>    return f(x+1)</pre>
+<pre>f(0)</pre>
+<p>Erkl&auml;ren Sie den Fehler. Wie k&ouml;nnen Sie die Funktion $f(x)$&nbsp;anpassen, damit der Fehler nicht mehr auftritt?</p>
+
+{{{id=76|
+reset()
+def f(x):
+    if x < 900:
+        return f(x+1)
+f(0)
+///
+}}}

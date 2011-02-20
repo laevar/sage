@@ -40,14 +40,13 @@ $a_{ij} \in K$, Zeilenindex $i \in [1,m]$, Spaltenindex $j \in [1,n]$
 
 \begin{frame}{Definitionen}
 \begin{itemize}
-\item Die {\color{red} Transponierte } von $A=(a_{ij})$ ist $A^T:=(a_{ji})$.
-\item $A$ heißt {\color{red} symmetrisch}, wenn $A=A^T$ gilt.
-\item Für Matrizen $A=(a_{ij})\in \mathbb{C}^{m\times n}$ ist $A^* :=
+\item {\color{red} Transponiert} von $A=(a_{ij})$: $A^T:=(a_{ji})$ .
+\item {\color{red} Symmetrisch}: wenn $A=A^T$ gilt.
+\item \alert{Adjungiert} von $A=(a_{ij})\in \mathbb{C}^{m\times n}$: $A^* :=
 (\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
-\item Die {\color{red} Einheitsmatrix} $I:=I_n:=(\delta_{ij}) \in K^{n \times
+\item \alert{Einheitsmatrix}: $I:=I_n:=(\delta_{ij}) \in K^{n \times
 n}$
-\item Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$. Dann ist die {\color{red} Addition}
-definiert durch 
+\item {\color{red} Addition}: Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann
 \[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
 mit $c_{ij}=a_{ij}+b_{ij}$.  
 \end{itemize}
@@ -55,16 +54,13 @@ mit $c_{ij}=a_{ij}+b_{ij}$.
 
 \begin{frame}{Definitionen}
 \begin{itemize}
-\item Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
-\in {K}^{n \times p}$. Dann ist die {\color{red} Multiplikation}
-gegeben durch  
+\item {\color{red} Multiplikation}: Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+\in {K}^{n \times p}$, dann 
 \[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
 mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
-\item $A\in K^{n \times n}$ heißt {\color{red} orthogonal}, wenn $A \cdot
-A^T=A^T \cdot A=I_n$ gilt.
-\item $A\in \mathbb{C}^{n \times n}$ heißt {\color{red} unitär}, wenn $A \cdot
-A^*=A^* \cdot A=I_n$ gilt.
-\item $A\in K^{n \times n}$ heißt {\color{red} invertierbar}, wenn eine
+\item {\color{red} orthogonal}: $A \cdot A^T=A^T \cdot A=I_n$ für $A\in K^{n \times n}$ 
+\item {\color{red} unitär}: $A \cdot A^*=A^* \cdot A=I_n$ für $A\in \mathbb{C}^{n \times n}$.
+\item {\color{red} invertierbar}: $A\in K^{n \times n}$ heißt , wenn eine
 Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
 A^{-1}=A^{-1} \cdot A=I_n$.
 \end{itemize}
@@ -75,34 +71,28 @@ A^{-1}=A^{-1} \cdot A=I_n$.
 \item Die Multiplikation ist assoziativ aber in der Regel \alert{nicht kommutativ}. 
 \item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
 $K$ (mit komponentenweiser Skalarmultiplikation).
-\item Die Menge der invertierbaren Matrizen aus $K^{n \times n}$
-bilden bezüglich der Multiplikation eine Gruppe, die {\color{red} allgemeine
-lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Definition und Bemerkungen}
-\begin{itemize}
-\item Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
- eine Untergruppe von  $GL(\mathbb{R},n)$, die {\color{red} orthogonale
- Gruppe} $O(n)$. 
-
-\item Die entsprechende Untergruppe der unitären Matrizen
- in $GL(\mathbb{C},n)$ ist die {\color{red} unitäre Gruppe} $U(n)$.
+\item {\color{red} allgemeine
+lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$: 
+Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bezüglich der Multiplikation eine Gruppe.
+\item {\color{red} orthogonale Gruppe}: $O(n)$: Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
+ eine Untergruppe von  $GL(\mathbb{R},n)$. 
+\item  {\color{red} unitäre Gruppe} $U(n)$: Die entsprechende Untergruppe der unitären Matrizen in $GL(\mathbb{C},n)$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Matrizen in Sage}
+
+\begin{sagein}
+matrix([[a11,a12,...],[a21,a22,..],..])
+\end{sagein}
+
 \begin{itemize}
-\item Matrizen werden in Sage mit Hilfe des Befehls \isage{matrix()}
-konstruiert. 
 \item Der Rückgabewert ist vom Typ \isage{matrix}.
 \item Die Einträge der Matrix können beliebige Ausdrücke sein.
-\item Es ist auch möglich Matrizen über bestimmten Bereichen
+\item Es ist möglich Matrizen über bestimmten Bereichen
 (z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
-konstruieren. 
-\item Es gibt auch spezielle Datenstrukturen für quadratische Matrizen
-und für dünnbesetzte Matrizen. 
+konstruieren.                                                     
+\item Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
 \end{itemize}
 \end{frame}
 
@@ -115,12 +105,12 @@ konstruieren. Beispiel:
 a & 0 & 1 & b\\ 
 \end{array} \right), \quad a,b\in \mathbb{R} \]
 \begin{itemize}
-\item Eingabe der Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
-Spalten dann wieder in eckigen Klammern $[ ..]$.
+\item Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
+Spalten dann wieder in eckigen Klammern $[ ..]$ (Standard)
 \begin{sagein}
 A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
 \end{sagein}
-\item Mit expliziter Größenangabe
+\item Explizite Größenangabe
 \begin{sagein}
 A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
 \end{sagein}
@@ -129,12 +119,11 @@ A = matrix(2,4,[[1,2,3,4],[a,0,1,b]])
 
 \begin{frame}[fragile]{Konstruktion von Matrizen II}
 \begin{itemize}
-\item Erzeugen einer Nullmatrix der Größe $n \times m$
+\item Nullmatrix der Größe $n \times m$:
 \begin{sagein}
 n = 3; m = 4; B = matrix(n,m)
 \end{sagein}
-\item Erzeuge eine $n \times m$ - Matrix $A$ mit Hilfe einer Funktion
-$f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
+\item Erzeugung mit Hilfe einer Funktion $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
 \begin{sagein}
 f(i,j) = i*j
 C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
@@ -149,14 +138,14 @@ matrix(1,3,[4,5,6])
 
 \begin{frame}[fragile]{Zeilen- und Spaltenzahl}
 \begin{itemize}
-\item Abfragen der Spaltenanzahl: \isage{<matrix>.ncols()}
+\item Spaltenanzahl: \isage{<matrix>.ncols()}
 \begin{sagein}
 C.ncols()
 \end{sagein}
 \begin{sage}
   5
 \end{sage}
-\item Abfragen der Zeilenanzahl: \isage{<matrix>.nrows()}
+\item Zeilenanzahl: \isage{<matrix>.nrows()}
 \begin{sagein}
 C.nrows()
 \end{sagein}
@@ -175,14 +164,14 @@ Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 
 \begin{frame}[fragile]{Zugriff auf die Einträge I}
 \begin{itemize}
-\item Abfragen von Einträgen in Zeile $i$ und Spalte $j$:
+\item Zugriff auf Einträge in Zeile $i$ und Spalte $j$:
 \begin{sagein}
 i=1; j=2; C[i,j]
 \end{sagein}
 \begin{sage}
   6
 \end{sage}
-\item Ändern des Eintrags in Zeile $i$ und Spalte $j$:
+\item Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
 \begin{sagein}
 i=1; j=2; C[i,j]=22
 \end{sagein}
@@ -196,11 +185,11 @@ spalte = C.column(4)
 
 \begin{frame}[fragile]{Zugriff auf die Einträge II}
 \begin{itemize}
-\item Extrahieren von Teilmatrizen
+\item Teilmatrizen
 \begin{sagein}
 C[1:3,1:3]
 \end{sagein}
-\item Erzeugen von Diagonalmatrizen
+\item Diagonalmatrizen
 \begin{sagein}
 x = [1,2,3,4,5]
 Diag = diagonal_matrix(x); Diag
@@ -217,7 +206,7 @@ A = matrix([[a, b], [c,d]])
 B = matrix([[e, f], [g,h]])
 A+B; A*B
 \end{sagein}
-\item Bestimmung der Inversen und der Transponierten
+\item Inverse und der Transponierte
 \begin{sagein}
 A^(-1); A.transpose()
 \end{sagein}
@@ -227,12 +216,9 @@ A^(-1); A.transpose()
 \begin{frame}{Rang von Matrizen}
 Sei $A \in K^{m \times n}$. 
 \begin{itemize}
-\item Die Dimension der linearen Hülle der Spaltenvektoren nennt man
-den {\color{red} Spaltenrang} von $A$. Er ist höchstens gleich $n$.
-\item Die Dimension der linearen Hülle der Zeilenvektoren nennt man den
-{\color{red} Zeilenrang} von $A$. Er ist höchstens gleich $m$.
-\item Zeilenrang und Spaltenrang von Matrizen sind gleich und man
-spricht deshalb vom {\color{red} Rang} einer Matrix. 
+\item {\color{red} Spaltenrang}: Die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
+\item {\color{red} Zeilenrang}: Die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
+\item {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von diesen Matrizen gleich sind. 
 \end{itemize}
 \end{frame}
 
@@ -255,6 +241,14 @@ S.is_invertible()
 False
 False
 \end{sage}
+\item Determinante
+\begin{sagein}
+S.det()
+\end{sagein}
+\begin{sage}
+  27
+\end{sage}
+
 % \item Ist eine Matrix unitär ?
 % \begin{sagein}
 % linalg::isUnitary(S)
@@ -273,8 +267,11 @@ False
 \end{frame}
 
 \begin{frame}[fragile]{Maps auf Matrizen}
-Mittels \isage{map_threaded(<function>,<matrix>)} kann auf jeden Eintrag von der Matrix \isage{<matrix>} die Funktion \isage{<function>} angewendet werden (wie bei \isage{map()})\\
-Beispiel:
+Anwendung der Funktion \isage{<function>} auf \isage{<matrix>} (siehe auch \isage{map()})\\
+\begin{sagein}
+map_threaded(<function>,<matrix>)
+\end{sagein}
+\textbf{Beispiel}:
 \begin{sagein}
 map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 \end{sagein}
@@ -311,15 +308,13 @@ $K$, wenn gilt:
 
 \begin{frame}{Begriffe}
 \begin{itemize}
-\item Die Elemente eines Vektorraums nennt man {\color{red} Vektoren}.
-\item Die Abbildung $\cdot : K\times V \ \rightarrow \ V$ heißt
-  {\color{red} Skalarmultiplikation}. Die Elemente des Körpers $K$ nennt man
+\item {\color{red} Vektoren}: Die Elemente eines Vektorraums.
+\item {\color{red} Skalarmultiplikation}: Die Abbildung $\cdot : K\times V \ \rightarrow \ V$. Die Elemente des Körpers $K$ nennt man
   {\color{red} Skalare}.
-\item  Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und gelten
-  alle Vektorraumaxiome, so heißt $U$ ein {\color{red} Untervektorraum} oder
-  {\color{red} Unterraum} von $V$. 
-\item \alert{Vorsicht!} $0$ ist nicht gleich $0$, d.h. man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. Es gilt $0 \cdot v
-  = 0$ für alle $v \in V$. 
+\item {\color{red} Untervektorraum} oder {\color{red} Unterraum} von $V$: Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und es gelten
+  alle Vektorraumaxiome.
+\item \alert{Vorsicht!} man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. \\
+Es gilt $0 \cdot v  = 0$ für alle $v \in V$. 
 \end{itemize}
 \end{frame}
 
@@ -343,8 +338,13 @@ für $\alpha \in K$, $f,g:M \mapsto K$.
 
 %\subsection{Vektoren und Basen}
 \begin{frame}[fragile]{Vektoren in Sage}
+Konstruktion von Vektoren
+\begin{sagein}
+vector([v1,v2,..]) 
+\end{sagein}
+\textbf{Beispiele}:
 \begin{itemize}
-\item Konstruktion von Vektoren
+\item Konstruktion
 \begin{sagein}
 a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sagein}
@@ -368,17 +368,16 @@ type(a)
 Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
 Elementen aus $V$.
 \begin{itemize}
-\item $v \in V$ heißt {\color{red} Linearkombination} von $(v_1,\dots ,v_r)$,
+\item {\color{red} Linearkombination} $v \in V$ von $(v_1,\dots ,v_r)$: 
   falls $\exists \lambda_1, \dots, \lambda_r \in K$  mit
   $ v= \lambda_1 v_1 + \dots + \lambda_r v_r$. 
-\item Die Menge aller Linearkombinationen wird {\color{red} Lineare Hülle}
-  genannt und durch $\mathop{span}\{v_1, \dots, v_n\}$ bezeichnet. Die Lineare
+\item {\color{red} Lineare Hülle} $\mathop{span}\{v_1, \dots, v_n\}$: Die Menge aller Linearkombinationen. Die Lineare
   Hülle ist ein Unterraum von $V$.
-\item  $(v_1,\dots ,v_r)$ heißen {\color{red} linear unabhängig}, falls gilt:
+\item {\color{red} linear unabhängig}: 
   Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
   \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
-  \lambda_r=0$. Andernfalls sind sie {\color{red} linear abhängig}. 
-\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls \alert{alle endlichen} Teilmengen von $M$ lineare unabhängig sind.
+  \lambda_r=0$. Andernfalls {\color{red} linear abhängig}. 
+\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls \alert{alle endlichen} Teilmengen von $M$ linear unabhängig sind.
 \end{itemize}
 \end{frame}
 
@@ -389,6 +388,7 @@ Elementen aus $V$
 \item $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
 jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
 läßt. 
+\item Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix 0 ist.
 \item Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
 {\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
 unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
@@ -412,9 +412,7 @@ Basis.
 
 \begin{frame}{Basis und Dimension}
 \begin{itemize}
-\item Sei $(v_1,\dots, v_n)$ eine Basis eines Vektorraums $V$. Dann
-ist die {\color{red} Dimension} des Vektorraums $V$ definiert durch die Anzahl der
-Basiselemente, also $n$.
+\item {\color{red} Dimension} des Vektorraums $V$: die  Anzahl der Basiselemente einer Basis $(v_1,\dots, v_n)$.
 \item Jeder Vektorraum besitzt eine Basis.
 \item Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
 die {\color{red} Summe} von $W$ und $Z$. Es gilt:
@@ -454,8 +452,11 @@ Basis matrix:
 
 \item Testen der linearen Unabhängigkeit
 \begin{sagein}
-m = matrix([s1,s2,s3]); m.rank() >= min(m.ncols, m.nrows)
+m = matrix([s1,s2,s3])
+m.rank() >= min(m.ncols(), m.nrows())
+m.determinant() <> 0 
 \end{sagein}
+
 \begin{sage}
   False
 \end{sage}
@@ -584,27 +585,28 @@ $u,v \in V\smallsetminus \{ 0 \}$ definiert durch
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Zwei Vektoren $u,v \in V$ heißen {\color{red} orthogonal}, wenn
-$(u,v)=0$ gilt. 
-\item Eine Basis aus paarweise orthogonalen Vektoren heißt {\color{red}
-Orthogonalbasis}. 
-\item Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
-haben, nennt man {\color{red} Orthonormalbasis}.
+\item {\color{red} Orthogonal}: wenn $(u,v)=0$ gilt.
+\item {\color{red} Orthogonalbasis}: Eine Basis aus paarweise orthogonalen Vektoren. 
+\item {\color{red} Orthonormalbasis}: Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
+haben.
 \item Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
 Orthonormalbasis. 
-\item Ist $U$ ein Unterraum von $V$, so ist
+\item {\color{red} Orthogonalraum}:
 \[
 {U}^\perp := \{ v \in V \ | \ (v,u)=0 \mbox{ für alle } u \in U \}
 \]
-der {\color{red} Orthogonalraum} zu $U$. Er ist ein Untervektorraum.
+wenn $U$ ein Unterraum von $V$ ist.
 \item Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Sage}
 \begin{itemize}
-\item Die $p$-Norm $\|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}$, $p\in [1,\infty)$ auf dem
-$K^n$ mit $K=\mathbb{R},\mathbb{C}$ wird berechnet durch:
+\item $p$-Norm:
+\[
+\|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}, p\in [1,\infty)                   
+\]
+auf $K^n$ mit $K=\mathbb{R},\mathbb{C}$
 \begin{sagein}
 x = vector([1,2,3,4,5]); p=2
 x.norm(p)
@@ -636,14 +638,6 @@ float(acos(a2*a3/(abs(a2)*abs(a3))))
 \begin{sage}
   0.79520271328967818
 \end{sage}
-\item Berechnen der Determinante
-\begin{sagein}
-A = matrix([[1,2,3],[4,5,6],[7,8,0]])
-A.det()
-\end{sagein}
-\begin{sage}
-  27
-\end{sage}
 \end{itemize}
 \end{frame}
 
@@ -651,7 +645,34 @@ A.det()
 \section{Funktionen}
 %===============================
 
-\begin{frame}[fragile]{Ein erstes Programm}
+\begin{frame}[fragile]{Aufbau von Funktionen}
+\begin{sagein}
+def <Name><(a,b,..)>:
+    <Code-Block>
+    return <ret>
+\end{sagein}
+\begin{itemize}
+\item Argumente/Übergabeparameter \isage{(a,b,..)} 
+\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
+\item Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
+\item Zeilen gleicher Einrückung gehören zum gleichen Block.
+\item Rückgabewert \isage{ret} mittels \isage{return(ret)} zurückgegeben. Funktion ist dann beendet.
+\item Ohne return wird eine leere Variable des Typs \isage{NoneType} zurückgegeben.  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Erklärungen/Kommentare }
+\begin{itemize}
+\item In \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{<funktionsname>?} abgefragt werden.
+\item Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
+%\item Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
+%  sogenannte Verzweigung. Ist die  Bedingung \isage{<bedingung>} wahr, so wird der
+%  Block hinter \isage{:} ausgeführt. Ist \isage{<bedingung>} falsch, so
+%  wird die Alternative \isage{else:} ausgeführt.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eine Beispiel-Funktion}
 \begin{sagein}
 def MyMax(a,b):
     """Maximum von a und b"""
@@ -661,52 +682,24 @@ def MyMax(a,b):
         return (a)
 \end{sagein}
 \begin{itemize}
-\item Das erste Beispiel berechnet das Maximum zweier Zahlen $a$ und
+\item Das Beispiel berechnet das Maximum zweier Zahlen $a$ und
 $b$. 
 \item Aufruf in Sage ist {\color{blue} \isage{MyMax(a,b)}}. 
 \item Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
   zurück.
-\item in \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{MyMax?} abgefragt werden.
  \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{Aufbau von Funktionen}
-\begin{itemize}
-\item Eine Funktion beginnt mit \isage{def} und dem Namen der Prozedur (hier:
-  \isage{MyMax}) gefolgt von den möglichen Übergabeparameter \isage{(a,b,c..)}
-\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
-\item Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Return}
-\begin{itemize}
-\item Mittels \isage{return(a)} wird die Funktion abgebrochen und der
-Wert \isage{a} zurückgegeben.
-\item Wird innerhalb der Prozedur kein Befehl ausgeführt, so wird eine leere Variable des Typs
-\isage{NoneType} zurückgegeben.  
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Erkärungen}
-\begin{itemize}
-\item Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
-\item Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
-  sogenannte Verzweigung. Ist die  Bedingung \isage{<bedingung>} wahr, so wird der
-  Block hinter \isage{:} ausgeführt. Ist \isage{<bedingung>} falsch, so
-  wird die Alternative \isage{else:} ausgeführt.
-\item \emph{Achtung:} in Sage (und Python) wird der Block durch die Einrückung definiert. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Erstellen von Funktionen}
+\begin{frame}[fragile]{Externes Editieren von Funktionen}
 Bei umfangreicheren Funktionen oder richtigen Programmen ist es evtl. sinnvoller dies mit
 einem Editor zu erstellen. 
 
 \begin{itemize}
- \item Erstellen einer \verb+<name>.sage+-Datei in \verb+~/.sage+. Diese mit Sage-Code füllen
-\item In sage diese mit \isage{attach <name>.sage} an das Notebook anhängen $\Rightarrow$ wird automatisch geladen und aktuell gehalten.
-\item als Editor empfehle ich zum Einstieg \verb+geany+. Prinzipiell sind alle Editoren geeignet die Python unterstützen.
+ \item Erstellen einer \verb+<name>.sage+-Datei (Editor: z.B. \verb+geany+)
+\item \isage{attach <path>/<name>.sage}: hängt die Datei an das Notebook an und wird automatisch geladen und aktuell gehalten.
+\item \isage{attached_files()}: listet alle angehängte Dateien.
 \end{itemize}
 
 \end{frame}
