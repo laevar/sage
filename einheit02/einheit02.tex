@@ -589,7 +589,7 @@ f*g, f/g
 {\color{blue} \isage{a.collect(<unknown>)}}: der Ausdruck \isage{a} wird bzgl. der \isage{unknown} Variablen sortiert.\\
 \textbf{Beispiel:}
 \begin{sagein}
-f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x):
+f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x)
 f.collect(x)
 \end{sagein}
 \begin{sage}
@@ -924,7 +924,7 @@ solve(f == 0, x, multiplicities=True)
 
 \begin{frame}[fragile]{Beispiele - Solve II} 
 \begin{sagein}
-assume(x>0); solve(x^2+x == y/4,y)
+assume(x>0); solve(x^2+x == y/4,x)
 \end{sagein}
 \begin{sage}
  [y == 4*x^2 + 4*x]
