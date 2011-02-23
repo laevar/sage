@@ -89,10 +89,10 @@ True
 }}}
 
 {{{id=20|
-print map_threaded(expand, A*(x+y)-A*x-A*y)
+print map(expand, A*(x+y)-A*x-A*y)
 print bool(A*(x+y) == A*x + A*y)
 ///
-(0, 0)
+[0, 0]
 True
 }}}
 
@@ -107,8 +107,10 @@ True
 {{{id=55|
 # funktioniert nicht (Elemente von (A*B)^(-1) sind gebrochen rationale
 # Funktionen):
-# map_threaded(expand, (A*B).inverse() - B.inverse()*A.inverse())
+map_threaded(expand, (A*B).inverse() - B.inverse()*A.inverse())
 ///
+[-a11*a21*b11*b12/((a11*b11 + a12*b21)^2*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) - a11*a22*b12*b21/((a11*b11 + a12*b21)^2*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) - a12*a21*b11*b22/((a11*b11 + a12*b21)^2*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) - a12*a22*b21*b22/((a11*b11 + a12*b21)^2*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) + 1/(a11*b11 + a12*b21) - a21*b12/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11*b11) - a12*a21*b12*b21/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11^2*b11^2) + b12*b21/((b12*b21/b11 - b22)*a11*b11^2) + a12*a21/((a12*a21/a11 - a22)*a11^2*b11) - 1/(a11*b11)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      a11*b12/((a11*b11 + a12*b21)*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) + a12*b22/((a11*b11 + a12*b21)*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) + a12*b12*b21/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11*b11^2) + b12/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*b11) - a12/((a12*a21/a11 - a22)*a11*b11)]
+[                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     a21*b11/((a11*b11 + a12*b21)*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) + a22*b21/((a11*b11 + a12*b21)*(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22)) + a21/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11) + a12*a21*b21/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11^2*b11) - b21/((b12*b21/b11 - b22)*a11*b11)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -1/(a11*a21*b11*b12/(a11*b11 + a12*b21) + a11*a22*b12*b21/(a11*b11 + a12*b21) + a12*a21*b11*b22/(a11*b11 + a12*b21) + a12*a22*b21*b22/(a11*b11 + a12*b21) - a21*b12 - a22*b22) - 1/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)) - a12*b21/((b12*b21/b11 - b22)*(a12*a21/a11 - a22)*a11*b11)]
 }}}
 
 {{{id=64|
@@ -127,11 +129,18 @@ True
 ///
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "_sage_input_54.py", line 5, in <module>
-    exec compile(ur'( (A*B).inverse() - B.inverse()*A.inverse() ).simplify_full()' + '\n', '', 'single')
+  File "_sage_input_30.py", line 10, in <module>
+    exec compile(u'open("___code___.py","w").write("# -*- coding: utf-8 -*-\\n" + _support_.preparse_worksheet_cell(base64.b64decode("IyBzaW1wbGlmeV9mdWxsIG5pY2h0CiggKEEqQikuaW52ZXJzZSgpIC0gQi5pbnZlcnNlKCkqQS5pbnZlcnNlKCkgKS5zaW1wbGlmeV9mdWxsKCk="),globals())+"\\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
   File "", line 1, in <module>
     
-AttributeError: 'sage.matrix.matrix_symbolic_dense.Matrix_symbolic_' object has no attribute 'simplify_full'
+  File "/tmp/tmpWJV5yw/___code___.py", line 3, in <module>
+    exec compile(u'( (A*B).inverse() - B.inverse()*A.inverse() ).simplify_full()' + '\n', '', 'single')
+  File "", line 1, in <module>
+    
+  File "element.pyx", line 306, in sage.structure.element.Element.__getattr__ (sage/structure/element.c:2666)
+  File "parent.pyx", line 272, in sage.structure.parent.getattr_from_other_class (sage/structure/parent.c:2840)
+  File "parent.pyx", line 170, in sage.structure.parent.raise_attribute_error (sage/structure/parent.c:2611)
+AttributeError: 'sage.matrix.matrix_symbolic_dense.Matrix_symbolic_dense' object has no attribute 'simplify_full'
 }}}
 
 {{{id=73|
@@ -145,7 +154,7 @@ map_threaded(f, (A*B).inverse() - B.inverse()*A.inverse())
 [0 0]
 }}}
 
-<h2>Aufgabe 4</h2>
+<h2>Aufgabe 4 *</h2>
 <p>Welche der folgenden Matrizen sind unit&auml;r (d.h. $A^* A = I$), orthogonal, invertierbar, symmetrisch oder hermitesch (d.h. $A^* = A$)?</p>
 <p>\[A=\left(\begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; cos(\pi/6) &amp; -\sin(\pi/6) \\ 0 &amp; \sin(\pi/6) &amp; \cos(\pi/6) \end{array}\right),\quad</p>
 <p>B=\left(\begin{array}{ccc} 1 &amp; 1 &amp; i \\ 1 &amp; i &amp; 1 \\ i &amp; 1 &amp; 1 \end{array}\right),\quad</p>
@@ -336,7 +345,7 @@ float( 2 * prod([(2*i)^2/(2*i-1)/(2*i+1) for i in [1..1000]]) )
 3.1408077460303945
 }}}
 
-<h2>Aufgabe 9</h2>
+<h2>Aufgabe 9 *</h2>
 <p>Schreiben Sie eine Funktion, die zu einer gegebenen Menge (Liste) von Zahlen die Summe aller Elemente berechnet und zur&uuml;ckgibt.</p>
 
 {{{id=52|
