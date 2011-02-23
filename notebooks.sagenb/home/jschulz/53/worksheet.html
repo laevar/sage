@@ -81,6 +81,99 @@ aetsch!
 }}}
 
 {{{id=10|
+sqrt??
+///
+<html><!--notruncate-->
+
+<div class="docstring">
+    
+  <p><strong>File:</strong> /usr/local/sage/local/lib/python2.6/site-packages/sage/functions/other.py</p>
+<p><strong>Source Code</strong> (starting at line 1194):</p>
+<div class="highlight-python"><div class="highlight"><pre class="literal-block"><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="s">r&quot;&quot;&quot;</span>
+<span class="s">        INPUT:</span>
+
+<span class="s">        -  ``x`` - a number</span>
+
+<span class="s">        -  ``prec`` - integer (default: None): if None, returns</span>
+<span class="s">           an exact square root; otherwise returns a numerical square root if</span>
+<span class="s">           necessary, to the given bits of precision.</span>
+
+<span class="s">        -  ``extend`` - bool (default: True); this is a place</span>
+<span class="s">           holder, and is always ignored or passed to the sqrt function for x,</span>
+<span class="s">           since in the symbolic ring everything has a square root.</span>
+
+<span class="s">        -  ``all`` - bool (default: False); if True, return all</span>
+<span class="s">           square roots of self, instead of just one.</span>
+
+<span class="s">        EXAMPLES::</span>
+
+<span class="s">            sage: sqrt(-1)</span>
+<span class="s">            I</span>
+<span class="s">            sage: sqrt(2)</span>
+<span class="s">            sqrt(2)</span>
+<span class="s">            sage: sqrt(2)^2</span>
+<span class="s">            2</span>
+<span class="s">            sage: sqrt(4)</span>
+<span class="s">            2</span>
+<span class="s">            sage: sqrt(4,all=True)</span>
+<span class="s">            [2, -2]</span>
+<span class="s">            sage: sqrt(x^2)</span>
+<span class="s">            sqrt(x^2)</span>
+<span class="s">            sage: sqrt(2).n()</span>
+<span class="s">            1.41421356237310</span>
+
+<span class="s">        To prevent automatic evaluation, one can use the ``hold`` parameter</span>
+<span class="s">        after coercing to the symbolic ring::</span>
+
+<span class="s">            sage: sqrt(SR(4),hold=True)</span>
+<span class="s">            sqrt(4)</span>
+<span class="s">            sage: sqrt(4,hold=True)</span>
+<span class="s">            Traceback (most recent call last):</span>
+<span class="s">            ...</span>
+<span class="s">            TypeError: _do_sqrt() got an unexpected keyword argument &#39;hold&#39;</span>
+
+<span class="s">        This illustrates that the bug reported in #6171 has been fixed::</span>
+
+<span class="s">            sage: a = 1.1</span>
+<span class="s">            sage: a.sqrt(prec=100)  # this is supposed to fail</span>
+<span class="s">            Traceback (most recent call last):</span>
+<span class="s">            ...</span>
+<span class="s">            TypeError: sqrt() got an unexpected keyword argument &#39;prec&#39;</span>
+<span class="s">            sage: sqrt(a, prec=100)</span>
+<span class="s">            1.0488088481701515469914535137</span>
+<span class="s">            sage: sqrt(4.00, prec=250)</span>
+<span class="s">            2.0000000000000000000000000000000000000000000000000000000000000000000000000</span>
+
+<span class="s">        One can use numpy input as well::</span>
+
+<span class="s">            sage: import numpy</span>
+<span class="s">            sage: a = numpy.arange(2,5)</span>
+<span class="s">            sage: sqrt(a)</span>
+<span class="s">            array([ 1.41421356,  1.73205081,  2.        ])</span>
+<span class="s">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">__module__</span> <span class="o">==</span> <span class="s">&#39;numpy&#39;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
+            <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+        <span class="c"># The following includes TypeError to catch cases where sqrt</span>
+        <span class="c"># is called with a &quot;prec&quot; keyword, for example, but the sqrt</span>
+        <span class="c"># method for x doesn&#39;t accept such a keyword.</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">_do_sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+</div>
+</html>
+}}}
+
+{{{id=11|
 
 ///
 }}}
