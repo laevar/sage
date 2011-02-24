@@ -218,7 +218,7 @@ Sei $A \in K^{m \times n}$.
 \begin{itemize}
 \item {\color{red} Spaltenrang}: Die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
 \item {\color{red} Zeilenrang}: Die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
-\item {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von diesen Matrizen gleich sind. 
+\item {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von Matrizen gleich sind. 
 \end{itemize}
 \end{frame}
 
@@ -377,7 +377,9 @@ Elementen aus $V$.
   Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
   \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
   \lambda_r=0$. Andernfalls {\color{red} linear abhängig}. 
-\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls \alert{alle endlichen} Teilmengen von $M$ linear unabhängig sind.
+\begin{itemize}
+\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -388,7 +390,7 @@ Elementen aus $V$
 \item $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
 jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
 läßt. 
-\item Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix 0 ist.
+\item Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.
 \item Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
 {\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
 unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.

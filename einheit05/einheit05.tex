@@ -34,70 +34,39 @@
 % \end{itemize}
 % \end{frame}
 \subsection*{Folgen}
-\begin{frame}[fragile]{Folgen}
-\begin{itemize}
-\item  Folgen sind ein grundlegender Typ. Zum Beispiel werden Listen
-  und Mengen aus Folgen aufgebaut.
-\item Folgen sind Sage-Ausdrücke vom Typ \isage{tuple}.
-\item Eine Folge ist eine Aneinanderreihung beliebiger Sage-Objekte,
-  welche durch Kommata getrennt sind.
-\item Wir kennen Folgen bereits durch die Eingabe mehrerer Befehle in
-  einer Zeile.
- \end{itemize}
-\end{frame}
+\begin{frame}[fragile]{Folgen - \verb~tuple~}
+\begin{sagein}
+ Folge = a,b,c,..
+ Folge = tuple(<sequence>)
+\end{sagein}
 
-\begin{frame}[fragile]{Konstruktion von Folgen I}
 \begin{itemize}
+\item Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte,
+  welche durch Kommata getrennt sind.
+\item ein Tuple ist in  runde Klammern eingeschlossen.
+\item Tuple sind ein grundlegender Typ (Listen und Mengen bestehen daraus).
+
 \item Einfache Definition
 \begin{sagein}
-t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = c,d,e; Folge1 ; Folge2
+t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 \end{sagein}
 \begin{sage}
 (a, b, c)
 (c, d, e)
 \end{sage}
-\item Verbinden von Folgen
-\begin{sagein}
-Folge3 = Folge1+Folge2; Folge3
-\end{sagein}
-\begin{sage}
-(a, b, c, c, d, e)
-\end{sage}
-\end{itemize}
+ \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Folgen II}
+\begin{frame}[fragile]{Konstruktion von Folgen }
 \begin{itemize}
-\item Konstruktion durch \isage{tuple()}:  Der Aufruf 
-{\color{red}tuple(range(a,b)+}, für
-  $a,b \in \mathbb{Z}$
-  erzeugt die Folge $a,a+1,\dots,b-1$:
-\begin{sagein}
-tuple(range(-1,7))
-\end{sagein}
-\begin{sage}
-  (-1, 0, 1, 2, 3, 4, 5, 6)
-\end{sage}
-\item Der Aufruf {\color{red}\isage{tuple(Objekt(i) for i in range(m,n))}} erzeugt die Folge
-
-\centering{Objekt(m), Objekt(m+1), $\ldots$ ,Objekt(n-1)}
+\item Mit Listen erzeugte Folgen 
 \begin{sagein}
 tuple(i^2 for i in range(2,8))
 \end{sagein}
 \begin{sage}
 (4, 9, 16, 25, 36, 49)
 \end{sage}
-\begin{sagein}
-tuple(x^i for i in range(4,8))
-\end{sagein}
-\begin{sage}
-(x^4, x^5, x^6, x^7)
-\end{sage}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Folgen III}
-\begin{itemize}
 \item Erzeugen von $n$ identischen Objekten
 \begin{sagein}
 tuple(sin(x) for i in range(0,5))
@@ -112,17 +81,26 @@ x = tuple(sin(i) for i in range(1,5)); x
 \begin{sage}
 (sin(1), sin(2), sin(3), sin(4))
 \end{sage}  
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion und Zugriff}
-\begin{itemize}
 \item Erzeugen einer leeren Folge
 \begin{sagein}
 folge = (); folge2 = folge,2,3; folge2
 \end{sagein}
 \begin{sage}
  ((), 2, 3)
+\end{sage}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Folgen - Zugriff und Verknüpfungen}
+\begin{itemize}
+\item Verbinden von Folgen
+\begin{sagein}
+Folge3 = Folge1+Folge2; Folge3
+\end{sagein}
+\begin{sage}
+(a, b, c, c, d, e)
 \end{sage}
 \item Zugriff auf Elemente
 \begin{sagein}
@@ -138,69 +116,37 @@ x[2]; x[0:2]
 3
 (1, 2)
 \end{sage}
+
 \end{itemize}
 \end{frame}
-
-% \begin{frame}[fragile]{Konstruktion und Zugriff}
-% \begin{itemize}
-% \item Löschen von Einträgen -- Folge verkürzt sich:
-% \begin{sagein}
-% delete x[2]: x
-% \end{sagein}
-% \begin{sage}
-%   1, 3, 4
-% \end{sage}
-% \begin{sagein}
-% delete x[2]: x
-% \end{sagein}
-% \begin{sage}
-%   1, 4
-% \end{sage}
-% \begin{sagein}
-% delete x[2]: x
-% \end{sagein}
-% \begin{sage}
-%   1
-% \end{sage}
-% \begin{sagein}
-% delete x[2]: x
-% \end{sagein}
-% \begin{sage}
-%   Error: Invalid index [delete]
-% \end{sage}
-% \end{itemize}
-% \end{frame}
 
 \subsection*{Listen}
 
 \begin{frame}[fragile]{Listen}
+\begin{sagein}
+liste = [a,b,c,...] 
+liste = list(<sequence>)
+\end{sagein}
+
 \begin{itemize}
 \item Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
-\item In Sage ist eine Liste in eckigen Klammern eingeschlossen.
-\item Listen haben den Datentyp \isage{list}.
+\item eine Liste is in eckigen Klammern eingeschlossen.
 \item Matrizen werden als geschachtelte Liste definiert.
-\item Sie baut auf den eben beschriebenen Folgen auf.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Listen}
-\begin{itemize}
-\item Konstruktion 'per Hand'
+\item Baut auf \isage{tuple} auf.
+\item einfache Konstruktion:
 \begin{sagein}
 Liste = [1,[1,2], Set([1,2,3]),x]; Liste
 \end{sagein}
 \begin{sage}
 [1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
 \end{sage}
-\item Listen können leer sein:
-\begin{sagein}
-Liste = []; Liste
-\end{sagein}
-\begin{sage}
-  []
-\end{sage}
 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Konstruktion von Listen}
+\begin{itemize}
 \item Erzeugen von Listen mit funktionalen Objekten
 \begin{sagein}
 Liste = [2^i for i in range(1,9)]; Liste
@@ -208,44 +154,14 @@ Liste = [2^i for i in range(1,9)]; Liste
 \begin{sage}
 [2, 4, 8, 16, 32, 64, 128, 256]
 \end{sage}
+\item Leere Listen:
+\begin{sagein}
+Liste = []; Liste
+\end{sagein}
+\begin{sage}
+  []
+\end{sage}
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{map}
-Mit Hilfe der Funktion {\color{blue} \isage{map(<f>,<Liste>)}} kann eine Funktion \isage{f}
-auf alle Elemente
-der Liste \isage{<Liste>} angewendet werden. Erwartet eine Funktion
-mehrere Argumente, muss diese Funktion erst gekapselt werden.
-\begin{sagein}
-map(sin,[x,1,0,pi,0.3])
-\end{sagein}
-\begin{sage}
-[sin(x), sin(1), 0, 0, 0.295520206661340]
-\end{sage}
-\begin{sagein}
-map(is_prime,[2,3,4,5,6,7])
-\end{sagein}
-\begin{sage}
-[True, True, False, True, False, True]
-\end{sage}
-\end{frame}
-
-
-\begin{frame}[fragile]{map\_threaded()}
-Eine erweiterte Funktion \isage{map_threaded(<f>,<Liste>)} führt die gegebene Funktion \isage{<f>} rekursiv auf alle Elemente in der Liste an.
-\begin{sagein}
-map_threaded(sin,[x,[1,0],[pi,[0.3]]])
-\end{sagein}
-\begin{sage}
-[sin(x), [sin(1), 0], [0, [0.295520206661340]]]
-\end{sage}
-\begin{sagein}
-map(is_prime,[2,3,4,5,6,7])
-\end{sagein}
-
-\begin{sage}
-
-\end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Zugriff auf Listen}
@@ -273,16 +189,23 @@ Liste[5] = 42; Liste
 
 \begin{frame}[fragile]{Weitere Befehle für Listen I}
 \begin{itemize}
-\item Entfernen eines Elements aus der Liste
+\item Entfernen eines Elements aus der Liste mit \isage{pop()}
 \begin{sagein}
-Liste = [a,b,c]; del Liste[1]; Liste 
+Liste = [a,b,c]; Liste.pop(1); Liste 
 \end{sagein}
 \begin{sage}
   [a, c]
 \end{sage}
-\item Anhängen von Elementen mittels \isage{append}
+\item Entfernen eines Elements aus der Liste mit \isage{remove()} 
 \begin{sagein}
-Liste.append([3,4,5]); print Liste
+Liste = [a,b,c]; Liste.remove(b); Liste
+\end{sagein}
+\begin{sage}
+  [a, c]
+\end{sage}
+\item Anhängen eines Elementes mittels \isage{append()}
+\begin{sagein}
+Liste.append([3,4,5]); Liste
 \end{sagein}
 \begin{sage}
 [a, c, [3, 4, 5]]
@@ -305,19 +228,23 @@ Liste*2
 \begin{sage}
  [a, c, [3, 4, 5], a, c, [3, 4, 5]]
 \end{sage}
-\item Sortieren von Listen mit {\color{blue} \isage{sort}}
+\item Sortieren von Listen mit \isage{sort()}
 \begin{sagein}
-Liste = [4,23,1,3]; Liste.sort(); Liste
+Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
 \end{sagein}
 \begin{sage}
-[1, 3, 4, 23]
+[1, 3, 4, -23]
 \end{sage}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Inklusionen}
-Mit {\color{blue} \isage{<Objekt> in <Liste>}} kann geprüft werden, ob ein
-            Objekt \isage{<Objekt>} in der Liste \isage{<Liste>} enthalten ist.
+\begin{itemize}
+ \item Ist Objekt \isage{Objekt} in der Liste \isage{Liste} enthalten?
+\begin{sagein}
+ <Objekt> in <Liste>
+\end{sagein}
+Beispiel:
 \begin{sagein}
 Liste = [x+1,a,x+1,sin(b)]
 x+1 in Liste
@@ -325,22 +252,84 @@ x+1 in Liste
 \begin{sage}
   True
 \end{sage}
-Mit {\color{blue} \isage{<Liste>.index(<Objekt>)}} erhält man die Position des Objektes in der Liste. Ist es nicht vorhanden, bekommt man eine enstprechende Meldung.
+\item Position des Objektes in der Liste (bei Fehlen gibt es eine entsprechende Meldung)
+\begin{sagein}
+ <Liste>.index(<Objekt>)
+\end{sagein}
+Beispiel:
 \begin{sagein}
 Liste.index(sin(b))
 \end{sagein}
 \begin{sage}
   3
 \end{sage}
+
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{filter()}
+
+\begin{frame}[fragile]{map()}
+\begin{sagein}
+ map(<f>,<Liste>)
+\end{sagein}
+wendet Funktion \isage{f} auf alle Elemente der Liste \isage{Liste} an.
 \begin{itemize}
-\item Mittels {\color{blue} \isage{filter(Liste, Funktion)}} können Objekte mit bestimmten Eigenschaften aus einer
-Liste ausgewählt werden. 
-\item Dabei fungiert eine Funktion \isage{Funktion}
-als Auswahlkriterium. Sie muss Boolsche Werte zurückliefern. 
-\item Der Befehl \isage{filter} funktioniert auch für Mengen, Dictionaries oder Ausdrücken.
+ \item Kapselung bei Funktionen mit mehreren Argumenten.
+%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index).
+\item Beispiele:
+\begin{sagein}
+map(sin,[x,1,0,pi,0.3])
+\end{sagein}
+\begin{sage}
+[sin(x), sin(1), 0, 0, 0.295520206661340]
+\end{sage}
+\begin{sagein}
+map(max,[2,3,4,5,6,7],[8,7,6,5,4,3])
+\end{sagein}
+\begin{sage}
+[8, 7, 6, 5, 6, 7]
+\end{sage}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{map\_threaded()}
+\begin{sagein}
+map_threaded(<f>,<Liste>)
+\end{sagein}
+führt die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} an.
+\begin{itemize}
+ \item Beispiele:
+\begin{sagein}
+map_threaded(sin,[x,[1,0],[pi,[0.3]]])
+\end{sagein}
+\begin{sage}
+[sin(x), [sin(1), 0], [0, [0.295520206661340]]]
+\end{sage}
+\begin{sagein}
+map_threaded(sin,matrix([[1,2,3],[4,5,6]]))
+\end{sagein}
+\begin{sage}
+[sin(1) sin(2) sin(3)]
+[sin(4) sin(5) sin(6)]
+\end{sage}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{filter()}
+Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
+\begin{sagein}
+M1 = filter(<f>,<M>)
+\end{sagein}
+\begin{itemize}
+\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
+\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
+ergibt. 
+%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index) oder Ausdrücke.
 \end{itemize}
 \end{frame}
 
@@ -359,39 +348,14 @@ filter(f,[a+2,x,y,z,sin(a)])
 \begin{sage}
   [a + 2, sin(a)]
 \end{sage}
-% \begin{sagein}
-% def f(arg): return x in [arg]
-% filter(f,(11*x*y*(1-x)^2*5).operands())
-% \end{sagein}
-% \begin{sage}
-%            2
-%   x (x - 1)
-% \end{sage}
 \end{frame}
 
-% \begin{frame}[fragile]{split}
-% Durch \isage{split} wird eine Liste bezüglich eines Kriteriums in drei
-% Teillisten $A,B,C$ aufgeteilt.
-% $A$ steht für \isage{TRUE}, $B$ für
-% \isage{FALSE} und $C$ für \isage{UNKNOWN}.
-% Durch den Befehl
-% \begin{center}
-% {\color{blue} \isage{split(Liste, f, par)}}
-% \end{center}
-% wird die \isage{Liste} bzglüglich einer Boolschen Funktion  \isage{f} mit
-% Parameter \isage{par} aufgeteilt.
-% \begin{sagein}
-% [A,B,C]:=split([sin(x),x+y,y,11],has,x):
-% A,B,C
-% \end{sagein}
-% \begin{sage}
-%  [sin(x), x + y], [y, 11], []
-% \end{sage}
-% \end{frame}
-
-\begin{frame}[fragile]{zip}
-Mittels {\color{blue} \isage{zip(<Liste1>, <Liste2>)}} werden die Elemente zweier Listen
-                        paarweise zu einer neuen Liste verknüpft.
+\begin{frame}[fragile]{zip()}
+\begin{sagein}
+zip(<Liste1>, <Liste2>) 
+\end{sagein}
+die Elemente zweier Listen werden paarweise zu einer neuen Liste verknüpft.\\
+\textbf{Beispiel}:
 \begin{sagein}
 Liste1 = [a,b,c]; Liste2 = [e,f,g]
 zip(Liste1,Liste2)
@@ -410,43 +374,25 @@ zip(Liste1,Liste2)
 
 \subsection*{Dictionaries}
 
+
 \begin{frame}[fragile]{Wörterbücher (Dictionaries)}
+\begin{sagein}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+
 \begin{itemize}
-\item Eine Dictonary besteht aus einer Ansammlung von \glq Assoziationen\grq\  der 
-Form \isage{<Index>:<Wert>}. Indizes und Werte können dabei (fast) beliebige Sage
-Objekte sein. 
-\item Dictionaries haben den Typ \isage{dict}.
-\item  Dictionaries sind Datenstrukturen, die für das Speichern großer
-Datenmengen gut geeignet sind.
-\item In Sage ist der indizierte Zugriff auf einzelne Elemente sehr
-schnell, da intern nicht die gesamte Datenstruktur durchsucht wird.
+\item Dictionaries bestehen aus \alert{Assoziationen} der Form \verb+<Index>:<Wert>+. 
+\item Zugriff:
+\begin{sagein}
+d[<Index>]
+\end{sagein}
+\item  Sind gut geeignet für das Speichern großer Datenmengen, der indizierte Zugriff sehr schnell ist.
 \item der \isage{Index} ist eindeutig
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Dictionaries I}
+\begin{frame}[fragile]{Konstruktion von Dictionaries}
 \begin{itemize}
-\item Konstruktion: ({\color{blue} \isage{{<Index>:<Wert>, ... }}})
-\begin{sagein}
-T = {a: b, c: d}; T
-\end{sagein}
-\begin{sage}
-{c: d, a: b}
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Dictionaries II}
-\begin{itemize}
-\item Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
-\begin{sagein}
-T[f(x)] = sin(x); T[1,2] = 5
-T[1,2,3] = [a,b,c]; T[a] = d;
-T
-\end{sagein}
-\begin{sage}
-{(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
-\end{sage}
 \item Erzeugen eines leeren Dictionaries
 \begin{sagein}
 T1 = {}; T1
@@ -454,10 +400,19 @@ T1 = {}; T1
 \begin{sage}
   {}
 \end{sage}
+\item Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
+\begin{sagein}
+T[f] = sin(x); T[1,2] = 5
+T[1,2,3] = [a,b,c]; T[a] = d;
+T
+\end{sagein}
+\begin{sage}
+{(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
+\end{sage}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Konstruktion und Zugriff}
+\begin{frame}[fragile]{Zugriff auf Dictionaries}
 \begin{itemize}
 \item Zugriff auf ein Dictionary
 \begin{sagein}
@@ -467,36 +422,32 @@ T[a],T[1,2],T[c]
 (d, 5, d)
 \end{sage}
 \begin{sagein}
- float(T[f](4))
+ float(T[f](x=4))
 \end{sagein}
 \begin{sage}
  -0.7568024953079282
 \end{sage}
 Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung
-\item Löschen von Einträgen
+\item Löschen von Einträgen mit \isage{pop()}
 \begin{sagein}
-del T[a]
+T.pop(a)
 \end{sagein}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Befehle wie bei Listen}
-\begin{center}
-\begin{tabular}{|l|p{7cm}|}
-\hline
-\isage{in} & Es wird überprüft, ob ein \isage{Index} in einem
-Dictionary vorkommt. \\
-\isage{filter} & Filtert ein Dictionary nach Kriterien. Prüft sowohl
-\isage{Werte} als auch \isage{Indizes}.\\
-\isage{map} & Wendet eine Funktion auf die Werte an.\\
-\hline
-\end{tabular}
-\end{center}
+\begin{frame}[fragile]{Befehle (nicht) wie bei Listen}
+Alle Funktionen wirken erstmal direkt auf den Index, nicht den Werten:
+\begin{itemize}
+\item \isage{<a> in <M>}: Es wird überprüft, ob der Index \isage{a} in einem
+Dictionary vorkommt. 
+\item \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
+\item \isage{map()}: Wendet eine Funktion auf die Indizes an.
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
-
-\isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
+\begin{itemize}
+ \item \isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
 \begin{sagein}
 Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
 a in Z, b in Z
@@ -505,8 +456,7 @@ a in Z, b in Z
 (True, False)
 \end{sage}
 \isage{a} taucht als Index auf, \isage{b} nur als Wert.
-
-\isage{filter} prüft ebenfalls nur den Index.
+\item \isage{filter} prüft ebenfalls nur den Index.
 \begin{sagein}
 f(y) = y == c; filter(f,Z)
 \end{sagein}
@@ -521,6 +471,10 @@ f(y) = y == d; filter(f,Z)
 []
 \end{sage}
 
+\end{itemize}
+
+
+
 \end{frame}
 
 \begin{frame}[fragile]{Dictonaries - Nachtrag}
@@ -533,7 +487,7 @@ T.update(S); T
 \begin{sage}
 {1: a, 2: b, 3: c, 4: d}
 \end{sage}
-\alert{Vorsicht: Doppelt auftretenden Indizes werden überschrieben!}
+\alert{Vorsicht}: Doppelt auftretenden Indizes werden überschrieben!
 \end{itemize}
 \end{frame}
 
@@ -599,11 +553,12 @@ heißt {\color{red} linear}, falls für $v,w\in V$ und $\lambda \in K$ gilt:
 \item [(L1)] $F(v+w)=F(v)+F(w)$
 \item [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
 \end{itemize} 
-Ist $F$ bijektiv, so heißt $F$ {\color{red} Isomorphismus}. 
+\begin{itemize}
+ \item {\color{red} Isomorphismus}: $F$ bijektiv. 
+\item {\color{red} Endomorphismus}: $V=W$.
+\item {\color{red} Automorphismus}: $V=W$ und $F$ bijektiv.
+\end{itemize}
 
-Gilt $V=W$, so
-spricht man von einem {\color{red} Endomorphismus}. Im Falle von $V=W$ und
-Bijektivität spricht man von einem {\color{red} Automorphismus}. 
 \end{frame}
 
 \begin{frame}{Bemerkungen}
@@ -611,13 +566,13 @@ Bijektivität spricht man von einem {\color{red} Automorphismus}.
 \item Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
 seien Vektoren in $W$. Dann gibt es genau eine lineare Abbildung $F:V
 \rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.
-\item Das {\color{red} Bild} von $F$  ist $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
-\item Der {\color{red} Kern} von F ist $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
+\item {\color{red} Bild} von $F$:   $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
+\item {\color{red} Kern} von F: $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
 \item Kern und Bild sind Untervektorräume.
 \item Dimensionsformel:
 \[\dim V = \dim F(V) + \dim Ker(F)\]
-\item Die Menge der linearen Abbildungen von $V$ nach $W$ wird mit
-{\color{red} $\operatorname{Hom}_K(V,W)$} bezeichnet. Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
+\item {\color{red} $\operatorname{Hom}_K(V,W)$}: Die Menge der linearen Abbildungen von $V$ nach $W$. 
+Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
 \end{itemize}
 \end{frame}
 
@@ -654,9 +609,8 @@ $\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
 ist ein Isomorphismus. Man nennt $\Phi_\mathcal{V}$ ein
 {\color{red} Koordinatensystem} in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
 den {\color{red} Koordinatenvektor} zu $v \in V$.
-\item Ist $\mathcal{Z}$ eine weitere Basis in $V$, so erhält man die
-Basiswechselabbildung von $\mathcal{V}$ nach $\mathcal{Z}$ durch $T:=
- \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}$.
+\item Basiswechselabbildung von $\mathcal{V}$ nach Basis $\mathcal{Z}$:
+\[T:= \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}\].
  \end{itemize}
 \end{frame}
 
@@ -710,7 +664,7 @@ $F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Drehung und Spiegelung I}
+\begin{frame}[fragile]{Drehung}
 Drehung um den Winkel $\alpha$ - Drehmatrix $G$:
 \[ G(\alpha):= \left ( \begin{array}{cc}
 \cos(\alpha) & -\sin(\alpha) \\
@@ -727,7 +681,7 @@ A(a=pi/2)*vector([1,1])
 
 \end{frame}
 
-\begin{frame}[fragile]{Drehung und Spiegelung II}
+\begin{frame}[fragile]{Spiegelung}
 Spiegelung bezüglich der Ebene 
 \[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
  durch \[S(a):=I - 2 a a^T.\] 
@@ -792,7 +746,8 @@ A.eigenvectors_right()
 \item Bestimmung des charakteristischen Polynoms
 \begin{sagein}
 E = identity_matrix(2)
-p = (A-x*E).det(); p
+p = (A-x*E).det()
+A.charpoly(); p
 \end{sagein}
 \begin{sage}
 (x - cos(al))*(x + cos(al)) - sin(al)^2
@@ -821,11 +776,13 @@ Untervektorraum des $K^n$. Die Dimension ist
 
 \begin{frame}{Struktur des Lösungsraums}
 \begin{itemize}
-\item Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
-Unterraum des $K^n$. $X \subset K^n$  heißt {\color{red} affiner Unterraum}, wenn ein
+\item {\color{red} affiner Unterraum}  $X \subset K^n$: wenn ein
 Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
 \[X=v+W\]
-gilt. Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
+%Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
+\item Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
+Unterraum des $K^n$.   
+
 \item Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
 eine beliebige Lösung von $Ax=b$, dann ist der Lösungsraum $X$ von $Ax=b$
 gegeben durch  $X=v+W$.
@@ -841,7 +798,7 @@ lösbar, wenn $\rang(A)=m$ gilt.
 \item Das homogene bzw. das inhomogene System besitzt höchstens eine
 Lösung, genau dann wenn $\rang(A)=n$ gilt.
 \item Der Lösungsraum des inhomogenen Systems ist genau dann nicht
-leer, wenn $\rang(A)=\rang(A, b)$ gilt.
+leer, wenn $\rang(A)=\rang(A, b)$ gilt. %A,b : erweiterte Koeffizientenmatrix
 \item Praktisch kann ein LGS mit dem {\color{red} Gausschen
 Eliminationsverfahren} gelöst werden.
 \end{itemize}

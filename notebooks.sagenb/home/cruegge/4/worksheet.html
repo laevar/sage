@@ -1,5 +1,6 @@
 
 
+<pre>Blatt 5<br /></pre>
 <h2><strong>Aufgabe 1</strong></h2>
 <p>Gegeben seien die Listen $L1 = [x, x^3, x^5, x^7, x^9]$ und $L2 = [x, x^2, x^6, x^{24}, x^{120}]$.</p>
 <ol>
@@ -75,7 +76,7 @@ L = [n for n in L if n%5 == 0]; L
 [125, 78125, 390625, 505]
 }}}
 
-<h2>Aufgabe 3</h2>
+<h2>Aufgabe 3*</h2>
 <ol>
 <li>Bestimmen Sie das charakteristische Polynom, die Eigenwerte und die Eigenvektoren der Matrizen&nbsp;\[A=\left(\begin{array}{ccc} 19 &amp; -2 &amp; 4 \\ 4 &amp; 10 &amp; -2 \\ 4 &amp; -8 &amp; 25 \end{array}\right),\quad&nbsp;B=\left(\begin{array}{ccc} 1 &amp; -3 &amp; 3 \\ 3 &amp; -5 &amp; 3 \\ 6 &amp; -6 &amp; 4 \end{array}\right),\quad&nbsp;C=\left(\begin{array}{ccc} -3 &amp; 1 &amp; -1 \\ -7 &amp; 5 &amp; -1 \\ -6 &amp; 6 &amp; -2 \end{array}\right).\] &Uuml;berpr&uuml;fen Sie diese Matrizen auf Diagonalisierbarkeit.</li>
 <li>Bestimmen Sie die Eigenwerte der $(2 \times 2)$ Drehmatrix aus der Vorlesung. &nbsp;&Uuml;berlegen Sie sich, f&uuml;r welche Winkel reelle Eigenwerte existieren und geben Sie eine geometrische Begr&uuml;ndung hierf&uuml;r.</li>
@@ -95,7 +96,7 @@ Ms = [A,B,C]
 {{{id=20|
 show( [(M-x*E).det() for M in Ms] )
 ///
-<html><div class="math">\left[-{\left(x - 19\right)} {\left({\left(x - 25\right)} {\left(x - 10\right)} - 16\right)} + 8 \, x - 72, -{\left(x - 1\right)} {\left({\left(x - 4\right)} {\left(x + 5\right)} + 18\right)} + 9 \, x + 18, -{\left(x + 3\right)} {\left({\left(x - 5\right)} {\left(x + 2\right)} + 6\right)} - x + 4\right]</div></html>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[-{\left(x - 19\right)} {\left({\left(x - 25\right)} {\left(x - 10\right)} - 16\right)} + 8 \, x - 72, -{\left(x - 1\right)} {\left({\left(x - 4\right)} {\left(x + 5\right)} + 18\right)} + 9 \, x + 18, -{\left(x + 3\right)} {\left({\left(x - 5\right)} {\left(x + 2\right)} + 6\right)} - x + 4\right]</div></html>
 }}}
 
 {{{id=23|
@@ -107,19 +108,19 @@ show( [(M-x*E).det() for M in Ms] )
 {{{id=25|
 show( A.eigenvectors_right() )
 ///
-<html><div class="math">\left[\left(27, \left[\left(1,0,2\right)\right], 1\right), \left(18, \left[\left(1,\frac{1}{2},0\right)\right], 1\right), \left(9, \left[\left(0,1,\frac{1}{2}\right)\right], 1\right)\right]</div></html>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[\left(27, \left[\left(1,0,2\right)\right], 1\right), \left(18, \left[\left(1,\frac{1}{2},0\right)\right], 1\right), \left(9, \left[\left(0,1,\frac{1}{2}\right)\right], 1\right)\right]</div></html>
 }}}
 
 {{{id=26|
 show( B.eigenvectors_right() )
 ///
-<html><div class="math">\left[\left(4, \left[\left(1,1,2\right)\right], 1\right), \left(-2, \left[\left(1,0,-1\right), \left(0,1,1\right)\right], 2\right)\right]</div></html>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[\left(4, \left[\left(1,1,2\right)\right], 1\right), \left(-2, \left[\left(1,0,-1\right), \left(0,1,1\right)\right], 2\right)\right]</div></html>
 }}}
 
 {{{id=27|
 show( C.eigenvectors_right() )
 ///
-<html><div class="math">\left[\left(4, \left[\left(0,1,1\right)\right], 1\right), \left(-2, \left[\left(1,1,0\right)\right], 2\right)\right]</div></html>
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}\left[\left(4, \left[\left(0,1,1\right)\right], 1\right), \left(-2, \left[\left(1,1,0\right)\right], 2\right)\right]</div></html>
 }}}
 
 {{{id=54|
@@ -176,7 +177,7 @@ W.inverse()*V
 [ 2 -2 -1]
 }}}
 
-<h2>Aufgabe 5</h2>
+<h2>Aufgabe 5*</h2>
 <p>Gegeben seien $A=\left(\begin{array}{ccc} 0 &amp; 2 &amp; -2 \\ 3 &amp; x &amp; 4 \\ -1 &amp; y &amp; 1 \end{array}\right)$ und $B=\left(\begin{array}{ccc} 1 &amp; 8 &amp; x \\ 3 &amp; 2 &amp; y \\ 6 &amp; 4 &amp; 4 \end{array}\right)$. Bestimmen Sie $x$ und $y$ so, dass $AB$ invertierbar ist. &Uuml;berpr&uuml;fen Sie das Ergebnis durch Einsetzen.</p>
 
 {{{id=35|
@@ -215,7 +216,7 @@ expand(det(C(x=-3*y-7)))
 0
 }}}
 
-<h2>Aufgabe 6</h2>
+<h2>Aufgabe 6*</h2>
 <p>Untersuchen Sie f&uuml;r $m=0,\,1,\,\dots,\,41$ jeweils, wieviele der Zahlen $n^2+n+m^2$ mit $n=1,\,2,\,\dots,\,100$ Primzahlen sind.</p>
 
 {{{id=43|
