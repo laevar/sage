@@ -131,7 +131,7 @@ liste = list(<sequence>)
 \begin{itemize}
 \item Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
 \item eine Liste is in eckigen Klammern eingeschlossen.
-\item Matrizen werden als geschachtelte Liste definiert.
+\item Matrizen werden als geschachtelte Listen definiert.
 \item Baut auf \isage{tuple} auf.
 \item einfache Konstruktion:
 \begin{sagein}
@@ -165,10 +165,10 @@ Liste = []; Liste
 \end{frame}
 
 \begin{frame}[fragile]{Zugriff auf Listen}
-Der Zugriff funktioniert genau wie bei  Folgen.
-Beispiele:
+\begin{itemize}
+\item Der Zugriff funktioniert genau wie bei Folgen.
 \begin{sagein}
-Liste = [(x,i) for x in range(1,4) for i in range(0,x)];  Liste
+Liste=[(x,i) for x in range(1,4) for i in range(0,x)];  Liste
 \end{sagein}
 \begin{sage}
 [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), (3, 2)]
@@ -179,12 +179,14 @@ Liste[3], Liste[5]
 \begin{sage}
 ((3, 0), (3, 2))
 \end{sage}
+\item Zuweisung:
 \begin{sagein}
 Liste[5] = 42; Liste
 \end{sagein}
 \begin{sage}
   [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
 \end{sage}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Weitere Befehle für Listen I}
@@ -395,7 +397,7 @@ d[<Index>]
 \begin{itemize}
 \item Erzeugen eines leeren Dictionaries
 \begin{sagein}
-T1 = {}; T1
+T = {}; T
 \end{sagein}
 \begin{sage}
   {}
@@ -407,7 +409,7 @@ T[1,2,3] = [a,b,c]; T[a] = d;
 T
 \end{sagein}
 \begin{sage}
-{(1, 2): 5, f: sin(x), c: d, a: d, (1, 2, 3): [a, b, c]}
+{(1, 2): 5, f: sin(x), a: d, (1, 2, 3): [a, b, c]}
 \end{sage}
 \end{itemize}
 \end{frame}
@@ -443,6 +445,7 @@ Dictionary vorkommt.
 \item \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
 \item \isage{map()}: Wendet eine Funktion auf die Indizes an.
 \end{itemize}
+Man kann aber die Objektfunktion \isage{values()} benutzen um eine Liste der Werte zu bekommen (Dann hat man allerdings kein Dictionary mehr!)
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele}
@@ -465,10 +468,10 @@ f(y) = y == c; filter(f,Z)
 \end{sage}
 
 \begin{sagein}
-f(y) = y == d; filter(f,Z)
+f(y) = y == d; filter(f,Z.values())
 \end{sagein}
 \begin{sage}
-[]
+[d]
 \end{sage}
 
 \end{itemize}
@@ -477,7 +480,7 @@ f(y) = y == d; filter(f,Z)
 
 \end{frame}
 
-\begin{frame}[fragile]{Dictonaries - Nachtrag}
+\begin{frame}[fragile]{Dictonaries - \verb~update()~}
  \begin{itemize}
 \item Dictionaries können aneinander gehängt werden:
 \begin{sagein}
@@ -586,7 +589,7 @@ Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
 \vdots\\
 x_n
 \end{pmatrix}
-%\rMapsto
+\longmapsto
 A
 \begin{pmatrix}
  x_1\\
@@ -814,6 +817,11 @@ b3 = A*b2
 print A\b1
 print A\b3
 \end{sagein}
+\begin{sage}
+(0, 0, 0)
+(1, 0, 0) 
+\end{sage}
+
 %linalg::gaussElim(A)
 \end{frame}
 \end{document}
