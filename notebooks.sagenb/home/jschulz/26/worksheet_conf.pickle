@@ -55,19 +55,20 @@ aS'tgroth'
 p29
 asS'name'
 p30
-V06_schleifen I
+V06_schleifen
 p31
 sS'auto_publish'
 p32
 I00
 sS'last_change'
 p33
-(g4
-F1265049873.4286349
-tp34
+(S'jschulz'
+p34
+F1298809344.8111989
+tp35
 sS'worksheet_that_was_published'
-p35
+p36
 (g4
 I26
-tp36
+tp37
 s.

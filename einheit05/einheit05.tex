@@ -749,12 +749,16 @@ A.eigenvectors_right()
 \item Bestimmung des charakteristischen Polynoms
 \begin{sagein}
 E = identity_matrix(2)
-p = (A-x*E).det()
-A.charpoly(); p
+p = (A-x*E).det(); p
 \end{sagein}
 \begin{sage}
 (x - cos(al))*(x + cos(al)) - sin(al)^2
 \end{sage}
+Alternative (Vorsicht: gleich bis auf Vorzeichen!):
+\begin{sagein}
+A.charpoly() 
+\end{sagein}
+
 \begin{sagein}
 [m.full_simplify() for m in solve(p==0,x)]
 \end{sagein}

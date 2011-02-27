@@ -8,52 +8,19 @@
 \tableofcontents
 \end{frame}
 
-% \begin{frame}[fragile]{Übersicht}
-% \begin{itemize}
-% \item Nachtrag
-% \item Folgen, Konvergenz von Folgen
-% \item Realisierung in MuPAD
-% \item Reihen, Konvergenzkriterien
-% \item Potenzreihen
-% \item Exponentialfunktion, Logarithmus, Sinus, Cosinus, Tangens
-% \item Schleifen I
-% \end{itemize}
-% \end{frame}
-
-% \begin{frame}[fragile]{Datentypen}
-% \begin{enumerate}
-% \item Bezeichner -- \isage{DOM_IDENT}
-% \item Ausdrücke -- \isage{DOM_EXPR}
-% \item Ganze Zahlen -- \isage{DOM_INT}
-% \item Rationale Zahlen -- \isage{DOM_RAT}
-% \item Complexe Zahlen -- \isage{DOM_COMPLEX}
-% \item Gleitkommazahlen -- \isage{DOM_FLOAT}
-% \item Mengen -- \isage{DOM_SET}
-% \item Listen -- \isage{DOM_LIST}
-% \item Matrizen -- \isage{Dom::Matrix()}
-% \item Tabellen -- \isage{DOM_TABLE}
-% \item Arrays -- \isage{DOM_ARRAY}
-% \item Funktionen/Prozeduren -- \isage{DOM_PROC}
-% \item Zeichenketten -- \isage{DOM_STRING}
-% \end{enumerate}
-% \end{frame}
-
 %===================================================
 \section{Folgen}
 %==================================================
 
 \begin{frame}{Folgen}
 \begin{itemize}
-\item Eine {\color{red} reelle Zahlenfolge} kurz {\color{red} Folge} genannt, ist eine
-Abbildung von $\mathbb{N}$ in $\mathbb{R}$.
-\item Statt $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$ schreibt man in
-Anlehnung an die Vektornotation $(a_n)_{n \in \mathbb{N}}$ oder einfach $(a_n)_{n}$.
-\item Natürlich kann man auch Folgen $\mathbb{N} \ \rightarrow \ Y$ auf beliebigen Mengen $Y$
-betrachten. Aber wir beschränken uns auf den Fall $Y=\mathbb{R}$. 
-\item Die Zahlen $a_n$ heißen {\color{red} Glieder} der Folge.
-\item Eine {\color{red} Teilfolge} $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
+\item {\color{red} reelle Zahlenfolge}: Abbildung $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$.
+\item Alternative Notation: $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$.
+\item {\color{red} Glieder} der Folge: Die Zahlen $a_n$.
+\item {\color{red} Teilfolge}: $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
 \rightarrow \ \mathbb{R}$, wobei $N \subset \mathbb{N}$ eine Menge mit
 unendlich vielen Elementen ist.
+\item Bemerkung: Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
 \end{itemize}
 \end{frame}
 
@@ -65,24 +32,26 @@ n_0$ die Abschätzung
 \[ |a_n - a|< \varepsilon \]
  gilt. Man schreibt
 \[ a=\lim_{n \rightarrow \infty} a_n. \]
-Eine nicht konvergente Folge nennt man {\color{red} divergent}. 
+
+{\color{red} divergent}: nicht konvergente Folge. 
 \end{frame}
 
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Konvergiert eine Folge gegen $0$, so nennt man sie eine
-\alert{Nullfolge}.
-\item Der Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$
- heißt {\color{red} Häufungspunkt}. 
-\item Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten; konvergente Folgen haben genau einen Häufungspunkt.
-\item  Eine {\color{red} Cauchy-Folge} ist eine Folge $(a_n)_n$ bei der für
+\item \alert{Nullfolge}: Folge konvergiert gegen $0$.
+\item {\color{red} Häufungspunkt}: Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$.
+\begin{itemize}
+\item Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten
+\item konvergente Folgen haben genau einen Häufungspunkt.
+\end{itemize}
+\item  {\color{red} Cauchy-Folge}: eine Folge $(a_n)_n$ bei der für
 alle $\varepsilon>0$ ein $n_0 \in \mathbb{N}$ existiert, so dass für alle
 $n,m \geq n_0$ gilt:
 $|a_n - a_m| < \varepsilon$. \\
-In $\mathbb{R}$ ist eine Folge konvergent,
+\item In $\mathbb{R}$ ist eine Folge konvergent,
 genau dann wenn sie eine Cauchy-Folge ist (Vollständigkeit).
-\item Eine {\color{red} $\varepsilon$-Umgebung} $U_\varepsilon(a)$ von $a$ ist
+\item {\color{red} $\varepsilon$-Umgebung}: $U_\varepsilon(a)$ von $a$ ist
 definiert durch
 \[
 U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ |x - a| < \varepsilon \}.
@@ -90,21 +59,6 @@ U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiele}
-\begin{tabular}{SlSlSl}
-$a_n:= \frac{1}{n+1}$ & $1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$\\
-$b_n:= 2^{-n}$ & $1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$\\
-$c_n:=2^n$ & $1,2,4,8,\ldots$\\
-$d_n:=\left( \frac{n+2}{n+1} \right)^{n+1}$ & $\frac{2^1}{1^1},
-\frac{3^2}{2^2}, \frac{4^3}{3^3},...$\\
-$e_n=(-1)^n$ & $1,-1,1,-1,...$\\
-\end{tabular}
-\bigskip
-
-Die Folgen
-$(a_n)_n$, $(b_n)_n$ und  $(d_n)_n$ konvergieren und $(c_n)_n$,
-$(e_n)_n$ divergieren. 
-\end{frame}
 
 \begin{frame}[fragile]{Folgen in Sage I}
 Grenzwerte von Folgen $(a_n)_n$ können in Sage mit Hilfe von 
@@ -114,39 +68,49 @@ limit(expr(x), x = oo, dir='above')
 berechnet werden. Dabei ist $expr(x)$ ein Ausdruck.
 
 \textbf{Beispiele:}
+\begin{itemize}
+ \item $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
 \begin{sagein}
 _=var('n');limit(1/(n+1),n=oo)
 \end{sagein}
 \begin{sage}
   0
 \end{sage}
+\item $d_n:=\left( \frac{n+2}{n+1} \right)^{n+1} => \frac{2^1}{1^1},\frac{3^2}{2^2}, \frac{4^3}{3^3},...$ (konvergent)
 \begin{sagein}
 limit(((n+2)/(n+1))^(n+1),n=oo)
 \end{sagein}
 \begin{sage}
   e
 \end{sage}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Folgen in Sage II}
+\begin{itemize}
+\item $e_n:=(-1)^n => 1,-1,1,-1,...$ (divergent)
 \begin{sagein}
 limit((-1)^n,n=oo)
 \end{sagein}
 \begin{sage}
   ind
 \end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Folgen in Sage II}
+\item $c_n:=2^n => 1,2,4,8,\ldots$ (divergent)
 \begin{sagein}
 limit(2^n,n=oo)
 \end{sagein}
 \begin{sage}
   +Infinity
 \end{sage}
+\item  $b_n:= 2^{-n} => 1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$ (konvergent)
 \begin{sagein}
-lim(x*sin(1/x), x=0)
+limit(2^(-n),n=oo)
 \end{sagein}
 \begin{sage}
-  0
+  1/1048576
 \end{sage}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Visualisieren von Folgen}
@@ -163,13 +127,13 @@ point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
 \begin{frame}{Konvergenzkriterien}
 \begin{itemize}
 \item Jede monotone, beschränkte Folge konvergiert.
-\item Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
+\item Konvergenz bei Addition: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
                    Folge $( \alpha a_n+\beta b_n)_n$ konvergent mit
                    dem Grenzwert
  \[ \lim_{n \rightarrow \infty} ( \alpha a_n + \beta b_n)= \alpha
                    \lim_{n \rightarrow \infty} a_n + \beta \lim_{n
                    \rightarrow \infty} b_n .\]
-\item Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
+\item Konvergenz bei Multiplikation: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
                    Folge $(a_n b_n)_n$ konvergent mit
                    dem Grenzwert
  \[
@@ -177,20 +141,20 @@ point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
                    (\lim_{n \rightarrow \infty} a_n) \cdot  (\lim_{n
                    \rightarrow \infty} b_n).
  \]
-\item Weglassen oder Hinzufügen endlich vieler Glieder verändert das
+\item Bemerkung: Weglassen oder Hinzufügen endlich vieler Glieder verändert das
                    Konvergenzverhalten nicht.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wichtige Sätze}
 \begin{itemize}
-\item (Bolzano-Weierstrass) Jede beschränkte Folge besitzt (mindestens) eine
+\item \alert{(Bolzano-Weierstrass)}: Jede beschränkte Folge besitzt (mindestens) eine
 konvergente Teilfolge.
 \item Jede Teilfolge einer konvergenten Folge konvergiert gegen den
 Grenzwert der ursprünglichen Folge.
 \item Jede konvergente Folge ist beschränkt, d.h. es gibt ein $K>0$,
 so dass $|a_n|\leq K$ gilt für alle $n \in \mathbb{N}$.
-\item Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
+\item \alert{Zwischenfolge}: Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
 \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n$. Dann gilt
 für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 \mathbb{N}$, dass sie konvergiert mit  $\lim_{n
@@ -236,114 +200,133 @@ Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Beginnt die Indizierung statt bei $1$ mit einer anderen ganzen
-Zahl $m$, so wird $\sum_{n=m}^\infty a_n$ entsprechend eingeführt.
+\item  Reihen sind eine spezielle Art von Folgen.
+\item Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.
 \item Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
 bleiben Konvergenz und Divergenz unberührt. I.A. wird sich aber der
 Grenzwert ändern.
-\item  Reihen sind eine spezielle Art von Folgen.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiele I}
+\begin{frame}[fragile]{Reihen in Sage}
+\begin{sagein}
+sum(<f>,<i>,<a>,<b>) 
+\end{sagein}
+Gesucht: geschlossene Darstellung der Summe $\sum_{i=a}^b f(i)$ mit $a,b \in \mathbb{Z}$ ganze
+Zahlen (auch unendlich (\isage{infinity/oo}), \isage{f} Ausdruck in $i$.
 \begin{itemize}
-\item Die \alert{geometrische Reihe} ist gegeben durch $\sum_{n=0}^\infty x^n$. Die
+\item Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
+unterschiedliches Konvergenzverhalten.
+%geometrische Reihe z.b.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele}
+\begin{itemize}
+\item \alert{geometrische Reihe}: $\sum_{n=0}^\infty x^n$. Die
 Partialsummen lauten
 \[ s_n=1+x+x^2+\ldots + x^n = \left \{ \begin{array}{ll}
 n+1, & \mbox{ falls } x=1\\
 \frac{1-x^{n+1}}{1-x}, & \mbox{ falls } x \neq 1 
 \end{array} \right. .\]
-Also divergiert die Reihe für $|x|\geq1$ und konvergiert für $|x|<1$ mit
+Die Reihe divergiert für $|x|\geq1$ und konvergiert für $|x|<1$ mit
 dem Wert $\sum_{n=0}^\infty = \frac{1}{1-x}$.
 
-\item Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
-$\pi^2/6$.
- \end{itemize}
-\end{frame}
-
-\begin{frame}{Beispiele II}
-\begin{itemize}
-\item Die \alert{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
- divergiert.
-\item Die \alert{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
-\frac{(-1)^{n+1}}{n}$ konvergiert.
-\item Die Reihe  $\sum_{n=1}^\infty \frac{1}{n^s}$ konvergiert für $s>1$.
-\item Die Reihe  $\sum_{n=2}^\infty \frac{1}{n(\log n)^s}$ konvergiert
-für $s>1$ und divergiert für $s=1$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Reihen mit Sage I}
-Der Befehl {\color{blue} \isage{sum(f,i,a,b)}} sucht eine geschlossene
-Darstellung der Summe $\sum_{i=a}^b f(i)$. Dabei sind $a$,$b$ ganze
- Zahlen, wobei auch unendlich (also \isage{infinity}) erlaubt
-ist und \isage{f} ist ein Ausdruck in $i$.
-\begin{sagein}
-_=var('k');sum(1/k^2,k,1,oo)
-\end{sagein}
-\begin{small}
-\begin{sage}
-1/6*pi^2
-\end{sage}
-\end{small}
-\begin{sagein}
-sum((-1)^(k+1)/k,k,1,oo)
-\end{sagein}
-\begin{sage}
-  log(2)
-\end{sage}
-\begin{sagein}
-sum(1/k,k,1,oo)
-\end{sagein}
-\begin{sage}
-ValueError: Sum is divergent
-\end{sage}
-\end{frame}
-
-
-\begin{frame}[fragile]{Reihen mit Sage II}
-Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern,
-wie z.B. bei der geometrischen Reihe. Und je nach Parameterwert zeigt die Reihe
-unterschiedliches Konvergenzverhalten
 \begin{sagein}
 sum(x^k,k,0,oo)
 \end{sagein}
 \begin{sage}
 Is  abs(x)-1  positive, negative, or zero?
 \end{sage}
-Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt jedoch
+Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt
 \begin{sagein}
 x = 1/2; sum(x^k,k,0,oo)
 \end{sagein}
 \begin{sage}
   2
 \end{sage}
+
+\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Etwas mehr Sage}
+\begin{frame}[fragile]{Beispiele}
+\begin{itemize}
+\item Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
+$\pi^2/6$.
+\begin{sagein}
+_=var('k');sum(1/k^2,k,1,oo)
+\end{sagein}
+\begin{sage}
+1/6*pi^2
+\end{sage}
+\item Die \alert{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
+\frac{(-1)^{n+1}}{n}$ konvergiert.
+\begin{sagein}
+sum((-1)^(k+1)/k,k,1,oo)
+\end{sagein}
+\begin{sage}
+  log(2)
+\end{sage}
+\item Die \alert{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
+ divergiert.
+\begin{sagein}
+sum(1/k,k,1,oo)
+\end{sagein}
+\begin{sage}
+ValueError: Sum is divergent
+\end{sage}
+\end{itemize}
+\end{frame}
+
+
+% \begin{frame}[fragile]{Beispiele}
+% \begin{itemize}
+% \item Die Reihe  $\sum_{n=1}^\infty \frac{1}{n^s}$ konvergiert für $s>1$.
+% \begin{sagein}
+% var('s');assume(s>1);sum(1/k^s,k,1,oo)
+% \end{sagein}
+% \begin{sage}
+% 
+% \end{sage}
+% 
+% \item Die Reihe  $\sum_{n=2}^\infty \frac{1}{n(\log n)^s}$ konvergiert
+% für $s>1$ und divergiert für $s=1$.
+% \begin{sagein}
+% sum(1/k,k,1,oo)
+% \end{sagein}
+% \begin{sage}
+% 
+% \end{sage}
+% 
+% \end{itemize}
+% 
+% \end{frame}
+
+\begin{frame}[fragile]{Partialsummen}
 \begin{itemize}
 \item Definieren der Partialsumme
 \begin{sagein}
 _=var('x,n,k')
 s = sum(x^k,k,0,n); s
 \end{sagein}
-\begin{small}
-\begin{sage}
-(x^(n + 1) - 1)/(x - 1)
-\end{sage}
-\end{small}
+{\color{blue}\[\frac{x^{{\left(n + 1\right)}} - 1}{x - 1}\]}
+% \begin{sage}
+% (x^(n + 1) - 1)/(x - 1)
+% \end{sage}
+
 \item Die ersten $5$ Glieder der Partialsumme
 \begin{sagein}
 assume(x<>1); [s(n=m) for m in [1..6]]
 \end{sagein}
-\begin{sage}
-[(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
-1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
-\end{sage} 
+{\color{blue}\[\left[\frac{x^{2} - 1}{x - 1}, \frac{x^{3} - 1}{x - 1}, \frac{x^{4} - 1}{x - 1}, \frac{x^{5} - 1}{x - 1}, \frac{x^{6} - 1}{x - 1}, \frac{x^{7} - 1}{x - 1}\right] \]}
+% \begin{sage}
+% [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
+% 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
+% \end{sage} 
  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Etwas mehr Sage II}
+\begin{frame}[fragile]{Partialsummen II}
 \begin{itemize}
 \item Bestimmen des Grenzwertes der Folge der Partialsummen
 \begin{sagein}
@@ -361,17 +344,17 @@ forget();assume(x>1);limit(s,n=oo)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{assume}
-Mit der Funktion \isage{assume} kann man Funktionen wie \isage{expand},
-\isage{simplify} oder  \isage{solve} mitteilen, dass für gewisse Bezeichner
-Annahmen über ihre Bedeutung gemacht wurden. 
+\begin{frame}[fragile]{Annahmen - \verb~assume()~}
+\begin{sagein}
+assume(<assumptions>)
+\end{sagein}
+Annahmen für bestimmte Bezeichner.
 
 \textbf{Beispiele:}
 \begin{sagein}
-assume(x,'real') # §$x$§ wird auf §$\mathbb{R}$§ eingeschränkt!
-assume(x>a) # §$x$§ wird auf  §$\{y \in \mathbb{R}\ |\ y>a\}$§ eingeschränkt!
+assume(x,'real') # §$x$§ wird auf §$\mathbb{R}$§ eingeschränkt
+assume(x>a) # §$x$§ wird auf  §$\{y \in \mathbb{R}\ |\ y>a\}$§ eingeschränkt
 \end{sagein}
-
 
 Ruft man \isage{assume} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
 Widersprüchlich erhält man eine entsprechende Meldung.
@@ -484,31 +467,28 @@ Annahme & Erklärung\\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Majorantenkriterium}
-\begin{itemize}
-\item Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$,
-                  so nennt man  $\sum_{n=1}^\infty c_n$ eine {\color{red}
-                  Minorante} und   $\sum_{n=1}^\infty b_n$ eine {\color{red}
-                  Majorante} von $\sum_{n=1}^\infty a_n$.
-\item Besitzt eine Reihe mit nichtnegativen Gliedern eine konvergente
-                  Majorante, so konvergiert sie.
-\item Besitzt  eine Reihe mit nichtnegativen Gliedern dagegen eine divergente Minorante, so divergiert
-sie.
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Konvergenzkriterien}
-Die Reihe $\sum_{n=1}^\infty a_n$ konvergiert, wenn...
+Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$
+\begin{itemize}
+ \item {\color{red} Minorante}: $\sum_{n=1}^\infty c_n$
+ \item {\color{red} Majorante}: $\sum_{n=1}^\infty b_n$ 
+\end{itemize}
+Die Reihe $\sum_{n=1}^\infty a_n$ \alert{konvergiert}, wenn...
 \begin{description}
+\item[Majorantenkriterium:] eine konvergente Majorante besitzt (nichtnegative Glieder).
+
 \item[Quotientenkriterium:] Die Glieder positiv sind und ein $q<1$
 existiert, so dass für $n \in \mathbb{N}$ gilt $\frac{a_{n+1}}{a_n}
 \leq q$. 
 \item[Wurzelkriterium:] Die Glieder positiv sind und ein $q<1$
 existiert, so dass für $n \in \mathbb{N}$ gilt $\sqrt[n]{a_n} \leq
 q$. 
-\item[Leibnizsches Kriterium:] Die Reihe $\sum_{n=1}^\infty (-1)^n a_n$
-konvergiert, wenn die Folge $(a_n)_n$ eine monoton
-fallende  Nullfolge ist.
+\item[Leibnizsches Kriterium:] wenn die Folge $(a_n)_n$ bei $\sum_{n=1}^\infty (-1)^n a_n$
+eine monoton fallende  Nullfolge ist.
+\end{description}
+Die Reihe $\sum_{n=1}^\infty a_n$ \alert{divergiert}, wenn...
+\begin{description}
+\item[Majorantenkriterium:] sie eine divergente Minorante besitzt.
 \end{description}
 \end{frame}
 
@@ -525,7 +505,7 @@ limit(g(n),n=oo)
 \end{sage}
 \item Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
 \begin{sagein}
-f(n) = 1/(n*(ln(n)^2))
+f(n) = 1/(n*(log(n)^2))
 g(n) = 2^n*f(2^n)
 h(n) = 2^n*g(2^n)
 limit(h(n+1)/h(n),n=oo)
@@ -537,12 +517,11 @@ limit(h(n+1)/h(n),n=oo)
 \end{frame}
 
 \begin{frame}{Absolute und bedingte Konvergenz}
-Eine Reihe $\sum_{n=0}^\infty a_n$ heißt {\color{red} absolut konvergent}
+
+{\color{red} absolut konvergent}: Ist eine Reihe $\sum_{n=0}^\infty a_n$ 
 genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert. 
 
-Eine
-konvergente, aber nicht absolut konvergente Reihe heißt {\color{red} bedingt
-konvergent}.
+{\color{red} bedingt konvergent}: konvergent, aber nicht absolut konvergent.
 \begin{itemize}
 \item Absolut konvergente Reihen können beliebig umgeordnet werden.
 \item Dies ist i.d.R. bei nicht absolut konvergenten Reihen falsch!
@@ -555,30 +534,25 @@ konvergent}.
 
 
 \begin{frame}{Potenzreihen}
-Eine {\color{red} Potenzreihe} ist eine Reihe  der Form
+
+{\color{red} Potenzreihe}:
 \[ \sum_{n=0}^\infty a_n (x-x_0)^n \]
-mit $x_0 \in \mathbb{R}$. Das Konvergenzverhalten für verschiedene $x$ wird durch den
-{\color{red} Konvergenzradius} 
-\[  \rho := \frac{1}{ \limsup _{n \rightarrow \infty} \sqrt[n]{|a_n|}}
-\]
-bestimmt. Für $|x -x_0|< \rho$ konvergiert die Potenzreihe absolut und für
-$|x-x_0|>\rho$ divergiert sie. 
-\end{frame}
+mit $x_0 \in \mathbb{R}$. 
 
-\begin{frame}{Bemerkungen}
-\begin{itemize}
-\item Ist $a_n \neq 0$ für alle $n > n_0$, dann gilt für den Konvergenzradius:
+{\color{red} Konvergenzradius}: 
+\[  \rho := \frac{1}{ \limsup_{n \rightarrow \infty} \sqrt[n]{|a_n|}}
+\]
+Ist $a_n \neq 0$ für alle $n > n_0$:
 \[
- \rho = \limsup _{n \rightarrow \infty} \frac{|a_{n}|}{|a_{n+1}|}.
+ \rho = \limsup_{n \rightarrow \infty} \frac{|a_{n}|}{|a_{n+1}|}.
 \]
 
-\item 
-Potenzreihen
-konvergieren innerhalb ihres Konvergenzradius absolut.
+Konvergenzverhalten:
+\begin{itemize}
+ \item konvergiert absolut für $|x -x_0|< \rho$.
+ \item divergiert für $|x-x_0|>\rho$.
 \item Die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ muss bei
 jeder Reihe individuell geprüft werden.   
-\item Potenzreihen sind ein mächtiges Werkzeug innerhalb der
-Mathematik. 
 \end{itemize}
 \end{frame}
 
@@ -681,20 +655,21 @@ p += text('-- $\cos(x)$', (10, 0.85)); p.show()
 
 \begin{frame}{Eigenschaften}
 \begin{itemize}
-\item Es gelten die Additionstheoreme:
+\item \alert{Additionstheoreme}:
 \begin{eqnarray*}
 \sin(x+y) & = &\sin x \cos y+ \cos x \sin y \\
 \cos(x+y) & = &\cos x \cos y - \sin x \sin y .
 \end{eqnarray*} 
-\item Es gilt: 
+\item 
 \[\sin^2x +\cos^2x=1.\]
-\item Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
-von $\cos(x)$ als $\pi/2$ definieren.
-\item Es gilt: 
+\item 
 \begin{eqnarray*}
 \sin(x+\pi/2)&=&\cos(x)\\
  \cos(x+\pi/2)&=&-\sin(x).
 \end{eqnarray*} 
+\item Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
+von $\cos(x)$ als $\pi/2$ definieren.
+
 \end{itemize}
 \end{frame}
 
@@ -716,17 +691,16 @@ cos(x)
 \begin{frame}[fragile]{Weitere Eigenschaften I}
 \begin{itemize}
 %\item Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
-\item Die Umkehrfunktionen von Sinus und Cosinus werden mit $\arcsin$
-und $\arccos$ bezeichnet. In Sage: \isage{arcsin} und \isage{arccos}. 
+\item Umkehrfunktionen: $\arcsin$ bei Sinus und $\arccos$ bei Cosinus.
 Plotten: 
 \begin{sagein}
 p = plot(arcsin,-1,1,color='red')
 p += plot(arccos,-1,1); 
-p += text('-- $arcsin(x)$', (-0.7, 1.0), color='red')
-p += text('-- $arccos(x)$', (-0.7, 0.75)); p.show()
+p += text('-- arcsin(x)', (-0.7, 1.0), color='red')
+p += text('-- arccos(x)', (-0.7, 0.75)); p.show()
 \end{sagein}
 \begin{center}
-\includegraphics[width=5.5cm]{figures/arcsinarccos.pdf}
+\includegraphics[width=6.5cm]{figures/arcsinarccos.pdf}
 \end{center}
 \end{itemize}
 \end{frame}
@@ -749,14 +723,14 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 %-------------------
 
 \begin{frame}[fragile]{while-Schleifen}
-Eine andere Form einer Schleife ist 
 \begin{sagein}
-while <expression> : <block>
+while <expression> :
+    <Code-block>
 \end{sagein}
-Diese wiederholt \isage{<block>} solange wie die \isage{<expression>} als 
+Diese wiederholt \isage{<Code-block>} solange wie die \isage{<expression>} als 
 \isage{True} ausgewertet wird.
 
-Beispiel:
+\textbf{Beispiel}:
 \begin{sagein}
 f(x) = 1/x
 x=0.1
