@@ -24,16 +24,16 @@
 %==================================================
 
 \begin{frame}{Funktionen}
-Man spricht von einer (reellen) {\color{red} Funktion}, wenn ein {\color{red}
-  Definitionsbereich} $D \subset \mathbb{R}$, $D \neq \emptyset$
-  gegeben ist und eine Vorschrift, die jedem $x \in D$ in eindeutiger
-  Weise eine reelle Zahl $f(x)$ zuordnet. Man schreibt 
-\[f: \ D \ \rightarrow \ \mathbb{R}.\]
-
-Die Menge $f(D)$ ist die Menge aller rellen Zahlen, die als Werte der
-Funktion vorkommen. Die Menge $f(D)$ wird als {\color{red} Wertebereich} bezeichnet. Der
-{\color{red} Graph} einer Funktion ist die Menge aller Punkte 
+(reelle) {\color{red} Funktion}:  Abbildung
+\[f: \ D \subset \mathbb{R} \ \rightarrow \ \mathbb{R}.\]
+die jedem Element aus $D$ eindeutig genau ein Element aus $\mathbb{R}$ zuordnet.
+\begin{itemize}
+ \item {\color{red} Definitionsbereich}: $D \subset \mathbb{R}$, $D \neq \emptyset$.
+\item \alert{Wertebereich}: Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
+Funktion vorkommen.
+\item {\color{red} Graph} einer Funktion: ist die Menge aller Punkte 
 \[ \{ (x,f(x)) \in \mathbb{R}^2 \;|\; x \in D\}. \]
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Verknüpfungen}
@@ -45,14 +45,14 @@ definiert man:
 \item Produkt: $(f\cdot g)(x):=f(x) \cdot g(x)$
 \item Quotient: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
 0$ für alle $x \in D$ 
+\item Komposition: Mit $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
+mit $f(D_f) \subset D_g$ 
+\[(g \circ f) (x):=g(f(x)).\] 
 \end{itemize}
 
-Sind $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
-mit $f(D_f) \subset D_g$ so ist die Komposition definiert durch:
-\[(g \circ f) (x):=g(f(x)).\] 
 \end{frame}
 
-\begin{frame}{Mehrere Veränderliche}
+\begin{frame}{Funktionen mehrerer Veränderlicher}
 Ist $D \subseteq \mathbb{R}^n$ und $f : D \Rightarrow \mathbb{R}$ dann spricht man von
 einer reellen Funktion in \alert{mehreren Veränderlichen}. Das Studium dieser Funktionen ist einer der Hauptinhalte der Diff2-Vorlesung.
 
@@ -67,7 +67,11 @@ Z.B.
 
 
 \begin{frame}[fragile]{Abbildungen in Sage I}
-In Sage wird eine Abbildung $f$ durch einen Ausdruck der Form {\color{red}\isage{f(x,y,...)}} gebildet, wobei $x$,$y$ die sind.
+\begin{sagein}
+f(x,y,...) = expr
+\end{sagein}
+Abbildung $f$ mit Argumente $x,y$.\\
+\textbf{Beispiele:}
 \begin{sagein}
 f(x,y) = x^2+y^2; f
 \end{sagein}
@@ -98,29 +102,35 @@ f(x) = 1/(1+x); g(x) = sin(x^2)
 h = f+g; k = f*g; l = f/g
 h(a),k(a),l(a)
 \end{sagein}
-\begin{sage}
-(1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
-\end{sage}
+{\color{blue} \[\left(\frac{1}{a + 1} + \sin\left(a^{2}\right),
+\frac{\sin\left(a^{2}\right)}{a + 1}, \frac{1}{{\left(a + 1\right)}
+\sin\left(a^{2}\right)}\right)\]}
+% \begin{sage}
+% (1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
+% \end{sage}
 \end{frame}
 
 
 \begin{frame}[fragile]{Kompositionen in Sage I}
-Eine Komposition $f\circ g$ wird in Sage durch Ineinanderschachteln gelöst.
+Kompositionen $f\circ g$ werden in Sage durch Ineinanderschachteln gelöst:
 \begin{sagein}
 f_g(x) = f(g); g_f(x) = g(f)
 f_g(x), g_f(x)
 \end{sagein}
-\begin{sage}
-(1/(sin(x^2) + 1), sin((x + 1)^(-2)))
-\end{sage}
+{\color{blue} \[ \left(\frac{1}{\sin\left(x^{2}\right) + 1}, \sin\left(\frac{1}{{\left(x
++ 1\right)}^{2}}\right)\right) \]}
+% \begin{sage}
+% (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
+% \end{sage}
 Mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
-\circ f(\cdot)$ wird in Sage ebenso durchgeführt.
+\circ f(\cdot)$
 \begin{sagein}
 g4(x) = g(g(g(g))); g4
 \end{sagein}
-\begin{sage}
-x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
-\end{sage}
+{\color{blue} \[ x \ {\mapsto}\sin\left(\sin\left(\sin\left(\sin\left(x^{2}\right)^{2}\right)^{2}\right)^{2}\right) \]}
+% \begin{sage}
+% x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
+% \end{sage}
 \end{frame}
 
 \begin{frame}[fragile]{Kompositionen in Sage II}
@@ -131,14 +141,13 @@ abs(real(-2+3*I))
 \begin{sage}
   2
 \end{sage}
-Kompliziertere Funktionen können besser durch selbst definierte Funktionen/Prozeduren erklärt
-werden. Diese sind im wesentlichen eine Abarbeitungsvorschrift, die mit
-\isage{def <func>():} beginnen (vgl. Einheit 4).
+Kompliziertere Funktionen können besser durch selbst definierte Funktionen/Prozeduren \isage{def <func>():} erklärt
+werden (vgl. Einheit 4).
 \end{frame}
 
 \begin{frame}[fragile]{Ausdrücke und Funktionen I}
-Man kann in Sage wählen, ob man eine Funktion $f$ als Funktion oder
-als Ausdruck darstellt. Die Funktionsauswertung ist i.A. allerdings unterschiedlich:
+Funktion $f$ als Funktion $f(x)=expr(x)$ oder als Ausdruck $f=expr$ (Vorsicht: der Typ ist identisch).
+Funktionsauswertung ist i.A. allerdings unterschiedlich.
 \begin{sagein}
 Funktion(x) = 2*x*cos(x); Funktion(1)
 \end{sagein}
@@ -154,25 +163,6 @@ Ausdruck = 2*x*cos(x); Ausdruck(x=1)
 
 \end{frame}
 
-% \begin{frame}[fragile]{Ausdrücke und Funktionen II}
-% Man kann durch Einsetzen aus einer Funktion einen Ausdruck machen:
-% \begin{sagein}
-% bool(Funktion=Ausdruck), bool(Funktion(x)=Ausdruck)
-% \end{sagein}
-% \begin{sage}
-%   FALSE, TRUE
-% \end{sage}
-% Umgekehrt kann man aber auch aus einem Ausdruck eine Funktion
-% machen. Dazu gibt es in der Bibliothek \isage{fp} den Befehl
-% \isage{unapply}. 
-% \begin{sagein}
-% Ausdruck:=2*x*cos(x):
-% (h:=fp::unapply(Ausdruck)), h(2), Ausdruck(2)
-% \end{sagein}
-% \begin{sage}
-%   x -> 2*x*cos(x), 4*cos(2), 2*x(2)*cos(x)(2)
-% \end{sage}
-% \end{frame}
 
 \begin{frame}[fragile]{Ausdrücke und Funktionen II}
 Auch mehrere Veränderliche  sind möglich:
@@ -223,9 +213,9 @@ Funktion3(x,y) = x+sin(y); Funktion3
 %----------------------------------------
 
 \begin{frame}{Grenzwerte von Funktionen}
-Sei $f$ eine Funktion mit Definitionsbereich $D$ und $a\in D$.
-$f$ strebt für $x \rightarrow a$ gegen den {\color{red} Grenzwert} $b \in
-\mathbb{R}$, wenn es zu jedem $\varepsilon >0$ ein $\delta >0$ gibt, so
+
+{\color{red} Grenzwert}: Sei $f$ eine Funktion mit Definitionsbereich $D$ und $a\in D$.\\
+$f$ strebt für $x \rightarrow a$ gegen $b \in \mathbb{R}$, wenn es zu jedem $\varepsilon >0$ ein $\delta >0$ gibt, so
 dass für alle $x \in D\smallsetminus\{a \}$ mit $|x-a|<\delta$ gilt 
 \[ |f(x)-b| < \varepsilon .\]
 Der Grenzwert $b$ ist eindeutig bestimmt und man schreibt
@@ -236,8 +226,8 @@ Die Aussage überträgt sich sinngemäß auf $a=\pm \infty$.
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Folgenkriterium: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
-genau dann, wenn für \alert{jede} Folge $a_n \in D$ mit $a_n \neq a$ und $a_n \rightarrow a$
+\item \alert{Folgenkriterium}: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
+genau dann, wenn für jede Folge $a_n \in D$ mit $a_n \neq a$ und $a_n \rightarrow a$
 gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
 \item Es gelten die üblichen Rechenregeln:
 \begin{eqnarray*}
@@ -246,33 +236,33 @@ gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
 \lim_{x \rightarrow a}(f(x) \cdot g(x)) &=& \lim_{x \rightarrow a}
 f(x) \cdot \lim_{x \rightarrow a} g(x)
 \end{eqnarray*}
-wenn $\lim_{x \rightarrow a} f(x)$ \alert{und} $\lim_{x \rightarrow a}g(x)$
-\alert{existieren}. 
+wenn $\lim_{x \rightarrow a} f(x)$ und $\lim_{x \rightarrow a}g(x)$
+existieren. 
 \item Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
 g(x)=c$ bei entsprechenden Definitionsgebieten für $f$ und $g$, so
 folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Sage}
-Grenzwerte werden in Sage mit dem Befehl \isage{limit} gebildet. 
-Die Syntax des Befehls lautet
+\begin{frame}[fragile]{limit()}
 \begin{sagein}
 expr.limit(x = a, dir=None, taylor=False)
 limit(expr, x = a, dir=None, taylor=False)
 \end{sagein}
-Hierdurch wird der Grenzwert eines Ausdrucks mit Unbekannten $x$ an
-der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (in
-Sage \isage{infinity} oder \isage{oo}).\\
-\bigskip
-Ruft man \isage{limit} ohne \isage{option} auf, so wird der beidseitige
-Limes berechnet. Falls \isage{dir='minus'} ist, wird der linksseitige
-Limes berechnet; für \isage{dir='plus'} der rechtsseitige.
+Hierdurch wird der (beidseitige) Grenzwert eines Ausdrucks mit Unbekannten $x$ an
+der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (\isage{infinity} oder \isage{oo}).\\
+\begin{itemize}
+ \item \isage{dir='minus'}: linksseitige Limes. 
+\item \isage{dir='plus'}: rechtsseitige Limes.
+\item \isage{taylor=True}: es wird eine Taylorentwicklung benutzt. 
+\end{itemize}
+
+
 \end{frame}
 
 \begin{frame}[fragile]{Beispiele in Sage I}
 \begin{itemize}
-\item Bestimme den Grenzwert $\lim_{x \rightarrow 0}
+\item Grenzwert $\lim_{x \rightarrow 0}
 \frac{\sin(x)}{x}$
 \begin{sagein}
 limit(sin(x)/x,x=0)
@@ -280,7 +270,7 @@ limit(sin(x)/x,x=0)
 \begin{sage}
   1
 \end{sage}
-\item Bestimme den Grenzwert $\lim_{x \rightarrow \infty}
+\item Grenzwert $\lim_{x \rightarrow \infty}
 \frac{\log(x)}{x}$
 \begin{sagein}
 limit(log(x)/x,x=infinity)
@@ -288,7 +278,7 @@ limit(log(x)/x,x=infinity)
 \begin{sage}
   0
 \end{sage}
-\item Bestimme den Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
+\item Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
 \begin{sagein}
 limit(x^(1/x),x=infinity)
 \end{sagein}
@@ -300,7 +290,7 @@ limit(x^(1/x),x=infinity)
 
 \begin{frame}[fragile]{Beispiele in Sage II}
 \begin{itemize}
-\item Bestimme den Grenzwert $\lim_{x \rightarrow 0}
+\item Grenzwert $\lim_{x \rightarrow 0}
 \sin(1/x)$
 \begin{sagein}
 limit(sin(1/x),x=0)
@@ -308,8 +298,8 @@ limit(sin(1/x),x=0)
 \begin{sage}
   ind
 \end{sage}
-Der Grenzwert existiert nicht. Sage gibt in diesem Fall \isage{ind} (indefinite aber beschränkt) zurück. 
-\item Bestimme den Grenzwert $\lim_{x \rightarrow 0} |x|' $
+Der Grenzwert existiert nicht: \isage{ind} (indefinite aber beschränkt). 
+\item Grenzwert $\lim_{x \rightarrow 0} |x|' $
 \begin{sagein}
 limit(diff(abs(x),x),x=0),
 limit(diff(abs(x),x),x=0,dir='minus'),
@@ -374,8 +364,7 @@ gleichmäßig stetig.
 \end{frame}
 
 \begin{frame}[fragile]{Stetigkeit in Sage}
-Für die Diskussion der Stetigkeit einer Funktion $f$ an einer Stelle
-$x_0$ sei auf den Abschnitt zu Grenzwerten verwiesen. \\
+Stetigkeit einer Funktion $f$ an einer Stelle $x_0$: linksseitige und rechtsseitige Grenzwerte bestimmen.
 \begin{sagein}
 limit(1/x,x=0,dir='plus') 
 \end{sagein}
@@ -491,11 +480,13 @@ $x \in D$ und $n\geq n_0$ gilt:
 \begin{itemize}
 \item Die Grenzfunktion einer gleichmäßig konvergenten Folge stetiger
 Funktionen ist stetig.
-\item Alle Aussagen übertragen sich analog auf Funktionenreihen: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
+\item \alert{Funktionenreihen}: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
 \[
  s := \sum_{n=1}^\infty f_n
 \]
-eine Funktionenreihe. Aussagen über die Funktionenreihe sind, analog zum Fall der \glqq normalen\grqq\ Reihen, Aussagen über die Folge der Partialsummen
+eine Funktionenreihe. 
+
+Alle Aussagen übertragen sich analog; ebenso die Aussagen über die Folge der Partialsummen
 \[
  s_k := \sum_{n=1}^k f_n.
 \]
@@ -537,7 +528,7 @@ Szene} dar
               {\color{blue} \isage{color='red'}}\\
 \isage{plot_points}        & Anzahl Stützstellen\newline
               {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
-\isage{alpha}  & Transparenzfaktor\newline
+\isage{alpha/opacity}  & Transparenzfaktor\newline
      {\color{blue} \isage{alpha = 0.8}}\\
 \end{tabular}
 \end{frame}
@@ -561,12 +552,11 @@ Szene} dar
 \begin{frame}[fragile]{plot() und plot3d()}
 Skalare Funktionen 
 $f:\mathbb{R}^n \ \rightarrow \mathbb{R},\, n=2,3$
-können durch die respektiven Befehle
 \begin{sagein}
 plot(f2,(x,a,b),optionen,...)
 plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 \end{sagein}
-auf dem Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$ dargestellt werden. 
+auf dem Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$. 
 
 \begin{itemize}
 \item Die Angabe des Intervalls ist optional. 
@@ -636,26 +626,24 @@ show(W + S, figsize=8)
 
 
 
-\begin{frame}[fragile]{Kurven - parametric\_plot()}
-Kurve des $\mathbb{R}^2$ in Parameterdarstellung: 
+\begin{frame}[fragile]{Kurven - \verb~parametric\_plot()~}
+Parameterdarstellung: 
 \[
  \{(x(t),y(t)) \in \mathbb{R}^2 \;|\; t \in [a,b]\}.
 \]
-Kurve des $\mathbb{R}^3$ in Parameterdarstellung:
 \[
  \{(x(t),y(t),z(t)) \in \mathbb{R}^3 \;|\; t \in [a,b] \}.
 \]
-
-Zum Beispiel ergibt sich der Graph einer Funktion $f(x)$, $x
-\in [a,b]$ durch $t,f(t)$ mit  $t \in
-[a,b]$. 
-
-Der Befehl zum Erzeugen des Objekts ist 
+%Graph einer Funktion $f(x)$, $x \in [a,b]$: $t,f(t)$ mit  $t \in [a,b]$. 
 \begin{sagein}
-Objekt = parametric_plot([x,y], (t,a,b), optionen, ...)
-Objekt = parametric_plot([x,y,z], (t,a,b), optionen, ...)
+parametric_plot([x(t),y(t)], (t,a,b), optionen, ...)
+parametric_plot([x(t),y(t),z(t)], (t,a,b), optionen, ...)
 \end{sagein}
-$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. 
+%$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. 
+
+
+
+
 \end{frame}
 
 \begin{frame}[fragile]{2D Kurven - Beispiele}
@@ -691,14 +679,14 @@ parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Flächen - parametric\_plot()}
+\begin{frame}[fragile]{Flächen - \verb~parametric\_plot()~}
 Fläche des $\mathbb{R}^3$ in Parameterdarstellung:
 \[
  \{(x(t1,t2),y(t1,t2),z(t1,t2)) \in \mathbb{R}^3 \;|\; t1 \in [a,b], t2 \in [c,d] \}.
 \]
 Befehl: 
 \begin{sagein}
-Objekt = parametric_plot([x(t1,t2),y(t1,t2),z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ...)
+parametric_plot([x(t1,t2), y(t1,t2), z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ...)
 \end{sagein}
 % \item Beispielsweise lassen sich Graphen von Funktionen $f:[a
 %    ,b]\times [c,d]
@@ -728,7 +716,7 @@ parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 
 \end{frame}
 
-\begin{frame}[fragile]{Konturen}
+\begin{frame}[fragile]{Konturen - \verb~contour\_plot()~}
 Zweidimensionale Grafik für $f:\mathbb{R}^2 \rightarrow \mathbb{R}$:
 \alert{Niveaulinien} (z.B. Höhenmeter auf einer
 Landkarte):
@@ -736,25 +724,29 @@ Landkarte):
 \{(x,y) \in \mathbb{R}^2 \;|\; f(x,y)=c, c \in \mathbb{R}\}
 \]
 
-In Sage
 \begin{sagein}
 contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
 \end{sagein}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
+\begin{itemize}
+ \item \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
+ \item \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
+\end{itemize}
+
+
 \end{frame}
 
 \begin{frame}[fragile]{Konturen - Beispiel}
-Wir betrachten die Funktion $\sin(4\pi x)y$ und zeichnen die Niveaulinien für $-0.5, 0, 0.5$. 
+Zeichnen die Niveaulinien für $-0.5, 0, 0.5$ der Funktion $\sin(4\pi x)y$. 
 \begin{sagein}
 contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
 \end{sagein}
-\isage{fill=True} würde die Flächen zwischen den Linien ausfüllen.
 \begin{center}
-\includegraphics[width=6cm]{figures/contour.pdf} 
+\includegraphics[width=7.5cm]{figures/contour.pdf} 
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Punkte zeichnen}
+\begin{frame}[fragile]{Punkte zeichnen - \verb~point()~}
 Mittels {\color{blue} \isage{point}} 
 können Punkte gezeichnet werden.
 
@@ -764,7 +756,7 @@ point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30)
 point2d.options
 \end{sagein}
 \begin{center}
-\includegraphics[width=6cm]{figures/point2d.pdf} 
+\includegraphics[width=7cm]{figures/point2d.pdf} 
 \end{center}
 
 \end{frame}
@@ -801,7 +793,7 @@ def collatz(n):
 
 \end{frame}
 
-\begin{frame}[fragile]{Animationen}
+\begin{frame}[fragile]{Animationen - \verb~animate()~}
 Der Befehl 
 \begin{sagein}
 animate([<graph1,graph2,...>], optionen, ... ) 

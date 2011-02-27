@@ -22,3 +22,4 @@ tmp.inputs
 *.bz2
 *.pid
 *.zip
+*.jmol

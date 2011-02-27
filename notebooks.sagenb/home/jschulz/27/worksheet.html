@@ -21,22 +21,23 @@ _=var('a,b');f(a,b+1)
 {{{id=6|
 f(x) = 1/(1+x); g(x) =sin(x^2)
 h = f+g; k = f*g; l = f/g
-h(a),k(a),l(a)
+latex((h(a),k(a),l(a)))
 ///
-(1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
+\left(\frac{1}{a + 1} + \sin\left(a^{2}\right), \frac{\sin\left(a^{2}\right)}{a + 1}, \frac{1}{{\left(a + 1\right)} \sin\left(a^{2}\right)}\right)
 }}}
 
 {{{id=7|
 f_g(x) = f(g); g_f(x) = g(f)
-f_g(x), g_f(x)
+latex((f_g(x), g_f(x)))
 ///
-(1/(sin(x^2) + 1), sin((x + 1)^(-2)))
+\left(\frac{1}{\sin\left(x^{2}\right) + 1}, \sin\left(\frac{1}{{\left(x + 1\right)}^{2}}\right)\right)
 }}}
 
 {{{id=8|
-g4(x) = g(g(g(g))); g4
+g4(x) = g(g(g(g))); latex(g4);show(g4)
 ///
-x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
+x \ {\mapsto}\ \sin\left(\sin\left(\sin\left(\sin\left(x^{2}\right)^{2}\right)^{2}\right)^{2}\right)
+<html><div class="math">\newcommand{\Bold}[1]{\mathbf{#1}}x \ {\mapsto}\ \sin\left(\sin\left(\sin\left(\sin\left(x^{2}\right)^{2}\right)^{2}\right)^{2}\right)</div></html>
 }}}
 
 {{{id=10|
@@ -55,6 +56,12 @@ Funktion(x) = 2*x*cos(x); Funktion(1)
 Ausdruck = 2*x*cos(x); Ausdruck(x=1)
 ///
 2*cos(1)
+}}}
+
+{{{id=22|
+type(Ausdruck),type(Funktion)
+///
+(<type 'sage.symbolic.expression.Expression'>, <type 'sage.symbolic.expression.Expression'>)
 }}}
 
 {{{id=16|
@@ -82,6 +89,11 @@ sin(2) + 1
 }}}
 
 {{{id=20|
+
+///
+}}}
+
+{{{id=21|
 
 ///
 }}}
