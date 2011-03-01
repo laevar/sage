@@ -476,7 +476,7 @@ $\phi \leq f \leq \psi$ die Ungleichung
 \[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
 \end{frame}
 
-\begin{frame}[fragile]{Visualisierung in Sage I}
+\begin{frame}[fragile]{Visualisierung in Sage}
 \begin{sagein}
 f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
 rsf = f.riemann_sum(10,mode="midpoint")
@@ -505,8 +505,8 @@ Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
 integrierbar}, wenn Ober- und Unterintegral von $f$ auf $[a,b]$ übereinstimmen.\\
 Der gemeinsame Wert heißt das {\color{red} Integral} von $f$ und wird mit 
 \[ \int_a^b f(x)dx \]
-bezeichnet. Dabei heißt $f$ der Integrand, $x$ die
-Integrationsvariable, und $a$, $b$ sind die Integrationsgrenzen.
+bezeichnet.\\ 
+($f$ der Integrand, $x$ Integrationsvariable, $a$, $b$ Integrationsgrenzen).
 \end{frame}
 
 \begin{frame}{Eigenschaften}
@@ -524,15 +524,12 @@ $\max\{f,g\}$, $\min \{f,g \}$.
 
 \begin{frame}{Wichtige Sätze}
 \begin{itemize}
-\item Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
-$F(x)= \int_a^x f(t) dt, x \in I $ eine differenzierbare Funktion mit
+\item {\color{red} Stammfunktion} $F$: Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
+\[F(x)= \int_a^x f(t) dt, x \in I \] eine differenzierbare Funktion mit
 $F\,'(x)=f(x)$. 
-\item Jede stetige Funktion besitzt eine {\color{red} Stammfunktion} $F$, also eine
-Funktion mit $F\,'(x)=f(x)$. 
-\item Für eine Stammfunktion $F$ benutzt man auch die Notation $\int
-f(x) dx$ und spricht von einem unbestimmten Integral.
+\item \alert{Unbestimmtes Integral}: alternative Notation für eine Stammfunktion $F$:  $\int f(x) dx$ 
 \item Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
-$ \int_a^b f(x)dx = f(\xi) (b-a)$.  
+\[\int_a^b f(x)dx = f(\xi) (b-a)\]
 \end{itemize}
 \end{frame}
 
@@ -563,11 +560,12 @@ numerical_integral(f,a,b)
 -cos(6) + 1
 \end{sage}
 \begin{sagein}
-integrate(exp(x)*x,x,2,3)
+integrate(exp(x)*x,x,2,3),integrate(exp(x)*x,x)
 \end{sagein}
-\begin{sage}
--e^2 + 2*e^3
-\end{sage}
+{\color{blue}\[\left(-e^{2} + 2 \, e^{3}, {\left(x - 1\right)} e^{x}\right)\]}
+% \begin{sage}
+% -e^2 + 2*e^3
+% \end{sage}
 \begin{sagein}
 integrate(1/x^2,x,1,oo)
 \end{sagein}
@@ -588,16 +586,18 @@ numerical_integral(sin(1/x)*x,1,2)
 assume(a<>-1)
 integrate(x^a*b,x)
 \end{sagein}
-\begin{sage}
-b*x^(a + 1)/(a + 1)
-\end{sage}
+{\color{blue} \[ \frac{b x^{{\left(a + 1\right)}}}{a + 1}\]}
+% \begin{sage}
+% b*x^(a + 1)/(a + 1)
+% \end{sage}
 \begin{sagein}
 forget();a=-1
 integrate(x^a*b,x)
 \end{sagein}
-\begin{sage}
- b*log(x)
-\end{sage}
+{\color{blue} \[ b \log\left(x\right)\]}
+% \begin{sage}
+%  b*log(x)
+% \end{sage}
 \end{frame}
 
 \begin{frame}{Uneigentliche Integrale}
@@ -623,49 +623,13 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 \end{itemize}
 \end{frame}
 
-% \begin{frame}[fragile]{Nützliches}
-% Man kann das Verhalten von MuPAD an vielen Stellen den eigenen
-% Wünschen anpassen. Dazu dienen die sogenannten {\color{red} Preferences}, die
-% man sich durch \isage{Pref()}
-% anzeigen lassen kann. Ändern kann man die Eigenschaften durch Aufruf
-% der \isage{Eigenschaft} mit der gewünschten neuen \isage{Einstellung}.
-% \begin{sagein}
-% Pref::Eigenschaft(Einstellung)
-% \end{sagein}
-% \end{frame}
 % 
-% \begin{frame}[fragile]{Einige Einstellungen}
-% \begin{itemize}
-% \item Die  Voreinstellung \isage{report} steuert die regelmäßig
-% angezeigten Informationen über reservierten Speicher, benutzten Speicher und
-% Rechenzeit. Erlaubt sind Werte zwischen $0$ (Default)
-% und $9$. Bei $9$ bekommt man ständig Informationen, bei $0$ nie.
-% \begin{sagein}
-% Pref::report(9): int((x*sin(x)),x)
-% \end{sagein} 
-% \item Darstellung von Gleitkommazahlen: \isage{floatFormat}. Dies funktioniert nur
-%   bei ASCII-Darstellung.
-% \begin{sagein}
-% Pref::floatFormat("e"): float(exp(-50))
-% \end{sagein}
-% \begin{sage}
-%   1.928749848e-22
-% \end{sage}
-% \begin{sagein}
-% Pref::floatFormat("f"): float(exp(-50))
-% \end{sagein}
-% \begin{sage}
-%   0.0000000000000000000001928749848
-% \end{sage}
-% \end{itemize}
+
 % \end{frame}
 % 
 % \begin{frame}[fragile]{Nützliches}
 % \begin{itemize}
-% \item Durch {\color{blue} \isage{reset()}} wird MuPAD in den Anfangszustand
-% zurückgesetzt. 
-% \item Nach {\color{blue} \isage{setuserinfo(Any,n)}} gibt MuPAD weitere
-% Informationen (je nach $n$) über die Funktionen zurück.
+
 % \item Durch Voranstellen von {\color{blue}\isage{!}} kann man UNIX-Befehle innerhalb
 % MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
 % Verzeichnisses durch {\color{blue} \isage{!ls}} anzeigen lassen.
