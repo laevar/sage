@@ -227,8 +227,7 @@ Set(L2).difference(Set(summen))
 }}}
 
 <h2>Aufgabe 2</h2>
-
-<p>Die <em>Tschebyscheff-Polynome</em> sind rekursiv durch die folgenden<br />Formeln definiert:<br />\[ T_0(x)=1, \quad T_1(x)=x, \quad T_k(x)=2x T_{k-1}(x) -<br />T_{k-2}(x). \] <br />Berechnen Sie die Liste bestehend aus $T_0(x),\dots ,T_{9}(x)$, in dem Sie<br />sukzessive Elemente anh&auml;ngen. Bestimmen<br />Sie jeweils den Funktionswert an $x=1/3$ und $x=0.33$ und bestimmen<br />Sie die Nullstellen!</p>
+<p>Die <em>Tschebyscheff-Polynome</em> sind rekursiv durch die folgenden Formeln definiert:<br />\[ T_0(x)=1, \quad T_1(x)=x, \quad T_k(x)=2x T_{k-1}(x) -<br />T_{k-2}(x). \] <br />Berechnen Sie die Liste bestehend aus $T_0(x),\dots ,T_{9}(x)$, in dem Sie sukzessive Elemente anh&auml;ngen. Bestimmen Sie jeweils den Funktionswert an $x=1/3$ und $x=0.33$ und bestimmen Sie die Nullstellen!</p>
 
 {{{id=12|
 reset()
@@ -431,9 +430,8 @@ parametric_plot3d([5*cos(x), 2*sin(x), 4*x], (x,0,100), plot_points=200)
 ///
 }}}
 
-<h2>Aufgabe 7</h2>
-
-<p>Schreiben Sie eine Prozedur, die f&uuml;r eine List von Tupeln im&nbsp; $\mathbb{R}^3$ alle Dreiecke zwischen diesen Punkten zeichnet. Plotten sie dann einen Oktaeder, d.h. eine Figur mit den Eckpunkten&nbsp; $\pm e_1,\pm e_2,\pm e_3 $.</p>
+<h2>Aufgabe 7 *</h2>
+<p>Schreiben Sie eine Prozedur, die f&uuml;r eine Liste von Tupeln im&nbsp; $\mathbb{R}^3$ alle Dreiecke zwischen diesen Punkten zeichnet. Plotten sie dann einen Oktaeder, d.h. eine Figur mit den Eckpunkten&nbsp; $\pm e_1,\pm e_2,\pm e_3 $.</p>
 <p><em>Hinweis:</em> Ein einzelnes Dreieck kann mit dem Befehl polygon3d() gezeichnet werden.</p>
 
 {{{id=79|
@@ -460,7 +458,7 @@ octahedron()
 ///
 }}}
 
-<h2>Aufgabe 8 *</h2>
+<h2>Aufgabe 8</h2>
 <p>Schreiben Sie eine Prozedur, die mit Hilfe einer Liste von Vektoren $v_1,v_2,w_1,w_2,w_3 \in \mathbb{R}^3$ die Gerade<br />\[ G:=\{ v_1+ \alpha v_2 \ | \ \alpha \in \mathbb{R} \} \] und die Ebene&nbsp; \[ E:=\{ w_1+ \alpha w_2 +\beta w_3 \ | \ \alpha,\beta&nbsp; \in \mathbb{R} \} \] in eine Grafik zeichnet. ($\alpha \in (-5,5)$, $\beta \in (-4,4))$</p>
 
 {{{id=52|

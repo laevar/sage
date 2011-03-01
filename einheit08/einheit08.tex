@@ -8,16 +8,6 @@
 \tableofcontents
 \end{frame}
 
-% \begin{frame}[fragile]{Übersicht}
-% \begin{itemize}
-% \item Ableitungen
-% \item Mittelwertsatz
-% \item Taylorsche Formel und Taylorreihen
-% \item Das Riemannsche Integral
-% \item Uneigentliche Integrale
-% \end{itemize}
-% \end{frame}
-
 %======================================================
 \section{Differentation}
 %======================================================
@@ -34,15 +24,15 @@ von $f$ an $x_0$ genannt und mit $f\,'(x_0)=f^{\,(1)} (x_0)$ bezeichnet.
 
 \begin{frame}{Bemerkungen}
 \begin{itemize}
-\item Man sagt, dass $f$ {\color{red} differenzierbar} (auf $D$) ist, wenn $f$ an jeder
-Stelle von $D$ differenzierbar ist. Die so auf $D$ erklärte Funktion $f\,'$
-heißt {\color{red} Ableitung} von $f$.
+\item $f$ {\color{red} differenzierbar} (auf $D$): Wenn $f$ an jeder
+Stelle von $D$ differenzierbar ist. 
+\item {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
 \item Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
 genau dann differenzierbar, wenn es eine lineare Abbildung
 $T:\mathbb{R} \rightarrow \mathbb{R}$ gibt, so dass 
 \[ f(x_0+h)=f(x_0) +Th + R(h)h, \quad \lim_{h \rightarrow 0} R(h)=0 \]
 gilt ($T$ und $R$ hängen i.A. von $x_0$ ab). 
-\item Ist $f$ an $x_0 \in D$ differenzierbar, so ist sie dort auch stetig.
+\item $f$ an $x_0 \in D$ differenzierbar => stetig.
 \end{itemize}
 \end{frame}
 
@@ -58,27 +48,27 @@ gilt ($T$ und $R$ hängen i.A. von $x_0$ ab).
 
 \begin{frame}{Landau-Symbol}
 Sei $f$ eine Funktion, die auf einem Intervall definiert ist, das $0$
-enthält. Man schreibt {\color{red} $f(x)=O(x^n)$}, wenn es eine Kontante $C >0$
-gibt, so dass
+enthält. 
+\begin{itemize}
+ \item {\color{red} $f(x)=O(x^n)$}: Es gibt eine Kontante $C >0$, so dass
 \[  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n} \leq C\]
-gilt. Man schreibt {\color{red} $f(x)=o(x^n)$}, wenn
+($f(x)$ geht gegen $0$ mindestens so schnell wie $x^n$)
+\item {\color{red} $f(x)=o(x^n)$}: 
 \[  
  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n}=0
 \]
-gilt.
+($f(x)$ geht schneller gegen $0$ als $x^n$)
+\end{itemize}
 
-\textbf{Bedeutung:} $f(x)=O(x^n)$ bedeutet, dass $f$ für $x$ gegen
-$0$ mindestens so schnell gegen $0$ geht wie $x^n$. Im  Fall $f(x)=o(x^n)$
-fällt die Funktion schneller als $x^n$.
+
 \end{frame}
 
 \begin{frame}{Höhere Ableitungen}
 \begin{itemize}
-\item Man kann induktiv höhere Ableitungen definieren. Ist $f:D
+\item \alert{$f$ $n$-mal differenzierbar, $f^{\,(n)}$}: Ist $f:D
 \rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
 $(n-1)$-ten Ableitung $f^{\,(n-1)}$ und ist $f^{\,(n-1)}$ wiederum
-differenzierbar, so nennen wir $f$ $n$-mal differenzierbar und
-bezeichnen die $n$-te Ableitung durch $f^{\,(n)}$. 
+differenzierbar.
 \item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
 stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
 \item $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
@@ -87,7 +77,6 @@ differenzierbar ist für alle $n\in \mathbb{N}$.
 \end{frame}
 
 \begin{frame}[fragile]{Ableitungen in Sage}
-Durch 
 \begin{sagein}
 diff(<Ausdruck>,x) 
 \end{sagein}
@@ -108,13 +97,12 @@ diff(x^x,x)
 \end{frame}
 
 \begin{frame}[fragile]{Höhere Ableitungen in Sage}
-Höhere Ableitungen:
 \begin{sagein}
 diff(<Ausdruck>,x1,x2,x3,...)
-diff(<Ausdruck>,x,<anzabl>) 
+diff(<Ausdruck>,x,<anzahl>) 
 \end{sagein}
 Ableitung bzgl. der Unbekannten $x1$, dann der entstehende Ausdruck bzgl. $x2$, etc. 
-In der 2ten Form gibt \isage{<anzabl>} die Anzahl der Ableitung bzgl. \isage{x} an.\\
+In der 2ten Form gibt \isage{<anzahl>} die Anzahl der Ableitung bzgl. \isage{x} an.\\
 \textbf{Beispiele:} 
 \begin{sagein}
 _=var('x,y,a'); diff(x^2*y^2+a,x,y)
@@ -155,10 +143,11 @@ g.diff(x,x,y)
 Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
 $x_0 \in D$. Dann gilt
 \begin{itemize}
-\item $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$,
-\item \alert{Produktregel}: $(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)$ ,
-\item \alert{Quotientenregel}: $(\frac{f}{g})'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
-g'(x_0)}{(g(x_0))^2}$, falls $g(x_0) \neq 0$ .
+\item \alert{Summe}: $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$
+\item \alert{Produktregel}: \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
+\item \alert{Quotientenregel}: \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
+g'(x_0)}{(g(x_0))^2}\]
+falls $g(x_0) \neq 0$ .
 \end{itemize}
 \end{frame}
 
@@ -172,7 +161,7 @@ $x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
 \[
 (f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{\,(k)} g^{\,(n-k)}.
 \]
-\item Es gilt für die Umkehrfunktion $f^{\,-1}$:
+\item \alert{Umkehrfunktion $f^{\,-1}$}:
 \[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
 \end{itemize}
 \end{frame}
@@ -346,10 +335,13 @@ $g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$.
 var('n,k');f(x) = exp(x)
 g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
 \end{sagein}
-\begin{sage}
-[1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
-1/6*x^3 + 1/2*x^2 + x + 1]
-\end{sage}
+{\color{blue}\[ \left[1, x + 1, \frac{1}{2} \, x^{2} + x + 1, \frac{1}{6} \, x^{3} +
+\frac{1}{2} \, x^{2} + x + 1, \frac{1}{24} \, x^{4} + \frac{1}{6} \,
+x^{3} + \frac{1}{2} \, x^{2} + x + 1\right]\]}
+% \begin{sage}
+% [1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
+% 1/6*x^3 + 1/2*x^2 + x + 1]
+% \end{sage}
 \begin{sagein}
 p = plot(f,(-3,2),color='black')
 for n in [0..4]:
@@ -382,31 +374,23 @@ plot(exp(-1/x^2),(-0.5,0.5))
 \end{frame}
 
 \begin{frame}[fragile]{Taylorformel in Sage}
-Sage ist in der Lage ein Taylorpolynom zu einer gegebenen Funktion zu
-berechnen. 
-
-Das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$
-(mit Unbekannten $x$) am Entwicklungspunkt $x0$ kann durch
 \begin{sagein}
 taylor(f, x, x0, n)
 \end{sagein}
-berechnet werden. 
-\end{frame}
-
-\begin{frame}[fragile]{taylor - Beispiele}
+Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$ 
+(mit Unbekannten $x$) am Entwicklungspunkt $x0$. \\
+\textbf{Beispiele}:
 \begin{sagein}
 taylor(1/(1-x),x,0,5)
 \end{sagein}
-\begin{sage}
-x^5 + x^4 + x^3 + x^2 + x + 1
-\end{sage}
+{\color{blue}\[ x^{5} + x^{4} + x^{3} + x^{2} + x + 1\]}
 \begin{sagein}
 taylor(sin(x),x,2,5)
 \end{sagein}
-\begin{sage}
-1/120*(x - 2)^5*cos(2) + 1/24*(x - 2)^4*sin(2) - 1/6*(x - 2)^3*cos(2) -
-1/2*(x - 2)^2*sin(2) + (x - 2)*cos(2) + sin(2)
-\end{sage}
+{\small\color{blue}\[ \frac{1}{24} \, {\left(x - 2\right)}^{4} \sin\left(2\right) -
+\frac{1}{6} \, {\left(x - 2\right)}^{3} \cos\left(2\right) - \frac{1}{2}
+\, {\left(x - 2\right)}^{2} \sin\left(2\right) + {\left(x - 2\right)}
+\cos\left(2\right) + \sin\left(2\right)\]}
 \end{frame}
 
 % \begin{frame}[fragile]{Bemerkungen}
