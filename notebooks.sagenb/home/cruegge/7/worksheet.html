@@ -1,6 +1,7 @@
 
 
 <h2>Aufgabe 1</h2>
+<p>Bestimmen Sie den Fl&auml;cheninhalt des Dreiecks, welches durch folgende Vektoren beschrieben wird: \[v_1=\left(\begin{array}{c} 5\\-3\\4 \end{array}\right),\quad v_2=\left(\begin{array}{c} 7\\6\\8 \end{array}\right),\quad v_3=\left(\begin{array}{c} 9\\2\\-13 \end{array}\right)\]&nbsp;Stellen Sie dieses Dreieck graphisch dar.</p>
 
 {{{id=1|
 reset()
@@ -28,6 +29,7 @@ polygon3d([v1,v2,v3])
 }}}
 
 <h2>Aufgabe 2</h2>
+<p>Plotten Sie die Funktion $f:(x,y) \mapsto 0.1y^4 - 0.3y^3 - 1.5y^2 + \sin(3x) +1.9y +3$ als Fl&auml;che im dreidimensionalen Raum. Betrachten Sie ebenfalls die Konturen bei -2, 0, 2, 4 und 6. W&auml;hlen Sie jeweils geeignete Definitionsbereiche.</p>
 
 {{{id=10|
 reset()
@@ -52,7 +54,8 @@ contour_plot(f(x,y), (x,-4,4), (y,-4,4), contours=[-2,0,2,4,6], fill=False, labe
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
 
-<h2>Aufgabe 3</h2>
+<h2>Aufgabe 3 *</h2>
+<p>Berechnen Sie die ersten 4 Glieder der Taylor-Reihe der Funktionen $f(x)=(1-x)^{-1}$ und $g(x)=(1+x+x^2+x^3+x^4+x^5)^{-1}$ an der Stelle x=3. Berechnen Sie die Entwicklung erst "per Hand" in Sage und &uuml;berpr&uuml;fen Sie dann Ihr Ergebnis mit der Funktion <strong>taylor</strong>.</p>
 
 {{{id=15|
 reset();forget()
@@ -107,9 +110,8 @@ taylor(g,x,3,3)
 -44310267/17555190016*(x - 3)^3 + 177633/48228544*(x - 3)^2 - 547/132496*x + 2005/132496
 }}}
 
-<h2></h2>
-
 <h2>Aufgabe 4</h2>
+<p>Zeigen Sie, dass die Funktion $f:\mathbb{R}_{+} \to \mathbb{R}$, $f(x)=x e^{-nx}$, $n&gt;0$ genau ein Maximum an der Stelle $x=1/n$ besitzt. Zeigen Sie, dass das Maximum global ist.</p>
 
 {{{id=29|
 reset();forget()
@@ -141,6 +143,9 @@ f(0), f(1/n), f.limit(x=oo)
 }}}
 
 <h2>Aufgabe 5</h2>
+<p>Zeigen Sie mit der Regel von L'Hospital folgende Grenzwerte:</p>
+<p>\[\lim_{x\to\frac{\pi}{2}} \frac{\cos(x)}{\frac{\pi}{2}-x} = 1,\]</p>
+<p>\[\lim_{x\to0}\left(\frac{1}{\sin(x)} - \frac{1}{x}\right) = 0.\]</p>
 
 {{{id=41|
 reset()
@@ -180,6 +185,8 @@ limit( cos(x)/(pi/2-x), x=pi/2 )
 }}}
 
 <h2>Aufgabe 6</h2>
+<p>Pr&uuml;fen Sie folgende Funktionen auf Differenzierbarkeit:</p>
+<p>\[f(x) = \left\{\begin{array}{ll} \sqrt{x}, &amp; x\geq1 \\ x^3+2.5x-2, &amp; x&lt;1 \end{array}\right., \qquad g(x) = \left\{\begin{array}{ll} x^2, &amp; x\geq0 \\ -x, &amp; x&lt;0 \end{array}\right..\]</p>
 
 {{{id=51|
 reset()
@@ -207,6 +214,12 @@ limit(diff(x^2,x), x=0, dir='plus'), limit(diff(-x,x), x=0, dir='minus')
 }}}
 
 <h2>Aufgabe 7</h2>
+<ol>
+<li>Differenzieren Sie folgende Funktionen: \[f(x)=\exp\left(\frac{\frac{\sin 2x}{\sin x}}{\left(\frac{\log8}{2+2\cos x}\right)^{-1}-\frac{8}{\log x^4}}\right)\quad\mathrm{und}\quad g(x)=\sin\left(2^{\cos 3x}\right).\]</li>
+<li>Berechnen Sie \[4\int_0^1 \frac{dx}{1+x^2},\quad \int_0^\pi e^x \sin x\,dx\quad\mathrm{und}\quad \int\frac{1}{e^x+e^{-x}} dx.\]</li>
+<li>Berechnen Sie die 20. Ableitung von $f(x) = \sin(2x)\exp(x)$.</li>
+</ol>
+<p>&nbsp;</p>
 
 {{{id=56|
 reset()
@@ -252,6 +265,16 @@ diff(sin(2*x)*exp(x), x,20)
 }}}
 
 <h2>Aufgabe 8</h2>
+<p>Schreiben Sie eine Prozedur, die eine Nullstelle einer gegebenen Funktion $f:[a_0,\,b_0]\to\mathbb{R}$ mit $f(a_0)\cdot f(b_0)&lt;0$ zu einer gegebenen Genauigkeit $\mathrm{TOL}$ berechnet. Betrachten Sie hierzu eine Folge von Intervallen $[a_k,\,b_k]$, die sich aus der folgenden Vorschrift ergeben:</p>
+<p>Wiederhole bis $|b_k - a_k| \leq \mathrm{TOL}$:</p>
+<ul>
+<li>Berechne $g:=f\left(\frac{a_k+b_k}{2}\right)$.</li>
+<li>Gilt $f(a_k) * g&lt;0$, so definiere $a_{k+1}=a_k,\,b_{k+1}=\frac{a_k+b_k}{2}$.</li>
+<li>Andernfalls definiere $a_{k+1}=\frac{a_k+b_k}{2},\,b_{k+1}=b_k$.</li>
+</ul>
+<p>Testen Sie die Prozedur an $f(x)=x^3-2$, $[a_0, b_0] = [0,3]$ f&uuml;r $\mathrm{TOL}=10^{-4}$ und $\mathrm{TOL}=10^{-6}$. Verwenden Sie maximal 100 Iterationen.</p>
+<ul>
+</ul>
 
 {{{id=66|
 reset()
