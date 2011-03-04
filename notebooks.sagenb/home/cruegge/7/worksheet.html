@@ -121,9 +121,14 @@ f(x) = x*exp(-n*x)
 }}}
 
 {{{id=30|
-solve(diff(f,x)==0, x)
+k = solve(diff(f,x)==0, x)
 ///
-[x == (1/n)]
+}}}
+
+{{{id=95|
+k[0].rhs()
+///
+1/n
 }}}
 
 {{{id=75|
@@ -193,6 +198,62 @@ reset()
 var('x')
 ///
 x
+}}}
+
+{{{id=96|
+g =Piecewise([[(0,1),x^2],[(1,2),x]])
+Piecewise?
+///
+<html><!--notruncate-->
+
+<div class="docstring">
+    
+  <p><strong>File:</strong> /usr/local/sage/local/lib/python2.6/site-packages/sage/functions/piecewise.py</p>
+<p><strong>Type:</strong> &lt;type &#8216;function&#8217;&gt;</p>
+<p><strong>Definition:</strong> Piecewise(list_of_pairs, var=None)</p>
+<p><strong>Docstring:</strong></p>
+<blockquote>
+<p>Returns a piecewise function from a list of (interval, function)
+pairs.</p>
+<p><tt class="docutils literal"><span class="pre">list_of_pairs</span></tt> is a list of pairs (I, fcn), where
+fcn is a Sage function (such as a polynomial over RR, or functions
+using the lambda notation), and I is an interval such as I = (1,3).
+Two consecutive intervals must share a common endpoint.</p>
+<p>If the optional <tt class="docutils literal"><span class="pre">var</span></tt> is specified, then any symbolic expressions
+in the list will be converted to symbolic functions using
+<tt class="docutils literal"><span class="pre">fcn.function(var)</span></tt>.  (This says which variable is considered to
+be &#8220;piecewise&#8221;.)</p>
+<p>We assume that these definitions are consistent (ie, no checking is
+done).</p>
+<p>EXAMPLES:</p>
+<div class="highlight-python"><div class="highlight"><pre class="literal-block"><span class="gp">sage: </span><span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="gp">sage: </span><span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">sage: </span><span class="n">f</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">([[(</span><span class="mi">0</span><span class="p">,</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">f1</span><span class="p">],[(</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">pi</span><span class="p">),</span><span class="n">f2</span><span class="p">]])</span>
+<span class="gp">sage: </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">-1</span>
+<span class="gp">sage: </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">sage: </span><span class="n">f</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">([[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">x</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">]],</span> <span class="n">x</span><span class="p">);</span> <span class="n">f</span>
+<span class="go">Piecewise defined function with 2 parts, [[(0, 1), x |--&gt; x], [(1, 2), x |--&gt; x^2]]</span>
+<span class="gp">sage: </span><span class="n">f</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="go">0.900000000000000</span>
+<span class="gp">sage: </span><span class="n">f</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="go">1.21000000000000</span>
+</pre></div>
+</div>
+</blockquote>
+
+
+</div>
+</html>
+}}}
+
+{{{id=97|
+g(0.5)
+///
+/usr/local/sage/local/lib/python2.6/site-packages/sage/all_notebook.py:1: DeprecationWarning: Substitution using function-call syntax and unnamed arguments is deprecated and will be removed from a future release of Sage; you can use named arguments instead, like EXPR(x=..., y=...)
+  """nodoctest"""
+0.250000000000000
 }}}
 
 {{{id=48|

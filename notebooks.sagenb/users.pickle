@@ -243,7 +243,7 @@ p108
 (dp109
 S'next_worksheet_id_number'
 p110
-I4
+I7
 sS'default_system'
 p111
 S'sage'
@@ -287,14 +287,11 @@ p128
 sS'max_history_length'
 p129
 I1000
-sS'autosave_interval'
-p130
-I60
 ssS'password'
+p130
+S'aa/WyxjMBnLYU'
 p131
-S'aanIkqvc2WOUY'
-p132
 sS'email'
-p133
+p132
 S''
 saa.

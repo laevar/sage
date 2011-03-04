@@ -123,7 +123,7 @@ def mandel (x,y):
     c = (x + I*y).n()
     z = c
     it = 0
-    max_it = 150
+    max_it = 50
     while abs(z) <2 and it < max_it :
         z = z^2 + c
         it += 1
@@ -132,7 +132,7 @@ def mandel (x,y):
 }}}
 
 {{{id=18|
-density_plot (mandel , ( -2.1 ,1.2) , ( -1.1 ,1.1) , plot_points=100)
+density_plot (mandel , ( -2.1 ,1.2) , ( -1.1 ,1.1) , plot_points=200,cmap='Spectral')
 ///
 <html><font color='black'><img src='cell://sage0.png'></font></html>
 }}}
