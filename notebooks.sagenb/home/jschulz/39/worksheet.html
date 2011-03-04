@@ -12,12 +12,6 @@ text2 = "Dies ist noch ein String."; text2
 'Dies ist noch ein String.'
 }}}
 
-{{{id=20|
-text1[0:4:2]
-///
-'De'
-}}}
-
 {{{id=2|
 type(text1)
 ///
@@ -25,9 +19,9 @@ type(text1)
 }}}
 
 {{{id=3|
-text1[0], text1[3], text1[2:4]
+text1[0], text1[3], text1[2:4], text1[0:4:2]
 ///
-('D', 's', 'es')
+('D', 's', 'es', 'De')
 }}}
 
 {{{id=5|
@@ -94,9 +88,4 @@ Index |    Wert
     1 | 001.000
    10 | 111.303
    20 | 404.010
-}}}
-
-{{{id=17|
-
-///
 }}}

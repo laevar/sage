@@ -1,6 +1,7 @@
 
 
 <h2>Aufgabe 1</h2>
+<p>Schreiben Sie eine Funktion, deren Eingabeparameter zwei Strings sind und die den kleinsten Index berechnet, ab dem der Erste dieser Strings im Zweiten enthalten ist.&nbsp; Kann der String nicht gefunden werden, so soll die Prozedur <span style="color: #008000;">False</span> zur&uuml;ckgeben.</p>
 
 {{{id=75|
 def search(s1,s2):
@@ -33,6 +34,9 @@ suche('de', 'abcdef')
 3
 }}}
 
+<h2>Aufgabe 2*</h2>
+<p>Schreiben Sie eine Prozedur, deren Eingabeparameter zwei Strings und ein Index sind und die den ersten String am gegebenen Index in den Zweiten einf&uuml;gt.</p>
+
 {{{id=81|
 def einfuegen(str, n, x):
     vor = str[0:n]
@@ -47,7 +51,8 @@ einfuegen('abcd', 2, '1234')
 'ab1234cd'
 }}}
 
-<h2>Aufgabe 3</h2>
+<h2>Aufgabe 3*</h2>
+<p>Schreiben Sie eine Prozedur, die f&uuml;r einen String - z.B. einen  Sage-Ausdruck in String-Form - &uuml;berpr&uuml;ft, ob alle ge&ouml;ffneten Klammern  auch wieder geschlossen werden.</p>
 
 {{{id=85|
 def pruefe_klammern(str):
@@ -72,10 +77,11 @@ pruefe_klammern("limit((abs(sin((2*n+1)*x))/(2*n+1))^(1/n),n=oo)")
 {{{id=99|
 pruefe_klammern(")(")
 ///
-0
+False
 }}}
 
 <h2>Aufgabe 4</h2>
+<p>F&uuml;gen sie dem ersten <strong>interact</strong>-Beispiel aus der Vorlesung einen <strong>selector</strong> hinzu, womit man neben <strong>sin(x)/x</strong> auch <strong>arctan(x)</strong> ausw&auml;hlen kann.</p>
 
 {{{id=102|
 def f(b, typ):
@@ -97,6 +103,7 @@ def _(b = range_slider (-20, 20, 1, default=(-19 ,3) , label='Range '), typ = se
 }}}
 
 <h2>Aufgabe 5</h2>
+<p>F&uuml;gen sie dem zweiten <strong>interact</strong>-Beispiel (Taylor) aus der Vorlesung eine <strong>checkbox</strong> hinzu, welche Gitterlinien im plot an- und ausstellen kann.</p>
 
 {{{id=94|
 var('x')
@@ -116,6 +123,8 @@ def _(order=slider(1,12,1,label='order'),ch = checkbox(label='Gitter (an/aus)'))
 }}}
 
 <h2>Aufgabe 6</h2>
+
+<p>Betrachten Sie das Newton-Verfahren zum Berechnen der Nullstellen von $z^3-1$, d.h.<br />\[ &nbsp; z_{n+1}=z_n-\frac{z_n^3-1}{3z_n^2} \]<br />mit einem Startwert $z_0=x+iy$. Schreiben Sie eine Funktion, die zu gegebenem $x,y\in\mathbb{R}$ &uuml;berpr&uuml;ft, gegen welche der drei L&ouml;sungen von $z^3-1=0$ das Newton-Verfahren konvergiert.&nbsp; Sie k&ouml;nnen von Konvergenz ausgehen, wenn $|z_n^3-1|&lt;0.1$ ist und in dem Fall das Argument von $z_n$ als Ergebnis zur&uuml;ckgeben.&nbsp; Sollte nach 20 Schritten keine Konvergenz eintreten, geben Sie 0 zur&uuml;ck.<br /><br />Erstellen Sie dann einen Plot der Funktion analog zur Mandelbrot-Menge in der Vorlesung f&uuml;r $-1\leq x,y \leq 1$ mit plot_points=60.</p>
 
 {{{id=95|
 reset()
@@ -147,7 +156,7 @@ import matplotlib.cm
 {{{id=104|
 matplotlib.cm.datad.keys()
 ///
-['Spectral', 'summer', 'RdBu', 'gist_earth', 'Set1', 'Set2', 'Set3', 'Dark2', 'hot', 'PuOr_r', 'PuBuGn_r', 'RdPu', 'gist_ncar_r', 'gist_yarg_r', 'Dark2_r', 'YlGnBu', 'RdYlBu', 'hot_r', 'gist_rainbow_r', 'gist_stern', 'cool_r', 'cool', 'gray', 'copper_r', 'Greens_r', 'GnBu', 'gist_ncar', 'spring_r', 'gist_rainbow', 'RdYlBu_r', 'gist_heat_r', 'OrRd_r', 'bone', 'gist_stern_r', 'RdYlGn', 'Pastel2_r', 'spring', 'Accent', 'YlOrRd_r', 'Set2_r', 'PuBu', 'RdGy_r', 'spectral', 'flag_r', 'jet_r', 'RdPu_r', 'gist_yarg', 'BuGn', 'Paired_r', 'hsv_r', 'YlOrRd', 'Greens', 'PRGn', 'gist_heat', 'spectral_r', 'Paired', 'hsv', 'Oranges_r', 'prism_r', 'Pastel2', 'Pastel1_r', 'Pastel1', 'gray_r', 'PuRd_r', 'Spectral_r', 'BuGn_r', 'YlGnBu_r', 'copper', 'gist_earth_r', 'Set3_r', 'OrRd', 'PuBu_r', 'winter_r', 'jet', 'bone_r', 'BuPu', 'Oranges', 'RdYlGn_r', 'PiYG', 'YlGn', 'binary_r', 'gist_gray_r', 'BuPu_r', 'gist_gray', 'flag', 'RdBu_r', 'BrBG', 'Reds', 'summer_r', 'GnBu_r', 'BrBG_r', 'Reds_r', 'RdGy', 'PuRd', 'Accent_r', 'Blues', 'Greys', 'autumn', 'PRGn_r', 'Greys_r', 'pink', 'binary', 'winter', 'pink_r', 'prism', 'YlOrBr', 'Purples_r', 'PiYG_r', 'YlGn_r', 'Blues_r', 'YlOrBr_r', 'Purples', 'autumn_r', 'Set1_r', 'PuOr', 'PuBuGn']
+['Spectral', 'summer', 'RdBu', 'Set1', 'Set2', 'Set3', 'brg_r', 'Dark2', 'hot', 'PuOr_r', 'afmhot_r', 'terrain_r', 'PuBuGn_r', 'RdPu', 'gist_ncar_r', 'gist_yarg_r', 'Dark2_r', 'YlGnBu', 'RdYlBu', 'hot_r', 'gist_rainbow_r', 'gist_stern', 'gnuplot_r', 'cool_r', 'cool', 'gray', 'copper_r', 'Greens_r', 'GnBu', 'gist_ncar', 'spring_r', 'gist_rainbow', 'RdYlBu_r', 'gist_heat_r', 'OrRd_r', 'bone', 'gist_stern_r', 'RdYlGn', 'Pastel2_r', 'spring', 'terrain', 'YlOrRd_r', 'Set2_r', 'winter_r', 'PuBu', 'RdGy_r', 'spectral', 'flag_r', 'jet_r', 'RdPu_r', 'Purples_r', 'gist_yarg', 'BuGn', 'Paired_r', 'hsv_r', 'bwr', 'YlOrRd', 'Greens', 'PRGn', 'gist_heat', 'spectral_r', 'Paired', 'hsv', 'Oranges_r', 'prism_r', 'Pastel2', 'Pastel1_r', 'Pastel1', 'gray_r', 'PuRd_r', 'Spectral_r', 'gnuplot2_r', 'BuPu', 'YlGnBu_r', 'copper', 'gist_earth_r', 'Set3_r', 'OrRd', 'PuBu_r', 'ocean_r', 'brg', 'gnuplot2', 'jet', 'bone_r', 'gist_earth', 'Oranges', 'RdYlGn_r', 'PiYG', 'YlGn', 'binary_r', 'gist_gray_r', 'Accent', 'BuPu_r', 'gist_gray', 'flag', 'seismic_r', 'RdBu_r', 'BrBG', 'Reds', 'BuGn_r', 'summer_r', 'GnBu_r', 'BrBG_r', 'Reds_r', 'RdGy', 'PuRd', 'Accent_r', 'Blues', 'Greys', 'autumn', 'PRGn_r', 'Greys_r', 'pink', 'binary', 'winter', 'gnuplot', 'pink_r', 'prism', 'YlOrBr', 'rainbow_r', 'rainbow', 'PiYG_r', 'YlGn_r', 'Blues_r', 'YlOrBr_r', 'seismic', 'Purples', 'bwr_r', 'autumn_r', 'ocean', 'Set1_r', 'PuOr', 'PuBuGn', 'afmhot']
 }}}
 
 {{{id=105|
@@ -156,6 +165,11 @@ matplotlib.cm.datad.keys()
 }}}
 
 {{{id=106|
+
+///
+}}}
+
+{{{id=107|
 
 ///
 }}}

@@ -10,10 +10,11 @@
 
 \begin{frame}{Klausur}
  \begin{itemize}
-\item Zeit: 01.03.2010 von 10:00 - 12:00
+\item Zeit: 10.03.2011 von 10:30 - 12:00
 \item  Ort: HS1 (A bis J) und AudiMax (K bis Z)
 \item  Hilfsmittel: Schreibgerät(e) und Unterlagen in Papierform
 \item  Studenten-Ausweis mitbringen
+\item Schreibweisen der art $x^2$ oder $xy$ sind ok, solange klar ist was gemeint ist.
 %\item  Ab 10:30 keine vorzeitige Abgabe möglich
 \end{itemize}
 
@@ -30,8 +31,8 @@ Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
 Sonderzeichen,...
 \item Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
 für die Ausgabe der Ergebnisse.
-\item Sie haben den Datentyp \isage{str}.
-\item Sie werden innerhalb von Hochkommas oder Anführungszeichen angegeben.
+\item Datentyp \isage{str}.
+\item eingeschlossen in Hochkommas oder Anführungszeichen.
 \end{itemize}
 \end{frame} 
 
@@ -59,13 +60,12 @@ type(text1)
 
 \begin{frame}[fragile]{Zugriff}
 \begin{itemize}
-\item Mit dem Indexoperator {\color{blue}$[\ ]$} können einzelne Zeichen einer Zeichenkette
-extrahiert werden.
+\item Indexoperator {\color{blue}$[\ ]$}:
 \begin{sagein}
-text1[0], text1[3], text1[2:4]
+text1[0], text1[3], text1[2:4], text1[0:4:2]
 \end{sagein}
 \begin{sage}
-('D', 's', 'es')
+('D', 's', 'es', 'De')
 \end{sage}
 \item Ersetzungen innerhalb des Strings:
 \begin{sagein}
@@ -86,7 +86,7 @@ A='Letzte '; B='Vorlesung'; A+B
 \begin{sage}
 'Letzte Vorlesung'
 \end{sage}
-\item \isage{len} gibt die Anzahl der Zeichen in einer Zeichenkette
+\item \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
 an.
 \begin{sagein}
 a=len(A+B); a
@@ -100,15 +100,14 @@ a=len(A+B); a
 
 \begin{frame}[fragile]{Operationen für Strings II}
 \begin{itemize}
-\item neue Zugriffsmöglichkeit
+\item Zugriffe beginnend vom Ende
 \begin{sagein}
 (A+B)[-1]
 \end{sagein}
 \begin{sage}
   'g'
 \end{sage}
-\item Beliebige Sage-Objekte können durch {\color{blue} \isage{str()}} in
-einen String verwandelt werden.
+\item {\color{blue} \isage{str()}} wandelt Objekte in einen String um.
 \begin{sagein}
 str(x^2+2), str([1,2,3])
 \end{sagein}
@@ -120,7 +119,7 @@ str(x^2+2), str([1,2,3])
 
 \begin{frame}[fragile]{Operationen für Strings III}
 \begin{itemize}
- \item Strings durchsuchen mit find
+ \item \isage{find()}: Strings durchsuchen
 \begin{sagein}
 'Hallo'.find('lo')
 \end{sagein}
@@ -139,7 +138,7 @@ str(x^2+2), str([1,2,3])
 
 \begin{frame}[fragile]{Operationen für Strings IV} 
 \begin{itemize}
-\item Aufspalten von Texten
+\item \isage{split()}: Aufspalten von Texten
 \begin{sagein}
 text = 'Dies ist ein Satz, und ein Nebensatz'
 text.split() 
@@ -234,30 +233,27 @@ def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
 
 \begin{frame}[fragile]{interact}
 \begin{itemize}
-\item
+\item Regler mit Werten von vmin bis vmax
 \begin{sagein}
 u=slider(vmin, vmax=, step_size=1, default=, label=) 
 \end{sagein}
-Regler mit Werten von vmin bis vmax
-\item 
+\item Regler eines Intervalles
 \begin{sagein}
 u=range_slider(vmin, vmax=, step_size=1, default=, label=)
 \end{sagein}
-Regler eines Intervalles
-\item \begin{sagein}
+\item Eine Ankreuzfeld
+\begin{sagein}
 u=checkbox(default=True, label=)
 \end{sagein}
-Eine Ankreuzfeld
-\item 
+\item Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
 \begin{sagein}
 u=selector(values, label=, nrows=, ncols=, buttons=False)
 \end{sagein}
-Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
-\item 
+\item Ein Textblock
 \begin{sagein}
 u=text_control(value='')
 \end{sagein}
-Ein Textblock
+
 \end{itemize}
 
 

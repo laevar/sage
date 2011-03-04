@@ -119,6 +119,25 @@ koch(vector([0,0]),vector([1,0]),2)
 }}}
 
 {{{id=17|
+def mandel (x,y):
+    c = (x + I*y).n()
+    z = c
+    it = 0
+    max_it = 150
+    while abs(z) <2 and it < max_it :
+        z = z^2 + c
+        it += 1
+    return float(it/ max_it )
+///
+}}}
+
+{{{id=18|
+density_plot (mandel , ( -2.1 ,1.2) , ( -1.1 ,1.1) , plot_points=100)
+///
+<html><font color='black'><img src='cell://sage0.png'></font></html>
+}}}
+
+{{{id=19|
 
 ///
 }}}
