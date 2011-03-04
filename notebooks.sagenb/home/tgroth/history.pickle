@@ -1,0 +1,12 @@
+(lp1
+VWorksheet 'Klausuruebung' (2011-03-04 at 12:04)\u000a{{{id=1|\u000asum(1/x,x,1,100)\u000a///\u000a14466636279520351160221518043104131447711/2788815009188499086581352357412492142272\u000a}}}
+p2
+aVWorksheet 'Klausuruebung' (2011-03-04 at 12:33)\u000a{{{id=1|\u000a\u000a///\u000a}}}
+p3
+aVWorksheet 'Klausuruebung' (2011-03-04 at 12:45)\u000a{{{id=2|\u000a'Hallo'[1..3]\u000a///\u000aTraceback (most recent call last):\u000a  File "<stdin>", line 1, in <module>\u000a  File "_sage_input_11.py", line 9, in <module>\u000a    exec compile(ur'open("___code___.py","w").write("# -*- coding: utf-8 -*-\u005cn" + _support_.preparse_worksheet_cell(base64.b64decode("J0hhbGxvJ1sxLi4zXQ=="),globals())+"\u005cn"); execfile(os.path.abspath("___code___.py"))' + '\u005cn', '', 'single')\u000a  File "", line 1, in <module>\u000a    \u000a  File "/tmp/tmpcA11Uh/___code___.py", line 3, in <module>...\u000a}}}
+p4
+aVWorksheet 'Klausuruebung' (2011-03-04 at 12:45)\u000a{{{id=2|\u000a'Hallo'[1:3]\u000a///\u000a'al'\u000a}}}
+p5
+aVWorksheet 'Klausuruebung' (2011-03-04 at 12:45)\u000a{{{id=2|\u000a'Hallo'[0:3]\u000a///\u000a'Hal'\u000a}}}
+p6
+a.

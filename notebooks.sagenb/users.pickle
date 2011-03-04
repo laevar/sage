@@ -287,11 +287,14 @@ p128
 sS'max_history_length'
 p129
 I1000
-ssS'password'
+sS'autosave_interval'
 p130
-S'aa/WyxjMBnLYU'
+I60
+ssS'password'
 p131
-sS'email'
+S'aanIkqvc2WOUY'
 p132
+sS'email'
+p133
 S''
 saa.
