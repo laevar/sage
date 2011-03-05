@@ -1,14 +1,14 @@
 
 
 <h2>Aufgabe 1</h2>
-Schreiben Sie eine Funktion die das Ergebnis folgender Funktion zurückliefert:
+<p>Schreiben Sie eine Funktion die das Ergebnis folgender Funktion zurückliefert:
 
 $f(x)= \left\{ 
     \begin{array}{cc}
                  \sqrt{x} & falls \quad x <1  \\
                  x^2 & sonst  
     \end{array} 
-   \right.
+   \right.$ </p>
 
 {{{id=1|
 
@@ -16,7 +16,7 @@ $f(x)= \left\{
 }}}
 
 <h2>Aufgabe 2</h2>
-Schreiben Sie eine Abfolge von Befehlen, die von einer beliebigen gegebenen Matrix prüft, ob sie invertierbar ist, in diesem Fall soll die in Inverse berechnet und ausgegeben werden. Dann sollen die Eigenwerte und Eigenvektoren der Matrix berechnet und auch diese ausgegeben werden.
+<p>Schreiben Sie eine Abfolge von Befehlen, die von einer beliebigen gegebenen Matrix prüft, ob sie invertierbar ist, in diesem Fall soll die in Inverse berechnet und ausgegeben werden. Dann sollen die Eigenwerte und Eigenvektoren der Matrix berechnet und auch diese ausgegeben werden.</p>
 
 {{{id=2|
 
@@ -32,9 +32,34 @@ Schreiben Sie eine Abfolge von Befehlen, die von einer beliebigen gegebenen Matr
 }}}
 
 <h2>Aufgabe 4</h2>
-<p>Differentation numerisch</p>
+<p>Eine etwas schwierigere Aufgabe</p>
+<p>Schreiben Sie einen einfachen Taschenrechner, der eine Addition berechnen kann.</p>
+<p>Also eine Funktion, die als Eingabe einen String der Form '$\left< zahl \right > + \left< zahl \right >$' bekommt und die Summe dieser beiden Zahlen 
+zurück gibt. </p>
+<h3>Hinweis: </h3>
+<p> Benutzen Sie die Funktion $split()$ um an die Zahlen zu kommen, die dann mit $int()$ in Zahlen umgewandelt werden können</p>
 
 {{{id=7|
+def add(string):
+    operants=string.split('+')
+    summe=0
+    for summand in operants:
+        summe += int(summand)
+    return summe
+        
+///
+}}}
+
+{{{id=20|
+add('4+5+3')
+///
+12
+}}}
+
+<h2>Aufgabe 5</h2>
+<p>Differentation numerisch</p>
+
+{{{id=8|
 f(x) = sin(x)
 g(x) = f.diff(x)
 fprime = [] 
