@@ -12,12 +12,11 @@
 %-------------------------------------------------------------------------
 \begin{aufg}[4]
 \begin{itemize}
-\item Beschreiben Sie, wie man in Sage eine Liste, ein Tuple, ein
-  Dictionary und eine Menge erzeugt. Wie fügt man jeweils Elemente
-  hinzu oder greift auf Elemente zu?
-\item Auf welche dieser Datentypen kann man die Funktionen
-  \isage{sort}, \isage{index}, \isage{values}, \isage{remove} und
-  \isage{intersection} anwenden?
+\item Erstellen Sie, in Sage eine Liste, ein Tuple, ein
+  Dictionary und eine Menge mit je einem Element Ihrer Wahl. Wie fügt man jeweils Elemente
+  hinzu (sofern möglich) oder greift auf Elemente zu?
+\item Welchen dieser Datentyen würden Sie wählen, wenn Sie Messungen zu äquidistanten Zeitintervallen darstellen wollen? Wäre Ihre Wahl eine andere, wenn 
+  die Messungen zu zufälligen Zeitpunkten erfolgt sind? Begründen Sie!
 \end{itemize}
 \end{aufg}
 
@@ -37,15 +36,23 @@ Schreiben Sie eine Funktion mit \isage{def}, die folgende Funktion berechnet:
 Gibt es noch eine andere Möglichkeit die Funktion zu definieren? Wenn ja, erklären sie kurz worin die Unterschiede zwischen den  Varianten liegen.
 \end{aufg}
 
-\begin{aufg}[5]
-Schreiben Sie eine Abfolge von Befehlen die mit einer gegebenen unbekannten Funktion $f: \mathbb{R} \to \mathbb{R}$ eine 
-Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktion anpassen müssten. Dabei sollen folgende Schritte bearbeitet werden:
+\begin{aufg}[4]
+Schreiben Sie eine rekursive Funktion \isage{verfeinere(f, a, b, TOL)}, die gegeben eine Funktion $f$, ein Intervall $[a,\, b]$ und eine Genauigkeit $TOL$ Stützstellen bestimmt, so dass sich die Funktionswerte an benachbarten Stützstellen um weniger als $TOL$ unterscheiden. Gehen Sie dabei folgendermaßen vor:
 \begin{itemize}
-\item Untersuchen Sei das Verhalten von $f(x)$ für $x\r \rightarrow \pm \infty$.
-\item Finden Sie die Nullstellen und berechnen sie die jeweilige Steigung in dem Punkt.
-\item Geben sie mittels des \isage{print}-Befehls und einer Schleife die Nullstelle und ihre Steigung  aus.
+\item Wenn $|f(a)-f(b)| < TOL$ ist, geben Sie die Liste $[a,\, b]$ zurück.
+\item Andernfalls nutzen Sie die Funktion rekursiv, um jeweils die linke Intervall-Hälfte $[a,\,\frac{a+b}{2}]$ und die rechte Intervall-Hälfte $\frac{a+b}{2},\, b]$ zu verfeinern. Fügen Sie die Resultate in eine Liste zusammen und gegeben Sie diese anschließend als Ergebnis zurück.
 \end{itemize}
 \end{aufg}
+
+%\begin{aufg}[5]
+%Schreiben Sie eine Abfolge von Befehlen die mit einer gegebenen unbekannten Funktion $f: \mathbb{R} \to \mathbb{R}$ eine 
+%Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktion anpassen müssten. Dabei sollen folgende Schritte bearbeitet werden:
+%\begin{itemize}
+%\item Untersuchen Sei das Verhalten von $f(x)$ für $x\r \rightarrow \pm \infty$.
+%\item Finden Sie die Nullstellen und berechnen sie die jeweilige Steigung in dem Punkt.
+%\item Geben sie mittels des \isage{print}-Befehls und einer Schleife die Nullstelle und ihre Steigung  aus.
+%\end{itemize}
+%\end{aufg}
 
 % \begin{aufg}{5}
 % Schreiben Sie eine Funktion mit Input-Variablen $x_0$ und $TOL$, die die Folge
@@ -54,11 +61,7 @@ Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktio
 % $x_{n}$ und das zugeh\"orige $n$ zur\"uckgeben. 
 % \end{aufg}
 
-\begin{aufg}[8]
-  Schreiben Sie ohne Verwendung der Funktion
-  \isage{primes_first_n()} eine Funktion mit dem Argument $n$, die
-  eine Liste der ersten $n$ Primzahlen berechnet.
-\end{aufg}
+
 
 % \begin{aufg}{5}
 %   Schreiben Sie eine Funktion, die den Binomialkoeffizienten $n\choose
@@ -89,8 +92,13 @@ Kurvendiskussion durchführt, ohne dass Sie die Befehlsfolge noch an die Funktio
 % Schreiben Sie eine MuPAD-Prozedur \isage{programm1} die für eine Zahl $n>10$ die Zeichenkette \isage{MuPAD ist super} und für $n\leq10$ die Zeichenkette   \isage{MuPAD ist Mist} zurückgibt (Typenüberprüfung braucht nicht durchgeführt zu werden).
 % \end{aufg}
 %-----------------------------------------------------------------------------------
-\begin{aufg}[5]
-Schreiben Sie ohne Verwendung der Funktion \isage{index()} eine Sage-Prozedur mit 2 Argumenten, die aus einer Liste von Zahlen den Index einer zu suchenden Zahl, oder \isage{-1}, zurückliefert.
+%\begin{aufg}[5]
+%Schreiben Sie ohne Verwendung der Funktion \isage{index()} eine Sage-Prozedur mit 2 Argumenten, die aus einer Liste von Zahlen den Index einer zu %suchenden Zahl, oder \isage{-1}, zurückliefert.
+%\end{aufg}
+
+%-----------------------------------------------------------------------------------
+\begin{aufg}[4]
+Schreiben Sie eine Funktion, die als Eingabe einen Rechenausdruck bestehend aus Multiplikationen und Additionen als String bekommt (zum Beispiel "3+17*5+12") und das Ergebnis zurückliefert. \emph{Hinweis:} Benutzen Sie die Funktion \isage{split()} um an die Operanden zu kommen und die Funktion \isage{int()} zum Umwandeln in Zahlen. Denken Sie auch an "`Punkt- vor Strichrechnung"'.
 \end{aufg}
 \end{document}
 
