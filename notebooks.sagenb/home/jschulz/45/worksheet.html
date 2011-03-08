@@ -1,5 +1,59 @@
 
 
+<h2>Aufgabe 1</h2>
+
+{{{id=54|
+tuple1 = (2,3)
+print tuple1+(4,), tuple1[1]
+liste1 = [2,3]
+print liste1+[4], liste1[1]
+var('i1,i2,i3')
+dictionary1 = {i1:2,i2:3}
+dictionary1[i3]=4,dictionary1[i1]
+print dictionary1
+Menge1 = Set([2,3])
+print Menge1[1], Menge1.union(Set([4]))
+///
+(2, 3, 4) 3
+[2, 3, 4] 3
+{i1: 2, i3: (4, 2), i2: 3}
+3 {2, 3, 4}
+}}}
+
+<h2>Aufgabe 2</h2>
+
+{{{id=59|
+expr=x^2
+simplify(x^2)
+expr.full_simplify()
+expr.simplify_trig()
+expr.expand()
+expr.factor()
+///
+x^2
+}}}
+
+{{{id=63|
+expr = x*(x+1)+x/(2+x)
+print expr.expand()
+print expr.simplify()
+print expr.factor()
+print expr.partial_fraction()
+///
+}}}
+
+<h2>Aufgabe 3</h2>
+
+{{{id=61|
+for i in [2..5]:
+    print i,i^2
+///
+2 4
+3 9
+4 16
+5 25
+}}}
+
 <h2>Aufgabe 4</h2>
 
 {{{id=1|
@@ -29,87 +83,27 @@ type(f),f,f(2)
 <h2>Aufgabe 5</h2>
 <p>&nbsp;</p>
 
-{{{id=2|
-f(x) = x^5 + x^3 +2
-print f.limit(x=oo)
-print f.limit(x=-oo)
-nst = solve(f==0,x)
-print 'Es gibt '+str(len(nst))+' Nullstellen'
-for s in nst:
-    print 'Eine Nullstelle ist in x='+str(s.rhs().n())
-    print 'Dort ist die Steigung '+str(f.diff()(s.rhs()).n())
+{{{id=65|
+def rechner(a):
+    s = 0
+    for x in a.split("+"):
+        p = 1
+        for y in x.split("*"):
+            p = p * int(y)
+        s = s + p
+    return s
 ///
-x |--> +Infinity
-x |--> -Infinity
-Es gibt 5 Nullstellen
-Eine Nullstelle ist in x=-0.280896351866360 - 1.27440784693538*I
-Dort ist die Steigung 4.73982838823954 - 8.91513733833748*I
-Eine Nullstelle ist in x=-0.280896351866359 + 1.27440784693538*I
-Dort ist die Steigung 4.73982838823954 + 8.91513733833747*I
-Eine Nullstelle ist in x=0.780896351866359 - 0.751389720797094*I
-Dort ist die Steigung -6.73982838823954 - 4.05112158438402*I
-Eine Nullstelle ist in x=0.780896351866359 + 0.751389720797094*I
-Dort ist die Steigung -6.73982838823954 + 4.05112158438402*I
-Eine Nullstelle ist in x=-1.00000000000000
-Dort ist die Steigung 8.00000000000000
 }}}
 
-<h2>Aufgabe 1</h2>
-
-{{{id=9|
-var('a,b')
-tuple = (1,2)
-liste = [1,2]
-menge = Set(liste)
-dict = {a:1, b:2}
-tuple, liste, dict
+{{{id=66|
+rechner("2+3*4+8")
 ///
-((1, 2), [1, 2], {b: 2, a: 1})
-}}}
-
-{{{id=11|
-liste.sort()
-liste.append()
-liste.remove()
-dict.update()
-dict[a]
-///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_12.py", line 9, in <module>
-    exec compile(ur'open("___code___.py","w").write("# -*- coding: utf-8 -*-\n" + _support_.preparse_worksheet_cell(base64.b64decode("bGlzdGUuc29ydCgpCmxpc3RlLmFwcGVuZCgpCmxpc3RlLnJlbW92ZSgpCmRpY3QudXBkYXRlKCkKZGljdFthXQ=="),globals())+"\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "/tmp/tmpKvcJFV/___code___.py", line 3, in <module>
-    liste.append()
-TypeError: append() takes exactly one argument (0 given)
-}}}
-
-{{{id=24|
-tuple[0]=4
-///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_5.py", line 9, in <module>
-    exec compile(ur'open("___code___.py","w").write("# -*- coding: utf-8 -*-\n" + _support_.preparse_worksheet_cell(base64.b64decode("dHVwbGVbMF09NA=="),globals())+"\n"); execfile(os.path.abspath("___code___.py"))' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-  File "/tmp/tmpcvGua8/___code___.py", line 3, in <module>
-    exec compile(ur'tuple[_sage_const_0 ]=_sage_const_4 ' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-TypeError: 'tuple' object does not support item assignment
-}}}
-
-{{{id=38|
-dict.values()
-///
-[2, 1]
+22
 }}}
 
 <h2>Aufgabe 6</h2>
 
-{{{id=6|
+{{{id=62|
 def prog(n):
     z = 1
     k = 1
@@ -126,61 +120,13 @@ prog(10)
 ([2, 3, 5, 7, 11, 13, 17, 19, 23], 10)
 }}}
 
-{{{id=41|
-def prog3(n):
-    menge = xrange(1,4*n)
-    return filter(is_prime, menge)[0:4]
-///
-}}}
+<h2></h2>
 
-{{{id=42|
-prog3(4)
-///
-[2, 3, 5, 7]
-}}}
+<h2></h2>
 
-<h2>Aufgabe 2</h2>
+<h2></h2>
 
-{{{id=14|
-expr = x*(x+1)+x/(2+x)
-print expr.expand()
-print expr.simplify()
-print expr.factor()
-print expr.partial_fraction()
-///
-x^2 + x + x/(x + 2)
-(x + 1)*x + x/(x + 2)
-(x^2 + 3*x + 3)*x/(x + 2)
-x - 2/(x + 2) + x^2 + 1
-}}}
-
-<h2>Aufgabe 7</h2>
-
-{{{id=30|
-reset()
-///
-}}}
-
-{{{id=16|
-def prog2(suchzahl,liste):
-    i=0
-    for zahl in liste:
-        if zahl == suchzahl:
-            return i
-        i += 1
-    return -1
-prog2(6,[1,6,3,32,4,9])
-///
-1
-}}}
-
-{{{id=27|
-liste = [1,6,3,32,4,9];liste.index(6)
-///
-1
-}}}
-
-<h2>Aufgabe 3</h2>
+<h2>moegliche aufgaben</h2>
 <p>eine for-schleife wiederholt eine abfolge von befehlen fuer jedes element aus einer gegebenen liste, wobei das jeweilige element innerhalb der schleife genutzt werden kann.</p>
 
 {{{id=48|
@@ -203,58 +149,7 @@ while not finish:
 ///
 }}}
 
-{{{id=51|
-def verfeinere(f, a, b, TOL):
-    if abs(f(a)-f(b)) < TOL:
-        return [a, b]
-    else:
-        A = verfeinere(f, a, (a+b)/2, TOL)
-        B = verfeinere(f, (a+b)/2, b, TOL)
-        return A + B[1:]
-///
-}}}
-
-{{{id=50|
-verfeinere(f, 0, 1., .1)
-///
-[0, 0.0625000000000000, 0.125000000000000, 0.187500000000000, 0.250000000000000, 0.312500000000000, 0.375000000000000, 0.437500000000000, 0.500000000000000, 0.531250000000000, 0.562500000000000, 0.593750000000000, 0.625000000000000, 0.656250000000000, 0.687500000000000, 0.718750000000000, 0.750000000000000, 0.781250000000000, 0.812500000000000, 0.843750000000000, 0.875000000000000, 0.906250000000000, 0.937500000000000, 0.968750000000000, 1.00000000000000]
-}}}
-
-{{{id=49|
-map(f,a)
-///
-[1, 1.05127109637602, 1.10517091807565, 1.16183424272828, 1.22140275816017, 1.28402541668774, 1.34985880757600, 1.41906754859326, 1.49182469764127, 1.56831218549017, 1.64872127070013, 1.73325301786740, 1.82211880039051, 1.91554082901390, 2.01375270747048, 2.11700001661267, 2.22554092849247, 2.33964685192599, 2.45960311115695]
-}}}
-
-{{{id=17|
-for i in [1,3,7,12]:
-    print i^2
-///
-1
-9
-49
-144
-}}}
-
-{{{id=43|
-def rechner(a):
-    s = 0
-    for x in a.split("+"):
-        p = 1
-        for y in x.split("*"):
-            p = p * int(y)
-        s = s + p
-    return s
-///
-}}}
-
-{{{id=44|
-rechner(a)
-///
-41
-}}}
-
-{{{id=45|
+{{{id=52|
 
 ///
 }}}

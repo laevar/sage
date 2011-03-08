@@ -3,83 +3,48 @@
 <h2>Aufgabe 1</h2>
 
 {{{id=1|
-def f(s): var('t'); return sum(exp(-s*t)*sin(t)^2,t,0,1)
+#for .. :
+#while <boolexpr>:
+#[.. for ..]
 ///
-}}}
-
-{{{id=7|
-f(2)
-///
--1/2*(cos(2) - 1)*e^(-2)
 }}}
 
 <h2>Aufgabe 2</h2>
 <p>&nbsp;</p>
 
-{{{id=2|
-f(x) = x^5 + x^3 +2
-print f.limit(x=oo)
-print f.limit(x=-oo)
-nst = solve(f==0,x)
-print 'nullstellen='+str(nst)
-est = solve(f.diff()==0,x)
-fdprime = f.diff().diff()
-for s in est:
-    if fdprime(s.rhs()) < 0:
-        print 'Maxima='+str(s.rhs())+','+str(f(s.rhs()))
-    elif fdprime(s.rhs()) > 0:
-        print 'Minima='+str(s.rhs())+','+str(f(s.rhs()))
-    elif fdprime(s.rhs()) == 0:        
-        print 'Sattelpunkt='+str(s.rhs())+','+str(f(s.rhs()))
+{{{id=37|
+#index:value -Paare
+#vorteil: namen als index sind einfacher zu merken. i.a. Schnellerer zugriff bei geschickter index-wahl
+#nachteil: operationen wirken auf index, nicht auf values; keine reihenfolge
 ///
-x |--> +Infinity
-x |--> -Infinity
-nullstellen=[
-x == -1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) - 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
-x == 1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) - 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
-x == -1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) - 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) + 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
-x == 1/12*sqrt(-((18*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) + 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 44)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) - 243*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))/((1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3))))*sqrt(2) + 1/12*sqrt((36*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(2/3) - 39*(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3) + 88)/(1/9*I*sqrt(3)*sqrt(197) - 73/27)^(1/3)) + 1/4,
-x == -1
-]
-Sattelpunkt=0,2
 }}}
 
 <h2>Aufgabe 3</h2>
 
-{{{id=9|
-var('a,b')
-tuple = (1,2)
-liste = [1,2]
-dict = {a:1, b:2}
-tuple, liste, dict
+{{{id=32|
+#Problem: endliche Genauigkeit-> Rundungsfehler besonders z.b. bei Subtraktionen von etwa gleich grossen Zahlen.
+#1. Approximation durch rationale Zahlen
+#2. Vermeidung der kritischen Operationen
 ///
-((1, 2), [1, 2], {b: 2, a: 1})
-}}}
-
-{{{id=11|
-liste.sort()
-liste.append()
-liste.remove()
-dict.update()
-dict[a]
-///
-Traceback (most recent call last):    liste.remove()
-TypeError: append() takes exactly one argument (0 given)
-}}}
-
-{{{id=24|
-tuple[0]=4
-///
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "_sage_input_29.py", line 5, in <module>
-    exec compile(ur'tuple[_sage_const_0 ]=_sage_const_4' + '\n', '', 'single')
-  File "", line 1, in <module>
-    
-TypeError: 'tuple' object does not support item assignment
 }}}
 
 <h2>Aufgabe 4</h2>
+
+{{{id=35|
+def f(s): var('t'); return sum(exp(-t)*sin(t)^2,t,0,s)
+f(4)
+///
+-1/2*(e*cos(6) + e^2*cos(4) + e^3*cos(2) - e - e^2 - e^3 + cos(8) - 1)*e^(-4)
+}}}
+
+{{{id=36|
+def f2(s): var('t'); return add([exp(-t)*sin(t)^2 for t in [0..s]])
+f2(4),f(4)-f2(4)
+///
+(e^(-4)*sin(4)^2 + e^(-3)*sin(3)^2 + e^(-2)*sin(2)^2 + e^(-1)*sin(1)^2, 0)
+}}}
+
+<h2>Aufgabe 5</h2>
 
 {{{id=4|
 n = 5
@@ -97,69 +62,26 @@ show(matrix([[xvec[i]^j for j in [0..n]] for i in [0..n]]))
 \end{array}\right)</div></html>
 }}}
 
-<h2>Aufgabe 5</h2>
-
-{{{id=6|
-def prog(x0, TOL):
-    x = [x0,x0-(x0^2-5.)/(2*x0)]
-    k = 1
-    while abs(x[k]-x[k-1]) > TOL:
-        k += 1
-        x.append(x[k-1]-(x[k-1]^2-5)/(2*x[k-1]))
-    return k,x[k]
-prog(2,10^(-3))
-///
-(3, 2.23606797791580)
-}}}
-
 <h2>Aufgabe 6</h2>
 
-{{{id=14|
-expr = sin(x)^2+cos(x)^2 == 1
-print bool(expr)
-print bool(simplify(expr))
-print bool(expr.full_simplify())
-///
-True
-True
-True
-}}}
-
-<h2>Aufgabe 7</h2>
-
-{{{id=30|
-reset()
+{{{id=31|
+f(x) = exp(x)
+a = srange(0,1,.1)
+TOL = .1
+def verfeinere(f, a, b, TOL):
+    if abs(f(a)-f(b)) < TOL:
+        return [a, b]
+    else:
+        A = verfeinere(f, a, (a+b)/2, TOL)
+        B = verfeinere(f, (a+b)/2, b, TOL)
+        return A + B[1:]
 ///
 }}}
 
-{{{id=16|
-def prog2(list):
-    max = list[0]
-    for zahl in list:
-        if zahl > max:
-            max = zahl
-    return max
-prog2([1,6,3,32,4,9])
+{{{id=39|
+verfeinere(f, 0, 1., .1)
 ///
-32
+[0, 0.0625000000000000, 0.125000000000000, 0.187500000000000, 0.250000000000000, 0.312500000000000, 0.375000000000000, 0.437500000000000, 0.500000000000000, 0.531250000000000, 0.562500000000000, 0.593750000000000, 0.625000000000000, 0.656250000000000, 0.687500000000000, 0.718750000000000, 0.750000000000000, 0.781250000000000, 0.812500000000000, 0.843750000000000, 0.875000000000000, 0.906250000000000, 0.937500000000000, 0.968750000000000, 1.00000000000000]
 }}}
 
-{{{id=27|
-liste = [1,6,3,32,4,9]
-///
-}}}
-
-{{{id=28|
-liste.sort(); liste[-1]
-///
-32
-}}}
-
-<h2>Aufgabe 8</h2>
-
-<p>Die darstellung mit rationalen Zahlen ist exakt, die mit reellen nicht, da diese nur durch Gleitkommazahlen im computer dargestellt werden k&ouml;nnen. Andererseits ist die Darstellung und Berechnung mit rationalen Zahlen uneffizienter und vor allem auch un&uuml;bersichtlicher</p>
-
-{{{id=17|
-
-///
-}}}
+<h2></h2>
