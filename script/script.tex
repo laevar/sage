@@ -1,8 +1,50 @@
 \documentclass[fontsize=12pt,paper=a4,twoside,bibtotoc,idxtotoc,
 liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{textcomp}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+
 \title{Einführung in Sage}
-\input{../common_header}
+\author{Dr.Jochen Schulz}
+\date{10-10-11}
+
+%\input{../common_header}
+\begin{document}
 \maketitle
+\tableofcontents
+\chapter{}
+\section{Einleitung}
+\subsection{Was ist Sage?}
+Sage ist ein pythonbasiertes, objektorientiertes Open-source (GPL) Mathematik Software System, dass es seit dem 24. Februar 2005 gibt.
+In Sage findet man eine Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.\newline
+Das (Haupt-)Interface ist der Browser, dennoch besitzt Sage Frontends für viele externe Software.\newline
+Zu den Stärken von Sage zählt sicherlich, dass es viele andere CAS und Libraries unter einer einheitlichen Oberfl\"ache vereint 
+(so z.B. Maxima, Pari, GAP, R, Magma, ...), sowie durch Python eine sehr mächtige Programmiersprache als Grundlage hat. Desweiteren 
+ist der Source Code offen, es gibt ein umfangreiches Hilfesystem sowie viele freie Materialien im Internet.\newline
+Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist der Befehlsumfang nicht so mächtig, wie der von Maple,Mthematica 
+oder Matlab; außerdem fehlt eine standalone Entwicklungsumgebung. Als Alternative zum Webinterface findet sich Cantor.
+\newpage
+\subsection{Überblick}
+Als Einstieg und kleiner Überblick ein paar Beispiele:
+\subsubsection{Kurvendiskussion}
+Betrachte die durch die reelle Zahl $a$ parametrisierte Funktionenschar:
+\[ 
+f: x \quad \mapsto \quad \frac{2x^2-20x+42}{x-1}+a, \quad
+a \in \mathbb{R} 
+\]
+\subsubsection{Zusammenfassung}
+\subsubsection{Symbolisches Rechnen}
+\subsubsection{Zusammenfassung}
+\subsubsection{Analytische Geometrie und Lineare Algebra}
+\subsubsection{Zusammenfassung}
+\newpage
+\subsection{Nützliches und Hilfe}
+
 
 \end{document}
