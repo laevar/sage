@@ -43,26 +43,26 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
 \begin{itemize}
  \item Mehrere Befehle in einer Zeile durch ; trennen. 
  \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-  Zeilenumbruch durch $<$ENTER$>$ erreicht werden.
- \item Das Auswerten eines Blocks erfolgt mit $<$SHIFT$>$+$<$ENTER$>$.
+  Zeilenumbruch durch <ENTER> erreicht werden.
+ \item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
  \item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
- \item $\_$ refenziert die letzte Ausgabe.
- \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: reset()
+ \item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
+ \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
 %\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
 %\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
- \item Das Feld aktivieren von \textbackslash Typeset lässt alle Ausgaben von \LaTeX{} rendern.
+ \item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
 %\item profiler und debugger -> commandline
-  \item Html- und/oder \LaTeX-Dokumentation:$<$SHIFT$>$+$<$KLICK$>$ auf den blauen Balken
+ \item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
 %\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
 %\item Unter dem Menupunkt \alert{File} kann man 
- \item Autocompletion: mit der $<$TAB$>$-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
-  Dies gilt insbesondere auch für Objektfunktionen (object.function())
- \item $<$command$>$?: gibt ausführliche Hilfe zu command an.
- \item help($<$command$>$): öffnet ein Hilfefenster zu command.
+ \item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
+  Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
+ \item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
+ \item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
  \item online Dokumentation:
   \begin{itemize}
-   \item Sage: http://www.sagemath.org/doc/index.html
-   \item Python: http://docs.python.org/
+   \item Sage: \url{http://www.sagemath.org/doc/index.html}
+   \item Python: \url{http://docs.python.org/}
   \end{itemize}
 \end{itemize}
 \newpage
@@ -74,27 +74,27 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
 Als Einstieg und kleine Motivation, wofür man Sage einsetzen kann, wollen wir erst einmal ein paar grundlegende Operationen 
 vorstellen:
 \begin{itemize}
- \item Deklarieren von Variablen mit var(), z.B. var('a')
- \item Definieren von Variablen mit = , z.B. $a=3$
- \item Definieren von Funktionen mit = , z.B. $f(x) = x^2 - 6*x$
- \item Grenzwertbestimmung: f.limit(x=1, dir='$<plus|minus>$')
- \item Bilden von Ableitungen: f.differentiate(x)
- \item Lösen von Gleichungen: solve( f(x)==0, x)
- \item Berechnen numerischer Approximationen: float(f(sqrt(3)+ 4))
- \item Plotten einer Funktion: plot(sin,(0,4))
- \item symbolisch Integrieren: integrate(f,x)
- \item numerisch Integrieren: integrate(f,x,a,b)
- \item Faktorisieren: expand(f)
- \item Sortieren: f.collect(x)
- \item Partialbruchzerlegung: f.partial\_fraction()
- \item vollständiges Vereinfachen: f.full\_simplify()
- \item Vereinfachen mit radicals: f.radical\_simplify()
- \item Matrix eingeben: matrix([ [z1s1,z1s2],[z2s1,z2s2] ])
- \item Vektor eingeben: vector([a,b,c])
- \item LGS lösen: A\textbackslash b
- \item Matrixoperationen: $A+B,A-B,A*B$
- \item Matrix invertieren: $A^{-1}$; A.inverse()
- \item Substitutieren: f.subs(k=2)
+ \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
+ \item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
+ \item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
+ \item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
+ \item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
+ \item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
+ \item Berechnen numerischer Approximationen: {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
+ \item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
+ \item symbolisch Integrieren: {\color{blue} \verb~integrate(f,x)~}
+ \item numerisch Integrieren: {\color{blue} \verb~integrate(f,x,a,b)~}
+ \item Faktorisieren: {\color{blue} \verb~expand(f)~}
+ \item Sortieren: {\color{blue} \verb~f.collect(x)~}
+ \item Partialbruchzerlegung: {\color{blue} \verb~f.partial_fraction()~}
+ \item vollständiges Vereinfachen: {\color{blue} \verb~f.full_simplify()~}
+ \item Vereinfachen mit radicals: {\color{blue} \verb~f.radical_simplify()~}
+ \item Matrix eingeben: {\color{blue} \verb~matrix([ [z1s1,z1s2],[z2s1,z2s2] ])~}
+ \item Vektor eingeben: {\color{blue} \verb~vector([a,b,c])~}
+ \item LGS lösen: {\color{blue} \verb~A\b~}
+ \item Matrixoperationen: {\color{blue} \verb~A+B,A-B,A*B~}
+ \item Matrix invertieren: {\color{blue} \verb~A^(-1); A.inverse()~}
+ \item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
 \end{itemize}
 Hiermit stehen uns nun einige Türen offen und wir wollen uns an ein paar Beispielen der Sagewelt nähern:\newpage
 
