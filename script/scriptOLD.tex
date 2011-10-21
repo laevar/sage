@@ -21,9 +21,9 @@ liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{}
-\section{Einleitung}
-\subsection{Was ist Sage?}
+\chapter{Einleitung}
+\section{Was ist Sage?}
+%\subsection{Was ist Sage?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Sage ist ein pythonbasiertes, objektorientiertes Open-source (GPL) Mathematik Software System, dass es seit dem 24. Februar 2005 gibt.
@@ -36,15 +36,15 @@ Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist
 oder Matlab; außerdem fehlt eine standalone Entwicklungsumgebung. Als Alternative zum Webinterface findet sich Cantor.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Vorab:}
+\subsection{Vorab}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Sage incl. online Testversion und gratis Download sowie einigen anderen Features findet sich unter http://www.sagemath.org/.\newline
 Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden sollten:\newline
 \begin{itemize}
- \item Mehrere Befehle in einer Zeile durch ; trennen. 
+ \item Mehrere Befehle in einer Zeile durch {\color{blue} \verb~;~} trennen. 
  \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-  Zeilenumbruch durch <ENTER> erreicht werden.
+  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
  \item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
  \item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
  \item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
@@ -69,7 +69,7 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Überblick}
+\section{Überblick}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Als Einstieg und kleine Motivation, wofür man Sage einsetzen kann, wollen wir erst einmal ein paar grundlegende Operationen 
@@ -100,7 +100,7 @@ vorstellen:
 Hiermit stehen uns nun einige Türen offen und wir wollen uns an ein paar Beispielen der Sagewelt nähern:\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{1. Kurvendiskussion}
+\subsection{Kurvendiskussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wir wollen eine handelsübliche Kurvendiskussion führen. Dazu betrachten wir die durch die reelle Zahl $a$ parametrisierte 
@@ -210,7 +210,7 @@ Wir erhalten als Grafikausgabe:
 \end{center}\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{2. Symbolisches Rechnen}
+\subsection{Symbolisches Rechnen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wir wollen uns nun ein wenig mit symbolischem Rechnen vertraut machen; dazu zählt das numerische Lösen von Integralen, 
@@ -287,7 +287,7 @@ g.partial_fraction()
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{3. Analytische Geometrie und Lineare Algebra}
+\subsection{Analytische Geometrie und Lineare Algebra}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wir wollen uns ein wenig mit analytischer Geometrie und linearer Algebra beschäftigen und zu Anfang mal den Schnittpunkt einer Ebene mit einer Geraden 
@@ -397,7 +397,7 @@ p.show()
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{4. Programmieren}
+\subsection{Programmieren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{itemize}
@@ -456,11 +456,12 @@ p.show()
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{6. Zahlentheorie}
+\subsection{Zahlentheorie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wir sind nun in der Lage, etwas kompliziertere Aufgabenstellungen zu bearbeiten:\newline
-1.Die Fermatschen Primzahlen sind gegeben durch $F_n=2^{2^n} +1$. Wir wollen die kleinste dieser Zahlen finden, die keine Primzahl ist. Dazu 
+\begin{enumerate}
+\item Die Fermatschen Primzahlen sind gegeben durch $F_n=2^{2^n} +1$. Wir wollen die kleinste dieser Zahlen finden, die keine Primzahl ist. Dazu 
 schreiben wir uns ein kleines Programm:
 \begin{sagein}
 def F(n): return 2^(2^n)+1
@@ -476,7 +477,7 @@ divisors(int(F(5)))
 \begin{sage}
 [1, 641, 6700417, 4294967297]
 \end{sage}
-2. Wir möchten eine Liste der Primzahlen bis 100:
+\item Wir möchten eine Liste der Primzahlen bis 100:
 \begin{sagein}
 menge = range(1,101)
 [m for m in menge if is_prime(m)]
@@ -485,7 +486,7 @@ oder filter(is_prime,menge)
 \begin{sage}
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 \end{sage}
-3.Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
+\item Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
 \begin{sagein}
 menge = range(1,201)
 primes = [m for m in menge if is_prime(m)]
@@ -496,7 +497,7 @@ primes = [m for m in menge if is_prime(m)]
 618970019642690137449562111, 162259276829213363391578010288127,
 170141183460469231731687303715884105727]
 \end{sage}
-4.Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
+\item Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
 \begin{sagein}
 menge = range(1,1001)
 liste = [number_of_divisors(int(m)) for m in menge]
@@ -508,6 +509,690 @@ liste = [number_of_divisors(int(m)) for m in menge]
 180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
 ...
 \end{sage}
+\end{enumerate}
 Bis hierher haben wir einen kleinen Rundumblick genommen, einige sehr elementare Grundlagen kennengelernt und sind schon recht vertraut mit 
 Sage. Vieles von dem, was wir bisher gesehen haben, wird uns wieder begegnen, wenn wir uns weiter mit Sage befassen.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Grundlagen}
+\section{Interna}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um Sage richtig verstehen zu können, ist es wichtig, das ``Innenleben'' zu kennen- hierzu wollen wir uns anschauen, welche Datentypen Sage 
+kennt und wie es mit ihnen umgeht. Dazu stellen wir uns unter Anderem folgende Fragen:\newline
+Betrachte:
+\begin{sagein}
+f = x^2-3*x-18
+\end{sagein}
+\begin{itemize}
+\item Wie geht Sage mit der Unbekannten $x$ um?
+\item Welchen Datentyp hat $f$?
+\item Was kann ich mit $f$ machen?
+\end{itemize}
+\begin{enumerate}
+  \item \textbf{Bezeichner:}
+    \begin{itemize}
+    \item \emph{Bezeichner} sind Namen, wie z.B. $x$ oder $f$. Sie können
+    im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
+    \item Bezeichner sind aus Buchstaben, Ziffern und
+    Unterstrich \_ zusammengesetzt.
+    \item Sage unterscheidet zwischen Groß- und Kleinschreibung.
+    \item Bezeichner dürfen nicht mit einer Ziffer beginnen
+    \begin{itemize}
+    \item zulässige Bezeichner:\isage{x}, \isage{f}, \isage{x23}, \isage{_x_1}
+    \item unzulässige Bezeichner:\isage{12x}, \isage{p~}, \isage{x>y}, \isage{Das System}
+    \end{itemize}
+  \end{itemize}
+  \item\textbf{Wert eines Bezeichners:}
+    \begin{itemize}
+    \item Der \emph{Wert} eines Bezeichners  ist ein \emph{Objekt} eines bestimmten
+    \emph{Datentyps}.
+    \item Ein \emph{Datentyp} ist durch seine Eigenschaften gegeben. \\
+    \textbf{Beispiel}: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
+    \item Ein \emph{Objekt} ist eine Instanz (Einheit) eines Datentyps.
+    \end{itemize}
+  \item \textbf{Zuweisungsoperator = :}
+    \begin{itemize}
+    \item {\color{blue} \isage{bez=wert}}: Zuweisung des Wertes \isage{wert} zu dem Bezeichner \isage{bez}.
+    \item {\color{blue} \isage{func(arg)=expr(arg)}}: Definition der Funktion \isage{func} mit dem Argument \isage{arg} und Zuweisung des Ausdrucks \isage{expr} zu (abhängig von \isage{arg})
+    %\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
+    \item \textbf{Warnung:} Wir unterscheiden stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
+    dem logischen Operator {\color{blue} $==$}.   
+    \item {\color{blue} \isage{reset('bezeichner')}}: Löschen von Zuweisungen/Variablen.\newline
+    \item\textbf{Beispiele:}
+      \begin{sagein}
+      N=6; N
+      \end{sagein}
+      \begin{sage}
+	6
+      \end{sage}
+      \begin{sagein}
+      x,y = var('x,y'); f = x+2*x*x-y; g(x) = x^2; f,g
+      \end{sagein}
+      \begin{sage}
+      (2*x^2 + x - y, x |--> x^2)
+      \end{sage}
+      \begin{sagein}
+      x=pi;y = cos(x); x,y
+      \end{sagein}
+      \begin{sage}
+	(pi, -1)
+      \end{sage}
+  \item \textbf{Auswertung:}
+    \begin{itemize}
+    \item Der \emph{Bezeichner} ist der Name einer Unbekannten.
+    \item Die \emph{Auswertung} eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen.
+    \item Der \emph{Wert} bezeichnet die Auswertung zum Zeitpunkt der Zuweisung.
+    \item \textbf{Beispiele}
+    \begin{sagein}
+    var('a') ; f(x) = x*x-3*x-a
+    \end{sagein}
+    \begin{sage}
+    x |--> x^2 - a - 3*x
+    \end{sage}
+    \begin{sagein}
+    f(a=2)
+    \end{sagein}
+    \begin{sage}
+    x^2 - 3*x - 2 
+    \end{sage}
+    \begin{sagein}
+    f(1)
+    \end{sagein}
+    \begin{sage}
+      -a - 2
+    \end{sage}
+    \begin{sagein}
+    f(1,a=2)
+    \end{sagein}
+    \begin{sage}
+      -4
+    \end{sage}
+    \end{itemize}
+  \end{itemize}
+  \item\textbf{Datentypen:}
+    \begin{center}
+      \begin{tabular}{|lll|}
+      \hline
+      Typ & Bedeutung & Beispiel\\
+      \hline
+      \isage{integer} & ganze Zahlen & \isage{-3,0,100}\\
+      \isage{rational} & rationale Zahlen & \isage{7/11}\\
+      \isage{float} & Gleitpunktzahl & \isage{0.123}\\
+      \isage{complex} & komplexe Zahlen & \isage{complex(1,3)}\\
+      \isage{expression} & symbolische Ausdrücke & \isage{x+y} \\
+      \isage{bool} & logische Werte: true/false& \isage{bool(1<2)} \\
+      \hline
+      \end{tabular}
+    \end{center}
+    \textbf{Beispiele:}\newline
+    \begin{sagein}
+    type(5)
+    \end{sagein}
+    \begin{sage}
+      <type 'sage.rings.integer.Integer'>
+    \end{sage}
+    \begin{sagein}
+    f = x^2-3*x-18; type(f)
+    \end{sagein}
+    \begin{sage}
+      <type 'sage.symbolic.expression.Expression'>
+    \end{sage}
+    \begin{sagein}
+    type(x)
+    \end{sagein}
+    \begin{sage}
+      <type 'sage.symbolic.expression.Expression'>
+    \end{sage}
+    \begin{sagein}
+    f+f
+    \end{sagein}
+    \begin{sage}
+    2*x^2 - 6*x - 36
+    \end{sage}
+  \item\textbf{Operatoren:} 
+    \begin{itemize}
+    \item Typische \emph{Operatoren} sind \verb~+,-,*,/,..~
+    \item In Sage werden Objekte immer durch Funktionen miteinander
+    verbunden. Operatoren sind äquivalent zu Funktionen.
+    %\item Operatoren sind in Sage auch als Funktionen realisiert.
+    %\item Für wichtige Operatoren gibt es die gewohnte
+    %Kurzschreibweise.
+    \item Kombination verschiedener Operatoren: Die Regeln der \emph{Bindungsstärke} gelten (Punktrechnung vor Strichrechnung); Die Ordnung kann
+    durch Klammersetzung geändert werden.
+    \item Wichtige mathematische Operatoren:
+      \begin{center}
+      \begin{tabular}{|c|l|}
+      \hline
+      Operator/Funktion &  Erklärung\\
+      \hline
+      \hline
+      \verb!+! & Addition \\
+      \verb!-! & Subtraktion\\
+      \verb!*! & Multiplikation \\
+      \verb!/! & Division\\
+      \verb!^! & Potenz\\
+      \verb!%! &  Rest bei Division\\
+      \verb!factorial()! & Fakultät \\
+      \hline
+      \end{tabular}
+      \end{center}
+     \end{itemize}
+  \item\textbf{Ausdrücke:}
+    \begin{itemize}
+    \item Bausteine von Ausdrücken heißen \emph{Operanden}.
+    \item {\color{blue} \isage{Ausdruck.nops()}}: Anzahl der Operanden. 
+    \item {\color{blue} \isage{Ausdruck.operands()}}: Operanden selbst. 
+    \item {\color{blue} \isage{Ausdruck.has(a)}}: Untersuchung ob $a$ ein Operand von \isage{Ausdruck} ist.
+    \item Die Befehle beziehen sich jeweils auf die automatisch vereinfachten Objekte.\newpage
+    \item \textbf{Beispiele:}
+      \begin{sagein}
+      _=var('z,y');f = x*z+3*x+sqrt(y)
+      f.operands(),(f.operands())[1],((f.operands())[1]).nops()
+      \end{sagein}
+      \begin{sage}
+      ([x*z, 3*x, sqrt(y)], 3*x, 2)
+      \end{sage}
+      \begin{sagein}
+      f.has(z), f.has(6) 
+      \end{sagein}
+
+      \begin{sage}
+      (True, False)
+      \end{sage}
+  \end{itemize}
+  \item\textbf{Automatische Vereinfachung:}
+    Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
+    der Benutzer gezielt Vereinfachungen anfordern.
+    \begin{sagein}
+    sin(15*pi), exp(0)
+    \end{sagein}
+    \begin{sage}
+      (0, 1)
+    \end{sage}
+    \begin{sagein}
+    2*Infinity-5
+    \end{sagein}
+    \begin{sage}
+      +Infinity
+    \end{sage}
+    \begin{sagein}
+    y = (-4*x+x^2+4)*(7*x+x^2+12); y
+    \end{sagein}
+    \begin{sage}
+    (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
+    \end{sage}
+    \begin{sagein}
+    y.full_simplify()
+    \end{sagein}
+    \begin{sage}
+    x^4 + 3*x^3 - 12*x^2 - 20*x + 48
+    \end{sage}
+  \item\textbf{Ausgabe von Variablen in Texten:}
+    \begin{sagein}
+    print "Text %<format> und %<format> ... " % (x,y,...)}
+    \end{sagein}
+    \begin{itemize}
+    \item \isage{<format>} kann z.B. \isage{i} für \isage{integer} oder \isage{f} für \isage{float} sein
+    \item Es kann beliebig viele format-Platzhalter geben
+    \end{itemize}
+    Beispiele: 
+    \begin{sagein}
+    x = 4;y = 6
+    print "x ist %i und y ist %i" % (x,y)
+    \end{sagein}
+    \begin{sage}
+    x ist 4 und y ist 6
+    \end{sage}
+    \begin{sagein}
+    x = [var("x%i" % k) for k in [1..3]]; x
+    \end{sagein}
+    \begin{sage}
+    [x1, x2, x3]
+    \end{sage}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Praxisbezug}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wir kommen nun zurück zu einigen praktischen Anwendungen des eben neu Gelernten- einiges Altbekannte wird uns wiederbegegnen:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dictionaries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item Dictionaries bestehen aus \emph{Assoziationen} der Form \verb+<Index>:<Wert>+. 
+\item Definition:
+\begin{sagein}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+\item Zugriff:
+\begin{sagein}
+d[<Index>]
+\end{sagein}
+\item \textbf{Beispiel:}
+\begin{sagein}
+var('x,y,z');d = {x:21,y:5,z:42==y}
+d[x],d[z],d[z].rhs()
+\end{sagein}
+\begin{sage}
+(21, 42 == y, y)
+\end{sage}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Funktionen und Abfragen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item Anonyme Funktionen sind Funktionen die keinen aufrufbaren Namen besitzen (Sie sind ein Funktionen-Objekt)
+\item Dies ist sinnvoll innerhalb von Konstrukten oder Aufrüfen anderer Funktionen.
+\item Syntax:
+\begin{sagein}
+lambda <parameter_list>: <expression> 
+\end{sagein}
+\item \textbf{Beispiel}
+\begin{sagein}
+menge = [1,2,3,4,5]
+map(lambda x: x^2,menge)
+\end{sagein}
+\begin{sage}
+ [1, 4, 9, 16, 25]
+\end{sage}
+\item Objekte besitzen Funktionen, sogenannte \emph{Objekt-Methoden}. 
+\item Ein Objekt kennt alle auf sich selbst anwendbaren Funktionen; Nur einige Methoden sind als globale Funktionen benutzbar (wie z.B. \isage{map()})\newpage
+\item Beispiel
+ \begin{sagein}
+f = 1 +x -x^2; f.operands(); operands(f)
+\end{sagein}
+\begin{sage}
+[-x^2, x, 1]
+Traceback (click to the left of this block for traceback)
+...
+NameError: name 'operands' is not defined
+\end{sage}
+\textbf{Bemerkung:}\newline
+ f.operands() erzeugt die erste Zeile.\newline
+ Den ErrorCode verursacht operands(f).
+\item Bereits bekannte Schleifen: \verb+[.. for .. in ..]+-Konstrukt. Die \verb+for+-Schleife kann  auch
+ganze Blöcke wiederholen.
+\begin{sagein}
+for <indexvar> in <expr>/<list>:
+    <Code-Block>
+else:
+    <Code-Block>
+\end{sagein}
+\textbf{Beispiel:}
+\begin{sagein}
+x = 2; y = 2
+for k in [1..4]:
+    x = x +k
+    y = y^k
+x,y
+\end{sagein}
+\begin{sage}
+(12, 16777216)
+\end{sage}
+\textbf{Wichtig:} In Python/Sage ist solch ein Code-Block dadurch gekennzeichnet, dass er mit einem \textbf{:} eingeleitet wird und um ein TAB eingerückt ist!
+\item Einfache Abfragen werden mittels \isage{if/else} realisiert. Diese können für ganze Blöcke genutzt werden:
+\begin{sagein}
+if <boolean expr>:
+    <Code-Block>
+\end{sagein}
+\textbf{Beispiel:}
+\begin{sagein}
+x = 3; y = 2
+if x > y :
+    z = x
+else:
+    z = y
+z
+\end{sagein}
+\begin{sage}
+3
+\end{sage}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ausdrücke}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{itemize}
+    Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
+    dividiert werden.\\ 
+    \textbf{Beispiel:}
+    \begin{itemize}
+    \item Definition
+    \begin{sagein}
+    var('x,y'); f = x*x+3*x+y; g = x-y
+    \end{sagein}
+    \item Potenz
+    \begin{sagein}
+    f^g
+    \end{sagein}
+    \begin{sage}
+    (x^2 + 3*x + y)^(x - y)
+    \end{sage}
+    \item Addition / Subtraktion
+    \begin{sagein}
+    f+g, f-g
+    \end{sagein}
+    \begin{sage}
+    (x^2 + 4*x, x^2 + 2*x + 2*y)
+    \end{sage}
+    \item Multiplikation/ Division
+    \begin{sagein}
+    f*g, f/g
+    \end{sagein}
+    \begin{sage}
+    ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
+    \end{sage}
+    \end{itemize}
+    {\color{blue} \isage{a.collect(<unknown>)}}: der Ausdruck \isage{a} wird bzgl. der \isage{unknown} Variablen sortiert.\\
+    \textbf{Beispiel:}
+    \begin{sagein}
+    f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x)
+    f.collect(x)
+    \end{sagein}
+    \begin{sage}
+    a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
+    \end{sage}
+    \begin{sagein}
+    f.collect(x*sin(x))
+    \end{sagein}
+    \begin{sage}
+    a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
+    \end{sage} 
+    {\color{blue} \isage{a.combine()}}:  der Ausdruck wird durch die Potenzgesetze zusammengefaßt.\\
+    \textbf{Beispiel:}
+    \begin{sagein}
+    g = x^(a)*x^(b)
+    g.combine()
+    \end{sagein}
+    \begin{sage}
+    x^(a + b)
+    \end{sage}
+    {\color{blue} \isage{a.expand()}}: Ausmultiplizieren.\\
+    {\color{blue} \isage{a.expand_trig()}}: Ausmultiplizieren mit Nutzung der trigonometrischen Eigenschaften.\newpage
+    \textbf{Beispiel:}
+    \begin{sagein}
+    expand((x+2)^4)
+    \end{sagein}
+    \begin{sage}
+    x^4 + 8*x^3 + 24*x^2 + 32*x + 16
+    \end{sage}
+    \begin{sagein}
+    (sin(x+y)).expand_trig()
+    \end{sagein}
+    \begin{sage}
+    sin(x)*cos(y) + sin(y)*cos(x)
+    \end{sage}
+    \begin{sagein}
+    a = (16*x-13)^2 == (3*x+5)^2/2
+    a.expand()
+    \end{sagein}
+    \begin{sage}
+    256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
+    \end{sage}
+    \begin{sagein}
+    a.expand('left')
+    \end{sagein}
+    \begin{sage}
+    256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
+    \end{sage}
+    \begin{sagein}
+    a.expand('right')
+    \end{sagein}
+    \begin{sage}
+    (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
+    \end{sage}
+    {\color{blue} \isage{factor(Ausdruck)}}:  Faktorisieren von Ausdrücken. 
+    \begin{itemize}
+    \item Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
+    Zahlen sind. 
+    \item Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
+    \end{itemize}
+    \textbf{Beispiel:}
+    \begin{sagein}
+    factor(x^2-2), factor(x^2-9/4)
+    \end{sagein}
+    \begin{sage}
+    (x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
+    \end{sage}
+    \begin{sagein}
+    factor(2 - 2/(x^2-1))
+    \end{sagein}
+    \begin{sage}
+    2*(x^2 - 2)/((x - 1)*(x + 1))
+    \end{sage}
+    {\color{blue} \isage{f.partial_fraction()}}: Zerlegung eines rationalen Ausdruck $f$ in eine
+    Summe rationaler Terme (Zählergrad $<$ Nennergrad) (Partialbruchzerlegung).\\
+    \textbf{Beispiel:}
+    \begin{sagein}
+    f = x^2/(x^2-1); f.partial_fraction()
+    \end{sagein}
+    \begin{sage}
+    1/2/(x - 1) - 1/2/(x + 1) + 1
+    \end{sage}
+    \begin{sagein}
+    f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f 
+    \end{sagein}
+    \begin{sage}
+    (x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
+    \end{sage}
+    {\color{blue} \isage{f.simplify()}}: simple Vereinfachung (Potenzen).
+    {\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. Mögliche targets sind
+    \begin{itemize}
+    \item \isage{trig}: trigonometrisch
+    \item \isage{rational}: rational
+    \item \isage{radical}: log/ln/exp
+    \item \isage{factorial}: Nutzung der Fakultät
+    \item \isage{full}: alle Vereinfachungen
+    \end{itemize}
+    \textbf{Beispiele:}
+    \begin{sagein}
+    (2 - 2/(x^2-1)).simplify_rational()
+    \end{sagein}
+    \begin{sage}
+    2*(x^2 - 2)/(x^2 - 1)
+    \end{sage}
+     \begin{sagein}
+	  f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
+	  f.simplify_rational()
+	  \end{sagein}
+	  \begin{sage}
+	  -sin(x)^2 - cos(x)^2 + 1
+	  \end{sage}
+     \begin{sagein}
+	  g = sqrt(997)-(997^3)^(1/6)
+	  g.simplify()
+	  \end{sagein}
+	  \begin{sage}
+	  0
+	  \end{sage}
+    \begin{sagein}
+	(tan(x)).simplify_trig()
+	\end{sagein}
+	\begin{sage}
+	sin(x)/cos(x)
+	\end{sage}
+    \begin{sagein}
+	a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
+	a.simplify_full() 
+	\end{sagein}
+	\begin{sage}
+	0
+	\end{sage} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gleichungen, Vergleiche, Logik}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+GLEICHUNGEN
+    \begin{itemize}
+	\item lineares Beispiel
+	\begin{sagein}
+	var('x,y')
+	Gleichungen = [x+y == 1, x-y == 1]
+	solve(Gleichungen,x,y)
+	\end{sagein}
+	\begin{sage}
+	  [[x == 1, y == 0]]
+	\end{sage}
+	\item nichtlineares Beispiel
+	\begin{sagein}
+	Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
+	solve(Gleichungen1,x,y)
+	\end{sagein}
+	\begin{sage}
+	  [[x == 0, y == 1], [x == 1, y == 0]]
+	\end{sage}
+	\end{itemize}
+VERGLEICHE
+        \begin{itemize}
+	\item Operator {\color{blue} \isage{==}}: Überprüfung zweier Objekte auf Gleichheit.\\
+	\isage{a==b} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
+	besitzen (und vom gleichen Typ sind). 
+	\item {\color{blue} \isage{bool(Ausdruck)}}: Überprüfung von Aussagen. Ergebnis: \isage{True} oder
+	\isage{False}.
+	\item Operator {\color{blue} \isage{<>}}:  Überprüfung zweier Objekte auf Ungleichheit. \\
+	\isage{a<>b} ist \isage{True}, falls $a$ nicht gleich $b$
+	ist. 
+	\end{itemize}
+        \textbf{Beispiele:}
+	   \begin{sagein}
+		bool(4-3==1)
+		\end{sagein}
+		\begin{sage}
+		  True
+		\end{sage}
+	   \begin{sagein}
+		bool(4*x==x); x=0; bool(4*x==x)
+		\end{sagein}
+		\begin{sage}
+		False
+		True
+		\end{sage}
+	    \begin{sagein}
+		bool(x==0); bool(x<>0)
+		\end{sagein}
+		\begin{sage}
+		True
+		False
+		\end{sage}
+	   \begin{sagein}
+		bool(0.5==1/2)
+		\end{sagein}
+		\begin{sage}
+		  True
+		\end{sage}
+	   \begin{sagein}
+		type(0.5); type(1/2)
+		\end{sagein}
+		\begin{sage}
+		<type 'sage.rings.real_mpfr.RealLiteral'>
+		<type 'sage.rings.rational.Rational'>
+		\end{sage}
+LOGIK
+\begin{itemize}
+ \item  Logisches 'und' (\isage{and})
+\item Logisches 'oder' (\isage{or}) 
+\item Logisches 'nicht' (\isage{not})
+\end{itemize}
+\textbf{Beispiel:}
+\begin{sagein}
+true and false, true or false, not true
+\end{sagein}
+\begin{sage}
+ (False, True, False)
+\end{sage}
+\begin{itemize}
+ \item Logiktabelle:
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\textbf{and} & \isage{True} & \isage{False}  \\\hline\hline
+\isage{True} & \isage{True} & \isage{False}  \\\hline
+\isage{False} & \isage{False} & \isage{False} \\\hline
+\end{tabular}
+\bigskip
+
+\begin{tabular}{|c||c|c|}
+\hline
+\textbf{or} & \isage{True} & \isage{False} \\\hline\hline
+\isage{True} & \isage{True} & \isage{True}  \\\hline
+\isage{False} & \isage{True} & \isage{False}  \\\hline
+\end{tabular}
+\end{center}
+
+GLS
+
+\begin{itemize}
+\item {\color{blue}\isage{<gleichungen>}}: System von Gleichungen.
+\item  {\color{blue}\isage{<variablen>}}: Danach wird aufgelöst.
+\item {\color{blue}\isage{<optionen>}}:
+\begin{itemize}
+\item {\color{blue}\isage{multiplicities=True}}:  Vielfachheit der Lösungen wird mit ausgegeben.
+\item {\color{blue}\isage{solution_dict=True}}: Lösung wird als Dictonary zurück gegeben.
+\end{itemize}
+\item Bei einzelnen Gleichungen wird der Lösungswert
+zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
+Gleichungen zurückgegeben.
+\end{itemize}
+\textbf{Beispiele:}
+\begin{sagein}
+solve(x^2+x == y/4,x)
+\end{sagein}
+\begin{sage}
+[x == -1/2*sqrt(y + 1) - 1/2, x == 1/2*sqrt(y + 1) - 1/2]
+\end{sage}
+\begin{sagein}
+f = (x-1)^5*(x^2+1)
+solve(f == 0, x)
+\end{sagein}
+\begin{sage}
+[x == -I, x == I, x == 1]
+\end{sage}
+\begin{sagein}
+solve(f == 0, x, multiplicities=True)
+\end{sagein}
+\begin{sage}
+([x == -I, x == I, x == 1], [1, 1, 5])
+\end{sage}
+\begin{sagein}
+assume(x>0); solve(x^2+x == y/4,x)
+\end{sagein}
+\begin{sage}
+ [y == 4*x^2 + 4*x]
+\end{sage}
+\begin{sagein}
+solve([x^2-y^2 == 0],[x,y])
+\end{sagein}
+\begin{sage}
+([x == -y, x == y], [1, 1])
+\end{sage}
+\begin{sagein}
+solve([x^2-y^2 == 0, x+y == 1],x,y)
+\end{sagein}
+\begin{sage}   
+[[x == (1/2), y == (1/2)]]
+\end{sage}
+\begin{sagein}
+sol = solve([x^2-y^2 == 0, x+y == 1],x,y, solution_dict=True); sol 
+\end{sagein}
+\begin{sage}
+ [{y: 1/2, x: 1/2}]
+\end{sage}
+\begin{sagein}
+ sol[0][x], sol[0][y]
+\end{sagein}
+\begin{sage}
+ (1/2, 1/2)
+\end{sage}
+GLS numerisch 
+\begin{sagein}
+f.find_root(a,b) 
+\end{sagein}
+Finden von Nullstellen der Gleichung $f$ im Intervall $[a,b]$.\\
+\textbf{Beispiel:}
+\begin{sagein}
+ (x == sin(x)).find_root(-2,2)
+\end{sagein}
+\begin{sage}
+0.0
+\end{sage}
+
+
+
 \end{document}
