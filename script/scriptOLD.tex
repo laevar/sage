@@ -12,6 +12,18 @@ liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage[xetex,dvipdfmx]{animate}
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{sz}[equation]{Satz}
+\newtheorem{lm}[equation]{Lemma}
+%\newtheorem{pf}{Beweis}
+\theoremstyle{definition}
+\newtheorem{df}[equation]{Definition}
+\newtheorem{nt}[equation]{Notation}
+\theoremstyle{remark}
+\newtheorem{bem}[equation]{Bemerkung}
 
 \title{Einführung in Sage}
 \author{Dr.Jochen Schulz}
@@ -29,20 +41,20 @@ liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Sage ist ein pythonbasiertes, objektorientiertes Open-source (GPL) Mathematik Software System, dass es seit dem 24. Februar 2005 gibt.
-In Sage findet man eine Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.\newline
-Das (Haupt-)Interface ist der Browser, dennoch besitzt Sage Frontends für viele externe Software.\newline
-Zu den Stärken von Sage zählt sicherlich, dass es viele andere CAS und Libraries unter einer einheitlichen Oberfl\"ache vereint 
+In Sage findet man eine Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.
+Das (Haupt-)Interface ist der Browser, dennoch besitzt Sage Frontends für viele externe Software.
+Zu den Stärken von Sage zählt sicherlich, dass es viele andere CAS und Libraries unter einer einheitlichen Oberfläche vereint 
 (so z.B. Maxima, Pari, GAP, R, Magma, ...), sowie durch Python eine sehr mächtige Programmiersprache als Grundlage hat. Desweiteren 
-ist der Source Code offen, es gibt ein umfangreiches Hilfesystem sowie viele freie Materialien im Internet.\newline
-Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist der Befehlsumfang nicht so mächtig, wie der von Maple,Mthematica 
+ist der Source Code offen, es gibt ein umfangreiches Hilfesystem sowie viele freie Materialien im Internet.
+Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist der Befehlsumfang nicht so mächtig, wie der von Maple,Mathematica 
 oder Matlab; außerdem fehlt eine standalone Entwicklungsumgebung. Als Alternative zum Webinterface findet sich Cantor.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vorab}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Sage incl. online Testversion und gratis Download sowie einigen anderen Features findet sich unter http://www.sagemath.org/.\newline
-Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden sollten:\newline
+Sage incl. online Testversion und gratis Download sowie einigen anderen Features findet sich unter http://www.sagemath.org/.
+Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden sollten:
 \begin{itemize}
  \item Mehrere Befehle in einer Zeile durch {\color{blue} \verb~;~} trennen. 
  \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
@@ -51,24 +63,24 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
  \item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
  \item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
  \item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
-%\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
-%\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
+% Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
+% Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
  \item Das Feld aktivieren von \emph{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
-%\item profiler und debugger -> commandline
+% profiler und debugger -> commandline
  \item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
-%\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
-%\item Unter dem Menupunkt \alert{File} kann man 
- \item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
+% Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
+% Unter dem Menupunkt \alert{File} kann man 
+ \item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und Variablen-Namen im gegebenen Kontext.\\
   Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
- \item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
+  \item{\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
  \item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
  \item online Dokumentation:
-  \begin{itemize}
-   \item Sage: http://www.sagemath.org/doc/index.html
-   \item Python: http://docs.python.org/
-  \end{itemize}
-\end{itemize}
-\newpage
+    \begin{itemize}
+    \item Sage: http://www.sagemath.org/doc/index.html
+    \item Python: http://docs.python.org/
+    \end{itemize}
+\end{itemize}  
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Überblick}
@@ -77,11 +89,11 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
 Als Einstieg und kleine Motivation, wofür man Sage einsetzen kann, wollen wir erst einmal ein paar grundlegende Operationen 
 vorstellen:
 \begin{itemize}
- \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
+ \item Deklarieren von Variablen mit \isage{var()}, z.B.{\verb~var('a')~} 
  \item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
  \item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
  \item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
- \item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
+ \item Bilden von Ableitungen: {\color{blue} \verb~f.differentiate(x)~}
  \item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
  \item Berechnen numerischer Approximationen: {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
  \item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
@@ -99,7 +111,7 @@ vorstellen:
  \item Matrix invertieren: {\color{blue} \verb~A^(-1); A.inverse()~}
  \item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
 \end{itemize}
-Hiermit stehen uns nun einige Türen offen und wir wollen uns an ein paar Beispielen der Sagewelt nähern:\newpage
+Hiermit stehen uns nun einige Türen offen und wir wollen uns durch ein paar Beispiele der Sagewelt nähern:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Kurvendiskussion}
@@ -112,19 +124,19 @@ f: x \quad \mapsto \quad \frac{2x^2-20x+42}{x-1}+a, \quad
 a \in \mathbb{R} 
 \]
 Wie bekommen wir nun diese Aufgabe mittels Sage gelöst? Zuerst sollten wir diese Funktionenschar wohl Sage ``erklären'', 
-um weiter mit ihr arbeiten zu können. Dies geschiet, indem wir zuerst die Variable $a$ und anschließend die Funktion selbst 
-deklarieren:\newline
+um weiter mit ihr arbeiten zu können. Dies geschieht, indem wir zuerst die Variable $a$ und anschließend die Funktion selbst 
+deklarieren:
 \begin{sagein}
 var('a')
 f(x) = (2*x^2-20*x +42)/(x-1)+a;f
 \end{sagein}
-\textbf{Bemerkung:} Die Multiplikationszeichen dürfen NICHT weggelassen werden.\newline
-Wir erhalten als Antwort\newline
+\begin{bem} Die Multiplikationszeichen dürfen NICHT weggelassen werden.\end{bem}
+Wir erhalten als Antwort
 \begin{sage}
   x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
 \end{sage}
-\textbf{Bemerkung:} Es findet keine Ausgabe statt, wenn wir in unserer Eingabe ;f weglassen.\newline
-Wir möchten nun herausfinden, ob unsere Funktion Polstellen besitzt; dazu benutzen wir den limit Befehl:\newline
+\begin{bem} Es findet keine Ausgabe statt, wenn wir in unserer Eingabe ;f weglassen.\end{bem}
+Wir möchten nun herausfinden, ob unsere Funktion $f$ Polstellen besitzt; dazu benutzen wir den {\color{blue} \verb limit } Befehl:
 \begin{sagein}
 f.limit(x=1, dir='minus')
 \end{sagein}
@@ -137,24 +149,24 @@ f.limit(x=1, dir='plus')
 \begin{sage}
   x |--> +Infinity
 \end{sage}
-Wir sehen nun, dass unsere Funktion f an der Stelle x=1 einen Pol hat. Wir verfahren weiter mit der Suche nach Nullstellen 
-und wenden dafür den solve Befehl an:\newline
+Wir sehen nun, dass unsere Funktion $f$ an der Stelle x=1 einen Pol hat. Wir verfahren weiter mit der Suche nach Nullstellen 
+und wenden dafür den {\color{blue} \verb solve } Befehl an:
 \begin{sagein}
 solve(f==0,x)
 \end{sagein}
 \begin{sage}
 [x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
 \end{sage}
-Wir haben nun 2 Nullstellen gefunden und stellen uns sogleich die Frage nach der Ableitunge von f, die wir über den 
-differentiate Befehl erhalten:\newline
+Wir haben nun 2 Nullstellen gefunden und stellen uns sogleich die Frage nach der Ableitung von $f$, die wir über den 
+{\color{blue} \verb differentiate } Befehl erhalten:
 \begin{sagein}
 f.differentiate(x)
 \end{sagein}
 \begin{sage} 
 x |--> 4*(x - 5)/(x - 1) - 2*(x^2 - 10*x + 21)/(x - 1)^2
 \end{sage}
-Da unsere Funktion offenbar eine Ableitung besitzt, interessiert uns, ob und, wenn ja, wo f Extrema besitzt sowie die Antwort 
-auf die Frage, ob es sich um Minima oder MAxima handelt:\newline
+Da unsere Funktion $f$ offenbar eine Ableitung besitzt, interessiert uns, ob und, wenn ja, wo $f$ Extrema besitzt sowie die Antwort 
+auf die Frage, ob es sich um Minima oder Maxima handelt:
 \begin{sagein}
 maxi = solve(f.differentiate(x)==0,x); maxi
 \end{sagein}
@@ -173,15 +185,15 @@ float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
 \begin{sage}
 1.1547005383792515
 \end{sage}
-Wir erkennen die Existenz zweier Extremstellen, von denen eines ein Maximum, das andere ein Minimum ist.\newline
-\textbf{Bemerkung:} Als ``Speicherplatz'' der Nullstellen von f' besitzt maxi zwei Werte- diese werden mit maxi[0].rhs() 
-bzw maxi[1].rhs() angesprochen.\newline
-Ohne den float() Befehl sähe die Ausgabe im ersten Fall so aus:
+Wir erkennen die Existenz zweier Extremstellen, von denen eine ein Maximum, die andere ein Minimum ist.
+\begin{bem} Als ``Speicherplatz'' der Nullstellen von $f'$ besitzt maxi zwei Werte-- diese werden mit maxi[0].rhs() 
+bzw maxi[1].rhs() angesprochen.\end{bem}
+Ohne den {\color{blue} \verb float() } Befehl sähe die Ausgabe im ersten Fall so aus:
 \begin{sagein}
 -1/18*((2*sqrt(3) - 1)^2 + 20*sqrt(3) + 11)*sqrt(3) + 2/3*sqrt(3) + 8/3
 \end{sagein}
-und wäre somit unbrauchbar, um direkt ein Maximum oder Minimum erkennen zu können.\newline
-Zuletzt betrachten wir noch das Verhalten am Rande:\newline
+und wäre somit unbrauchbar, um direkt ein Maximum oder Minimum erkennen zu können.
+Zuletzt betrachten wir noch das Verhalten am Rande:
 \begin{sagein}
 f.limit(x=oo); f.limit(x=-oo)
 \end{sagein}
@@ -189,10 +201,10 @@ f.limit(x=oo); f.limit(x=-oo)
 x |--> +Infinity
 x |--> -Infinity
 \end{sage}
-\textbf{Bemerkung:} Wir erkennen, in Sage stellt sich $\infty$ dar via oo, $-\infty$ entspricht offenbar -oo.\newline
-Viel interessanter jedoch ist die Tatsache, dass Sage mit jenen ``Werten'' direkt arbeiten zu können scheint.\newline
+\begin{bem} Wir erkennen, in Sage stellt sich $\infty$ dar via oo, $-\infty$ entspricht -oo.
+Viel interessanter jedoch ist die Tatsache, dass Sage mit jenen ``Werten'' direkt arbeiten zu können scheint.\end{bem}
 Zuletzt wollen wir uns mit der grafischen Darstellung einiger Repräsentanten von f auseinandersetzen. Hierzu wollen wir zuerst 3 
-jener Repräsentanten deklarieren und diese anschließend mit dem plot Befehl visualisieren:\newline
+jener Repräsentanten deklarieren und diese anschließend mit dem {\color{blue} \verb plot } Befehl visualisieren:
 \begin{sagein}
  f0 = f(x, a=0)
  f1 = f(x, a=-20)
@@ -209,14 +221,14 @@ p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80,
 Wir erhalten als Grafikausgabe:
 \begin{center}
 \includegraphics[height=4.5cm]{graphen}
-\end{center}\newpage
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Symbolisches Rechnen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Wir wollen uns nun ein wenig mit symbolischem Rechnen vertraut machen; dazu zählt das numerische Lösen von Integralen, 
-sicherlich aber auch die Vereinfachung oder die Faktorisierung eines Terms. Wir betrachten einige Beispiele:\newline
+Wir wollen uns nun ein wenig mit symbolischem Rechnen vertraut machen. Dazu zählt das numerische Lösen von Integralen, 
+sicherlich aber auch die Vereinfachung oder die Faktorisierung eines Terms. Wir betrachten einige Beispiele:
 Wir möchten gerne das Integral $\int_0^\infty x^4 e^{-x} dx$ numerisch berechnen, dazu benötigen wir lediglich
 \begin{sagein}
 integrate(x^4*exp(-x),x,0,oo)
@@ -224,7 +236,7 @@ integrate(x^4*exp(-x),x,0,oo)
 und erhalten als Ausgabe 
 \begin{sage}
   24
-\end{sage}.
+\end{sage}
 Wollen wir eine Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$ berechnen, so genügt uns die Deklaration zweier Funktion f
 und g wie folgt:
 \begin{sagein}
@@ -268,8 +280,8 @@ expand(_)
 \begin{sage}
 x^4 - 10*x^3 + 35*x^2 - 50*x + 24
 \end{sage}
-\textbf{Bemerkung:} Wir erinnern uns, dass \_ eine Referenz auf die letzte Ausgabe ist.\newline
-Wir können Terme Terme auch bzgl. einer Variablen sortieren lassen:\newline
+\begin{bem} Wir erinnern uns, dass {\color{blue} \verb _ } eine Referenz auf die letzte Ausgabe ist.\end{bem}
+Wir können Terme auch bzgl. einer Variablen sortieren:
 \begin{sagein}
 var('b,a')
 g = x^2+2*x+b*x^2+sin(x)+a*x
@@ -278,7 +290,7 @@ g.collect(x)
 \begin{sage}
 (b + 1)*x^2 + (a + 2)*x + sin(x)
 \end{sage}
-Zuletzt steht uns hier noch die Partialbruchzerlegung zur Verfügung:\newline
+Zuletzt steht uns hier noch die Partialbruchzerlegung zur Verfügung:
 \begin{sagein}
 g = x^ 2/( x^ 2- 1)
 g.partial_fraction()
@@ -286,7 +298,6 @@ g.partial_fraction()
 \begin{sage}
 1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analytische Geometrie und Lineare Algebra}
@@ -325,9 +336,9 @@ Gleichsetzen ergibt:
   \end{array} \right)}_{\displaystyle =:b}
 \] }
 oder $A L=b$.
-Wir wollen nun lineare Gleichungssysteme (wie dieses) wie gewöhnlich durch MAtrizen beschreiben und via Sage lösen. Dazu benötigen wir ein paar Grundlagen:
-\begin{itemize}
-\item Definieren der Matrix $A$
+Wir wollen nun lineare Gleichungssysteme (wie dieses) wie gewöhnlich durch Matrizen beschreiben und via Sage lösen. Dazu benötigen wir ein paar Grundlagen:
+
+ Definieren der Matrix $A$
 \begin{sagein}
 A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
 \end{sagein}
@@ -336,11 +347,14 @@ A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
 [-1  1  1]
 [-1  4 -2]
 \end{sage}
-\item Definieren des Vektors $b$
+ Definieren des Vektors $b$
 \begin{sagein}
-b = vector([1,-1,2])
+b = vector([1,-1,2]);b
 \end{sagein}
-\item Lösen von  $A \ L=b$
+\begin{sage}
+(1,-1,2) 
+\end{sage}
+ Lösen von  $A \ L=b$
 \begin{sagein}
 A.solve_right(b)
 \end{sagein}
@@ -352,37 +366,37 @@ ergibt
 \begin{sage}
 (6/5, 3/5, -2/5)
 \end{sage}
-\item Einsetzen in die Geradengleichung
+ Einsetzen in die Geradengleichung
 \begin{sagein}
 x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
 \end{sagein}
 \begin{sage}
 [7/5 2/5 1/5]
 \end{sage}
-\end{itemize}
+
 So haben wir nun recht aufwandsarm den Schnittpunkt der beiden Objekte E und g erhalten. Wir geben noch einen kurzen Ausblick auf weitere 
-Matrizenoperationen:\newline
+Matrizenoperationen:
 \begin{sagein}
 B = matrix([[1,0,0],[0,1,1],[1,1,1]])
-A*B; A-B; A+B
+A*B, A-B, A+B
 \end{sagein}
 \begin{sage}
-[-3 -7 -7]  [ 0 -3 -4] [ 2 -3 -4]
-[ 0  2  2]  [-1  0  0] [-1  2  2]
-[-3  2  2]  [-2  3 -3] [ 0  5 -1]
+(
+[-3 -7 -7]   [ 0 -3 -4]  [ 2 -3 -4]
+[ 0  2  2]   [-1  0  0]  [-1  2  2]
+[-3  2  2],  [-2  3 -3], [ 0  5 -1]
+)
 \end{sage}
 Berechnen der Inversen (mit Probe)
 \begin{sagein}
-$A^(-1)$, A*A^(-1)
+$A^{(-1)}$, A*A^(-1)
 \end{sagein}
 \begin{sage}
-[  -2/5 -22/15   1/15]
-[  -1/5   -2/5    1/5]
-[  -1/5  -1/15  -2/15]
-
-[1 0 0]
-[0 1 0]
-[0 0 1]
+(
+[  -2/5 -22/15   1/15]  [1 0 0]
+[  -1/5   -2/5    1/5]  [0 1 0]
+[  -1/5  -1/15  -2/15], [0 0 1]
+)
 \end{sage}
 Wir wollen uns das Ganze mal visualisieren, hierzu bietet uns Sage den 3D plot:
 \begin{sagein}
@@ -395,19 +409,19 @@ p.show()
 \begin{center}
 \includegraphics[width=0.7\textwidth]{ebene2}
 \end{center}
-\textbf{Bemerkung:} In Sage lässt sich der 3D plot drehen.
-\newpage
+\begin{bem} In Sage lässt sich der 3D plot drehen.\end{bem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Programmieren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{itemize}
- \item Wir möchten eine einzeilige Funktion definieren. Dies geschieht via
+Sage erlaubt uns, eigene Funktionen von nahezu beliebigem Komplexitätsgrad zu schrieben. Wir wollen uns hier die einzeiligen Funktionen zusammen 
+mit Listen und Tupeln sowie Schleifen anschauen-- um im Anschluss etwas Zahlentheorie zu betreiben. Beginnen wir mit den einzeiligen Funktionen, die 
+wie folgt aufgebaut sind:
   \begin{sagein}
   def <name>(<Argumente>) : return <Rueckgabe>
   \end{sagein}
-  Beispiel: 
+Um zu sehen, wie eine solche selbstdefinierte Funktion aussehen könnte, schreiben wir eine Funktion $fd(ex)$, die die Ableitung von $ex$ berechnet 
+und sich der Einfachheit halber der sage-internen Funktion {\color{blue} \verb diff() } bedient:
   \begin{sagein}
   def fd(ex) : return diff(ex)
   fd(x^2)
@@ -415,8 +429,10 @@ p.show()
   \begin{sage}
   2*x
   \end{sage}
- \item Wir können Objekte in Listen und Tupeln zusammenfassen:\newline
-  Eine \emph{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet
+
+Sage kennt Listen und Tupel, in denen wir Objekte ablegen, zusammenfassen und noch einiges mehr können. Eine {\color{blue} \verb Liste } 
+ist in Sage (und Python) durch \isage{[..,..]}, ein {\color{blue} \verb Tuple } durch \isage{(..,..)} gekennzeichnet. Wir haben einige 
+interessante Operationen speziell für Listen:
   \begin{sagein}
   liste = [21,22,24,23]
   liste.sort(); liste 
@@ -424,7 +440,11 @@ p.show()
   \begin{sage}
   [21, 22, 23, 24]
   \end{sage}
-  Ein \emph{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
+\begin{bem}
+ Wir erinnern uns, dass durch die {\color{blue} \verb~<TAB>~}-Taste eine Autovervollständigung verfügbar ist. Wenden wir sie auf die Eingabe
+{\color{blue} \verb list. } an, erhalten wir eine Auflistung möglicher Operationen auf Listen.
+\end{bem}
+Fast analog haben wir Tuple:
   \begin{sagein}
   tuple = (liste[0], liste[2])
   tuple, tuple[0]
@@ -432,38 +452,47 @@ p.show()
   \begin{sage}
   ((21, 24), 21) 
   \end{sage}
-  Liste von ganzen Zahlen von \isage{a} bis \isage{b}
+\begin{bem}
+ {\color{blue} \verb liste[i] } liefert das $i$-te Element der Liste liste.
+\end{bem}
+Wir werden oft eine Liste ganzer Zahlen von \isage{a} bis \isage{b} brauchen, sie von Hand zu erstellen wäre zwar möglich, doch Sage kommt uns 
+gern durch sogar 2 Befehle entgegen:
   \begin{sagein}
   [a..b] ; range(a,b+1)
   \end{sagein}
- \item Es gibt einzeilige (bedingte) Schleifen:
+Wir erstellen uns probehalber eine Liste der Zahlen von 1 bis 10:
+\begin{sagein}
+ a = [1..10];a
+\end{sagein}
+\begin{sage}
+ [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+\end{sage}
+Schauen wir uns nun etwas wirklich nützliches an: Schleifen! Wir unterscheiden grundlegend bedingte und unbedingte Schleifen:
   \begin{sagein}
   [<expr(var)> for <var> in <range|liste>] 
   [<expr(var)> for <var> in <range|liste> if <expr>] 
   \end{sagein}
-  Beispiel:
+Als kleine Aufwärmübung wollen wir uns die Quadrate der Zahlen von 1 bis 5 berechnen:
   \begin{sagein}
   [m^2 for m in [1..5] ]
   \end{sagein}
   \begin{sage}
   [1, 4, 9, 16, 25]
   \end{sage}
-  Beispiel mit Abfrage:
+Und anschließend die Quadrate der Zahlen von 1 bis 5, die durch 2 teilbar sind:
   \begin{sagein}
   [m^2 for m in [1..5] if m%2==0]
   \end{sagein}
   \begin{sage}
   [4, 16]
   \end{sage}
-\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Zahlentheorie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Wir sind nun in der Lage, etwas kompliziertere Aufgabenstellungen zu bearbeiten:\newline
-\begin{enumerate}
-\item Die Fermatschen Primzahlen sind gegeben durch $F_n=2^{2^n} +1$. Wir wollen die kleinste dieser Zahlen finden, die keine Primzahl ist. Dazu 
+Wir sind nun in der Lage, etwas kompliziertere Aufgabenstellungen zu bearbeiten:
+Die Fermatschen Primzahlen sind gegeben durch $F_n=2^{2^n} +1$. Wir wollen die kleinste dieser Zahlen finden, die keine Primzahl ist. Dazu 
 schreiben wir uns ein kleines Programm:
 \begin{sagein}
 def F(n): return 2^(2^n)+1
@@ -472,23 +501,27 @@ def F(n): return 2^(2^n)+1
 \begin{sage}
 [[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
 \end{sage}
-Uns interssieren nun noch die Teiler von $F_5$
+Da $F_5$ keine Primzahl ist, interssieren uns nun noch die Teiler von $F_5$
 \begin{sagein}
 divisors(int(F(5)))
 \end{sagein}
 \begin{sage}
 [1, 641, 6700417, 4294967297]
 \end{sage}
-\item Wir möchten eine Liste der Primzahlen bis 100:
+ Wir möchten eine Liste der Primzahlen bis 100 und lösen unser Problem durch eine Schleife:
 \begin{sagein}
 menge = range(1,101)
 [m for m in menge if is_prime(m)]
-oder filter(is_prime,menge)
 \end{sagein}
 \begin{sage}
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 \end{sage}
-\item Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
+ Sage hätte alternativ die {\color{blue} \verb filter() } Funktion geliefert, die allgemeiner nach (fast) beliebigen Merkmalen filtert:
+\begin{sagein}
+ filter(is_prime,menge)
+\end{sagein}
+
+ Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
 \begin{sagein}
 menge = range(1,201)
 primes = [m for m in menge if is_prime(m)]
@@ -499,7 +532,7 @@ primes = [m for m in menge if is_prime(m)]
 618970019642690137449562111, 162259276829213363391578010288127,
 170141183460469231731687303715884105727]
 \end{sage}
-\item Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
+Wir widmen uns einer etwas komplizierteren Aufgabe: Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
 \begin{sagein}
 menge = range(1,1001)
 liste = [number_of_divisors(int(m)) for m in menge]
@@ -511,106 +544,42 @@ liste = [number_of_divisors(int(m)) for m in menge]
 180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
 ...
 \end{sage}
-\end{enumerate}
 Bis hierher haben wir einen kleinen Rundumblick genommen, einige sehr elementare Grundlagen kennengelernt und sind schon recht vertraut mit 
 Sage. Vieles von dem, was wir bisher gesehen haben, wird uns wieder begegnen, wenn wir uns weiter mit Sage befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Grundlagen}
 \section{Interna}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Um Sage richtig verstehen zu können, ist es wichtig, das ``Innenleben'' zu kennen- hierzu wollen wir uns anschauen, welche Datentypen Sage 
-kennt und wie es mit ihnen umgeht. Dazu stellen wir uns unter Anderem folgende Fragen:\newline
-Betrachte:
+Um Sage richtig verstehen zu können, ist es wichtig, das ``Innenleben'' zu kennen-- hierzu wollen wir uns anschauen, welche Datentypen Sage 
+kennt und wie es mit ihnen umgeht. Hierzu betrachten wir die Funktion $f$
 \begin{sagein}
 f = x^2-3*x-18
 \end{sagein}
-\begin{itemize}
-\item Wie geht Sage mit der Unbekannten $x$ um?
-\item Welchen Datentyp hat $f$?
-\item Was kann ich mit $f$ machen?
-\end{itemize}
+und stellen uns einmal folgende Fragen:
 \begin{enumerate}
-  \item \textbf{Bezeichner:}
-    \begin{itemize}
-    \item \emph{Bezeichner} sind Namen, wie z.B. $x$ oder $f$. Sie können
-    im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
-    \item Bezeichner sind aus Buchstaben, Ziffern und
-    Unterstrich \_ zusammengesetzt.
-    \item Sage unterscheidet zwischen Groß- und Kleinschreibung.
-    \item Bezeichner dürfen nicht mit einer Ziffer beginnen
-    \begin{itemize}
-    \item zulässige Bezeichner:\isage{x}, \isage{f}, \isage{x23}, \isage{_x_1}
-    \item unzulässige Bezeichner:\isage{12x}, \isage{p~}, \isage{x>y}, \isage{Das System}
-    \end{itemize}
-  \end{itemize}
-  \item\textbf{Wert eines Bezeichners:}
-    \begin{itemize}
-    \item Der \emph{Wert} eines Bezeichners  ist ein \emph{Objekt} eines bestimmten
-    \emph{Datentyps}.
-    \item Ein \emph{Datentyp} ist durch seine Eigenschaften gegeben. \\
-    \textbf{Beispiel}: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
-    \item Ein \emph{Objekt} ist eine Instanz (Einheit) eines Datentyps.
-    \end{itemize}
-  \item \textbf{Zuweisungsoperator = :}
-    \begin{itemize}
-    \item {\color{blue} \isage{bez=wert}}: Zuweisung des Wertes \isage{wert} zu dem Bezeichner \isage{bez}.
-    \item {\color{blue} \isage{func(arg)=expr(arg)}}: Definition der Funktion \isage{func} mit dem Argument \isage{arg} und Zuweisung des Ausdrucks \isage{expr} zu (abhängig von \isage{arg})
-    %\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
-    \item \textbf{Warnung:} Wir unterscheiden stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
-    dem logischen Operator {\color{blue} $==$}.   
-    \item {\color{blue} \isage{reset('bezeichner')}}: Löschen von Zuweisungen/Variablen.\newline
-    \item\textbf{Beispiele:}
-      \begin{sagein}
-      N=6; N
-      \end{sagein}
-      \begin{sage}
-	6
-      \end{sage}
-      \begin{sagein}
-      x,y = var('x,y'); f = x+2*x*x-y; g(x) = x^2; f,g
-      \end{sagein}
-      \begin{sage}
-      (2*x^2 + x - y, x |--> x^2)
-      \end{sage}
-      \begin{sagein}
-      x=pi;y = cos(x); x,y
-      \end{sagein}
-      \begin{sage}
-	(pi, -1)
-      \end{sage}
-  \item \textbf{Auswertung:}
-    \begin{itemize}
-    \item Der \emph{Bezeichner} ist der Name einer Unbekannten.
-    \item Die \emph{Auswertung} eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen.
-    \item Der \emph{Wert} bezeichnet die Auswertung zum Zeitpunkt der Zuweisung.
-    \item \textbf{Beispiele}
-    \begin{sagein}
-    var('a') ; f(x) = x*x-3*x-a
-    \end{sagein}
-    \begin{sage}
-    x |--> x^2 - a - 3*x
-    \end{sage}
-    \begin{sagein}
-    f(a=2)
-    \end{sagein}
-    \begin{sage}
-    x^2 - 3*x - 2 
-    \end{sage}
-    \begin{sagein}
-    f(1)
-    \end{sagein}
-    \begin{sage}
-      -a - 2
-    \end{sage}
-    \begin{sagein}
-    f(1,a=2)
-    \end{sagein}
-    \begin{sage}
-      -4
-    \end{sage}
-    \end{itemize}
-  \end{itemize}
-  \item\textbf{Datentypen:}
+ \item Wie geht Sage mit der Unbekannten $x$ um?
+ \item Welchen Datentyp hat $f$?
+ \item Was kann ich mit $f$ machen?
+\end{enumerate}
+Wir wollen die Begriffe Bezeichner, Wert eines Bezeichners, Datentyp und Objekt klar voneinander abgrenzen, hierzu:
+\begin{df}
+ Bezeichner sind Namen, wie z.B. $x$ oder $f$. Sie können
+im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
+Bezeichner sind aus Buchstaben, Ziffern und
+Unterstrich \_ zusammengesetzt.
+Sage unterscheidet zwischen Groß- und Kleinschreibung.
+Bezeichner dürfen nicht mit einer Ziffer beginnen.
+\end{df}
+\begin{bem}
+ zulässige Bezeichner:\isage{x}, \isage{f}, \isage{x23}, \isage{_x_1}\\
+unzulässige Bezeichner:\isage{12x}, \isage{p~}, \isage{x>y}, \isage{Das System}
+\end{bem}
+\begin{df}
+Der Wert eines Bezeichners  ist ein Objekt eines bestimmten Datentyps.
+Ein Datentyp ist durch seine Eigenschaften gegeben.
+Ein Objekt ist eine Instanz (Einheit) eines Datentyps.
+\end{df}
+An dieser Stelle müssen wir uns klarmachen, welche Datentypen Sage kennt-- hierzu eine kleine Übersicht
     \begin{center}
       \begin{tabular}{|lll|}
       \hline
@@ -625,7 +594,7 @@ f = x^2-3*x-18
       \hline
       \end{tabular}
     \end{center}
-    \textbf{Beispiele:}\newline
+An einigen Beispielen sollten wir uns verdeutlichen, wie Sage diese Datentypen voneinander abgrenzt:
     \begin{sagein}
     type(5)
     \end{sagein}
@@ -650,125 +619,179 @@ f = x^2-3*x-18
     \begin{sage}
     2*x^2 - 6*x - 36
     \end{sage}
-  \item\textbf{Operatoren:} 
-    \begin{itemize}
-    \item Typische \emph{Operatoren} sind \verb~+,-,*,/,..~
-    \item In Sage werden Objekte immer durch Funktionen miteinander
-    verbunden. Operatoren sind äquivalent zu Funktionen.
-    %\item Operatoren sind in Sage auch als Funktionen realisiert.
-    %\item Für wichtige Operatoren gibt es die gewohnte
-    %Kurzschreibweise.
-    \item Kombination verschiedener Operatoren: Die Regeln der \emph{Bindungsstärke} gelten (Punktrechnung vor Strichrechnung); Die Ordnung kann
-    durch Klammersetzung geändert werden.
-    \item Wichtige mathematische Operatoren:
-      \begin{center}
-      \begin{tabular}{|c|l|}
-      \hline
-      Operator/Funktion &  Erklärung\\
-      \hline
-      \hline
-      \verb!+! & Addition \\
-      \verb!-! & Subtraktion\\
-      \verb!*! & Multiplikation \\
-      \verb!/! & Division\\
-      \verb!^! & Potenz\\
-      \verb!%! &  Rest bei Division\\
-      \verb!factorial()! & Fakultät \\
-      \hline
-      \end{tabular}
-      \end{center}
-     \end{itemize}
-  \item\textbf{Ausdrücke:}
-    \begin{itemize}
-    \item Bausteine von Ausdrücken heißen \emph{Operanden}.
-    \item {\color{blue} \isage{Ausdruck.nops()}}: Anzahl der Operanden. 
-    \item {\color{blue} \isage{Ausdruck.operands()}}: Operanden selbst. 
-    \item {\color{blue} \isage{Ausdruck.has(a)}}: Untersuchung ob $a$ ein Operand von \isage{Ausdruck} ist.
-    \item Die Befehle beziehen sich jeweils auf die automatisch vereinfachten Objekte.\newpage
-    \item \textbf{Beispiele:}
+Nachdem diese Dinge klar sind, betrachten wir Zuweisungen in Sage. Durch {\color{blue} \isage{bez=wert}} wird dem Bezeichner bez der Wert wert
+zugewisen. Analoges gilt für Funktionen: Durch {\color{blue} \isage{func(arg)=expr(arg)}} wird die Funktion func mit dem Argument arg definiert, 
+die den von arg abhängigen Ausdruck expr auswertet. Da wir einem Bezeichner einen Wert zuweisen können, ist es nur konsequent, das es auch eine 
+Methode gibt, die einen Bezeichner von einem Wert befreit: {\color{blue} \isage{reset(bez)}} löscht die Zuweisungen des Bezeichners bez.
+\begin{bem}
+ Wir beachten, dass durch {\color{blue} \verb = } eine Zuweisung erfolgt, wohingegen {\color{blue} \verb == } der logische Test auf Gleichheit zweier 
+Objekte bedeutet.
+\end{bem}
+Da wir nun das mächtige Werkzeug der Zuweisung beherrschen, welches wir schon die ganze Zeit ``unbewusst'' benutzt haben, wollen wir es auch 
+gleich nocheinmal ein wenig ausprobieren:
       \begin{sagein}
-      _=var('z,y');f = x*z+3*x+sqrt(y)
-      f.operands(),(f.operands())[1],((f.operands())[1]).nops()
+      N=6; N
       \end{sagein}
       \begin{sage}
-      ([x*z, 3*x, sqrt(y)], 3*x, 2)
+	6
       \end{sage}
       \begin{sagein}
-      f.has(z), f.has(6) 
+      x,y = var('x,y'); f = x+2*x*x-y; g(x) = x^2; f,g
       \end{sagein}
-
       \begin{sage}
-      (True, False)
+      (2*x^2 + x - y, x |--> x^2)
       \end{sage}
-  \end{itemize}
-  \item\textbf{Automatische Vereinfachung:}
-    Sage führt oft automatische Vereinfachungen durch. Ansonsten muß
-    der Benutzer gezielt Vereinfachungen anfordern.
+      \begin{sagein}
+      x=pi;y = cos(x); x,y
+      \end{sagein}
+      \begin{sage}
+	(pi, -1)
+      \end{sage}
+Da wir die Zuweisung nun blind beherrschen und auf diese Weise Werte an Bezeichner binden können, stellt sich die Frage nach der Auswertung solcher 
+Bezeichner. Dazu halten wir in einer kurzen Definiton folgendes fest:
+\begin{df}
+ Der Bezeichner ist der Name einer Unbekannten. Die Auswertung eines Bezeichners erfolgt ohne die Benutzung von bekannten Zuweisungen. Der Wert 
+bezeichnet die Auswertung zum Zeitpunkt der Zuweisung.
+\end{df}
+Das wollen wir uns doch genauer ansehen:
     \begin{sagein}
-    sin(15*pi), exp(0)
+    var('a') ; f(x) = x*x-3*x-a
     \end{sagein}
     \begin{sage}
-      (0, 1)
+    x |--> x^2 - a - 3*x
     \end{sage}
     \begin{sagein}
-    2*Infinity-5
+    f(a=2)
     \end{sagein}
     \begin{sage}
-      +Infinity
+    x^2 - 3*x - 2 
     \end{sage}
     \begin{sagein}
-    y = (-4*x+x^2+4)*(7*x+x^2+12); y
+    f(1)
     \end{sagein}
     \begin{sage}
-    (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
+      -a - 2
     \end{sage}
     \begin{sagein}
-    y.full_simplify()
+    f(1,a=2)
     \end{sagein}
     \begin{sage}
-    x^4 + 3*x^3 - 12*x^2 - 20*x + 48
+      -4
     \end{sage}
-  \item\textbf{Ausgabe von Variablen in Texten:}
-    \begin{sagein}
-    print "Text %<format> und %<format> ... " % (x,y,...)}
-    \end{sagein}
-    \begin{itemize}
-    \item \isage{<format>} kann z.B. \isage{i} für \isage{integer} oder \isage{f} für \isage{float} sein
-    \item Es kann beliebig viele format-Platzhalter geben
-    \end{itemize}
-    Beispiele: 
-    \begin{sagein}
-    x = 4;y = 6
-    print "x ist %i und y ist %i" % (x,y)
-    \end{sagein}
-    \begin{sage}
-    x ist 4 und y ist 6
-    \end{sage}
-    \begin{sagein}
-    x = [var("x%i" % k) for k in [1..3]]; x
-    \end{sagein}
-    \begin{sage}
-    [x1, x2, x3]
-    \end{sage}
-\end{enumerate}
+Nun, da wir mit Zuweisung und Auswertung vertraut sind, wollen wir uns den Operatoren und Ausdrücken zuwenden. Auch hierzu eine Begriffsabgrenzung:
+\begin{df}
+ Operatoren verbinden in Sage Objekte miteinander und sind äquivalent zu Funktionen. Bei der Kombination von Operatoren gelten die üblichen 
+Bindungsstärken (also Punktrechnung vor Strichrechnung, Klammerung über alles).
+\end{df}
+Die in Sage gängigen Operatoren seien hier nur der Vollständigkeit halber aufgeführt:
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+Operator/Funktion &  Erklärung\\
+\hline
+\hline
+\verb!+! & Addition \\
+\verb!-! & Subtraktion\\
+\verb!*! & Multiplikation \\
+\verb!/! & Division\\
+\verb!^! & Potenz\\
+\verb!%! &  Rest bei Division\\
+\verb!factorial()! & Fakultät \\
+\hline
+\end{tabular}
+\end{center}
+\begin{df}
+ In Sage sind Ausdrücke Zusammensetzungen von Operanden ( == Objekte ).
+\end{df}
+Für Ausdrücke ( == alles ) stehen uns diverse, nennen wir sie einmal ``externe'', Operationen zur Verfügung; so können wir 
+beispielsweise die Anzahl ihrer Operanden ({\color{blue} \isage{Ausdruck.nops()}}), ihre Operanden selbst ({\color{blue} \isage{Ausdruck.operands()}}) 
+sowie das Vorkommen eines Operanden in einem Ausdruck ermitteln ({\color{blue} \isage{Ausdruck.has(a)}}).
+\begin{bem}
+ Die Befehle beziehen sich jeweils auf die automatisch vereinfachten Objekte.
+\end{bem}
+Hierzu wollen wir zwei einfache Beispiele betrachten:
+\begin{sagein}
+_=var('z,y');f = x*z+3*x+sqrt(y)
+f.operands(),(f.operands())[1],((f.operands())[1]).nops()
+\end{sagein}
+\begin{sage}
+([x*z, 3*x, sqrt(y)], 3*x, 2)
+\end{sage}
+\begin{sagein}
+f.has(z), f.has(6) 
+\end{sagein}
+\begin{sage}
+(True, False)
+\end{sage}
+Da wir sie eben schon kurz angesprochen haben, wollen wir hier einen kurzen, dennoch sehr aufschlussreichen Einschub über die automatische 
+Vereinfachung unterbringen:
+Sage vereinfacht oft selbstständig. Ist dies einmal nicht der Fall, so haben wir vermöge der Funktion {\color{blue} \verb simplify() } die 
+Möglichkeit, eine Vereinfachung anzufordern. Das sieht dann im Prinzip so aus:
+\begin{sagein}
+sin(15*pi), exp(0)
+\end{sagein}
+\begin{sage}
+(0, 1)
+\end{sage}
+\begin{sagein}
+2*Infinity-5
+\end{sagein}
+\begin{sage}
++Infinity
+\end{sage}
+\begin{sagein}
+y = (-4*x+x^2+4)*(7*x+x^2+12); y
+\end{sagein}
+\begin{sage}
+(x^2 - 4*x + 4)*(x^2 + 7*x + 12)
+\end{sage}
+\begin{sagein}
+y.full_simplify()
+\end{sagein}
+\begin{sage}
+x^4 + 3*x^3 - 12*x^2 - 20*x + 48
+\end{sage}
+Da wir uns nun mit der Zuweisung, der Auswertung, Operatoren und Ausdrücken beschäftigt haben, sollte uns interessieren, wie wir unsere 
+Ergebnisse, die ja in Sageobjekten stecken, in z.B. einem Text (also in gewisser Art und Weise ``schön'') ausgeben können. Dazu bietet 
+Sage die Textausgabe, in der Variablen direkt angesprochen werden können:
+\begin{sagein}
+print "Text %<format> und %<format> ... " % (x,y,...)}
+\end{sagein}
+\begin{bem}
+ Für \isage{<format>} müssen wir den Datentyp des Objekts einsetzen, also ``i'' für integer oder ``f'' für float, etc. Die Anzahl der 
+\isage{<format>}-Platzhalter ist beliebig.
+\end{bem}
+Wir wollen uns diese Funktionalität an konkreten Beispielen verdeutlichen:
+\begin{sagein}
+x = 4;y = 6
+print "x ist %i und y ist %i" % (x,y)
+\end{sagein}
+\begin{sage}
+x ist 4 und y ist 6
+\end{sage}
+\begin{sagein}
+x = [var("x%i" % k) for k in [1..3]]; x
+\end{sagein}
+\begin{sage}
+[x1, x2, x3]
+\end{sage}
+Dieses soll uns als Grundlagenwissen über die Sage-interna genügen. Wir werden nun zu anwendungsorientierteren Problemen zurückkehren.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Praxisbezug}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Wir kommen nun zurück zu einigen praktischen Anwendungen des eben neu Gelernten- einiges Altbekannte wird uns wiederbegegnen:
+In diesem Abschnitt wollen wir uns mit Funktionen, Code-Blöcken, Bedingungen sowie praktischen Anwendungen befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dictionaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{itemize}
-\item Dictionaries bestehen aus \emph{Assoziationen} der Form \verb+<Index>:<Wert>+. 
-\item Definition:
+Wir wollen ein sageinternes Speichermedium betrachten, das Dictionary. Dabei handelt es sich um ein Konstrukt der Form
 \begin{sagein}
 d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
 \end{sagein}
-\item Zugriff:
+Der Zugriff auf den Inhalt eines solchen Dictionaries geschieht über den Index und liefert, falls vorhanden, den zum Index gehörigen Wert:
 \begin{sagein}
 d[<Index>]
 \end{sagein}
-\item \textbf{Beispiel:}
+Hier ein kleines Beispiel:
 \begin{sagein}
 var('x,y,z');d = {x:21,y:5,z:42==y}
 d[x],d[z],d[z].rhs()
@@ -776,18 +799,22 @@ d[x],d[z],d[z].rhs()
 \begin{sage}
 (21, 42 == y, y)
 \end{sage}
-\end{itemize}
+\begin{bem}
+ Wir erinnern uns an die Auswirkung der {\color{blue} \verb rhs() }-Funktion. Zugleich erahnen wir, dass Dictionaries, richtig verstanden,
+ sehr mächtige Werkzeuge werden können. 
+\end{bem}
+
+Wir werden später noch einmal auf dieses nützliche Speichermedium zurückkommen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Funktionen und Abfragen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{itemize}
-\item Anonyme Funktionen sind Funktionen die keinen aufrufbaren Namen besitzen (Sie sind ein Funktionen-Objekt)
-\item Dies ist sinnvoll innerhalb von Konstrukten oder Aufrüfen anderer Funktionen.
-\item Syntax:
+Wir betrachten nun Funktionen in Sage. Dazu haben wir zuerst einmal die sog. anonymen Funktionen. Diese sind Funktionen, die keinen aufrufbaren 
+Namen besitzen. Sie sind somit ein Funktionen-Objekt. Sinnvoll ist eine anonyme Funktion innerhalb von Konstrukten oder Aufrufen anderer Funktionen.
+Eine anonyme Funktion ``lambda'' erstellt man in Sage nach folgendem Schema:
 \begin{sagein}
 lambda <parameter_list>: <expression> 
 \end{sagein}
-\item \textbf{Beispiel}
+Wir wollen uns eine anonyme Funktion konstruieren, die die Quadrate der Elemente einer gegebenen Menge berechnet:
 \begin{sagein}
 menge = [1,2,3,4,5]
 map(lambda x: x^2,menge)
@@ -795,10 +822,20 @@ map(lambda x: x^2,menge)
 \begin{sage}
  [1, 4, 9, 16, 25]
 \end{sage}
-\item Objekte besitzen Funktionen, sogenannte \emph{Objekt-Methoden}. 
-\item Ein Objekt kennt alle auf sich selbst anwendbaren Funktionen; Nur einige Methoden sind als globale Funktionen benutzbar (wie z.B. \isage{map()})\newpage
-\item Beispiel
- \begin{sagein}
+\begin{bem}
+ Die Funktion {\color{blue} \verb map() } wendet im Allgemeinen eine Funktion $f$ auf eine gegebene Liste an:
+\begin{sagein}
+ map(sin, [1, 2, 3])
+\end{sagein}
+\begin{sage}
+ [sin(1), sin(2), sin(3)]
+\end{sage}
+\end{bem}
+Ein weiterer Funktionentyp sind die sog. Objekt-Methoden, die, wie der Name schon sagt, Funktionen von Objekten sind (wir haben schon einige solcher 
+Objekt-Methoden kennengelernt, z.B. die {\color{blue} \verb simplify() }-Funktion). Diese Funktionen werden auf Objekten aufgerufen und sind 
+paramterlos (also Objekt.Funktion()). Ein Aufruf der Form Funktion(Objekt) widerspricht der Logik des Programms, wie uns folgender semi-defekter 
+Aufruf erhellt:
+\begin{sagein}
 f = 1 +x -x^2; f.operands(); operands(f)
 \end{sagein}
 \begin{sage}
@@ -807,18 +844,24 @@ Traceback (click to the left of this block for traceback)
 ...
 NameError: name 'operands' is not defined
 \end{sage}
-\textbf{Bemerkung:}\newline
- f.operands() erzeugt die erste Zeile.\newline
+\begin{bem}
+ f.operands() erzeugt die erste Zeile.
  Den ErrorCode verursacht operands(f).
-\item Bereits bekannte Schleifen: \verb+[.. for .. in ..]+-Konstrukt. Die \verb+for+-Schleife kann  auch
-ganze Blöcke wiederholen.
+\end{bem}
+Ein Objekt kennt alle auf sich selbst anwendbaren Funktionen; Nur einige Methoden sind als globale Funktionen benutzbar (wie z.B. {\color{blue} \verb map() }).
+Wir wollen nun unseren Begriff der einzeiligen Schleife auf ganze Code-Blöcke erweitern. Dazu betrachten wir das uns bekannte \verb+[.. for .. in ..]+-Konstrukt. 
+Die \verb+for+-Schleife kann von Natur aus ganze Blöcke wiederholen:
 \begin{sagein}
 for <indexvar> in <expr>/<list>:
     <Code-Block>
 else:
     <Code-Block>
 \end{sagein}
-\textbf{Beispiel:}
+\begin{bem}
+ Wir wollen beachten, dass in Sage (ebenso wie in Python) ein Code-Block durch einen {\color{blue} \verb : } eingeleitet wird und um ein 
+{\color{blue} \verb TAB } eingerückt ist.
+\end{bem}
+Wir machen uns unsere Errungenschaft an einem kleinen Beispiel klar:
 \begin{sagein}
 x = 2; y = 2
 for k in [1..4]:
@@ -829,13 +872,13 @@ x,y
 \begin{sage}
 (12, 16777216)
 \end{sage}
-\textbf{Wichtig:} In Python/Sage ist solch ein Code-Block dadurch gekennzeichnet, dass er mit einem \textbf{:} eingeleitet wird und um ein TAB eingerückt ist!
-\item Einfache Abfragen werden mittels \isage{if/else} realisiert. Diese können für ganze Blöcke genutzt werden:
+Nun, da wir entdeckt haben, dass Sage ganze Code-Blöcke verarbeiten kann, ist es nur konsequent, nach bedingter Ausführung von Code-Blöcken zu verlangen. 
+Sage bietet uns hier das {\color{blue} \verb if/else }-Konstrukt:
 \begin{sagein}
 if <boolean expr>:
     <Code-Block>
 \end{sagein}
-\textbf{Beispiel:}
+Auch hierzu benötigen wir ein kleines Beispiel:
 \begin{sagein}
 x = 3; y = 2
 if x > y :
@@ -847,260 +890,231 @@ z
 \begin{sage}
 3
 \end{sage}
-\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ausdrücke}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{itemize}
-    Ausdrücke können beliebig addiert, subtrahiert, multipliziert und
-    dividiert werden.\\ 
-    \textbf{Beispiel:}
-    \begin{itemize}
-    \item Definition
-    \begin{sagein}
-    var('x,y'); f = x*x+3*x+y; g = x-y
-    \end{sagein}
-    \item Potenz
-    \begin{sagein}
-    f^g
-    \end{sagein}
-    \begin{sage}
-    (x^2 + 3*x + y)^(x - y)
-    \end{sage}
-    \item Addition / Subtraktion
-    \begin{sagein}
-    f+g, f-g
-    \end{sagein}
-    \begin{sage}
-    (x^2 + 4*x, x^2 + 2*x + 2*y)
-    \end{sage}
-    \item Multiplikation/ Division
-    \begin{sagein}
-    f*g, f/g
-    \end{sagein}
-    \begin{sage}
-    ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
-    \end{sage}
-    \end{itemize}
-    {\color{blue} \isage{a.collect(<unknown>)}}: der Ausdruck \isage{a} wird bzgl. der \isage{unknown} Variablen sortiert.\\
-    \textbf{Beispiel:}
-    \begin{sagein}
-    f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x)
-    f.collect(x)
-    \end{sagein}
-    \begin{sage}
-    a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
-    \end{sage}
-    \begin{sagein}
-    f.collect(x*sin(x))
-    \end{sagein}
-    \begin{sage}
-    a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
-    \end{sage} 
-    {\color{blue} \isage{a.combine()}}:  der Ausdruck wird durch die Potenzgesetze zusammengefaßt.\\
-    \textbf{Beispiel:}
-    \begin{sagein}
-    g = x^(a)*x^(b)
-    g.combine()
-    \end{sagein}
-    \begin{sage}
-    x^(a + b)
-    \end{sage}
-    {\color{blue} \isage{a.expand()}}: Ausmultiplizieren.\\
-    {\color{blue} \isage{a.expand_trig()}}: Ausmultiplizieren mit Nutzung der trigonometrischen Eigenschaften.\newpage
-    \textbf{Beispiel:}
-    \begin{sagein}
-    expand((x+2)^4)
-    \end{sagein}
-    \begin{sage}
-    x^4 + 8*x^3 + 24*x^2 + 32*x + 16
-    \end{sage}
-    \begin{sagein}
-    (sin(x+y)).expand_trig()
-    \end{sagein}
-    \begin{sage}
-    sin(x)*cos(y) + sin(y)*cos(x)
-    \end{sage}
-    \begin{sagein}
-    a = (16*x-13)^2 == (3*x+5)^2/2
-    a.expand()
-    \end{sagein}
-    \begin{sage}
-    256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
-    \end{sage}
-    \begin{sagein}
-    a.expand('left')
-    \end{sagein}
-    \begin{sage}
-    256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
-    \end{sage}
-    \begin{sagein}
-    a.expand('right')
-    \end{sagein}
-    \begin{sage}
-    (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
-    \end{sage}
-    {\color{blue} \isage{factor(Ausdruck)}}:  Faktorisieren von Ausdrücken. 
-    \begin{itemize}
-    \item Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
-    Zahlen sind. 
-    \item Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
-    \end{itemize}
-    \textbf{Beispiel:}
-    \begin{sagein}
-    factor(x^2-2), factor(x^2-9/4)
-    \end{sagein}
-    \begin{sage}
-    (x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
-    \end{sage}
-    \begin{sagein}
-    factor(2 - 2/(x^2-1))
-    \end{sagein}
-    \begin{sage}
-    2*(x^2 - 2)/((x - 1)*(x + 1))
-    \end{sage}
-    {\color{blue} \isage{f.partial_fraction()}}: Zerlegung eines rationalen Ausdruck $f$ in eine
-    Summe rationaler Terme (Zählergrad $<$ Nennergrad) (Partialbruchzerlegung).\\
-    \textbf{Beispiel:}
-    \begin{sagein}
-    f = x^2/(x^2-1); f.partial_fraction()
-    \end{sagein}
-    \begin{sage}
-    1/2/(x - 1) - 1/2/(x + 1) + 1
-    \end{sage}
-    \begin{sagein}
-    f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f 
-    \end{sagein}
-    \begin{sage}
-    (x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
-    \end{sage}
-    {\color{blue} \isage{f.simplify()}}: simple Vereinfachung (Potenzen).
-    {\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. Mögliche targets sind
-    \begin{itemize}
-    \item \isage{trig}: trigonometrisch
-    \item \isage{rational}: rational
-    \item \isage{radical}: log/ln/exp
-    \item \isage{factorial}: Nutzung der Fakultät
-    \item \isage{full}: alle Vereinfachungen
-    \end{itemize}
-    \textbf{Beispiele:}
-    \begin{sagein}
-    (2 - 2/(x^2-1)).simplify_rational()
-    \end{sagein}
-    \begin{sage}
-    2*(x^2 - 2)/(x^2 - 1)
-    \end{sage}
-     \begin{sagein}
-	  f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
-	  f.simplify_rational()
-	  \end{sagein}
-	  \begin{sage}
-	  -sin(x)^2 - cos(x)^2 + 1
-	  \end{sage}
-     \begin{sagein}
-	  g = sqrt(997)-(997^3)^(1/6)
-	  g.simplify()
-	  \end{sagein}
-	  \begin{sage}
-	  0
-	  \end{sage}
-    \begin{sagein}
-	(tan(x)).simplify_trig()
-	\end{sagein}
-	\begin{sage}
-	sin(x)/cos(x)
-	\end{sage}
-    \begin{sagein}
-	a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
-	a.simplify_full() 
-	\end{sagein}
-	\begin{sage}
-	0
-	\end{sage} 
+Wir kommen noch einmal zurück zu Ausdrücken, Operationen auf diesen sowie einigen nützlichen Manipulationen. Zuerst stellen wir einmal fest, 
+dass Ausdrücke nach Belieben miteinander kombiniert werden können. Hierzu definieren wir uns zwei Funktionen $f$ und $g$:
+\begin{sagein}
+var('x,y'); f = x*x+3*x+y; g = x-y
+\end{sagein}
+Nun wollen wir, aus einer Laune heraus, f mit g Potenzieren:
+\begin{sagein}
+f^g
+\end{sagein}
+\begin{sage}
+(x^2 + 3*x + y)^(x - y)
+\end{sage}
+Offensichtlich kein Problem, auch wenn das Ergebnis recht ``unübersichtlich'' ist (wir erinnern uns an den {\color{blue} \verb simplify() }-Befehl\ldots).
+Wie dem auch sei, wenn schon das Potenzieren funktioniert, so werden die übrigen Rechenarten wohl kaum Probleme machen:
+\begin{sagein}
+f+g, f-g
+\end{sagein}
+\begin{sage}
+(x^2 + 4*x, x^2 + 2*x + 2*y)
+\end{sage}
+Multiplikation/ Division
+\begin{sagein}
+f*g, f/g
+\end{sagein}
+\begin{sage}
+((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
+\end{sage}
+Da wir nun Ausdrücke beliebig kombinieren können, und also auch die Ergebnisse solcher Kombinationen beliebig ``hässlich'' werden können, wollen 
+wir uns noch einmal mit verschiedenen Möglichkeiten der ``Verschönerung'' beschäftigen. Dazu stellt Sage uns die Funktionen 
+{\color{blue} \verb collect() }, {\color{blue} \verb combine() }, {\color{blue} \verb expand }, {\color{blue} \verb factor() }, {\color{blue} \verb partial_fraction() } und 
+{\color{blue} \verb simplify() } zur Verfügung. Wir betrachten ihre Wirkungsweisen der Reihe nach:\\
+{\color{blue} \isage{a.collect(<unknown>)}} bewirkt, dass der Ausdruck \isage{a} bzgl. der \isage{unknown} Variablen sortiert wird. Das sieht in der Praxis 
+dann so aus:
+\begin{sagein}
+f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x)
+f.collect(x)
+\end{sagein}
+\begin{sage}
+a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
+\end{sage}
+\begin{sagein}
+f.collect(x*sin(x))
+\end{sagein}
+\begin{sage}
+a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
+\end{sage} 
+Wir sehen, dass {\color{blue} \verb collect() } bei richtiger Wahl des Arguments eine deutlich wahrnehmbare Übersicht schafft. Sollten wir 
+einen Ausdruck vorfinden, der möglicherweise durch Potenzgesetze zu vereinfachen ist, so sollten wir uns an folgenden Befehl erinnern:\\
+{\color{blue} \isage{a.combine()}} bewirkt, dass der Ausdruck durch die Potenzgesetze zusammengefaßt wird.
+\begin{sagein}
+g = x^(a)*x^(b)
+g.combine()
+\end{sagein}
+\begin{sage}
+x^(a + b)
+\end{sage}
+Wir kennen bereits den {\color{blue} \isage{a.expand()}}-Befehl, den wir hier erweitern wollen.\\
+Durch {\color{blue} \isage{a.expand_trig()}} wird nach trigonometrischen Eigenschaften ausmultipliziert.
+\begin{sagein}
+expand((x+2)^4)
+\end{sagein}
+\begin{sage}
+x^4 + 8*x^3 + 24*x^2 + 32*x + 16
+\end{sage}
+\begin{sagein}
+(sin(x+y)).expand_trig()
+\end{sagein}
+\begin{sage}
+sin(x)*cos(y) + sin(y)*cos(x)
+\end{sage}
+\begin{sagein}
+a = (16*x-13)^2 == (3*x+5)^2/2
+a.expand()
+\end{sagein}
+\begin{sage}
+256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
+\end{sage}
+\begin{sagein}
+a.expand('left')
+\end{sagein}
+\begin{sage}
+256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
+\end{sage}
+\begin{sagein}
+a.expand('right')
+\end{sagein}
+\begin{sage}
+(16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
+\end{sage}
+Durch {\color{blue} \isage{factor(Ausdruck)}} wird ein Ausdruck Faktorisiert. 
+Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
+Zahlen sind. Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
+\begin{sagein}
+factor(x^2-2), factor(x^2-9/4)
+\end{sagein}
+\begin{sage}
+(x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
+\end{sage}
+\begin{sagein}
+factor(2 - 2/(x^2-1))
+\end{sagein}
+\begin{sage}
+2*(x^2 - 2)/((x - 1)*(x + 1))
+\end{sage}
+Der {\color{blue} \isage{f.partial_fraction()}}-Befehl liefert eine Partialbruchzerlegung.
+\begin{sagein}
+f = x^2/(x^2-1); f.partial_fraction()
+\end{sagein}
+\begin{sage}
+1/2/(x - 1) - 1/2/(x + 1) + 1
+\end{sage}
+\begin{sagein}
+f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f 
+\end{sagein}
+\begin{sage}
+(x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
+\end{sage}
+Hier wollen wir den {\color{blue} \isage{f.simplify()}}-Befehl spezifizieren. {\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. 
+Mögliche targets sind dabei \isage{trig}: trigonometrisch, \isage{rational}: rational, \isage{radical}: log/ln/exp, \isage{factorial}: 
+Nutzung der Fakultät, \isage{full}: alle Vereinfachungen. Anwendungen sehen dann zumeist so aus:
+\begin{sagein}
+(2 - 2/(x^2-1)).simplify_rational()
+\end{sagein}
+\begin{sage}
+2*(x^2 - 2)/(x^2 - 1)
+\end{sage}
+\begin{sagein}
+f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
+f.simplify_rational()
+\end{sagein}
+\begin{sage}
+-sin(x)^2 - cos(x)^2 + 1
+\end{sage}
+\begin{sagein}
+g = sqrt(997)-(997^3)^(1/6)
+g.simplify()
+\end{sagein}
+\begin{sage}
+0
+\end{sage}
+\begin{sagein}
+(tan(x)).simplify_trig()
+\end{sagein}
+\begin{sage}
+sin(x)/cos(x)
+\end{sage}
+\begin{sagein}
+a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
+a.simplify_full() 
+\end{sagein}
+\begin{sage}
+0
+\end{sage} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gleichungen, Vergleiche, Logik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-GLEICHUNGEN
-    \begin{itemize}
-	\item lineares Beispiel
-	\begin{sagein}
-	var('x,y')
-	Gleichungen = [x+y == 1, x-y == 1]
-	solve(Gleichungen,x,y)
-	\end{sagein}
-	\begin{sage}
-	  [[x == 1, y == 0]]
-	\end{sage}
-	\item nichtlineares Beispiel
-	\begin{sagein}
-	Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
-	solve(Gleichungen1,x,y)
-	\end{sagein}
-	\begin{sage}
-	  [[x == 0, y == 1], [x == 1, y == 0]]
-	\end{sage}
-	\end{itemize}
-VERGLEICHE
-        \begin{itemize}
-	\item Operator {\color{blue} \isage{==}}: Überprüfung zweier Objekte auf Gleichheit.\\
-	\isage{a==b} ist wahr (richtig), wenn $a$ und $b$ die gleichen Auswertungen
-	besitzen (und vom gleichen Typ sind). 
-	\item {\color{blue} \isage{bool(Ausdruck)}}: Überprüfung von Aussagen. Ergebnis: \isage{True} oder
-	\isage{False}.
-	\item Operator {\color{blue} \isage{<>}}:  Überprüfung zweier Objekte auf Ungleichheit. \\
-	\isage{a<>b} ist \isage{True}, falls $a$ nicht gleich $b$
-	ist. 
-	\end{itemize}
-        \textbf{Beispiele:}
-	   \begin{sagein}
-		bool(4-3==1)
-		\end{sagein}
-		\begin{sage}
-		  True
-		\end{sage}
-	   \begin{sagein}
-		bool(4*x==x); x=0; bool(4*x==x)
-		\end{sagein}
-		\begin{sage}
-		False
-		True
-		\end{sage}
-	    \begin{sagein}
-		bool(x==0); bool(x<>0)
-		\end{sagein}
-		\begin{sage}
-		True
-		False
-		\end{sage}
-	   \begin{sagein}
-		bool(0.5==1/2)
-		\end{sagein}
-		\begin{sage}
-		  True
-		\end{sage}
-	   \begin{sagein}
-		type(0.5); type(1/2)
-		\end{sagein}
-		\begin{sage}
-		<type 'sage.rings.real_mpfr.RealLiteral'>
-		<type 'sage.rings.rational.Rational'>
-		\end{sage}
-LOGIK
-\begin{itemize}
- \item  Logisches 'und' (\isage{and})
-\item Logisches 'oder' (\isage{or}) 
-\item Logisches 'nicht' (\isage{not})
-\end{itemize}
-\textbf{Beispiel:}
+An dieser Stelle wollen wir uns mit Gleichungen, Gleichungssystem und Logik beschäftigen. Dazu betrachten wir zuerst zwei kleine Beispiele 
+\begin{sagein}
+var('x,y')
+Gleichungen = [x+y == 1, x-y == 1]
+solve(Gleichungen,x,y)
+\end{sagein}
+\begin{sage}
+[[x == 1, y == 0]]
+\end{sage}
+\begin{sagein}
+Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
+solve(Gleichungen1,x,y)
+\end{sagein}
+\begin{sage}
+[[x == 0, y == 1], [x == 1, y == 0]]
+\end{sage}
+Sage liefert uns offenbar ein sehr gut handhabbares Tool zum Lösen auch komplizierterer Gleichungen, wie das nicht-lineare Beispiel zeigt.
+Unsere leichtfertige Benutzung des logischen Operators {\color{blue} \verb == } soll uns hier zum Anlass dienen, Sage einmal genauer auf 
+Logik-Tauglichkeit zu untersuchen. Dazu stellen wir zunächst einmal fest, dass {\color{blue} \verb == } formal den Vergleich zweier Objekte 
+auf Gleichheit bedeutet. a==b ist also genau dann wahr, wenn a und b die gleiche Auswertung besitzen und typgleich sind. Mit {\color{blue} \isage{bool(Ausdruck)}} 
+haben wir die Möglichkeit, einen Ausdruck auf Wahrheit zu prüfen, logischerweise wird {\color{blue} \verb True } oder {\color{blue} \verb False } 
+als Ergebnis zurückgeliefert. Das Gegenteil des {\color{blue} \verb == }-Operators ist der {\color{blue} \verb <> }-Operator-- dementsprechend 
+ist a<>b genau dann wahr, wenn a nicht gleich b ist. Wir betrachten zu Verdeutlichung einige Beispiele:
+\begin{sagein}
+bool(4-3==1)
+\end{sagein}
+\begin{sage}
+True
+\end{sage}
+\begin{sagein}
+bool(4*x==x); x=0; bool(4*x==x)
+\end{sagein}
+\begin{sage}
+False
+True
+\end{sage}
+\begin{sagein}
+bool(x==0); bool(x<>0)
+\end{sagein}
+\begin{sage}
+True
+False
+\end{sage}
+\begin{sagein}
+bool(0.5==1/2)
+\end{sagein}
+\begin{sage}
+True
+\end{sage}
+\begin{sagein}
+type(0.5); type(1/2)
+\end{sagein}
+\begin{sage}
+<type 'sage.rings.real_mpfr.RealLiteral'>
+<type 'sage.rings.rational.Rational'>
+\end{sage}
+Sage scheint recht gut mit Logik arbeiten zu können-- wir bemerken noch folgendes: Sage kennt das logische 'und' {\color{blue} \verb and }, 
+das 'oder' {\color{blue} \verb or } sowie das 'not' {\color{blue} \verb not }. Wiederum der Vollständigkeit halber ein kleines, selbsterklärendes 
+Beispiel und die (hoffentlich) bekannte Logiktabelle:
 \begin{sagein}
 true and false, true or false, not true
 \end{sagein}
 \begin{sage}
  (False, True, False)
 \end{sage}
-\begin{itemize}
- \item Logiktabelle:
-\end{itemize}
 \begin{center}
 \begin{tabular}{|c||c|c|}
 \hline
@@ -1117,22 +1131,15 @@ true and false, true or false, not true
 \isage{False} & \isage{True} & \isage{False}  \\\hline
 \end{tabular}
 \end{center}
-
-GLS
-
-\begin{itemize}
-\item {\color{blue}\isage{<gleichungen>}}: System von Gleichungen.
-\item  {\color{blue}\isage{<variablen>}}: Danach wird aufgelöst.
-\item {\color{blue}\isage{<optionen>}}:
-\begin{itemize}
-\item {\color{blue}\isage{multiplicities=True}}:  Vielfachheit der Lösungen wird mit ausgegeben.
-\item {\color{blue}\isage{solution_dict=True}}: Lösung wird als Dictonary zurück gegeben.
-\end{itemize}
-\item Bei einzelnen Gleichungen wird der Lösungswert
-zurückgegeben. Bei mehreren Gleichungen wird ein System äquivalenter
-Gleichungen zurückgegeben.
-\end{itemize}
-\textbf{Beispiele:}
+Nachdem wir uns nun mit Gleichungen und Logik auseinandergesetzt haben, betrachten wir nun noch Gleichungssysteme. Dabei handelt es sich, aus der 
+Sicht von Sage lediglich um eine erweiterung des uns schon wohlbekannten {\color{blue} \verb solve() }-Befehls:
+\begin{sagein}
+ solve(<gleichungen>,<variablen>,<optionen>)
+\end{sagein}
+Dabei repräsentiert <gleichungen> das zu lösende System von Gleichungen und <variablen> die Unbekannten der Gleichungen. In <optionen> können 
+wir einstellen, ob wir die Lösungen mit Vielfachheiten bekommen möchten ({\color{blue} \verb multiplicities=True }) bzw. ob die Lösungen als Dictionary asugegeben 
+werden sollen ({\color{blue} \verb solution_dict=True }). Zu beachten ist, dass bei einzelnen Gleichungen der Lösungswert, bei einem Gleichungssystem 
+ein System äquivalenter Gleichungen zurückgeliefert wird. Wir machen uns dies klar an einigen Beispielen.
 \begin{sagein}
 solve(x^2+x == y/4,x)
 \end{sagein}
@@ -1182,18 +1189,24 @@ sol = solve([x^2-y^2 == 0, x+y == 1],x,y, solution_dict=True); sol
 \begin{sage}
  (1/2, 1/2)
 \end{sage}
-GLS numerisch 
+An dieser Stelle betrachten wir noch rasch das numerische Lösen von Gleichungen, hier lediglich im 1-D Fall des Auffindens von Nullstellen 
+der Funktion $f$ in einem Intervall $[a,b]$:
 \begin{sagein}
 f.find_root(a,b) 
 \end{sagein}
-Finden von Nullstellen der Gleichung $f$ im Intervall $[a,b]$.\\
-\textbf{Beispiel:}
+Exemplarisch sei die Funktion $f(x)=sin(x)$ zu betrachten
 \begin{sagein}
  (x == sin(x)).find_root(-2,2)
 \end{sagein}
 \begin{sage}
 0.0
 \end{sage}
+\begin{bem}
+ Der geneigten Leserin wird aufgefallen sein, dass hier tatsächlicherweise nicht die Nullstelle der Funktion $f(x)=sin(x)$ gesucht und gefunden 
+wurde, sondern die Suche nach einem Fixpunkt zurückgeführt wurde auf ein Nullstellenproblem. Eine identische Lösung hätte die Nullstellenbetrachtung 
+der Funktion $f(x)=sin(x)-x$ geliefert (und tatsächlicherweise auch der Funktion $sin(x)$).
+\end{bem}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Mengen und Zahlen}
 \section{Mengen}
@@ -1202,24 +1215,24 @@ Finden von Nullstellen der Gleichung $f$ im Intervall $[a,b]$.\\
 Unter einer \emph{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
 {\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
 \end{quote}
- \begin{itemize}
-\item \emph{Element}: Ein Objekt $x$ in der Menge $M$ (\emph{$x \in  M$}). 
-\item \emph{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\emph{$M \subset N$}).
-\item \emph{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\emph{$M=N$}).
-\end{itemize}
+ 
+ \emph{Element}: Ein Objekt $x$ in der Menge $M$ (\emph{$x \in  M$}). 
+ \emph{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\emph{$M \subset N$}).
+ \emph{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\emph{$M=N$}).
+
 
 Mengen in Sage:
 \begin{sagein}
 Set([<element1>,<element2>,...])
 \end{sagein}
-\begin{itemize}
-\item Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
+
+ Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
   Objekten. 
-\item Mengen in Sage haben den Typ \emph{\isage{set}}.
-\item Leere Mengen: \isage{leere_menge = Set([])}. 
-\item Zugriff: \isage{M[n]} (Menge $M$, $n\ge0$)
-\item Intervallzugriff: \isage{M[i:j]}.
-\end{itemize}
+ Mengen in Sage haben den Typ \emph{\isage{set}}.
+ Leere Mengen: \isage{leere_menge = Set([])}. 
+ Zugriff: \isage{M[n]} (Menge $M$, $n\ge0$)
+ Intervallzugriff: \isage{M[i:j]}.
+
 Beispiele:
 \begin{sagein}
 M1 = Set([x, 2,3,pi,sqrt(2)]); M1
@@ -1234,15 +1247,15 @@ var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
 {1, y, 2, x, {1, y}}
 \end{sage}
 Operationen mit Mengen:
-\begin{itemize}
-\item Anzahl der Elemente in einer Menge:
+
+ Anzahl der Elemente in einer Menge:
 \begin{sagein}
 M1.cardinality()
 \end{sagein}
 \begin{sage}
   5
 \end{sage}
-\item Zugriff:
+ Zugriff:
 \begin{sagein}
 M2[1]; M2[1:4]
 \end{sagein}
@@ -1250,16 +1263,16 @@ M2[1]; M2[1:4]
 y
 [y, 2, x]
 \end{sage}
-%\item Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
+% Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
 %\begin{sagein}
 %op(M2,3), subsop(M2,3=neu)
 %\end{sagein}
 %\begin{sage}
 %  {1, y}, {1, 2, neu, x, y}
 %\end{sage}
-\end{itemize}
-\begin{itemize}
-\item Vereinigung, Differenz, Schnitt:
+
+
+ Vereinigung, Differenz, Schnitt:
 \begin{sagein}
 L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
 L1.union(L2), L1.difference(L2), L1.intersection(L2)
@@ -1267,7 +1280,7 @@ L1.union(L2), L1.difference(L2), L1.intersection(L2)
 \begin{sage}
 ({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
 \end{sage}
-\item Prüfen, ob  ein Element enthalten ist:
+ Prüfen, ob  ein Element enthalten ist:
 \begin{sagein}
 a in L1, c in L1
 \end{sagein}
@@ -1280,10 +1293,10 @@ Set([1,y]) in M2
 \begin{sage}
 True
 \end{sage}
-\end{itemize}
 
-\begin{itemize}
-\item Auswählen von Elementen mit bestimmten Eigenschaften
+
+
+ Auswählen von Elementen mit bestimmten Eigenschaften
 \begin{sagein}
 M = Set(range(1,15))
 filter(is_prime,M)
@@ -1291,7 +1304,7 @@ filter(is_prime,M)
 \begin{sage}
   [2, 3, 5, 7, 11, 13]
 \end{sage}
-\item Erzeugen der Potenzmenge
+ Erzeugen der Potenzmenge
 \begin{sagein}
 list(powerset([1,2,3]))
 [s for s in Set([1..3]).subsets()]
@@ -1300,17 +1313,17 @@ list(powerset([1,2,3]))
 [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
 \end{sage}
-\end{itemize}
+
 
 Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
 \begin{sagein}
 M1 = filter(<f>,<M>)
 \end{sagein}
-\begin{itemize}
-\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
-\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
+
+ \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
+ \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
 ergibt. 
-\end{itemize}
+
 
 Beispiel Filter:
 \begin{sagein}
@@ -1353,63 +1366,63 @@ A.intersection(A2) == A2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % andere einfuehrung!
 Natürliche Zahlen $\mathbb{N} := \{0,1,2,3,\dots\}$:
-\begin{enumerate}
-\item $0 \in \mathbb{N}$
-\item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
+
+ $0 \in \mathbb{N}$
+ Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
   \rightarrow \mathbb{N} \smallsetminus \{ 0 \}$
-\item $nf$ ist injektiv.
-\item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
+ $nf$ ist injektiv.
+ Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
   $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
-\end{enumerate}
+
 Bemerkungen:
-\begin{itemize}
-\item Nachfolgefunktion: $nf(m)=m+1$
-\item Es besteht ein enger Zusammenhang zwischen den natürlichen
+
+ Nachfolgefunktion: $nf(m)=m+1$
+ Es besteht ein enger Zusammenhang zwischen den natürlichen
   Zahlen und vollständiger  Induktion.
 %TODO:erklaerung  .
-\item Sage: kein eigener Datentyp (aber: ganze Zahlen (Integer)). 
-\end{itemize}
+ Sage: kein eigener Datentyp (aber: ganze Zahlen (Integer)). 
+
 Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
 \[R\subseteq M \times M\]
  mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
-\begin{enumerate}
-\item \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
-\item \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
-\item \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
+
+ \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
+ \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
+ \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
   $x \sim z$.  
-\end{enumerate}
-\begin{itemize}
-\item Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
-\item Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
-\begin{itemize}
-\item [(a)] $A \neq \emptyset$.
-\item [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
-\item [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
-\end{itemize}
-\item Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
+
+
+ Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
+ Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
+
+ [(a)] $A \neq \emptyset$.
+ [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
+ [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
+
+ Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
 Äquivalenzklassen.  
-\item Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
-\item  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
+ Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
+  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
 $A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklasse $A$. 
-\end{itemize}
+
 Ganze Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
 % das kann abe rbesser...
-\begin{itemize}
-\item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
+
+ Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
 $(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
-\item Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
+ Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
 zueinander.
-\item Negative Zahlen: $(0,m)$. 
-\item Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
+ Negative Zahlen: $(0,m)$. 
+ Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
 der Äquivalenzklassen.
-\item Addition:
+ Addition:
 \[
 \overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
-\item Multiplikation:
+ Multiplikation:
 \[
 \overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
 \]
-\end{itemize}
+
 Datentyp \isage{Integer}. \\
 \textbf{Beispiele:}
 \begin{sagein}
@@ -1446,12 +1459,12 @@ mod(-34,8), floor(-34/8)
 Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
 \[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
 Statt $(m,n)$ schreibt man $\frac{m}{n}$.
-\begin{itemize}
-\item Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
+
+ Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
 die $0$ in $\mathbb{Q}$.
-\item Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
+ Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
 Ä.-klasse.  
-\item Addition:  
+ Addition:  
 \[ 
 \overline{\genfrac(){}{}{m}{n}}+\overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mq+pn}{nq}},
 \]
@@ -1459,8 +1472,8 @@ Multiplikation:
 \[
 \overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
 \]
-%\item Die rationalen Zahlen bilden einen \alert{Körper}.
-\end{itemize} 
+% Die rationalen Zahlen bilden einen \alert{Körper}.
+ 
 Datentyp \isage{rational}. 
 
 \begin{sagein}
@@ -1482,65 +1495,65 @@ $G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
  \cdot: G \times G \ \rightarrow \ G, \quad (a,b) \mapsto a \cdot b
 \]
 mit folgenden Eigenschaften
-\begin{itemize}
-\item [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
+
+ [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
 $a,b,c \in G$.
-\item [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
+ [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
 \in G$ und zu jedem $a \in G$ existiert ein $a' \in G$ ({\it inverses
 Element}) mit $a' \cdot a=e$. 
-\end{itemize}  
+  
 {\it abelsche} Gruppe: $a \cdot b = b \cdot a$ \emph{für alle} $a,b \in G$.
-\begin{itemize}
-\item Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
+
+ Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
 $a\in G$.
-\item Es gibt genau ein neutrales Element $e \in G$.
-\item Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
+ Es gibt genau ein neutrales Element $e \in G$.
+ Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
 und wird durch $a^{-1}$ bezeichnet. 
-\item Es gilt auch $a \cdot a'=e$. 
-\item Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
-\end{itemize}
+ Es gilt auch $a \cdot a'=e$. 
+ Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
+
 Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
 Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
 Eigenschaften:
-\begin{itemize}
-\item [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
+
+ [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
 heiße $0$. Das inverse Element zu $a \in K$ sei $-a$.) 
-\item [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
+ [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
 Gruppe. (Das neutrale Element dazu sei $1$.)
-\item [(K3)] Distributivgesetze
+ [(K3)] Distributivgesetze
 \begin{eqnarray*}
 a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
 (a+b) \cdot c & = &   (a \cdot c) + (b \cdot c) \mbox{ für alle }
 a,b,c \in K.
 \end{eqnarray*}
-\end{itemize}
+
 (Ein Körper ist ein kommutativer unitärer Ring)
 
 BEISPIELE
 
 Gruppen:
-\begin{itemize}
-\item $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
-\item $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
-\item $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
-\item $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
-\end{itemize} 
+
+ $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
+ $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
+ $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
+ $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
+ 
 Körper:
-\begin{itemize}
-\item Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
-\end{itemize}
+
+ Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
+ Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
+ Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
+ Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
+
 
 KÖRPER UND GRUPPEN IN SAGE
 
-\begin{itemize}
-\item Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
-\item Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
-\item Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
-\item Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
-\end{itemize}
+
+ Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
+ Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
+ Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
+ Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
+
 \begin{sagein}
 QQ(5.01), RR(5/3) 
 \end{sagein}
@@ -1555,12 +1568,12 @@ RR.is_field(),ZZ.is_field()
 \end{sage}
 Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
 Positivbereich} $P \subset K$ gibt mit
-\begin{itemize}
-\item Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
+
+ Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
 disjunkt. 
-\item $K = P \cup \{ 0 \} \cup -P$.
-\item Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
-\end{itemize}
+ $K = P \cup \{ 0 \} \cup -P$.
+ Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
+
 Man definiert:
 \begin{eqnarray*}
  x >y& \text{genau dann, wenn}& x-y\in P,\\
@@ -1568,44 +1581,44 @@ Man definiert:
 \end{eqnarray*}
 Analog definiert man $<$ und $\leq$. 
 Sei $K$ ein angeordneter Körper.
-\begin{itemize}
-\item {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
-\item nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
-\item {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
-\item {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
+
+ {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
+ nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
+ {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
+ {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
 (Nicht notwendigerweise in $M$ oder $K$).  
-\end{itemize}
+
 REELLE ZAHLEN
-\begin{itemize}
-\item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
+
+ Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
 Schranke.
-\item Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
+ Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
 Mengen von oberen Schranken haben. 
-\item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
+ Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
 Zahlen}.
-\end{itemize}
+
 Bemerkungen
-\begin{itemize}
-\item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
+
+ Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
 definieren. 
-\item Die reellen Zahlen können auch als Vervollständigung von
+ Die reellen Zahlen können auch als Vervollständigung von
 $\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
-\item Die rationalen Zahlen sind als Äquivalenzklassen der
+ Die rationalen Zahlen sind als Äquivalenzklassen der
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-\end{itemize}
+
 
 REELLE ZAHLEN IN SAGE
 
 Datentyp \isage{RealNumber}\\
 \textbf{Problem:}
 keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
-\begin{itemize}
-\item Gleitkommazahlen haben in Sage den Datentyp \isage{float}. 
-%\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
-\item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
-%\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
+
+ Gleitkommazahlen haben in Sage den Datentyp \isage{float}. 
+% Gleitkommazahlen werden zur Basis $10$ ausgegeben.
+ Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
+% Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
 %bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
-\end{itemize}
+
 
 \textbf{Beispiel:} $\sqrt{2}$
 \begin{sagein}
@@ -1618,29 +1631,29 @@ keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
 
 FEHLER
 
-\begin{itemize}
-\item \emph{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
+
+ \emph{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
 \[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
 mit $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
-\item Rundungsfehler können sich innerhalb eines Verfahrens
+ Rundungsfehler können sich innerhalb eines Verfahrens
 verstärken. ({\it Fehlerfortpflanzung}).
-\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
+ Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
 1996.
-\end{itemize}
+
 Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
 vermeiden.}
 
 NUMERIK
 
-\begin{itemize}
- \item Berechnen einer numerischen  Näherung
+
+  Berechnen einer numerischen  Näherung
 \begin{sagein}
 (pi).n(digits=22), (exp(1)).n(digits=22)
 \end{sagein}
 \begin{sage}
 (3.141592653589793238463, 2.718281828459045235360)
 \end{sage}
-\item Sage rechnet mit \isage{floats}, sobald mindestens eine Zahl in
+ Sage rechnet mit \isage{floats}, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
 \begin{sagein}
 (1.0+(5/2*3))/(1/7+7/9)^2
@@ -1654,9 +1667,9 @@ Gleitkommadarstellung gegeben ist
 \begin{sage}
 67473/6728
 \end{sage}
-\end{itemize}
-\begin{itemize}
-\item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
+
+
+ Viele Sage Funktionen liefern numerische Werte beim Einsetzen
      von Gleitkommazahlen.
 \begin{sagein}
 sqrt(64.0), sin(3.14), sin(7/5)
@@ -1664,7 +1677,7 @@ sqrt(64.0), sin(3.14), sin(7/5)
 \begin{sage}
 (8.0000000000000, 0.00159265291648683, sin(7/5))
 \end{sage}
-\item Ausdrücke werden nicht automatisch umgewandelt
+ Ausdrücke werden nicht automatisch umgewandelt
 \begin{sagein}
 2/3*sin(2), 0.666666666666666*sin(2)
 \end{sagein}
@@ -1677,7 +1690,7 @@ float(2/3*sin(2))
 \begin{sage}
 0.60619828455045444
 \end{sage}
-\end{itemize}
+
 
 AUSLÖSCHUNG
 
@@ -1723,15 +1736,15 @@ GLEITKOMMAZAHLEN
 \[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
   b^e}, \quad { \color{red} a_1} \neq 0
 \]
-\begin{itemize}
-\item ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
-\item ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
-\item ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
-\item Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
-\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
-\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
-\item Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
-\end{itemize} 
+
+ ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
+ ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
+ ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
+ Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
+ $t$ ist die Anzahl der {\it signifikanten Stellen}.   
+ $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
+ Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
+ 
 \textbf{Beispiele:}
 \[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
   {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
@@ -1780,50 +1793,50 @@ KOMPLEXE ZAHLEN
 
 Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
 Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
-\begin{itemize}
- \item   Addition: $(k,l)+(n,m)=(k+n,l+m)$
-\item Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
-\end{itemize}
 
-\begin{itemize}
- \item {\color{red} $i:=(0,1)$}  mit 
-\begin{itemize}
-\item $ i^2=(0,1) \cdot (0,1) = (-1,0) $
-\item $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
-\end{itemize}
-\item \emph{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
-\end{itemize}
-\begin{itemize}
-\item \emph{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
-\item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
+    Addition: $(k,l)+(n,m)=(k+n,l+m)$
+ Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
+
+
+
+  {\color{red} $i:=(0,1)$}  mit 
+
+ $ i^2=(0,1) \cdot (0,1) = (-1,0) $
+ $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
+
+ \emph{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
+
+
+ \emph{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
+ Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
 \[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
 
-\item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
-\end{itemize}
+ Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
+
 
 C IN SAGE
 
-\begin{itemize}
-\item Datentyp in Sage: \isage{complex}
-\item Die imaginäre Einheit $i=(0,1)$ ist in Sage \isage{I}.
+
+ Datentyp in Sage: \isage{complex}
+ Die imaginäre Einheit $i=(0,1)$ ist in Sage \isage{I}.
 \begin{sagein}
 sqrt(-1), I^2
 \end{sagein}
 \begin{sage}
 (I, -1)
 \end{sage}
-\item Rechnen mit komplexen Zahlen
+ Rechnen mit komplexen Zahlen
 \begin{sagein}
 (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
 \end{sagein}
 \begin{sage}
  (9*I + 2, -0.4500000000 + 0.3500000000*I)
 \end{sage}
-\end{itemize}
-\begin{itemize}
-\item  Keine automatische Trennung bzgl. Realteil und  Imaginärteil\\
-\item \isage{real()}: Realteil
-\item \isage{imag()}: Imaginärteil
+
+
+  Keine automatische Trennung bzgl. Realteil und  Imaginärteil\\
+ \isage{real()}: Realteil
+ \isage{imag()}: Imaginärteil
 \begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sagein}
@@ -1837,7 +1850,7 @@ real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 \begin{sage}
 (1/3*sqrt(2), -1/3)
 \end{sage}
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Vektoren und Funktionen}
@@ -1859,40 +1872,40 @@ $a_{ij} \in K$, Zeilenindex $i \in [1,m]$, Spaltenindex $j \in [1,n]$
 
 DEFINITIONEN
 
-\begin{itemize}
-\item {\color{red} Transponiert} von $A=(a_{ij})$: $A^T:=(a_{ji})$ .
-\item {\color{red} Symmetrisch}: wenn $A=A^T$ gilt.
-\item \emph{Adjungiert} von $A=(a_{ij})\in \mathbb{C}^{m\times n}$: $A^* :=
+
+ {\color{red} Transponiert} von $A=(a_{ij})$: $A^T:=(a_{ji})$ .
+ {\color{red} Symmetrisch}: wenn $A=A^T$ gilt.
+ \emph{Adjungiert} von $A=(a_{ij})\in \mathbb{C}^{m\times n}$: $A^* :=
 (\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
-\item \emph{Einheitsmatrix}: $I:=I_n:=(\delta_{ij}) \in K^{n \times
+ \emph{Einheitsmatrix}: $I:=I_n:=(\delta_{ij}) \in K^{n \times
 n}$
-\item {\color{red} Addition}: Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann
+ {\color{red} Addition}: Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann
 \[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
 mit $c_{ij}=a_{ij}+b_{ij}$. 
- \item {\color{red} Multiplikation}: Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+  {\color{red} Multiplikation}: Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
 \in {K}^{n \times p}$, dann 
 \[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
 mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
-\item {\color{red} orthogonal}: $A \cdot A^T=A^T \cdot A=I_n$ für $A\in K^{n \times n}$ 
-\item {\color{red} unitär}: $A \cdot A^*=A^* \cdot A=I_n$ für $A\in \mathbb{C}^{n \times n}$.
-\item {\color{red} invertierbar}: $A\in K^{n \times n}$ heißt , wenn eine
+ {\color{red} orthogonal}: $A \cdot A^T=A^T \cdot A=I_n$ für $A\in K^{n \times n}$ 
+ {\color{red} unitär}: $A \cdot A^*=A^* \cdot A=I_n$ für $A\in \mathbb{C}^{n \times n}$.
+ {\color{red} invertierbar}: $A\in K^{n \times n}$ heißt , wenn eine
 Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
 A^{-1}=A^{-1} \cdot A=I_n$.
-\end{itemize}
+
 
 Bemerkungen
 
-\begin{itemize}
-\item Die Multiplikation ist assoziativ aber in der Regel \emph{nicht kommutativ}. 
-\item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
+
+ Die Multiplikation ist assoziativ aber in der Regel \emph{nicht kommutativ}. 
+ Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
 $K$ (mit komponentenweiser Skalarmultiplikation).
-\item {\color{red} allgemeine
+ {\color{red} allgemeine
 lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$: 
 Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bezüglich der Multiplikation eine Gruppe.
-\item {\color{red} orthogonale Gruppe}: $O(n)$: Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
+ {\color{red} orthogonale Gruppe}: $O(n)$: Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
  eine Untergruppe von  $GL(\mathbb{R},n)$. 
-\item  {\color{red} unitäre Gruppe} $U(n)$: Die entsprechende Untergruppe der unitären Matrizen in $GL(\mathbb{C},n)$.
-\end{itemize}
+  {\color{red} unitäre Gruppe} $U(n)$: Die entsprechende Untergruppe der unitären Matrizen in $GL(\mathbb{C},n)$.
+
 
 in SAGE
 
@@ -1900,14 +1913,14 @@ in SAGE
 matrix([[a11,a12,...],[a21,a22,..],..])
 \end{sagein}
 
-\begin{itemize}
-\item Der Rückgabewert ist vom Typ \isage{matrix}.
-\item Die Einträge der Matrix können beliebige Ausdrücke sein.
-\item Es ist möglich Matrizen über bestimmten Bereichen
+
+ Der Rückgabewert ist vom Typ \isage{matrix}.
+ Die Einträge der Matrix können beliebige Ausdrücke sein.
+ Es ist möglich Matrizen über bestimmten Bereichen
 (z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
 konstruieren.                                                     
-\item Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
-\end{itemize}
+ Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
+
 
 KONSTRUKTION
 
@@ -1917,117 +1930,117 @@ konstruieren. Beispiel:
 1 & 2 & 3 & 4\\
 a & 0 & 1 & b\\ 
 \end{array} \right), \quad a,b\in \mathbb{R} \]
-\begin{itemize}
-\item Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
+
+ Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
 Spalten dann wieder in eckigen Klammern $[ ..]$ (Standard)
 \begin{sagein}
 A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
 \end{sagein}
-\item Explizite Größenangabe
+ Explizite Größenangabe
 \begin{sagein}
 A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
 \end{sagein}
-\item Nullmatrix der Größe $n \times m$:
+ Nullmatrix der Größe $n \times m$:
 \begin{sagein}
 n = 3; m = 4; B = matrix(n,m)
 \end{sagein}
-\item Erzeugung mit Hilfe einer Funktion $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
+ Erzeugung mit Hilfe einer Funktion $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
 \begin{sagein}
 f(i,j) = i*j
 C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
 \end{sagein}
-\item Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig)
+ Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig)
 \begin{sagein}
 matrix(3,1,[1,2,3])
 matrix(1,3,[4,5,6])
 \end{sagein}
-\end{itemize}
+
 
 ZEILEN/SPALTEN
 
-\begin{itemize}
-\item Spaltenanzahl: \isage{<matrix>.ncols()}
+
+ Spaltenanzahl: \isage{<matrix>.ncols()}
 \begin{sagein}
 C.ncols()
 \end{sagein}
 \begin{sage}
   5
 \end{sage}
-\item Zeilenanzahl: \isage{<matrix>.nrows()}
+ Zeilenanzahl: \isage{<matrix>.nrows()}
 \begin{sagein}
 C.nrows()
 \end{sagein}
 \begin{sage}
   3
 \end{sage}
-\item Informationen über die Matrix: \isage{<matrix>.parent()}
+ Informationen über die Matrix: \isage{<matrix>.parent()}
 \begin{sagein}
 C.parent()
 \end{sagein}
 \begin{sage}
 Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 \end{sage}
-\end{itemize}
+
 
 ZUGRIFF
 
-\begin{itemize}
-\item Zugriff auf Einträge in Zeile $i$ und Spalte $j$:
+
+ Zugriff auf Einträge in Zeile $i$ und Spalte $j$:
 \begin{sagein}
 i=1; j=2; C[i,j]
 \end{sagein}
 \begin{sage}
   6
 \end{sage}
-\item Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
+ Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
 \begin{sagein}
 i=1; j=2; C[i,j]=22
 \end{sagein}
-\item Extrahieren von Zeilen/Spalten
+ Extrahieren von Zeilen/Spalten
 \begin{sagein}
 zeile = C.row(0)
 spalte = C.column(4)
 \end{sagein}
-\item Teilmatrizen
+ Teilmatrizen
 \begin{sagein}
 C[1:3,1:3]
 \end{sagein}
-\item Diagonalmatrizen
+ Diagonalmatrizen
 \begin{sagein}
 x = [1,2,3,4,5]
 Diag = diagonal_matrix(x); Diag
 \end{sagein}
-\end{itemize}
+
 
 RECHNEN
 
-\begin{itemize} 
-\item Addieren, Multiplizieren
+ 
+ Addieren, Multiplizieren
 \begin{sagein}
 var('a,b,c,d,g,h,f')
 A = matrix([[a, b], [c,d]])
 B = matrix([[e, f], [g,h]])
 A+B; A*B
 \end{sagein}
-\item Inverse und der Transponierte
+ Inverse und der Transponierte
 \begin{sagein}
 A^(-1); A.transpose()
 \end{sagein}
-\end{itemize}
+
 
 RANG
 
 Sei $A \in K^{m \times n}$. 
-\begin{itemize}
-\item {\color{red} Spaltenrang}: Die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
-\item {\color{red} Zeilenrang}: Die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
-\item {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von Matrizen gleich sind. 
-\end{itemize}
+
+ {\color{red} Spaltenrang}: Die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
+ {\color{red} Zeilenrang}: Die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
+ {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von Matrizen gleich sind. 
+
 
 BEISPIELE
 
-\begin{itemize}
-\item Bestimmen des Ranges einer Matrix
+
+ Bestimmen des Ranges einer Matrix
 \begin{sagein}
 S = matrix([[1,0,0],[0,1,1],[1,1,1]])
 S.rank()
@@ -2035,7 +2048,7 @@ S.rank()
 \begin{sage}
   2
 \end{sage}
-\item ist S symmetrisch ? ist S invertierbar ?
+ ist S symmetrisch ? ist S invertierbar ?
 \begin{sagein}
 S.is_symmetric() 
 S.is_invertible()
@@ -2044,7 +2057,7 @@ S.is_invertible()
 False
 False
 \end{sage}
-\item Determinante
+ Determinante
 \begin{sagein}
 S.det()
 \end{sagein}
@@ -2052,7 +2065,7 @@ S.det()
   27
 \end{sage}
 
-% \item Ist eine Matrix unitär ?
+%  Ist eine Matrix unitär ?
 % \begin{sagein}
 % linalg::isUnitary(S)
 % \end{sagein}
@@ -2066,7 +2079,7 @@ S.det()
 % \begin{sage}
 %   TRUE
 % \end{sage}
-\end{itemize}
+
 
 MAPS
 
@@ -2093,45 +2106,45 @@ und Verknüpfungen
 \[ +:V \times V \ \rightarrow \ V, \qquad \cdot:K\times V \ \rightarrow \ V\]
 heißt {\color{red} Vektorraum} über einem Körper
 $K$, wenn gilt:
-\begin{enumerate}
-\item $(V,+)$ ist eine abelsche Gruppe.
-\item Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
-\begin{enumerate}
- \item $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
-\item $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
-\item $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
-\item $1 \cdot v = v$.
-\end{enumerate}
-\end{enumerate}
+
+ $(V,+)$ ist eine abelsche Gruppe.
+ Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
+
+  $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
+ $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
+ $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
+ $1 \cdot v = v$.
+
+
 
 BEGRIFFE
 
-\begin{itemize}
-\item {\color{red} Vektoren}: Die Elemente eines Vektorraums.
-\item {\color{red} Skalarmultiplikation}: Die Abbildung $\cdot : K\times V \ \rightarrow \ V$. Die Elemente des Körpers $K$ nennt man
+
+ {\color{red} Vektoren}: Die Elemente eines Vektorraums.
+ {\color{red} Skalarmultiplikation}: Die Abbildung $\cdot : K\times V \ \rightarrow \ V$. Die Elemente des Körpers $K$ nennt man
   {\color{red} Skalare}.
-\item {\color{red} Untervektorraum} oder {\color{red} Unterraum} von $V$: Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und es gelten
+ {\color{red} Untervektorraum} oder {\color{red} Unterraum} von $V$: Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und es gelten
   alle Vektorraumaxiome.
-\item \emph{Vorsicht!} man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. \\
+ \emph{Vorsicht!} man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. \\
 Es gilt $0 \cdot v  = 0$ für alle $v \in V$. 
-\end{itemize}
+
 
 BEISPIELE
 
-\begin{itemize}
-\item $K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
-\item Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
+
+ $K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
+ Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
   in $K$, $\text{Abb}(M,K)$, mit den punktweise definiertenVerknüpfungen
 \begin{eqnarray*}
 (f+g)(x) & :=& f(x)+g(x), \forall\; x \in M\\
 (\alpha \cdot f)(x) & :=& \alpha \cdot f(x), \forall\; x \in M  
 \end{eqnarray*}
 für $\alpha \in K$, $f,g:M \mapsto K$.
-\item Die Menge der Polynome bis zum Grad $n$.
-\item Die Menge aller Polynome.
-\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
-\item $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
-\end{itemize}
+ Die Menge der Polynome bis zum Grad $n$.
+ Die Menge aller Polynome.
+ $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
+ $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
+
 
 inSAGE
 
@@ -2140,8 +2153,8 @@ Konstruktion von Vektoren
 vector([v1,v2,..]) 
 \end{sagein}
 \textbf{Beispiele}:
-\begin{itemize}
-\item Konstruktion
+
+ Konstruktion
 \begin{sagein}
 a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sagein}
@@ -2150,7 +2163,7 @@ a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 ((1, 2, 3, 4), (5, 6, 7))
 \end{sage}
 \end{small}
-\item Datentyp: \isage{vector_integer_dense} (für dichte Vektoren)
+ Datentyp: \isage{vector_integer_dense} (für dichte Vektoren)
 \begin{sagein}
 type(a)
 \end{sagein}
@@ -2158,69 +2171,69 @@ type(a)
 \begin{sage}
 <type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
 \end{sage}}
-\end{itemize}
+
 
 DEFINITION
 
 Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
 Elementen aus $V$.
-\begin{itemize}
-\item {\color{red} Linearkombination} $v \in V$ von $(v_1,\dots ,v_r)$: 
+
+ {\color{red} Linearkombination} $v \in V$ von $(v_1,\dots ,v_r)$: 
   falls $\exists \lambda_1, \dots, \lambda_r \in K$  mit
   $ v= \lambda_1 v_1 + \dots + \lambda_r v_r$. 
-\item {\color{red} Lineare Hülle} $\mathop{span}\{v_1, \dots, v_n\}$: Die Menge aller Linearkombinationen. Die Lineare
+ {\color{red} Lineare Hülle} $\mathop{span}\{v_1, \dots, v_n\}$: Die Menge aller Linearkombinationen. Die Lineare
   Hülle ist ein Unterraum von $V$.
-\item {\color{red} linear unabhängig}: 
+ {\color{red} linear unabhängig}: 
   Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
   \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
   \lambda_r=0$. Andernfalls {\color{red} linear abhängig}. 
-\begin{itemize}
-\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
-\end{itemize}
-\end{itemize}
+
+ Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
+
+
 
 NOTATION
 
 Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
 Elementen aus $V$
-\begin{itemize}
-\item $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
+
+ $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
 jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
 läßt. 
-\item Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.
-\item Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
+ Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.
+ Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
 {\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
 unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
-\item Aus jedem Erzeugendensystem kann man eine Basis auswählen. 
-\end{itemize}
+ Aus jedem Erzeugendensystem kann man eine Basis auswählen. 
+
 
 BEISPIELE
 
-\begin{itemize}
-\item Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
+
+ Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
 ,e_n)$ ist eine Basis des $\mathbb{R}^n$.
-\item Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
+ Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
 Vektorraums der Polynome $n$-ten Grades.
-\item $(1,i)$ ist eine Basis von $\mathbb{C}$ als
+ $(1,i)$ ist eine Basis von $\mathbb{C}$ als
 $\mathbb{R}$-Vektorraum. 
-\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
+ $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
 Basis. 
-\end{itemize}
+
 
 BASIS und DIM
 
-\begin{itemize}
-\item {\color{red} Dimension} des Vektorraums $V$: die  Anzahl der Basiselemente einer Basis $(v_1,\dots, v_n)$.
-\item Jeder Vektorraum besitzt eine Basis.
-\item Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
+
+ {\color{red} Dimension} des Vektorraums $V$: die  Anzahl der Basiselemente einer Basis $(v_1,\dots, v_n)$.
+ Jeder Vektorraum besitzt eine Basis.
+ Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
 die {\color{red} Summe} von $W$ und $Z$. Es gilt:
 \[ \dim(W+Z)=\dim(W) + \dim (Z) - \dim( W \cap Z) \]
-\end{itemize}
+
 
 inSAGE
 
-\begin{itemize}
-\item Bestimmen einer Basis von $span(s1,s2,s3)$
+
+ Bestimmen einer Basis von $span(s1,s2,s3)$
 \begin{sagein}
 s1 = vector([1,0,0])
 s2 = vector([0,1,1])
@@ -2233,7 +2246,7 @@ Basis matrix:
 [1 0 0]
 [0 1 1]
 \end{sage}
-\item Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
+ Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
 \begin{sagein}
 span([s1],QQ).intersection(span([s2,s3],QQ))
 \end{sagein}
@@ -2243,7 +2256,7 @@ Basis matrix:
 [1 0 0]
 \end{sage}
 
-\item Testen der linearen Unabhängigkeit
+ Testen der linearen Unabhängigkeit
 \begin{sagein}
 m = matrix([s1,s2,s3])
 m.rank() >= min(m.ncols(), m.nrows())
@@ -2253,7 +2266,7 @@ m.determinant() <> 0
 \begin{sage}
   False
 \end{sage}
-\end{itemize}
+
 
 NORMEN
 
@@ -2286,33 +2299,33 @@ K$ gilt
 
 BEMERKUNG
 
-\begin{itemize}
-\item Ein VR $V$ mit Skalarprodukt heißt {\color{red} Prä-Hilbert-Raum}. Ist
+
+ Ein VR $V$ mit Skalarprodukt heißt {\color{red} Prä-Hilbert-Raum}. Ist
 $K=\mathbb{R}$ so heißt der Raum auch {\color{red} euklidisch}.
-\item Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm
+ Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm
 definieren. Es gilt die {\color{red} Cauchy-Schwarzsche Ungleichung}
 \[ |(u,v)| \leq \| u \| \|v\|. \]
-\item Im euklidischen Raum ist der Winkel $\alpha$ zwischen zwei Vektoren
+ Im euklidischen Raum ist der Winkel $\alpha$ zwischen zwei Vektoren
 $u,v \in V\smallsetminus \{ 0 \}$ definiert durch
 \[ \cos(\alpha) = \frac{(u,v)}{\|u\| \|v \|}. \]
-\item {\color{red} Orthogonal}: wenn $(u,v)=0$ gilt.
-\item {\color{red} Orthogonalbasis}: Eine Basis aus paarweise orthogonalen Vektoren. 
-\item {\color{red} Orthonormalbasis}: Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
+ {\color{red} Orthogonal}: wenn $(u,v)=0$ gilt.
+ {\color{red} Orthogonalbasis}: Eine Basis aus paarweise orthogonalen Vektoren. 
+ {\color{red} Orthonormalbasis}: Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
 haben.
-\item Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
+ Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
 Orthonormalbasis. 
-\item {\color{red} Orthogonalraum}:
+ {\color{red} Orthogonalraum}:
 \[
 {U}^\perp := \{ v \in V \ | \ (v,u)=0 \mbox{ für alle } u \in U \}
 \]
 wenn $U$ ein Unterraum von $V$ ist.
-\item Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
-\end{itemize}
+ Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
+
 
 inSAGE
 
-\begin{itemize}
-\item $p$-Norm:
+
+ $p$-Norm:
 \[
 \|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}, p\in [1,\infty)                   
 \]
@@ -2321,7 +2334,7 @@ auf $K^n$ mit $K=\mathbb{R},\mathbb{C}$
 x = vector([1,2,3,4,5]); p=2
 x.norm(p)
 \end{sagein}
-\item sind Vektoren orthogonal zueinander ?
+ sind Vektoren orthogonal zueinander ?
 \begin{sagein}
 a1 = vector([1,2,3])
 a2 = vector([0,4,1])
@@ -2329,21 +2342,21 @@ a3 = vector([1,1,1])
 X = matrix([a1,a2,a3])
 X * X.transpose() 
 \end{sagein}
-\item Berechnen des Skalarprodukts
+ Berechnen des Skalarprodukts
 \begin{sagein}
 a2.dot_product(a3), a2*a3
 \end{sagein}
 \begin{sage}
   (5, 5)
 \end{sage}
-\item Berechnen des Winkels zwischen zwei Vektoren
+ Berechnen des Winkels zwischen zwei Vektoren
 \begin{sagein}
 float(acos(a2*a3/(abs(a2)*abs(a3))))
 \end{sagein}
 \begin{sage}
   0.79520271328967818
 \end{sage}
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionen}
@@ -2355,25 +2368,25 @@ def <Name><(a,b,..)>:
     <Code-Block>
     return <ret>
 \end{sagein}
-\begin{itemize}
-\item Argumente/Übergabeparameter \isage{(a,b,..)} 
-\item Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
-\item Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
-\item Zeilen gleicher Einrückung gehören zum gleichen Block.
-\item Rückgabewert \isage{ret} mittels \isage{return(ret)} zurückgegeben. Funktion ist dann beendet.
-\item Ohne return wird eine leere Variable des Typs \isage{NoneType} zurückgegeben.  
-\end{itemize}
+
+ Argumente/Übergabeparameter \isage{(a,b,..)} 
+ Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
+ Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
+ Zeilen gleicher Einrückung gehören zum gleichen Block.
+ Rückgabewert \isage{ret} mittels \isage{return(ret)} zurückgegeben. Funktion ist dann beendet.
+ Ohne return wird eine leere Variable des Typs \isage{NoneType} zurückgegeben.  
+
 
 ERKLÄRUNG
 
-\begin{itemize}
-\item In \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{<funktionsname>?} abgefragt werden.
-\item Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
-%\item Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
+
+ In \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{<funktionsname>?} abgefragt werden.
+ Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
+% Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
 %  sogenannte Verzweigung. Ist die  Bedingung \isage{<bedingung>} wahr, so wird der
 %  Block hinter \isage{:} ausgeführt. Ist \isage{<bedingung>} falsch, so
 %  wird die Alternative \isage{else:} ausgeführt.
-\end{itemize}
+
 
 BEISPIEL
 
@@ -2385,24 +2398,24 @@ def MyMax(a,b):
     else: 
         return (a)
 \end{sagein}
-\begin{itemize}
-\item Das Beispiel berechnet das Maximum zweier Zahlen $a$ und
+
+ Das Beispiel berechnet das Maximum zweier Zahlen $a$ und
 $b$. 
-\item Aufruf in Sage ist {\color{blue} \isage{MyMax(a,b)}}. 
-\item Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
+ Aufruf in Sage ist {\color{blue} \isage{MyMax(a,b)}}. 
+ Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
   zurück.
- \end{itemize} 
+  
 
 EDIT
 
 Bei umfangreicheren Funktionen oder richtigen Programmen ist es evtl. sinnvoller dies mit
 einem Editor zu erstellen. 
 
-\begin{itemize}
- \item Erstellen einer \verb+<name>.sage+-Datei (Editor: z.B. \verb+geany+)
-\item \isage{attach <path>/<name>.sage}: hängt die Datei an das Notebook an und wird automatisch geladen und aktuell gehalten.
-\item \isage{attached_files()}: listet alle angehängte Dateien.
-\end{itemize}
+
+  Erstellen einer \verb+<name>.sage+-Datei (Editor: z.B. \verb+geany+)
+ \isage{attach <path>/<name>.sage}: hängt die Datei an das Notebook an und wird automatisch geladen und aktuell gehalten.
+ \isage{attached_files()}: listet alle angehängte Dateien.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Datencontainer, Lineare Abbildungen, Eigenwerte und -vektoren}
@@ -2416,13 +2429,13 @@ FOLGEN
  Folge = tuple(<sequence>)
 \end{sagein}
 
-\begin{itemize}
-\item Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte,
-  welche durch Kommata getrennt sind.
-\item ein Tuple ist in  runde Klammern eingeschlossen.
-\item Tuple sind ein grundlegender Typ (Listen und Mengen bestehen daraus).
 
-\item Einfache Definition
+ Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte,
+  welche durch Kommata getrennt sind.
+ ein Tuple ist in  runde Klammern eingeschlossen.
+ Tuple sind ein grundlegender Typ (Listen und Mengen bestehen daraus).
+
+ Einfache Definition
 \begin{sagein}
 t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 \end{sagein}
@@ -2430,12 +2443,12 @@ t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 (a, b, c)
 (c, d, e)
 \end{sage}
- \end{itemize}
+ 
 
 KONSTRUKTION
 
-\begin{itemize}
-\item Mit Listen erzeugte Folgen 
+
+ Mit Listen erzeugte Folgen 
 \begin{sagein}
 tuple(i^2 for i in range(2,8))
 \end{sagein}
@@ -2443,21 +2456,21 @@ tuple(i^2 for i in range(2,8))
 (4, 9, 16, 25, 36, 49)
 \end{sage}
 
-\item Erzeugen von $n$ identischen Objekten
+ Erzeugen von $n$ identischen Objekten
 \begin{sagein}
 tuple(sin(x) for i in range(0,5))
 \end{sagein}
 \begin{sage}
   (sin(x),sin(x),sin(x),sin(x),sin(x))
 \end{sage}
-\item Erzeugen von $n$ funktionalen Objekten
+ Erzeugen von $n$ funktionalen Objekten
 \begin{sagein}
 x = tuple(sin(i) for i in range(1,5)); x
 \end{sagein}
 \begin{sage}
 (sin(1), sin(2), sin(3), sin(4))
 \end{sage}  
-\item Erzeugen einer leeren Folge
+ Erzeugen einer leeren Folge
 \begin{sagein}
 folge = (); folge2 = folge,2,3; folge2
 \end{sagein}
@@ -2465,19 +2478,19 @@ folge = (); folge2 = folge,2,3; folge2
  ((), 2, 3)
 \end{sage}
 
-\end{itemize}
+
 
 ZUGRIFF
 
-\begin{itemize}
-\item Verbinden von Folgen
+
+ Verbinden von Folgen
 \begin{sagein}
 Folge3 = Folge1+Folge2; Folge3
 \end{sagein}
 \begin{sage}
 (a, b, c, c, d, e)
 \end{sage}
-\item Zugriff auf Elemente
+ Zugriff auf Elemente
 \begin{sagein}
 x = 1,2,3,4; x[2] 
 \end{sagein}
@@ -2492,7 +2505,7 @@ x[2]; x[0:2]
 (1, 2)
 \end{sage}
 
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Listen}
@@ -2502,12 +2515,12 @@ liste = [a,b,c,...]
 liste = list(<sequence>)
 \end{sagein}
 
-\begin{itemize}
-\item Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
-\item eine Liste is in eckigen Klammern eingeschlossen.
-\item Matrizen werden als geschachtelte Listen definiert.
-\item Baut auf \isage{tuple} auf.
-\item einfache Konstruktion:
+
+ Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
+ eine Liste is in eckigen Klammern eingeschlossen.
+ Matrizen werden als geschachtelte Listen definiert.
+ Baut auf \isage{tuple} auf.
+ einfache Konstruktion:
 \begin{sagein}
 Liste = [1,[1,2], Set([1,2,3]),x]; Liste
 \end{sagein}
@@ -2515,31 +2528,31 @@ Liste = [1,[1,2], Set([1,2,3]),x]; Liste
 [1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
 \end{sage}
 
-\end{itemize}
+
 
 KONSTRUKTION
 
-\begin{itemize}
-\item Erzeugen von Listen mit funktionalen Objekten
+
+ Erzeugen von Listen mit funktionalen Objekten
 \begin{sagein}
 Liste = [2^i for i in range(1,9)]; Liste
 \end{sagein}
 \begin{sage}
 [2, 4, 8, 16, 32, 64, 128, 256]
 \end{sage}
-\item Leere Listen:
+ Leere Listen:
 \begin{sagein}
 Liste = []; Liste
 \end{sagein}
 \begin{sage}
   []
 \end{sage}
-\end{itemize}
+
 
 ZUGRIFF
 
-\begin{itemize}
-\item Der Zugriff funktioniert genau wie bei Folgen.
+
+ Der Zugriff funktioniert genau wie bei Folgen.
 \begin{sagein}
 Liste=[(x,i) for x in range(1,4) for i in range(0,x)];  Liste
 \end{sagein}
@@ -2552,40 +2565,40 @@ Liste[3], Liste[5]
 \begin{sage}
 ((3, 0), (3, 2))
 \end{sage}
-\item Zuweisung:
+ Zuweisung:
 \begin{sagein}
 Liste[5] = 42; Liste
 \end{sagein}
 \begin{sage}
   [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
 \end{sage}
-\end{itemize}
+
 
 BEFEHLE
 
-\begin{itemize}
-\item Entfernen eines Elements aus der Liste mit \isage{pop()}
+
+ Entfernen eines Elements aus der Liste mit \isage{pop()}
 \begin{sagein}
 Liste = [a,b,c]; Liste.pop(1); Liste 
 \end{sagein}
 \begin{sage}
   [a, c]
 \end{sage}
-\item Entfernen eines Elements aus der Liste mit \isage{remove()} 
+ Entfernen eines Elements aus der Liste mit \isage{remove()} 
 \begin{sagein}
 Liste = [a,b,c]; Liste.remove(b); Liste
 \end{sagein}
 \begin{sage}
   [a, c]
 \end{sage}
-\item Anhängen eines Elementes mittels \isage{append()}
+ Anhängen eines Elementes mittels \isage{append()}
 \begin{sagein}
 Liste.append([3,4,5]); Liste
 \end{sagein}
 \begin{sage}
 [a, c, [3, 4, 5]]
 \end{sage}
-\item Zusammenfügen von Listen mit dem $+$- und $*$-Operator. 
+ Zusammenfügen von Listen mit dem $+$- und $*$-Operator. 
 \begin{sagein}
 Liste2 = Liste+[3,4,5]; Liste2
 \end{sagein}
@@ -2598,19 +2611,19 @@ Liste*2
 \begin{sage}
  [a, c, [3, 4, 5], a, c, [3, 4, 5]]
 \end{sage}
-\item Sortieren von Listen mit \isage{sort()}
+ Sortieren von Listen mit \isage{sort()}
 \begin{sagein}
 Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
 \end{sagein}
 \begin{sage}
 [1, 3, 4, -23]
 \end{sage}
-\end{itemize}
+
 
 INKLUSIONEN
 
-\begin{itemize}
- \item Ist Objekt \isage{Objekt} in der Liste \isage{Liste} enthalten?
+
+  Ist Objekt \isage{Objekt} in der Liste \isage{Liste} enthalten?
 \begin{sagein}
  <Objekt> in <Liste>
 \end{sagein}
@@ -2622,7 +2635,7 @@ x+1 in Liste
 \begin{sage}
   True
 \end{sage}
-\item Position des Objektes in der Liste (bei Fehlen gibt es eine entsprechende Meldung)
+ Position des Objektes in der Liste (bei Fehlen gibt es eine entsprechende Meldung)
 \begin{sagein}
  <Liste>.index(<Objekt>)
 \end{sagein}
@@ -2634,7 +2647,7 @@ Liste.index(sin(b))
   3
 \end{sage}
 
-\end{itemize}
+
 
 map()
 
@@ -2642,10 +2655,10 @@ map()
  map(<f>,<Liste>)
 \end{sagein}
 wendet Funktion \isage{f} auf alle Elemente der Liste \isage{Liste} an.
-\begin{itemize}
- \item Kapselung bei Funktionen mit mehreren Argumenten.
-%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index).
-\item Beispiele:
+
+  Kapselung bei Funktionen mit mehreren Argumenten.
+% Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index).
+ Beispiele:
 \begin{sagein}
 map(sin,[x,1,0,pi,0.3])
 \end{sagein}
@@ -2659,7 +2672,7 @@ map(max,[2,3,4,5,6,7],[8,7,6,5,4,3])
 [8, 7, 6, 5, 6, 7]
 \end{sage}
 
-\end{itemize}
+
 
 map\_threaded()
 
@@ -2667,8 +2680,8 @@ map\_threaded()
 map_threaded(<f>,<Liste>)
 \end{sagein}
 führt die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} an.
-\begin{itemize}
- \item Beispiele:
+
+  Beispiele:
 \begin{sagein}
 map_threaded(sin,[x,[1,0],[pi,[0.3]]])
 \end{sagein}
@@ -2682,7 +2695,7 @@ map_threaded(sin,matrix([[1,2,3],[4,5,6]]))
 [sin(1) sin(2) sin(3)]
 [sin(4) sin(5) sin(6)]
 \end{sage}
-\end{itemize}
+
 
 filter()
 
@@ -2690,12 +2703,12 @@ Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
 \begin{sagein}
 M1 = filter(<f>,<M>)
 \end{sagein}
-\begin{itemize}
-\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
-\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
+
+ \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
+ \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
 ergibt. 
-%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index) oder Ausdrücke.
-\end{itemize}
+% Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index) oder Ausdrücke.
+
 
 BEISPIELE
 
@@ -2745,27 +2758,27 @@ DIC
 d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
 \end{sagein}
 
-\begin{itemize}
-\item Dictionaries bestehen aus \emph{Assoziationen} der Form \verb+<Index>:<Wert>+. 
-\item Zugriff:
+
+ Dictionaries bestehen aus \emph{Assoziationen} der Form \verb+<Index>:<Wert>+. 
+ Zugriff:
 \begin{sagein}
 d[<Index>]
 \end{sagein}
-\item  Sind gut geeignet für das Speichern großer Datenmengen, der indizierte Zugriff sehr schnell ist.
-\item der \isage{Index} ist eindeutig
-\end{itemize}
+  Sind gut geeignet für das Speichern großer Datenmengen, der indizierte Zugriff sehr schnell ist.
+ der \isage{Index} ist eindeutig
+
 
 KONSTRUKTION
 
-\begin{itemize}
-\item Erzeugen eines leeren Dictionaries
+
+ Erzeugen eines leeren Dictionaries
 \begin{sagein}
 T = {}; T
 \end{sagein}
 \begin{sage}
   {}
 \end{sage}
-\item Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
+ Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
 \begin{sagein}
 T[f] = sin(x); T[1,2] = 5
 T[1,2,3] = [a,b,c]; T[a] = d;
@@ -2774,12 +2787,12 @@ T
 \begin{sage}
 {(1, 2): 5, f: sin(x), a: d, (1, 2, 3): [a, b, c]}
 \end{sage}
-\end{itemize}
+
 
 ZUGRIFF
 
-\begin{itemize}
-\item Zugriff auf ein Dictionary
+
+ Zugriff auf ein Dictionary
 \begin{sagein}
 T[a],T[1,2],T[c]
 \end{sagein}
@@ -2793,27 +2806,27 @@ T[a],T[1,2],T[c]
  -0.7568024953079282
 \end{sage}
 Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung
-\item Löschen von Einträgen mit \isage{pop()}
+ Löschen von Einträgen mit \isage{pop()}
 \begin{sagein}
 T.pop(a)
 \end{sagein}
-\end{itemize}
+
 
 BEFEHLE
 
 Alle Funktionen wirken erstmal direkt auf den Index, nicht den Werten:
-\begin{itemize}
-\item \isage{<a> in <M>}: Es wird überprüft, ob der Index \isage{a} in einem
+
+ \isage{<a> in <M>}: Es wird überprüft, ob der Index \isage{a} in einem
 Dictionary vorkommt. 
-\item \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
-\item \isage{map()}: Wendet eine Funktion auf die Indizes an.
-\end{itemize}
+ \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
+ \isage{map()}: Wendet eine Funktion auf die Indizes an.
+
 Man kann aber die Objektfunktion \isage{values()} benutzen um eine Liste der Werte zu bekommen (Dann hat man allerdings kein Dictionary mehr!)
 
 BEISPIELE
 
-\begin{itemize}
- \item \isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
+
+  \isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
 \begin{sagein}
 Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
 a in Z, b in Z
@@ -2822,7 +2835,7 @@ a in Z, b in Z
 (True, False)
 \end{sage}
 \isage{a} taucht als Index auf, \isage{b} nur als Wert.
-\item \isage{filter} prüft ebenfalls nur den Index.
+ \isage{filter} prüft ebenfalls nur den Index.
 \begin{sagein}
 f(y) = y == c; filter(f,Z)
 \end{sagein}
@@ -2837,12 +2850,12 @@ f(y) = y == d; filter(f,Z.values())
 [d]
 \end{sage}
 
-\end{itemize}
+
 
 update()
 
-\begin{itemize}
-\item Dictionaries können aneinander gehängt werden:
+
+ Dictionaries können aneinander gehängt werden:
 \begin{sagein}
 T={1:a,2:b}; S={3:c,4:d}
 T.update(S); T
@@ -2851,7 +2864,7 @@ T.update(S); T
 {1: a, 2: b, 3: c, 4: d}
 \end{sage}
 \emph{Vorsicht}: Doppelt auftretenden Indizes werden überschrieben!
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lineare Abbildungen}
@@ -2859,35 +2872,35 @@ T.update(S); T
 Seien $K$-Vektorräume $V$ und $W$ gegeben. Eine Abbildung
 \[ F: \ V \rightarrow \ W \]
 heißt {\color{red} linear}, falls für $v,w\in V$ und $\lambda \in K$ gilt:
-\begin{itemize}
-\item [(L1)] $F(v+w)=F(v)+F(w)$
-\item [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
-\end{itemize} 
-\begin{itemize}
- \item {\color{red} Isomorphismus}: $F$ bijektiv. 
-\item {\color{red} Endomorphismus}: $V=W$.
-\item {\color{red} Automorphismus}: $V=W$ und $F$ bijektiv.
-\end{itemize}
+
+ [(L1)] $F(v+w)=F(v)+F(w)$
+ [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
+ 
+
+  {\color{red} Isomorphismus}: $F$ bijektiv. 
+ {\color{red} Endomorphismus}: $V=W$.
+ {\color{red} Automorphismus}: $V=W$ und $F$ bijektiv.
+
 
 BEMERKUNGEN
 
-\begin{itemize}
-\item Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
+
+ Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
 seien Vektoren in $W$. Dann gibt es genau eine lineare Abbildung $F:V
 \rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.
-\item {\color{red} Bild} von $F$:   $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
-\item {\color{red} Kern} von F: $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
-\item Kern und Bild sind Untervektorräume.
-\item Dimensionsformel:
+ {\color{red} Bild} von $F$:   $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
+ {\color{red} Kern} von F: $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
+ Kern und Bild sind Untervektorräume.
+ Dimensionsformel:
 \[\dim V = \dim F(V) + \dim Ker(F)\]
-\item {\color{red} $\operatorname{Hom}_K(V,W)$}: Die Menge der linearen Abbildungen von $V$ nach $W$. 
+ {\color{red} $\operatorname{Hom}_K(V,W)$}: Die Menge der linearen Abbildungen von $V$ nach $W$. 
 Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
-\end{itemize}
+
 
 LAuM
 
-\begin{itemize}
-\item Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
+
+ Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
 \[
  L_A: K^n \rightarrow K^m,\; 
 \begin{pmatrix}
@@ -2904,23 +2917,23 @@ x_n
 \end{pmatrix}
 \]
 eine lineare Abbildung zuordnen.
-\item Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
-\end{itemize}
+ Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
+
 
 KOORDVEC
 
 Sei $V$ ein $K$-Vektorraum mit Basis $\mathcal{V}=(v_1, \dots
 ,v_n)$.
-\begin{itemize}
-\item Die lineare Abbildung 
+
+ Die lineare Abbildung 
 $\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
 \[\Phi_\mathcal{V}(x_1,\dots ,x_n)=x_1v_1+ \dots +x_nv_n\]
 ist ein Isomorphismus. Man nennt $\Phi_\mathcal{V}$ ein
 {\color{red} Koordinatensystem} in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
 den {\color{red} Koordinatenvektor} zu $v \in V$.
-\item Basiswechselabbildung von $\mathcal{V}$ nach Basis $\mathcal{Z}$:
+ Basiswechselabbildung von $\mathcal{V}$ nach Basis $\mathcal{Z}$:
 \[T:= \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}\].
-\end{itemize}
+
 
 ISO
 
@@ -2944,15 +2957,15 @@ Kanonisches Bsp
 
 Seien $K^n$ und $K^m$ mit den kanonischen Basen $\mathcal{K}_n$ und
 $\mathcal{K}_m$ versehen.
-\begin{itemize}
-\item Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
+
+ Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
 sind Identitäten.
-\item  Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
+  Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
 durch 
 \[ L^{\mathcal{K}_n}_{\mathcal{K}_m} (A)(x)=Ax,\; x \in K^n. \]
-\item Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
+ Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
 unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
-\end{itemize}
+
 
 DIAG
 
@@ -3012,29 +3025,29 @@ Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt {\color{red} Eigenw
 $A$, wenn ein $x \in K^n\smallsetminus \{0 \}$ existiert, 
 \[ {\color{red}A x = \lambda x} \] 
 gilt. Der Vektor $x \in K^n$ heißt {\color{red} Eigenvektor} zum Eigenwert $\lambda$.
-\begin{itemize}
-\item Die Eigenwerte sind die Nullstellen des {\color{red} charakteristischen
+
+ Die Eigenwerte sind die Nullstellen des {\color{red} charakteristischen
 Polynoms} 
 \[p(t):=\det(A-t \ I_n).\] 
-\item Es gibt höchstens $n$ Eigenwerte.
-\end{itemize}
+ Es gibt höchstens $n$ Eigenwerte.
+
 
 BEMERKUNGEN
 
-\begin{itemize}
-\item Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
+
+ Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
 unabhängig.
-\item Gibt es eine Basis aus Eigenvektoren, so ist $A$
+ Gibt es eine Basis aus Eigenvektoren, so ist $A$
 {\color{red} diagonalisierbar}, d.h. man kann die Abbildung $L_A$ bei
 geeigneter Basiswahl durch eine Diagonalmatrix repräsentieren.
-\item Jeder Endomorphismus eines komplexen Vektorraums läßt sich durch
+ Jeder Endomorphismus eines komplexen Vektorraums läßt sich durch
 eine Matrix in \emph{Jordanscher Normalform} darstellen.
-\end{itemize}
+
 
 EW inSAGE
 
-\begin{itemize}
-\item Bestimmung von Eigenwerten
+
+ Bestimmung von Eigenwerten
 \begin{sagein}
 _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 [ m.full_simplify() for m in  A.eigenvalues()]
@@ -3042,11 +3055,11 @@ _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 \begin{sage}
   [-1, 1]
 \end{sage}
-\item Bestimmung von Eigenvektoren
+ Bestimmung von Eigenvektoren
 \begin{sagein}
 A.eigenvectors_right()
 \end{sagein}
- \item Bestimmung des charakteristischen Polynoms
+  Bestimmung des charakteristischen Polynoms
 \begin{sagein}
 E = identity_matrix(2)
 p = (A-x*E).det(); p
@@ -3065,50 +3078,50 @@ A.charpoly()
 \begin{sage}
   [x == -1, x == 1]
 \end{sage}
-\end{itemize}
+
 
 LGS
 
 Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
 Lösungen (Lösungsraum): 
 \[ \{ x \in K^n \;|\; A x = b\} \]
-\begin{itemize}
-\item Ist $b=0$, so spricht man von einem {\color{red} homogenen
+
+ Ist $b=0$, so spricht man von einem {\color{red} homogenen
 System}. Ansonsten spricht man von einem {\color{red} inhomogenen System}.
-\item Der Lösungsraum $W$ des homogenen Systems bildet einen
+ Der Lösungsraum $W$ des homogenen Systems bildet einen
 Untervektorraum des $K^n$. Die Dimension ist 
 \[ \dim (W)=n - \rang(A). \] 
-\end{itemize}
+
 
 STRUKTUR
 
-\begin{itemize}
-\item {\color{red} affiner Unterraum}  $X \subset K^n$: wenn ein
+
+ {\color{red} affiner Unterraum}  $X \subset K^n$: wenn ein
 Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
 \[X=v+W\]
 %Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
-\item Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
+ Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
 Unterraum des $K^n$.   
 
-\item Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
+ Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
 eine beliebige Lösung von $Ax=b$, dann ist der Lösungsraum $X$ von $Ax=b$
 gegeben durch  $X=v+W$.
-\item Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
+ Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
 eine Lösung des homogenen Systems.
-\end{itemize}
+
 
 LÖSBARKEIT
 
-\begin{itemize}
-\item Das inhomogene System ist genau dann für alle $b$
+
+ Das inhomogene System ist genau dann für alle $b$
 lösbar, wenn $\rang(A)=m$ gilt.
-\item Das homogene bzw. das inhomogene System besitzt höchstens eine
+ Das homogene bzw. das inhomogene System besitzt höchstens eine
 Lösung, genau dann wenn $\rang(A)=n$ gilt.
-\item Der Lösungsraum des inhomogenen Systems ist genau dann nicht
+ Der Lösungsraum des inhomogenen Systems ist genau dann nicht
 leer, wenn $\rang(A)=\rang(A, b)$ gilt. %A,b : erweiterte Koeffizientenmatrix
-\item Praktisch kann ein LGS mit dem {\color{red} Gausschen
+ Praktisch kann ein LGS mit dem {\color{red} Gausschen
 Eliminationsverfahren} gelöst werden.
-\end{itemize}
+
 
 LGS inSAGE
 
@@ -3135,15 +3148,15 @@ print A\b3
 
 FOLGE
 
-\begin{itemize}
-\item {\color{red} reelle Zahlenfolge}: Abbildung $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$.
-\item Alternative Notation: $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$.
-\item {\color{red} Glieder} der Folge: Die Zahlen $a_n$.
-\item {\color{red} Teilfolge}: $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
+
+ {\color{red} reelle Zahlenfolge}: Abbildung $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$.
+ Alternative Notation: $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$.
+ {\color{red} Glieder} der Folge: Die Zahlen $a_n$.
+ {\color{red} Teilfolge}: $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
 \rightarrow \ \mathbb{R}$, wobei $N \subset \mathbb{N}$ eine Menge mit
 unendlich vielen Elementen ist.
-\item Bemerkung: Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
-\end{itemize}
+ Bemerkung: Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
+
 
 KONV
 
@@ -3159,25 +3172,25 @@ n_0$ die Abschätzung
 
 BEMERKUNGEN
 
-\begin{itemize}
-\item \emph{Nullfolge}: Folge konvergiert gegen $0$.
-\item {\color{red} Häufungspunkt}: Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$.
-\begin{itemize}
-\item Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten
-\item konvergente Folgen haben genau einen Häufungspunkt.
-\end{itemize}
-\item  {\color{red} Cauchy-Folge}: eine Folge $(a_n)_n$ bei der für
+
+ \emph{Nullfolge}: Folge konvergiert gegen $0$.
+ {\color{red} Häufungspunkt}: Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$.
+
+ Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten
+ konvergente Folgen haben genau einen Häufungspunkt.
+
+  {\color{red} Cauchy-Folge}: eine Folge $(a_n)_n$ bei der für
 alle $\varepsilon>0$ ein $n_0 \in \mathbb{N}$ existiert, so dass für alle
 $n,m \geq n_0$ gilt:
 $|a_n - a_m| < \varepsilon$. \\
-\item In $\mathbb{R}$ ist eine Folge konvergent,
+ In $\mathbb{R}$ ist eine Folge konvergent,
 genau dann wenn sie eine Cauchy-Folge ist (Vollständigkeit).
-\item {\color{red} $\varepsilon$-Umgebung}: $U_\varepsilon(a)$ von $a$ ist
+ {\color{red} $\varepsilon$-Umgebung}: $U_\varepsilon(a)$ von $a$ ist
 definiert durch
 \[
 U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ |x - a| < \varepsilon \}.
 \] 
-\end{itemize}
+
 
 inSAGE
 
@@ -3188,43 +3201,43 @@ limit(expr(x), x = oo, dir='above')
 berechnet werden. Dabei ist $expr(x)$ ein Ausdruck.
 
 \textbf{Beispiele:}
-\begin{itemize}
- \item $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
+
+  $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
 \begin{sagein}
 _=var('n');limit(1/(n+1),n=oo)
 \end{sagein}
 \begin{sage}
   0
 \end{sage}
-\item $d_n:=\left( \frac{n+2}{n+1} \right)^{n+1} => \frac{2^1}{1^1},\frac{3^2}{2^2}, \frac{4^3}{3^3},...$ (konvergent)
+ $d_n:=\left( \frac{n+2}{n+1} \right)^{n+1} => \frac{2^1}{1^1},\frac{3^2}{2^2}, \frac{4^3}{3^3},...$ (konvergent)
 \begin{sagein}
 limit(((n+2)/(n+1))^(n+1),n=oo)
 \end{sagein}
 \begin{sage}
   e
 \end{sage}
-\item $e_n:=(-1)^n => 1,-1,1,-1,...$ (divergent)
+ $e_n:=(-1)^n => 1,-1,1,-1,...$ (divergent)
 \begin{sagein}
 limit((-1)^n,n=oo)
 \end{sagein}
 \begin{sage}
   ind
 \end{sage}
-\item $c_n:=2^n => 1,2,4,8,\ldots$ (divergent)
+ $c_n:=2^n => 1,2,4,8,\ldots$ (divergent)
 \begin{sagein}
 limit(2^n,n=oo)
 \end{sagein}
 \begin{sage}
   +Infinity
 \end{sage}
-\item  $b_n:= 2^{-n} => 1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$ (konvergent)
+  $b_n:= 2^{-n} => 1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$ (konvergent)
 \begin{sagein}
 limit(2^(-n),n=oo)
 \end{sagein}
 \begin{sage}
   1/1048576
 \end{sage}
-\end{itemize}
+
 
 VIS
 
@@ -3239,15 +3252,15 @@ point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
 
 KONV KRIT
 
-\begin{itemize}
-\item Jede monotone, beschränkte Folge konvergiert.
-\item Konvergenz bei Addition: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
+
+ Jede monotone, beschränkte Folge konvergiert.
+ Konvergenz bei Addition: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
                    Folge $( \alpha a_n+\beta b_n)_n$ konvergent mit
                    dem Grenzwert
  \[ \lim_{n \rightarrow \infty} ( \alpha a_n + \beta b_n)= \alpha
                    \lim_{n \rightarrow \infty} a_n + \beta \lim_{n
                    \rightarrow \infty} b_n .\]
-\item Konvergenz bei Multiplikation: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
+ Konvergenz bei Multiplikation: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
                    Folge $(a_n b_n)_n$ konvergent mit
                    dem Grenzwert
  \[
@@ -3255,25 +3268,25 @@ KONV KRIT
                    (\lim_{n \rightarrow \infty} a_n) \cdot  (\lim_{n
                    \rightarrow \infty} b_n).
  \]
-\item Bemerkung: Weglassen oder Hinzufügen endlich vieler Glieder verändert das
+ Bemerkung: Weglassen oder Hinzufügen endlich vieler Glieder verändert das
                    Konvergenzverhalten nicht.
-\end{itemize}
+
 
 SÄTZE
 
-\begin{itemize}
-\item \emph{(Bolzano-Weierstrass)}: Jede beschränkte Folge besitzt (mindestens) eine
+
+ \emph{(Bolzano-Weierstrass)}: Jede beschränkte Folge besitzt (mindestens) eine
 konvergente Teilfolge.
-\item Jede Teilfolge einer konvergenten Folge konvergiert gegen den
+ Jede Teilfolge einer konvergenten Folge konvergiert gegen den
 Grenzwert der ursprünglichen Folge.
-\item Jede konvergente Folge ist beschränkt, d.h. es gibt ein $K>0$,
+ Jede konvergente Folge ist beschränkt, d.h. es gibt ein $K>0$,
 so dass $|a_n|\leq K$ gilt für alle $n \in \mathbb{N}$.
-\item \emph{Zwischenfolge}: Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
+ \emph{Zwischenfolge}: Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
 \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n$. Dann gilt
 für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 \mathbb{N}$, dass sie konvergiert mit  $\lim_{n
 \rightarrow \infty} c_n = \lim_{n \rightarrow \infty} b_n$.
-\end{itemize}
+
 
 REK
 
@@ -3310,13 +3323,13 @@ Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder
 
 BEMERKUNGEN
 
-\begin{itemize}
-\item  Reihen sind eine spezielle Art von Folgen.
-\item Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.
-\item Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
+
+  Reihen sind eine spezielle Art von Folgen.
+ Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.
+ Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
 bleiben Konvergenz und Divergenz unberührt. I.A. wird sich aber der
 Grenzwert ändern.
-\end{itemize}
+
 
 inSAGE
 
@@ -3325,16 +3338,16 @@ sum(<f>,<i>,<a>,<b>)
 \end{sagein}
 Gesucht: geschlossene Darstellung der Summe $\sum_{i=a}^b f(i)$ mit $a,b \in \mathbb{Z}$ ganze
 Zahlen (auch unendlich (\isage{infinity/oo}), \isage{f} Ausdruck in $i$.
-\begin{itemize}
-\item Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
+
+ Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
 unterschiedliches Konvergenzverhalten.
 %geometrische Reihe z.b.
-\end{itemize}
+
 
 BEISPIELE
 
-\begin{itemize}
-\item \emph{geometrische Reihe}: $\sum_{n=0}^\infty x^n$. Die
+
+ \emph{geometrische Reihe}: $\sum_{n=0}^\infty x^n$. Die
 Partialsummen lauten
 \[ s_n=1+x+x^2+\ldots + x^n = \left \{ \begin{array}{ll}
 n+1, & \mbox{ falls } x=1\\
@@ -3356,7 +3369,7 @@ x = 1/2; sum(x^k,k,0,oo)
 \begin{sage}
   2
 \end{sage}
-\item Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
+ Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
 $\pi^2/6$.
 \begin{sagein}
 _=var('k');sum(1/k^2,k,1,oo)
@@ -3364,7 +3377,7 @@ _=var('k');sum(1/k^2,k,1,oo)
 \begin{sage}
 1/6*pi^2
 \end{sage}
-\item Die \emph{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
+ Die \emph{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
 \frac{(-1)^{n+1}}{n}$ konvergiert.
 \begin{sagein}
 sum((-1)^(k+1)/k,k,1,oo)
@@ -3372,7 +3385,7 @@ sum((-1)^(k+1)/k,k,1,oo)
 \begin{sage}
   log(2)
 \end{sage}
-\item Die \emph{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
+ Die \emph{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
  divergiert.
 \begin{sagein}
 sum(1/k,k,1,oo)
@@ -3380,12 +3393,12 @@ sum(1/k,k,1,oo)
 \begin{sage}
 ValueError: Sum is divergent
 \end{sage}
-\end{itemize}
+
 
 PARTIALSUMMEN
 
-\begin{itemize}
-\item Definieren der Partialsumme
+
+ Definieren der Partialsumme
 \begin{sagein}
 _=var('x,n,k')
 s = sum(x^k,k,0,n); s
@@ -3395,7 +3408,7 @@ s = sum(x^k,k,0,n); s
 % (x^(n + 1) - 1)/(x - 1)
 % \end{sage}
 
-\item Die ersten $5$ Glieder der Partialsumme
+ Die ersten $5$ Glieder der Partialsumme
 \begin{sagein}
 assume(x<>1); [s(n=m) for m in [1..6]]
 \end{sagein}
@@ -3404,7 +3417,7 @@ assume(x<>1); [s(n=m) for m in [1..6]]
 % [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
 % 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
 % \end{sage} 
-\item Bestimmen des Grenzwertes der Folge der Partialsummen
+ Bestimmen des Grenzwertes der Folge der Partialsummen
 \begin{sagein}
 forget();assume(abs(x)<1);limit(s,n=oo)
 \end{sagein}
@@ -3417,7 +3430,7 @@ forget();assume(x>1);limit(s,n=oo)
 \begin{sage}
 +Infinity
 \end{sage}
- \end{itemize}
+ 
 
 assume()
 
@@ -3437,24 +3450,24 @@ Widersprüchlich erhält man eine entsprechende Meldung.
 
 BEMERKUNGEN
 
-\begin{itemize}
-\item Umformungen oder Vereinfachungen für symbolische Bezeichner
+
+ Umformungen oder Vereinfachungen für symbolische Bezeichner
 werden i.A. nur dann durchgeführt,
 wenn sie für alle komplexen Zahlen gelten. Hier kann ein Einschränken
 des Definitionsbereichs helfen.
-\item Mittels 
+ Mittels 
 \begin{sagein}
 forget(x>a)
 \end{sagein}
 wird die Annahme \isage{x>a} gelöscht.
-\item Durch 
+ Durch 
 \begin{sagein}
 assumptions() 
 \end{sagein}
 können alle Annahmen ausgegeben werden.
-%\item Durch den speziellen Bezeichner \isage{Global} können Annahmen
+% Durch den speziellen Bezeichner \isage{Global} können Annahmen
 %für alle Bezeichner gesteuert werden. 
-\end{itemize}
+
 
 BEISPIELE
 
@@ -3524,22 +3537,22 @@ Annahme & Erklärung\\
 
 KONV KRIT
 
-\begin{itemize}
-\item \emph{Cauchykriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
+
+ \emph{Cauchykriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
                   genau dann, wenn es zu jedem $\varepsilon>0$ ein $n_0
                   \in \mathbb{N}$ gibt, so dass für alle $m,n \geq n_0$
                   gilt $| \sum_{k=m}^n a_k|<\varepsilon$.
-\item \emph{Notwendiges Kriterium:} Konvergiert eine Reihe, so bilden ihre Glieder eine Nullfolge. Dieses Kriterium ist \emph{nicht} hinreichend!
-\item \emph{Verdichtungskriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ mit
+ \emph{Notwendiges Kriterium:} Konvergiert eine Reihe, so bilden ihre Glieder eine Nullfolge. Dieses Kriterium ist \emph{nicht} hinreichend!
+ \emph{Verdichtungskriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ mit
                   einer Folge nichtnegativer, monoton fallender
                   Glieder konvergiert genau dann, wenn die Reihe
                   $\sum_{n=1}^\infty 2^n a_{2^n}$ konvergiert.
-\end{itemize}
+
 Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$
-\begin{itemize}
- \item {\color{red} Minorante}: $\sum_{n=1}^\infty c_n$
- \item {\color{red} Majorante}: $\sum_{n=1}^\infty b_n$ 
-\end{itemize}
+
+  {\color{red} Minorante}: $\sum_{n=1}^\infty c_n$
+  {\color{red} Majorante}: $\sum_{n=1}^\infty b_n$ 
+
 Die Reihe $\sum_{n=1}^\infty a_n$ \emph{konvergiert}, wenn...
 \begin{description}
 \item[Majorantenkriterium:] eine konvergente Majorante besitzt (nichtnegative Glieder).
@@ -3560,8 +3573,8 @@ Die Reihe $\sum_{n=1}^\infty a_n$ \emph{divergiert}, wenn...
 
 BEISPIELE
 
-\begin{itemize}
-\item Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
+
+ Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
 \begin{sagein}
 f(n) = n^4*exp(-n*n)
 g(n) = f(n+1)/f(n)
@@ -3570,7 +3583,7 @@ limit(g(n),n=oo)
 \begin{sage}
   0
 \end{sage}
-\item Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
+ Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
 \begin{sagein}
 f(n) = 1/(n*(log(n)^2))
 g(n) = 2^n*f(2^n)
@@ -3580,7 +3593,7 @@ limit(h(n+1)/h(n),n=oo)
 \begin{sage}
   1/2
  \end{sage}
-\end{itemize}
+
 
 ABS BED KONV
 
@@ -3588,10 +3601,10 @@ ABS BED KONV
 genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert. 
 
 {\color{red} bedingt konvergent}: konvergent, aber nicht absolut konvergent.
-\begin{itemize}
-\item Absolut konvergente Reihen können beliebig umgeordnet werden.
-\item Dies ist i.d.R. bei nicht absolut konvergenten Reihen falsch!
-\end{itemize}
+
+ Absolut konvergente Reihen können beliebig umgeordnet werden.
+ Dies ist i.d.R. bei nicht absolut konvergenten Reihen falsch!
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Potenzreihen}
@@ -3609,17 +3622,17 @@ Ist $a_n \neq 0$ für alle $n > n_0$:
 \]
 
 Konvergenzverhalten:
-\begin{itemize}
- \item konvergiert absolut für $|x -x_0|< \rho$.
- \item divergiert für $|x-x_0|>\rho$.
-\item Die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ muss bei
+
+  konvergiert absolut für $|x -x_0|< \rho$.
+  divergiert für $|x-x_0|>\rho$.
+ Die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ muss bei
 jeder Reihe individuell geprüft werden.   
-\end{itemize}
+
 
 BEISPIELE
 
-\begin{itemize}
-\item $\sum_{n=1}^\infty \frac{x^n}{n!}$
+
+ $\sum_{n=1}^\infty \frac{x^n}{n!}$
 \begin{sagein}
 f(n) = 1/factorial(n)
 rho = limit(expand(f(n)/f(n+1)),n=oo); rho
@@ -3628,7 +3641,7 @@ rho = limit(expand(f(n)/f(n+1)),n=oo); rho
 +Infinity
 \end{sage}
 Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$. 
-\item $\sum_{n=0}^\infty n^s x^n$, $s>0$
+ $\sum_{n=0}^\infty n^s x^n$, $s>0$
 \begin{sagein}
 _=var('s');f(n)= n^s; assume(s>0)
 limit(expand(f(n)^(1/n)),n=infinity)
@@ -3637,7 +3650,7 @@ limit(expand(f(n)^(1/n)),n=infinity)
   1
 \end{sage}
 Der Konvergenzradius ist $1$.
-\end{itemize}
+
 
 EXP
 
@@ -3654,17 +3667,17 @@ plot(exp,(-5,5))
 
 EIG EXP
 
-\begin{itemize}
-\item Es gilt $\exp(x+y)=\exp(x) \cdot \exp(y)$.
-\item Es gilt $\exp(x)=\lim_{n \rightarrow \infty} (1+\frac{x}{n})^n$.
-\item Es gilt $\exp(x)=1/\exp(-x)$.
-\item Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
+
+ Es gilt $\exp(x+y)=\exp(x) \cdot \exp(y)$.
+ Es gilt $\exp(x)=\lim_{n \rightarrow \infty} (1+\frac{x}{n})^n$.
+ Es gilt $\exp(x)=1/\exp(-x)$.
+ Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
 Logarithmusfunktion $\log (x)$. Es gilt
 \[ \exp(\log(x))=x, \ x >0, \quad \log ( \exp ( x ))=x, \ x \in \mathbb{R}.\] 
-\item Die {\color{red} allgemeine Potenz} ist durch $a^x:=\exp( x \log a)$,
+ Die {\color{red} allgemeine Potenz} ist durch $a^x:=\exp( x \log a)$,
 $a\in \mathbb{R}_+$
 definiert. 
-\end{itemize}
+
 
 inSAGE
 
@@ -3715,23 +3728,23 @@ p += text('-- $\cos(x)$', (10, 0.85)); p.show()
 
 EIG TRIG
 
-\begin{itemize}
-\item \emph{Additionstheoreme}:
+
+ \emph{Additionstheoreme}:
 \begin{eqnarray*}
 \sin(x+y) & = &\sin x \cos y+ \cos x \sin y \\
 \cos(x+y) & = &\cos x \cos y - \sin x \sin y .
 \end{eqnarray*} 
-\item 
+ 
 \[\sin^2x +\cos^2x=1.\]
-\item 
+ 
 \begin{eqnarray*}
 \sin(x+\pi/2)&=&\cos(x)\\
  \cos(x+\pi/2)&=&-\sin(x).
 \end{eqnarray*} 
-\item Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
+ Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
 von $\cos(x)$ als $\pi/2$ definieren.
 
-\end{itemize}
+
 
 inSAGE
 
@@ -3750,9 +3763,9 @@ cos(x)
 
 MORE EIG
 
-\begin{itemize}
-%\item Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
-\item Umkehrfunktionen: $\arcsin$ bei Sinus und $\arccos$ bei Cosinus.
+
+% Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
+ Umkehrfunktionen: $\arcsin$ bei Sinus und $\arccos$ bei Cosinus.
 Plotten: 
 \begin{sagein}
 p = plot(arcsin,-1,1,color='red')
@@ -3763,7 +3776,7 @@ p += text('-- arccos(x)', (-0.7, 0.75)); p.show()
 \begin{center}
 \includegraphics[width=6.5cm]{arcsinarccos.pdf}
 \end{center}
-\item Der {\color{red} Tangens} ist definiert durch
+ Der {\color{red} Tangens} ist definiert durch
 $\tan(x) :=\frac{\sin(x)}{\cos(x)}$.
 \begin{sagein}
 plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
@@ -3771,7 +3784,7 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 \begin{center}
 \includegraphics[width=7cm]{tan.pdf}
 \end{center}
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Vertiefung Schleifen}
@@ -3799,13 +3812,13 @@ x
 \end{sage}
 %achtung: rundungsfehler, daher kommt 10.1 raus.. selbst einmal drauf reingefallen..
 
-% \begin{itemize}
-% \item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
+% 
+%  Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
 %   $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
-% \item Ergebnisse, die in jedem Schleifenschritt berechnet werden,
+%  Ergebnisse, die in jedem Schleifenschritt berechnet werden,
 %   werden \alert{nicht} auf dem Bildschirm ausgegeben. 
-% \item Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
-% \end{itemize}
+%  Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
+% 
 % \end{frame}
 
 % \begin{frame}[fragile]{Schleifen III}
@@ -3833,13 +3846,13 @@ x
 
 ALT
 
-\begin{itemize}
-\item Schleifen abwärts zählen
+
+ Schleifen abwärts zählen
 \begin{sagein}
 for j in reversed([2,4]):
    print("{0}, {1}").format(x,x^j) 
 \end{sagein}
-\item Schrittweite modifizieren
+ Schrittweite modifizieren
 \begin{sagein}
 for j in srange(3,10,2.6):
     print(x,x^j) 
@@ -3850,7 +3863,7 @@ for j in srange(3,10,2.6):
 (x, x^8.20000000000000)
 \end{sage}
 
-\end{itemize}
+
 
 FP
 
@@ -3905,28 +3918,28 @@ FKT
 (reelle) {\color{red} Funktion}:  Abbildung
 \[f: \ D \subset \mathbb{R} \ \rightarrow \ \mathbb{R}.\]
 die jedem Element aus $D$ eindeutig genau ein Element aus $\mathbb{R}$ zuordnet.
-\begin{itemize}
- \item {\color{red} Definitionsbereich}: $D \subset \mathbb{R}$, $D \neq \emptyset$.
-\item \emph{Wertebereich}: Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
+
+  {\color{red} Definitionsbereich}: $D \subset \mathbb{R}$, $D \neq \emptyset$.
+ \emph{Wertebereich}: Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
 Funktion vorkommen.
-\item {\color{red} Graph} einer Funktion: ist die Menge aller Punkte 
+ {\color{red} Graph} einer Funktion: ist die Menge aller Punkte 
 \[ \{ (x,f(x)) \in \mathbb{R}^2 \;|\; x \in D\}. \]
-\end{itemize}
+
 
 VERK
 
 Seien $f$ und $g$ Funktionen mit einem gemeinsamen Definitionsbereich. Dann
 definiert man:
-\begin{itemize}
-\item Summe: $(f+g)(x):=f(x)+g(x)$
-\item Differenz: $(f-g)(x):=f(x)-g(x)$
-\item Produkt: $(f\cdot g)(x):=f(x) \cdot g(x)$
-\item Quotient: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
+
+ Summe: $(f+g)(x):=f(x)+g(x)$
+ Differenz: $(f-g)(x):=f(x)-g(x)$
+ Produkt: $(f\cdot g)(x):=f(x) \cdot g(x)$
+ Quotient: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
 0$ für alle $x \in D$ 
-\item Komposition: Mit $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
+ Komposition: Mit $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
 mit $f(D_f) \subset D_g$ 
 \[(g \circ f) (x):=g(f(x)).\] 
-\end{itemize}
+
 
 MEHRDIM
 
@@ -4060,11 +4073,11 @@ Die Aussage überträgt sich sinngemäß auf $a=\pm \infty$.
 
 BEM
 
-\begin{itemize}
-\item \emph{Folgenkriterium}: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
+
+ \emph{Folgenkriterium}: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
 genau dann, wenn für jede Folge $a_n \in D$ mit $a_n \neq a$ und $a_n \rightarrow a$
 gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
-\item Es gelten die üblichen Rechenregeln:
+ Es gelten die üblichen Rechenregeln:
 \begin{eqnarray*}
 \lim_{x \rightarrow a}(f(x)+g(x)) &=&\lim_{x \rightarrow a} f(x) +
 \lim_{x \rightarrow a} g(x) \\
@@ -4073,10 +4086,10 @@ f(x) \cdot \lim_{x \rightarrow a} g(x)
 \end{eqnarray*}
 wenn $\lim_{x \rightarrow a} f(x)$ und $\lim_{x \rightarrow a}g(x)$
 existieren. 
-\item Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
+ Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
 g(x)=c$ bei entsprechenden Definitionsgebieten für $f$ und $g$, so
 folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
-\end{itemize}
+
 
 limit()
 
@@ -4086,16 +4099,16 @@ limit(expr, x = a, dir=None, taylor=False)
 \end{sagein}
 Hierdurch wird der (beidseitige) Grenzwert eines Ausdrucks mit Unbekannten $x$ an
 der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (\isage{infinity} oder \isage{oo}).\\
-\begin{itemize}
- \item \isage{dir='minus'}: linksseitige Limes. 
-\item \isage{dir='plus'}: rechtsseitige Limes.
-\item \isage{taylor=True}: es wird eine Taylorentwicklung benutzt. 
-\end{itemize}
+
+  \isage{dir='minus'}: linksseitige Limes. 
+ \isage{dir='plus'}: rechtsseitige Limes.
+ \isage{taylor=True}: es wird eine Taylorentwicklung benutzt. 
+
 
 inSAGE
 
-\begin{itemize}
-\item Grenzwert $\lim_{x \rightarrow 0}
+
+ Grenzwert $\lim_{x \rightarrow 0}
 \frac{\sin(x)}{x}$
 \begin{sagein}
 limit(sin(x)/x,x=0)
@@ -4103,7 +4116,7 @@ limit(sin(x)/x,x=0)
 \begin{sage}
   1
 \end{sage}
-\item Grenzwert $\lim_{x \rightarrow \infty}
+ Grenzwert $\lim_{x \rightarrow \infty}
 \frac{\log(x)}{x}$
 \begin{sagein}
 limit(log(x)/x,x=infinity)
@@ -4111,14 +4124,14 @@ limit(log(x)/x,x=infinity)
 \begin{sage}
   0
 \end{sage}
-\item Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
+ Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
 \begin{sagein}
 limit(x^(1/x),x=infinity)
 \end{sagein}
 \begin{sage}
   1
 \end{sage}
-\item Grenzwert $\lim_{x \rightarrow 0}
+ Grenzwert $\lim_{x \rightarrow 0}
 \sin(1/x)$
 \begin{sagein}
 limit(sin(1/x),x=0)
@@ -4127,7 +4140,7 @@ limit(sin(1/x),x=0)
   ind
 \end{sage}
 Der Grenzwert existiert nicht: \isage{ind} (indefinite aber beschränkt). 
-\item Grenzwert $\lim_{x \rightarrow 0} |x|' $
+ Grenzwert $\lim_{x \rightarrow 0} |x|' $
 \begin{sagein}
 limit(diff(abs(x),x),x=0),
 limit(diff(abs(x),x),x=0,dir='minus'),
@@ -4136,7 +4149,7 @@ limit(diff(abs(x),x),x=0,dir='plus')
 \begin{sage}
   (und, -1, 1)
 \end{sage}
-\end{itemize}
+
 
 STET
 
@@ -4151,25 +4164,25 @@ und $\frac{f}{g}$ (falls $g(x_0) \neq 0$).
 
 SÄTZE
 
-\begin{itemize}
-\item Sei $f$ auf einem offenen Intervall $I$ definiert. $f$ ist an
+
+ Sei $f$ auf einem offenen Intervall $I$ definiert. $f$ ist an
 $x_0 \in I$ genau dann stetig, wenn gilt
 \[ \lim_{x \rightarrow x_0} f(x) = f(x_0). \]
-\item Für $f:I \rightarrow \mathbb{R}$ und $g:J \rightarrow
+ Für $f:I \rightarrow \mathbb{R}$ und $g:J \rightarrow
 \mathbb{R}$ gelte $f(I) \subset J$ und es seien $f$ an $x_0 \in I$ und
 $g$ an $y_0=f(x_0)$ stetig. Dann ist $g \circ f$ an $x_0$ stetig.
-\item Eine Funktion $f: D \rightarrow \mathbb{R}$ ist {\color{red}
+ Eine Funktion $f: D \rightarrow \mathbb{R}$ ist {\color{red}
 linksstetig} bzw. {\color{red} rechtsstetig}, wenn $f|_{D\cap (-\infty,x_0)}$
 bzw  $f|_{D\cap (x_0,\infty)}$ an $x_0$ stetig ist. Eine Funktion $f$
 ist dann an $x_0$ stetig, genau dann wenn $f$ links- und rechtsstetig
 an $x_0$ ist.
-\item Eine stetige Funktion auf einem abgeschlossenen Intervall $I=[a,b]$
+ Eine stetige Funktion auf einem abgeschlossenen Intervall $I=[a,b]$
 besitzt ein Maximum und ein Minimum.
-\item Eine stetige Funktion $f$ auf einem abgeschlossenen  Intervall
+ Eine stetige Funktion $f$ auf einem abgeschlossenen  Intervall
 $[a,b]$ nimmt in $I$ jeden Wert zwischen $f(a)$ und $f(b)$ an.
-\item Potenzreihen $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$ sind stetig
+ Potenzreihen $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$ sind stetig
 innerhalb ihres Konvergenzintervalls.
-\end{itemize}
+
 
 GLM STET
 
@@ -4177,12 +4190,12 @@ $f: D \rightarrow \mathbb{R}$ heißt {\color{red} gleichmäßig stetig auf $D$},
 wenn es zu jedem $\varepsilon >0$ ein $\delta>0$ gibt, so dass für alle
 Paare $x,x_0 \in D$ mit $|x - x_0|< \delta$ gilt
 \[ | f(x)-f(x_0)| < \varepsilon. \]
-\begin{itemize}
-\item Die Exponentialfunktion ist auf jedem kompakten Intervall
+
+ Die Exponentialfunktion ist auf jedem kompakten Intervall
 gleichmäßig stetig (aber nicht auf ganz $\mathbb{R}$). 
-\item $\log:(0,1) \rightarrow \mathbb{R}$ ist stetig aber nicht
+ $\log:(0,1) \rightarrow \mathbb{R}$ ist stetig aber nicht
 gleichmäßig stetig.
-\end{itemize}
+
 
 inSAGE
 
@@ -4208,26 +4221,26 @@ FKT FOLG
 
 Seien $f_n: D \ \rightarrow \ \mathbb{R}$, $n \in
 \mathbb{N}$  rellwertige Funktionen auf  $D \subset \mathbb{R}$.
-\begin{itemize}
-\item $(f_n)_n$ heißt {\color{red} Funktionenfolge.}
-\item Ist für jedes $x\in D$ die Folge $(f_n(x))_n$ konvergent, so wird durch 
+
+ $(f_n)_n$ heißt {\color{red} Funktionenfolge.}
+ Ist für jedes $x\in D$ die Folge $(f_n(x))_n$ konvergent, so wird durch 
 \[ f(x):= \lim_{n \rightarrow \infty} f_n(x), \quad x \in D \]
 die {\color{red} Grenzfunktion} $f:D \ \rightarrow \ \mathbb{R}$ definiert.
-\item Man sagt $f_n$ strebe {\color{red} punktweise} auf $D$ gegen $f$.  
-\item Durch $\sum_{i=1}^\infty f_i$ definierte {\color{red} Funktionenreihen}
+ Man sagt $f_n$ strebe {\color{red} punktweise} auf $D$ gegen $f$.  
+ Durch $\sum_{i=1}^\infty f_i$ definierte {\color{red} Funktionenreihen}
 sind spezielle Funktionenfolgen.
-\end{itemize}  
+  
 
 GRENZÜ
 
-\begin{itemize}
-\item $x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.
-\item $\left( 1+ \frac{x}{n} \right)^n \rightarrow \exp(x)$ auf $\mathbb{R}$.
-\item Potenzreihen konvergieren innerhalb ihres Konvergenzradius.
-\item {\color{red} Warnung} zum Vertauschen der Grenzprozesse für $x \in (0,1)$:
+
+ $x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.
+ $\left( 1+ \frac{x}{n} \right)^n \rightarrow \exp(x)$ auf $\mathbb{R}$.
+ Potenzreihen konvergieren innerhalb ihres Konvergenzradius.
+ {\color{red} Warnung} zum Vertauschen der Grenzprozesse für $x \in (0,1)$:
 \[ \lim_{x \rightarrow 1} \lim_{n \rightarrow \infty} x^n =0 \neq 1 = 
   \lim_{n \rightarrow \infty} \lim_{x \rightarrow 1} x^n.\]  
-\end{itemize}
+
 
 GLM KONV
 
@@ -4247,10 +4260,10 @@ $x \in D$ und $n\geq n_0$ gilt:
 
 BEM
 
-\begin{itemize}
-\item Die Grenzfunktion einer gleichmäßig konvergenten Folge stetiger
+
+ Die Grenzfunktion einer gleichmäßig konvergenten Folge stetiger
 Funktionen ist stetig.
-\item \emph{Funktionenreihen}: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
+ \emph{Funktionenreihen}: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
 \[
  s := \sum_{n=1}^\infty f_n
 \]
@@ -4262,41 +4275,41 @@ Alle Aussagen übertragen sich analog; ebenso die Aussagen über die Folge der P
 \]
  
  
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grafik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{itemize}
 
-\item Grafiken werden im Notebook integriert.
-\item 3D-Grafiken können interaktiv bearbeitet werden.
-\item Grafikbefehle erzeugen {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven.
-\item Darstellung: \isage{<grafikobjekt>.show()} (oder letzte Zeile) stellt die {\color{red} grafische
+
+ Grafiken werden im Notebook integriert.
+ 3D-Grafiken können interaktiv bearbeitet werden.
+ Grafikbefehle erzeugen {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven.
+ Darstellung: \isage{<grafikobjekt>.show()} (oder letzte Zeile) stellt die {\color{red} grafische
 Szene} dar
-\item Speichern:
-\begin{itemize}
-\item[2D] \isage{<grafikobjekt>.save('filename.extension')} speichert im Format \isage{<extension>}
-\item[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
-\end{itemize}
-\item es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
-\end{itemize}
+ Speichern:
+
+[2D] \isage{<grafikobjekt>.save('filename.extension')} speichert im Format \isage{<extension>}
+[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
+
+ es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
+
 
 OPT
 OBJEKTE
 
 \begin{tabular}{lp{8cm}}
-\isage{linestyle}  & Darstellung von Linien\newline
-           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)\newline
+\isage{linestyle}  & Darstellung von Linien
+           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)
                 {\color{blue} \isage{linestyle = '.'}}\\
-\isage{thickness}  & Linienstärke in mm\newline
+\isage{thickness}  & Linienstärke in mm
               {\color{blue} \isage{thickness = 4}}\\
-\isage{color}      & Zuweisung einer Farbe\newline
+\isage{color}      & Zuweisung einer Farbe
               {\color{blue} \isage{color='red'}}\\
-\isage{plot_points}        & Anzahl Stützstellen\newline
+\isage{plot_points}        & Anzahl Stützstellen
               {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
-\isage{alpha/opacity}  & Transparenzfaktor\newline
+\isage{alpha/opacity}  & Transparenzfaktor
      {\color{blue} \isage{alpha = 0.8}}\\
 \end{tabular}
 
@@ -4305,13 +4318,13 @@ OBJEKTE
 SZENEN
 
 \begin{tabular}{lp{8cm}}
-\isage{aspect_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. \newline
+\isage{aspect_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. 
               {\color{blue} \isage{aspect_ratio = 2}}\\
-\isage{figsize}    & Grösse des Bildes \newline
+\isage{figsize}    & Grösse des Bildes 
                   {\color{blue} \isage{figsize = [width, height]}}\\          
-\isage{axes_labels} &  Tuple oder Liste der Achsenbeschriftungen \newline
+\isage{axes_labels} &  Tuple oder Liste der Achsenbeschriftungen 
 {\color{blue} \isage{axes_labels = ('$x$','$y$')}}\\
-\isage{gridlines} & Gitterlinien\newline
+\isage{gridlines} & Gitterlinien
               {\color{blue} \isage{gridlines = True}}
 \end{tabular}
 
@@ -4325,10 +4338,10 @@ plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 \end{sagein}
 auf dem Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$. 
 
-\begin{itemize}
-\item Die Angabe des Intervalls ist optional. 
-\item \isage{plot.options} gibt einem die Default-Optionen aus (2D)
-\end{itemize}
+
+ Die Angabe des Intervalls ist optional. 
+ \isage{plot.options} gibt einem die Default-Optionen aus (2D)
+
 
 BSP
 
@@ -4426,7 +4439,7 @@ Befehl:
 \begin{sagein}
 parametric_plot([x(t1,t2), y(t1,t2), z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ...)
 \end{sagein}
-% \item Beispielsweise lassen sich Graphen von Funktionen $f:[a
+%  Beispielsweise lassen sich Graphen von Funktionen $f:[a
 %    ,b]\times [c,d]
 %    \ \rightarrow \ \mathbb{R}$ als Flächen
 % \[ x=t_1, \ y=t_2, \ z=f(t_1,t_2) \]
@@ -4464,10 +4477,10 @@ Landkarte):
 contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
 \end{sagein}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
-\begin{itemize}
- \item \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
- \item \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
-\end{itemize}
+
+  \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
+  \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
+
 
 BSP
 
@@ -4536,7 +4549,7 @@ a.show(iterations=1)
 \begin{center}
 % \animategraphics[height=4cm]{2}{anime_}{0}{20}
 \end{center}
-% \item Dreidimensionales Beispiel
+%  Dreidimensionales Beispiel
 % \begin{sagein}
 % plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
 %    x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
@@ -4558,55 +4571,55 @@ von $f$ an $x_0$ genannt und mit $f\,'(x_0)=f^{\,(1)} (x_0)$ bezeichnet.
 
 BEM
 
-\begin{itemize}
-\item $f$ {\color{red} differenzierbar} (auf $D$): Wenn $f$ an jeder
+
+ $f$ {\color{red} differenzierbar} (auf $D$): Wenn $f$ an jeder
 Stelle von $D$ differenzierbar ist. 
-\item {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
-\item Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
+ {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
+ Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
 genau dann differenzierbar, wenn es eine lineare Abbildung
 $T:\mathbb{R} \rightarrow \mathbb{R}$ gibt, so dass 
 \[ f(x_0+h)=f(x_0) +Th + R(h)h, \quad \lim_{h \rightarrow 0} R(h)=0 \]
 gilt ($T$ und $R$ hängen i.A. von $x_0$ ab). 
-\item $f$ an $x_0 \in D$ differenzierbar => stetig.
-\end{itemize}
+ $f$ an $x_0 \in D$ differenzierbar => stetig.
+
 
 BSP
 
-\begin{itemize}
-\item $(x^n)'=n x^{n-1}$
-\item $(e^x)'=e^x$
-\item $(\log(x))'= \frac{1}{x}$, $x>0$
-\item $(\sin(x))'=\cos(x)$
-\item $(\cos(x))'=-\sin(x)$
-\end{itemize}
+
+ $(x^n)'=n x^{n-1}$
+ $(e^x)'=e^x$
+ $(\log(x))'= \frac{1}{x}$, $x>0$
+ $(\sin(x))'=\cos(x)$
+ $(\cos(x))'=-\sin(x)$
+
 
 LANDAU
 
 Sei $f$ eine Funktion, die auf einem Intervall definiert ist, das $0$
 enthält. 
-\begin{itemize}
- \item {\color{red} $f(x)=O(x^n)$}: Es gibt eine Kontante $C >0$, so dass
+
+  {\color{red} $f(x)=O(x^n)$}: Es gibt eine Kontante $C >0$, so dass
 \[  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n} \leq C\]
 ($f(x)$ geht gegen $0$ mindestens so schnell wie $x^n$)
-\item {\color{red} $f(x)=o(x^n)$}: 
+ {\color{red} $f(x)=o(x^n)$}: 
 \[  
  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n}=0
 \]
 ($f(x)$ geht schneller gegen $0$ als $x^n$)
-\end{itemize}
+
 
 HÖH ABL
 
-\begin{itemize}
-\item \emph{$f$ $n$-mal differenzierbar, $f^{\,(n)}$}: Ist $f:D
+
+ \emph{$f$ $n$-mal differenzierbar, $f^{\,(n)}$}: Ist $f:D
 \rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
 $(n-1)$-ten Ableitung $f^{\,(n-1)}$ und ist $f^{\,(n-1)}$ wiederum
 differenzierbar.
-\item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
+ Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
 stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
-\item $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
+ $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
 differenzierbar ist für alle $n\in \mathbb{N}$. 
-\end{itemize}
+
 
 inSAGE
 
@@ -4671,23 +4684,23 @@ REGELN
 
 Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
 $x_0 \in D$. Dann gilt
-\begin{itemize}
-\item \emph{Summe}: $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$
-\item \emph{Produktregel}: \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
-\item \emph{Quotientenregel}: \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
+
+ \emph{Summe}: $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$
+ \emph{Produktregel}: \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
+ \emph{Quotientenregel}: \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
 g'(x_0)}{(g(x_0))^2}\]
 falls $g(x_0) \neq 0$ .
-\item \emph{Kettenregel}: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
+ \emph{Kettenregel}: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
 \rightarrow \mathbb{R}$ mit $f(D_f) \subset D_g$. Ferner seien $f$ an
 $x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
 \[ (g \circ f)(x_0) = g\,'(y_0) \cdot f\,'(x_0).  \]
-\item \emph{Leibnizsche Regel}:
+ \emph{Leibnizsche Regel}:
 \[
 (f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{\,(k)} g^{\,(n-k)}.
 \]
-\item \emph{Umkehrfunktion $f^{\,-1}$}:
+ \emph{Umkehrfunktion $f^{\,-1}$}:
 \[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
-\end{itemize}
+
 
 SÄTZE
 
@@ -4719,8 +4732,8 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 
 BSP
 
-\begin{itemize}
-\item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
+
+ Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
 \begin{sagein}
 var('a');f(x) = log(x); g(x) = x^a
 assume(a > 0)
@@ -4736,7 +4749,7 @@ limit(f(x)/g(x),x=oo)
 \begin{sage}
   0
 \end{sage}
-\item Bestimmung von $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$:
+ Bestimmung von $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$:
 \begin{sagein}
 f(x) = sin(x); g(x) = x 
 limit(f(x)/g(x), x=0)
@@ -4757,7 +4770,7 @@ limit(diff(f(x),x)/diff(g(x),x),x=0)
 \begin{sage}
 1
 \end{sage}
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Taylor}
@@ -4779,12 +4792,12 @@ gilt mit dem  {\color{red} Lagrangschen Restglied}
 REST
 
 Für das Restglied gibt es noch andere Darstellungen:
-\begin{itemize}
-\item Darstellung von \emph{Cauchy}
+
+ Darstellung von \emph{Cauchy}
 \[ R_n(x,x_0)= \frac{f^{\,(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
-\item \emph{Integraldarstellung}
+ \emph{Integraldarstellung}
 \[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{\,(n+1)}(t)}{n!}  (x-t)^n dt.\]
-\end{itemize}
+
 
 REIHE
 
@@ -4800,38 +4813,38 @@ Die Taylorreihe stellt die Funktion $f$, wenn das Restglied $R_n(x,x_0)$ für $n
 
 HIN BED
 
-\begin{itemize}
-\item Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
+
+ Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
 \[
 \delta:= \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{A_n}}>0
  \]
 mit $A_n=\sup_{x \in I}  \frac{|f^{\,(n)}(x)|}{n!}$ gilt.
-\item Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
+ Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
 I$, $n \in \mathbb{N}$, so läßt sich $f$ auf $I$ durch die Taylorreihe
 darstellen.
-\item Es gebe ein $M$ mit  $f^{\,(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
+ Es gebe ein $M$ mit  $f^{\,(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
 gilt die Taylorreihendarstellung für alle $x \in [a,b]$ mit
 $|x-x_0|<b-x$. 
-\end{itemize}
+
 
 BSP
 
-\begin{itemize}
-\item Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
+
+ Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
 \[
  f(x) = \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n 
  = \sum_{n=0}^k  \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n
 \]
-\item Für $f(x)=\exp(x)$ und $x_0 \in \mathbb{R}$ gilt 
+ Für $f(x)=\exp(x)$ und $x_0 \in \mathbb{R}$ gilt 
 \[ \exp(x)= \sum_{n=0}^\infty \frac{\exp(x_0)}{n!} (x-x_0)^n, \quad x
 \in \mathbb{R}.\]
-\item Für $f(x)=\log(x)$ und $x_0=1$ gilt
+ Für $f(x)=\log(x)$ und $x_0=1$ gilt
 \[ \log (x) = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}(x-1)^n, \quad 0 <
 x \leq 2.\]
-\item Für $f(x)= (1+x)^a$, $a\in \mathbb{R}$  und $x_0=0$ gilt
+ Für $f(x)= (1+x)^a$, $a\in \mathbb{R}$  und $x_0=0$ gilt
 \[ (1+x)^a= \sum_{n =0}^\infty \binom{a}{n}{x^n}, \quad -1 <
 x < 1. \]
-\end{itemize}
+
 
 VIS
 
@@ -4903,22 +4916,22 @@ taylor(sin(x),x,2,5)
 
 BEGRIFFE
 
-\begin{itemize}
-\item  Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
+
+  Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
                                  a_n=b$, so nennt man $Z=(a_0, \dots
                                  ,a_n)$ eine {\color{red} Zerlegung} von
                                  $[a,b]$.
-\item Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
+ Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
                                  Treppenfunktion}, wenn es eine
                                  Zerlegung $Z$ von $[a,b]$ gibt, so dass
                                  $\phi$ konstant ist auf jedem
                                  Teilintervall $(a_i,a_{i+1})$ von $Z$.
-\item Wir erklären das Integral einer Treppenfunktion $\phi$ durch
+ Wir erklären das Integral einer Treppenfunktion $\phi$ durch
 \[\int_Z \phi := \sum_{k=1}^n c_k (a_k -a_{k-1}).\]
 Dabei ist $Z$ die zugehörige Zerlegung und $c_k=\phi(x)$, $x\in
 (a_{k-1},a_k)$.  
-\item Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
-\end{itemize}
+ Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
+
 
 Für eine beschränkte Funktion $f[a,b]\rightarrow \mathbb{R}$
 heißt
@@ -4954,46 +4967,46 @@ bezeichnet.\\
 
 EIG
 
-\begin{itemize}
-\item Linearität
+
+ Linearität
 \[ \int_a^b (\alpha f + \beta g) dx = \alpha \int_a^b fdx + \beta
 \int_a^b g dx \]
-\item Monotonie
+ Monotonie
 \[  f \leq g \quad \Rightarrow \quad \int_a^b f dx \leq \int_a^b g
 dx.\]
-\item Ist $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
+ Ist $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
 $\max\{f,g\}$, $\min \{f,g \}$. 
-\end{itemize}
+
 
 SÄTZE
 
-\begin{itemize}
-\item {\color{red} Stammfunktion} $F$: Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
+
+ {\color{red} Stammfunktion} $F$: Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
 \[F(x)= \int_a^x f(t) dt, x \in I \] eine differenzierbare Funktion mit
 $F\,'(x)=f(x)$. 
-\item \emph{Unbestimmtes Integral}: alternative Notation für eine Stammfunktion $F$:  $\int f(x) dx$ 
-\item Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
+ \emph{Unbestimmtes Integral}: alternative Notation für eine Stammfunktion $F$:  $\int f(x) dx$ 
+ Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
 \[\int_a^b f(x)dx = f(\xi) (b-a)\]
-\end{itemize}
+
 
 inSAGE
 
-\begin{itemize}
- \item Bestimmte Integrale der Form $\int_a^b f(x) dx$
+
+  Bestimmte Integrale der Form $\int_a^b f(x) dx$
 \begin{sagein}
 integrate(f,x,a,b) 
 \end{sagein}
 Dabei ist \isage{f} ein Ausdruck.
-\item Unbestimmte Integrale:
+ Unbestimmte Integrale:
 \begin{sagein}
 integrate(f,x)
 \end{sagein}
-\item Numerische Approximationen:
+ Numerische Approximationen:
 \begin{sagein}
 numerical_integral(f,a,b) 
 \end{sagein}
 (benutzt die GSL-library).
-\end{itemize}
+
 
 BSP
 
@@ -5049,18 +5062,18 @@ uneigentlichen Integral}.
 
 FKT FOLG
 
-\begin{itemize}
-\item Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
+
+ Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
 $[a,b]$. Konvergiert $(f_n)_n$ gleichmäßig, so ist die Grenzfunktion
 integrierbar mit
 \[ \int_a^b \lim_{n \rightarrow \infty} f_n(x) dx = \lim_{n
 \rightarrow \infty} \int_a^b f_n(x) dx .\]
-\item Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
+ Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
 $[a,b]$. $(f\,'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
 \in [a,b]$ für den $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
 gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 \rightarrow \infty} f\,'_n(x)$.  
-\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{bessereUeberschriftenFinden...}
@@ -5069,15 +5082,15 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 
 STRINGS
 
-\begin{itemize}
-\item Zeichenketten (engl. {\color{red} strings}) sind eine geordnete
+
+ Zeichenketten (engl. {\color{red} strings}) sind eine geordnete
 Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
 Sonderzeichen,...
-\item Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
+ Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
 für die Ausgabe der Ergebnisse.
-\item Datentyp \isage{str}.
-\item eingeschlossen in Hochkommas oder Anführungszeichen.
-\end{itemize}
+ Datentyp \isage{str}.
+ eingeschlossen in Hochkommas oder Anführungszeichen.
+
 
 BSP
 
@@ -5102,34 +5115,34 @@ type(text1)
 
 ZUGRIFF
 
-\begin{itemize}
-\item Indexoperator {\color{blue}$[\ ]$}:
+
+ Indexoperator {\color{blue}$[\ ]$}:
 \begin{sagein}
 text1[0], text1[3], text1[2:4], text1[0:4:2]
 \end{sagein}
 \begin{sage}
 ('D', 's', 'es', 'De')
 \end{sage}
-\item Ersetzungen innerhalb des Strings:
+ Ersetzungen innerhalb des Strings:
 \begin{sagein}
 text1.replace('Dies','Das')
 \end{sagein}
 \begin{sage}
 'Das ist ein String.'
 \end{sage}
-\end{itemize}
+
 
 OPERATIONEN
 
-\begin{itemize}
-\item Zusammenhängen von Strings
+
+ Zusammenhängen von Strings
 \begin{sagein}
 A='Letzte '; B='Vorlesung'; A+B
 \end{sagein}
 \begin{sage}
 'Letzte Vorlesung'
 \end{sage}
-\item \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
+ \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
 an.
 \begin{sagein}
 a=len(A+B); a
@@ -5137,35 +5150,35 @@ a=len(A+B); a
 \begin{sage}
   16
 \end{sage}
- \item Zugriffe beginnend vom Ende
+  Zugriffe beginnend vom Ende
 \begin{sagein}
 (A+B)[-1]
 \end{sagein}
 \begin{sage}
   'g'
 \end{sage}
-\item {\color{blue} \isage{str()}} wandelt Objekte in einen String um.
+ {\color{blue} \isage{str()}} wandelt Objekte in einen String um.
 \begin{sagein}
 str(x^2+2), str([1,2,3])
 \end{sagein}
 \begin{sage}
 ('x^2 + 2', '[1, 2, 3]')
 \end{sage}
-\item \isage{find()}: Strings durchsuchen
+ \isage{find()}: Strings durchsuchen
 \begin{sagein}
 'Hallo'.find('lo')
 \end{sagein}
 \begin{sage}
 3
 \end{sage}
-\item 
+ 
 \begin{sagein}
 'Hallo'.find('gnu')
 \end{sagein}
 \begin{sage}
 -1
 \end{sage}
-\item \isage{split()}: Aufspalten von Texten
+ \isage{split()}: Aufspalten von Texten
 \begin{sagein}
 text = 'Dies ist ein Satz, und ein Nebensatz'
 text.split() 
@@ -5179,7 +5192,7 @@ text.split('i')
 \begin{sage}
 ['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
 \end{sage}
-\end{itemize}
+
 
 print/Formate
 
@@ -5190,18 +5203,18 @@ print/Formate
 \begin{sagein}
 %[<flag>][<minwidth>][.<precision>]converter 
 \end{sagein}
-\begin{itemize}
-\item \isage{flag}: 0 für das Auffüllen mit Nullen
-\item \isage{minwidth}: Minimale Breite der Darstellung
-\item \isage{precision}: Genauigkeit (Nachkommastellen)
-\item \isage{converter}:
+
+ \isage{flag}: 0 für das Auffüllen mit Nullen
+ \isage{minwidth}: Minimale Breite der Darstellung
+ \isage{precision}: Genauigkeit (Nachkommastellen)
+ \isage{converter}:
 \begin{tabular}{cp{10cm}}
 \isage{'i'} & ganze Zahl mit Vorzeichen\\
 \isage{'e'} & Gleitkommazahl mit exponentialformat (kleingeschrieben).\\
 \isage{'f'} &Gleitkommazahl im Dezimalformat.\\
 \isage{'g'} &Gleitkommazahl. Benutzt kleingeschriebene Exponentialform wenn der Exponent kleiner als -4 oder der Genauigkeit ist, ansonsten Dezimalformat.
 \end{tabular}
-\end{itemize}
+
 
 BSP
 
@@ -5228,29 +5241,29 @@ def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
 \includegraphics[width=0.8\textwidth]{interact_basis.png}
 \end{center}
 
-\begin{itemize}
-\item Regler mit Werten von vmin bis vmax
+
+ Regler mit Werten von vmin bis vmax
 \begin{sagein}
 u=slider(vmin, vmax=, step_size=1, default=, label=) 
 \end{sagein}
-\item Regler eines Intervalles
+ Regler eines Intervalles
 \begin{sagein}
 u=range_slider(vmin, vmax=, step_size=1, default=, label=)
 \end{sagein}
-\item Eine Ankreuzfeld
+ Eine Ankreuzfeld
 \begin{sagein}
 u=checkbox(default=True, label=)
 \end{sagein}
-\item Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
+ Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
 \begin{sagein}
 u=selector(values, label=, nrows=, ncols=, buttons=False)
 \end{sagein}
-\item Ein Textblock
+ Ein Textblock
 \begin{sagein}
 u=text_control(value='')
 \end{sagein}
 
-\end{itemize}
+
 
 TAYLOR
 
@@ -5291,14 +5304,14 @@ def _(q1=slider(-3,3,default=-1), q2=slider(-3,3,default=-2), cmap=selector(['au
 
 GeoGebra
 
-\begin{itemize}
- \item In GeoGebra: Erstellen eines Objektes
-\item In GeoGebra: File> Export> Dynamic worksheet.
-\item In Sage notebook: Data> Die .jar (von GeoGebra) und die .ggb hochladen.
-\item Aus dem Exportierten .html den Teil mit <applet> kopieren und im worksheet in Sage unter Edit kopieren( Edit> Paste ).
-\item Im Editier-tab die codebase zu "./data/" ändern
-\item Fertig!
-\end{itemize}
+
+  In GeoGebra: Erstellen eines Objektes
+ In GeoGebra: File> Export> Dynamic worksheet.
+ In Sage notebook: Data> Die .jar (von GeoGebra) und die .ggb hochladen.
+ Aus dem Exportierten .html den Teil mit <applet> kopieren und im worksheet in Sage unter Edit kopieren( Edit> Paste ).
+ Im Editier-tab die codebase zu "./data/" ändern
+ Fertig!
+
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{geogebra.png}
@@ -5315,19 +5328,19 @@ euklidischen Algorithmus.
 \bigskip
 
 \textbf{Idee:} Es gilt:
-\begin{enumerate}
- \item $ggT(a,b)=ggT(a,b-a)$ für $a<b$.
-\item $ggT(a,b)=ggT(b,a)$.
-\item $ggT(a,a)=a$.
-\end{enumerate}
+
+  $ggT(a,b)=ggT(a,b-a)$ für $a<b$.
+ $ggT(a,b)=ggT(b,a)$.
+ $ggT(a,a)=a$.
+
 
 \textbf{Algorithmus:}
 
 Wiederhole,  bis $a=b$
- \begin{itemize}
-\item Ist $a>b$, so $a=a-b$.
-\item Ist $a<b$, so $b=b-a$ 
-\end{itemize}
+ 
+ Ist $a>b$, so $a=a-b$.
+ Ist $a<b$, so $b=b-a$ 
+
 
 \begin{sagein}
 def ggT(a,b):  
@@ -5382,18 +5395,18 @@ betrag([1,2]), betrag(2+I*2)
 
 GÜLT VAR
 
-\begin{itemize}
-\item Mit der Gültigkeit von Variablen ist die Bestandsdauer von
+
+ Mit der Gültigkeit von Variablen ist die Bestandsdauer von
    Variablen bzw. der Werten dieser Variablen gemeint.
-\item \emph{globale Variablen}: Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
+ \emph{globale Variablen}: Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
 d.h. die den Variablen zugewiesenen Werte bleiben für die
 gesamte Laufzeit vom jeweiligen worksheet erhalten bis sie geändert werden. 
 Man kann auf die Variablen jederzeit zugreifen und die Werte der Variablen
 ändern.
-\item \emph{lokale Variablen}: Diese sind nur innerhalb einer Prozedur/Funktion 
+ \emph{lokale Variablen}: Diese sind nur innerhalb einer Prozedur/Funktion 
 gültig. Nach Beenden der Prozedur werden
 diese Variablen wieder gelöscht. 
-\end{itemize}
+
 
 MANDELBROT
 
@@ -5425,11 +5438,11 @@ density_plot(mandel, (-2.1,1.2), (-1.1,1.1), plot_points=100)
 
 PROG REGELN
 
-\begin{itemize}
-\item \emph{Hilfetext}: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
-\item \emph{Kommentieren}: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
-\item \emph{Passende Benennung von Variablen/Funktionen}: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
-\end{itemize}
+
+ \emph{Hilfetext}: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
+ \emph{Kommentieren}: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
+ \emph{Passende Benennung von Variablen/Funktionen}: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
+
 
 LAST BSP
 
@@ -5469,10 +5482,10 @@ Gadisch(3.4,2)
 ALLERLAST BSP xD
 KOCH
 
-\begin{itemize}
-\item Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. 
-\item Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$.  
-\item Ersetze  diese Strecke durch 4 Strecken 
+
+ Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. 
+ Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$.  
+ Ersetze  diese Strecke durch 4 Strecken 
 $\overline{y_1 z_1}$, $\overline{z_1 z_2}$, $\overline{z_2 z_3}$,
 $\overline{z_3 y_2}$ mit Endpunkten 
 \begin{eqnarray*}
@@ -5483,8 +5496,8 @@ $\overline{z_3 y_2}$ mit Endpunkten
  (y_1 - y_2) + \frac12 (y_1 + y_2)\\[0.5cm]
  z_3 &=&\frac13 y_1 + \frac23 y_2
 \end{eqnarray*}
-\item Dieses Prozedere wird nun für jede einzelne Teilstrecke wiederholt.
-\end{itemize}
+ Dieses Prozedere wird nun für jede einzelne Teilstrecke wiederholt.
+
 
 \begin{sagein}
 def koch(y1,y2,lev):
