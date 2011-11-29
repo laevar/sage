@@ -1211,29 +1211,26 @@ der Funktion $f(x)=sin(x)-x$ geliefert (und tatsächlicherweise auch der Funktio
 \chapter{Mengen und Zahlen}
 \section{Mengen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wie (fast) jedes Kapitel, dass sich mit Mengen auseinandersetzt, so beginnt auch dieses mit der ``gottgegebenen'' Definition des Mengenbegriffs 
+nach Cantor:
 \begin{quote}
-Unter einer \emph{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
+Unter einer Menge verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
 {\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
 \end{quote}
- 
- \emph{Element}: Ein Objekt $x$ in der Menge $M$ (\emph{$x \in  M$}). 
- \emph{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\emph{$M \subset N$}).
- \emph{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\emph{$M=N$}).
-
-
-Mengen in Sage:
+Die Objekte einer Menge werden Elemente genannt, wir schreiben kurz $x\in M$ für das Element $x$ der Menge $M$. Eine Menge $N$ kann die Menge $M$
+enthalten ($M\subset N$) , dies ist der Fall, falls $x\in M \Longrightarrow x\in N$. Wir sprechen von der Gleichheit zweier Mengen $M,N$, falls 
+$M\subset N$ und $N\subset M$ gilt.
+Für Mengen stellt Sage den Typ set bereit. Um eine Menge zu erstellen, benutzen wir die Funktion {\color{blue} \verb Set } und übergeben die Elemente 
+direkt mit:
 \begin{sagein}
 Set([<element1>,<element2>,...])
 \end{sagein}
-
- Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
-  Objekten. 
- Mengen in Sage haben den Typ \emph{\isage{set}}.
- Leere Mengen: \isage{leere_menge = Set([])}. 
- Zugriff: \isage{M[n]} (Menge $M$, $n\ge0$)
- Intervallzugriff: \isage{M[i:j]}.
-
-Beispiele:
+\begin{bem}
+ Beachte die doppelte Klammerung.
+\end{bem}
+Für Sage ist ein set eine ungeordnete Menge von beliebigen Objekten. Der Zugriff auf die Elemente erfolgt, wie üblich, über den Index. Der Aufruf 
+{\color{blue} \verb M[n] } würde uns also das $n$-te Elemente der (ungeordneten!) Menge M zurückliefern. Mit {\color{blue} \verb M[i:j] } erhalten wir 
+die Elemente mit den Indizes i bis (j-1). Die leere Menge können wir durch {\color{blue} \verb Set([]) } erzeugen. Wir betrachten weitere Beispiele:
 \begin{sagein}
 M1 = Set([x, 2,3,pi,sqrt(2)]); M1
 \end{sagein}
@@ -1246,22 +1243,22 @@ var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
 \begin{sage}
 {1, y, 2, x, {1, y}}
 \end{sage}
-Operationen mit Mengen:
-
- Anzahl der Elemente in einer Menge:
-\begin{sagein}
-M1.cardinality()
-\end{sagein}
-\begin{sage}
-  5
-\end{sage}
- Zugriff:
 \begin{sagein}
 M2[1]; M2[1:4]
 \end{sagein}
 \begin{sage}
 y
 [y, 2, x]
+\end{sage}
+Wenn Sage mit Mengen richtig umgehen können soll, so müssen elementare Mengenoperationen vorhanden sein. Im Folgenden beschäftigen wir uns mit 
+solchen Funktionen:\\
+Will man Mengentheorie betrieben, sollte man die ``Größe'' einer Menge wie gewohnt bestimmen können. Hierzu stellt Sage die {\color{blue} \verb cardinality() }- 
+Funktion bereit, welche wir auf unsere Menge $M1$ anwenden wollen:
+\begin{sagein}
+M1.cardinality()
+\end{sagein}
+\begin{sage}
+  5
 \end{sage}
 % Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
 %\begin{sagein}
@@ -1270,9 +1267,9 @@ y
 %\begin{sage}
 %  {1, y}, {1, 2, neu, x, y}
 %\end{sage}
-
-
- Vereinigung, Differenz, Schnitt:
+Weiter sind wir es gewohnt, Mengen schneiden und vereinigen zu können, sowie die Differenz zweier Mengen zu bilden. Hierfür bietet uns Sage die Befehle 
+{\color{blue} \verb intersection() }, {\color{blue} \verb union() } und {\color{blue} \verb difference() }. Um uns der Funktionalität gewahr zu werden, betrachten wir folendes 
+Minimalbeispiel:
 \begin{sagein}
 L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
 L1.union(L2), L1.difference(L2), L1.intersection(L2)
@@ -1280,7 +1277,7 @@ L1.union(L2), L1.difference(L2), L1.intersection(L2)
 \begin{sage}
 ({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
 \end{sage}
- Prüfen, ob  ein Element enthalten ist:
+Auf die Frage, ob ein Element in einer Menge enthalten ist, liefert folgendes eine aufschlussreiche Antwort:
 \begin{sagein}
 a in L1, c in L1
 \end{sagein}
@@ -1293,10 +1290,8 @@ Set([1,y]) in M2
 \begin{sage}
 True
 \end{sage}
-
-
-
- Auswählen von Elementen mit bestimmten Eigenschaften
+Betrachten wir etwas ausgefallenere Mengenoperationen. Hierzu erinnern wir uns an die {\color{blue} \verb filter() }-Funktion. Wir wollen 
+uns aus einer gegebenen Menge die Primzahlen herausgeben lassen:
 \begin{sagein}
 M = Set(range(1,15))
 filter(is_prime,M)
@@ -1304,7 +1299,7 @@ filter(is_prime,M)
 \begin{sage}
   [2, 3, 5, 7, 11, 13]
 \end{sage}
- Erzeugen der Potenzmenge
+Wir wollen die Potenzmenge der Menge $\{1, 2, 3\}$ bestimmen
 \begin{sagein}
 list(powerset([1,2,3]))
 [s for s in Set([1..3]).subsets()]
@@ -1313,19 +1308,16 @@ list(powerset([1,2,3]))
 [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
 \end{sage}
-
-
-Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
+\begin{bem}
+ Während der erste Befehl eine Liste von Listen erzeugt, erhalten wir im zweiten Fall eine Liste von Mengen. Formal korrekt ist die Potenzmenge 
+eine Menge von Mengen.
+\end{bem}
+Wir wollen uns etwas genauer mit Filtern befassen. Ein Filter erzeugt nach bestimmten Kriterien eine Teilmenge aus einer größeren Menge $M$.
 \begin{sagein}
 M1 = filter(<f>,<M>)
 \end{sagein}
-
- \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
- \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
-ergibt. 
-
-
-Beispiel Filter:
+Diese Kriterien sind festgelegt durch die Funktion $f(x)$, die eine Abbildung auf die Boolschen Werte \isage{True/False} ist. 
+$M1$ ist die Teilmenge, die aus den Elementen $x\in M$ besteht, für die $f(x)$ eine wahre Aussage ergibt. Wir wollen ein wenig mit Filtern experimentieren:
 \begin{sagein}
 M = Set(range(1,101))
 def f(x): return bool(mod(x,2)==0)
@@ -1337,12 +1329,16 @@ M2.intersection(M15)
 \begin{sage}
  {90, 60, 30}
 \end{sage}
-Alternative:
+\begin{bem}
+ Wir haben hier die durch 2 und 15 teilbaren Elemente der Menge $\{1,\ldots,100\}$ bestimmt.
+\end{bem}
+Durch eine uns schon bekannte Methode hätten wir den Filter ersetzen können:
 \begin{sagein}
 M2 = Set([m for m in M if mod(m,2)==0])
 M15 = Set([m for m in M if mod(m,15)==0])
-\end{sagein
-Ist Menge \isage{A1} eine Teilmenge von Menge \isage{A}?
+M2.intersection(M15)
+\end{sagein}
+Wir möchten untersuchen, ob eine Menge \isage{A1} eine Teilmenge der Menge \isage{A} ist.
 \begin{sagein}
 A = Set(range(1,11))
 A1 = Set(range(1,3))
@@ -1360,7 +1356,7 @@ A.intersection(A2) == A2
 \begin{sage}
   False
 \end{sage}
-
+Nachdem wir nun Mengen unser Eigen nennen dürfen, wird es Zeit, dass wir Zahlsysteme, Gruppen und Körper erschließen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zahlen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
