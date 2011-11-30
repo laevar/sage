@@ -136,7 +136,7 @@ Wir erhalten als Antwort
   x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
 \end{sage}
 \begin{bem} Es findet keine Ausgabe statt, wenn wir in unserer Eingabe ;f weglassen.\end{bem}
-Wir möchten nun herausfinden, ob unsere Funktion $f$ Polstellen besitzt; dazu benutzen wir den {\color{blue} \verb limit } Befehl:
+Wir möchten nun herausfinden, ob unsere Funktion $f$ Polstellen besitzt; dazu benutzen wir den {\color{blue} \verb limit() }-Befehl:
 \begin{sagein}
 f.limit(x=1, dir='minus')
 \end{sagein}
@@ -150,7 +150,7 @@ f.limit(x=1, dir='plus')
   x |--> +Infinity
 \end{sage}
 Wir sehen nun, dass unsere Funktion $f$ an der Stelle x=1 einen Pol hat. Wir verfahren weiter mit der Suche nach Nullstellen 
-und wenden dafür den {\color{blue} \verb solve } Befehl an:
+und wenden dafür den {\color{blue} \verb solve() }-Befehl an:
 \begin{sagein}
 solve(f==0,x)
 \end{sagein}
@@ -158,7 +158,7 @@ solve(f==0,x)
 [x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
 \end{sage}
 Wir haben nun 2 Nullstellen gefunden und stellen uns sogleich die Frage nach der Ableitung von $f$, die wir über den 
-{\color{blue} \verb differentiate } Befehl erhalten:
+{\color{blue} \verb differentiate() }-Befehl erhalten:
 \begin{sagein}
 f.differentiate(x)
 \end{sagein}
@@ -188,7 +188,7 @@ float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
 Wir erkennen die Existenz zweier Extremstellen, von denen eine ein Maximum, die andere ein Minimum ist.
 \begin{bem} Als ``Speicherplatz'' der Nullstellen von $f'$ besitzt maxi zwei Werte-- diese werden mit maxi[0].rhs() 
 bzw maxi[1].rhs() angesprochen.\end{bem}
-Ohne den {\color{blue} \verb float() } Befehl sähe die Ausgabe im ersten Fall so aus:
+Ohne den {\color{blue} \verb float() }-Befehl sähe die Ausgabe im ersten Fall so aus:
 \begin{sagein}
 -1/18*((2*sqrt(3) - 1)^2 + 20*sqrt(3) + 11)*sqrt(3) + 2/3*sqrt(3) + 8/3
 \end{sagein}
@@ -204,7 +204,7 @@ x |--> -Infinity
 \begin{bem} Wir erkennen, in Sage stellt sich $\infty$ dar via oo, $-\infty$ entspricht -oo.
 Viel interessanter jedoch ist die Tatsache, dass Sage mit jenen ``Werten'' direkt arbeiten zu können scheint.\end{bem}
 Zuletzt wollen wir uns mit der grafischen Darstellung einiger Repräsentanten von f auseinandersetzen. Hierzu wollen wir zuerst 3 
-jener Repräsentanten deklarieren und diese anschließend mit dem {\color{blue} \verb plot } Befehl visualisieren:
+jener Repräsentanten deklarieren und diese anschließend mit dem {\color{blue} \verb plot() }-Befehl visualisieren:
 \begin{sagein}
  f0 = f(x, a=0)
  f1 = f(x, a=-20)
@@ -228,7 +228,8 @@ Wir erhalten als Grafikausgabe:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Wir wollen uns nun ein wenig mit symbolischem Rechnen vertraut machen. Dazu zählt das numerische Lösen von Integralen, 
-sicherlich aber auch die Vereinfachung oder die Faktorisierung eines Terms. Wir betrachten einige Beispiele:
+sicherlich aber auch die Vereinfachung oder die Faktorisierung eines Terms. 
+Wir betrachten einige Beispiele:
 Wir möchten gerne das Integral $\int_0^\infty x^4 e^{-x} dx$ numerisch berechnen, dazu benötigen wir lediglich
 \begin{sagein}
 integrate(x^4*exp(-x),x,0,oo)
@@ -562,6 +563,7 @@ und stellen uns einmal folgende Fragen:
  \item Was kann ich mit $f$ machen?
 \end{enumerate}
 Wir wollen die Begriffe Bezeichner, Wert eines Bezeichners, Datentyp und Objekt klar voneinander abgrenzen, hierzu:
+\subsubsection{Bezeichner}
 \begin{df}
  Bezeichner sind Namen, wie z.B. $x$ oder $f$. Sie können
 im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
@@ -619,6 +621,7 @@ An einigen Beispielen sollten wir uns verdeutlichen, wie Sage diese Datentypen v
     \begin{sage}
     2*x^2 - 6*x - 36
     \end{sage}
+\subsubsection{Zuweisung}
 Nachdem diese Dinge klar sind, betrachten wir Zuweisungen in Sage. Durch {\color{blue} \isage{bez=wert}} wird dem Bezeichner bez der Wert wert
 zugewisen. Analoges gilt für Funktionen: Durch {\color{blue} \isage{func(arg)=expr(arg)}} wird die Funktion func mit dem Argument arg definiert, 
 die den von arg abhängigen Ausdruck expr auswertet. Da wir einem Bezeichner einen Wert zuweisen können, ist es nur konsequent, das es auch eine 
@@ -647,6 +650,7 @@ gleich nocheinmal ein wenig ausprobieren:
       \begin{sage}
 	(pi, -1)
       \end{sage}
+\subsubsection{Auswertung}
 Da wir die Zuweisung nun blind beherrschen und auf diese Weise Werte an Bezeichner binden können, stellt sich die Frage nach der Auswertung solcher 
 Bezeichner. Dazu halten wir in einer kurzen Definiton folgendes fest:
 \begin{df}
@@ -678,6 +682,7 @@ Das wollen wir uns doch genauer ansehen:
     \begin{sage}
       -4
     \end{sage}
+\subsubsection{Operatoren}
 Nun, da wir mit Zuweisung und Auswertung vertraut sind, wollen wir uns den Operatoren und Ausdrücken zuwenden. Auch hierzu eine Begriffsabgrenzung:
 \begin{df}
  Operatoren verbinden in Sage Objekte miteinander und sind äquivalent zu Funktionen. Bei der Kombination von Operatoren gelten die üblichen 
@@ -700,6 +705,7 @@ Operator/Funktion &  Erklärung\\
 \hline
 \end{tabular}
 \end{center}
+\subsubsection{Ausdrücke}
 \begin{df}
  In Sage sind Ausdrücke Zusammensetzungen von Operanden ( == Objekte ).
 \end{df}
@@ -831,6 +837,7 @@ map(lambda x: x^2,menge)
  [sin(1), sin(2), sin(3)]
 \end{sage}
 \end{bem}
+\subsubsection{Objektmethoden}
 Ein weiterer Funktionentyp sind die sog. Objekt-Methoden, die, wie der Name schon sagt, Funktionen von Objekten sind (wir haben schon einige solcher 
 Objekt-Methoden kennengelernt, z.B. die {\color{blue} \verb simplify() }-Funktion). Diese Funktionen werden auf Objekten aufgerufen und sind 
 paramterlos (also Objekt.Funktion()). Ein Aufruf der Form Funktion(Objekt) widerspricht der Logik des Programms, wie uns folgender semi-defekter 
@@ -849,6 +856,7 @@ NameError: name 'operands' is not defined
  Den ErrorCode verursacht operands(f).
 \end{bem}
 Ein Objekt kennt alle auf sich selbst anwendbaren Funktionen; Nur einige Methoden sind als globale Funktionen benutzbar (wie z.B. {\color{blue} \verb map() }).
+\subsubsection{Code-Blöcke}
 Wir wollen nun unseren Begriff der einzeiligen Schleife auf ganze Code-Blöcke erweitern. Dazu betrachten wir das uns bekannte \verb+[.. for .. in ..]+-Konstrukt. 
 Die \verb+for+-Schleife kann von Natur aus ganze Blöcke wiederholen:
 \begin{sagein}
@@ -872,6 +880,7 @@ x,y
 \begin{sage}
 (12, 16777216)
 \end{sage}
+\subsubsection{Abfragen}
 Nun, da wir entdeckt haben, dass Sage ganze Code-Blöcke verarbeiten kann, ist es nur konsequent, nach bedingter Ausführung von Code-Blöcken zu verlangen. 
 Sage bietet uns hier das {\color{blue} \verb if/else }-Konstrukt:
 \begin{sagein}
@@ -894,7 +903,9 @@ z
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ausdrücke}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Wir kommen noch einmal zurück zu Ausdrücken, Operationen auf diesen sowie einigen nützlichen Manipulationen. Zuerst stellen wir einmal fest, 
+Wir kommen noch einmal zurück zu Ausdrücken, Operationen auf diesen sowie einigen nützlichen Manipulationen. 
+\subsubsection{Kombination von Ausdrücken}
+Zuerst stellen wir einmal fest, 
 dass Ausdrücke nach Belieben miteinander kombiniert werden können. Hierzu definieren wir uns zwei Funktionen $f$ und $g$:
 \begin{sagein}
 var('x,y'); f = x*x+3*x+y; g = x-y
@@ -921,10 +932,12 @@ f*g, f/g
 \begin{sage}
 ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
 \end{sage}
+\subsubsection{Vereinfachung von Ausdrücken}
 Da wir nun Ausdrücke beliebig kombinieren können, und also auch die Ergebnisse solcher Kombinationen beliebig ``hässlich'' werden können, wollen 
 wir uns noch einmal mit verschiedenen Möglichkeiten der ``Verschönerung'' beschäftigen. Dazu stellt Sage uns die Funktionen 
-{\color{blue} \verb collect() }, {\color{blue} \verb combine() }, {\color{blue} \verb expand }, {\color{blue} \verb factor() }, {\color{blue} \verb partial_fraction() } und 
-{\color{blue} \verb simplify() } zur Verfügung. Wir betrachten ihre Wirkungsweisen der Reihe nach:\\
+{\color{blue} \verb collect() }, {\color{blue} \verb combine() }, {\color{blue} \verb expand() }, {\color{blue} \verb factor() }, {\color{blue} \verb partial_fraction() } und 
+{\color{blue} \verb simplify() } zur Verfügung. Wir betrachten ihre Wirkungsweisen der Reihe nach:
+\subsubsection{collect()}
 {\color{blue} \isage{a.collect(<unknown>)}} bewirkt, dass der Ausdruck \isage{a} bzgl. der \isage{unknown} Variablen sortiert wird. Das sieht in der Praxis 
 dann so aus:
 \begin{sagein}
@@ -941,7 +954,8 @@ f.collect(x*sin(x))
 a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
 \end{sage} 
 Wir sehen, dass {\color{blue} \verb collect() } bei richtiger Wahl des Arguments eine deutlich wahrnehmbare Übersicht schafft. Sollten wir 
-einen Ausdruck vorfinden, der möglicherweise durch Potenzgesetze zu vereinfachen ist, so sollten wir uns an folgenden Befehl erinnern:\\
+einen Ausdruck vorfinden, der möglicherweise durch Potenzgesetze zu vereinfachen ist, so sollten wir uns an folgenden Befehl erinnern:
+\subsubsection{combine()}
 {\color{blue} \isage{a.combine()}} bewirkt, dass der Ausdruck durch die Potenzgesetze zusammengefaßt wird.
 \begin{sagein}
 g = x^(a)*x^(b)
@@ -950,7 +964,8 @@ g.combine()
 \begin{sage}
 x^(a + b)
 \end{sage}
-Wir kennen bereits den {\color{blue} \isage{a.expand()}}-Befehl, den wir hier erweitern wollen.\\
+Wir kennen bereits den {\color{blue} \isage{a.expand()}}-Befehl, den wir hier erweitern wollen.
+\subsubsection{expand\_trig()}
 Durch {\color{blue} \isage{a.expand_trig()}} wird nach trigonometrischen Eigenschaften ausmultipliziert.
 \begin{sagein}
 expand((x+2)^4)
@@ -983,6 +998,7 @@ a.expand('right')
 \begin{sage}
 (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
 \end{sage}
+\subsubsection{factor()}
 Durch {\color{blue} \isage{factor(Ausdruck)}} wird ein Ausdruck Faktorisiert. 
 Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
 Zahlen sind. Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
@@ -998,6 +1014,7 @@ factor(2 - 2/(x^2-1))
 \begin{sage}
 2*(x^2 - 2)/((x - 1)*(x + 1))
 \end{sage}
+\subsubsection{f.partial\_fraction()}
 Der {\color{blue} \isage{f.partial_fraction()}}-Befehl liefert eine Partialbruchzerlegung.
 \begin{sagein}
 f = x^2/(x^2-1); f.partial_fraction()
@@ -1011,6 +1028,7 @@ f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f
 \begin{sage}
 (x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
 \end{sage}
+\subsubsection{simplify()}
 Hier wollen wir den {\color{blue} \isage{f.simplify()}}-Befehl spezifizieren. {\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. 
 Mögliche targets sind dabei \isage{trig}: trigonometrisch, \isage{rational}: rational, \isage{radical}: log/ln/exp, \isage{factorial}: 
 Nutzung der Fakultät, \isage{full}: alle Vereinfachungen. Anwendungen sehen dann zumeist so aus:
@@ -1068,7 +1086,9 @@ solve(Gleichungen1,x,y)
 \end{sage}
 Sage liefert uns offenbar ein sehr gut handhabbares Tool zum Lösen auch komplizierterer Gleichungen, wie das nicht-lineare Beispiel zeigt.
 Unsere leichtfertige Benutzung des logischen Operators {\color{blue} \verb == } soll uns hier zum Anlass dienen, Sage einmal genauer auf 
-Logik-Tauglichkeit zu untersuchen. Dazu stellen wir zunächst einmal fest, dass {\color{blue} \verb == } formal den Vergleich zweier Objekte 
+Logik-Tauglichkeit zu untersuchen.
+\subsubsection{Logik}
+Wir stellen zunächst einmal fest, dass {\color{blue} \verb == } formal den Vergleich zweier Objekte 
 auf Gleichheit bedeutet. a==b ist also genau dann wahr, wenn a und b die gleiche Auswertung besitzen und typgleich sind. Mit {\color{blue} \isage{bool(Ausdruck)}} 
 haben wir die Möglichkeit, einen Ausdruck auf Wahrheit zu prüfen, logischerweise wird {\color{blue} \verb True } oder {\color{blue} \verb False } 
 als Ergebnis zurückgeliefert. Das Gegenteil des {\color{blue} \verb == }-Operators ist der {\color{blue} \verb <> }-Operator-- dementsprechend 
@@ -1131,6 +1151,7 @@ true and false, true or false, not true
 \isage{False} & \isage{True} & \isage{False}  \\\hline
 \end{tabular}
 \end{center}
+\subsubsection{Gleichungssysteme}
 Nachdem wir uns nun mit Gleichungen und Logik auseinandergesetzt haben, betrachten wir nun noch Gleichungssysteme. Dabei handelt es sich, aus der 
 Sicht von Sage lediglich um eine erweiterung des uns schon wohlbekannten {\color{blue} \verb solve() }-Befehls:
 \begin{sagein}
@@ -1220,6 +1241,7 @@ Unter einer Menge verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunte
 Die Objekte einer Menge werden Elemente genannt, wir schreiben kurz $x\in M$ für das Element $x$ der Menge $M$. Eine Menge $N$ kann die Menge $M$
 enthalten ($M\subset N$) , dies ist der Fall, falls $x\in M \Longrightarrow x\in N$. Wir sprechen von der Gleichheit zweier Mengen $M,N$, falls 
 $M\subset N$ und $N\subset M$ gilt.
+\subsubsection{Set}
 Für Mengen stellt Sage den Typ set bereit. Um eine Menge zu erstellen, benutzen wir die Funktion {\color{blue} \verb Set } und übergeben die Elemente 
 direkt mit:
 \begin{sagein}
@@ -1250,8 +1272,10 @@ M2[1]; M2[1:4]
 y
 [y, 2, x]
 \end{sage}
+\subsubsection{Operationen auf Sets}
 Wenn Sage mit Mengen richtig umgehen können soll, so müssen elementare Mengenoperationen vorhanden sein. Im Folgenden beschäftigen wir uns mit 
-solchen Funktionen:\\
+solchen Funktionen:
+\subsubsection{cardinality()}
 Will man Mengentheorie betrieben, sollte man die ``Größe'' einer Menge wie gewohnt bestimmen können. Hierzu stellt Sage die {\color{blue} \verb cardinality() }- 
 Funktion bereit, welche wir auf unsere Menge $M1$ anwenden wollen:
 \begin{sagein}
@@ -1267,6 +1291,7 @@ M1.cardinality()
 %\begin{sage}
 %  {1, y}, {1, 2, neu, x, y}
 %\end{sage}
+\subsubsection{Vereinigung, Differenz, Schnitt}
 Weiter sind wir es gewohnt, Mengen schneiden und vereinigen zu können, sowie die Differenz zweier Mengen zu bilden. Hierfür bietet uns Sage die Befehle 
 {\color{blue} \verb intersection() }, {\color{blue} \verb union() } und {\color{blue} \verb difference() }. Um uns der Funktionalität gewahr zu werden, betrachten wir folendes 
 Minimalbeispiel:
@@ -1290,6 +1315,7 @@ Set([1,y]) in M2
 \begin{sage}
 True
 \end{sage}
+\subsubsection{Auswahl nach Eigenschaften}
 Betrachten wir etwas ausgefallenere Mengenoperationen. Hierzu erinnern wir uns an die {\color{blue} \verb filter() }-Funktion. Wir wollen 
 uns aus einer gegebenen Menge die Primzahlen herausgeben lassen:
 \begin{sagein}
@@ -1312,6 +1338,7 @@ list(powerset([1,2,3]))
  Während der erste Befehl eine Liste von Listen erzeugt, erhalten wir im zweiten Fall eine Liste von Mengen. Formal korrekt ist die Potenzmenge 
 eine Menge von Mengen.
 \end{bem}
+\subsubsection{filter()}
 Wir wollen uns etwas genauer mit Filtern befassen. Ein Filter erzeugt nach bestimmten Kriterien eine Teilmenge aus einer größeren Menge $M$.
 \begin{sagein}
 M1 = filter(<f>,<M>)
@@ -1361,14 +1388,17 @@ Nachdem wir nun Mengen unser Eigen nennen dürfen, wird es Zeit, dass wir Zahlsy
 \section{Zahlen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % andere einfuehrung!
-Natürliche Zahlen $\mathbb{N} := \{0,1,2,3,\dots\}$:
+\subsection{Natürliche Zahlen}
+Wir wollen noch etwas Zahlentheorie betreiben, die sich dann in lineare Algebra kanalisieren soll. Zunächst führen wir die natürlichen Zahlen nach Peano ein:
+\subsubsection{Peano Axiome}
+Sei N eine Menge natürlicher Zahlen, für die gilt:
+\begin{itemize}
+ \item $0 \in N$
+ \item Es gibt eien Nachfolgerabbildung $nf:N\rightarrow N\smallsetminus\{0\}$
+ \item nf ist injektiv
+\end{itemize}
+Falls nun gilt, dass $n\in N\Longrightarrow nf(n)\in N \ \forall n\in N$ so ist $N = \mathbb{N}$
 
- $0 \in \mathbb{N}$
- Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
-  \rightarrow \mathbb{N} \smallsetminus \{ 0 \}$
- $nf$ ist injektiv.
- Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
-  $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
 
 Bemerkungen:
 
