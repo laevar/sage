@@ -1407,7 +1407,7 @@ Bemerkungen:
   Zahlen und vollständiger  Induktion.
 %TODO:erklaerung  .
  Sage: kein eigener Datentyp (aber: ganze Zahlen (Integer)). 
-
+\subsubsection{Äquivalenzrelation}
 Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
 \[R\subseteq M \times M\]
  mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
@@ -1430,7 +1430,7 @@ Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine 
  Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
   Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
 $A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklasse $A$. 
-
+\subsubsection{Ganze Zahlen}
 Ganze Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
 % das kann abe rbesser...
 
@@ -1482,6 +1482,7 @@ mod(-34,8), floor(-34/8)
 \begin{sage}
 (6, -5)
 \end{sage}
+\subsubsection{Rationale Zahlen}
 Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
 \[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
 Statt $(m,n)$ schreibt man $\frac{m}{n}$.
@@ -1515,6 +1516,7 @@ bool(a/b+c/d == (a/b+c/d).simplify_rational())
 \begin{sage}
 True
 \end{sage}
+\subsection{Gruppe}
 Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
 $G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
 \[
@@ -1537,7 +1539,7 @@ $a\in G$.
 und wird durch $a^{-1}$ bezeichnet. 
  Es gilt auch $a \cdot a'=e$. 
  Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
-
+\subsection{Körper}
 Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
 Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
 Eigenschaften:
@@ -1614,7 +1616,7 @@ Sei $K$ ein angeordneter Körper.
  {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
 (Nicht notwendigerweise in $M$ oder $K$).  
 
-REELLE ZAHLEN
+\subsubsection{Reelle Zahlen}
 
  Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
 Schranke.
