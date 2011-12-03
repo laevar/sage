@@ -1398,59 +1398,58 @@ Sei N eine Menge natürlicher Zahlen, für die gilt:
  \item nf ist injektiv
 \end{itemize}
 Falls nun gilt, dass $n\in N\Longrightarrow nf(n)\in N \ \forall n\in N$ so ist $N = \mathbb{N}$
-
-
-Bemerkungen:
-
- Nachfolgefunktion: $nf(m)=m+1$
- Es besteht ein enger Zusammenhang zwischen den natürlichen
-  Zahlen und vollständiger  Induktion.
-%TODO:erklaerung  .
- Sage: kein eigener Datentyp (aber: ganze Zahlen (Integer)). 
+\begin{bem}
+ Die Nachfolgerfunktion ist gegeben zu $nf(m)=m+1$. Der geneigten Leserin wird die enge Verwandtschaft zwischen natürlichen Zahlen (gegeben 
+durch die Peano Axiome) und vollständiger Induktion aufgefallen sein. Es sei noch bemerkt, dass Sage, wie die meisten ``Programme'', nicht 
+zwischen natürlichen und ganzen Zahlen unterscheidet, sondern für diese den gemeinsamen Datentyp Integer bereitstellt.
+\end{bem}
+Wir werden im Folgenden die ganzen Zahlen aus den natürlichen konstruieren, wir benötigen hierzu lediglich noch die Begriffe der Äquivalenzrelation 
+sowie den der Äquivalenzklasse.
 \subsubsection{Äquivalenzrelation}
-Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
-\[R\subseteq M \times M\]
- mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
-
- \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
- \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
- \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
-  $x \sim z$.  
-
-
- Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
- Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
-
- [(a)] $A \neq \emptyset$.
- [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
- [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
-
- Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
-Äquivalenzklassen.  
- Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
-  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
-$A$. Man schreibt auch $\overline{a}$ oder $a \bmod R$ für ein Äquivalenzklasse $A$. 
+Wir wollen uns zunächst den Äquivalenzrelationen zuwenden. Hierzu geben wir eine kurze Definition:
+\begin{df}
+ Sei $M$ eine Menge. Eine Äquivalenzrelation $R$ auf $M$ ist eine Teilmenge
+\[R\subseteq M\times M\] mit den folgenden Eigenschaften:
+\begin{enumerate}
+ \item $x \sim x$ $\forall x\in M$ \textbf{Reflexivität}
+ \item $x \sim y\Rightarrow y\sim x$ $\forall x,y\in M$ \textbf{Symmetrie}
+ \item $x\sim y$ und $y\sim z\Rightarrow x\sim z$ $\forall x,y,z\in M$ \textbf{Transitivität}
+\end{enumerate}
+(äquivalente Schreibweisen sind: $(x,y)\in R$, $x\sim_R y$, $x\sim y$)
+\end{df}
+\subsubsection{Äquivalenzklasse}
+Zu dem Begriff der Äquivalenzrelation gehört der Begriff der Äquivalenzklasse:
+\begin{df}
+ Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge M. Eine Teilmenge $A\subset M$ heißt Äquivalenzklasse, falls gilt:
+\begin{enumerate}
+ \item $A\neq\emptyset$
+ \item $x,y\in A\Rightarrow x\sim y$
+ \item $x\in A$, $y\in M$, $x\sim y\Rightarrow y\in A$
+\end{enumerate}
+Jedes $a\in A$ heißt Repräsentant der Äquivalenzklasse A. Man schreibt $\overline{a}$ oder $a\bmod R$ für eine Äquivalenzklasse A.
+\end{df}
+Durch eine Äquivalenzrelation auf einer Menge M wird diese in disjunkte Äquivalenzklassen zerlegt. Andersrum definiert jede disjunkte 
+Zerlegung einer Menge eine Äquivalenzrelation. 
 \subsubsection{Ganze Zahlen}
-Ganze Zahlen: $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
+Wir wollen nun die ganzen Zahlen $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$ als Äquivalenzklassen folgender Äquivalenzrelation betrachten.
 % das kann abe rbesser...
-
- Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
-$(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
- Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
-zueinander.
- Negative Zahlen: $(0,m)$. 
- Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
-der Äquivalenzklassen.
- Addition:
+Wir definieren diese Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$ vermöge:\\
+$(m,n) \sim (p,q)$ genau dann, wenn $m+q=n+p$ gilt.\\
+Wir erhalten die nichtnegativen Zahlen zu $(m,0)$. Sie sind paarweise nicht äquivalent
+zueinander. Die negativen Zahlen sind demnach also gegeben durch $(0,m)$. 
+ Die ganzen Zahlen $\mathbb{Z}$ sind nun gegeben durch die Menge
+der Äquivalenzklassen $\overline{(a,b)}$.
+Die (übliche) Addition auf den ganzen Zahlen ist nun definiert durch:
 \[
 \overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
- Multiplikation:
+Die Multiplikation erhalten wir zu:
 \[
 \overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
 \]
-
-Datentyp \isage{Integer}. \\
-\textbf{Beispiele:}
+Das sind Dinge, die uns eigentlich klar gewesen sein sollten, wir haben sie uns lediglich in Erinnerung gerufen. Wir wollen uns ansehen, 
+wie Sage intern mit Daten dieser Art umgeht und uns danach den rationalen Zahlen zuwenden.
+\subsubsection{Ganze Zahlen in Sage}
+Sage verwendet hier, wie bereits erklärt, den Datentyp Integer:
 \begin{sagein}
 type(5), type(0), type(-5)
 \end{sagein}
@@ -1459,7 +1458,10 @@ type(5), type(0), type(-5)
 <type 'sage.rings.integer.Integer'>, 
 <type 'sage.rings.integer.Integer'>)
 \end{sage}
-Division
+\begin{bem}
+ Wir erkennen hier deutlich, dass zwischen natürlichen und ganzen Zahlen nicht unterschieden wird.
+\end{bem}
+Wir erlauben uns einen kleinen Ausblick auf die Division:
 \begin{sagein}
 type(5*4), type(5/4)
 \end{sagein}
@@ -1467,9 +1469,14 @@ type(5*4), type(5/4)
 (<type 'sage.rings.integer.Integer'>, 
 <type 'sage.rings.rational.Rational'>)
 \end{sage}
+\begin{bem}
+ Wir sehen hier, dass Sage den Datentyp 'Rational' offenbar vom Typ 'Integer' trennt. Wir nehmen dies zum Anlass, uns den rationalen Zahlen 
+zuzuwenden.
+\end{bem}
+\subsubsection{Ganzzahlige Division mit Rest}
+Bevor wir nun die Rationalen Zahlen anschauen, betrachten wir die ganzzahlige Division mit Rest.
 Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
-$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. \\
-\textbf{Beispiele:}
+$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. Natürlich haben wir auch in Sage angemessene Operationen hierfür:
 \begin{sagein}
 mod(45,7), floor(45/7)
 \end{sagein}
@@ -1483,26 +1490,25 @@ mod(-34,8), floor(-34/8)
 (6, -5)
 \end{sage}
 \subsubsection{Rationale Zahlen}
-Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
+Die rationalen Zahlen werden wiederum durch eine Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$ eingeführt. Diese 
+Relation ist gegeben zu
 \[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
-Statt $(m,n)$ schreibt man $\frac{m}{n}$.
-
- Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
+Statt $(m,n)$ schreibt man auch $\frac{m}{n}$.
+Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
 die $0$ in $\mathbb{Q}$.
  Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
-Ä.-klasse.  
- Addition:  
+Äquivalenzklasse. Die Addition der rationalen Zahlen ist dann definiert durch:  
 \[ 
 \overline{\genfrac(){}{}{m}{n}}+\overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mq+pn}{nq}},
 \]
-Multiplikation:
+Die Multiplikation erhalten wir zu:
 \[
 \overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
 \]
 % Die rationalen Zahlen bilden einen \alert{Körper}.
- 
-Datentyp \isage{rational}. 
-
+Auch in diesem Fall wollen wir betrachten, wie Sage rationale Zahlen intern behandelt.
+\subsubsection{Rationale Zahlen in Sage}
+Sage verwendet, wie wir oben schon gesehen haben, den Datentyp \isage{rational}. 
 \begin{sagein}
 var('a,b,c,d'); (a/b+c/d).simplify_rational())
 \end{sagein}
@@ -1516,72 +1522,75 @@ bool(a/b+c/d == (a/b+c/d).simplify_rational())
 \begin{sage}
 True
 \end{sage}
+Wir wollen uns nun mit Gruppen und Körpern beschäftigen und schließlich die reellen Zahlen einführen.
 \subsection{Gruppe}
-Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
-$G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
+Wir wollen den Begriff der Gruppe formal definieren.
+\begin{df}
+ Eine Gruppe ist ein Paar $(G,\cdot)$ bestehend aus einer Menge $G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
 \[
  \cdot: G \times G \ \rightarrow \ G, \quad (a,b) \mapsto a \cdot b
 \]
 mit folgenden Eigenschaften
-
- [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
-$a,b,c \in G$.
- [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
+\begin{itemize}
+ \item[(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ $\forall a,b,c\in G$
+ \item[(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ $\forall a
 \in G$ und zu jedem $a \in G$ existiert ein $a' \in G$ ({\it inverses
 Element}) mit $a' \cdot a=e$. 
-  
-{\it abelsche} Gruppe: $a \cdot b = b \cdot a$ \emph{für alle} $a,b \in G$.
-
- Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
-$a\in G$.
- Es gibt genau ein neutrales Element $e \in G$.
- Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
-und wird durch $a^{-1}$ bezeichnet. 
- Es gilt auch $a \cdot a'=e$. 
- Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
+\end{itemize}
+Eine Gruppe heißt abelsch, falls gilt: $a\cdot b=b\cdot a\ \forall a,b\in G$
+\end{df}
+\subsubsection{Eigenschaften einer Gruppe}
+Wir halten einige Eigenschaften für Gruppen fest. Es gibt genau ein neutrales Element $e \in G$, dieses ist auch rechtsneutral, es gilt also 
+$a\cdot e=a$ $\forall a\in G$. Ebenso ist auch das inverse Element $a'\in G$ eindeutig und wird durch $a^{-1}$ bezeichnet. Das inverse 
+Element ist auch rechtsinvers, es gilt also $a\cdot a^{-1}=e$. Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu 
+a wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
 \subsection{Körper}
-Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
+Nun, da wir Gruppen kennen, erklären wir Körper.
+\begin{df}
+ Ein Körper ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
 Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
 Eigenschaften:
-
- [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
+\begin{itemize}
+ \item[(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
 heiße $0$. Das inverse Element zu $a \in K$ sei $-a$.) 
- [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
+ \item[(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
 Gruppe. (Das neutrale Element dazu sei $1$.)
- [(K3)] Distributivgesetze
+ \item[(K3)] Distributivgesetze
 \begin{eqnarray*}
 a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
 (a+b) \cdot c & = &   (a \cdot c) + (b \cdot c) \mbox{ für alle }
 a,b,c \in K.
 \end{eqnarray*}
-
-(Ein Körper ist ein kommutativer unitärer Ring)
-
-BEISPIELE
-
+\end{itemize}
+\end{df}
+\begin{bem}
+ Ein Körper ist ein kommutativer unitärer Ring
+\end{bem}
+Wir geben ein paar Beispiele für Körper und Gruppen.\\
 Gruppen:
-
- $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
- $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
- $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
- $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
- 
+\begin{itemize}
+ \item$(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
+ \item$(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
+ \item$(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
+ \item$(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
+\end{itemize} 
 Körper:
-
- Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
- Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
- Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
- Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
-
-
-KÖRPER UND GRUPPEN IN SAGE
-
-
- Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
- Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
- Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
- Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
-
+\begin{itemize}
+ \item Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
+ \item Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
+ \item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
+ \item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
+\end{itemize}
+\subsubsection{Gruppen und Körper in Sage}
+Sage kennt selbstverständlich alle Zahlen und kann natürlich auch mit diesen arbeiten. Dazu ist es manchmal notwendig, komplette Zahlenmengen 
+anzusprechen. Dafür stellt Sage folgendes bereit:
+\begin{itemize}
+\item Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
+\item Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
+\item Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
+\item Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
+\end{itemize}
+Wir wollen uns verdeutlichen, was uns durch diese Operatoren in Sage möglich ist:
 \begin{sagein}
 QQ(5.01), RR(5/3) 
 \end{sagein}
@@ -1594,6 +1603,7 @@ RR.is_field(),ZZ.is_field()
 \begin{sage}
 (True, False)
 \end{sage}
+\subsubsection{Anordnung}
 Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
 Positivbereich} $P \subset K$ gibt mit
 
@@ -1608,6 +1618,7 @@ Man definiert:
  x \geq y&  \text{genau dann, wenn} &x-y \in P \cup \{ 0 \}.
 \end{eqnarray*}
 Analog definiert man $<$ und $\leq$. 
+\subsubsection{Schranken}
 Sei $K$ ein angeordneter Körper.
 
  {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
@@ -1635,7 +1646,7 @@ $\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
 
 
-REELLE ZAHLEN IN SAGE
+\subsubsection{Reelle Zahlen in Sage}
 
 Datentyp \isage{RealNumber}\\
 \textbf{Problem:}
@@ -1657,7 +1668,7 @@ keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
 242096980785696718753769480731767
 \end{sage}
 
-FEHLER
+\subsubsection{Rundungsfehler}
 
 
  \emph{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
@@ -1671,7 +1682,7 @@ verstärken. ({\it Fehlerfortpflanzung}).
 Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
 vermeiden.}
 
-NUMERIK
+\subsubsection{Numerik}
 
 
   Berechnen einer numerischen  Näherung
@@ -1720,7 +1731,7 @@ float(2/3*sin(2))
 \end{sage}
 
 
-AUSLÖSCHUNG
+\subsubsection{Auslöschung}
 
 \begin{sagein}
 x = 10^(-2); ((1.0+x)-1.0)/x
@@ -1740,7 +1751,7 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 \begin{sage}
   0.000000000000000
 \end{sage}
-
+\subsubsection{Nützliche Funktionen}
 \begin{center}
 \begin{tabular}{|ll|}
 \hline
@@ -1759,7 +1770,7 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 \end{center}
 
 
-GLEITKOMMAZAHLEN
+\subsubsection{Gleitkommazahlen}
 
 \[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
   b^e}, \quad { \color{red} a_1} \neq 0
@@ -1817,7 +1828,7 @@ $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
 2.346314631463146320
  \end{sage}
 
-KOMPLEXE ZAHLEN
+\subsubsection{Komplexe Zahlen}
 
 Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
 Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
