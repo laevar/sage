@@ -1582,7 +1582,7 @@ Körper:
  \item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
 \end{itemize}
 \subsubsection{Gruppen und Körper in Sage}
-Sage kennt selbstverständlich alle Zahlen und kann natürlich auch mit diesen arbeiten. Dazu ist es manchmal notwendig, komplette Zahlenmengen 
+Sage kennt selbstverständlich alle Zahlsysteme und kann natürlich auch mit diesen arbeiten. Dazu ist es manchmal notwendig, ein komplettes Zahlsystem
 anzusprechen. Dafür stellt Sage folgendes bereit:
 \begin{itemize}
 \item Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
@@ -1603,63 +1603,63 @@ RR.is_field(),ZZ.is_field()
 \begin{sage}
 (True, False)
 \end{sage}
-\subsubsection{Anordnung}
-Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
-Positivbereich} $P \subset K$ gibt mit
-
- Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
+Wir wollen uns nun mit geordneten Körpern und Schranken beschäftigen, um anschließend die reellen Zahlen kennenzulernen.
+\subsubsection{Ordnung}
+Wie gewohnt gehen wir Schritt für Schritt vor, fangen hier an mit einer Definition des Begriffs des geordneten Körpers:
+\begin{df}
+Sei $K$ ein Körper. Dann heißt K geordnet Körper, wenn es einen 
+Positivbereich $P \subset K$ gibt mit
+\begin{itemize}
+ \item Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
 disjunkt. 
- $K = P \cup \{ 0 \} \cup -P$.
- Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
-
-Man definiert:
+ \item $K = P \cup \{ 0 \} \cup -P$.
+ \item $x,y \in P\Rightarrow x+y \in P$ und $x \cdot y \in P$. 
+\end{itemize}
+\end{df}
+Man definiert dann Äquivalenzrelationen $>$ und $\geq$, sodass
 \begin{eqnarray*}
  x >y& \text{genau dann, wenn}& x-y\in P,\\
  x \geq y&  \text{genau dann, wenn} &x-y \in P \cup \{ 0 \}.
 \end{eqnarray*}
 Analog definiert man $<$ und $\leq$. 
 \subsubsection{Schranken}
-Sei $K$ ein angeordneter Körper.
-
- {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
- nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
- {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
- {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
-(Nicht notwendigerweise in $M$ oder $K$).  
-
+Vermöge der eben definierten Relationen lässt sich nun der Begriff der Schranke erklären:
+\begin{df}
+Sei $K$ ein angeordneter Körper. Dann heißt $y\in K$ obere Schranke der Menge $M\subset K$, falls $\forall x\in M$ die Relation $x\leq y$ gilt. 
+Die Menge $M\subset K$ heißt dann nach oben beschränkt. Analog definiert man den Begriff der unteren Schranke und die daraus resultierende 
+Beschränktheit nach unten. Man unterscheidet nun je zwei Fälle: Ist $y$ kleinste obere bzw. größte untere Schranke der Menge $M\subset K$, so heißt $y$ Maximum bzw. 
+Minimum von $M$, falls $y\in M$. Ist andererseits $y$ zwar eien solche Schranke der Menge $M\subset K$, aber $y\not\in M$, so heißt $y$ Supremum bzw. Infimum von $M$.
+\end{df}
+\begin{bem}
+ Wir konstatieren, dass eine Menge, falls sie beschränkt ist, unendlich viele obere und untere Schranken besitzt, dass die kleinste obere 
+bzw. die größte untere Schranke jeweils einzigartig sind.
+\end{bem}
 \subsubsection{Reelle Zahlen}
-
- Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
-Schranke.
- Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
-Mengen von oberen Schranken haben. 
- Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
-Zahlen}.
-
-Bemerkungen
-
+Wir führen nun mit ebensolchen beschränkten Teilmengen der rationalen Zahlen die reellen Zahlen ein.
+ Sei dazu $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
+Schranke. Wir definieren eine Äquivalenzrelation für Elemente $x,y\in M$ vermöge
+\[x\sim y \Longleftrightarrow x,y \text{ haben die selbe Menge von oberen Schranken.}\]
+Die entstehenden Äquivalenzklassen nennt man die reellen Zahlen.
+\begin{bem}
  Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
-definieren. 
- Die reellen Zahlen können auch als Vervollständigung von
-$\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
- Die rationalen Zahlen sind als Äquivalenzklassen der
-einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-
+definieren. Wie uns weiterhin bekannt sein sollte, können die reellen Zahlen auch als Vervollständigung von
+$\mathbb{Q}$ definiert werden oder durch Dedekindsche Schnitte. Die rationalen Zahlen sind als Äquivalenzklassen der
+einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ in den reellen Zahlen enthalten.
+\end{bem}
 
 \subsubsection{Reelle Zahlen in Sage}
-
-Datentyp \isage{RealNumber}\\
-\textbf{Problem:}
-keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
-
- Gleitkommazahlen haben in Sage den Datentyp \isage{float}. 
+Sage verwendet für reelle Zahlen den Datentyp \isage{RealNumber}. Wie wir wissen, ist unsere Rechnergenauigkeit durch physikalische 
+Gegebenheiten begrenzt, wodurch Probleme im Umgang mit reellen Zahlen entstehen. Es ist keine exakte Darstellung reeller Zahlen 
+möglich. Die Lösung hierfür heißt Approximation, wir sind nun also bei den Gleitkommazahlen angekommen. Gleitkommazahlen haben in 
+Sage den Datentyp \isage{float}.
 % Gleitkommazahlen werden zur Basis $10$ ausgegeben.
  Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
 % Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
 %bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
-
-
-\textbf{Beispiel:} $\sqrt{2}$
+\begin{bem}
+ Wir haben beim Rechnen mit reellen Zahlen also immer ``Datenverluste'', wir kommen später auf dieses nicht unwichtige Thema zurück.
+\end{bem}
+Wir wollen uns durch $\sqrt{2}$ ein Bild der Gleitkommaarithmetik verschaffen:
 \begin{sagein}
 (sqrt(2)).n(digits=200)
 \end{sagein}
@@ -1667,72 +1667,25 @@ keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
 1.4142135623730950488016887
 242096980785696718753769480731767
 \end{sage}
-
+\begin{bem}
+ Wir erkennen hier den eben angesprochenen Datenverlust-- $\sqrt{2}$ wurde einfach nach der 200-sten Dezimale abgeschnitten, das ausgegebene 
+Ergebnis ist daher keinesfalls $\sqrt{2}$.
+\end{bem}
 \subsubsection{Rundungsfehler}
-
-
- \emph{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
+Da wir nun in die Welt der GleitkommaZahlen abgerutscht sind, müssen wir uns mit Rundungsfehlern und daraus (möglicherweise) 
+resultierenden Auslöschungen befassen. Der relative Fehler $rd(x)$, der auftritt, wenn eine Zahl $x \in \mathbb{R}$ im Rechner 
+gerundet und als Gleitkommazahl weiterverwendet wird, ist gegeben zu
 \[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
-mit $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
- Rundungsfehler können sich innerhalb eines Verfahrens
-verstärken. ({\it Fehlerfortpflanzung}).
- Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
-1996.
-
-Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
-vermeiden.}
-
-\subsubsection{Numerik}
-
-
-  Berechnen einer numerischen  Näherung
-\begin{sagein}
-(pi).n(digits=22), (exp(1)).n(digits=22)
-\end{sagein}
-\begin{sage}
-(3.141592653589793238463, 2.718281828459045235360)
-\end{sage}
- Sage rechnet mit \isage{floats}, sobald mindestens eine Zahl in
-Gleitkommadarstellung gegeben ist 
-\begin{sagein}
-(1.0+(5/2*3))/(1/7+7/9)^2
-\end{sagein}
-\begin{sage}
-10.0286860879905
-\end{sage}
-\begin{sagein}
-(1+(5/2*3))/(1/7+7/9)^2
-\end{sagein}
-\begin{sage}
-67473/6728
-\end{sage}
-
-
- Viele Sage Funktionen liefern numerische Werte beim Einsetzen
-     von Gleitkommazahlen.
-\begin{sagein}
-sqrt(64.0), sin(3.14), sin(7/5)
-\end{sagein}
-\begin{sage}
-(8.0000000000000, 0.00159265291648683, sin(7/5))
-\end{sage}
- Ausdrücke werden nicht automatisch umgewandelt
-\begin{sagein}
-2/3*sin(2), 0.666666666666666*sin(2)
-\end{sagein}
-\begin{sage}
-(2/3*sin(2), 0.666666666666666*sin(2))
-\end{sage}
-\begin{sagein}
-float(2/3*sin(2))
-\end{sagein}
-\begin{sage}
-0.60619828455045444
-\end{sage}
-
+dabei $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
+ Rundungsfehler haben die unangenehme Eigenschaft, dass sie sich innerhalb eines Verfahrens verstärken können ({\it Fehlerfortpflanzung}).
+Es sind katastrophale Auswirkungen möglich, an die man bei einem Rundungsfehler nicht unbedingt denken würde. Eines der schlimmsten 
+Beispiele ist der Absturz der Arianne-Rakete 1996.
+\begin{bem}
+ Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ust zu vermeiden!!!
+\end{bem}
 
 \subsubsection{Auslöschung}
-
+Wir betrachten ein Beispiel der Auslöschung im Zusammenhang mit ``kleinen'' Zahlen.
 \begin{sagein}
 x = 10^(-2); ((1.0+x)-1.0)/x
 \end{sagein}
@@ -1751,7 +1704,57 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 \begin{sage}
   0.000000000000000
 \end{sage}
+\begin{bem}
+ Wir sehen also, dass das Arbeiten mit kleinen Zahlen eine gewisse Vorsicht und ``Programmiergeschick'' erfordert, um nicht 
+relevante Dezimalen zu verlieren.
+\end{bem}
+
+\subsubsection{Numerik}
+Wir wollen nun ein wenig unsere neu erworbenen Fähigkeiten austesten und berechnen eine numerische Näherung für $\pi$ und $e$
+\begin{sagein}
+(pi).n(digits=22), (exp(1)).n(digits=22)
+\end{sagein}
+\begin{sage}
+(3.141592653589793238463, 2.718281828459045235360)
+\end{sage}
+Wir bemerken hier, dass Sage mit \isage{floats} rechnet, sobald mindestens eine Zahl in
+Gleitkommadarstellung gegeben ist 
+\begin{sagein}
+(1.0+(5/2*3))/(1/7+7/9)^2
+\end{sagein}
+\begin{sage}
+10.0286860879905
+\end{sage}
+\begin{sagein}
+(1+(5/2*3))/(1/7+7/9)^2
+\end{sagein}
+\begin{sage}
+67473/6728
+\end{sage}
+Viele Sage Funktionen liefern numerische Werte beim Einsetzen
+     von Gleitkommazahlen.
+\begin{sagein}
+sqrt(64.0), sin(3.14), sin(7/5)
+\end{sagein}
+\begin{sage}
+(8.0000000000000, 0.00159265291648683, sin(7/5))
+\end{sage}
+Wir stellen fest, dass Ausdrücke nicht unbedingt automatisch umgewandelt werden
+\begin{sagein}
+2/3*sin(2), 0.666666666666666*sin(2)
+\end{sagein}
+\begin{sage}
+(2/3*sin(2), 0.666666666666666*sin(2))
+\end{sage}
+\begin{sagein}
+float(2/3*sin(2))
+\end{sagein}
+\begin{sage}
+0.60619828455045444
+\end{sage}
 \subsubsection{Nützliche Funktionen}
+Wir wollen einen kleinen Einblick in recht nützliche Sagefunktionen geben, zusammen mit dem Appell an die geneigte Leserin, diese 
+einmal ausführlich auf Herz und Nieren zu testen.
 \begin{center}
 \begin{tabular}{|ll|}
 \hline
@@ -1771,29 +1774,32 @@ x = 10^(-16); ((1.0+x)-1.0)/x
 
 
 \subsubsection{Gleitkommazahlen}
-
-\[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
-  b^e}, \quad { \color{red} a_1} \neq 0
+Wir wollen und hier mit der b-adischen Darstellung von Gleitkommazahlen befassen, damit uns klar wird, was Sage-intern passiert. Die 
+b-adische Darstellung einer Zahl $x$ ist gegeben zu
+\[ x=(-1)^s \cdot (0.a_1a_2 \dots a_t) \cdot 
+  b^e, \quad a_1 \neq 0
 \]
-
- ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
- ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
- ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
- Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
- $t$ ist die Anzahl der {\it signifikanten Stellen}.   
- $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
- Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
- 
-\textbf{Beispiele:}
-\[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
-  {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
-  + {\color{red} 0} \cdot 2^1 + {\color{red} 1} \cdot 2^0 
+dabei
+\begin{itemize}
+\item $b \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis.
+\item $a_1 \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
+\item $s \in \{0, 1\}$ das Vorzeichen.
+\item Es sei $a_i \in \{0,1,\dots, b-1 \}$.
+\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
+\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
+ Man spricht von einer $b$-adischen Darstellung oder einer Darstellung zur Basis $b$.
+\end{itemize}
+ Wir wollen zwei Beispiel der 2-adischen (binären) und der 8-adischen (oktalen) Darstellung der Zahlen 73 und 2.45 betrachten.
+\[ 73 =  1 \cdot 2^6+ 0 \cdot 2^5 + 0 \cdot 2^4 +
+   1 \cdot 2^3 + 0 \cdot 2^2
+  +  0 \cdot 2^1 + 1 \cdot 2^0 
 \]
-$\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
+$\Rightarrow$ Binärdarstellung: $1001001=0.1001001\cdot 2^7$.
 \[
-73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
+73= 1 \cdot 8^2 + 1 \cdot 8^1 + 1 \cdot 8^0
 \]
- $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
+ $\Rightarrow$ Oktaldarstellung: $111=0.111 \cdot 8^3$.
+Sage kommt uns in Fragen der Darstellung einer Zahl zu einer anderen Basis mit einer sehr einfachen Funktion zu Hilfe
 \begin{sagein}
 73.str(2)
 \end{sagein}
@@ -1806,15 +1812,17 @@ $\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
 \begin{sage}
 111
 \end{sage}
-\[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
-  2^{-1} + {\color{red} 1} \cdot 2^{-2}+
-{\color{red} 1} \cdot 2^{-3} + {\color{red} 1} \cdot 2^{-4}+{\color{red} 0} \cdot 2^{-5}+ \dots \]
-$\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
+Bleibt noch unser zweites Beispiel zu betrachten
+\[ 2.45 = 1 \cdot 2^1 + 0 \cdot 2^0 + 0 \cdot
+  2^{-1} + 1 \cdot 2^{-2}+
+ 1 \cdot 2^{-3} + 1 \cdot 2^{-4}+ 0 \cdot 2^{-5}+ \dots \]
+$\Rightarrow$ Binärdarstellung:  $10.01110 \dots$
 
-\[ 2.45 = {\color{red} 2} \cdot 8^0 +  {\color{red} 3} \cdot
-  8^{-1} + {\color{red} 4} \cdot 8^{-2}+
-{\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
-$\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
+\[ 2.45 = 2 \cdot 8^0 +  3 \cdot
+  8^{-1} + 4 \cdot 8^{-2}+
+6 \cdot 8^{-3} + 3 \cdot 8^{-4}+1 \cdot 8^{-5}+ \dots \]
+$\Rightarrow$ Oktaldarstellung:  $2.34631 \dots$
+Wiederum hilft Sage uns gern
  \begin{sagein}
  (2.45).str(2)
  \end{sagein}
@@ -1829,53 +1837,39 @@ $\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
  \end{sage}
 
 \subsubsection{Komplexe Zahlen}
-
-Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
-Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
-
-    Addition: $(k,l)+(n,m)=(k+n,l+m)$
- Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
-
-
-
-  {\color{red} $i:=(0,1)$}  mit 
-
- $ i^2=(0,1) \cdot (0,1) = (-1,0) $
- $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
-
- \emph{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
-
-
- \emph{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
- Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
+Wir führen hier noch den Körper $\mathbb{C}$ der komplexen Zahlen als die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ ein. 
+Für die Addition und die Multiplikation zweier Elemente $a=(k,l)$, $b=(n,m)\in \mathbb{C}$ gilt: 
+\[a+b=(k,l)+(n,m)=(k+n,l+m)\]
+\[a\cdot b= (k,l) \cdot (n,m) = (kn-lm, km+ln) \]
+Es ist $i:=(0,1)$ die imaginäre Einheit. Für $i$ gilt
+\[ i^2=(0,1) \cdot (0,1) = (-1,0) \]
+Weiterhin gilt  $\forall (x,y) \in \mathbb{C}:$
+\[(x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y\]
+Der Betrag einer Komplexen Zahl $z=(x,y)$ ergibt sich zu
+\[|z|=|(x,y)|:=\sqrt{x^2+y^2}\]
+In Sage haben wir den \isage{abs}-Befehl. Wir wollen einige Eigenschaften von $\mathbb{C}$ feststellen.
+Der Fundamentalsatz der Algebra besagt, dass jedes nicht konstante Polynom (mit komplexen Koeffizienten) mindestens eine Nullstelle in $\mathbb{C}$ hat. 
+Komplexe Zahlen $(x,y) \in \mathbb{C}$ lassen sich in Polarkoordinaten $(r, \varphi)$ darstellen 
 \[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
-
- Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
-
-
-C IN SAGE
-
-
- Datentyp in Sage: \isage{complex}
+Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
+\subsubsection{Komplexe Zahlen in Sage}
+Sage verwendet hier den Datentyp \isage{complex}.
  Die imaginäre Einheit $i=(0,1)$ ist in Sage \isage{I}.
+Wir machen uns den Umgang mit komplexen Zahlen an einigen Beipielen klar
 \begin{sagein}
 sqrt(-1), I^2
 \end{sagein}
 \begin{sage}
 (I, -1)
 \end{sage}
- Rechnen mit komplexen Zahlen
 \begin{sagein}
 (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
 \end{sagein}
 \begin{sage}
  (9*I + 2, -0.4500000000 + 0.3500000000*I)
 \end{sage}
-
-
-  Keine automatische Trennung bzgl. Realteil und  Imaginärteil\\
- \isage{real()}: Realteil
- \isage{imag()}: Imaginärteil
+Wir stellen fest, dass Sage keine automatische Trennung bzgl. Realteil und  Imaginärteil vornimmt. Wir können eine Trennung erzwingen, 
+vermöge den Befehlen \isage{real()} und \isage{imag()}
 \begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sagein}
@@ -1889,8 +1883,6 @@ real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 \begin{sage}
 (1/3*sqrt(2), -1/3)
 \end{sage}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Vektoren und Funktionen}
 \section{Vektoren}
