@@ -2018,7 +2018,7 @@ spalte = C.column(4)
 C[1:3,1:3]
 \end{sagein}
 \subsubsection{Rechnen mit Matrizen} 
-Wie vorher definiert, sind Addition und Multiplikation zweier MAtrizen in Sage eine Selbstverständlichkeit:
+Wie vorher definiert, sind Addition und Multiplikation zweier Matrizen in Sage eine Selbstverständlichkeit:
 \begin{sagein}
 var('a,b,c,d,g,h,f')
 A = matrix([[a, b], [c,d]])
@@ -2100,140 +2100,119 @@ map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 \subsection{Vektorräume}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen uns nun den Vektorräumen nähern. Dazu wie üblich eine formale Definition.
-
+\begin{df}
 Ein Tripel $(V,+,\cdot)$, bestehend aus einer nichtleeren Menge $V$
 und Verknüpfungen
 \[ +:V \times V \ \rightarrow \ V, \qquad \cdot:K\times V \ \rightarrow \ V\]
-heißt {\color{red} Vektorraum} über einem Körper
+heißt Vektorraum über einem Körper
 $K$, wenn gilt:
-
- $(V,+)$ ist eine abelsche Gruppe.
- Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
-
-  $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
- $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
- $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
- $1 \cdot v = v$.
-
-
-
-BEGRIFFE
-
-
- {\color{red} Vektoren}: Die Elemente eines Vektorraums.
- {\color{red} Skalarmultiplikation}: Die Abbildung $\cdot : K\times V \ \rightarrow \ V$. Die Elemente des Körpers $K$ nennt man
-  {\color{red} Skalare}.
- {\color{red} Untervektorraum} oder {\color{red} Unterraum} von $V$: Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und es gelten
-  alle Vektorraumaxiome.
- \emph{Vorsicht!} man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. \\
-Es gilt $0 \cdot v  = 0$ für alle $v \in V$. 
-
-
-BEISPIELE
-
-
- $K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
- Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
+\begin{enumerate}
+ \item$(V,+)$ ist eine abelsche Gruppe.
+ \item Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
+\begin{enumerate}
+ \item $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
+ \item $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
+ \item $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
+ \item $1 \cdot v = v$.
+\end{enumerate}
+\end{enumerate}
+\end{df}
+Wir klären einige Begrifflichkeiten.
+Die Elemente eines Vektorraums heißen Vektoren. Die Abbildung $\cdot : K\times V \ \rightarrow \ V$ heißt Skalarmultiplikation, die Elemente des Körpers $K$ nennt man 
+Skalare. Eine Teilmenge $U\subset V$ wird Untervektorraum oder Unterraum von $V$ genannt, wenn alle Vektorraumaxiome auch in U gelten.
+\begin{bem}
+ Man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. Es gilt $0 \cdot v  = 0$ für alle $v \in V$. 
+\end{bem}
+Wir betrachten einige (hoffentlich) bekannte Beispiele für Vektorräume.
+\begin{itemize}
+ \item$K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
+\item Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
   in $K$, $\text{Abb}(M,K)$, mit den punktweise definiertenVerknüpfungen
 \begin{eqnarray*}
 (f+g)(x) & :=& f(x)+g(x), \forall\; x \in M\\
 (\alpha \cdot f)(x) & :=& \alpha \cdot f(x), \forall\; x \in M  
 \end{eqnarray*}
 für $\alpha \in K$, $f,g:M \mapsto K$.
- Die Menge der Polynome bis zum Grad $n$.
- Die Menge aller Polynome.
- $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
- $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
-
-
-inSAGE
-
-Konstruktion von Vektoren
+\item Die Menge der Polynome bis zum Grad $n$.
+\item Die Menge aller Polynome.
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
+\item $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
+\end{itemize}
+\subsubsection{Vektorräume in Sage}
+Nachdem uns die mathematische Natur der Vektorräume klar ist, wollen wir sehen, wie Sage mit diesen umgeht. Zunächst müssen wir wissen, wie man Vektoren erzeugen kann
 \begin{sagein}
 vector([v1,v2,..]) 
 \end{sagein}
-\textbf{Beispiele}:
-
- Konstruktion
+Das wollen wir doch gleich einmal an einem konkreten Vektor ausprobieren
 \begin{sagein}
 a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sagein}
-\begin{small}
 \begin{sage}
 ((1, 2, 3, 4), (5, 6, 7))
 \end{sage}
-\end{small}
- Datentyp: \isage{vector_integer_dense} (für dichte Vektoren)
+Für Vektoren verwendet Sage den Datentyp \isage{vector_integer_dense} (für dichte Vektoren)
 \begin{sagein}
 type(a)
 \end{sagein}
-\scriptsize{
 \begin{sage}
 <type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
-\end{sage}}
-
-
-DEFINITION
-
+\end{sage}
+\subsubsection{Lineare Algebra}
+Nachdem wir nun die Grundlagen über Vektorräume Sage-technisch an der Hand haben, betrachten wir etwas ausgefallenere Konstrukte über Vektorräumen; auch hierzu wieder 
+eingangs klärende Definitionen.
+\begin{df}
 Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
 Elementen aus $V$.
-
- {\color{red} Linearkombination} $v \in V$ von $(v_1,\dots ,v_r)$: 
-  falls $\exists \lambda_1, \dots, \lambda_r \in K$  mit
-  $ v= \lambda_1 v_1 + \dots + \lambda_r v_r$. 
- {\color{red} Lineare Hülle} $\mathop{span}\{v_1, \dots, v_n\}$: Die Menge aller Linearkombinationen. Die Lineare
-  Hülle ist ein Unterraum von $V$.
- {\color{red} linear unabhängig}: 
-  Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
-  \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
-  \lambda_r=0$. Andernfalls {\color{red} linear abhängig}. 
-
- Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
-
-
-
-NOTATION
-
+\begin{enumerate}
+ \item Dann heißt der Vektor $v \in V$ Linearkombination von $(v_1,\dots ,v_r)\Leftrightarrow\exists \lambda_1, \dots, \lambda_r \in K$ mit 
+ $v= \lambda_1 v_1 + \dots + \lambda_r v_r$.
+\item Die Menge aller Linearkombinationen von $(v_1,\dots ,v_r)$ heißt Lineare Hülle und wird auch mit $\mathop{span}\{v_1, \dots, v_n\}$ bezeichnet.
+Die Lineare Hülle ist ein Unterraum von $V$.
+\item Die Vektoren $(v_1,\dots ,v_r)$ heißen linear unabhängig, falls aus $\lambda_1 v_1 + \dots + \lambda_r v_r=0$ folgt $\lambda_1= \dots =
+  \lambda_r=0$, dabei $\lambda_1, \dots , \lambda_r \in K$. Andernfalls sind sie linear abhängig.
+  \begin{itemize}
+   \item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
+  \end{itemize}
+\end{enumerate}
+\end{df}
+Wir wollen noch ein wenig auf die Notation eingehen:
+\begin{nt}
 Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
-Elementen aus $V$
-
- $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
-jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
-läßt. 
- Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.
- Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
-{\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
-unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
- Aus jedem Erzeugendensystem kann man eine Basis auswählen. 
-
-
-BEISPIELE
-
-
- Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
+Elementen aus $V$. Dann sind die Vektoren $(v_1,\dots ,v_r)$ genau dann linear unabhängig, wenn sich
+jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren läßt.\\ 
+Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.\\
+Falls sich alle $v\in V$ als Linearkombination von $(v_1,\dots ,v_r)$ darstellen lassen, also $V=span\{v_1,\dots ,v_r \}$, so heißt 
+$(v_1,\dots ,v_r)$ ein Erzeugendensystem für den Vektorraum $V$. Falls zusätzlich die $(v_1,\dots ,v_r)$ linear unabhängig sind, so 
+sind sie eine Basis von $V$.\\
+Aus jedem Erzeugendensystem kann man eine Basis auswählen.
+\end{nt}
+Wir betrachten die Basen einiger uns bekannter Vektorräume
+\begin{itemize}
+\item Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
 ,e_n)$ ist eine Basis des $\mathbb{R}^n$.
- Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
+\item Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
 Vektorraums der Polynome $n$-ten Grades.
- $(1,i)$ ist eine Basis von $\mathbb{C}$ als
+\item $(1,i)$ ist eine Basis von $\mathbb{C}$ als
 $\mathbb{R}$-Vektorraum. 
- $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
 Basis. 
-
-
-BASIS und DIM
-
-
- {\color{red} Dimension} des Vektorraums $V$: die  Anzahl der Basiselemente einer Basis $(v_1,\dots, v_n)$.
- Jeder Vektorraum besitzt eine Basis.
- Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
-die {\color{red} Summe} von $W$ und $Z$. Es gilt:
+\end{itemize}
+\subsubsection{Basis und Dimension}
+Mit Hilfe des Begriffs der Basis lässt sich die Dimension eines Vektorraums V definieren.
+\begin{df}
+ Sei V ein Vektorraum und $(v_1,\dots, v_n)$ eine Basis von V. Die Anzahl der Elemente der Basis heißt Dimension von V.
+\end{df}
+\begin{bem}
+ Jeder Vektorraum besitzt eine Basis. Für die Dimension von $V$ schreibt man auch kurz dim($V$). dim($V$) ist eine ganze Zahl $\geq0$.
+\end{bem}
+\begin{lm}
+ Seien $W,Z$ Unterräume von $V$. Dann ist $W+Z:=span(W \cup Z)$
+die Summe von $W$ und $Z$. Es gilt:
 \[ \dim(W+Z)=\dim(W) + \dim (Z) - \dim( W \cap Z) \]
 
-
-inSAGE
-
-
- Bestimmen einer Basis von $span(s1,s2,s3)$
+\end{lm}
+\subsubsection{Basis und Dimension in Sage}
+Wir wollen nun wissen, wie wir mit Sage eine Basis von $span(s1,s2,s3)$ bestimmen können.
 \begin{sagein}
 s1 = vector([1,0,0])
 s2 = vector([0,1,1])
@@ -2246,7 +2225,7 @@ Basis matrix:
 [1 0 0]
 [0 1 1]
 \end{sage}
- Bestimmen des Schnitts von $span(s1)$ und $span(s2,s3)$
+ Wir wollen den Schnitt von $span(s1)$ und $span(s2,s3)$ bestimmen:
 \begin{sagein}
 span([s1],QQ).intersection(span([s2,s3],QQ))
 \end{sagein}
@@ -2255,23 +2234,25 @@ Vector space of degree 3 and dimension 1 over Rational Field
 Basis matrix:
 [1 0 0]
 \end{sage}
-
- Testen der linearen Unabhängigkeit
+Wir möchten herausfinden, ob unsere Vektoren $(s1,s2,s3)$ linear unabhängig sind. Dazu erzeugen wir eine Matrix und bestimmen ihren Rang:
 \begin{sagein}
 m = matrix([s1,s2,s3])
 m.rank() >= min(m.ncols(), m.nrows())
 m.determinant() <> 0 
 \end{sagein}
-
 \begin{sage}
   False
 \end{sage}
+\begin{bem}
+ Wir erinnern uns, dass $a <> b$ das Gegenteil von $a == b$ ist, also genau dann den Wert \isage{true} liefert, wenn $a\not=b$. Unsere Matrix hat also nicht vollen Rang, 
+unsere Vektoren sind also auch nicht linear unabhängig-- dies hätte uns schon am ersten Beispiel auffallen können, denn $span(s1,s2,s3)$ hat nur Dimension 2.
+\end{bem}
 
-
-NORMEN
-
+\subsubsection{Normen}
+Wir möchten noch die Begriffe Norm und Skalarprodukt kennenlernen. Dazu je eine Definition.
+\begin{df}
 Sei $V$ ein Vektorraum über $K=\mathbb{R}$ oder $K=\mathbb{C}$.\\
-Eine {\color{red} Norm} auf $V$ ist eine Abbildung
+Eine Norm auf $V$ ist eine Abbildung
 \[ \| \cdot \|: V \ \rightarrow \mathbb{R}, v \mapsto \| v \|, \]
 so dass für  alle $\alpha \in K$, $u,v \in V$ gilt 
 \[ \begin{array} {rcl}
@@ -2281,10 +2262,9 @@ so dass für  alle $\alpha \in K$, $u,v \in V$ gilt
 \| u + v \| & \leq & \| u \| + \| v \| \mbox{ (Dreiecksungleichung)}.\\
 \end{array} \]
 $(V,\| \cdot \|)$
-heißt {\color{red} normierter Raum}.
-
-SKALARPROD
-
+heißt normierter Raum.
+\end{df}
+\begin{df}
 Eine skalarwertige binäre Abbildung
 \[ ( \cdot, \cdot ): V \times V: \ \rightarrow \ K\]
 auf einem Vektorraum $V$ über $K=\mathbb{R}$ oder $K=\mathbb{C}$ heißt
@@ -2296,45 +2276,36 @@ K$ gilt
 (x,y) & = & \overline{(y,x)}\\
 (\alpha x+\beta y,z) & = & \alpha (x,z)+ \beta (y,z)
 \end{eqnarray*}
-
-BEMERKUNG
-
-
- Ein VR $V$ mit Skalarprodukt heißt {\color{red} Prä-Hilbert-Raum}. Ist
-$K=\mathbb{R}$ so heißt der Raum auch {\color{red} euklidisch}.
- Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm
-definieren. Es gilt die {\color{red} Cauchy-Schwarzsche Ungleichung}
+\end{df}
+\subsubsection{Eigenschaften von Normen und Skalarprodukten}
+Wir wollen uns einige Eigenschaften von Normen und Skalarprodukten klarmachen. Ein Vektorraum $V$ mit Skalarprodukt heißt Prä-Hilbert-Raum. Ist
+$K=\mathbb{R}$, so heißt der Raum auch euklidisch.\\
+Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm definieren. Es gilt die Cauchy-Schwarzsche Ungleichung
 \[ |(u,v)| \leq \| u \| \|v\|. \]
  Im euklidischen Raum ist der Winkel $\alpha$ zwischen zwei Vektoren
 $u,v \in V\smallsetminus \{ 0 \}$ definiert durch
 \[ \cos(\alpha) = \frac{(u,v)}{\|u\| \|v \|}. \]
- {\color{red} Orthogonal}: wenn $(u,v)=0$ gilt.
- {\color{red} Orthogonalbasis}: Eine Basis aus paarweise orthogonalen Vektoren. 
- {\color{red} Orthonormalbasis}: Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
-haben.
- Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
-Orthonormalbasis. 
- {\color{red} Orthogonalraum}:
+Zwei Vektoren $u,v\in V$ heißen orthogonal, falls gilt $(u,v)=0$.\\
+Eine Basis, die nur aus paarweise orthogonalen Vektoren besteht, heißt Orthogonalbasis.\\
+Sind die Basisvektoren zusätzlich auf $1$ normiert, so handelt es sich um eine Orthonormalbasis.\\
+Jeder endlichdimensionale Prä-Hilbert-Raum hat eine Orthonormalbasis.\\ 
+Die Teilmenge 
 \[
 {U}^\perp := \{ v \in V \ | \ (v,u)=0 \mbox{ für alle } u \in U \}
 \]
-wenn $U$ ein Unterraum von $V$ ist.
- Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
-
-
-inSAGE
-
-
- $p$-Norm:
+heißt Orthogonalraum, falls $U$ Unterraum von V ist.
+Es gilt: $\dim U + \dim U^\perp = \dim V$, insbesondere $U \cap U^\perp = 0$.
+\subsubsection{Normen und Skalarprodukte in Sage}
+Nachdem wir nun Normen und Skalarprodukte kennen, müssen wir auch wissen, wie man solche Konstrukte in Sage behandelt. Dazu betrachten wir zuerst die $p$-Norm:
 \[
 \|v\|:=(\sum_{i=1}^n |v_i|^p)^{1/p}, p\in [1,\infty)                   
 \]
-auf $K^n$ mit $K=\mathbb{R},\mathbb{C}$
+auf $K^n$ mit $K=\mathbb{R},\mathbb{C}$. In Sage sieht das dann so aus (hier: 2-Norm):
 \begin{sagein}
 x = vector([1,2,3,4,5]); p=2
 x.norm(p)
 \end{sagein}
- sind Vektoren orthogonal zueinander ?
+Wir wollen prüfen, ob Vektoren orthogonal zueinander sind.
 \begin{sagein}
 a1 = vector([1,2,3])
 a2 = vector([0,4,1])
@@ -2342,14 +2313,18 @@ a3 = vector([1,1,1])
 X = matrix([a1,a2,a3])
 X * X.transpose() 
 \end{sagein}
- Berechnen des Skalarprodukts
+\begin{bem}
+ Wir erinnern uns, dass für orthogonale Matrizen gilt $A\cdot A^T=I_n$. Es gilt insbesondere, dass die Zeilen- bzw Spaltenvektoren orthogonaler Matrizen paarweise 
+orthonormal zueinander sind.
+\end{bem}
+Auch die Berechnung des Skalarprodukts ist für Sage kein Problem:
 \begin{sagein}
 a2.dot_product(a3), a2*a3
 \end{sagein}
 \begin{sage}
   (5, 5)
 \end{sage}
- Berechnen des Winkels zwischen zwei Vektoren
+Nun fehlt uns noch die Berechnung des Winkels zwischen zwei Vektoren
 \begin{sagein}
 float(acos(a2*a3/(abs(a2)*abs(a3))))
 \end{sagein}
@@ -2361,35 +2336,26 @@ float(acos(a2*a3/(abs(a2)*abs(a3))))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-AUFBAU FKT
-
+Wir wollen uns nun einmal genauer mit selbstdefinierten Funktionen in Sage befassen. Zur Erinnerung, diese Konstruiert man wie folgt
 \begin{sagein}
 def <Name><(a,b,..)>:
     <Code-Block>
     return <ret>
 \end{sagein}
-
- Argumente/Übergabeparameter \isage{(a,b,..)} 
- Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.
- Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein \emph{Tab})
- Zeilen gleicher Einrückung gehören zum gleichen Block.
- Rückgabewert \isage{ret} mittels \isage{return(ret)} zurückgegeben. Funktion ist dann beendet.
- Ohne return wird eine leere Variable des Typs \isage{NoneType} zurückgegeben.  
-
-
-ERKLÄRUNG
-
-
+Unsere Funktion bekommt bei ihrem Aufruf die Argumente \isage{(a,b,..)}.\\
+Jede Zeile, die einen folgenden Block einleitet, muss mit einem Doppelpunkt \isage{:} abgeschlossen werden.\\
+Jede Zeile in diesem Block muss eine grössere Einrückung besitzen (typischerweise ein Tab).\\
+Zeilen gleicher Einrückung gehören zum gleichen Block.\\
+Die Funktion wird mittels \isage{return(ret)} beendet und liefert den Wert \isage{ret} zurück. Ohne return wird eine leere Variable des Typs \isage{NoneType} zurückgegeben.  
+\begin{bem}
  In \isage{\"\"\" comment \"\"\"} eingeschlossene Zeilen werden als Hilfetext abgespeichert und können durch \isage{<funktionsname>?} abgefragt werden.
- Kommentarzeilen: Diese beginnen mit \isage{#}. Sie werden vom System ignoriert.
+ Kommentarzeilen beginnen mit \isage{#} und werden vom System ignoriert.
 % Die durch \isage{if <bedingung>:} eingeleitete Zeile ist eine
 %  sogenannte Verzweigung. Ist die  Bedingung \isage{<bedingung>} wahr, so wird der
 %  Block hinter \isage{:} ausgeführt. Ist \isage{<bedingung>} falsch, so
 %  wird die Alternative \isage{else:} ausgeführt.
-
-
-BEISPIEL
-
+\end{bem}
+Wir betrachten als Beispiel eine Funktion, die uns das Maxium zweier übergebener Werte zurückliefert:
 \begin{sagein}
 def MyMax(a,b):
     """Maximum von a und b"""
@@ -2398,44 +2364,29 @@ def MyMax(a,b):
     else: 
         return (a)
 \end{sagein}
-
- Das Beispiel berechnet das Maximum zweier Zahlen $a$ und
-$b$. 
- Aufruf in Sage ist {\color{blue} \isage{MyMax(a,b)}}. 
- Die Funktion gibt dann entweder den Wert $a$ oder den Wert $b$
-  zurück.
-  
-
-EDIT
-
-Bei umfangreicheren Funktionen oder richtigen Programmen ist es evtl. sinnvoller dies mit
-einem Editor zu erstellen. 
-
-
-  Erstellen einer \verb+<name>.sage+-Datei (Editor: z.B. \verb+geany+)
- \isage{attach <path>/<name>.sage}: hängt die Datei an das Notebook an und wird automatisch geladen und aktuell gehalten.
- \isage{attached_files()}: listet alle angehängte Dateien.
-
+Unsere Funktion \isage{MyMax} wird mit den Argumenten \isage{a,b} aufgerufen und liefert entweder den Wert $a$ oder $b$.
+ 
+\subsection{Externes Editieren von Funktionen}
+Bei umfangreicheren Funktionen oder richtigen Programmen ist es wahrscheinlich sinnvoller diese mit
+einem Editor zu erstellen. Das ist nicht nur möglich, sondern sogar fast schon zu simpel:\\
+Zuerst erstellen wir eine \verb+<name>.sage+-Datei (mit einem beliebigen Editor).\\
+Diese wird dann via \isage{attach <path>/<name>.sage} an das Notebook angehängt, automatisch geladen und aktuell gehalten.\\
+Mit \isage{attached_files()} erhalten wir eine Liste aller angehängten Dateien.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Datencontainer, Lineare Abbildungen, Eigenwerte und -vektoren}
 \section{Datencontainer in Sage}
 \subsection{Folgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-FOLGEN
-
+Wir kommen zurück auf den Begriff des Tuples. Sage realisiert Tuple, wie wir uns erinnern, wie folgt:
 \begin{sagein}
  Folge = a,b,c,..
  Folge = tuple(<sequence>)
 \end{sagein}
-
-
- Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte,
-  welche durch Kommata getrennt sind.
- ein Tuple ist in  runde Klammern eingeschlossen.
- Tuple sind ein grundlegender Typ (Listen und Mengen bestehen daraus).
-
- Einfache Definition
+Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte, welche durch Kommata getrennt sind. Tupel sind in  runde Klammern eingeschlossen. Tuple sind ein 
+grundlegender Typ (Listen und Mengen bestehen daraus). 
+\subsubsection{Konstruktion von Tuplen}
+Wir erinnern uns, dass Tuple recht einfach zu erzeugen sind:
 \begin{sagein}
 t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 \end{sagein}
@@ -2443,54 +2394,43 @@ t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 (a, b, c)
 (c, d, e)
 \end{sage}
- 
-
-KONSTRUKTION
-
-
- Mit Listen erzeugte Folgen 
+ Wir betrachten die Konstruktion von Folgen in Sage. Wir haben hierzu verschiedene Varianten. Zuerst sei hier die Erzeugung mittels Listen erwähnt
 \begin{sagein}
 tuple(i^2 for i in range(2,8))
 \end{sagein}
 \begin{sage}
 (4, 9, 16, 25, 36, 49)
 \end{sage}
-
- Erzeugen von $n$ identischen Objekten
+Das Erzeugen von $n$ identischen Objekten können wir so realisieren:
 \begin{sagein}
 tuple(sin(x) for i in range(0,5))
 \end{sagein}
 \begin{sage}
   (sin(x),sin(x),sin(x),sin(x),sin(x))
 \end{sage}
- Erzeugen von $n$ funktionalen Objekten
+Das Erzeugen von $n$ funktionalen Objekten ist uns nahezu analog möglich:
 \begin{sagein}
 x = tuple(sin(i) for i in range(1,5)); x
 \end{sagein}
 \begin{sage}
 (sin(1), sin(2), sin(3), sin(4))
 \end{sage}  
- Erzeugen einer leeren Folge
+Wenn wir beliebige Folgen erzeugen können, dann sicher auch eine leere:
 \begin{sagein}
 folge = (); folge2 = folge,2,3; folge2
 \end{sagein}
 \begin{sage}
  ((), 2, 3)
 \end{sage}
-
-
-
-ZUGRIFF
-
-
- Verbinden von Folgen
+\subsubsection{Operationen auf Folgen}
+Wir können Folgen verbinden:
 \begin{sagein}
 Folge3 = Folge1+Folge2; Folge3
 \end{sagein}
 \begin{sage}
 (a, b, c, c, d, e)
 \end{sage}
- Zugriff auf Elemente
+Auch der Zugriff auf Elemente ist weiterhin möglich:
 \begin{sagein}
 x = 1,2,3,4; x[2] 
 \end{sagein}
@@ -2505,54 +2445,40 @@ x[2]; x[0:2]
 (1, 2)
 \end{sage}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Listen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Auch Listen sind uns an und für sich schon bekannt, dennoch betreiben wir hier etwas Vertiefung. Wir erinnern uns, dass Sage Listen nach folgendem Schema erzeugt:
 \begin{sagein}
 liste = [a,b,c,...] 
 liste = list(<sequence>)
 \end{sagein}
-
-
- Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
- eine Liste is in eckigen Klammern eingeschlossen.
- Matrizen werden als geschachtelte Listen definiert.
- Baut auf \isage{tuple} auf.
- einfache Konstruktion:
+Eine Liste ist eine geordnete Folge beliebiger Sage Objekte. Listen sind in eckige Klammern eingeschlossen. Matrizen werden als geschachtelte Listen definiert. 
+Listen bauen auf \isage{tuple} auf. 
+\subsubsection{Konstruktion von Listen}
+Wir erinnern uns, dass auch Listen einfach zu konstruieren waren:
 \begin{sagein}
 Liste = [1,[1,2], Set([1,2,3]),x]; Liste
 \end{sagein}
 \begin{sage}
 [1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
 \end{sage}
-
-
-
-KONSTRUKTION
-
-
- Erzeugen von Listen mit funktionalen Objekten
+Auch Listen funktionaler Objekte sind kein Problem:
 \begin{sagein}
 Liste = [2^i for i in range(1,9)]; Liste
 \end{sagein}
 \begin{sage}
 [2, 4, 8, 16, 32, 64, 128, 256]
 \end{sage}
- Leere Listen:
+Selbstredend sind wir in der Lage, leere Listen zu erzeugen:
 \begin{sagein}
 Liste = []; Liste
 \end{sagein}
 \begin{sage}
   []
 \end{sage}
-
-
-ZUGRIFF
-
-
- Der Zugriff funktioniert genau wie bei Folgen.
+\subsubsection{Zugriff auf Listenelemente}
+Der Zugriff funktioniert genau wie bei Folgen.
 \begin{sagein}
 Liste=[(x,i) for x in range(1,4) for i in range(0,x)];  Liste
 \end{sagein}
@@ -2573,32 +2499,33 @@ Liste[5] = 42; Liste
   [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
 \end{sage}
 
-
-BEFEHLE
-
-
- Entfernen eines Elements aus der Liste mit \isage{pop()}
+\subsubsection{Befehle für Listen}
+Listen eignen sich besonders gut, um ihre Einträge zu manipulieren.
+Wir können einen Index aus der Liste mit \isage{pop()} entfernen:
 \begin{sagein}
 Liste = [a,b,c]; Liste.pop(1); Liste 
 \end{sagein}
 \begin{sage}
   [a, c]
 \end{sage}
- Entfernen eines Elements aus der Liste mit \isage{remove()} 
+\begin{bem}
+ Wir greifen hier auf einen Listenplatz (Index) zu, nicht auf ein Element der Liste.
+\end{bem}
+Wir können auch ein Element aus der Liste entfernen, hierfür haben wir \isage{remove()}:
 \begin{sagein}
 Liste = [a,b,c]; Liste.remove(b); Liste
 \end{sagein}
 \begin{sage}
   [a, c]
 \end{sage}
- Anhängen eines Elementes mittels \isage{append()}
+Da wir Elemente entfernen können, ist es nur konsequent, wenn wir auch welche einfügen können. Sage stellt uns den \isage{append()}-Befehl.
 \begin{sagein}
 Liste.append([3,4,5]); Liste
 \end{sagein}
 \begin{sage}
 [a, c, [3, 4, 5]]
 \end{sage}
- Zusammenfügen von Listen mit dem $+$- und $*$-Operator. 
+Wir können Listen aneinanderhängen. Hier haben wir zwei Operator, $+$ und $*$:
 \begin{sagein}
 Liste2 = Liste+[3,4,5]; Liste2
 \end{sagein}
@@ -2611,14 +2538,13 @@ Liste*2
 \begin{sage}
  [a, c, [3, 4, 5], a, c, [3, 4, 5]]
 \end{sage}
- Sortieren von Listen mit \isage{sort()}
+Wir können uns Listen mit \isage{sort()} sortieren lassen:
 \begin{sagein}
 Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
 \end{sagein}
 \begin{sage}
 [1, 3, 4, -23]
 \end{sage}
-
 
 INKLUSIONEN
 
