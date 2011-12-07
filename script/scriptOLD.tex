@@ -2029,21 +2029,17 @@ Auch die Berechnung der Inversen und der Transponierten einer Matrix $A$ ist so 
 \begin{sagein}
 A^(-1); A.transpose()
 \end{sagein}
-
-
-RANG
-
-Sei $A \in K^{m \times n}$. 
-
- {\color{red} Spaltenrang}: Die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
- {\color{red} Zeilenrang}: Die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
- {\color{red} Rang}: Abkürzung, da Zeilenrang und Spaltenrang von Matrizen gleich sind. 
-
-
-BEISPIELE
-
-
- Bestimmen des Ranges einer Matrix
+\subsubsection{Rang einer Matrix}
+Wir wollen den Rang einer Matrix formal definieren.
+\begin{df}
+Für eine Matrix $A \in K^{m \times n}$ ist 
+\begin{enumerate}
+ \item der Spaltenrang der Matrix $A$ die Dimension der linearen Hülle der Spaltenvektoren. Er ist höchstens gleich $n$.
+ \item der Zeilenrang der Matrix $A$ die Dimension der linearen Hülle der Zeilenvektoren. Er ist höchstens gleich $m$.
+ \item der Rang von $A$ eine Abkürzung, da Zeilenrang und Spaltenrang von Matrizen gleich sind. 
+\end{enumerate}
+\end{df}
+Wir betrachten einige Beispiele. Wir wollen also den Rang der Matrix $S$ ermitteln. Dies geschieht via
 \begin{sagein}
 S = matrix([[1,0,0],[0,1,1],[1,1,1]])
 S.rank()
@@ -2051,7 +2047,7 @@ S.rank()
 \begin{sage}
   2
 \end{sage}
- ist S symmetrisch ? ist S invertierbar ?
+Wir wollen wissen, ob $S$ symmetrisch bzw invertierbar ist.
 \begin{sagein}
 S.is_symmetric() 
 S.is_invertible()
@@ -2060,13 +2056,14 @@ S.is_invertible()
 False
 False
 \end{sage}
- Determinante
+Wir möchten die Determinante der Matrix $S$ bestimmen
 \begin{sagein}
 S.det()
 \end{sagein}
 \begin{sage}
   27
 \end{sage}
+
 
 %  Ist eine Matrix unitär ?
 % \begin{sagein}
@@ -2082,11 +2079,9 @@ S.det()
 % \begin{sage}
 %   TRUE
 % \end{sage}
-
-
-MAPS
-
-Anwendung der Funktion \isage{<function>} auf \isage{<matrix>} (siehe auch \isage{map()})\\
+\subsubsection{map() für Matrizen}
+Wir haben schon gesehen, dass Sage recht unkompliziert relativ komplexe Funktionsanwendungen auf nahezu beliebige Objekte 
+zulässt (siehe \isage{map()}). Wir wollen daher die Anwendung der Funktion \isage{<function>} auf die Matrix \isage{<matrix>} betrachten:
 \begin{sagein}
 map_threaded(<function>,<matrix>)
 \end{sagein}
@@ -2094,15 +2089,17 @@ map_threaded(<function>,<matrix>)
 \begin{sagein}
 map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 \end{sagein}
-  	
 \begin{sage}
 [1.00000000000000 1.41421356237310]
 [1.73205080756888 2.00000000000000] 
 \end{sage}
-
+\begin{bem}
+ Wir erkennen, dass Sage relativ unkompliziert die Funktion auf jeden Eintrag der Matrix anwendet.
+\end{bem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Vektorräume}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wir wollen uns nun den Vektorräumen nähern. Dazu wie üblich eine formale Definition.
 
 Ein Tripel $(V,+,\cdot)$, bestehend aus einer nichtleeren Menge $V$
 und Verknüpfungen
