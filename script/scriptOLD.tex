@@ -1869,7 +1869,7 @@ sqrt(-1), I^2
  (9*I + 2, -0.4500000000 + 0.3500000000*I)
 \end{sage}
 Wir stellen fest, dass Sage keine automatische Trennung bzgl. Realteil und  Imaginärteil vornimmt. Wir können eine Trennung erzwingen, 
-vermöge den Befehlen \isage{real()} und \isage{imag()}
+Sage stellt dafür die Befehle \isage{real()} und \isage{imag()}.
 \begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sagein}
@@ -1888,172 +1888,144 @@ real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 \section{Vektoren}
 \subsection{Matrizen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-MATRIX
-
-{\color{red} $m \times n$ Matrix} $A=(a_{ij}) \in K^{m\times n}$ über einen Körper $K$ 
-
+Da wir nun wissen, dass Sage alle Zahlsysteme kennt und mit ihnen ''wie gewohnt'' arbeiten kann, und wir vermöge des Begriffs der Gruppe den Begriff des Körpers an der Hand haben, ist es 
+sinnvoll, uns den Begriffen Matrix und Vektorraum zu nähern. Dazu definieren wir erst einmal den Begriff Matrix:
+\begin{df}
+Eine $m \times n$ Matrix $A=(a_{ij}) \in K^{m\times n}$ über einem Körper $K$ ist gegeben zu
 \[ A = \left( \begin{array}{cccc}
 a_{11} & a_{12} & \cdots & a_{1n} \\
 a_{21} & a_{22} & \cdots & a_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{m1} & a_{m2} & \cdots & a_{mn} 
 \end{array} \right) \] 
-$a_{ij} \in K$, Zeilenindex $i \in [1,m]$, Spaltenindex $j \in [1,n]$
-
-DEFINITIONEN
-
-
- {\color{red} Transponiert} von $A=(a_{ij})$: $A^T:=(a_{ji})$ .
- {\color{red} Symmetrisch}: wenn $A=A^T$ gilt.
- \emph{Adjungiert} von $A=(a_{ij})\in \mathbb{C}^{m\times n}$: $A^* :=
-(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
- \emph{Einheitsmatrix}: $I:=I_n:=(\delta_{ij}) \in K^{n \times
-n}$
- {\color{red} Addition}: Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann
-\[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
-mit $c_{ij}=a_{ij}+b_{ij}$. 
-  {\color{red} Multiplikation}: Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
-\in {K}^{n \times p}$, dann 
-\[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
-mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
- {\color{red} orthogonal}: $A \cdot A^T=A^T \cdot A=I_n$ für $A\in K^{n \times n}$ 
- {\color{red} unitär}: $A \cdot A^*=A^* \cdot A=I_n$ für $A\in \mathbb{C}^{n \times n}$.
- {\color{red} invertierbar}: $A\in K^{n \times n}$ heißt , wenn eine
-Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
+dabei die $a_{ij} \in K$. $i\in[1,m]$ heißt der Zeilenindex, $j\in [1,n]$ der Spaltenindex der Matrix $A$.
+\end{df}
+Wir definieren einige weitere elementare Begriffe für Matrizen.
+\begin{df}
+\begin{enumerate}
+\item Für die Matrix $A=(a_{ij})$ heißt die Matrix $A^T:=(a_{ji})$ die Transponierte zu $A$.
+\item Falls $A=A^t$, so heißt die Matrix $A$ symmetrisch. 
+\item Ist der Zugrunde liegende Körper $\mathbb{C}$, so heißt für die Matrix $A=(a_{ij})\in \mathbb{C}^{m\times n}$ die Matrix $A^* :=
+(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$ die Adjungierte zu $A$.
+\item Die Matrix $I:=I_n:=(\delta_{ij}) \in K^{n \times n}$ heißt Einheitsmatrix.
+\item Falls für die Matrix $A\in K^{n \times n}$ gilt, dass $A \cdot A^T=A^T \cdot A=I_n$, so heißt $A$ othogonal.
+\item Falls für die Matrix $A\in \mathbb{C}^{n \times n}$ gilt, dass $A \cdot A^*=A^* \cdot A=I_n$, so heißt $A$ unitär.
+\item Die Matrix $A\in K^{n \times n}$ heißt invertierbar, wenn eine Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
 A^{-1}=A^{-1} \cdot A=I_n$.
-
-
-Bemerkungen
-
-
- Die Multiplikation ist assoziativ aber in der Regel \emph{nicht kommutativ}. 
- Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
-$K$ (mit komponentenweiser Skalarmultiplikation).
- {\color{red} allgemeine
-lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$: 
-Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bezüglich der Multiplikation eine Gruppe.
- {\color{red} orthogonale Gruppe}: $O(n)$: Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
- eine Untergruppe von  $GL(\mathbb{R},n)$. 
-  {\color{red} unitäre Gruppe} $U(n)$: Die entsprechende Untergruppe der unitären Matrizen in $GL(\mathbb{C},n)$.
-
-
-in SAGE
-
+\end{enumerate}
+\end{df}
+Obwohl wir nun grundlegende Eigenschaften der Matrizen kennengelernt haben, fehlt uns noch jegliches Wissen, wie man mit ihnen rechnet. Dazu wollen wir die Begriffe 
+Addition und Multiplikation mit Leben füllen:
+\begin{df}
+Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann ist 
+\[ A+B:= C =(c_{ij})\in {K}^{n \times m} \]
+mit $c_{ij}=a_{ij}+b_{ij}$.\\ 
+Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+\in {K}^{n \times p}$, dann ist 
+\[ A \cdot B:= C =(c_{ij}) \in{K}^{m \times p} \]
+mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$.
+\end{df}
+\begin{bem}
+Die Multiplikation ist assoziativ aber in der Regel nicht kommutativ. Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
+$K$ (mit komponentenweiser Skalarmultiplikation). Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bzgl der Multiplikation eine Gruppe, die sog 
+allgemeine lineare Gruppe $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$. Weiterhin bildet die Menge der orthogonalen Matrizen in 
+$GL(\mathbb{R},n)$ eine Untergruppe von $GL(\mathbb{R},n)$, die sog orthogonale Gruppe $O(n)$. Zuletzt bilden auch die unitären Matrizen eine Untergruppe in 
+$GL(\mathbb{C},n)$, die sog unitäre Gruppe $U(n)$.
+\end{bem}
+\subsubsection{Matrizen in Sage}
+Nachdem wir nun diese Begrifflichkeiten kennengelernt und verstanden haben, wollen wir uns ansehen, wie Sage mit Objekten dieser Kategorie umgeht.
+Matrizen lassen sich in Sage recht leicht erzeugen, wie uns folgendes Schema verdeutlichen soll:
 \begin{sagein}
 matrix([[a11,a12,...],[a21,a22,..],..])
 \end{sagein}
-
-
- Der Rückgabewert ist vom Typ \isage{matrix}.
- Die Einträge der Matrix können beliebige Ausdrücke sein.
- Es ist möglich Matrizen über bestimmten Bereichen
-(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
-konstruieren.                                                     
- Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
-
-
-KONSTRUKTION
-
-Es gibt in Sage verschiedene Möglichkeiten eine Matrix zu
-konstruieren. Beispiel:
+Der Rückgabewert ist vom Typ \isage{matrix}. Die Einträge der Matrix können beliebige Ausdrücke sein. Es ist möglich Matrizen über bestimmten Bereichen
+(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu konstruieren. Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
+Wir wollen einige speziellere Konstruktionsmethoden für Matrizen betrachten. Angenommen, wir wollten folgende Matrix bearbeiten:
 \[ A:= \left( \begin{array}{cccc}
 1 & 2 & 3 & 4\\
 a & 0 & 1 & b\\ 
 \end{array} \right), \quad a,b\in \mathbb{R} \]
-
- Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
-Spalten dann wieder in eckigen Klammern $[ ..]$ (Standard)
+Die Standardprozedur hierfür war
 \begin{sagein}
 A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
 \end{sagein}
- Explizite Größenangabe
+Es ist uns jedoch möglich, eine explizite Größenangabe zu machen:
 \begin{sagein}
 A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
 \end{sagein}
- Nullmatrix der Größe $n \times m$:
+Auch das erstellen einer Nullmatrix der Größe $n \times m$ ist kein Problem:
 \begin{sagein}
 n = 3; m = 4; B = matrix(n,m)
 \end{sagein}
- Erzeugung mit Hilfe einer Funktion $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
+Wir können sogar eine Matrix mit Einträgen $a_{ij}=f(i,j)$ mit Hilfe einer Funktion $f(i,j)$ wie folgt erzeugen:
 \begin{sagein}
 f(i,j) = i*j
 C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
 \end{sagein}
- Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig)
+Matrizen lassen sich auch durch Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig) erzeugen:
 \begin{sagein}
 matrix(3,1,[1,2,3])
 matrix(1,3,[4,5,6])
 \end{sagein}
-
-
-ZEILEN/SPALTEN
-
-
- Spaltenanzahl: \isage{<matrix>.ncols()}
+Wir wollen uns aus einem Vektor eine Diagonalmatrizen basteln. Sage hilft uns dabei gerne:
+\begin{sagein}
+x = [1,2,3,4,5]
+Diag = diagonal_matrix(x); Diag
+\end{sagein}
+\subsubsection{Zeilen und Spalten}
+Wie uns bekannt ist, liefern Zeilen- bzw Spaltenzahl oftmals wichtige Informationen über Matrizen, daher kann selbstverständlich auch Sage diese Kenngrössen ermitteln. 
+Die Spaltenanzahl erhalten wir vermöge \isage{<matrix>.ncols()}:
 \begin{sagein}
 C.ncols()
 \end{sagein}
 \begin{sage}
   5
 \end{sage}
- Zeilenanzahl: \isage{<matrix>.nrows()}
+Analog erhalten wir die Zeilenanzahl durch \isage{<matrix>.nrows()}:
 \begin{sagein}
 C.nrows()
 \end{sagein}
 \begin{sage}
   3
 \end{sage}
- Informationen über die Matrix: \isage{<matrix>.parent()}
+Allgemeinere Informationen über die Matrix liefert uns \isage{<matrix>.parent()}
 \begin{sagein}
 C.parent()
 \end{sagein}
 \begin{sage}
 Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 \end{sage}
-
-
-ZUGRIFF
-
-
- Zugriff auf Einträge in Zeile $i$ und Spalte $j$:
+\subsubsection{Zugriff auf Matrixeinträge}
+Um mit Matrizen arbeiten zu können, ist oft der Zugriff auf einzelne Einträge notwendig. Wollen wir den Eintrag in Zeile $i$ und Spalte $j$ der Matrix $C$, so können wir folgendes 
+(uns im Prinzip schon bekanntes) Werkzeug nutzen:
 \begin{sagein}
 i=1; j=2; C[i,j]
 \end{sagein}
 \begin{sage}
   6
 \end{sage}
- Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
+Wenn wir schon auf einen Eintrag lesend zugreifen können, so ist sicher auch das manipulieren des Eintrags in Zeile $i$ und Spalte $j$ kein grosser Aufwand:
 \begin{sagein}
 i=1; j=2; C[i,j]=22
 \end{sagein}
- Extrahieren von Zeilen/Spalten
+Sage erlaubt uns, das Extrahieren von ganzen Zeilen/Spalten...
 \begin{sagein}
 zeile = C.row(0)
 spalte = C.column(4)
 \end{sagein}
- Teilmatrizen
+... und sogar ganzer Teilmatrizen
 \begin{sagein}
 C[1:3,1:3]
 \end{sagein}
- Diagonalmatrizen
-\begin{sagein}
-x = [1,2,3,4,5]
-Diag = diagonal_matrix(x); Diag
-\end{sagein}
-
-
-RECHNEN
-
- 
- Addieren, Multiplizieren
+\subsubsection{Rechnen mit Matrizen} 
+Wie vorher definiert, sind Addition und Multiplikation zweier MAtrizen in Sage eine Selbstverständlichkeit:
 \begin{sagein}
 var('a,b,c,d,g,h,f')
 A = matrix([[a, b], [c,d]])
 B = matrix([[e, f], [g,h]])
 A+B; A*B
 \end{sagein}
- Inverse und der Transponierte
+Auch die Berechnung der Inversen und der Transponierten einer Matrix $A$ ist so implementiert, wie man sich das vorstellt:
 \begin{sagein}
 A^(-1); A.transpose()
 \end{sagein}
