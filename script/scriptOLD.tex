@@ -2545,15 +2545,12 @@ Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
 \begin{sage}
 [1, 3, 4, -23]
 \end{sage}
-
-INKLUSIONEN
-
-
-  Ist Objekt \isage{Objekt} in der Liste \isage{Liste} enthalten?
+\subsubsection{Inklusionen}
+Nun interessiert uns, ob eine \isage{Liste} ein bestimmtes \isage{Objekt} enthält. Unsere Frage lässt sich wie folgt beantworten:
 \begin{sagein}
  <Objekt> in <Liste>
 \end{sagein}
-Beispiel:
+Für eine konkrete Liste gestaltet sich die Anfrage dann so:
 \begin{sagein}
 Liste = [x+1,a,x+1,sin(b)]
 x+1 in Liste
@@ -2561,30 +2558,29 @@ x+1 in Liste
 \begin{sage}
   True
 \end{sage}
- Position des Objektes in der Liste (bei Fehlen gibt es eine entsprechende Meldung)
+Wie wir schon wissen, können wir Elemente einer Liste auch über ihren Platz (Index) in der Liste ansprechen. Also ist es nur konsequent, wenn wir uns zu einem Objekt einer Liste 
+dessen Position zurückgeben lassen können:
 \begin{sagein}
  <Liste>.index(<Objekt>)
 \end{sagein}
-Beispiel:
+Für eine konkrete Liste erhalten wir
 \begin{sagein}
 Liste.index(sin(b))
 \end{sagein}
 \begin{sage}
   3
 \end{sage}
-
-
-
-map()
-
+\begin{bem}
+ Ist das getestete Objekt nicht in der Liste enthalten, so gibt es eine entsprechende Meldung.
+\end{bem}
+\subsubsection{map()} 
+Wir möchten uns noch ein wenig vertrauter mit der Funktionalität von \isage{map()} machen. Wir erinnern uns an das grundlegende Prinzip:
 \begin{sagein}
  map(<f>,<Liste>)
 \end{sagein}
-wendet Funktion \isage{f} auf alle Elemente der Liste \isage{Liste} an.
-
-  Kapselung bei Funktionen mit mehreren Argumenten.
+\isage{map()} wendet die Funktion \isage{f} auf alle Elemente der Liste \isage{Liste} an.Es findet eine Kapselung bei Funktionen mit mehreren Argumenten statt. Die Bedeutung dessen, 
+verdeutlichen uns folgende Beispiele.
 % Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index).
- Beispiele:
 \begin{sagein}
 map(sin,[x,1,0,pi,0.3])
 \end{sagein}
@@ -2597,17 +2593,12 @@ map(max,[2,3,4,5,6,7],[8,7,6,5,4,3])
 \begin{sage}
 [8, 7, 6, 5, 6, 7]
 \end{sage}
-
-
-
-map\_threaded()
-
+\subsubsection{map\_threaded()}
+Auch \isage{map\_threaded()} ist uns schon bekannt, wir erinnern uns, dass
 \begin{sagein}
 map_threaded(<f>,<Liste>)
 \end{sagein}
-führt die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} an.
-
-  Beispiele:
+die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} anwendet. Wir betrachten auch hier einige Beispiele, um uns dies zu verdeutlichen:
 \begin{sagein}
 map_threaded(sin,[x,[1,0],[pi,[0.3]]])
 \end{sagein}
@@ -2621,23 +2612,15 @@ map_threaded(sin,matrix([[1,2,3],[4,5,6]]))
 [sin(1) sin(2) sin(3)]
 [sin(4) sin(5) sin(6)]
 \end{sage}
-
-
-filter()
-
+\subsubsection{filter()}
 Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
 \begin{sagein}
 M1 = filter(<f>,<M>)
 \end{sagein}
-
- \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
- \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
+Dabei ist \isage{f(x)} eine Abbildung auf die Boolschen Werte \isage{True/False}, \isage{M1} ist die Teilmenge die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
 ergibt. 
 % Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index) oder Ausdrücke.
-
-
-BEISPIELE
-
+Wir machen uns die Wirkung von FIltern an einigen Beispielen klar:
 \begin{sagein}
  filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
  \end{sagein}
@@ -2652,14 +2635,13 @@ filter(f,[a+2,x,y,z,sin(a)])
 \begin{sage}
   [a + 2, sin(a)]
 \end{sage}
-
-zip()
-
+\subsubsection{zip()}
+Wir wollen uns etwas neues ansehen: \isage{zip()}:
 \begin{sagein}
 zip(<Liste1>, <Liste2>) 
 \end{sagein}
-die Elemente zweier Listen werden paarweise zu einer neuen Liste verknüpft.\\
-\textbf{Beispiel}:
+Die Elemente zweier Listen werden paarweise zu einer neuen Liste verknüpft.
+Wir betrachten ein Beispiel:
 \begin{sagein}
 Liste1 = [a,b,c]; Liste2 = [e,f,g]
 zip(Liste1,Liste2)
@@ -2678,33 +2660,28 @@ zip(Liste1,Liste2)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dictionaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-DIC
-
+Wir wollen nun eine Art Speichermedium kennenlernen, das Dictionary. Wie uns durch den Namen klar sein könnte, besteht ein Dictionary aus Assoziationen der Form \verb+<Index>:<Wert>+. 
+Daher werden Dictionarys auch exakt so erzeugt:
 \begin{sagein}
 d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
 \end{sagein}
-
-
- Dictionaries bestehen aus \emph{Assoziationen} der Form \verb+<Index>:<Wert>+. 
- Zugriff:
+Wir können über den Index auf die Einträge des Wörterbuchs zugreifen:
 \begin{sagein}
 d[<Index>]
 \end{sagein}
-  Sind gut geeignet für das Speichern großer Datenmengen, der indizierte Zugriff sehr schnell ist.
- der \isage{Index} ist eindeutig
-
-
-KONSTRUKTION
-
-
- Erzeugen eines leeren Dictionaries
+Dictionarys sind gut geeignet für das Speichern großer Datenmengen, da der indizierte Zugriff sehr schnell ist.
+\begin{bem}
+ Der \isage{Index} ist eindeutig.
+\end{bem}
+\subsubsection{Konstruktion eines Dictionary}
+Wir wollen zunächst einmal ein leeres Dictionary erzeugen:
 \begin{sagein}
 T = {}; T
 \end{sagein}
 \begin{sage}
   {}
 \end{sage}
- Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
+Wir können Einträge durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugen oder verändern. 
 \begin{sagein}
 T[f] = sin(x); T[1,2] = 5
 T[1,2,3] = [a,b,c]; T[a] = d;
@@ -2713,12 +2690,8 @@ T
 \begin{sage}
 {(1, 2): 5, f: sin(x), a: d, (1, 2, 3): [a, b, c]}
 \end{sage}
-
-
-ZUGRIFF
-
-
- Zugriff auf ein Dictionary
+\subsubsection{Zugriff auf Einträge}
+Der Zugriff auf ein Dictionary erfolgt, wie gesgat, über den Index:
 \begin{sagein}
 T[a],T[1,2],T[c]
 \end{sagein}
@@ -2731,28 +2704,19 @@ T[a],T[1,2],T[c]
 \begin{sage}
  -0.7568024953079282
 \end{sage}
-Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung
- Löschen von Einträgen mit \isage{pop()}
+Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung.\\
+Das Löschen von Einträgen gelingt uns via \isage{pop()}
 \begin{sagein}
 T.pop(a)
 \end{sagein}
-
-
-BEFEHLE
-
-Alle Funktionen wirken erstmal direkt auf den Index, nicht den Werten:
-
- \isage{<a> in <M>}: Es wird überprüft, ob der Index \isage{a} in einem
-Dictionary vorkommt. 
- \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
- \isage{map()}: Wendet eine Funktion auf die Indizes an.
-
-Man kann aber die Objektfunktion \isage{values()} benutzen um eine Liste der Werte zu bekommen (Dann hat man allerdings kein Dictionary mehr!)
-
-BEISPIELE
-
-
-  \isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
+\subsubsection{Befehle für Dictionaries}
+Wir stellen zunächst fest, dass alle Funktionen erstmal direkt auf den Index, nicht auf den Werten, wirken.\\
+Mittels \isage{<a> in <M>} wird überprüft, ob der Index \isage{a} in einem Dictionary vorkommt.\\ 
+Durch \isage{filter()} werden die Dictionary-Indizes nach Kriterien gefiltert.\\
+\isage{map()} wendet eine Funktion auf die Indizes an.\\
+Man kann aber die Objektfunktion \isage{values()} benutzen um eine Liste der Werte zu bekommen (dann hat man allerdings kein Dictionary mehr!).
+Wir machen uns unsere Erkenntnisse an einigen Beispielen klar:\\
+\isage{in} prüft, ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
 \begin{sagein}
 Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
 a in Z, b in Z
@@ -2760,28 +2724,22 @@ a in Z, b in Z
 \begin{sage}
 (True, False)
 \end{sage}
-\isage{a} taucht als Index auf, \isage{b} nur als Wert.
- \isage{filter} prüft ebenfalls nur den Index.
+\isage{a} taucht als Index auf, \isage{b} nur als Wert.\\
+\isage{Filter} prüfen ebenfalls nur Indizes.
 \begin{sagein}
 f(y) = y == c; filter(f,Z)
 \end{sagein}
 \begin{sage}
 [c]
 \end{sage}
-
 \begin{sagein}
 f(y) = y == d; filter(f,Z.values())
 \end{sagein}
 \begin{sage}
 [d]
 \end{sage}
-
-
-
-update()
-
-
- Dictionaries können aneinander gehängt werden:
+\subsubsection{update()}
+Dictionaries können aneinander gehängt werden:
 \begin{sagein}
 T={1:a,2:b}; S={3:c,4:d}
 T.update(S); T
@@ -2789,44 +2747,39 @@ T.update(S); T
 \begin{sage}
 {1: a, 2: b, 3: c, 4: d}
 \end{sage}
-\emph{Vorsicht}: Doppelt auftretenden Indizes werden überschrieben!
-
+\begin{bem}
+Doppelt auftretenden Indizes werden überschrieben!
+\end{bem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lineare Abbildungen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wir wollen uns mit linearen Abbildungen befassen, hierzu benötigen wir einige formale Definitionen.
+\begin{df}
 Seien $K$-Vektorräume $V$ und $W$ gegeben. Eine Abbildung
 \[ F: \ V \rightarrow \ W \]
-heißt {\color{red} linear}, falls für $v,w\in V$ und $\lambda \in K$ gilt:
-
- [(L1)] $F(v+w)=F(v)+F(w)$
- [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
- 
-
-  {\color{red} Isomorphismus}: $F$ bijektiv. 
- {\color{red} Endomorphismus}: $V=W$.
- {\color{red} Automorphismus}: $V=W$ und $F$ bijektiv.
-
-
-BEMERKUNGEN
-
-
- Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
+heißt linear, falls für $v,w\in V$ und $\lambda \in K$ gilt:
+\begin{itemize}
+ \item[(L1)] $F(v+w)=F(v)+F(w)$
+ \item[(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
+\end{itemize} 
+$F$ heißt Isomorphismus $\Longleftrightarrow F$ bijektiv.\\
+$F$ heißt Endomorphismus $\Longleftrightarrow V=W$.\\
+$F$ heißt Automorphismus $\Longleftrightarrow V=W$ und $F$ bijektiv.
+\end{df}
+Wir machen einige Bemerkungen:\\
+Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
 seien Vektoren in $W$. Dann gibt es genau eine lineare Abbildung $F:V
-\rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.
- {\color{red} Bild} von $F$:   $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
- {\color{red} Kern} von F: $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
- Kern und Bild sind Untervektorräume.
- Dimensionsformel:
+\rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.\\
+Die Menge $\{ F(v), v \in V \}$ heißt das Bild von $F$ (auch: $\mathop{Im}(F)$, $F(V)$).\\
+Die Menge $\{v \ \in V \ | \ F(v)=0 \}$ heißt Kern von $F$ (auch: $\mathop{Ker}(F)$).\\
+$\mathop{Ker}(F)$ und $\mathop{Im}(F)$ sind Untervektorräume.\\
+Es gilt die Dimensionsformel:
 \[\dim V = \dim F(V) + \dim Ker(F)\]
- {\color{red} $\operatorname{Hom}_K(V,W)$}: Die Menge der linearen Abbildungen von $V$ nach $W$. 
+Die Menge der linearen Abbildungen von $V$ nach $W$ wird mit $\operatorname{Hom}_K(V,W)$ bezeichnet. 
 Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
-
-
-LAuM
-
-
- Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
+\subsubsection{Lineare Abbildungen und Matrizen}
+Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
 \[
  L_A: K^n \rightarrow K^m,\; 
 \begin{pmatrix}
@@ -2842,32 +2795,23 @@ A
 x_n
 \end{pmatrix}
 \]
-eine lineare Abbildung zuordnen.
- Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
-
-
-KOORDVEC
-
+eine lineare Abbildung zuordnen.\\
+Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
+\begin{df}
 Sei $V$ ein $K$-Vektorraum mit Basis $\mathcal{V}=(v_1, \dots
-,v_n)$.
-
- Die lineare Abbildung 
-$\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
+,v_n)$.\\
+Die lineare Abbildung $\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
 \[\Phi_\mathcal{V}(x_1,\dots ,x_n)=x_1v_1+ \dots +x_nv_n\]
 ist ein Isomorphismus. Man nennt $\Phi_\mathcal{V}$ ein
-{\color{red} Koordinatensystem} in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
-den {\color{red} Koordinatenvektor} zu $v \in V$.
- Basiswechselabbildung von $\mathcal{V}$ nach Basis $\mathcal{Z}$:
+Koordinatensystem in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
+den Koordinatenvektor zu $v \in V$.\\
+Die Basiswechselabbildung von $\mathcal{V}$ zur Basis $\mathcal{Z}$ ergibt sich zu
 \[T:= \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}\].
-
-
-ISO
-
+\end{df}
+\subsubsection{Isomorphismus}
 Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
-,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ gegeben. 
-
- Für eine Matrix $A\in K^{m
- \times n}$ wird durch
+,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ gegeben.\\
+Für eine Matrix $A\in K^{m \times n}$ wird durch
 \begin{eqnarray*}
 F(v_1) & := & a_{11}w_1 + \dots +a_{m1} w_m\\
 \vdots &    & \vdots     \\
@@ -2878,26 +2822,18 @@ eine lineare Abbildung $F$ definiert. Dies ergibt einen Isomorphismus
 L^\mathcal{V}_\mathcal{W}: K^{m \times n} \ \rightarrow \
 \mathrm{Hom}_K(V,W), \quad A \ \mapsto \ F.
 \] 
-
-Kanonisches Bsp
-
-Seien $K^n$ und $K^m$ mit den kanonischen Basen $\mathcal{K}_n$ und
-$\mathcal{K}_m$ versehen.
-
- Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
-sind Identitäten.
-  Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
+Wir betrachten ein kanonisches Beispiel. Seien dazu $K^n$ und $K^m$ mit den kanonischen Basen $\mathcal{K}_n$ und
+$\mathcal{K}_m$ versehen.\\
+Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
+sind Identitäten.\\
+Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
 durch 
 \[ L^{\mathcal{K}_n}_{\mathcal{K}_m} (A)(x)=Ax,\; x \in K^n. \]
- Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
-unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
-
-
-DIAG
-
+Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
+unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.\\
 Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
 ,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ und eine lineare Abbildung
-$F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
+$F$ gegeben. Dann gilt das folgende kommutierende Diagramm:
 \begin{center}
   \begin{tikzpicture}
   \draw (0,2) node[] (a) {$V$}
@@ -2910,15 +2846,14 @@ $F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
   \draw[-latex,thick] (c) -- (a) node[midway,left] {$\Phi_V$};
   \end{tikzpicture}
 \end{center}
-
-DREHUNG
-
-Drehung um den Winkel $\alpha$ - Drehmatrix $G$:
+\subsubsection{Drehung}
+Wir betrachten die Drehung um den Winkel $\alpha$. Zu dieser gehört die Drehmatrix $G$:
 \[ G(\alpha):= \left ( \begin{array}{cc}
 \cos(\alpha) & -\sin(\alpha) \\
 \sin(\alpha) & \cos(\alpha)
 \end{array} \right)
 \]
+Wir verdeutlichen uns die Drehung an einem kleinen Beispiel.
 \begin{sagein}
 var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
 A(a=pi/2)*vector([1,1])
@@ -2926,10 +2861,8 @@ A(a=pi/2)*vector([1,1])
 \begin{sage}
  (-1, 1)
 \end{sage}
-
-SPIEGELUNG
-
-Spiegelung bezüglich der Ebene 
+\subsubsection{Spiegelung}
+Auch die Spiegelung lässt sich auf Matrizen zurückführen. Wir betrachten die Spiegelung bezüglich der Ebene 
 \[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
  durch \[S(a):=I - 2 a a^T.\] 
 \begin{sagein}
@@ -2946,34 +2879,27 @@ norm(S*S-I_n)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eigenwerte und Eigenvektoren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt {\color{red} Eigenwert} von
+Wir wollen uns nun mit Eigenwerten und -vektoren befassen. Auch dazu eine Definition:
+\begin{df}
+Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt Eigenwert von
 $A$, wenn ein $x \in K^n\smallsetminus \{0 \}$ existiert, 
-\[ {\color{red}A x = \lambda x} \] 
-gilt. Der Vektor $x \in K^n$ heißt {\color{red} Eigenvektor} zum Eigenwert $\lambda$.
+\[ A x = \lambda x \] 
+gilt. Der Vektor $x \in K^n$ heißt Eigenvektor zum Eigenwert $\lambda$.
 
- Die Eigenwerte sind die Nullstellen des {\color{red} charakteristischen
-Polynoms} 
+ Die Eigenwerte sind die Nullstellen des charakteristischen
+Polynoms 
 \[p(t):=\det(A-t \ I_n).\] 
  Es gibt höchstens $n$ Eigenwerte.
-
-
-BEMERKUNGEN
-
-
- Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
-unabhängig.
- Gibt es eine Basis aus Eigenvektoren, so ist $A$
-{\color{red} diagonalisierbar}, d.h. man kann die Abbildung $L_A$ bei
+\end{df}
+Wir machen einige Beobachtungen.\\
+Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
+unabhängig. Gibt es eine Basis aus Eigenvektoren, so ist $A$
+diagonalisierbar, d.h. man kann die Abbildung $L_A$ bei
 geeigneter Basiswahl durch eine Diagonalmatrix repräsentieren.
  Jeder Endomorphismus eines komplexen Vektorraums läßt sich durch
-eine Matrix in \emph{Jordanscher Normalform} darstellen.
-
-
-EW inSAGE
-
-
- Bestimmung von Eigenwerten
+eine Matrix in Jordanscher Normalform darstellen.
+\subsubsection{Eigenwerte und -vektoren in Sage}
+Wir wollen mithilfe von Sage die Eigenwerten einer Matrix $A$ bestimmen:
 \begin{sagein}
 _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 [ m.full_simplify() for m in  A.eigenvalues()]
@@ -2981,11 +2907,11 @@ _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 \begin{sage}
   [-1, 1]
 \end{sage}
- Bestimmung von Eigenvektoren
+Auch die Bestimmung der Eigenvektoren ist mit Sage kein großer Aufwand:
 \begin{sagein}
 A.eigenvectors_right()
 \end{sagein}
-  Bestimmung des charakteristischen Polynoms
+Das charakteristische Polynom erhalten wir vermöge
 \begin{sagein}
 E = identity_matrix(2)
 p = (A-x*E).det(); p
@@ -2993,65 +2919,52 @@ p = (A-x*E).det(); p
 \begin{sage}
 (x - cos(al))*(x + cos(al)) - sin(al)^2
 \end{sage}
-Alternative (Vorsicht: gleich bis auf Vorzeichen!):
+Natürlich hat Sage auch eine direkte Berechnungsmöglichkeit für charakteristische Polynome.
 \begin{sagein}
 A.charpoly() 
 \end{sagein}
-
+\begin{bem}
+ Achtung: Die Vorzeichen sind unterschiedlich.
+\end{bem}
+Die Eigenwerte ergebens sich als Nullstellen des charakteristischen Polynoms:
 \begin{sagein}
 [m.full_simplify() for m in solve(p==0,x)]
 \end{sagein}
 \begin{sage}
   [x == -1, x == 1]
 \end{sage}
-
-
-LGS
-
+\subsubsection{Lineare Gleichungssysteme}
+Wir wollen uns ein wenig vertiefend mit linearen Gleichungssystemen befassen.
 Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
 Lösungen (Lösungsraum): 
 \[ \{ x \in K^n \;|\; A x = b\} \]
-
- Ist $b=0$, so spricht man von einem {\color{red} homogenen
-System}. Ansonsten spricht man von einem {\color{red} inhomogenen System}.
- Der Lösungsraum $W$ des homogenen Systems bildet einen
+Ist $b=0$, so spricht man von einem homogenen System. Ansonsten spricht man von einem inhomogenen System.\\
+Der Lösungsraum $W$ des homogenen Systems bildet einen
 Untervektorraum des $K^n$. Die Dimension ist 
 \[ \dim (W)=n - \rang(A). \] 
-
-
-STRUKTUR
-
-
- {\color{red} affiner Unterraum}  $X \subset K^n$: wenn ein
-Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
+\subsubsection{Struktur des Lösungsraums}
+Wenn ein Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
 \[X=v+W\]
+so heißt $X \subset K^n$ affiner Unterraum.\\
 %Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
- Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
-Unterraum des $K^n$.   
-
- Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
+Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
+Unterraum des $K^n$.\\
+Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
 eine beliebige Lösung von $Ax=b$, dann ist der Lösungsraum $X$ von $Ax=b$
-gegeben durch  $X=v+W$.
- Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
+gegeben durch  $X=v+W$.\\
+Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
 eine Lösung des homogenen Systems.
-
-
-LÖSBARKEIT
-
-
- Das inhomogene System ist genau dann für alle $b$
-lösbar, wenn $\rang(A)=m$ gilt.
- Das homogene bzw. das inhomogene System besitzt höchstens eine
-Lösung, genau dann wenn $\rang(A)=n$ gilt.
- Der Lösungsraum des inhomogenen Systems ist genau dann nicht
-leer, wenn $\rang(A)=\rang(A, b)$ gilt. %A,b : erweiterte Koeffizientenmatrix
- Praktisch kann ein LGS mit dem {\color{red} Gausschen
-Eliminationsverfahren} gelöst werden.
-
-
-LGS inSAGE
-
-Berechnung der Lösungen von $Ax=b$: 
+\subsubsection{Lösbarkeit}
+Das inhomogene System ist genau dann für alle $b$
+lösbar, wenn $\rang(A)=m$ gilt.\\
+Das homogene bzw. das inhomogene System besitzt höchstens eine
+Lösung, genau dann wenn $\rang(A)=n$ gilt.\\
+Der Lösungsraum des inhomogenen Systems ist genau dann nicht
+leer, wenn $\rang(A)=\rang(A, b)$ gilt.\\ %A,b : erweiterte Koeffizientenmatrix
+Praktisch kann ein lineares Gleichungssystem mit dem Gausschen
+Eliminationsverfahren gelöst werden.
+\subsubsection{Lineare Gleichungssysteme in Sage}
+Wir wollen die Lösungen von $Ax=b$ berechnen: 
 \begin{sagein}
 A = matrix([[1,2,3],[4,5,6],[7,8,9]])
 b1 = vector([0,0,0])
