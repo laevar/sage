@@ -2984,64 +2984,59 @@ print A\b3
 \chapter{Folgen, (Potenz-)Reihen, Vertiefung Schleifen}
 \section{Folgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-FOLGE
-
-
- {\color{red} reelle Zahlenfolge}: Abbildung $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$.
- Alternative Notation: $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$.
- {\color{red} Glieder} der Folge: Die Zahlen $a_n$.
- {\color{red} Teilfolge}: $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
+Wir wollen uns hier mit Folgen reeller Zahlen befassen. Dabei handelt es sich um 
+Abbildungen der Form $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$. 
+Eine alternative Notation für die Abbildung $a$ ist $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$. 
+Die Zahlen $a_n$ heißen Glieder der Folge $a$.
+$(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
 \rightarrow \ \mathbb{R}$, wobei $N \subset \mathbb{N}$ eine Menge mit
-unendlich vielen Elementen ist.
- Bemerkung: Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
-
-
-KONV
-
-Eine Zahlenfolge $(a_n)_n$ ist {\color{red} konvergent} gegen den {\color{red}
-Grenzwert} oder {\color{red} Limes} $a\in \mathbb{R}$, wenn es zu jedem
+unendlich vielen Elementen ist. Derartige Folgen $(a_{n_i})_{n_i}$ heißen Teilfolge der Folge $a$.
+\begin{bem}
+ Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
+\end{bem}
+\subsubsection{Konvergenz}
+Für Folgen reeller Zahlen lässt sich der Begriff der Konvergenz definieren:
+\begin{df}
+Eine Zahlenfolge $(a_n)_n$ heißt konvergent gegen $a\in \mathbb{R}$, wenn es zu jedem
 $\varepsilon >0$ ein $n_0 \in \mathbb{N}$ gibt, so dass für alle $n \geq
 n_0$ die Abschätzung 
 \[ |a_n - a|< \varepsilon \]
  gilt. Man schreibt
 \[ a=\lim_{n \rightarrow \infty} a_n. \]
-
-{\color{red} divergent}: nicht konvergente Folge. 
-
-BEMERKUNGEN
-
-
- \emph{Nullfolge}: Folge konvergiert gegen $0$.
- {\color{red} Häufungspunkt}: Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$.
-
- Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten
- konvergente Folgen haben genau einen Häufungspunkt.
-
-  {\color{red} Cauchy-Folge}: eine Folge $(a_n)_n$ bei der für
+$a$ heißt Grenzwert oder Limes der Folge $(a_n)_n$.\\
+Eine nicht konvergente Folge heißt divergent. 
+\end{df}
+\begin{bem}
+Eine gegen $0$ konvergierende Folge heißt Nullfolge.\\
+Der Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$ heißt Häufungspunkt der Folge $(a_n)_n$.
+\begin{itemize}
+ \item Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten.
+ \item konvergente Folgen haben genau einen Häufungspunkt.
+\end{itemize}
+\end{bem}
+Wir wollen den Begriff der Cauchy-Folge einführen.
+\begin{df}
+ Eine Folge $(a_n)_n$ bei der für
 alle $\varepsilon>0$ ein $n_0 \in \mathbb{N}$ existiert, so dass für alle
 $n,m \geq n_0$ gilt:
-$|a_n - a_m| < \varepsilon$. \\
+\[|a_n - a_m| < \varepsilon\]
+heißt Cauchy-Folge.
+\end{df}
  In $\mathbb{R}$ ist eine Folge konvergent,
-genau dann wenn sie eine Cauchy-Folge ist (Vollständigkeit).
- {\color{red} $\varepsilon$-Umgebung}: $U_\varepsilon(a)$ von $a$ ist
+genau dann wenn sie eine Cauchy-Folge ist (Vollständigkeit).\\
+Die sog $\varepsilon$-Umgebung $U_\varepsilon(a)$ von $a$ ist
 definiert durch
 \[
 U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ |x - a| < \varepsilon \}.
 \] 
-
-
-inSAGE
-
+\subsubsection{Folgen in Sage}
 Grenzwerte von Folgen $(a_n)_n$ können in Sage mit Hilfe von 
 \begin{sagein}
 limit(expr(x), x = oo, dir='above')
 \end{sagein}
 berechnet werden. Dabei ist $expr(x)$ ein Ausdruck.
-
-\textbf{Beispiele:}
-
-  $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
+Wir betrachten einige Beispiele.\\
+$a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
 \begin{sagein}
 _=var('n');limit(1/(n+1),n=oo)
 \end{sagein}
@@ -3076,10 +3071,7 @@ limit(2^(-n),n=oo)
 \begin{sage}
   1/1048576
 \end{sage}
-
-
-VIS
-
+\subsubsection{Visualisieren von Folgen}
 Folgen können in Sage durch {\color{blue} \isage{points}} visualisiert werden.
 \begin{sagein}
 var('n');
@@ -3088,18 +3080,16 @@ point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
 \begin{center}
 \includegraphics[width=9.5cm]{folge.pdf}
 \end{center}
-
-KONV KRIT
-
-
- Jede monotone, beschränkte Folge konvergiert.
- Konvergenz bei Addition: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
+\subsubsection{Konvergenzkriterien}
+Wir können folgende Aussagen bzgl der Konvergenz von Folgen machen:\\
+Jede monotone, beschränkte Folge konvergiert.\\
+Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
                    Folge $( \alpha a_n+\beta b_n)_n$ konvergent mit
                    dem Grenzwert
  \[ \lim_{n \rightarrow \infty} ( \alpha a_n + \beta b_n)= \alpha
                    \lim_{n \rightarrow \infty} a_n + \beta \lim_{n
                    \rightarrow \infty} b_n .\]
- Konvergenz bei Multiplikation: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
+Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
                    Folge $(a_n b_n)_n$ konvergent mit
                    dem Grenzwert
  \[
@@ -3107,30 +3097,28 @@ KONV KRIT
                    (\lim_{n \rightarrow \infty} a_n) \cdot  (\lim_{n
                    \rightarrow \infty} b_n).
  \]
- Bemerkung: Weglassen oder Hinzufügen endlich vieler Glieder verändert das
+\begin{bem}
+  Weglassen oder Hinzufügen endlich vieler Glieder verändert das
                    Konvergenzverhalten nicht.
-
-
-SÄTZE
-
-
- \emph{(Bolzano-Weierstrass)}: Jede beschränkte Folge besitzt (mindestens) eine
-konvergente Teilfolge.
+\end{bem}
+Wir möchten hier einge wichtige Sätze über Konvergenz anbringen:
+\begin{sz}
+Satz von Bolzano-Weierstrass\\
+Jede beschränkte Folge besitzt (mindestens) eine
+konvergente Teilfolge.\\
  Jede Teilfolge einer konvergenten Folge konvergiert gegen den
-Grenzwert der ursprünglichen Folge.
+Grenzwert der ursprünglichen Folge.\\
  Jede konvergente Folge ist beschränkt, d.h. es gibt ein $K>0$,
-so dass $|a_n|\leq K$ gilt für alle $n \in \mathbb{N}$.
- \emph{Zwischenfolge}: Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
+so dass $|a_n|\leq K$ gilt für alle $n \in \mathbb{N}$.\\
+Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
 \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n$. Dann gilt
 für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 \mathbb{N}$, dass sie konvergiert mit  $\lim_{n
-\rightarrow \infty} c_n = \lim_{n \rightarrow \infty} b_n$.
-
-
-REK
-
+\rightarrow \infty} c_n = \lim_{n \rightarrow \infty} b_n$. $(c_n)_n$ heißt Zwischenfolge.
+\end{sz}
+\subsubsection{Rekursive Folgen}
 Rekursive Folgen können durch rekursive Funktionen erzeugt werden.
-\textbf{Beispiel:}
+Wir betrachten exremplarisch die Folge 
 \[ y_{n+2}:=2y_{n+1}-y_n+2, \quad y_0=-1, y_1=a. \]
 \begin{sagein}
 var('a')
@@ -3149,44 +3137,38 @@ y(4)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reihen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Sei $(a_n)_n$ eine Folge reeller Zahlen. Eine {\color{red} (unendliche)
-Reihe} mit den {\color{red} Gliedern} $a_n$, in Zeichen
+Eng Verwandt mit Folgen sind Reihen, weshalb wir ebensolche nun hier betrachten wollen. Dazu einführend eine formale Definition.
+\begin{df}
+Sei $(a_n)_n$ eine Folge reeller Zahlen. Eine (unendliche)
+Reihe mit den Gliedern $a_n$, in Zeichen
 \[ \sum_{n=1}^\infty a_n =a_1 + a_2 + a_3 + \dots, \]
-ist definiert durch die Folge $(s_n)_n$ der {\color{red} Partialsummen}\\
+ist definiert durch die Folge $(s_n)_n$ der Partialsummen
 \[
 s_n=\sum_{k=1}^n a_k = a_1+a_2+ \dots +a_n 
 \]
-Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder 
-{\color{red} Summe} der Reihe bezeichnet. Man schreibt
+Der Grenzwert $s$ der Folge $(s_n)_n$ wird als Wert oder 
+Summe der Reihe bezeichnet. Man schreibt
 \[s= \sum_{n=1}^\infty a_n.\] 
-
-BEMERKUNGEN
-
-
-  Reihen sind eine spezielle Art von Folgen.
- Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.
- Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
+\end{df}
+\begin{bem}
+Reihen sind eine spezielle Art von Folgen.\\
+Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.\\
+Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
 bleiben Konvergenz und Divergenz unberührt. I.A. wird sich aber der
 Grenzwert ändern.
-
-
-inSAGE
-
+\end{bem}
+\subsubsection{Reihen in Sage}
+Die Summe $\sum_{i=a}^b f(i)$ mit $a,b \in \mathbb{Z}$ lässt sich in Sage wie folgt erzeugen:
 \begin{sagein}
 sum(<f>,<i>,<a>,<b>) 
 \end{sagein}
-Gesucht: geschlossene Darstellung der Summe $\sum_{i=a}^b f(i)$ mit $a,b \in \mathbb{Z}$ ganze
-Zahlen (auch unendlich (\isage{infinity/oo}), \isage{f} Ausdruck in $i$.
-
- Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
-unterschiedliches Konvergenzverhalten.
+Gesucht ist hier eine geschlossene Darstellung der Summe $\sum_{i=a}^b f(i)$, dabei $a,b \in \mathbb{Z}$ ganze
+Zahlen (auch unendlich (\isage{infinity/oo}), und \isage{f} ein Ausdruck in $i$.\\
+Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
+unterschiedliches Konvergenzverhalten.\\
 %geometrische Reihe z.b.
-
-
-BEISPIELE
-
-
- \emph{geometrische Reihe}: $\sum_{n=0}^\infty x^n$. Die
+Wir betrachten einige Beispiele.
+Die geometrische Reihe ist gegeben durch $\sum_{n=0}^\infty x^n$. Die
 Partialsummen lauten
 \[ s_n=1+x+x^2+\ldots + x^n = \left \{ \begin{array}{ll}
 n+1, & \mbox{ falls } x=1\\
@@ -3194,7 +3176,6 @@ n+1, & \mbox{ falls } x=1\\
 \end{array} \right. .\]
 Die Reihe divergiert für $|x|\geq1$ und konvergiert für $|x|<1$ mit
 dem Wert $\sum_{n=0}^\infty = \frac{1}{1-x}$.
-
 \begin{sagein}
 sum(x^k,k,0,oo)
 \end{sagein}
@@ -3216,7 +3197,7 @@ _=var('k');sum(1/k^2,k,1,oo)
 \begin{sage}
 1/6*pi^2
 \end{sage}
- Die \emph{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
+ Die alternierende harmonische Reihe  $\sum_{n=1}^\infty
 \frac{(-1)^{n+1}}{n}$ konvergiert.
 \begin{sagein}
 sum((-1)^(k+1)/k,k,1,oo)
@@ -3224,7 +3205,7 @@ sum((-1)^(k+1)/k,k,1,oo)
 \begin{sage}
   log(2)
 \end{sage}
- Die \emph{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
+ Die harmonische Reihe $\sum_{n=1}^\infty \frac{1}{n}$
  divergiert.
 \begin{sagein}
 sum(1/k,k,1,oo)
@@ -3232,12 +3213,8 @@ sum(1/k,k,1,oo)
 \begin{sage}
 ValueError: Sum is divergent
 \end{sage}
-
-
-PARTIALSUMMEN
-
-
- Definieren der Partialsumme
+\subsubsection{Partialsummen}
+Die Partialsumme einer Reihe lässt sich in Sage wie folgt definieren
 \begin{sagein}
 _=var('x,n,k')
 s = sum(x^k,k,0,n); s
@@ -3246,8 +3223,7 @@ s = sum(x^k,k,0,n); s
 % \begin{sage}
 % (x^(n + 1) - 1)/(x - 1)
 % \end{sage}
-
- Die ersten $5$ Glieder der Partialsumme
+Die ersten $5$ Glieder der Partialsumme erhalten wir durch
 \begin{sagein}
 assume(x<>1); [s(n=m) for m in [1..6]]
 \end{sagein}
@@ -3256,7 +3232,7 @@ assume(x<>1); [s(n=m) for m in [1..6]]
 % [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
 % 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
 % \end{sage} 
- Bestimmen des Grenzwertes der Folge der Partialsummen
+Das Bestimmen des Grenzwertes der Folge der Partialsummen gelingt uns via
 \begin{sagein}
 forget();assume(abs(x)<1);limit(s,n=oo)
 \end{sagein}
@@ -3269,31 +3245,24 @@ forget();assume(x>1);limit(s,n=oo)
 \begin{sage}
 +Infinity
 \end{sage}
- 
-
-assume()
-
+\subsubsection{\isage{assume()}}
+Wir können Sage auffordern, bestimmte Annahmen über Variablen zu machen. Dafür haben wir den Befehl \isage{assume()}.
 \begin{sagein}
 assume(<assumptions>)
 \end{sagein}
-Annahmen für bestimmte Bezeichner.
-
-\textbf{Beispiele:}
+Wir betrachten ein Beispiel.
 \begin{sagein}
 assume(x,'real') # §$x$§ wird auf §$\mathbb{R}$§ eingeschränkt
 assume(x>a) # §$x$§ wird auf  §$\{y \in \mathbb{R}\ |\ y>a\}$§ eingeschränkt
 \end{sagein}
-
-Ruft man \isage{assume} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
-Widersprüchlich erhält man eine entsprechende Meldung.
-
-BEMERKUNGEN
-
-
- Umformungen oder Vereinfachungen für symbolische Bezeichner
+\begin{bem}
+Ruft man \isage{assume()} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
+widersprüchlich erhält man eine entsprechende Meldung.
+\end{bem}
+Umformungen oder Vereinfachungen für symbolische Bezeichner
 werden i.A. nur dann durchgeführt,
 wenn sie für alle komplexen Zahlen gelten. Hier kann ein Einschränken
-des Definitionsbereichs helfen.
+des Definitionsbereichs helfen.\\
  Mittels 
 \begin{sagein}
 forget(x>a)
@@ -3306,10 +3275,7 @@ assumptions()
 können alle Annahmen ausgegeben werden.
 % Durch den speziellen Bezeichner \isage{Global} können Annahmen
 %für alle Bezeichner gesteuert werden. 
-
-
-BEISPIELE
-
+Wir betrachten weitere Beispiele.
 \begin{sagein}
 var('c'); assumptions()
 \end{sagein}
@@ -3357,6 +3323,7 @@ sqrt(x^2).simplify()
 % analytic, increasing, decreasing, oddfun, evenfun, posfun, constant,
 % commutative, lassociative, rassociative, symmetric, antisymmetric,
 % integervalued, one_to_one
+Für \isage{assume()} stehen uns u.A. folgende Optionen zur verfügung:
 \begin{center}
  \begin{tabular}{|l|l|}
 \hline
@@ -3373,47 +3340,44 @@ Annahme & Erklärung\\
 \hline
 \end{tabular}
 \end{center}
-
-KONV KRIT
-
-
- \emph{Cauchykriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
+\subsubsection{Konvergenzkriterien II}
+Wir reichen noch einige oft nützliche Konvergenzkriterien nach.\\
+\begin{lm}[Cauchykriterium]
+Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
                   genau dann, wenn es zu jedem $\varepsilon>0$ ein $n_0
                   \in \mathbb{N}$ gibt, so dass für alle $m,n \geq n_0$
                   gilt $| \sum_{k=m}^n a_k|<\varepsilon$.
- \emph{Notwendiges Kriterium:} Konvergiert eine Reihe, so bilden ihre Glieder eine Nullfolge. Dieses Kriterium ist \emph{nicht} hinreichend!
- \emph{Verdichtungskriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ mit
+\end{lm}
+\begin{lm}[Notwendiges Kriterium] Konvergiert eine Reihe, so bilden ihre Glieder eine Nullfolge. Dieses Kriterium ist nicht hinreichend!
+\end{lm}
+\begin{lm}[Verdichtungskriterium] Eine Reihe $\sum_{n=1}^\infty a_n$ mit
                   einer Folge nichtnegativer, monoton fallender
                   Glieder konvergiert genau dann, wenn die Reihe
                   $\sum_{n=1}^\infty 2^n a_{2^n}$ konvergiert.
+\end{lm}
+\begin{lm} Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$, so heißt 
 
-Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$
-
-  {\color{red} Minorante}: $\sum_{n=1}^\infty c_n$
-  {\color{red} Majorante}: $\sum_{n=1}^\infty b_n$ 
-
-Die Reihe $\sum_{n=1}^\infty a_n$ \emph{konvergiert}, wenn...
+\[\sum_{n=1}^\infty c_n \text{ Minorante für } \sum_{n=1}^\infty a_n\] 
+\[\sum_{n=1}^\infty b_n \text{ Majorante für } \sum_{n=1}^\infty a_n\]
+Die Reihe $\sum_{n=1}^\infty a_n$ konvergiert, wenn...
 \begin{description}
-\item[Majorantenkriterium:] eine konvergente Majorante besitzt (nichtnegative Glieder).
-
-\item[Quotientenkriterium:] Die Glieder positiv sind und ein $q<1$
+\item[Majorantenkriterium] sie eine konvergente Majorante (mit nichtnegativen Gliedern) besitzt.
+\item[Quotientenkriterium:] ihre Glieder positiv sind und ein $q<1$
 existiert, so dass für $n \in \mathbb{N}$ gilt $\frac{a_{n+1}}{a_n}
 \leq q$. 
-\item[Wurzelkriterium:] Die Glieder positiv sind und ein $q<1$
+\item[Wurzelkriterium:] ihre Glieder positiv sind und ein $q<1$
 existiert, so dass für $n \in \mathbb{N}$ gilt $\sqrt[n]{a_n} \leq
 q$. 
-\item[Leibnizsches Kriterium:] wenn die Folge $(a_n)_n$ bei $\sum_{n=1}^\infty (-1)^n a_n$
+\item[Leibnizsches Kriterium:] sie bei $\sum_{n=1}^\infty (-1)^n a_n$
 eine monoton fallende  Nullfolge ist.
 \end{description}
-Die Reihe $\sum_{n=1}^\infty a_n$ \emph{divergiert}, wenn...
+Die Reihe $\sum_{n=1}^\infty a_n$ divergiert, wenn...
 \begin{description}
 \item[Majorantenkriterium:] sie eine divergente Minorante besitzt.
 \end{description}
-
-BEISPIELE
-
-
- Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
+\end{lm}
+Wir geben zwei Beispiele.\\
+Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
 \begin{sagein}
 f(n) = n^4*exp(-n*n)
 g(n) = f(n+1)/f(n)
@@ -3432,46 +3396,37 @@ limit(h(n+1)/h(n),n=oo)
 \begin{sage}
   1/2
  \end{sage}
-
-
-ABS BED KONV
-
-{\color{red} absolut konvergent}: Ist eine Reihe $\sum_{n=0}^\infty a_n$ 
-genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert. 
-
-{\color{red} bedingt konvergent}: konvergent, aber nicht absolut konvergent.
-
+\subsubsection{Absolute und bedingte Konvergenz}
+Eine Reihe $\sum_{n=0}^\infty a_n$ heißt absolute konvergent
+genau dann, wenn $\sum_{n=0}^\infty |a_n|$ konvergiert.\\
+Eine konvergent, aber nicht absolut konvergente Reihe heißt bedingt konvergent.
+\begin{bem}
  Absolut konvergente Reihen können beliebig umgeordnet werden.
- Dies ist i.d.R. bei nicht absolut konvergenten Reihen falsch!
-
+ Dies ist i.d.R. für nicht absolut konvergenten Reihen falsch!
+\end{bem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Potenzreihen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\color{red} Potenzreihe}:
+Wir wollen uns spezielle Reihen, sog Potenzreihen anschauen. Diese sind gegeben durch
 \[ \sum_{n=0}^\infty a_n (x-x_0)^n \]
 mit $x_0 \in \mathbb{R}$. 
-
-{\color{red} Konvergenzradius}: 
+Eine Pontenzreihe besitzt einen sog Konvergenzradius, mit dem sich Aussagen über ihr Konvergenzverhalten machen lassen.
+\begin{df}[Konvergenzradius]
 \[  \rho := \frac{1}{ \limsup_{n \rightarrow \infty} \sqrt[n]{|a_n|}}
 \]
 Ist $a_n \neq 0$ für alle $n > n_0$:
 \[
  \rho = \limsup_{n \rightarrow \infty} \frac{|a_{n}|}{|a_{n+1}|}.
 \]
-
-Konvergenzverhalten:
-
-  konvergiert absolut für $|x -x_0|< \rho$.
-  divergiert für $|x-x_0|>\rho$.
- Die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ muss bei
-jeder Reihe individuell geprüft werden.   
-
-
-BEISPIELE
-
-
- $\sum_{n=1}^\infty \frac{x^n}{n!}$
+\end{df}
+Für das Konvergenzverhalten gilt dann:\\
+Die Potenzreihe konvergiert absolut für $|x -x_0|< \rho$.\\
+Sie divergiert für $|x-x_0|>\rho$.\\
+Über die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ kann nichts gesagt werden. Diese müssen für 
+jede Reihe individuell geprüft werden.   
+Wir wollen uns dies an Beispielen verdeutlichen.\\
+Sei $\sum_{n=1}^\infty \frac{x^n}{n!}$ gegeben und ihr Konvergenzradius von Interesse:
 \begin{sagein}
 f(n) = 1/factorial(n)
 rho = limit(expand(f(n)/f(n+1)),n=oo); rho
@@ -3479,8 +3434,8 @@ rho = limit(expand(f(n)/f(n+1)),n=oo); rho
 \begin{sage}
 +Infinity
 \end{sage}
-Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$. 
- $\sum_{n=0}^\infty n^s x^n$, $s>0$
+Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$.\\ 
+Sei nun $\sum_{n=0}^\infty n^s x^n$, $s>0$ gegeben und wieder der Konvergenzradius gefragt:
 \begin{sagein}
 _=var('s');f(n)= n^s; assume(s>0)
 limit(expand(f(n)^(1/n)),n=infinity)
@@ -3489,49 +3444,44 @@ limit(expand(f(n)^(1/n)),n=infinity)
   1
 \end{sage}
 Der Konvergenzradius ist $1$.
-
-
-EXP
-
-Wir erklären die \emph{Exponentialfunktion} durch
+\subsubsection{Exponentialfunktion}
+Wir erklären die Exponentialfunktion durch
 \[  exp(x) := \sum_{i=0}^\infty \frac{x^n}{n!}= 1 + \frac{x}{1!} +
 \frac{x^2}{2!}+ \frac{x^3}{3!}+ \dots, x \in \mathbb{R}. \]
- Die Funktion ist auf ganz $\mathbb{R}$ definiert. Plot:
+Die Funktion ist auf ganz $\mathbb{R}$ definiert. Der Graph der Funktion ist gegeben zu:
 \begin{sagein}
 plot(exp,(-5,5))
 \end{sagein}
 \begin{center}
 \includegraphics[width=6cm]{fexp.pdf}
 \end{center}
-
-EIG EXP
-
-
- Es gilt $\exp(x+y)=\exp(x) \cdot \exp(y)$.
- Es gilt $\exp(x)=\lim_{n \rightarrow \infty} (1+\frac{x}{n})^n$.
- Es gilt $\exp(x)=1/\exp(-x)$.
- Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
-Logarithmusfunktion $\log (x)$. Es gilt
+Wir wollen uns an einige Eigenschaften der Exponentialfunktion erinnern:\\
+Es gilt $\exp(x+y)=\exp(x) \cdot \exp(y)$.\\
+Es gilt $\exp(x)=\lim_{n \rightarrow \infty} (1+\frac{x}{n})^n$.\\
+Es gilt $\exp(x)=1/\exp(-x)$.\\
+Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
+ Logarithmusfunktion $\log (x)$. Es gilt
 \[ \exp(\log(x))=x, \ x >0, \quad \log ( \exp ( x ))=x, \ x \in \mathbb{R}.\] 
- Die {\color{red} allgemeine Potenz} ist durch $a^x:=\exp( x \log a)$,
+ Die allgemeine Potenz ist durch $a^x:=\exp( x \log a)$,
 $a\in \mathbb{R}_+$
 definiert. 
 
-
-inSAGE
-
+\subsubsection{Exponential- und Logarithmusfunktion in Sage}
+Wie wir oben schon bemerkt haben könnten, ist die Exponentialfunktion in Sage gegeben durch
 \begin{sagein}
 sum(x^n/factorial(n),n,0,oo)
 \end{sagein}
 \begin{sage}
   e^x
 \end{sage}
+Wir testen, ob der Logarithmus die Umkehrung der Exponentialfunktion ist:
 \begin{sagein}
 exp(log(x))
 \end{sagein}
 \begin{sage}
   x
 \end{sage}
+Alternative darstellung der Exponentialfunktion:
 \begin{sagein}
 _=var('n');limit((1+x/n)^n,n=oo)
 \end{sagein}
@@ -3546,15 +3496,14 @@ _=var('n');limit((1+x/n)^n,n=oo)
 %   
 % \end{sage}
 
-TRIG
-
-Die {\color{red} Sinusfunktion} und die {\color{red} Cosinusfunktion} sind definiert
+\subsubsection{Trigonometrische Funktionen}
+Die Sinusfunktion und die Cosinusfunktion sind definiert
 durch
 \begin{eqnarray*}
 \sin(x) := \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} \quad\quad
 \cos(x) := \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}. 
 \end{eqnarray*}
-Die Potenzreihen konvergieren für alle $x \in \mathbb{R}$. Plotten:
+Die Potenzreihen konvergieren für alle $x \in \mathbb{R}$. Wir machen uns ein Bild:
 \begin{sagein}
 p = plot(sin,0,4*pi,color='red')
 p += plot(cos,0,4*pi); 
@@ -3564,29 +3513,23 @@ p += text('-- $\cos(x)$', (10, 0.85)); p.show()
 \begin{center}
 \includegraphics[width=5.5cm]{sincos.pdf}
 \end{center}
-
-EIG TRIG
-
-
- \emph{Additionstheoreme}:
+Wir erinnern uns auch an einige Eigenschaften der trigonometrischen Funktionen. Da wären zuerst sicherlich die Additionstheoreme:
 \begin{eqnarray*}
 \sin(x+y) & = &\sin x \cos y+ \cos x \sin y \\
 \cos(x+y) & = &\cos x \cos y - \sin x \sin y .
 \end{eqnarray*} 
- 
+Es gelten folgende Identitäten: 
 \[\sin^2x +\cos^2x=1.\]
- 
-\begin{eqnarray*}
+ \begin{eqnarray*}
 \sin(x+\pi/2)&=&\cos(x)\\
  \cos(x+\pi/2)&=&-\sin(x).
 \end{eqnarray*} 
+\begin{bem}
  Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
 von $\cos(x)$ als $\pi/2$ definieren.
-
-
-
-inSAGE
-
+\end{bem}
+\subsubsection{Trigonometrische Funktionen in Sage}
+Wir betrachten zwei kleine Beispiele:
 \begin{sagein}
 solve(cos(x)==0,x)
 \end{sagein}
@@ -3599,13 +3542,9 @@ sin(x+pi/2).simplify()
 \begin{sage}
 cos(x)
 \end{sage}
-
-MORE EIG
-
-
+Wir wollen uns um weitere Eigenschaften der trigonometrischen Funktionen bemühen.
 % Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
- Umkehrfunktionen: $\arcsin$ bei Sinus und $\arccos$ bei Cosinus.
-Plotten: 
+Die Umkehrfunktion des Sinus ist $\arcsin$, die des Cosinus $\arccos$. Wiederum machen wir uns ein Bild: 
 \begin{sagein}
 p = plot(arcsin,-1,1,color='red')
 p += plot(arccos,-1,1); 
@@ -3615,7 +3554,7 @@ p += text('-- arccos(x)', (-0.7, 0.75)); p.show()
 \begin{center}
 \includegraphics[width=6.5cm]{arcsinarccos.pdf}
 \end{center}
- Der {\color{red} Tangens} ist definiert durch
+Der Tangens ist definiert durch
 $\tan(x) :=\frac{\sin(x)}{\cos(x)}$.
 \begin{sagein}
 plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
@@ -3628,17 +3567,14 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Vertiefung Schleifen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-WHILE
-
+Wir wollen eine Alternative der uns bekannten \isage{for()}-Schleife betrachten, die \isage{while()}-Schleife:
 \begin{sagein}
 while <expression> :
     <Code-block>
 \end{sagein}
 Diese wiederholt \isage{<Code-block>} solange wie die \isage{<expression>} als 
 \isage{True} ausgewertet wird.
-
-\textbf{Beispiel}:
+Dazu betrachten wir ein Beispiel:
 \begin{sagein}
 f(x) = 1/x
 x=0.1
@@ -3682,16 +3618,12 @@ x
 %     print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
 % print divisors(840)
 % \end{sagein}
-
-ALT
-
-
- Schleifen abwärts zählen
+Wir können Schleifen auch abwärts zählen (also ``umgekehrt'' durchlaufen):
 \begin{sagein}
 for j in reversed([2,4]):
    print("{0}, {1}").format(x,x^j) 
 \end{sagein}
- Schrittweite modifizieren
+Nicht nur die Durchlaufrichtung ist variabel, sondern auch die Schrittweiten selbst können modifiziert werden:
 \begin{sagein}
 for j in srange(3,10,2.6):
     print(x,x^j) 
@@ -3702,27 +3634,20 @@ for j in srange(3,10,2.6):
 (x, x^8.20000000000000)
 \end{sage}
 
-
-
-FP
-
-Suche ein $x_{\mathrm{fix}} \in \mathbb{R}$ so dass
+\subsubsection{Fixpunkte}
+Schon einmal wurde die Suche einer Nullstelle zurückgeführt auf die Bestimmung eines Fixpunktes- nur wie finden wir den Fixpunkt einer Funktion? Wir wollen die Idee 
+eines Verfahrens zur Fixpunktbestimmung am Beispiel des $cos()$ erläutern. Wir suche ein $x_{\mathrm{fix}} \in \mathbb{R}$ so dass
 \[ x_{\mathrm{fix}} = \cos (x_{\mathrm{fix}}) \]
-gilt.
+gilt. Hierzu machen wir uns ein Bild:
 \begin{center}
 \includegraphics[width=8cm]{iter1.pdf}
 \end{center}
-
-FP-IT
-
-Fixpunkt-Iteration 
+\subsubsection{Fixpunkt-Iteration}
+Die Fixpunkt-Iteration 
 \[ x_{k+1}=cos(x_k) \]
-bei geeignetem Startwert $x_0 = 0.2$.  \\
+bei geeignetem Startwert $x_0 = 0.2$ liefert den gesuchten Wert:
 \centering{\includegraphics[width=8cm]{fixpunkt.pdf}}\\
-
-IMP
-
-\begin{small}
+\subsubsection{Implementierung Fixpunkt-Iteration}
 \begin{sagein}
 def fixpunkt(f,In,x0,n):
     y = [x0]
@@ -3735,16 +3660,17 @@ def fixpunkt(f,In,x0,n):
     p.show()
     return(y)
 \end{sagein}
-\end{small}
-
-CALL
-
+Über folgenden Aufruf werden die Ergebnisse jedes Iterationsschritts zurückgeliefert- das letzte Ergebnis sollte also unsere Approximation des Fixpunkts sein.
 \begin{sagein}
 fixpunkt(lambda x: cos(x),[0,1],0.2,10)
 \end{sagein}
 \begin{sage}
 [0.200000000000000, 0.98006657784124163, 0.55696725280964243, 0.84886216565827077, 0.66083755111661502, 0.78947843776686832, 0.70421571334199318, 0.76211956176066087, 0.72337417210557109, 0.74957657633149311, 0.73197742525819132]
 \end{sage}
+\begin{bem}
+ Unsere Funktion approximiert den Fixpunkt beliebig schlecht (abhängig von der Größe unseres $n$, denn es werden eben ``nur'' $n$ Iterationen durchgeführt). Eine \isage{while()}-Schleife 
+mit geeignetem Abbruchkriterium könnte Abhilfe schaffen. Der geneigten Leserin sei die Implementation als spaßige Übung nahegebracht.
+\end{bem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
