@@ -3646,7 +3646,9 @@ gilt. Hierzu machen wir uns ein Bild:
 Die Fixpunkt-Iteration 
 \[ x_{k+1}=cos(x_k) \]
 bei geeignetem Startwert $x_0 = 0.2$ liefert den gesuchten Wert:
-\centering{\includegraphics[width=8cm]{fixpunkt.pdf}}\\
+\begin{center}
+\includegraphics[width=8cm]{fixpunkt.pdf}
+\end{center}
 \subsubsection{Implementierung Fixpunkt-Iteration}
 \begin{sagein}
 def fixpunkt(f,In,x0,n):
@@ -3677,54 +3679,47 @@ mit geeignetem Abbruchkriterium könnte Abhilfe schaffen. Der geneigten Leserin 
 \chapter{Funktionen(-folgen), Grenzwert und Stetigkeit, Grafik}
 \section{Funktionen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-FKT
-
-(reelle) {\color{red} Funktion}:  Abbildung
+Wir wollen reelle Funktionen kennenlernen. Dazu eine Definition.
+\begin{df}
+Eine Abbildung
 \[f: \ D \subset \mathbb{R} \ \rightarrow \ \mathbb{R}.\]
-die jedem Element aus $D$ eindeutig genau ein Element aus $\mathbb{R}$ zuordnet.
-
-  {\color{red} Definitionsbereich}: $D \subset \mathbb{R}$, $D \neq \emptyset$.
- \emph{Wertebereich}: Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
-Funktion vorkommen.
- {\color{red} Graph} einer Funktion: ist die Menge aller Punkte 
+die jedem Element aus $D$ eindeutig genau ein Element aus $\mathbb{R}$ zuordnet heißt (reelle) Funktion.\\
+$D \subset \mathbb{R}$, $D \neq \emptyset$ heißt Definitionsbereich von $f$.\\
+Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
+Funktion vorkommen heißt Wertebereich von $f$.\\
+Die Menge aller Punkte 
 \[ \{ (x,f(x)) \in \mathbb{R}^2 \;|\; x \in D\}. \]
-
-
-VERK
-
-Seien $f$ und $g$ Funktionen mit einem gemeinsamen Definitionsbereich. Dann
-definiert man:
-
- Summe: $(f+g)(x):=f(x)+g(x)$
- Differenz: $(f-g)(x):=f(x)-g(x)$
- Produkt: $(f\cdot g)(x):=f(x) \cdot g(x)$
- Quotient: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
-0$ für alle $x \in D$ 
- Komposition: Mit $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
-mit $f(D_f) \subset D_g$ 
+heißt Graph der Funktion $f$
+\end{df}
+Wie wir wissen, lassen sich zwei Funktionen $f$ und $g$ wie folgt verknüpfen:
+\begin{sz}[Verknüpfung von Funktionen]
+Seien $f$ und $g$ Funktionen mit einem gemeinsamen Definitionsbereich.\\
+Die Summe von $f$ und $g$ ist definiert als $(f+g)(x):=f(x)+g(x)$.\\
+Analoges gilt für die Differenz von $f$ und $g$: $(f-g)(x):=f(x)-g(x)$.\\
+Das Produkt beider Funktionen ist gegeben zu $(f\cdot g)(x):=f(x) \cdot g(x)$.\\
+Analog erhalten wir den Quotienten: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
+0$ für alle $x \in D$.\\
+Durch $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$, 
+dabei $f(D_f) \subset D_g$ 
 \[(g \circ f) (x):=g(f(x)).\] 
-
-
-MEHRDIM
-
+ist die Komposition von $f$ und $g$ definiert.
+\end{sz}
+Wie uns weiterhin bekannt ist, lassen sich FUnktionen auch mehrdimensional definieren.
+\begin{df}[Mehrdimensionale Funktion]
 Ist $D \subseteq \mathbb{R}^n$ und $f : D \Rightarrow \mathbb{R}$ dann spricht man von
-einer reellen Funktion in \emph{mehreren Veränderlichen}. Das Studium dieser Funktionen ist einer der Hauptinhalte der Diff2-Vorlesung.
-
+einer reellen Funktion in mehreren Veränderlichen. Das Studium dieser Funktionen ist einer der Hauptinhalte der Diff2-Vorlesung.
 \bigskip
-
 Weiterhin können Funktionen auch Wertebereiche außerhalb der reellen Zahlen haben.
 Z.B. 
 \[f : D \Rightarrow \mathbb{R}^m.\]
- Im physikalischen Umfeld spricht man für $m=1$ dann von \emph{skalarwertigen Funktionen} und für $m>1$ von \emph{vektorwertigen Funktionen} oder \emph{Vektorfeldern}.
- 
-inSAGE
-
+Im physikalischen Umfeld spricht man für $m=1$ dann von skalarwertigen Funktionen und für $m>1$ von vektorwertigen Funktionen oder Vektorfeldern.
+\end{df} 
+\subsubsection{Funktionen in Sage}
+Die Abbildung $f$ mit Argumenten $x,y$ lässt sich wie folgt erzeugen
 \begin{sagein}
 f(x,y,...) = expr
 \end{sagein}
-Abbildung $f$ mit Argumente $x,y$.\\
-\textbf{Beispiele:}
+Wir betrachten eine konkrete Funktion $f$
 \begin{sagein}
 f(x,y) = x^2+y^2; f
 \end{sagein}
@@ -3745,7 +3740,6 @@ type(f)
 \begin{sage}
 <type 'sage.symbolic.expression.Expression'>
 \end{sage}
-
 Wie gewohnt können Abbildungen addiert, subtrahiert, multipliziert und
 dividiert werden:
 \begin{sagein}
@@ -3759,10 +3753,8 @@ h(a),k(a),l(a)
 % \begin{sage}
 % (1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
 % \end{sage}
-
-KOMP
-
-Kompositionen $f\circ g$ werden in Sage durch Ineinanderschachteln gelöst:
+\subsubsection{Komposition in Sage}
+Kompositionen $f\circ g$ werden in Sage durch Ineinanderschachteln erzeugt:
 \begin{sagein}
 f_g(x) = f(g); g_f(x) = g(f)
 f_g(x), g_f(x)
@@ -3772,7 +3764,7 @@ f_g(x), g_f(x)
 % \begin{sage}
 % (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
 % \end{sage}
-Mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
+Mehrfachverknüpfungen erhalten wir durch mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
 \circ f(\cdot)$
 \begin{sagein}
 g4(x) = g(g(g(g))); g4
@@ -3789,12 +3781,10 @@ abs(real(-2+3*I))
   2
 \end{sage}
 Kompliziertere Funktionen können besser durch selbst definierte Funktionen/Prozeduren \isage{def <func>():} erklärt
-werden (vgl. Einheit 4).
-
-AUSDR
-
-Funktion $f$ als Funktion $f(x)=expr(x)$ oder als Ausdruck $f=expr$ (Vorsicht: der Typ ist identisch).
-Funktionsauswertung ist i.A. allerdings unterschiedlich.
+werden (vgl. Kapitel 4).
+\subsubsection{Ausdrücke und Funktionen}
+Wir unterschedien zwischen der Funktion $f$ als Funktion $f(x)=expr(x)$ oder als Ausdruck $f=expr$. Der Typ ist identisch, 
+die Funktionsauswertung i.A. allerdings unterschiedlich. Wir machen uns diesen Unterschied klar:
 \begin{sagein}
 Funktion(x) = 2*x*cos(x); Funktion(1)
 \end{sagein}
@@ -3824,10 +3814,10 @@ Funktion3(x,y) = x+sin(y); Funktion3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grenzwerte und Stetigkeit}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-GRENZ
-
-{\color{red} Grenzwert}: Sei $f$ eine Funktion mit Definitionsbereich $D$ und $a\in D$.\\
+\subsection{Grenzwerte}
+Wir wollen uns mit Grenzwerten von Funktionen befassen. Dazu folgende Definition.
+\begin{df}[Grenzwert]
+Sei $f$ eine Funktion mit Definitionsbereich $D$ und $a\in D$.\\
 $f$ strebt für $x \rightarrow a$ gegen $b \in \mathbb{R}$, wenn es zu jedem $\varepsilon >0$ ein $\delta >0$ gibt, so
 dass für alle $x \in D\smallsetminus\{a \}$ mit $|x-a|<\delta$ gilt 
 \[ |f(x)-b| < \varepsilon .\]
@@ -3835,14 +3825,13 @@ Der Grenzwert $b$ ist eindeutig bestimmt und man schreibt
 \[ \lim_{x \rightarrow a} f(x) =b \mbox{ oder } f(x) \rightarrow b
 \mbox{ für } x \rightarrow a. \]
 Die Aussage überträgt sich sinngemäß auf $a=\pm \infty$.
-
-BEM
-
-
- \emph{Folgenkriterium}: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
+\end{df}
+Wir fassen einige Tatsachen in einem Satz zusammen.
+\begin{sz}
+Nach dem Folgenkriterium gilt $ \lim_{x \rightarrow a} f(x) =b$
 genau dann, wenn für jede Folge $a_n \in D$ mit $a_n \neq a$ und $a_n \rightarrow a$
-gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
- Es gelten die üblichen Rechenregeln:
+gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.\\
+Es gelten die üblichen Rechenregeln:
 \begin{eqnarray*}
 \lim_{x \rightarrow a}(f(x)+g(x)) &=&\lim_{x \rightarrow a} f(x) +
 \lim_{x \rightarrow a} g(x) \\
@@ -3850,30 +3839,27 @@ gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
 f(x) \cdot \lim_{x \rightarrow a} g(x)
 \end{eqnarray*}
 wenn $\lim_{x \rightarrow a} f(x)$ und $\lim_{x \rightarrow a}g(x)$
-existieren. 
- Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
+existieren.\\
+Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
 g(x)=c$ bei entsprechenden Definitionsgebieten für $f$ und $g$, so
 folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
+\end{sz}
 
-
-limit()
-
+\subsubsection{limit()}
+Sage stellt uns für Grenzwertbetrachtungen den uns bekannten \isage{limit()}-Befehl zur Verfügung:
 \begin{sagein}
 expr.limit(x = a, dir=None, taylor=False)
 limit(expr, x = a, dir=None, taylor=False)
 \end{sagein}
-Hierdurch wird der (beidseitige) Grenzwert eines Ausdrucks mit Unbekannten $x$ an
+Hierdurch wird der (beidseitige) Grenzwert eines Ausdrucks mit der Unbekannten $x$ an
 der Stelle $a$ bestimmt. $a$ kann auch $\pm \infty$ sein (\isage{infinity} oder \isage{oo}).\\
-
-  \isage{dir='minus'}: linksseitige Limes. 
- \isage{dir='plus'}: rechtsseitige Limes.
- \isage{taylor=True}: es wird eine Taylorentwicklung benutzt. 
-
-
-inSAGE
-
-
- Grenzwert $\lim_{x \rightarrow 0}
+Wir haben die Möglichkeit, nur den linksseitigen bzw rechtsseitigen Grenzwert zu betrachten. Dazu müssen wir folgende Eisntellungen vornehmen:\\
+\isage{dir='minus'} liefert uns den linksseitigen Limes.\\ 
+Analog liefert \isage{dir='plus'} den rechtsseitigen Limes.\\
+Sage kann die Grenzwertberechnung auch auf eine Taylorentwicklung stützen: \isage{taylor=True}. 
+\subsubsection{Grenzwertrechnung in Sage}
+Wir betrachten Grenzwerte einiger Beispiele.\\
+$\lim_{x \rightarrow 0}
 \frac{\sin(x)}{x}$
 \begin{sagein}
 limit(sin(x)/x,x=0)
@@ -3881,7 +3867,7 @@ limit(sin(x)/x,x=0)
 \begin{sage}
   1
 \end{sage}
- Grenzwert $\lim_{x \rightarrow \infty}
+$\lim_{x \rightarrow \infty}
 \frac{\log(x)}{x}$
 \begin{sagein}
 limit(log(x)/x,x=infinity)
@@ -3889,14 +3875,14 @@ limit(log(x)/x,x=infinity)
 \begin{sage}
   0
 \end{sage}
- Grenzwert $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
+$\lim_{x \rightarrow \infty} \sqrt[x]{x}$
 \begin{sagein}
 limit(x^(1/x),x=infinity)
 \end{sagein}
 \begin{sage}
   1
 \end{sage}
- Grenzwert $\lim_{x \rightarrow 0}
+$\lim_{x \rightarrow 0}
 \sin(1/x)$
 \begin{sagein}
 limit(sin(1/x),x=0)
@@ -3904,8 +3890,8 @@ limit(sin(1/x),x=0)
 \begin{sage}
   ind
 \end{sage}
-Der Grenzwert existiert nicht: \isage{ind} (indefinite aber beschränkt). 
- Grenzwert $\lim_{x \rightarrow 0} |x|' $
+Der Grenzwert existiert nicht: \isage{ind} (indefinit aber beschränkt).\\ 
+$\lim_{x \rightarrow 0} |x|' $
 \begin{sagein}
 limit(diff(abs(x),x),x=0),
 limit(diff(abs(x),x),x=0,dir='minus'),
@@ -3914,57 +3900,53 @@ limit(diff(abs(x),x),x=0,dir='plus')
 \begin{sage}
   (und, -1, 1)
 \end{sage}
-
-
-STET
-
-Eine Funktion $f:D \ \rightarrow  \ \mathbb{R}$ heißt {\color{red} stetig an
-der Stelle $x_0 \in D$}, wenn es zu jedem $\varepsilon>0$ ein $\delta>0$
+\subsection{Stetigkeit}
+Wir definieren die Stetigkeit einer Funktion wie folgt.
+\begin{df}[Stetigkeit]
+Eine Funktion $f:D \ \rightarrow  \ \mathbb{R}$ heißt stetig an
+der Stelle $x_0 \in D$, wenn es zu jedem $\varepsilon>0$ ein $\delta>0$
 gibt, so dass für alle $x \in D$ mit $|x - x_0| < \delta$ gilt
 \[ |f(x)-f(x_0) | < \varepsilon .\]
-Man sagt, dass $f$ {\color{red} stetig} ist, wenn $f$ an jeder Stelle $x_0
+Man sagt, dass $f$ stetig ist, wenn $f$ an jeder Stelle $x_0
 \in D$ stetig ist. \\
 Sind $f$ und $g$ an $x_0$ stetig, so auch $f+g$, $f-g$, $f \cdot g$
 und $\frac{f}{g}$ (falls $g(x_0) \neq 0$). 
-
-SÄTZE
-
-
+\end{df}
+Wir formulieren einige wichtige Sätze über Stetigkeit von Funktionen.
+\begin{sz}
  Sei $f$ auf einem offenen Intervall $I$ definiert. $f$ ist an
 $x_0 \in I$ genau dann stetig, wenn gilt
 \[ \lim_{x \rightarrow x_0} f(x) = f(x_0). \]
  Für $f:I \rightarrow \mathbb{R}$ und $g:J \rightarrow
 \mathbb{R}$ gelte $f(I) \subset J$ und es seien $f$ an $x_0 \in I$ und
-$g$ an $y_0=f(x_0)$ stetig. Dann ist $g \circ f$ an $x_0$ stetig.
- Eine Funktion $f: D \rightarrow \mathbb{R}$ ist {\color{red}
-linksstetig} bzw. {\color{red} rechtsstetig}, wenn $f|_{D\cap (-\infty,x_0)}$
-bzw  $f|_{D\cap (x_0,\infty)}$ an $x_0$ stetig ist. Eine Funktion $f$
-ist dann an $x_0$ stetig, genau dann wenn $f$ links- und rechtsstetig
-an $x_0$ ist.
- Eine stetige Funktion auf einem abgeschlossenen Intervall $I=[a,b]$
-besitzt ein Maximum und ein Minimum.
- Eine stetige Funktion $f$ auf einem abgeschlossenen  Intervall
-$[a,b]$ nimmt in $I$ jeden Wert zwischen $f(a)$ und $f(b)$ an.
- Potenzreihen $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$ sind stetig
+$g$ an $y_0=f(x_0)$ stetig. Dann ist $g \circ f$ an $x_0$ stetig.\\
+Eine Funktion $f: D \rightarrow \mathbb{R}$ ist linksstetig bzw. rechtsstetig, wenn $f|_{D\cap (-\infty,x_0)}$
+bzw  $f|_{D\cap (x_0,\infty)}$ an $x_0$ stetig ist.\\
+Eine Funktion $f$ ist dann an $x_0$ stetig, genau dann wenn $f$ links- und rechtsstetig
+an $x_0$ ist.\\
+Eine stetige Funktion auf einem abgeschlossenen Intervall $I=[a,b]$
+besitzt ein Maximum und ein Minimum.\\
+Eine stetige Funktion $f$ auf einem abgeschlossenen  Intervall
+$[a,b]$ nimmt in $I$ jeden Wert zwischen $f(a)$ und $f(b)$ an.\\
+Potenzreihen $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$ sind stetig
 innerhalb ihres Konvergenzintervalls.
-
-
-GLM STET
-
-$f: D \rightarrow \mathbb{R}$ heißt {\color{red} gleichmäßig stetig auf $D$},
+\end{sz}
+\subsubsection{Gleichmäßige Stetigkeit}
+Wir wollen den Begriff der gleichmäßigen Stetigkeit definieren:
+\begin{df}[Gleichmäßige Stetigkeit]
+$f: D \rightarrow \mathbb{R}$ heißt gleichmäßig stetig auf $D$,
 wenn es zu jedem $\varepsilon >0$ ein $\delta>0$ gibt, so dass für alle
 Paare $x,x_0 \in D$ mit $|x - x_0|< \delta$ gilt
 \[ | f(x)-f(x_0)| < \varepsilon. \]
-
+\end{df}
+\begin{bem}
  Die Exponentialfunktion ist auf jedem kompakten Intervall
-gleichmäßig stetig (aber nicht auf ganz $\mathbb{R}$). 
+gleichmäßig stetig (aber nicht auf ganz $\mathbb{R}$).\\
  $\log:(0,1) \rightarrow \mathbb{R}$ ist stetig aber nicht
 gleichmäßig stetig.
-
-
-inSAGE
-
-Stetigkeit einer Funktion $f$ an einer Stelle $x_0$: linksseitige und rechtsseitige Grenzwerte bestimmen.
+\end{bem}
+\subsubsection{Stetigkeit in Sage}
+Um Stetigkeit einer Funktion $f$ an einer Stelle $x_0$feststellen zu können, bestimmen wir den linksseitigen und rechtsseitigen Grenzwerte:
 \begin{sagein}
 limit(1/x,x=0,dir='plus') 
 \end{sagein}
@@ -3981,88 +3963,70 @@ limit(1/x,x=0,dir='plus')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionenfolgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-FKT FOLG
-
+Wir wollen Funktionenfolgen betrachten. Dazu definieren wir formal:
+\begin{df}
 Seien $f_n: D \ \rightarrow \ \mathbb{R}$, $n \in
-\mathbb{N}$  rellwertige Funktionen auf  $D \subset \mathbb{R}$.
-
- $(f_n)_n$ heißt {\color{red} Funktionenfolge.}
- Ist für jedes $x\in D$ die Folge $(f_n(x))_n$ konvergent, so wird durch 
+\mathbb{N}$  rellwertige Funktionen auf  $D \subset \mathbb{R}$.\\
+Dann heißt  $(f_n)_n$ Funktionenfolge.\\
+Ist für jedes $x\in D$ die Folge $(f_n(x))_n$ konvergent, so wird durch 
 \[ f(x):= \lim_{n \rightarrow \infty} f_n(x), \quad x \in D \]
-die {\color{red} Grenzfunktion} $f:D \ \rightarrow \ \mathbb{R}$ definiert.
- Man sagt $f_n$ strebe {\color{red} punktweise} auf $D$ gegen $f$.  
- Durch $\sum_{i=1}^\infty f_i$ definierte {\color{red} Funktionenreihen}
+die Grenzfunktion $f:D \ \rightarrow \ \mathbb{R}$ definiert.\\
+Man sagt $f_n$ strebe punktweise auf $D$ gegen $f$.\\  
+Durch $\sum_{i=1}^\infty f_i$ definierte Funktionenreihen
 sind spezielle Funktionenfolgen.
-  
+\end{df}  
 
-GRENZÜ
-
-
- $x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.
- $\left( 1+ \frac{x}{n} \right)^n \rightarrow \exp(x)$ auf $\mathbb{R}$.
- Potenzreihen konvergieren innerhalb ihres Konvergenzradius.
- {\color{red} Warnung} zum Vertauschen der Grenzprozesse für $x \in (0,1)$:
+\subsubsection{Grenzübergänge}
+Wir betrachten Grenzübergänge von Funktionenfolgen an einigen Beispielen:
+$x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.\\
+$\left( 1+ \frac{x}{n} \right)^n \rightarrow \exp(x)$ auf $\mathbb{R}$.\\
+Potenzreihen konvergieren innerhalb ihres Konvergenzradius.\\
+Grenzprozesse lassen sich iA nicht vertauschen. Wir betrachten für $x \in (0,1)$:
 \[ \lim_{x \rightarrow 1} \lim_{n \rightarrow \infty} x^n =0 \neq 1 = 
   \lim_{n \rightarrow \infty} \lim_{x \rightarrow 1} x^n.\]  
-
-
-GLM KONV
-
-
-$(f_n)_n$ konvergiert {\color{red} gleichmäßig} auf $D$ gegen $f$, wenn es zu
+\subsubsection{Gleichmäßige Konvergenz}
+Wir definieren gleichmäßige Konvergenz für Funktionenfolgen:
+\begin{df}[Gleichmäßige Konvergenz]
+$(f_n)_n$ konvergiert gleichmäßig auf $D$ gegen $f$, wenn es zu
 jedem $\varepsilon >0$ ein $n_0 \in \mathbb{N}$ gibt, so dass für alle
 $x \in D$ und $n\geq n_0$ gilt:
 \[ |f_n(x) -f(x)| < \varepsilon.\]
-
-
-
+\end{df}
+Wir formulieren eine interessante Tatsache in einem Satz:
+\begin{sz}
  Konvergiert $(f_n)_n$ gleichmäßig auf $D$ und existiert $\lim_{x
 \rightarrow a} f_n(x)$ für $a\in D$, so gilt:
 \[ \lim_{x \rightarrow a} \lim_{n \rightarrow \infty} f_n(x) = \lim_{n
 \rightarrow \infty} \lim_{x \rightarrow a} f_n(x). \]
-
-
-BEM
-
-
+\end{sz}
+\begin{bem}
  Die Grenzfunktion einer gleichmäßig konvergenten Folge stetiger
-Funktionen ist stetig.
- \emph{Funktionenreihen}: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
+Funktionen ist stetig.\\
+Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$, dann definiert
 \[
  s := \sum_{n=1}^\infty f_n
 \]
-eine Funktionenreihe. 
-
-Alle Aussagen übertragen sich analog; ebenso die Aussagen über die Folge der Partialsummen
+eine Funktionenreihe. Alle Aussagen übertragen sich analog; ebenso die Aussagen über die Folge der Partialsummen
 \[
  s_k := \sum_{n=1}^k f_n.
 \]
- 
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{bem}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grafik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wir wollen uns etwas ausführlicher als bisher mit Grafiken befassen. Dazu stellen wir Folgendes fest:\\
+Grafiken werden im Notebook integriert.\\
+3D-Grafiken können interaktiv bearbeitet werden.\\
+Grafikbefehle erzeugen grafische Objekte wie Geraden, Funktionsgraphen oder Kurven.\\
+Zur Darstellung einer Grafik liefert Sage uns folgenden Befehl: \isage{<grafikobjekt>.show()} (oder letzte Zeile).\\
+Beim Speichern unterscheiden wir 2D und 3D Grafiken:
+\begin{itemize}
+\item[2D] \isage{<grafikobjekt>.save('filename.extension')} speichert im Format \isage{<extension>}
+\item[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
+\end{itemize}
+Es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
 
-
-
- Grafiken werden im Notebook integriert.
- 3D-Grafiken können interaktiv bearbeitet werden.
- Grafikbefehle erzeugen {\color{red} grafische Objekte} wie Geraden, Funktionsgraphen oder Kurven.
- Darstellung: \isage{<grafikobjekt>.show()} (oder letzte Zeile) stellt die {\color{red} grafische
-Szene} dar
- Speichern:
-
-[2D] \isage{<grafikobjekt>.save('filename.extension')} speichert im Format \isage{<extension>}
-[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
-
- es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
-
-
-OPT
-OBJEKTE
+\subsubsection{Optionen für grafische Objekte}
 
 \begin{tabular}{lp{8cm}}
 \isage{linestyle}  & Darstellung von Linien
@@ -4077,10 +4041,7 @@ OBJEKTE
 \isage{alpha/opacity}  & Transparenzfaktor
      {\color{blue} \isage{alpha = 0.8}}\\
 \end{tabular}
-
-
-
-SZENEN
+\subsubsection{Ausgewählte Optionen für grafische Szenen}
 
 \begin{tabular}{lp{8cm}}
 \isage{aspect_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. 
