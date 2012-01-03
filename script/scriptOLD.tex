@@ -33,13 +33,11 @@ liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 \begin{document}
 \maketitle
 \tableofcontents
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Sage Überblick}
 \section{Was ist Sage?}
 %\subsection{Was ist Sage?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Sage ist ein pythonbasiertes, objektorientiertes Open-source (GPL) Mathematik Software System, dass es seit dem 24. Februar 2005 gibt.
 In Sage findet man eine Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab.
 Das (Haupt-)Interface ist der Browser, dennoch besitzt Sage Frontends für viele externe Software.
@@ -48,11 +46,9 @@ Zu den Stärken von Sage zählt sicherlich, dass es viele andere CAS und Librari
 ist der Source Code offen, es gibt ein umfangreiches Hilfesystem sowie viele freie Materialien im Internet.
 Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist der Befehlsumfang nicht so mächtig, wie der von Maple,Mathematica 
 oder Matlab; außerdem fehlt eine standalone Entwicklungsumgebung. Als Alternative zum Webinterface findet sich Cantor.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Grundlegende Commandos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Sage incl. online Testversion und gratis Download sowie einigen anderen Features findet sich unter http://www.sagemath.org/.
 Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden sollten:
 \begin{itemize}
@@ -80,12 +76,9 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
     \item Python: http://docs.python.org/
     \end{itemize}
 \end{itemize}  
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Überblick über wichtige Operationen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Als Einstieg und kleine Motivation, wofür man Sage einsetzen kann, wollen wir erst einmal ein paar grundlegende Operationen 
 vorstellen:
 \begin{itemize}
@@ -112,11 +105,9 @@ vorstellen:
  \item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
 \end{itemize}
 Hiermit stehen uns nun einige Türen offen und wir wollen uns durch ein paar Beispiele der Sagewelt nähern:
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Kurvendiskussion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Wir wollen eine handelsübliche Kurvendiskussion führen. Dazu betrachten wir die durch die reelle Zahl $a$ parametrisierte 
 Funktionenschar:
 \[ 
@@ -222,11 +213,9 @@ Wir erhalten als Grafikausgabe:
 \begin{center}
 \includegraphics[height=4.5cm]{graphen}
 \end{center}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Symbolisches Rechnen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Wir wollen uns nun ein wenig mit symbolischem Rechnen vertraut machen. Dazu zählt das numerische Lösen von Integralen, 
 sicherlich aber auch die Vereinfachung oder die Faktorisierung eines Terms. 
 Wir betrachten einige Beispiele:
@@ -299,11 +288,9 @@ g.partial_fraction()
 \begin{sage}
 1/2/(x - 1) - 1/2/(x + 1) + 1
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analytische Geometrie und Lineare Algebra}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Wir wollen uns ein wenig mit analytischer Geometrie und linearer Algebra beschäftigen und zu Anfang mal den Schnittpunkt einer Ebene mit einer Geraden 
 berechnen. Dazu sei die Ebene E gegeben durch
 \[ E: \vec{x}= 
@@ -338,7 +325,6 @@ Gleichsetzen ergibt:
 \] }
 oder $A L=b$.
 Wir wollen nun lineare Gleichungssysteme (wie dieses) wie gewöhnlich durch Matrizen beschreiben und via Sage lösen. Dazu benötigen wir ein paar Grundlagen:
-
  Definieren der Matrix $A$
 \begin{sagein}
 A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
@@ -374,7 +360,6 @@ x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
 \begin{sage}
 [7/5 2/5 1/5]
 \end{sage}
-
 So haben wir nun recht aufwandsarm den Schnittpunkt der beiden Objekte E und g erhalten. Wir geben noch einen kurzen Ausblick auf weitere 
 Matrizenoperationen:
 \begin{sagein}
@@ -411,7 +396,6 @@ p.show()
 \includegraphics[width=0.7\textwidth]{ebene2}
 \end{center}
 \begin{bem} In Sage lässt sich der 3D plot drehen.\end{bem}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Programmieren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -430,7 +414,6 @@ und sich der Einfachheit halber der sage-internen Funktion {\color{blue} \verb d
   \begin{sage}
   2*x
   \end{sage}
-
 Sage kennt Listen und Tupel, in denen wir Objekte ablegen, zusammenfassen und noch einiges mehr können. Eine {\color{blue} \verb Liste } 
 ist in Sage (und Python) durch \isage{[..,..]}, ein {\color{blue} \verb Tuple } durch \isage{(..,..)} gekennzeichnet. Wir haben einige 
 interessante Operationen speziell für Listen:
@@ -487,11 +470,9 @@ Und anschließend die Quadrate der Zahlen von 1 bis 5, die durch 2 teilbar sind:
   \begin{sage}
   [4, 16]
   \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Zahlentheorie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Wir sind nun in der Lage, etwas kompliziertere Aufgabenstellungen zu bearbeiten:
 Die Fermatschen Primzahlen sind gegeben durch $F_n=2^{2^n} +1$. Wir wollen die kleinste dieser Zahlen finden, die keine Primzahl ist. Dazu 
 schreiben wir uns ein kleines Programm:
@@ -521,7 +502,6 @@ menge = range(1,101)
 \begin{sagein}
  filter(is_prime,menge)
 \end{sagein}
-
  Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
 \begin{sagein}
 menge = range(1,201)
@@ -805,7 +785,6 @@ d[x],d[z],d[z].rhs()
  Wir erinnern uns an die Auswirkung der {\color{blue} \verb rhs() }-Funktion. Zugleich erahnen wir, dass Dictionaries, richtig verstanden,
  sehr mächtige Werkzeuge werden können. 
 \end{bem}
-
 Wir werden später noch einmal auf dieses nützliche Speichermedium zurückkommen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionen und Abfragen}
@@ -895,7 +874,6 @@ z
 \begin{sage}
 3
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ausdrücke}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1139,7 +1117,6 @@ true and false, true or false, not true
 \isage{False} & \isage{False} & \isage{False} \\\hline
 \end{tabular}
 \bigskip
-
 \begin{tabular}{|c||c|c|}
 \hline
 \textbf{or} & \isage{True} & \isage{False} \\\hline\hline
@@ -1223,7 +1200,6 @@ Exemplarisch sei die Funktion $f(x)=sin(x)$ zu betrachten
 wurde, sondern die Suche nach einem Fixpunkt zurückgeführt wurde auf ein Nullstellenproblem. Eine identische Lösung hätte die Nullstellenbetrachtung 
 der Funktion $f(x)=sin(x)-x$ geliefert (und tatsächlicherweise auch der Funktion $sin(x)$).
 \end{bem}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Mengen und Zahlen}
 \section{Mengen}
@@ -1511,7 +1487,6 @@ var('a,b,c,d'); (a/b+c/d).simplify_rational())
 \begin{sage}
 (a*d + b*c)/(b*d)
 \end{sage}
-
 \begin{sagein}
 bool(a/b+c/d == (a/b+c/d).simplify_rational())
 \end{sagein}
@@ -1642,7 +1617,6 @@ definieren. Wie uns weiterhin bekannt sein sollte, können die reellen Zahlen au
 $\mathbb{Q}$ definiert werden oder durch Dedekindsche Schnitte. Die rationalen Zahlen sind als Äquivalenzklassen der
 einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ in den reellen Zahlen enthalten.
 \end{bem}
-
 \subsubsection{Reelle Zahlen in Sage}
 Sage verwendet für reelle Zahlen den Datentyp \isage{RealNumber}. Wie wir wissen, ist unsere Rechnergenauigkeit durch physikalische 
 Gegebenheiten begrenzt, wodurch Probleme im Umgang mit reellen Zahlen entstehen. Es ist keine exakte Darstellung reeller Zahlen 
@@ -1679,7 +1653,6 @@ Beispiele ist der Absturz der Arianne-Rakete 1996.
 \begin{bem}
  Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ust zu vermeiden!!!
 \end{bem}
-
 \subsubsection{Auslöschung}
 Wir betrachten ein Beispiel der Auslöschung im Zusammenhang mit ``kleinen'' Zahlen.
 \begin{sagein}
@@ -1704,7 +1677,6 @@ x = 10^(-16); ((1.0+x)-1.0)/x
  Wir sehen also, dass das Arbeiten mit kleinen Zahlen eine gewisse Vorsicht und ``Programmiergeschick'' erfordert, um nicht 
 relevante Dezimalen zu verlieren.
 \end{bem}
-
 \subsubsection{Numerik}
 Wir wollen nun ein wenig unsere neu erworbenen Fähigkeiten austesten und berechnen eine numerische Näherung für $\pi$ und $e$
 \begin{sagein}
@@ -1767,8 +1739,6 @@ einmal ausführlich auf Herz und Nieren zu testen.
 \hline
 \end{tabular}
 \end{center}
-
-
 \subsubsection{Gleitkommazahlen}
 Wir wollen und hier mit der b-adischen Darstellung von Gleitkommazahlen befassen, damit uns klar wird, was Sage-intern passiert. Die 
 b-adische Darstellung einer Zahl $x$ ist gegeben zu
@@ -1831,7 +1801,6 @@ Wiederum hilft Sage uns gern
  \begin{sage}
 2.346314631463146320
  \end{sage}
-
 \subsubsection{Komplexe Zahlen}
 Wir führen hier noch den Körper $\mathbb{C}$ der komplexen Zahlen als die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ ein. 
 Für die Addition und die Multiplikation zweier Elemente $a=(k,l)$, $b=(n,m)\in \mathbb{C}$ gilt: 
@@ -2059,8 +2028,6 @@ S.det()
 \begin{sage}
   27
 \end{sage}
-
-
 %  Ist eine Matrix unitär ?
 % \begin{sagein}
 % linalg::isUnitary(S)
@@ -2205,7 +2172,6 @@ Mit Hilfe des Begriffs der Basis lässt sich die Dimension eines Vektorraums V d
  Seien $W,Z$ Unterräume von $V$. Dann ist $W+Z:=span(W \cup Z)$
 die Summe von $W$ und $Z$. Es gilt:
 \[ \dim(W+Z)=\dim(W) + \dim (Z) - \dim( W \cap Z) \]
-
 \end{lm}
 \subsubsection{Basis und Dimension in Sage}
 Wir wollen nun wissen, wie wir mit Sage eine Basis von $span(s1,s2,s3)$ bestimmen können.
@@ -2243,7 +2209,6 @@ m.determinant() <> 0
  Wir erinnern uns, dass $a <> b$ das Gegenteil von $a == b$ ist, also genau dann den Wert \isage{true} liefert, wenn $a\not=b$. Unsere Matrix hat also nicht vollen Rang, 
 unsere Vektoren sind also auch nicht linear unabhängig-- dies hätte uns schon am ersten Beispiel auffallen können, denn $span(s1,s2,s3)$ hat nur Dimension 2.
 \end{bem}
-
 \subsubsection{Normen}
 Wir möchten noch die Begriffe Norm und Skalarprodukt kennenlernen. Dazu je eine Definition.
 \begin{df}
@@ -2327,8 +2292,6 @@ float(acos(a2*a3/(abs(a2)*abs(a3))))
 \begin{sage}
   0.79520271328967818
 \end{sage}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Sage Funktionen und Datencontainer}
 \section{Funktionen}
@@ -2362,14 +2325,12 @@ def MyMax(a,b):
         return (a)
 \end{sagein}
 Unsere Funktion \isage{MyMax} wird mit den Argumenten \isage{a,b} aufgerufen und liefert entweder den Wert $a$ oder $b$.
-
 \subsection{Externes Editieren von Funktionen}
 Bei umfangreicheren Funktionen oder richtigen Programmen ist es wahrscheinlich sinnvoller diese mit
 einem Editor zu erstellen. Das ist nicht nur möglich, sondern sogar fast schon zu simpel:\\
 Zuerst erstellen wir eine \verb+<name>.sage+-Datei (mit einem beliebigen Editor).\\
 Diese wird dann via \isage{attach <path>/<name>.sage} an das Notebook angehängt, automatisch geladen und aktuell gehalten.\\
 Mit \isage{attached_files()} erhalten wir eine Liste aller angehängten Dateien.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\chapter{Sage Funktionen und Datencontainer}%, Lineare Abbildungen, Eigenwerte und -vektoren}
 \section{Datencontainer in Sage}
@@ -2441,7 +2402,6 @@ x[2]; x[0:2]
 3
 (1, 2)
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Listen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2495,7 +2455,6 @@ Liste[5] = 42; Liste
 \begin{sage}
   [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
 \end{sage}
-
 \subsubsection{Befehle für Listen}
 Listen eignen sich besonders gut, um ihre Einträge zu manipulieren.
 Wir können einen Index aus der Liste mit \isage{pop()} entfernen:
@@ -2653,7 +2612,6 @@ zip(Liste1,Liste2)
 %     e   f   g
 %   [a , b , c ]
 % \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dictionaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2747,7 +2705,6 @@ T.update(S); T
 \begin{bem}
 Doppelt auftretenden Indizes werden überschrieben!
 \end{bem}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Lineare Abbildungen, Eigenwerte und -vektoren}
 \section{Lineare Abbildungen}
@@ -2873,7 +2830,6 @@ norm(S*S-I_n)
 \begin{sage}
    0.0
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eigenwerte und Eigenvektoren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2883,8 +2839,7 @@ Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt Eigenwert von
 $A$, wenn ein $x \in K^n\smallsetminus \{0 \}$ existiert, 
 \[ A x = \lambda x \] 
 gilt. Der Vektor $x \in K^n$ heißt Eigenvektor zum Eigenwert $\lambda$.
-
- Die Eigenwerte sind die Nullstellen des charakteristischen
+Die Eigenwerte sind die Nullstellen des charakteristischen
 Polynoms 
 \[p(t):=\det(A-t \ I_n).\] 
  Es gibt höchstens $n$ Eigenwerte.
@@ -2975,9 +2930,7 @@ print A\b3
 (0, 0, 0)
 (1, 0, 0) 
 \end{sage}
-
 %linalg::gaussElim(A)
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Folgen, Reihen}
 \section{Folgen}
@@ -3130,7 +3083,6 @@ y(4)
 \begin{sage}
 4*a + 15
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reihen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3280,7 +3232,6 @@ var('c'); assumptions()
 c
 []
 \end{sage}
-
 \begin{sagein}
 c = 2; assume(c>0)
 \end{sagein}
@@ -3313,8 +3264,6 @@ sqrt(x^2).simplify()
 \begin{sage}
   x
 \end{sage}
-
-
 % integer,
 % noninteger, even, odd, rational, irrational, real, imaginary, complex,
 % analytic, increasing, decreasing, oddfun, evenfun, posfun, constant,
@@ -3353,7 +3302,6 @@ Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
                   $\sum_{n=1}^\infty 2^n a_{2^n}$ konvergiert.
 \end{lm}
 \begin{lm} Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$, so heißt 
-
 \[\sum_{n=1}^\infty c_n \text{ Minorante für } \sum_{n=1}^\infty a_n\] 
 \[\sum_{n=1}^\infty b_n \text{ Majorante für } \sum_{n=1}^\infty a_n\]
 Die Reihe $\sum_{n=1}^\infty a_n$ konvergiert, wenn...
@@ -3401,7 +3349,6 @@ Eine konvergent, aber nicht absolut konvergente Reihe heißt bedingt konvergent.
  Absolut konvergente Reihen können beliebig umgeordnet werden.
  Dies ist i.d.R. für nicht absolut konvergenten Reihen falsch!
 \end{bem}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Potenzreihen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3462,7 +3409,6 @@ Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
  Die allgemeine Potenz ist durch $a^x:=\exp( x \log a)$,
 $a\in \mathbb{R}_+$
 definiert. 
-
 \subsubsection{Exponential- und Logarithmusfunktion in Sage}
 Wie wir oben schon bemerkt haben könnten, ist die Exponentialfunktion in Sage gegeben durch
 \begin{sagein}
@@ -3492,7 +3438,6 @@ _=var('n');limit((1+x/n)^n,n=oo)
 % \begin{sage}
 %   
 % \end{sage}
-
 \subsubsection{Trigonometrische Funktionen}
 Die Sinusfunktion und die Cosinusfunktion sind definiert
 durch
@@ -3559,8 +3504,6 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 \begin{center}
 \includegraphics[width=7cm]{tan.pdf}
 \end{center}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Vertiefung Schleifen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3583,7 +3526,6 @@ x
  10.1000000000000
 \end{sage}
 %achtung: rundungsfehler, daher kommt 10.1 raus.. selbst einmal drauf reingefallen..
-
 % 
 %  Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
 %   $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
@@ -3602,7 +3544,6 @@ x
 %     print("Das Quadrat von {0} ist {1}").format(i,x)
 % \end{sage}
 % \end{frame}
-
 
 % \begin{frame}[fragile]{Etwas Zahlentheorie}
 % Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
@@ -3630,7 +3571,6 @@ for j in srange(3,10,2.6):
 (x, x^5.60000000000000)
 (x, x^8.20000000000000)
 \end{sage}
-
 \subsubsection{Fixpunkte}
 Schon einmal wurde die Suche einer Nullstelle zurückgeführt auf die Bestimmung eines Fixpunktes- nur wie finden wir den Fixpunkt einer Funktion? Wir wollen die Idee 
 eines Verfahrens zur Fixpunktbestimmung am Beispiel des $cos()$ erläutern. Wir suche ein $x_{\mathrm{fix}} \in \mathbb{R}$ so dass
@@ -3670,8 +3610,6 @@ fixpunkt(lambda x: cos(x),[0,1],0.2,10)
  Unsere Funktion approximiert den Fixpunkt beliebig schlecht (abhängig von der Größe unseres $n$, denn es werden eben ``nur'' $n$ Iterationen durchgeführt). Eine \isage{while()}-Schleife 
 mit geeignetem Abbruchkriterium könnte Abhilfe schaffen. Der geneigten Leserin sei die Implementation als spaßige Übung nahegebracht.
 \end{bem}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Funktionen(-folgen), Grenzwert und Stetigkeit}
 \section{Funktionen}
@@ -3807,7 +3745,6 @@ Funktion3(x,y) = x+sin(y); Funktion3
 \begin{sage}
   (x, y) |--> x + sin(y)
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grenzwerte und Stetigkeit}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3841,7 +3778,6 @@ Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
 g(x)=c$ bei entsprechenden Definitionsgebieten für $f$ und $g$, so
 folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
 \end{sz}
-
 \subsubsection{limit()}
 Sage stellt uns für Grenzwertbetrachtungen den uns bekannten \isage{limit()}-Befehl zur Verfügung:
 \begin{sagein}
@@ -3956,7 +3892,6 @@ limit(1/x,x=0,dir='plus')
 \begin{sage}
  -Infinity
 \end{sage}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionenfolgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3972,7 +3907,6 @@ Man sagt $f_n$ strebe punktweise auf $D$ gegen $f$.\\
 Durch $\sum_{i=1}^\infty f_i$ definierte Funktionenreihen
 sind spezielle Funktionenfolgen.
 \end{df}  
-
 \subsubsection{Grenzübergänge}
 Wir betrachten Grenzübergänge von Funktionenfolgen an einigen Beispielen:
 $x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.\\
@@ -4023,7 +3957,6 @@ Beim Speichern unterscheiden wir 2D und 3D Grafiken:
 \end{itemize}
 Es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
 \subsubsection{Optionen für grafische Objekte}
-
 \begin{tabular}{lp{8cm}}
 \isage{linestyle}  & Darstellung von Linien
            (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)
@@ -4049,7 +3982,6 @@ Es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
 \isage{gridlines} & Gitterlinien
               {\color{blue} \isage{gridlines = True}}
 \end{tabular}
-
 \subsubsection{plot()}
 Da wir nun einige neue Erkenntnisse gewonnen haben, wollen wir das Plotten skalarer Funktionen  
 $f:\mathbb{R}^n \ \rightarrow \mathbb{R},\, n=2,3$ betrachten. Das Schema eines Plots der Funktion $f$ im Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$ hat folgende Gestalt:
@@ -4063,13 +3995,11 @@ plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 \end{bem}
 Wir betrachten einige Beispiele, sowohl 2D als auch 3D.
 \subsubsection{2D-Plots}
-
 \begin{sagein}
 plot(x^2-1)
 plot(sin(1/x),(x,-1,1))
 plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
 \end{sagein}
-
 \begin{bem}
  Diese Eingabe hätte die grafische Ausgabe des Graphen der Funktionen $sin(1/x)$ im Intervall $[-1,1]$ zur Folge.
 \end{bem}
@@ -4111,7 +4041,6 @@ show(W + S, figsize=8)
 \begin{center}
 \includegraphics[width=7cm]{ball.jpg} 
 \end{center}
-
 \subsubsection{Kurven}
 Wir beschäftigen uns nun mit Kurven und erinnern zunächst an die Parameterdarstellung: 
 \[
@@ -4127,7 +4056,6 @@ parametric_plot([x(t),y(t)], (t,a,b), optionen, ...)
 parametric_plot([x(t),y(t),z(t)], (t,a,b), optionen, ...)
 \end{sagein}
 %$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. 
-
 \subsubsection{2D-Kurven}
 Wir betrachten Bespiele zweidimensionaler Kurven:
 \begin{sagein}
@@ -4149,7 +4077,6 @@ Wir wollen einen Kreis durch Punkte approximieren:
 \begin{bem}
  Es werden 8 Kreise ausgegeben- für eine größe Genauigkeit muss die Range für $k$ größer gewählt werden.
 \end{bem}
-
 \subsubsection{3D-Kurven}
 Wie uns wenig überrascht, beherrscht Sage auch Kurven, die dreidimensionale Gestalt haben. Wir betrachten folgendes kleine Beispiel:
 \begin{sagein}
@@ -4158,7 +4085,6 @@ parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400
 \begin{center}
 \includegraphics[width=7cm]{parametric3d.jpg} 
 \end{center}
-
 \subsubsection{Flächen}
 Auch im Zusammenhang mit Fläche des $\mathbb{R}^3$ erinnern wir uns an die Parameterdarstellung:
 \[
@@ -4174,7 +4100,6 @@ parametric_plot([x(t1,t2), y(t1,t2), z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ..
 % \[ x=t_1, \ y=t_2, \ z=f(t_1,t_2) \]
 % mit $a \leq t_1 \leq b, \ c \leq
 %    t_2 \leq d$ erklären.
-
 Wir betrachten bespielhaft eine Ellipsoid-Oberfläche
 \[ 
 x=r \cos(t_1) \sin(t_2), \ y=2r \sin (t_1) \sin (t_2),\ z =r \cos(t_2) 
@@ -4190,7 +4115,6 @@ parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 \begin{center}
 \includegraphics[width=4.5cm]{surface.jpg} 
 \end{center}
-
 \subsubsection{Kontur}
 Wir betrachten noch zweidimensionale Grafiken für $f:\mathbb{R}^2 \rightarrow \mathbb{R}$:
 \emph{Niveaulinien} (z.B. Höhenmeter auf einer
@@ -4208,7 +4132,6 @@ Wir haben noch folgende Optionen:
  \item \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
  \item \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
 \end{itemize}
-
 Wir betrachten als Beispiel das Zeichnen der Niveaulinien für $-0.5, 0, 0.5$ der Funktion $\sin(4\pi x)y$: 
 \begin{sagein}
 contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
@@ -4216,7 +4139,6 @@ contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=Fals
 \begin{center}
 \includegraphics[width=7.5cm]{contour.pdf} 
 \end{center}
-
 \subsubsection{point()}
 Ein oft nützliches Tool ist das Zeichnen von Punkten. Hierfür stellt Sage den Befehl {\color{blue} \isage{point()}}. 
 Wir betrachten folgendes kleine Beispiel:
@@ -4227,7 +4149,6 @@ point2d.options
 \begin{center}
 \includegraphics[width=7cm]{point2d.pdf} 
 \end{center}
-
 \subsubsection{Collatz Problem}
 Wir wenden {\color{blue} \isage{point()}} auf ein komplizierteres Problem an:
 Sei $x_0\in \mathbb{N}$. Dann definiert man die folgende Folge
@@ -4236,7 +4157,6 @@ Sei $x_0\in \mathbb{N}$. Dann definiert man die folgende Folge
 3x_{n-1}+1 & \mbox{falls } x_{n-1} \mbox{ ungerade ist} 
 \end{array} \right. . \] 
 Man kann zeigen, dass für alle Startwerte ein $N_0$ existiert mit $x_{N_0}=1$.
-
 \begin{sagein}
 def collatz(n):
     """ Collatz problem """
@@ -4254,7 +4174,6 @@ def collatz(n):
 \begin{center}
 \includegraphics[width=5cm]{collatz.pdf} 
 \end{center}
-
 \subsubsection{animate()}
 Der Befehl 
 \begin{sagein}
@@ -4274,7 +4193,6 @@ a.show(iterations=1)
 % plotfunc3d(cos(j^0.5*PI*exp(-x^2-y^2)), 
 %    x=-1..1, y=-1..1, j=1..30, Mesh=[40,40])
 % \end{sagein}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Differentiation, Taylorsche Formel, Integration}
 \section{Differentiation}
@@ -4308,7 +4226,6 @@ Wir betrachten einige uns wohlbekannte Beispiele:
 \item $(\sin(x))'=\cos(x)$
 \item $(\cos(x))'=-\sin(x)$
 \end{itemize}
-
 \subsubsection{Landau-Symble}
 Wir wollen die Landau-Symbole einführen. Dazu hilft uns eine Definition:
 \begin{df}
@@ -4337,7 +4254,6 @@ stetig, so heißt $f$ $n$-mal stetig differenzierbar.\\
 $f$ heißt unendlich oft differenzierbar, wenn $f$ $n$-mal
 differenzierbar ist für alle $n\in \mathbb{N}$. 
 \end{df}
-
 \subsubsection{Ableitungen in Sage}
 Um einen Ausdruck abzuleiten, stellt uns Sage folgendes Instrument:
 \begin{sagein}
@@ -4419,7 +4335,7 @@ $x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
  Die Umkehrfunktion $f^{\,-1}$ ist gegeben zu:
 \[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
 \end{df}
-
+\subsubsection{Elementare Sätze}
 Wir wollen einige elementare Ergebnisse der Diff in Sätze giessen:
 \begin{sz}
 Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie in $x_0$ ein
@@ -4442,9 +4358,7 @@ $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$. Dann gilt
 \[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} =  \lim_{x \rightarrow a}
 \frac{f\,'(x)}{g\,'(x)}, \]
 falls der Limes auf der rechten Seite existiert.
-
 Der Fall $a=\pm\infty$ ist auch erlaubt!
-
 Die Aussage gilt auch für $\lim_{x \rightarrow a} f(x)=\lim_{x \rightarrow a} g(x)= \infty$ 
 \end{sz}
 Wir betrachten einige Beispiele. Wir wollen $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$ bestimmen:
@@ -4484,8 +4398,6 @@ limit(diff(f(x),x)/diff(g(x),x),x=0)
 \begin{sage}
 1
 \end{sage}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Taylor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4518,25 +4430,21 @@ Die Taylorreihe stellt die Funktion $f$, wenn das Restglied $R_n(x,x_0)$ für $n
 \rightarrow \infty$ gegen $0$ geht.
 \end{df}
 
-\subsubsection{Hinreichende Bedingung}
-
- Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
+\subsubsection{Hinreichende Bedingungen}
+Wir wollen hier drei hinreichende Bedingungen angeben:\\
+Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
 \[
 \delta:= \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{A_n}}>0
  \]
-mit $A_n=\sup_{x \in I}  \frac{|f^{\,(n)}(x)|}{n!}$ gilt.
- Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
+mit $A_n=\sup_{x \in I}  \frac{|f^{\,(n)}(x)|}{n!}$ gilt.\\
+Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
 I$, $n \in \mathbb{N}$, so läßt sich $f$ auf $I$ durch die Taylorreihe
-darstellen.
+darstellen.\\
  Es gebe ein $M$ mit  $f^{\,(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
 gilt die Taylorreihendarstellung für alle $x \in [a,b]$ mit
-$|x-x_0|<b-x$. 
-
-
-BSP
-
-
- Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
+$|x-x_0|<b-x$.\\ 
+Wir wollen einige Beispiele betrachten:\\
+Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
 \[
  f(x) = \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n 
  = \sum_{n=0}^k  \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n
@@ -4550,15 +4458,11 @@ x \leq 2.\]
  Für $f(x)= (1+x)^a$, $a\in \mathbb{R}$  und $x_0=0$ gilt
 \[ (1+x)^a= \sum_{n =0}^\infty \binom{a}{n}{x^n}, \quad -1 <
 x < 1. \]
-
-
-VIS
-
-Entwickle $f(x)=exp(x)$ um $x_0=0$. Wir entwickeln gemäß der Taylorformel und erhalten die
+\subsubsection{Visualisierung der Taylorentwicklung}
+Wir wollen noch einmal $f(x)=exp(x)$ um $x_0=0$ entwickeln. Wir entwickeln gemäß der Taylorformel und erhalten die
 Approximationen $g_0(x):=1$, $g_1(x):=1+x$,
 $g_2(x):=1+x+\frac{1}{2}x^2$, $g_3(x)=\sum_{i=0}^3 \frac{x^i}{i!}$ und 
-$g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$.
-
+$g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$. In Sage sieht das, wie wir wissen, dann so aus:
 \begin{sagein}
 var('n,k');f(x) = exp(x)
 g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
@@ -4570,6 +4474,7 @@ x^{3} + \frac{1}{2} \, x^{2} + x + 1\right]\]}
 % [1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
 % 1/6*x^3 + 1/2*x^2 + x + 1]
 % \end{sage}
+In einem Plot wollen wir die Approximationen sowie $f$ selbst einmal betrachten:
 \begin{sagein}
 p = plot(f,(-3,2),color='black')
 for n in [0..4]:
@@ -4580,8 +4485,7 @@ p.show()
   \includegraphics[width=\textwidth]{taylorexp.pdf}
  \end{center}
 
-GEGEN
-
+\subsubsection{Gegenbeispiel}
 Die Funktion
 \[ f(x) = \left \{ \begin{array}{ll}
 \exp(-1/x^2), & \mbox{ für } x \neq 0\\
@@ -4596,14 +4500,15 @@ plot(exp(-1/x^2),(-0.5,0.5))
   \includegraphics[height=4cm]{taylorgegen.pdf}
  \end{center}
 
-inSAGE
-
+\subsubsection{Die Taylorformel in Sage}
+Natürlich ist für ein so nützliches Tool wie die Taylorentwicklung einer Funktion ein direkter Befehl in 
+Sage vorhanden:
 \begin{sagein}
 taylor(f, x, x0, n)
 \end{sagein}
-Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$ 
+Hierbei handelt es sich um das Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$ 
 (mit Unbekannten $x$) am Entwicklungspunkt $x0$. \\
-\textbf{Beispiele}:
+Wir betrachten zwei kleine Beispiele:
 \begin{sagein}
 taylor(1/(1-x),x,0,5)
 \end{sagein}
@@ -4619,37 +4524,34 @@ taylor(sin(x),x,2,5)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-BEGRIFFE
-
-
-  Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
+Wir wollen uns dem Begriff des Integrals, wie üblich, durch Approximationen über Treppenfuktionen nähern. Hierfür 
+brauchen wir einige Begriffe:
+\begin{df}
+Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
                                  a_n=b$, so nennt man $Z=(a_0, \dots
-                                 ,a_n)$ eine {\color{red} Zerlegung} von
-                                 $[a,b]$.
- Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
-                                 Treppenfunktion}, wenn es eine
+                                 ,a_n)$ eine Zerlegung von
+                                 $[a,b]$.\\
+Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt 
+                                 Treppenfunktion, wenn es eine
                                  Zerlegung $Z$ von $[a,b]$ gibt, so dass
                                  $\phi$ konstant ist auf jedem
-                                 Teilintervall $(a_i,a_{i+1})$ von $Z$.
- Wir erklären das Integral einer Treppenfunktion $\phi$ durch
+                                 Teilintervall $(a_i,a_{i+1})$ von $Z$.\\
+Wir erklären das Integral einer Treppenfunktion $\phi$ durch
 \[\int_Z \phi := \sum_{k=1}^n c_k (a_k -a_{k-1}).\]
 Dabei ist $Z$ die zugehörige Zerlegung und $c_k=\phi(x)$, $x\in
-(a_{k-1},a_k)$.  
- Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
-
-
+(a_{k-1},a_k)$.\\
+Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
 Für eine beschränkte Funktion $f[a,b]\rightarrow \mathbb{R}$
 heißt
 \[ \int^*f:= \inf  \{ \int \psi \ | \ \psi \in T[a,b], f \leq \psi \}. \]
-das {\color{red} Oberintegral} und 
+das Oberintegral und 
 \[ \int_*f:= \sup  \{ \int \psi \ | \ \psi \in T[a,b], f \geq \psi \}.\]
-das {\color{red} Unterintegral}. Es gilt für $\phi, \psi \in T[a,b]$ mit
+das Unterintegral. Es gilt für $\phi, \psi \in T[a,b]$ mit
 $\phi \leq f \leq \psi$ die Ungleichung
 \[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
-
-VIS
-
+\end{df}
+\subsubsection{Visualisierung in Sage}
+Hier ein Plot, der die Funktionsweise der Approximation durch eine Treppenfunktion klärt:
 \begin{sagein}
 f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
 rsf = f.riemann_sum(10,mode="midpoint")
@@ -4661,61 +4563,50 @@ L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]]
 \begin{center}
 \includegraphics[width=6cm]{riemann.pdf}
 \end{center}
-
-RIE
-
-Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
-integrierbar}, wenn Ober- und Unterintegral von $f$ auf $[a,b]$ übereinstimmen.\\
-Der gemeinsame Wert heißt das {\color{red} Integral} von $f$ und wird mit 
+\subsection{Das Riemann Integral}
+Wir wollen das uns bekannte Riemannsche Integral formal definieren:
+\begin{df}
+Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt 
+integrierbar, wenn Ober- und Unterintegral von $f$ auf $[a,b]$ übereinstimmen.\\
+Der gemeinsame Wert heißt das Integral von $f$ und wird mit 
 \[ \int_a^b f(x)dx \]
 bezeichnet.\\ 
-($f$ der Integrand, $x$ Integrationsvariable, $a$, $b$ Integrationsgrenzen).
-
-EIG
-
-
- Linearität
+$f$ heißt der Integrand, $x$ die Integrationsvariable, $a$, $b$ sind die Integrationsgrenzen.
+\end{df}
+\subsubsection{Eigenschaften des Riemann Integrals}
+Wir fassen einige grundlegende Eigenschaften des Riemann Integrals:\\
+Das Integral ist linear, d.h.
 \[ \int_a^b (\alpha f + \beta g) dx = \alpha \int_a^b fdx + \beta
 \int_a^b g dx \]
- Monotonie
+Weiterhin ist es monoton, es gilt also:
 \[  f \leq g \quad \Rightarrow \quad \int_a^b f dx \leq \int_a^b g
 dx.\]
- Ist $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
+Sind $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
 $\max\{f,g\}$, $\min \{f,g \}$. 
-
-
-SÄTZE
-
-
- {\color{red} Stammfunktion} $F$: Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
+Wir wollen einige wichtige Sätze über Integrale verstanden wissen.
+\begin{sz}
+Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
 \[F(x)= \int_a^x f(t) dt, x \in I \] eine differenzierbare Funktion mit
-$F\,'(x)=f(x)$. 
- \emph{Unbestimmtes Integral}: alternative Notation für eine Stammfunktion $F$:  $\int f(x) dx$ 
- Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
+$F\,'(x)=f(x)$. $F$ heißt Stammfunktion von $f$.\\
+Eine alternative Notation für eine Stammfunktion $F$ ist  $\int f(x) dx$, das sog. unbestimmte Integral.\\
+Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
 \[\int_a^b f(x)dx = f(\xi) (b-a)\]
-
-
-inSAGE
-
-
-  Bestimmte Integrale der Form $\int_a^b f(x) dx$
+\end{sz}
+\subsubsection{Integrale in Sage}
+Um zu sehen, wie Sage mit Integralen umgeht, betrachten wir zuerst bestimmte Integrale der Form $\int_a^b f(x) dx$
 \begin{sagein}
 integrate(f,x,a,b) 
 \end{sagein}
-Dabei ist \isage{f} ein Ausdruck.
- Unbestimmte Integrale:
+Dabei ist \isage{f} ein Ausdruck.Auch unbestimmte Integrale sind für Sage kein großes Problem:
 \begin{sagein}
 integrate(f,x)
 \end{sagein}
- Numerische Approximationen:
+Als dritte Möglichkeit der Integration steht uns die numerische Approximation zur Verfügung:
 \begin{sagein}
 numerical_integral(f,a,b) 
 \end{sagein}
 (benutzt die GSL-library).
-
-
-BSP
-
+Wir wollen uns diese Tatsachen an einigen Beispielen verdeutlichen:
 \begin{sagein}
  integrate(sin(x),x,0,6)
 \end{sagein}
@@ -4757,50 +4648,40 @@ integrate(x^a*b,x)
 % \begin{sage}
 %  b*log(x)
 % \end{sage}
-
-UNEIG INT
-
+\subsubsection{Uneigentliche Integrale}
+Wir wollen den Begriff des uneigentlichen Integrals einführen:
+\begin{df}
 Sei $f$ auf $[a,b)$ erklärt (eventuell $b=\infty$) und sei $f$ auf jedem
 abgeschlossenen Teilintervall integrierbar. Man definiert
 \[  \int_a^b f(x)dx := \lim_{z \rightarrow b (-0)} \int_a^z f(x)dx,\]
-falls der Limes existiert. Man spricht von einem {\color{red}
-uneigentlichen Integral}.
-
-FKT FOLG
-
-
- Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
+falls der Limes existiert. Man spricht von einem 
+uneigentlichen Integral.
+\end{df}
+\subsubsection{Funktionenfolgen}
+Wir wollen hier noch zwei kleine Aussagen über Funktionenfolgen bzgl. Integration bzw. Differentiation platzieren:
+\begin{sz}
+Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
 $[a,b]$. Konvergiert $(f_n)_n$ gleichmäßig, so ist die Grenzfunktion
 integrierbar mit
 \[ \int_a^b \lim_{n \rightarrow \infty} f_n(x) dx = \lim_{n
 \rightarrow \infty} \int_a^b f_n(x) dx .\]
  Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
 $[a,b]$. $(f\,'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
-\in [a,b]$ für den $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
+\in [a,b]$ für das $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
 gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 \rightarrow \infty} f\,'_n(x)$.  
-
+\end{sz}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Sage Werkzeugkasten}
 \section{Interaktion}
 \subsection{Umgang mit Strings}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-STRINGS
-
-
- Zeichenketten (engl. {\color{red} strings}) sind eine geordnete
+Wir wollen uns hier mit Zeichenketten (engl. strings) befassen. Dabei handelt es sich um eine geordnete
 Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
-Sonderzeichen,...
- Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
-für die Ausgabe der Ergebnisse.
- Datentyp \isage{str}.
- eingeschlossen in Hochkommas oder Anführungszeichen.
-
-
-BSP
-
+Sonderzeichen,... Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
+für die Ausgabe der Ergebnisse. Ihr Datentyp ist \isage{str} und sie werden in Hochkommas oder Anführungszeichen 
+eingeschlossen. Wir betrachten einige Beispiele:
 \begin{sagein}
 text1 = 'Dies ist ein String.'; text1
 \end{sagein}
@@ -4818,31 +4699,24 @@ type(text1)
 \end{sagein}
 \begin{sage}
 <type 'str'>
-\end{sage}figures/
-
-ZUGRIFF
-
-
- Indexoperator {\color{blue}$[\ ]$}:
+\end{sage}
+\subsubsection{Zugriff}
+Der Zugriff auf Strings gestaltet sich so, wie wir das schon gewohnt sind, über den Index:
 \begin{sagein}
 text1[0], text1[3], text1[2:4], text1[0:4:2]
 \end{sagein}
 \begin{sage}
 ('D', 's', 'es', 'De')
 \end{sage}
- Ersetzungen innerhalb des Strings:
+Wir können leicht Ersetzungen innerhalb eines Strings vornehmen:
 \begin{sagein}
 text1.replace('Dies','Das')
 \end{sagein}
 \begin{sage}
 'Das ist ein String.'
 \end{sage}
-
-
-OPERATIONEN
-
-
- Zusammenhängen von Strings
+\subsubsection{Operationen auf Strings}
+Wir betrachten weitere Operationen auf Strings, zuerst das Zusammenhängen von solchen:
 \begin{sagein}
 A='Letzte '; B='Vorlesung'; A+B
 \end{sagein}
@@ -4850,42 +4724,45 @@ A='Letzte '; B='Vorlesung'; A+B
 'Letzte Vorlesung'
 \end{sage}
  \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
-an.
+an:
 \begin{sagein}
 a=len(A+B); a
 \end{sagein}
 \begin{sage}
   16
 \end{sage}
-  Zugriffe beginnend vom Ende
+Wir können durch geschickte Indexwahl Zugriffe beginnend vom Ende vornehmen:
 \begin{sagein}
 (A+B)[-1]
 \end{sagein}
 \begin{sage}
   'g'
 \end{sage}
- {\color{blue} \isage{str()}} wandelt Objekte in einen String um.
+ {\color{blue} \isage{str()}} wandelt Objekte in einen String um:
 \begin{sagein}
 str(x^2+2), str([1,2,3])
 \end{sagein}
 \begin{sage}
 ('x^2 + 2', '[1, 2, 3]')
 \end{sage}
- \isage{find()}: Strings durchsuchen
+Mittels {\color{blue} \isage{find()}} können wir Strings in Strings suchen:
 \begin{sagein}
 'Hallo'.find('lo')
 \end{sagein}
 \begin{sage}
 3
 \end{sage}
- 
-\begin{sagein}
+ \begin{sagein}
 'Hallo'.find('gnu')
 \end{sagein}
 \begin{sage}
 -1
 \end{sage}
- \isage{split()}: Aufspalten von Texten
+\begin{bem}
+ \isage{find()} liefert offensichtlich den Index zurück, an der der gesuchte String steht oder $-1$, falls der String nicht 
+enthalten ist.
+\end{bem}
+Durch {\color{blue} \isage{split()}} können wir Strings aufspalten:
 \begin{sagein}
 text = 'Dies ist ein Satz, und ein Nebensatz'
 text.split() 
@@ -4899,32 +4776,31 @@ text.split('i')
 \begin{sage}
 ['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
 \end{sage}
-
-
-print/Formate
-
+\subsubsection{Formate und print}
+Nachdem wir nun Strings kennen und diese manipulieren können, 
+müssen wir noch wissen, wie genau wir Strings ausgeben können. 
+Dies geschieht via
 \begin{sagein}
   print 'Text %<format> und %<format> ... ' % (x,y,...)
  \end{sagein}
-\isage{<format>}:
+dabei sind für \isage{<format>} folgende Optionen möglich:
 \begin{sagein}
 %[<flag>][<minwidth>][.<precision>]converter 
 \end{sagein}
-
- \isage{flag}: 0 für das Auffüllen mit Nullen
- \isage{minwidth}: Minimale Breite der Darstellung
- \isage{precision}: Genauigkeit (Nachkommastellen)
- \isage{converter}:
+Für die einzelnen Optionen gilt:
+\begin{itemize}
+\item \isage{flag}: 0 für das Auffüllen mit Nullen
+\item \isage{minwidth}: Minimale Breite der Darstellung
+\item \isage{precision}: Genauigkeit (Nachkommastellen)
+\item \isage{converter}:\\
 \begin{tabular}{cp{10cm}}
 \isage{'i'} & ganze Zahl mit Vorzeichen\\
-\isage{'e'} & Gleitkommazahl mit exponentialformat (kleingeschrieben).\\
+\isage{'e'} & Gleitkommazahl mit Exponentialformat (kleingeschrieben).\\
 \isage{'f'} &Gleitkommazahl im Dezimalformat.\\
-\isage{'g'} &Gleitkommazahl. Benutzt kleingeschriebene Exponentialform wenn der Exponent kleiner als -4 oder der Genauigkeit ist, ansonsten Dezimalformat.
+\isage{'g'} &Gleitkommazahl. Benutzt kleingeschriebene Exponentialform, wenn der Exponent kleiner als -4 oder der Genauigkeit ist, ansonsten Dezimalformat.
 \end{tabular}
-
-
-BSP
-
+\end{itemize}
+Wir betrachten einige Beispiele:
 \begin{sagein}
 print '%5s | %7s' % ('Index','Wert')
 for k in srange(1,25,9.55): 
@@ -4936,9 +4812,8 @@ Index |    Wert
    10 | 111.303
    20 | 404.010
 \end{sage}
-figures/
-interact
-
+\subsubsection{Interaktive Plots}
+Wir wollen hier an einem Beispiel den interaktiven Plot vorstellen:
 \begin{sagein}
 @interact
 def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
@@ -4947,37 +4822,31 @@ def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
 \begin{center}
 \includegraphics[width=0.8\textwidth]{interact_basis.png}
 \end{center}
-
-
- Regler mit Werten von vmin bis vmax
+\subsubsection{Der Regler}
+Wir spezifizieren hier die Erstellung des Reglers.\\
+Wir erhalten einen Regler mit Werten von vmin bis vmax durch:
 \begin{sagein}
 u=slider(vmin, vmax=, step_size=1, default=, label=) 
 \end{sagein}
- Regler eines Intervalles
+Ein Regler eines Intervalles wird erzeugt mit:
 \begin{sagein}
 u=range_slider(vmin, vmax=, step_size=1, default=, label=)
 \end{sagein}
- Eine Ankreuzfeld
+Wir können auch ein Ankreuzfeld erstellen:
 \begin{sagein}
 u=checkbox(default=True, label=)
 \end{sagein}
- Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
+Auch ein Aufklappmenü (oder Knöpfe, wenn nrows, ncols, oder buttons gesetzt ist) ist 
+problemlos darstellbar:
 \begin{sagein}
 u=selector(values, label=, nrows=, ncols=, buttons=False)
 \end{sagein}
- Ein Textblock
+Sogar Textblöcke können dargestellt werden:
 \begin{sagein}
 u=text_control(value='')
 \end{sagein}
-
-
-
-TAYLOR
-
-\begin{center}
-\includegraphics[width=\textwidth]{interact1.png}
-\end{center}
-
+\subsubsection{Interaktive Taylorentwicklung}
+Wir betrachten unsere neue Errungenschaft am Beispiel der Taylorentwicklung:
 \begin{sagein}
 var('x')
 x0  = 0
@@ -4992,13 +4861,11 @@ def tayl(order=slider(1,12,1,label='order')):
     print ('f^(x;%s) = %s + O(x^(%s))'%(x0,ft,order+1))
     show(dot + p + pt, ymin = -.5, ymax = 1)
 \end{sagein}
-
-ABSTAND
-
 \begin{center}
-\includegraphics[width=7.5cm]{interact2.png}
+\includegraphics[width=\textwidth]{interact1.png}
 \end{center}
-
+\subsubsection{Grafiken einer Abstandsfunktion}
+Als weiteres Beispiel des interaktiven PLots betrachten wir eine Abstandsfunktion:
 \begin{sagein}
 @interact
 def _(q1=slider(-3,3,default=-1), q2=slider(-3,3,default=-2), cmap=selector(['autumn', 'bone', 'cool', 'copper', 'gray', 'hot', 'hsv','jet', 'pink', 'prism', 'spring', 'summer','winter'])):
@@ -5008,17 +4875,19 @@ def _(q1=slider(-3,3,default=-1), q2=slider(-3,3,default=-2), cmap=selector(['au
      show(C, figsize=3, aspect_ratio=1)
      show(plot3d(f, (x,-2,2), (y,-2,2)), figsize=5, viewer='tachyon')
 \end{sagein}
-
-GeoGebra
-
-
-  In GeoGebra: Erstellen eines Objektes
- In GeoGebra: File> Export> Dynamic worksheet.
- In Sage notebook: Data> Die .jar (von GeoGebra) und die .ggb hochladen.
- Aus dem Exportierten .html den Teil mit <applet> kopieren und im worksheet in Sage unter Edit kopieren( Edit> Paste ).
- Im Editier-tab die codebase zu "./data/" ändern
- Fertig!
-
+\begin{center}
+\includegraphics[width=7.5cm]{interact2.png}
+\end{center}
+\subsubsection{GeoGebra}
+In Sage lassen sich GeoGebra Objekte einbetten. Das funktioniert wie folgt:
+\begin{itemize}
+ \item  In GeoGebra: Erstellen eines Objektes
+ \item  In GeoGebra: File> Export> Dynamic worksheet.
+ \item  In Sage notebook: Data> Die .jar (von GeoGebra) und die .ggb hochladen.
+ \item  Aus dem Exportierten .html den Teil mit <applet> kopieren und im worksheet in Sage unter Edit kopieren( Edit> Paste ).
+ \item  Im Editier-tab die codebase zu "./data/" ändern
+ \item  Fertig!
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{geogebra.png}
@@ -5027,28 +4896,24 @@ GeoGebra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Beispiele Programmierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-GGT
-
+Wir wollen uns hier noch ein wenig der Programmierung in Sage hingeben. Dazu implementieren wir 
+einige zum Teil bekannte Algorithmen.
+\subsubsection{Größter gemeinsamer Teiler}
+Wir wollen die
 Berechnung des ggT von natürlichen Zahlen $a$ und $b$ mit Hilfe des
-euklidischen Algorithmus.
-\bigskip
-
-\textbf{Idee:} Es gilt:
-
-  $ggT(a,b)=ggT(a,b-a)$ für $a<b$.
- $ggT(a,b)=ggT(b,a)$.
- $ggT(a,a)=a$.
-
-
-\textbf{Algorithmus:}
-
+euklidischen Algorithmus implementieren. Dazu verfolgen wir folgende Idee:
+\begin{enumerate}
+\item  $ggT(a,b)=ggT(a,b-a)$ für $a<b$.
+\item $ggT(a,b)=ggT(b,a)$.
+\item $ggT(a,a)=a$.
+\end{enumerate}
+Daraus erhalten wir folgendes Algorithmus:\\
 Wiederhole,  bis $a=b$
- 
- Ist $a>b$, so $a=a-b$.
- Ist $a<b$, so $b=b-a$ 
-
-
+\begin{itemize} 
+\item Ist $a>b$, so $a=a-b$.
+\item Ist $a<b$, so $b=b-a$ 
+\end{itemize}
+In Sage erhalten wir also:
 \begin{sagein}
 def ggT(a,b):  
     """Bestimme den ggT von a und b"""
@@ -5063,9 +4928,8 @@ ggT(6,9)
 \begin{sage}
 3  
 \end{sage}
-
-PRIM TWIN
-
+\subsubsection{Primzahlzwillinge}
+Ein weitere interessanter Algorithmus ergibt sich, wenn man versucht, Primzahlzwillinge zu berechnen:
 \begin{sagein}
 T = []; anz = 0
 for i in [2..100]:
@@ -5079,9 +4943,8 @@ Anzahl = 8
 [[3, 5], [5, 7], [11, 13], [17, 19], [29, 31], [41, 43], [59, 61], [71,
 73]]
 \end{sage}
-
-ABS
-
+\subsubsection{Betrag}
+Wir möchten den Betrag (auch komplexer Zahlen!!!) berechnen. Unser Algorithmus sieht so aus:
 \begin{sagein}
 def betrag(a):
     if a in ZZ or a in QQ or a in RR:
@@ -5099,29 +4962,25 @@ betrag([1,2]), betrag(2+I*2)
 \begin{sage}
 ('Falscher Eingabetyp', 2*sqrt(2))
 \end{sage}
-
-GÜLT VAR
-
-
- Mit der Gültigkeit von Variablen ist die Bestandsdauer von
-   Variablen bzw. der Werten dieser Variablen gemeint.
- \emph{globale Variablen}: Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
+\subsubsection{Gültigkeit von Variablen}
+Im Zusammenhang mit Programmierung muss man über den Güligkeitsbereich von Variablen sprechen. Mit der 
+Gültigkeit von Variablen ist die Bestandsdauer von Variablen bzw. der Werte dieser Variablen gemeint. 
+Man unterscheidet hier globale und lokale Variablen:
+\begin{df}
+Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
 d.h. die den Variablen zugewiesenen Werte bleiben für die
-gesamte Laufzeit vom jeweiligen worksheet erhalten bis sie geändert werden. 
+gesamte Laufzeit vom jeweiligen worksheet erhalten, bis sie geändert werden. 
 Man kann auf die Variablen jederzeit zugreifen und die Werte der Variablen
-ändern.
- \emph{lokale Variablen}: Diese sind nur innerhalb einer Prozedur/Funktion 
+ändern.\\
+Lokale Variablen sind nur innerhalb einer Prozedur/Funktion 
 gültig. Nach Beenden der Prozedur werden
 diese Variablen wieder gelöscht. 
-
-
-MANDELBROT
-
-Die Mandelbrot-Menge ist die Menge von Punkten $c \in \mathbb{C}$
+\end{df}
+\subsubsection{Mandelbrotmengen}
+Wir wollen Mandelbrotmengen betrachten. Die Mandelbrot-Menge ist die Menge von Punkten $c \in \mathbb{C}$
 bei denen die Folge $(z_n)_n$, die durch
 \[ z_0:=c, \qquad  z_{n+1} = z_n^2 +c, \quad n \in \mathbb{N}\]
-definiert ist, beschränkt ist.
-
+definiert ist, beschränkt ist. Als Algorithmus erhalten wir:
 \begin{sagein}
 def mandel(x,y):
     c = (x + I*y).n()
@@ -5134,25 +4993,22 @@ def mandel(x,y):
     return float(it/max_it)
 \end{sagein}
 Die Funktion \isage{mandel} gibt zu $x+iy$ die relative Anzahl der
-Iterationsschritte zurück.
-
+Iterationsschritte zurück. Der Plot einer solchen Mandelbrotmenge hat dann diese Gestalt:
 \begin{sagein}
 density_plot(mandel, (-2.1,1.2), (-1.1,1.1), plot_points=100)
 \end{sagein}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{mandel.pdf} 
 \end{center}
-
-PROG REGELN
-
-
- \emph{Hilfetext}: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
- \emph{Kommentieren}: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
- \emph{Passende Benennung von Variablen/Funktionen}: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
-
-
-LAST BSP
-
+\subsubsection{Programmierparadigmen}
+Wir müssen im Zuge der Programmierung auch auf gewisse Programmierregeln eingehen. Einige der Wichtigsten sind:
+\begin{itemize}
+\item Hilfetext: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
+\item Kommentieren: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
+\item Passende Benennung von Variablen/Funktionen: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
+\end{itemize}
+\subsubsection{g-adische Darstellung}
+Wir wollen die g-adische Darstellung einer natürlichen Zahl programmieren:
 \begin{sagein}
 def Gadisch(x,basis):
     """Berechnung der Darstellung einer natuerlichen Zahl 
@@ -5185,14 +5041,9 @@ Gadisch(3.4,2)
 \begin{sage}
 'Eingabe nicht korrekt!'
 \end{sage}
-
-ALLERLAST BSP xD
-KOCH
-
-
- Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. 
- Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$.  
- Ersetze  diese Strecke durch 4 Strecken 
+\subsubsection{Kochsche Kurve}
+Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$. 
+Ersetze  diese Strecke durch 4 Strecken 
 $\overline{y_1 z_1}$, $\overline{z_1 z_2}$, $\overline{z_2 z_3}$,
 $\overline{z_3 y_2}$ mit Endpunkten 
 \begin{eqnarray*}
@@ -5204,8 +5055,6 @@ $\overline{z_3 y_2}$ mit Endpunkten
  z_3 &=&\frac13 y_1 + \frac23 y_2
 \end{eqnarray*}
  Dieses Prozedere wird nun für jede einzelne Teilstrecke wiederholt.
-
-
 \begin{sagein}
 def koch(y1,y2,lev):
     Listelinien = []
@@ -5231,6 +5080,4 @@ koch(vector([0,0]),vector([1,0]),4)
 \begin{center}
 \includegraphics[width=0.7\textwidth]{koch.pdf} 
 \end{center}
-
-
 \end{document}
