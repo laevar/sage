@@ -35,7 +35,7 @@ liststotoc,pagesize,BCOR1.2cm,DIV15,chapterprefix,pagesize=pdftex]{scrbook}
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Einleitung}
+\chapter{Sage Überblick}
 \section{Was ist Sage?}
 %\subsection{Was ist Sage?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,7 +50,7 @@ Wie alles, so hat auch Sage trotz seiner vielen Stärken auch Schwächen, so ist
 oder Matlab; außerdem fehlt eine standalone Entwicklungsumgebung. Als Alternative zum Webinterface findet sich Cantor.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Vorab}
+\subsection{Grundlegende Commandos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Sage incl. online Testversion und gratis Download sowie einigen anderen Features findet sich unter http://www.sagemath.org/.
@@ -83,7 +83,7 @@ Hier ein paar grundlegende Tipps, Tricks und Dinge, die einfach beherzigt werden
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Überblick}
+\section{Überblick über wichtige Operationen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Als Einstieg und kleine Motivation, wofür man Sage einsetzen kann, wollen wir erst einmal ein paar grundlegende Operationen 
@@ -549,7 +549,6 @@ Bis hierher haben wir einen kleinen Rundumblick genommen, einige sehr elementare
 Sage. Vieles von dem, was wir bisher gesehen haben, wird uns wieder begegnen, wenn wir uns weiter mit Sage befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Grundlagen}
-\section{Interna}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Um Sage richtig verstehen zu können, ist es wichtig, das ``Innenleben'' zu kennen-- hierzu wollen wir uns anschauen, welche Datentypen Sage 
 kennt und wie es mit ihnen umgeht. Hierzu betrachten wir die Funktion $f$
@@ -782,12 +781,9 @@ x = [var("x%i" % k) for k in [1..3]]; x
 [x1, x2, x3]
 \end{sage}
 Dieses soll uns als Grundlagenwissen über die Sage-interna genügen. Wir werden nun zu anwendungsorientierteren Problemen zurückkehren.
+Im nächsten Abschnitt wollen wir uns mit Funktionen, Code-Blöcken, Bedingungen sowie praktischen Anwendungen befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Praxisbezug}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In diesem Abschnitt wollen wir uns mit Funktionen, Code-Blöcken, Bedingungen sowie praktischen Anwendungen befassen.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dictionaries}
+\section{Dictionaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen ein sageinternes Speichermedium betrachten, das Dictionary. Dabei handelt es sich um ein Konstrukt der Form
 \begin{sagein}
@@ -812,7 +808,7 @@ d[x],d[z],d[z].rhs()
 
 Wir werden später noch einmal auf dieses nützliche Speichermedium zurückkommen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Funktionen und Abfragen}
+\section{Funktionen und Abfragen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir betrachten nun Funktionen in Sage. Dazu haben wir zuerst einmal die sog. anonymen Funktionen. Diese sind Funktionen, die keinen aufrufbaren 
 Namen besitzen. Sie sind somit ein Funktionen-Objekt. Sinnvoll ist eine anonyme Funktion innerhalb von Konstrukten oder Aufrufen anderer Funktionen.
@@ -901,7 +897,7 @@ z
 \end{sage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Ausdrücke}
+\section{Ausdrücke}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir kommen noch einmal zurück zu Ausdrücken, Operationen auf diesen sowie einigen nützlichen Manipulationen. 
 \subsubsection{Kombination von Ausdrücken}
@@ -1066,7 +1062,7 @@ a.simplify_full()
 0
 \end{sage} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gleichungen, Vergleiche, Logik}
+\section{Gleichungen, Vergleiche, Logik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 An dieser Stelle wollen wir uns mit Gleichungen, Gleichungssystem und Logik beschäftigen. Dazu betrachten wir zuerst zwei kleine Beispiele 
 \begin{sagein}
@@ -1884,7 +1880,7 @@ real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 (1/3*sqrt(2), -1/3)
 \end{sage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Vektoren und Funktionen}
+\chapter{Vektoren und Vektorräume}
 \section{Vektoren}
 \subsection{Matrizen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2334,6 +2330,7 @@ float(acos(a2*a3/(abs(a2)*abs(a3))))
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Sage Funktionen und Datencontainer}
 \section{Funktionen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen uns nun einmal genauer mit selbstdefinierten Funktionen in Sage befassen. Zur Erinnerung, diese Konstruiert man wie folgt
@@ -2365,7 +2362,7 @@ def MyMax(a,b):
         return (a)
 \end{sagein}
 Unsere Funktion \isage{MyMax} wird mit den Argumenten \isage{a,b} aufgerufen und liefert entweder den Wert $a$ oder $b$.
- 
+
 \subsection{Externes Editieren von Funktionen}
 Bei umfangreicheren Funktionen oder richtigen Programmen ist es wahrscheinlich sinnvoller diese mit
 einem Editor zu erstellen. Das ist nicht nur möglich, sondern sogar fast schon zu simpel:\\
@@ -2374,7 +2371,7 @@ Diese wird dann via \isage{attach <path>/<name>.sage} an das Notebook angehängt
 Mit \isage{attached_files()} erhalten wir eine Liste aller angehängten Dateien.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Datencontainer, Lineare Abbildungen, Eigenwerte und -vektoren}
+%\chapter{Sage Funktionen und Datencontainer}%, Lineare Abbildungen, Eigenwerte und -vektoren}
 \section{Datencontainer in Sage}
 \subsection{Folgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2752,6 +2749,7 @@ Doppelt auftretenden Indizes werden überschrieben!
 \end{bem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Lineare Abbildungen, Eigenwerte und -vektoren}
 \section{Lineare Abbildungen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen uns mit linearen Abbildungen befassen, hierzu benötigen wir einige formale Definitionen.
@@ -2981,7 +2979,7 @@ print A\b3
 %linalg::gaussElim(A)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Folgen, (Potenz-)Reihen, Vertiefung Schleifen}
+\chapter{Folgen, Reihen}
 \section{Folgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen uns hier mit Folgen reeller Zahlen befassen. Dabei handelt es sich um 
@@ -3102,8 +3100,7 @@ Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
                    Konvergenzverhalten nicht.
 \end{bem}
 Wir möchten hier einge wichtige Sätze über Konvergenz anbringen:
-\begin{sz}
-Satz von Bolzano-Weierstrass\\
+\begin{sz}[Bolzano-Weierstrass]
 Jede beschränkte Folge besitzt (mindestens) eine
 konvergente Teilfolge.\\
  Jede Teilfolge einer konvergenten Folge konvergiert gegen den
@@ -3565,7 +3562,7 @@ plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Vertiefung Schleifen}
+\chapter{Vertiefung Schleifen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen eine Alternative der uns bekannten \isage{for()}-Schleife betrachten, die \isage{while()}-Schleife:
 \begin{sagein}
@@ -3676,7 +3673,7 @@ mit geeignetem Abbruchkriterium könnte Abhilfe schaffen. Der geneigten Leserin 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Funktionen(-folgen), Grenzwert und Stetigkeit, Grafik}
+\chapter{Funktionen(-folgen), Grenzwert und Stetigkeit}
 \section{Funktionen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen reelle Funktionen kennenlernen. Dazu eine Definition.
@@ -4012,7 +4009,7 @@ eine Funktionenreihe. Alle Aussagen übertragen sich analog; ebenso die Aussagen
 \]
 \end{bem}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Grafik}
+\chapter{Grafik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Wir wollen uns etwas ausführlicher als bisher mit Grafiken befassen. Dazu stellen wir Folgendes fest:\\
 Grafiken werden im Notebook integriert.\\
@@ -4025,7 +4022,6 @@ Beim Speichern unterscheiden wir 2D und 3D Grafiken:
 \item[3D] \glqq{}Get Image\grqq{}-Link unter der Grafiken liefert Bitmap.
 \end{itemize}
 Es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
-
 \subsubsection{Optionen für grafische Objekte}
 
 \begin{tabular}{lp{8cm}}
@@ -4054,22 +4050,19 @@ Es existieren eine Reihe spezialisierter Plot-Funktionen (Pfeile, Kugel, etc.)
               {\color{blue} \isage{gridlines = True}}
 \end{tabular}
 
-plot()
-
-Skalare Funktionen 
-$f:\mathbb{R}^n \ \rightarrow \mathbb{R},\, n=2,3$
+\subsubsection{plot()}
+Da wir nun einige neue Erkenntnisse gewonnen haben, wollen wir das Plotten skalarer Funktionen  
+$f:\mathbb{R}^n \ \rightarrow \mathbb{R},\, n=2,3$ betrachten. Das Schema eines Plots der Funktion $f$ im Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$ hat folgende Gestalt:
 \begin{sagein}
 plot(f2,(x,a,b),optionen,...)
 plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 \end{sagein}
-auf dem Intervall $x \in [a,b]$ bzw. $(x,y) \in [a,b] \times [c,d]$. 
-
-
+\begin{bem}
  Die Angabe des Intervalls ist optional. 
- \isage{plot.options} gibt einem die Default-Optionen aus (2D)
-
-
-BSP
+ \isage{plot.options} gibt die Default-Optionen aus (2D).
+\end{bem}
+Wir betrachten einige Beispiele, sowohl 2D als auch 3D.
+\subsubsection{2D-Plots}
 
 \begin{sagein}
 plot(x^2-1)
@@ -4077,6 +4070,10 @@ plot(sin(1/x),(x,-1,1))
 plot(sin(1/x),(x,-1,1),adaptive_recursion=0)
 \end{sagein}
 
+\begin{bem}
+ Diese Eingabe hätte die grafische Ausgabe des Graphen der Funktionen $sin(1/x)$ im Intervall $[-1,1]$ zur Folge.
+\end{bem}
+Es ist auch möglich, mehrere Funktionen im selben Plot darzustellen:
 \begin{sagein}
 p = plot(sin(x),color='red',xmin=-pi,xmax=pi)
 p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
@@ -4084,15 +4081,19 @@ p += plot(cos(x),xmin=-pi,xmax=pi); p.show()
 \begin{center}
 \includegraphics[width=6cm]{sincos2.pdf} 
 \end{center}
-
-Plot von $f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
+\subsubsection{3D-Plots}
+Wir wenden uns nun den 3D-Plots zu und benutzen als Beispiel die Funktion 
+$f(x,y)=\sin(y^2+x)-\cos(y-x^2)$ auf $[0,\pi]^2$:
 \begin{sagein}
 f(x,y) = sin(y^2+x)-cos(y-x^2)
 plot3d(f,(x,0,pi),(y,0,pi))
 plot3d(f,(x,0,pi),(y,0,pi),plot_points=[10,10])
 \end{sagein}
+\begin{bem}
+ Die resultierende Ausgabe wurde an dieser Stelle weggelassen.
+\end{bem}
 \medskip
-Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
+Als weiteres Beispiel betrachten wir den Plot von $f(x,y)=\cos (20 \exp(-x^2-y^2 ))$ auf $[-1,1] \times [-1,1]$:
 \begin{sagein}
 g(x,y) = cos(20*exp(-x^2-y^2))
 plot3d(g,(x,-1,1),(y,-1,1))
@@ -4101,7 +4102,7 @@ plot3d(g,(x,-1,1),(y,-1,1),plot_points=[80,80])
 \begin{center}
 \includegraphics[width=4cm]{cosexp_trim.jpg} 
 \end{center}
-
+Als letztes Beispiel der 3D-Serie betrachten wir:
 \begin{sagein}
 W = plot3d(sin(pi*((x)^2+(y)^2))/2,(x,-1,1),(y,-1,1), frame=False, color='purple', opacity=0.8) 
 S = sphere((0,0,0),size=0.3, color='red', aspect_ratio=[1,1,1])
@@ -4111,9 +4112,8 @@ show(W + S, figsize=8)
 \includegraphics[width=7cm]{ball.jpg} 
 \end{center}
 
-KURV
-
-Parameterdarstellung: 
+\subsubsection{Kurven}
+Wir beschäftigen uns nun mit Kurven und erinnern zunächst an die Parameterdarstellung: 
 \[
  \{(x(t),y(t)) \in \mathbb{R}^2 \;|\; t \in [a,b]\}.
 \]
@@ -4121,14 +4121,15 @@ Parameterdarstellung:
  \{(x(t),y(t),z(t)) \in \mathbb{R}^3 \;|\; t \in [a,b] \}.
 \]
 %Graph einer Funktion $f(x)$, $x \in [a,b]$: $t,f(t)$ mit  $t \in [a,b]$. 
+Sage stellt uns hierfür folgendes Schema bereit:
 \begin{sagein}
 parametric_plot([x(t),y(t)], (t,a,b), optionen, ...)
 parametric_plot([x(t),y(t),z(t)], (t,a,b), optionen, ...)
 \end{sagein}
 %$x$, $y$ und $z$ sind Ausdrücke mit der Unbekannten $t$. 
 
-2D KURV
-
+\subsubsection{2D-Kurven}
+Wir betrachten Bespiele zweidimensionaler Kurven:
 \begin{sagein}
 _=var('t');f1 = parametric_plot([t,sin(t)],(t,0,2*pi),color='red')
 f2 = parametric_plot([t,cos(t)],(t,0,2*pi),color='green')
@@ -4138,16 +4139,19 @@ f3 = parametric_plot([cos(t),sin(t)],(t,0,2*pi))
 \begin{center}
 \includegraphics[width=7cm]{parametric2d.pdf} 
 \end{center}
-
+Wir wollen einen Kreis durch Punkte approximieren:
 \begin{sagein}
 [parametric_plot([cos(t),sin(t)],(t,0,2*pi),plot_points=2*k+1,randomize=False,adaptive_recursion=0 ) for k in [2..10]]
 \end{sagein}
 \begin{center}
 \includegraphics[width=7cm]{parametric2d_2.pdf} 
 \end{center}
+\begin{bem}
+ Es werden 8 Kreise ausgegeben- für eine größe Genauigkeit muss die Range für $k$ größer gewählt werden.
+\end{bem}
 
-3D KURV
-
+\subsubsection{3D-Kurven}
+Wie uns wenig überrascht, beherrscht Sage auch Kurven, die dreidimensionale Gestalt haben. Wir betrachten folgendes kleine Beispiel:
 \begin{sagein}
 parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400)
 \end{sagein}
@@ -4155,13 +4159,12 @@ parametric_plot([(1-t*t)*cos(99*t),(1-t*t)*sin(99*t),t], (t,0,1),plot_points=400
 \includegraphics[width=7cm]{parametric3d.jpg} 
 \end{center}
 
-FLÄ
-
-Fläche des $\mathbb{R}^3$ in Parameterdarstellung:
+\subsubsection{Flächen}
+Auch im Zusammenhang mit Fläche des $\mathbb{R}^3$ erinnern wir uns an die Parameterdarstellung:
 \[
  \{(x(t1,t2),y(t1,t2),z(t1,t2)) \in \mathbb{R}^3 \;|\; t1 \in [a,b], t2 \in [c,d] \}.
 \]
-Befehl: 
+Das Sage-Schema sieht dann wie folgt aus:
 \begin{sagein}
 parametric_plot([x(t1,t2), y(t1,t2), z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ...)
 \end{sagein}
@@ -4172,9 +4175,7 @@ parametric_plot([x(t1,t2), y(t1,t2), z(t1,t2)], (t1,a,b), (t2,c,d), optionen, ..
 % mit $a \leq t_1 \leq b, \ c \leq
 %    t_2 \leq d$ erklären.
 
-BSP
-
-Ellipsoid-Oberfläche
+Wir betrachten bespielhaft eine Ellipsoid-Oberfläche
 \[ 
 x=r \cos(t_1) \sin(t_2), \ y=2r \sin (t_1) \sin (t_2),\ z =r \cos(t_2) 
 \]
@@ -4190,27 +4191,25 @@ parametric_plot3d([x,y,z],(t1,0,2*pi),(t2,0,pi),aspect_ratio=1)
 \includegraphics[width=4.5cm]{surface.jpg} 
 \end{center}
 
-KONTUR
-
-Zweidimensionale Grafik für $f:\mathbb{R}^2 \rightarrow \mathbb{R}$:
+\subsubsection{Kontur}
+Wir betrachten noch zweidimensionale Grafiken für $f:\mathbb{R}^2 \rightarrow \mathbb{R}$:
 \emph{Niveaulinien} (z.B. Höhenmeter auf einer
 Landkarte):
 \[ 
 \{(x,y) \in \mathbb{R}^2 \;|\; f(x,y)=c, c \in \mathbb{R}\}
 \]
-
+Sage stellt uns hierfür den \isage{contour_plot}:
 \begin{sagein}
 contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
 \end{sagein}
 Dabei geben $c1,c2,\ldots$ die entsprechenden Niveaulinien an.
+Wir haben noch folgende Optionen:
+\begin{itemize}
+ \item \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
+ \item \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
+\end{itemize}
 
-  \isage{fill=True}: Fläche zwischen den Linien ausfüllen.
-  \isage{labels=True}: Automatische Kennzeichnung der Konturlinien.
-
-
-BSP
-
-Zeichnen die Niveaulinien für $-0.5, 0, 0.5$ der Funktion $\sin(4\pi x)y$. 
+Wir betrachten als Beispiel das Zeichnen der Niveaulinien für $-0.5, 0, 0.5$ der Funktion $\sin(4\pi x)y$: 
 \begin{sagein}
 contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=False,labels=True)
 \end{sagein}
@@ -4218,12 +4217,9 @@ contour_plot(sin(pi*4*x)*y,(x,-1,1),(y,-1,1),contours = [-0.5, 0, 0.5],fill=Fals
 \includegraphics[width=7.5cm]{contour.pdf} 
 \end{center}
 
-paint()
-
-Mittels {\color{blue} \isage{point}} 
-können Punkte gezeichnet werden.
-
-\textbf{Beispiel:}
+\subsubsection{point()}
+Ein oft nützliches Tool ist das Zeichnen von Punkten. Hierfür stellt Sage den Befehl {\color{blue} \isage{point()}}. 
+Wir betrachten folgendes kleine Beispiel:
 \begin{sagein}
 point([(i,sin(i*6.28/50)) for i in [0..50]],color='red', pointsize=30) 
 point2d.options
@@ -4232,8 +4228,8 @@ point2d.options
 \includegraphics[width=7cm]{point2d.pdf} 
 \end{center}
 
-COLLATZ
-
+\subsubsection{Collatz Problem}
+Wir wenden {\color{blue} \isage{point()}} auf ein komplizierteres Problem an:
 Sei $x_0\in \mathbb{N}$. Dann definiert man die folgende Folge
 \[ x_n:= \left \{ \begin{array}{ll}
  x_{n-1}/2, & \mbox{falls } x_{n-1} \mbox{ gerade ist} \\
@@ -4259,21 +4255,19 @@ def collatz(n):
 \includegraphics[width=5cm]{collatz.pdf} 
 \end{center}
 
-animate()
-
+\subsubsection{animate()}
 Der Befehl 
 \begin{sagein}
 animate([<graph1,graph2,...>], optionen, ... ) 
 \end{sagein}
-erstellt Animationen aus 2D plots. Optionen: \isage{xmin, xmax, ymin, ymax}.
-
-\textbf{Beispiel:}
+erstellt Animationen aus 2D plots. Wir haben die folgenden Optionen: \isage{xmin, xmax, ymin, ymax}.
+Wir betrachten ein Beispiel:
 \begin{sagein}
 a = animate([plot(a*x^2, (x,-5,5)) for a in [-10..10]],ymin=-100,ymax=100)
 a.show(iterations=1)
 \end{sagein}
 \begin{center}
-% \animategraphics[height=4cm]{2}{anime_}{0}{20}
+ %\animategraphics[height=4cm]{2}{anime_}{0}{20}
 \end{center}
 %  Dreidimensionales Beispiel
 % \begin{sagein}
@@ -4285,75 +4279,71 @@ a.show(iterations=1)
 \chapter{Differentiation, Taylorsche Formel, Integration}
 \section{Differentiation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-DIFF
-
-Eine Funktion $f: D \ \rightarrow \mathbb{R}$ heißt {\color{red}  differenzierbar} an
+Wir beginnen den Abschnitt mit einer formalen Definition:
+\begin{df}
+Eine Funktion $f: D \ \rightarrow \mathbb{R}$ heißt differenzierbar an
 der Stelle $x_0 \in D$, wenn 
 \[ \lim_{x \rightarrow x_0} \frac{f(x)-f(x_0)}{x -x_0} \]
 existiert. \\
-Der Grenzwert wird {\color{red} Ableitung} oder {\color{red} Differentialquotient}
+Der Grenzwert wird Ableitung oder Differentialquotient
 von $f$ an $x_0$ genannt und mit $f\,'(x_0)=f^{\,(1)} (x_0)$ bezeichnet.
-
-BEM
-
-
- $f$ {\color{red} differenzierbar} (auf $D$): Wenn $f$ an jeder
+\end{df}
+Wir machen einige Bemerkungen.
+\begin{bem}
+ $f$ ist differenzierbar (auf $D$), wenn $f$ an jeder
 Stelle von $D$ differenzierbar ist. 
- {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
+% {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
  Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
 genau dann differenzierbar, wenn es eine lineare Abbildung
 $T:\mathbb{R} \rightarrow \mathbb{R}$ gibt, so dass 
 \[ f(x_0+h)=f(x_0) +Th + R(h)h, \quad \lim_{h \rightarrow 0} R(h)=0 \]
 gilt ($T$ und $R$ hängen i.A. von $x_0$ ab). 
- $f$ an $x_0 \in D$ differenzierbar => stetig.
+ $f$ an $x_0 \in D$ differenzierbar => $f$ an $x_0 \in D$ stetig.
+\end{bem}
+Wir betrachten einige uns wohlbekannte Beispiele:
+\begin{itemize}
+\item $(x^n)'=n x^{n-1}$
+\item $(e^x)'=e^x$
+\item $(\log(x))'= \frac{1}{x}$, $x>0$
+\item $(\sin(x))'=\cos(x)$
+\item $(\cos(x))'=-\sin(x)$
+\end{itemize}
 
-
-BSP
-
-
- $(x^n)'=n x^{n-1}$
- $(e^x)'=e^x$
- $(\log(x))'= \frac{1}{x}$, $x>0$
- $(\sin(x))'=\cos(x)$
- $(\cos(x))'=-\sin(x)$
-
-
-LANDAU
-
+\subsubsection{Landau-Symble}
+Wir wollen die Landau-Symbole einführen. Dazu hilft uns eine Definition:
+\begin{df}
 Sei $f$ eine Funktion, die auf einem Intervall definiert ist, das $0$
-enthält. 
-
-  {\color{red} $f(x)=O(x^n)$}: Es gibt eine Kontante $C >0$, so dass
+enthält. Dann ist 
+\begin{itemize}
+\item  $f(x)=O(x^n)\Longleftrightarrow$ Es gibt eine Kontante $C >0$, so dass
 \[  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n} \leq C\]
 ($f(x)$ geht gegen $0$ mindestens so schnell wie $x^n$)
- {\color{red} $f(x)=o(x^n)$}: 
+\item $f(x)=o(x^n)$: 
 \[  
  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n}=0
 \]
 ($f(x)$ geht schneller gegen $0$ als $x^n$)
-
-
-HÖH ABL
-
-
- \emph{$f$ $n$-mal differenzierbar, $f^{\,(n)}$}: Ist $f:D
+\end{itemize}
+\end{df}
+\subsubsection{Höhere Ableitungen}
+Auch Ableitungen höherer Ordnung wollen wir formal deffinieren:
+\begin{df}
+ $f$ heißt $n$-mal differenzierbar, falls $f:D
 \rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
-$(n-1)$-ten Ableitung $f^{\,(n-1)}$ und ist $f^{\,(n-1)}$ wiederum
-differenzierbar.
- Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
-stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
- $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
+$(n-1)$-ten Ableitung $f^{\,(n-1)}$ und $f^{\,(n-1)}$ wiederum
+differenzierbar ist.\\
+Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
+stetig, so heißt $f$ $n$-mal stetig differenzierbar.\\
+$f$ heißt unendlich oft differenzierbar, wenn $f$ $n$-mal
 differenzierbar ist für alle $n\in \mathbb{N}$. 
+\end{df}
 
-
-inSAGE
-
+\subsubsection{Ableitungen in Sage}
+Um einen Ausdruck abzuleiten, stellt uns Sage folgendes Instrument:
 \begin{sagein}
 diff(<Ausdruck>,x) 
 \end{sagein}
-wird ein Ausdruck oder eine Funktion nach $x$ abgeleitet. \\
-\textbf{Beispiele:}
+Der Ausdruck oder die Funktion wird nach $x$ abgeleitet. Wir betrachten zwei Beispiele:
 \begin{sagein}
 diff(sin(x),x)
 \end{sagein}
@@ -4366,14 +4356,14 @@ diff(x^x,x)
 \begin{sage}
 (log(x) + 1)*x^x
 \end{sage}
-
+Auch höhre Ableitungen sind in Sage kein Problem:
 \begin{sagein}
 diff(<Ausdruck>,x1,x2,x3,...)
 diff(<Ausdruck>,x,<anzahl>) 
 \end{sagein}
-Ableitung bzgl. der Unbekannten $x1$, dann der entstehende Ausdruck bzgl. $x2$, etc. 
+Ableitung bzgl. der Unbekannten $x1$, dann wird der entstehende Ausdruck bzgl. $x2$ abgeleitet, usw. 
 In der 2ten Form gibt \isage{<anzahl>} die Anzahl der Ableitung bzgl. \isage{x} an.\\
-\textbf{Beispiele:} 
+Wir betrachten wiederum zwei Beispiele:
 \begin{sagein}
 _=var('x,y,a'); diff(x^2*y^2+a,x,y)
 \end{sagein}
@@ -4386,9 +4376,7 @@ diff(1/x,x,10)
 \begin{sage}
 3628800/x^11
 \end{sage}
-
-ABL BSP
-
+Wir wollen uns noch ein wenig vertrauter mit der Ableitungsoperation machen.
 \begin{sagein}
 f(x) = log(cos(x))
 f.diff(); diff(f); diff(f,x,x)
@@ -4406,60 +4394,60 @@ g.diff(x,x,y)
 (x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
 \end{sage}
 
-REGELN
-
+\subsubsection{Differentiationsregeln}
+Wir erinnern uns an einige Regeln:
+\begin{df}
 Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
-$x_0 \in D$. Dann gilt
-
- \emph{Summe}: $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$
- \emph{Produktregel}: \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
- \emph{Quotientenregel}: \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
+$x_0 \in D$. 
+Für die Summe von $f$ und $g$ gilt:
+ \[(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)\]
+Für das Produkt von $f$ und $g$ gilt:
+ \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
+Für den Quotienten aus $f$ und $g$ gilt:
+ \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
 g'(x_0)}{(g(x_0))^2}\]
 falls $g(x_0) \neq 0$ .
- \emph{Kettenregel}: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
+Mit einer kleinen Zusatzannahme gilt auch die Kettenregel:
+Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
 \rightarrow \mathbb{R}$ mit $f(D_f) \subset D_g$. Ferner seien $f$ an
 $x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
 \[ (g \circ f)(x_0) = g\,'(y_0) \cdot f\,'(x_0).  \]
- \emph{Leibnizsche Regel}:
+ Auch die Leibnizsche Regel sei hier aufgeführt:
 \[
 (f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{\,(k)} g^{\,(n-k)}.
 \]
- \emph{Umkehrfunktion $f^{\,-1}$}:
+ Die Umkehrfunktion $f^{\,-1}$ ist gegeben zu:
 \[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
+\end{df}
 
-
-SÄTZE
-
-
-Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie ein
+Wir wollen einige elementare Ergebnisse der Diff in Sätze giessen:
+\begin{sz}
+Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie in $x_0$ ein
 lokales Extremum, so gilt $f\,'(x_0)=0$.
-
-Mittelwertsatz 
+\end{sz}
+\begin{sz}[Mittelwertsatz]
 Sei $f$ eine in dem Intervall $[a,b]$ stetige
 und in $(a,b)$ differenzierbare Funktion. Dann gibt es ein $\xi \in
 (a,b)$, so dass gilt
 \[ \frac{f(b)-f(a)}{b-a}= f\,'(\xi). \]  
-
+\end{sz}
+\begin{sz}
 Eine differenzierbare Funktion auf dem Intervall $I$ ist genau
 dann konstant, wenn $f\,'(x)$ auf $I$ identisch verschwindet.
-
-L'Hospital
-
+\end{sz}
+\begin{sz}[L'Hospital]
 Seien $f,g: D \rightarrow \mathbb{R}$
 differenzierbar, und $g\,'(x) \neq 0$, $x \in D$ und 
-{\color{red} $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$}. Dann gilt
+$\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$. Dann gilt
 \[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} =  \lim_{x \rightarrow a}
 \frac{f\,'(x)}{g\,'(x)}, \]
 falls der Limes auf der rechten Seite existiert.
 
 Der Fall $a=\pm\infty$ ist auch erlaubt!
 
-\textbf{Bemerkung}: Die Aussage gilt auch für $\lim_{x \rightarrow a} f(x)=\lim_{x \rightarrow a} g(x)= \infty$ 
-
-BSP
-
-
- Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
+Die Aussage gilt auch für $\lim_{x \rightarrow a} f(x)=\lim_{x \rightarrow a} g(x)= \infty$ 
+\end{sz}
+Wir betrachten einige Beispiele. Wir wollen $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$ bestimmen:
 \begin{sagein}
 var('a');f(x) = log(x); g(x) = x^a
 assume(a > 0)
@@ -4475,7 +4463,7 @@ limit(f(x)/g(x),x=oo)
 \begin{sage}
   0
 \end{sage}
- Bestimmung von $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$:
+Wir wollen $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$ bestimmen:
 \begin{sagein}
 f(x) = sin(x); g(x) = x 
 limit(f(x)/g(x), x=0)
@@ -4501,9 +4489,8 @@ limit(diff(f(x),x)/diff(g(x),x),x=0)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Taylor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-TAYLOR
-
+Wir wollen uns hier mit der Taylorentwicklung von Funktionen auseinadnersetzen. Dazu sei zuerst folgende Definition gegeben:
+\begin{df}[Taylor'sche Formel]
 Sei $f:I \rightarrow \mathbb{R}$ $(n+1)$-mal differenzierbar und seien
 $x,x_0 \in I$, $x \neq x_0$. Dann gibt es $\xi \in \mathbb{R}$, so
 dass
@@ -4512,33 +4499,26 @@ f(x)& = & f(x_0) + \frac{f\,'(x_0)}{1!}(x-x_0)+
 \frac{f\,''(x_0)}{2!}(x-x_0)^2\\[0.5cm]
  & & + \cdots + \frac{f^{\,n}(x_0)}{n!}(x-x_0)^n +R_n(x,x_0) 
 \end{eqnarray*}
-gilt mit dem  {\color{red} Lagrangschen Restglied}
+gilt mit dem Lagrangschen Restglied
 \[ R_n(x,x_0) := \frac{f^{\,(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}. \]
-
-REST
-
-Für das Restglied gibt es noch andere Darstellungen:
-
- Darstellung von \emph{Cauchy}
+\end{df}
+Wir wollen andere Darstellungsformen für das Restglied betrachten.
+Zum Einen gibt es noch die Darstellung von Cauchy
 \[ R_n(x,x_0)= \frac{f^{\,(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
- \emph{Integraldarstellung}
+zum Andern die Integraldarstellung
 \[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{\,(n+1)}(t)}{n!}  (x-t)^n dt.\]
-
-
-REIHE
-
+Mit der nächsten Definition erhalten wir die Taylorentwicklung einer Funktion:
+\begin{df}
 Sei $f:I \rightarrow \mathbb{R}$ unendlich oft  differenzierbar und seien
 $x,x_0 \in I$, $x \neq x_0$. Dann nennt man die Reihe
 \[ \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n \]
-die {\color{red} Taylorreihe} von $f(x)$ um den Entwicklungspunkt
-{\color{red} $x_0$}.
-
+die Taylorreihe von $f(x)$ um den Entwicklungspunkt $x_0$.
 \bigskip
 Die Taylorreihe stellt die Funktion $f$, wenn das Restglied $R_n(x,x_0)$ für $n
 \rightarrow \infty$ gegen $0$ geht.
+\end{df}
 
-HIN BED
-
+\subsubsection{Hinreichende Bedingung}
 
  Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
 \[
@@ -4802,8 +4782,9 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{bessereUeberschriftenFinden...}
-\section{Umgang mit Strings}
+\chapter{Sage Werkzeugkasten}
+\section{Interaktion}
+\subsection{Umgang mit Strings}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 STRINGS
@@ -5044,7 +5025,7 @@ GeoGebra
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Vertiefung Programmierung}
+\section{Beispiele Programmierung}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 GGT
