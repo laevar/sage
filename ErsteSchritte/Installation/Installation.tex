@@ -1,20 +1,41 @@
-\documentclass[a4paper,10pt]{article}
-\usepackage[utf8x]{inputenc}
-\usepackage [ngerman]{babel}
-%Für erweiterte Enumerationseinstellungen
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
 \usepackage{enumerate}
-
-
-
-\usepackage{xcolor}
-\definecolor{white}{rgb}{1,1,1}
+\usepackage[svgnames]{xcolor} %color definitions
 \usepackage[linkbordercolor=white,urlbordercolor=white ,citebordercolor=white]{hyperref}
-%opening
-\title{Installation von Sage}
-\author{Thorsten Groth}
 
+\input{../../common_header.tex}
+
+%\usepackage{tikz}
+%\usetikzlibrary{shadows}
+%\usetikzlibrary{fit}
+%\usetikzlibrary{shapes}
+%\usetikzlibrary{backgrounds}
+
+
+%-------------------------------------------------------------------------------
 \begin{document}
-\maketitle
+%-------------------------------------------------------------------------------
+
+%--------------------------------------------------- Header
+\begin{center}
+\textbf{\LARGE Erste Schritte mit Sage}\\
+\end{center}
+\begin{minipage}{6cm}
+Thorsten Groth
+\end{minipage}\hfill
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Installation}\\
+WS 2011/2012
+\end{flushright}
+\end{minipage}\\[1cm]
+%Für erweiterte Enumerationseinstellungen
+
+
+
+
 \section{Windows}
 Leider kann man Sage nicht so unter Windows installieren, wie man es sonst gewohnt ist. Um es trotzdem in seiner gewohnten Windows
 Umgebung nutzen zu können, muss man eine virtuelle Maschiene erstellen, auf der eine Linuxversion installiert ist, auf der dann 
@@ -51,12 +72,13 @@ Möglichst nicht irgendwo auf dem Desktop, wo man sie vermutlich demnächst vers
 %Ordnersymbol rechts daneben navigieren wir zu dem Ort, an den wir die .ova Datei gespeicehrt haben. Diese wird ausgewählt. Mit 
 %\emph{abschließen} wird der Vorgang abgeschlossen (Wer hätte es gedacht).
 %\paragraph{}
-Nun müssen wir diese Datei in Virtualbox einlesen. Dafür starten wir das Programm und wählen den Eintrag \emph{Datei $\to$ Appliance importieren}. 
-Ein Klick auf \emph{Auswählen} öffnet einen Dateiauswahldialog. Dort zum Verzeichnis, in dem die .ova Datei gespeichert ist, navigieren und diese auswählen.
-Ein weiterer Klick auf \emph{weiter} führt zu einer Übersicht des System, das eingebunden werden soll.
-Mit einem Klick auf \emph{Importieren} wird dieser Vorgang abgeschlossen. Dies kann unter Umständen einige Zeit dauern. Danach sind wir allerdings fertig.
+Nun muss diese Datei in Virtualbox eingelesen werden. Dafür das Programm starten und den Eintrag \emph{Datei $\to$ Appliance importieren} auswählen. 
+Ein Klick auf \emph{Auswählen} öffnet einen Dateiauswahldialog. Dort zum Verzeichnis, das die sage-4.8.ova Datei enthält, navigieren und diese auswählen.
+Ein weiterer Klick auf \emph{weiter} führt zu einer Übersicht des Systems, das eingebunden werden soll.
+Mit einem Klick auf \emph{Importieren} wird dieser Vorgang abgeschlossen. Dies kann unter Umständen einige Zeit dauern. Das wars dann aber auch schon
+mit der Einrichtung.
 Mit einem Klick auf den grünen Pfeil starten wir nun den Linuxrechner.
-
+\paragraph{}
 In einem neuen Fenster sieht man das vertraute Bild eines startenden PCs (In diesem Fall mit einem Fedora Betriebsystem). 
 Ist dieser fertig gestartet sollte auf schwarzem Grund von Sternchen umrandet stehen: 
 \textquotedblleft Open your web browser to http://localhost:8000  \textquotedblright.
@@ -90,7 +112,8 @@ benutzen.
 Aber wir können noch eine Abkürzung zum Starten des Programms definieren, denn wer will schon immer den ganzen Pfad mit 
 eingeben.
 
-Dafür müssen dann einfach die folgenden Befehle in die Konsole eingeben werden: \verb PATH=\$PATH:/Pfad/zum/Ordner/Sage  und
+Dazu wird das Programm in den Systempath eingefügt.
+Dafür müssen einfach die folgenden Befehle in die Konsole eingeben werden: \verb PATH=\$PATH:/Pfad/zum/Ordner/Sage  und
 \verb export  \verb PATH  Das war es dann auch schon
 nun kann Sage einfach über den Konsolenaufruf \verb sage  gestartet werden.
 
