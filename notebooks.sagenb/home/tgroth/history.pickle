@@ -129,4 +129,10 @@ aVWorksheet 'Klausuruebung' (2011-03-07 at 17:20)\u000a{{{id=19|\u000adef sort(L
 p65
 aVWorksheet 'Klausuruebung' (2011-03-07 at 17:20)\u000a{{{id=26|\u000aL = [78,9,1,3,5,2,5,12]\u000asort(L)\u000a///\u000a[1, 2, 3, 5, 5, 9, 12, 78]\u000a}}}
 p66
+aVWorksheet 'Klausuruebung' (2011-03-07 at 17:23)\u000a{{{id=22|\u000adef summator(ausdr):\u000a    Operanden=ausdr.split('+')\u000a    sum=0\u000a    for summand in Operanden:\u000a        sum += int(summand)\u000a    return sum\u000a        \u000a///\u000a}}}
+p67
+aVWorksheet 'Klausuruebung' (2011-03-07 at 17:23)\u000a{{{id=22|\u000adef summator(ausdr):\u000a    Operanden=ausdr.split('+')\u000a    sum=0\u000a    for summand in Operanden:\u000a        sum += int(summand)\u000a    return sum\u000a        \u000a///\u000a}}}
+p68
+aVWorksheet 'Klausuruebung' (2011-03-07 at 17:23)\u000a{{{id=27|\u000asummator('3+4+2')\u000a///\u000a9\u000a}}}
+p69
 a.

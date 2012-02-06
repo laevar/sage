@@ -11,7 +11,7 @@
 \usepackage[linkbordercolor=white,urlbordercolor=white ,citebordercolor=white]{hyperref}
 %opening
 \title{Installation von Sage}
-
+\author{Thorsten Groth}
 
 \begin{document}
 \maketitle
@@ -29,34 +29,39 @@ da man hier für den Download erst die eigene Emailadresse herausrücken muss, i
 \paragraph{}
 Das Programm zu installieren sollte keine Schwierigkeiten bereiten. Einfach die Abfragen mit weiter bestätigen. Unter Windows XP bekommt
 man unter Umständen die mehrmals Mitteilung die Software hätte den Windows Logo Test nicht bestanden. Diese Mitteilung kann man 
-getrost ignorieren und \emph{Installation fortsetzen klicken} Nun benötigt man noch
-die Datei die ein intalliertes Linux und Sage enthält. Diese bekommt man unter der Adresse:
- \url{ftp://ftp.fu-berlin.de/unix/misc/sage/win/index.html}. Die etwa 1GB große .zip Datei herunterladen und entpacken.
+getrost ignorieren und \emph{Installation fortsetzen} klicken. Zwischendurch wird außerdem gefragt ob man einige Gerätetreiber mit installieren will.
+Diese Abfrage unbedingt mit \emph{Ja} beantworten, da sonst die Virtuelle Maschiene keinen Zugriff auf USB Geräte und Netzwerk hat.
+\paragraph{}
+ Nun benötigt man noch die Datei die ein intalliertes Linux und Sage enthält. Diese bekommt man unter der Adresse:
+ \url{ftp://ftp.fu-berlin.de/unix/misc/sage/win/index.html}. Die etwa 1.5GB große .ova Datei herunterladen und speichern.
 Möglichst nicht irgendwo auf dem Desktop, wo man sie vermutlich demnächst versehentlich löscht. 
 \paragraph{}
-Nun müssen wir diese Datei in Virtualbox einlesen. Dafür starten wir das Programm und klicken auf das Zahnradsymbol 
-\emph{neu}. Die Erklärung, dass uns der Dialog führen wird, quitieren wir mit \emph{weiter}.
+%Nun müssen wir diese Datei in Virtualbox einlesen. Dafür starten wir das Programm und klicken auf das Zahnradsymbol 
+%\emph{neu}. Die Erklärung, dass uns der Dialog führen wird, quitieren wir mit \emph{weiter}.
 
-Jetzt kann ein Name gewählt werden. 
-Mein Vorschlag \textquotedblleft sage\textquotedblright. Als Betriebsystem wählen wir \emph{Linux} und als Version \emph{ubuntu}.
-Mit \emph{weiter} bestätigen wir diese Angaben. 
+%Jetzt kann ein Name gewählt werden. 
+%Mein Vorschlag \textquotedblleft sage\textquotedblright. Als Betriebsystem wählen wir \emph{Linux} und als Version \emph{ubuntu}.
+%Mit \emph{weiter} bestätigen wir diese Angaben. 
 
-Nun gilt es die Menge an Speicher auszuwählen. Dies hängt jetzt etwas vom eigenem 
-System ab. Es sollten schon mindestens 512MB sein und solange der Rechner nicht allzu alt ist kann gerne 1024MB
-ausgewählt werden. Mit einem Klick auf \emph{weiter} sind wir im nächsten Dialogteil.
+%Nun gilt es die Menge an Speicher auszuwählen. Dies hängt jetzt etwas vom eigenem 
+%System ab. Es sollten schon mindestens 512MB sein und solange der Rechner nicht allzu alt ist kann gerne 1024MB
+%ausgewählt werden. Mit einem Klick auf \emph{weiter} sind wir im nächsten Dialogteil.
 
-Den Hacken bei Bootfestplatte lassen wir gesetzt. Aber wählen den Punkt \emph{Festplatte benutzen} aus. Mit einem Klick auf das 
-Ordnersymbol rechts daneben navigieren wir zu dem Ort, an den wir die .zip Datei entpackt haben. Diese wird ausgewählt. Mit 
-\emph{abschließen} wird der Vorgang abgeschlossen (Wer hätte es gedacht).
-\paragraph{}
-Nun ist eigentlich schon alles fertig. Mit einem Klick auf den grünen Pfeil starten wir nun den Linuxrechner.
+%Den Hacken bei Bootfestplatte lassen wir gesetzt. Aber wählen den Punkt \emph{Festplatte benutzen} aus. Mit einem Klick auf das 
+%Ordnersymbol rechts daneben navigieren wir zu dem Ort, an den wir die .ova Datei gespeicehrt haben. Diese wird ausgewählt. Mit 
+%\emph{abschließen} wird der Vorgang abgeschlossen (Wer hätte es gedacht).
+%\paragraph{}
+Nun müssen wir diese Datei in Virtualbox einlesen. Dafür starten wir das Programm und wählen den Eintrag \emph{Datei $\to$ Appliance importieren}. 
+Ein Klick auf \emph{Auswählen} öffnet einen Dateiauswahldialog. Dort zum Verzeichnis, in dem die .ova Datei gespeichert ist, navigieren und diese auswählen.
+Ein weiterer Klick auf \emph{weiter} führt zu einer Übersicht des System, das eingebunden werden soll.
+Mit einem Klick auf \emph{Importieren} wird dieser Vorgang abgeschlossen. Dies kann unter Umständen einige Zeit dauern. Danach sind wir allerdings fertig.
+Mit einem Klick auf den grünen Pfeil starten wir nun den Linuxrechner.
 
-In einem neuen Fenster sieht man das vertraute Bild eines startenden PCs. Ist dieser fertig gestartet und der Desktop geladen 
- startet ein Klick auf das Icon Sage-Notebook den Sage Server.
-Hier könnte man nun schon direkt arbeiten, aber der kleine Bildschirm und das extra Fenster sind dann vielleicht doch etwas unkomfortabel.
-Im Idealfall kann man auch, wenn der Sage Server erst einmal gestartet ist, über den Internet Browser seiner Wahl, im Windows System
-das Notebook Fenster öffnen. Dafür die Adresse, die in der Konsole, in Sternchen eingerahmt, angezeigt wird, in die Adressleiste der Browsers 
-kopieren.
+In einem neuen Fenster sieht man das vertraute Bild eines startenden PCs (In diesem Fall mit einem Fedora Betriebsystem). 
+Ist dieser fertig gestartet sollte auf schwarzem Grund von Sternchen umrandet stehen: 
+\textquotedblleft Open your web browser to http://localhost:8000  \textquotedblright.
+Das sollte nun auch getan werden. Also einen Internet Browser der eigenen Wahl öffnen und die Adresse eingeben. Nun sollte die Oberfläche des
+Sagenotebooks zu sehen sein. 
 
 In Ausnamfällen kann es sein, dass das nicht funktioniert, weil keine Netzwerkverbindung erkannt wird. Für diesen Fall habe ich eine
 DVD mit einem etwas großzügerem Ubuntu und fertig installiertem Sage vorbereitet. Diese kann sich gerne in einer der ersten Übungen
