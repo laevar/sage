@@ -1,0 +1,72 @@
+\documentclass[a4paper,10pt,DIV15]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage[svgnames]{xcolor} %color definitions
+\usepackage[linkbordercolor=white,urlbordercolor=white ,citebordercolor=white]{hyperref}
+
+\input{../../common_header.tex}
+
+%\usepackage{tikz}
+%\usetikzlibrary{shadows}
+%\usetikzlibrary{fit}
+%\usetikzlibrary{shapes}
+%\usetikzlibrary{backgrounds}
+
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+%--------------------------------------------------- Header
+\begin{center}
+\textbf{\LARGE Erste Schritte mit Sage}\\
+\end{center}
+\begin{minipage}{6cm}
+Thorsten Groth
+\end{minipage}\hfill
+\begin{minipage}{2.5cm}
+\begin{flushright}
+\textbf{Arbeiten von Zuhause}\\
+WS 2011/2012
+\end{flushright}
+\end{minipage}\\[1cm]
+%Für erweiterte Enumerationseinstellungen
+
+
+Für alle, die lieber von Zuhause aus arbeiten gibt es mehrere Möglichkeiten:
+\begin{enumerate}
+ \item Auf dem eigenen Rechner Sage installieren. Siehe Anleitung: Installation.
+ \item Einwählen in die Mathe mit dem NX-Client. Siehe unten.
+ \item Nutzen des sage.math.uni-goettingen Server. Siehe ebenfalls unten
+\end{enumerate}
+
+
+\section{Nx-client}
+Eine Möglichkeit, nicht nur für Sage, auf die Rechner in der Mathe zuzugreifen, ist über \emph{Nx} (NoMachine) gegeben. Diese kostenfreie 
+remote Software erlaubt es auch die grafische Oberfläche zu nutzen. 
+
+Herunterladen kann man die Windows Version des Programms auf \url{http://www.nomachine.com/download-package.php?Prod_Id=3655}. Die Installation
+sollte selbsterklärend sein. 
+
+Beim ersten Start der Software wird eine Grundkonfiguration angelegt. Dafür muss zunächst mit \emph{weiter} quittiert werden, dass ein Dialog
+durch diesen Vorgang führen wird. 
+Im nächsten Fenster muss ein \emph{Session} name vergeben werden. Hier bietet sich \textquotedblleft Mathe  \textquotedblright oder ähnliches an.
+Interessanter ist das Feld \emph{Host} ich empfehle hier \emph{login.math.uni-goettingen} einzugeben. Es kann auch direkt ein bestimmter Server
+angesprochen werden, indem man statt login die Servernummer angibt: zum Beispiel \emph{s3.math.uni-goettingen}.
+Der Port bleibt bei 22 und die Internetverbindung (hoffentlich) auf ADSL. 
+
+Mit Klick auf \emph{next} geht es weiter. Im folgenden Fenster sollte ebenfalls nichts verändert werden.
+ Betriebsystem bleibt \emph{Unix} und Oberfläche \emph{Gnome}. 
+Im abschließenden Fenster kann noch eine Verknüpfung auf dem Desktop erstellt werden. Das wars dann auch schon.
+
+Nun können im login Fenster die Anmelde Daten eingegeben werden. Also vorname.nachname plus das dazugehörige Passwort. Mit einem Klick auf 
+\emph{login} sollte nun die Verbindung hergestellt werden. 
+
+Sage kann nun über \emph{Applications} $\to$ \emph{Education} $\to$ \emph{sagenotebook} gestartet werden. 
+
+Wichtig ist am Ende \bold{vor} dem Schließen des Nx-Clients alle Programme zu beenden und sich auszuloggen. Ansonsten wird zumindest Firefox beim
+nächsten Versuch nicht wieder starten, sondern behaupten er sei schon gestartet. 
+\section{sage.math Server}
+
+\end{document}
