@@ -14,6 +14,8 @@
 \usepackage[ngerman]{babel}
 \selectlanguage{ngerman}
 
+\usepackage{sagetex}
+
 %
 % math/symbols
 %
@@ -50,9 +52,15 @@
 \definecolor{darkblue}{rgb}{0,0,0.8}
 \definecolor{key}{rgb}{0,0.5,0} 
 %\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sage}[1][]{\lstset{xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{} 
+\lstnewenvironment{sageout}[1][]{\lstset{xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{} 
 \lstnewenvironment{sagein}[1][]{\lstset{#1}}{} 
 %\lstnewenvironment{sage}{\lstset{,language=python, keywordstyle=color{blue},    commentstyle=color{green}, emphstyle=\color{red}, %frame=single, stringstyle=\color{red}, basicstyle=\ttfamily, ,mathescape =true,escapechar=§}}{}
+
+%\renewcommand{\sagecommandlinetextoutput}{False}
+
+\lstdefinestyle{SageInput}{style=DefaultSageInput,basicstyle=\ttfamily\small}
+\lstdefinestyle{SageOutput}{style=DefaultSageOutput,basicstyle=\ttfamily\small}
+
 
 \lstset{
 language=python,

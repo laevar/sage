@@ -1,6 +1,6 @@
 \documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
 \title{Einführung in Sage - Einheit 1}
-\subtitle{Organisatorisches, Was ist Sage?, Streifzug durch Sage, Nützliches}
+\subtitle{Organisatorisches, Was ist Sage?, Streifzug durch Sage}
 \input{../slide_header}
 \maketitle
 
@@ -13,8 +13,9 @@
 \item Anmeldung über StudIP \\
       \url{https://www.studip.uni-goettingen.de/}
 
-{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2010/2011)}}
-\item Alle Unterlagen (Aufgabenblätter, Vorlesungsfolien, Beispiele, Musterlösungen) können von der  StudIP-Seite (Reiter Dateien) heruntergeladen werden 
+{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2011/2012)}}
+\item Aufgabenblätter und  Vorlesungsworksheets sind unter \url{https://sage.math.uni-goettingen.de} zu erhalten.
+\item Vorlesungsfolien, Musterlösungen und Zusammenfassungen können aus StudIP heruntergeladen werden. 
 \pause
 \begin{block}{Dozent}
 Jochen Schulz\\
@@ -29,15 +30,16 @@ XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
 
 \begin{frame}{Starten des Programms}
 \textbf{Vor.:} Account im CIP-Pool der Mathematischen Fakultät (MI und NAM): Registrierungs-Formular unter \url{https://ldap.math.uni-goettingen.de} (\alert{Stud.It-Account} nötig!)\\
-\textbf{Wiki} (\url{https://wiki.math.uni-goettingen.de/mediawiki})
+\textbf{Intranet/Wiki} (\url{https://wiki.math.uni-goettingen.de})
 \begin{itemize}
-\item Sage ist in Version 4.6.1 installiert
-\item login direkt oder per \alert{nxclient}
-auf \texttt{login.math.uni-goettingen.de}, \texttt{s242.math.uni-goettingen.de} und \texttt{sc1.math.uni-goettingen.de} bis 
-\texttt{sc4.math.uni-goettingen.de}
-\item Starten von Sage: 
+\item Sage ist in Version 4.7.2 installiert
+\item login direkt oder per \alert{nxclient} oder \alert{x2goclient}
+auf \texttt{login.math.uni-goettingen.de} und \texttt{sc1.math.uni-goettingen.de} bis 
+\texttt{sc8.math.uni-goettingen.de}
+\item Nutzen von Sage: 
 \begin{itemize}
-\item im Menu unter Education: \texttt{sagenotebook} startet gui.\\
+\item Über \url{https://sage.math.uni-goettingen.de}. Login mit Studentendaten.
+\item im Menu unter Education: \texttt{sagenotebook} startet (lokale) gui.\\
 \item im Terminal: \texttt{sage}
 \end{itemize}
 \end{itemize}
@@ -45,27 +47,28 @@ auf \texttt{login.math.uni-goettingen.de}, \texttt{s242.math.uni-goettingen.de} 
 
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
-\item Blockveranstaltung vom  21.2-4.3.2011
-\item \alert{Vorlesung:} 9.15 Uhr bis 11.30 Uhr
+\item Blockveranstaltung vom  20.2-2.3.2012
+\item \alert{Vorlesung:} 9 Uhr bis 11 Uhr
 \item \alert{Übungsbetrieb}: 4 Gruppen \`a je 1h 15min (Besprechung Aufgaben u. Praktikum, Teilnahme freiwillig)
 \begin{itemize}
-\item 13:00-14:15 (Tutor: C. Rügge)	
-\item 14:15-15:30 (Tutor: T. Groth)
-\item 15:30-16:45 (Tutor: A. Behnen)
-\item 16:45-18:00 (Tutor: J. Schulz)
+\item 11:00-12:15 (Tutor: )	
+\item 12:15-13:15 Mittagspause
+\item 13:15-14:30 (Tutor: )
+\item 14:30-15:45 (Tutor: )
+\item 15:45-17:00 (Tutor: J. Vogt)
 \end{itemize}
-\item \alert{Praktikum:} von 13:15 bis 18:00 Uhr Computerraum Keller.
+\item \alert{Praktikum:} von 11:00 bis 19:00 Uhr Computerräume im Keller des MI.
 \item \alert{Übungsbetrieb:}
 \begin{itemize}
-%\item Projektarbeit durchführen
 \item 1 Übungszettel/Tag.
 \item Klausurzulassung: 3 beliebige markierte Aufgaben/Woche testieren lassen. 
+\item Alternativ: Projektarbeit durchführen
 \end{itemize}
-\item \alert{Klausur:} 10.3.2011; 10:00 - 11:30; Anmeldung über FlexNow.
+\item \alert{Klausur:} 9.3.2011; 10:00 - 11:30; Anmeldung über FlexNow.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[<+->]{Inhalt der Vorlesung}
+\begin{frame}{Inhalt der Vorlesung}
 \begin{description}
  \item[1. Tag]Organisatorisches, Aufbau von Sage, Streifzug durch Sage
 \item [2. Tag] Grundlagen, Symbolisches Rechnen, Gleichungen
@@ -149,12 +152,6 @@ Gruppen, Ringe, \ldots
 \begin{itemize}
 \item Ein Open-source (GPL) Mathematik Software System
 \item Verfügbar seit 24 Februar 2005
-%\begin{itemize}
-% \item Entwicklung von MuPAD seit 1990 an der Universität Paderborn
-% \item Seit 1997 Teilausgliederung in die SciFace Sofware GmbH
-% \item MuPAD wurde mitte des Jahres 2008 an Mathworks verkauft
-% \item MuPAD ist seither eine Toolbox des Programms \alert{Matlab} (Symbolic Toolbox)
-%\end{itemize}
 \item Alternative zu den 4 M's: Magma, Maple, Mathematica, Matlab
 \item Basiert auf Python
 \item Objektorientiert
@@ -168,8 +165,8 @@ Gruppen, Ringe, \ldots
 von Joachim Neubüser (Gründer von GAP):
  \begin{small}
 \begin{quote}
-    \alert{You can read Sylow’s Theorem and its proof [. . . ] and then
-    you can use Sylow’s Theorem for the rest of your life free of
+    \alert{You can read (a) Theorem and its proof [. . . ] and then
+    you can use (this) Theorem for the rest of your life free of
     charge, but for many computer algebra systems license fees
     have to be paid regularly [. . . ]}. You press buttons and you get
     answers in the same way as you get the bright pictures from
@@ -214,7 +211,7 @@ GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
 
 %\begin{frame}{Struktur von Sage}
 %\begin{center}
-%\includegraphics[width=6cm]{figures/components.png}
+%\includegraphics[width=6cm]{figures/figures/components.png}
 %\end{center}
 %\end{frame}
 
@@ -248,664 +245,636 @@ GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
 \section{Streifzug durch Sage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \begin{frame}[fragile]{Sage als Taschenrechner}
-Hier einige Beispiele:
-\begin{sagein}
-3+4*10+12 
-\end{sagein}
-\begin{sage}
-  55 
-\end{sage}
-\begin{sagein}
-sin(pi) 
-\end{sagein}
-\begin{sage}
-  0
-\end{sage}
-\begin{sagein}
-float(pi)
-\end{sagein}
-\begin{sage}
-  3.14159265358979
-\end{sage}
-\begin{sagein}
-float(sqrt(2))
-\end{sagein}
-\begin{sage}
-  1.41421356237310
-\end{sage}
+Hier einige Beispiele: 
+\begin{sagecommandline}
+sage: 3+4*10+12 
+\end{sagecommandline}
+\begin{sagecommandline}
+sage: sin(pi) 
+\end{sagecommandline}
+\begin{sagecommandline}
+sage: float(pi)
+\end{sagecommandline}
+\begin{sagecommandline}
+sage: float(sqrt(2))
+\end{sagecommandline}
 \end{frame}
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Eine Kurvendiskussion}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Kurvendiskussion I}
-Betrachte die durch die reelle Zahl $a$ parametrisierte Funktionenschar:
-\[ 
-f: x \quad \mapsto \quad \frac{2x^2-20x+42}{x-1}+a, \quad
-a \in \mathbb{R} 
-\]
-
-\begin{itemize}
-\item Eingabe der Funktion
-\begin{sagein}
-var('a')
-f(x) = (2*x^2-20*x +42)/(x-1)+a
-\end{sagein}
-\begin{sage}
-  x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Kurvendiskussion II}
-\begin{itemize}
-\item Pol ?
-\begin{sagein}
-f.limit(x=1, dir='minus')
-\end{sagein}
-\begin{sage}
-  x |--> -Infinity
-\end{sage}
-\begin{sagein}
-f.limit(x=1, dir='plus') 
-\end{sagein}
-\begin{sage}
-  x |--> +Infinity
-\end{sage}
-%\item Umformen
-%\begin{sagein}
-%f.full_simplify()
-%\end{sagein}
-%\begin{sage}
-%x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
-%\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Kurvendiskussion III}
-\begin{itemize}
-\item Nullstellen
-\begin{sagein}
-solve(f==0,x)
-\end{sagein}
-\begin{scriptsize}
-\begin{sage}
-[x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
-\end{sage}
-\end{scriptsize}
-\item Berechnen der Ableitung
-\begin{sagein}
-f.differentiate(x)
-\end{sagein}
-\begin{sage} 
-x |--> 4*(x - 5)/(x - 1) - 2*(x^2 - 10*x + 21)/(x - 1)^2
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Kurvendiskussion IV}
-\begin{itemize}
-\item Extremwerte
-\begin{sagein}
-maxi = solve(f.differentiate(x)==0,x); maxi
-\end{sagein}
-\begin{sage}
-[x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
-\end{sage}
-\item Lokale Minima und Maxima
-\begin{sagein}
-float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
-\end{sagein}
-\begin{sage}
--1.1547005383792501
-\end{sage}
-\begin{sagein}
-float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
-\end{sagein}
-\begin{sage}
-1.1547005383792515
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Kurvendiskussion V}
-\begin{itemize}
-\item Verhalten von $f$ für große $x$
-\begin{sagein}
-f.limit(x=oo); f.limit(x=-oo)
-\end{sagein}
-\begin{sage}
-x |--> +Infinity
-x |--> -Infinity
-\end{sage}
-\item Definiere $f_{0}$, $f_{1}$, $f_{2}$
-\begin{sagein}
- f0 = f(x, a=0)
- f1 = f(x, a=-20)
- f2 = f(x, a=20);f0,f1,f2
-\end{sagein}
-\begin{scriptsize}
-\begin{sage}
-(2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
-\end{sage}
-\end{scriptsize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Plot}
-\begin{sagein}
-p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
-p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
-p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
-\end{sagein}
-\begin{center}
-\includegraphics[height=4.5cm]{figures/graphen}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Zusammenfassung}
-\begin{itemize}
- \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
-\item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
-\item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
-%\item Symbolisches Rechnen 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Eine Kurvendiskussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% -> sage.math.uni-goettingen.de
+%\begin{frame}[fragile]{Kurvendiskussion I}
+%Betrachte die durch die reelle Zahl $a$ parametrisierte Funktionenschar:
+%\[ 
+%f: x \quad \mapsto \quad \frac{2x^2-20x+42}{x-1}+a, \quad
+%a \in \mathbb{R} 
+%\]
+%
 %\begin{itemize}
-\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
-%\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
-\item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
-%\end{itemize} 
+%\item Eingabe der Funktion
+%\begin{sagecommandline}
+%sage: a=var('a')
+%sage: f(x) = (2*x^2-20*x +42)/(x-1)+a
+%\end{sagecommandline}
+%\begin{sageout}
+%  x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
+%\end{sageout}
 %\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Kurvendiskussion II}
 %\begin{itemize}
-\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
-\item Berechnen numerischer Approximationen:
-  {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
-\item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Symbolisches Rechnen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Symbolisches Rechnen I}
-\begin{itemize}
-\item Integrieren von $\int_0^\infty x^4 e^{-x} dx$
-\begin{sagein}
-integrate(x^4*exp(-x),x,0,oo)
-\end{sagein}
-\begin{sage}
-  24
-\end{sage}
-\item Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$
-\begin{sagein}
-f(x) = (1+sin(x))/(1+cos(x))
-g = f.integrate(x)
-\end{sagein}
-\begin{sage}
-x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
-\end{sage}
-\item Vereinfachen
-\begin{sagein}
-g.full_simplify()
-\end{sagein}
+%\item Pol ?
+%\begin{sagecommandline}
+%sage: f.limit(x=1, dir='minus')
+%\end{sagecommandline}
+%\begin{sagecommandline}
+%sage: f.limit(x=1, dir='plus') 
+%\end{sagecommandline}
+%%\item Umformen
+%%\begin{sagecommandline}
+%%f.full_simplify()
+%%\end{sagecommandline}
+%%\begin{sageout}
+%%x |--> ((a - 20)*x + 2*x^2 - a + 42)/(x - 1)
+%%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Kurvendiskussion III}
+%\begin{itemize}
+%\item Nullstellen
+%\begin{sagecommandline}
+%sage: solve(f==0,x)
+%\end{sagecommandline}
 %\begin{scriptsize}
-\begin{sage}
-x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
-\end{sage}
 %\end{scriptsize}
-\end{itemize}
-\end{frame}
+%\item Berechnen der Ableitung
+%\begin{sagecommandline}
+%sage: f.differentiate(x)
+%\end{sagecommandline}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Kurvendiskussion IV}
+%\begin{itemize}
+%\item Extremwerte
+%\begin{sagecommandline}
+%sage: maxi = solve(f.differentiate(x)==0,x); maxi 
+%\end{sagecommandline}
+%\begin{sageout}
+%[x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
+%\end{sageout}
+%\item Lokale Minima und Maxima
+%\begin{sagecommandline}
+%sage: float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
+%\end{sagecommandline}
+%\begin{sagecommandline}
+%sage: float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
+%\end{sagecommandline}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Kurvendiskussion V}
+%\begin{itemize}
+%\item Verhalten von $f$ für große $x$
+%\begin{sagecommandline}
+%sage: f.limit(x=oo); f.limit(x=-oo)
+%\end{sagecommandline}
+%\begin{sageout}
+%x |--> +Infinity
+%x |--> -Infinity
+%\end{sageout}
+%\item Definiere $f_{0}$, $f_{1}$, $f_{2}$
+%\begin{sagecommandline}
+%sage: f0 = f(x, a=0)
+%sage: f1 = f(x, a=-20)
+%sage: f2 = f(x, a=20);f0,f1,f2
+%\end{sagecommandline}
+%\begin{scriptsize}
+%\begin{sageout}
+%(2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
+%\end{sageout}
+%\end{scriptsize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Plot}
+%\begin{sagecommandline}
+%p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
+%p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
+%p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
+%\end{sagecommandline}
+%\begin{center}
+%\includegraphics[height=4.5cm]{figures/graphen}
+%\end{center}
+%\end{frame}
 
-\begin{frame}[fragile]{Symbolisches Rechnen II}
-\begin{itemize}
-\item Faktorisieren und Ausmultiplizieren 
-\begin{sagein}
-expand((x-1)*(x-2)*(x-3)*(x-4))
-\end{sagein}
-\begin{sage}
-x^4 - 10*x^3 + 35*x^2 - 50*x + 24
-\end{sage}
-\begin{sagein}
-factor(_)
-\end{sagein}
-\begin{sage}
-(x - 4)*(x - 3)*(x - 2)*(x - 1)
-\end{sage}
-\item Sortieren eines Ausdrucks bezüglich einer Unbekannten
-\begin{sagein}
-var('b,a')
-g = x^2+2*x+b*x^2+sin(x)+a*x
-g.collect(x)
-\end{sagein}
-\begin{sage}
-(b + 1)*x^2 + (a + 2)*x + sin(x)
-\end{sage}
-\end{itemize}
-\end{frame}
+%\begin{frame}[fragile]{Zusammenfassung}
+%\begin{itemize}
+% \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
+%\item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
+%\item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
+%%\item Symbolisches Rechnen 
+%%\begin{itemize}
+%\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
+%%\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
+%\item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
+%%\end{itemize} 
+%%\end{itemize}
+%%\begin{itemize}
+%\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
+%\item Berechnen numerischer Approximationen:
+%  {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
+%\item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}[fragile]{Symbolisches Rechnen III}
-\begin{itemize}
-\item Partialbruchzerlegung
-\begin{sagein}
-g = x^ 2/( x^ 2- 1)
-g.partial_fraction()
-\end{sagein}
-\begin{sage}
-1/2/(x - 1) - 1/2/(x + 1) + 1
-\end{sage}
-\item Vereinfachen von Ausdrücken ($\frac{e^x -1}{e^{(1/2)x}+1}$)
-\begin{sagein}
-g = (exp(x)-1)/(exp(x/2)+1)
-g.simplify_radical()
-\end{sagein}
-\begin{sage}
- e^(1/2*x) - 1
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zusammenfassung}
-\begin{itemize}
-\item symbolisch Integrieren: {\color{blue} \verb~integrate(f,x)~}
- \item numerisch Integrieren: {\color{blue} \verb~integrate(f,x,a,b)~}
-\item faktorisieren: {\color{blue} \verb~expand(f)~}
-\item sortieren: {\color{blue} \verb~f.collect(x)~}
-\item partialbruchzerlegung: {\color{blue} \verb~f.partial_fraction()~}
-\item vollständiges Vereinfachen: {\color{blue} \verb~f.full_simplify()~}
-\item Vereinfachen mit radicals: {\color{blue} \verb~f.radical_simplify()~}
-\end{itemize}
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Symbolisches Rechnen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}[fragile]{Symbolisches Rechnen I}
+%\begin{itemize}
+%\item Integrieren von $\int_0^\infty x^4 e^{-x} dx$
+%\begin{sagecommandline}
+%integrate(x^4*exp(-x),x,0,oo)
+%\end{sagecommandline}
+%\begin{sageout}
+%  24
+%\end{sageout}
+%\item Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$
+%\begin{sagecommandline}
+%f(x) = (1+sin(x))/(1+cos(x))
+%g = f.integrate(x)
+%\end{sagecommandline}
+%\begin{sageout}
+%x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
+%\end{sageout}
+%\item Vereinfachen
+%\begin{sagecommandline}
+%g.full_simplify()
+%\end{sagecommandline}
+%%\begin{scriptsize}
+%\begin{sageout}
+%x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
+%\end{sageout}
+%%\end{scriptsize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Symbolisches Rechnen II}
+%\begin{itemize}
+%\item Faktorisieren und Ausmultiplizieren 
+%\begin{sagecommandline}
+%expand((x-1)*(x-2)*(x-3)*(x-4))
+%\end{sagecommandline}
+%\begin{sageout}
+%x^4 - 10*x^3 + 35*x^2 - 50*x + 24
+%\end{sageout}
+%\begin{sagecommandline}
+%factor(_)
+%\end{sagecommandline}
+%\begin{sageout}
+%(x - 4)*(x - 3)*(x - 2)*(x - 1)
+%\end{sageout}
+%\item Sortieren eines Ausdrucks bezüglich einer Unbekannten
+%\begin{sagecommandline}
+%var('b,a')
+%g = x^2+2*x+b*x^2+sin(x)+a*x
+%g.collect(x)
+%\end{sagecommandline}
+%\begin{sageout}
+%(b + 1)*x^2 + (a + 2)*x + sin(x)
+%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Symbolisches Rechnen III}
+%\begin{itemize}
+%\item Partialbruchzerlegung
+%\begin{sagecommandline}
+%g = x^ 2/( x^ 2- 1)
+%g.partial_fraction()
+%\end{sagecommandline}
+%\begin{sageout}
+%1/2/(x - 1) - 1/2/(x + 1) + 1
+%\end{sageout}
+%\item Vereinfachen von Ausdrücken ($\frac{e^x -1}{e^{(1/2)x}+1}$)
+%\begin{sagecommandline}
+%g = (exp(x)-1)/(exp(x/2)+1)
+%g.simplify_radical()
+%\end{sagecommandline}
+%\begin{sageout}
+% e^(1/2*x) - 1
+%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Zusammenfassung}
+%\begin{itemize}
+%\item symbolisch Integrieren: {\color{blue} \verb~integrate(f,x)~}
+% \item numerisch Integrieren: {\color{blue} \verb~integrate(f,x,a,b)~}
+%\item faktorisieren: {\color{blue} \verb~expand(f)~}
+%\item sortieren: {\color{blue} \verb~f.collect(x)~}
+%\item partialbruchzerlegung: {\color{blue} \verb~f.partial_fraction()~}
+%\item vollständiges Vereinfachen: {\color{blue} \verb~f.full_simplify()~}
+%\item Vereinfachen mit radicals: {\color{blue} \verb~f.radical_simplify()~}
+%\end{itemize}
+%\end{frame}
 
 % \begin{frame}[fragile]{MuPAD unterscheidet 
 % strikt zwischen Funktionen und Ausdrücken I}
 % 
 % Beispiele:
 % 
-% \begin{sagein}
+% \begin{sagecommandline}
 % f:= x -> sin(x)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %  x -> sin(x)
-% \end{sage}
-% \begin{sagein}
+% \end{sageout}
+% \begin{sagecommandline}
 % g:=sin(x)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %   sin(x)
-% \end{sage}
-% \begin{sagein}
+% \end{sageout}
+% \begin{sagecommandline}
 % f(1),g(1)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %  sin(1), sin(x)(1)
-% \end{sage}
+% \end{sageout}
 % \end{frame}
 
 % \begin{frame}[fragile]{MuPAD unterscheidet 
 % strikt zwischen Funktionen und Ausdrücken II}
-% \begin{sagein}
+% \begin{sagecommandline}
 % int(f,x)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %   Error: Illegal integrand [int]
-% \end{sage}
-% \begin{sagein}
+% \end{sageout}
+% \begin{sagecommandline}
 % int(f(x),x)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %   -cos(x)
-% \end{sage}
-% \begin{sagein}
+% \end{sageout}
+% \begin{sagecommandline}
 % f(x)-g
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %   0
-% \end{sage}
-% \begin{sagein}
+% \end{sageout}
+% \begin{sagecommandline}
 % h:=fp::unapply(g)
-% \end{sagein}
-% \begin{sage}
+% \end{sagecommandline}
+% \begin{sageout}
 %   x -> sin(x)
-% \end{sage}
+% \end{sageout}
 % \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Etwas AGLA}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}{Analytische Geometrie und Lineare Algebra}
-
-Berechnen des Schnittpunkts der Ebene 
-\[ E: \vec{x}= 
-\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
-\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
-\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right), \quad l,m
-\in \mathbb{R}
-\]
-mit der Geraden 
-\[
-g: \vec{x}=
-\left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
-\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right), \quad k \in \mathbb{R}
-\]
-\end{frame}
-
-\begin{frame}[fragile]{Grafische Darstellung}
-\begin{sagein}
-var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
-p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
-var('k'); g1 = 3+4*k; g2 = -k; g3 = 1+2*k
-p += parametric_plot3d( (g1,g2,g3), (k, -3, 3),thickness='3' ) 
-p.show()
-\end{sagein}
-\end{frame}
-
-\begin{frame}{Grafische Darstellung}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/ebene2}
-\end{center}
-\end{frame}
-
-\begin{frame}{Analytische Lösung}
-Gleichsetzen ergibt: 
-\[ 
-\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
-\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
-\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right) = \left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
-\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right)
-\] oder {
-\[ 
-\underbrace{\left(   
-\begin{array} {ccc} 
-1 & -3 & -4\\
--1 & 1 & 1 \\
--1 & 4 & -2  
-\end{array} \right)}_{\displaystyle =:A} 
-\underbrace{\left ( \begin{array}{c}  l \\ m \\ k \end{array}
-  \right)}_{\displaystyle =:L} = \underbrace{\left ( \begin{array}{c}  1 \\ -1 \\ 2
-  \end{array} \right)}_{\displaystyle =:b}
-\] }
-oder $A L=b$.
-\end{frame}
-
-\begin{frame}[fragile]{Definieren und Lösen des LGS}
-\begin{itemize}
-\item Definieren der Matrix $A$
-\begin{sagein}
-A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
-\end{sagein}
-\begin{sage}
-[ 1 -3 -4]
-[-1  1  1]
-[-1  4 -2]
-\end{sage}
-\item Definieren des Vektors $b$
-\begin{sagein}
-b = vector([1,-1,2])
-\end{sagein}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\begin{itemize}
-\item Lösen von  $A \ L=b$
-\begin{sagein}
-A.solve_right(b)
-\end{sagein}
-oder 
-\begin{sagein}
-A\b
-\end{sagein}
-ergibt
-\begin{sage}
-(6/5, 3/5, -2/5)
-\end{sage}
-\item Einsetzen in die Geradengleichung
-\begin{sagein}
-x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
-\end{sagein}
-\begin{sage}
-[7/5 2/5 1/5]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\begin{itemize}
-\item Matrizenoperationen
-\begin{sagein}
-B = matrix([[1,0,0],[0,1,1],[1,1,1]])
-A*B; A-B; A+B
-\end{sagein}
-\begin{scriptsize}
-\begin{sage}
-[-3 -7 -7]  [ 0 -3 -4] [ 2 -3 -4]
-[ 0  2  2]  [-1  0  0] [-1  2  2]
-[-3  2  2]  [-2  3 -3] [ 0  5 -1]
-\end{sage}
-\end{scriptsize}
-\item Berechnen der Inversen (mit Probe)
-\begin{sagein}
-A^(-1), A*A^(-1)
-\end{sagein}
-\begin{scriptsize}
-\begin{sage}
-[  -2/5 -22/15   1/15]
-[  -1/5   -2/5    1/5]
-[  -1/5  -1/15  -2/15]
-
-[1 0 0]
-[0 1 0]
-[0 0 1]
-\end{sage}
-\end{scriptsize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zusammenfassung}
-\begin{itemize}
-\item Matrix eingeben: {\color{blue} \verb~matrix([ [z1s1,z1s2],[z2s1,z2s2] ])~}
- \item Vektor eingeben: {\color{blue} \verb~vector([a,b,c])~}
-\item LGS lösen: {\color{blue} \verb~A\b~}
-\item Matrixoperationen: {\color{blue} \verb~A+B,A-B,A*B~}
-\item Matrix invertieren: {\color{blue} \verb~A^(-1); A.inverse()~}
-\item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
-\end{itemize}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Etwas Programmieren}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Funktionen}
-\begin{itemize}
- \item eine einzeilige Funktion kann man wie folgt definieren:
-\begin{sagein}
-def <name>(<Argumente>) : return <Rueckgabe>
-\end{sagein}
-\item Beispiel: 
-\begin{sagein}
-def fd(ex) : return diff(ex)
-fd(x^2)
-\end{sagein}
-\begin{sage}
- 2*x
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Listen und Tuple}
- \begin{itemize}
-\item Eine \alert{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
-\begin{sagein}
-liste = [21,22,24,23]
-liste.sort(); liste 
-\end{sagein}
-\begin{sage}
- [21, 22, 23, 24]
-\end{sage}
-\item Ein \alert{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
-\begin{sagein}
-tuple = (liste[0], liste[2])
-tuple, tuple[0]
-\end{sagein}
-\begin{sage}
-((21, 24), 21) 
-\end{sage}
-\item Liste von ganzen Zahlen von \isage{a} bis \isage{b}
-\begin{sagein}
-[a..b] ; range(a,b+1)
-\end{sagein}
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Einfache Schleifen und Abfragen}
-
-Einzeilige Schleifen
-\begin{sagein}
-[<expr(var)> for <var> in <range|liste>] 
-[<expr(var)> for <var> in <range|liste> if <expr>] 
-\end{sagein}
- \begin{itemize}
-\item Beispiel:
-\begin{sagein}
-[m^2 for m in [1..5] ]
-\end{sagein}
-\begin{sage}
-[1, 4, 9, 16, 25]
-\end{sage}
-\item Beispiel mit Abfrage:
-\begin{sagein}
-[m^2 for m in [1..5] if m%2==0]
-\end{sagein}
-\begin{sage}
- [4, 16]
-\end{sage}
-
- \end{itemize}
-
- 
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Etwas Zahlentheorie}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Etwas Zahlentheorie I}
-Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
-Zahl $F_n$, die keine Primzahl ist!
-\begin{sagein}
-def F(n): return 2^(2^n)+1
-[[F(m),is_prime(F(m))] for m in range(1,6)]
-\end{sagein}
-\begin{sage}
-[[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
-\end{sage}
-\begin{sagein}
-divisors(int(F(5)))
-\end{sagein}
-\begin{sage}
-[1, 641, 6700417, 4294967297]
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Etwas Zahlentheorie II}
-\begin{itemize}
-\item Eine Liste der ersten  Primzahlen bis $100$
-\begin{sagein}
-menge = range(1,101)
-[m for m in menge if is_prime(m)]
-oder filter(is_prime,menge)
-\end{sagein}
-\begin{sage}
-[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-\end{sage}
-\item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
-Mersenne Primzahlen im Bereich $\leq 200$.
-\begin{sagein}
-menge = range(1,201)
-primes = [m for m in menge if is_prime(m)]
-[2^m-1 for m in primes if is_prime(2^m-1)]
-\end{sagein}
-\begin{sage}
-[3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
-618970019642690137449562111, 162259276829213363391578010288127,
-170141183460469231731687303715884105727]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Etwas Zahlentheorie III}
-Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
-$1,2,3,\dots $ Teiler haben.
-\begin{sagein}
-menge = range(1,1001)
-liste = [number_of_divisors(int(m)) for m in menge]
-[(i,len([m for m in liste if m==i]))for i in range(1,51)]
-\end{sagein}
-
-\begin{sage}
-[(1, 1), (2, 168), (3, 11), (4, 292), (5, 3), (6, 110), (7, 2), (8,
-180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
-...
-\end{sage}
-Teiler der Zahl $840$:
-\begin{sagein}
-divisors(840)
-\end{sagein}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%
-\section{Nützliches und Hilfe}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Etwas AGLA}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%\begin{frame}{Analytische Geometrie und Lineare Algebra}
+%
+%Berechnen des Schnittpunkts der Ebene 
+%\[ E: \vec{x}= 
+%\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
+%\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
+%\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right), \quad l,m
+%\in \mathbb{R}
+%\]
+%mit der Geraden 
+%\[
+%g: \vec{x}=
+%\left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
+%\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right), \quad k \in \mathbb{R}
+%\]
+%\end{frame}
+%
+%\begin{frame}[fragile]{Grafische Darstellung}
+%\begin{sagecommandline}
+%var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
+%p = parametric_plot3d([E1,E2,E3],(l,-2,2),(m,-2,2), color='green', opacity=0.8)
+%var('k'); g1 = 3+4*k; g2 = -k; g3 = 1+2*k
+%p += parametric_plot3d( (g1,g2,g3), (k, -3, 3),thickness='3' ) 
+%p.show()
+%\end{sagecommandline}
+%\end{frame}
+%
+%\begin{frame}{Grafische Darstellung}
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{figures/ebene2}
+%\end{center}
+%\end{frame}
+%
+%\begin{frame}{Analytische Lösung}
+%Gleichsetzen ergibt: 
+%\[ 
+%\left ( \begin{array}{c}  2 \\ 1 \\ -1 \end{array} \right) +l 
+%\left ( \begin{array}{c}  1 \\ -1 \\ -1 \end{array} \right) +m
+%\left ( \begin{array}{c}  -3 \\ 1 \\ 4 \end{array} \right) = \left ( \begin{array}{c}  3 \\ 0 \\ 1 \end{array} \right) +k
+%\left ( \begin{array}{c}  4 \\ -1 \\ 2 \end{array} \right)
+%\] oder {
+%\[ 
+%\underbrace{\left(   
+%\begin{array} {ccc} 
+%1 & -3 & -4\\
+%-1 & 1 & 1 \\
+%-1 & 4 & -2  
+%\end{array} \right)}_{\displaystyle =:A} 
+%\underbrace{\left ( \begin{array}{c}  l \\ m \\ k \end{array}
+%  \right)}_{\displaystyle =:L} = \underbrace{\left ( \begin{array}{c}  1 \\ -1 \\ 2
+%  \end{array} \right)}_{\displaystyle =:b}
+%\] }
+%oder $A L=b$.
+%\end{frame}
+%
+%\begin{frame}[fragile]{Definieren und Lösen des LGS}
+%\begin{itemize}
+%\item Definieren der Matrix $A$
+%\begin{sagecommandline}
+%A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
+%\end{sagecommandline}
+%\begin{sageout}
+%[ 1 -3 -4]
+%[-1  1  1]
+%[-1  4 -2]
+%\end{sageout}
+%\item Definieren des Vektors $b$
+%\begin{sagecommandline}
+%b = vector([1,-1,2])
+%\end{sagecommandline}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\begin{itemize}
+%\item Lösen von  $A \ L=b$
+%\begin{sagecommandline}
+%A.solve_right(b)
+%\end{sagecommandline}
+%oder 
+%\begin{sagecommandline}
+%A\b
+%\end{sagecommandline}
+%ergibt
+%\begin{sageout}
+%(6/5, 3/5, -2/5)
+%\end{sageout}
+%\item Einsetzen in die Geradengleichung
+%\begin{sagecommandline}
+%x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
+%\end{sagecommandline}
+%\begin{sageout}
+%[7/5 2/5 1/5]
+%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\begin{itemize}
+%\item Matrizenoperationen
+%\begin{sagecommandline}
+%B = matrix([[1,0,0],[0,1,1],[1,1,1]])
+%A*B; A-B; A+B
+%\end{sagecommandline}
+%\begin{scriptsize}
+%\begin{sageout}
+%[-3 -7 -7]  [ 0 -3 -4] [ 2 -3 -4]
+%[ 0  2  2]  [-1  0  0] [-1  2  2]
+%[-3  2  2]  [-2  3 -3] [ 0  5 -1]
+%\end{sageout}
+%\end{scriptsize}
+%\item Berechnen der Inversen (mit Probe)
+%\begin{sagecommandline}
+%A^(-1), A*A^(-1)
+%\end{sagecommandline}
+%\begin{scriptsize}
+%\begin{sageout}
+%[  -2/5 -22/15   1/15]
+%[  -1/5   -2/5    1/5]
+%[  -1/5  -1/15  -2/15]
+%
+%[1 0 0]
+%[0 1 0]
+%[0 0 1]
+%\end{sageout}
+%\end{scriptsize}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Zusammenfassung}
+%\begin{itemize}
+%\item Matrix eingeben: {\color{blue} \verb~matrix([ [z1s1,z1s2],[z2s1,z2s2] ])~}
+% \item Vektor eingeben: {\color{blue} \verb~vector([a,b,c])~}
+%\item LGS lösen: {\color{blue} \verb~A\b~}
+%\item Matrixoperationen: {\color{blue} \verb~A+B,A-B,A*B~}
+%\item Matrix invertieren: {\color{blue} \verb~A^(-1); A.inverse()~}
+%\item Substitutieren: {\color{blue} \verb~f.subs(k=2)~}
+%\end{itemize}
+%\end{frame}
 
-\begin{frame}[fragile]{Überlebensregeln}
-\begin{itemize}
-\item Mehrere Befehle in einer Zeile durch {\color{blue} \isage{;}} trennen. 
-\item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
-\item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
-\item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
-\end{itemize}
-\end{frame} 
 
-\begin{frame}{Nützliches}
-\begin{itemize}
-\item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
-\item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
-%\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
-%\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
-\item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
-%\item profiler und debugger -> commandline
-\item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
-%\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
-%\item Unter dem Menupunkt \alert{File} kann man 
-\end{itemize}
-\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Etwas Programmieren}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}[fragile]{Funktionen}
+%\begin{itemize}
+% \item eine einzeilige Funktion kann man wie folgt definieren:
+%\begin{sagecommandline}
+%def <name>(<Argumente>) : return <Rueckgabe>
+%\end{sagecommandline}
+%\item Beispiel: 
+%\begin{sagecommandline}
+%def fd(ex) : return diff(ex)
+%fd(x^2)
+%\end{sagecommandline}
+%\begin{sageout}
+% 2*x
+%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Listen und Tuple}
+% \begin{itemize}
+%\item Eine \alert{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
+%\begin{sagecommandline}
+%liste = [21,22,24,23]
+%liste.sort(); liste 
+%\end{sagecommandline}
+%\begin{sageout}
+% [21, 22, 23, 24]
+%\end{sageout}
+%\item Ein \alert{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
+%\begin{sagecommandline}
+%tuple = (liste[0], liste[2])
+%tuple, tuple[0]
+%\end{sagecommandline}
+%\begin{sageout}
+%((21, 24), 21) 
+%\end{sageout}
+%\item Liste von ganzen Zahlen von \isage{a} bis \isage{b}
+%\begin{sagecommandline}
+%[a..b] ; range(a,b+1)
+%\end{sagecommandline}
+% \end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]{Einfache Schleifen und Abfragen}
+%
+%Einzeilige Schleifen
+%\begin{sagecommandline}
+%[<expr(var)> for <var> in <range|liste>] 
+%[<expr(var)> for <var> in <range|liste> if <expr>] 
+%\end{sagecommandline}
+% \begin{itemize}
+%\item Beispiel:
+%\begin{sagecommandline}
+%[m^2 for m in [1..5] ]
+%\end{sagecommandline}
+%\begin{sageout}
+%[1, 4, 9, 16, 25]
+%\end{sageout}
+%\item Beispiel mit Abfrage:
+%\begin{sagecommandline}
+%[m^2 for m in [1..5] if m%2==0]
+%\end{sagecommandline}
+%\begin{sageout}
+% [4, 16]
+%\end{sageout}
+%
+% \end{itemize}
+%
+% 
+%\end{frame}
 
-\begin{frame}[fragile]{Hilfefunktionen in Sage}
 
-\begin{itemize}
-\item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
-Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
-\item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
-\item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
-\item online Dokumentation: 
-\begin{itemize}
-\item Sage: \url{http://www.sagemath.org/doc/index.html}
-\item Python: \url{http://docs.python.org/}
-\end{itemize}
-\end{itemize}
-\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Etwas Zahlentheorie}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}[fragile]{Etwas Zahlentheorie I}
+%Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
+%Zahl $F_n$, die keine Primzahl ist!
+%\begin{sagecommandline}
+%def F(n): return 2^(2^n)+1
+%[[F(m),is_prime(F(m))] for m in range(1,6)]
+%\end{sagecommandline}
+%\begin{sageout}
+%[[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
+%\end{sageout}
+%\begin{sagecommandline}
+%divisors(int(F(5)))
+%\end{sagecommandline}
+%\begin{sageout}
+%[1, 641, 6700417, 4294967297]
+%\end{sageout}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Etwas Zahlentheorie II}
+%\begin{itemize}
+%\item Eine Liste der ersten  Primzahlen bis $100$
+%\begin{sagecommandline}
+%menge = range(1,101)
+%[m for m in menge if is_prime(m)]
+%oder filter(is_prime,menge)
+%\end{sagecommandline}
+%\begin{sageout}
+%[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+%\end{sageout}
+%\item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
+%Mersenne Primzahlen im Bereich $\leq 200$.
+%\begin{sagecommandline}
+%menge = range(1,201)
+%primes = [m for m in menge if is_prime(m)]
+%[2^m-1 for m in primes if is_prime(2^m-1)]
+%\end{sagecommandline}
+%\begin{sageout}
+%[3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
+%618970019642690137449562111, 162259276829213363391578010288127,
+%170141183460469231731687303715884105727]
+%\end{sageout}
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Etwas Zahlentheorie III}
+%Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
+%$1,2,3,\dots $ Teiler haben.
+%\begin{sagecommandline}
+%menge = range(1,1001)
+%liste = [number_of_divisors(int(m)) for m in menge]
+%[(i,len([m for m in liste if m==i]))for i in range(1,51)]
+%\end{sagecommandline}
+%
+%\begin{sageout}
+%[(1, 1), (2, 168), (3, 11), (4, 292), (5, 3), (6, 110), (7, 2), (8,
+%180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
+%...
+%\end{sageout}
+%Teiler der Zahl $840$:
+%\begin{sagecommandline}
+%divisors(840)
+%\end{sagecommandline}
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Nützliches und Hilfe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{frame}[fragile]{Überlebensregeln}
+%\begin{itemize}
+%\item Mehrere Befehle in einer Zeile durch {\color{blue} \isage{;}} trennen. 
+%\item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
+%  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
+%\item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
+%\item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
+%\end{itemize}
+%\end{frame} 
+%
+%\begin{frame}{Nützliches}
+%\begin{itemize}
+%\item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
+%\item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
+%%\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
+%%\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
+%\item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
+%%\item profiler und debugger -> commandline
+%\item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
+%%\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
+%%\item Unter dem Menupunkt \alert{File} kann man 
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Hilfefunktionen in Sage}
+%
+%\begin{itemize}
+%\item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
+%Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
+%\item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
+%\item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
+%\item online Dokumentation: 
+%\begin{itemize}
+%\item Sage: \url{http://www.sagemath.org/doc/index.html}
+%\item Python: \url{http://docs.python.org/}
+%\end{itemize}
+%\end{itemize}
+%\end{frame}
 \end{document}

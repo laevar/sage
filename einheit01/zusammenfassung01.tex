@@ -1,0 +1,157 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Einf\"uhrung in Sage}\\
+    {\large Zusammenfassung Einheit 01}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+\textbf{Kurvendiskussion}
+\begin{itemize}
+ \item Deklarieren von Variablen mit 
+\begin{sagein}
+var('<varname>')
+\end{sagein}
+\item Definieren von Variablen 
+    \begin{sagein}
+<varname>=<value>        
+    \end{sagein}
+\item Definieren von (mathematischen) Funktionen 
+    \begin{sagein}
+<functionname>(<arguments>) = <expr>
+    \end{sagein}
+%\item Symbolisches Rechnen 
+%\begin{itemize}
+\item Grenzwertbestimmung:
+    \begin{sagein}
+<expr>.limit(x=<a>, dir='<plus|minus>')
+    \end{sagein}
+\item Bilden von Ableitungen
+\begin{sagein}
+<expr>.differentiate(<variable>)
+\end{sagein}
+
+%\end{itemize}  
+%\end{itemize}
+%\begin{itemize}
+\item Lösen von Gleichungen
+\begin{sagein}
+solve( f(x)==0, x)
+\end{sagein}
+
+\item Berechnen numerischer Approximationen
+\begin{sagein}
+float(<expr>)
+\end{sagein}
+\item Plotten einer Funktion 
+\begin{sagein}
+plot(<function>,(<lowerbound>,<upperbound>))
+\end{sagein}
+\end{itemize}
+
+\textbf{Symboliches Rechnen}
+\begin{itemize}
+\item symbolisch Integrieren
+\begin{sagein}
+integrate(<expr>,<variable>)
+\end{sagein}
+ \item numerisch Integrieren 
+\begin{sagein}
+integrate(<expr>,<variable>,<lower>,<upper>)
+\end{sagein}
+\item faktorisieren 
+\begin{sagein}
+expand(<expr>)
+\end{sagein}
+\item sortieren 
+\begin{sagein}
+<expr>.collect(x)
+\end{sagein}
+\item partialbruchzerlegung 
+\begin{sagein}
+<expr>.partial_fraction()
+\end{sagein}
+\item (vollständiges) Vereinfachen 
+\begin{sagein}
+<expr>.full_simplify()
+\end{sagein}
+\item Vereinfachen mit radicals 
+\begin{sagein}
+<expr>.radical_simplify()
+\end{sagein}
+\end{itemize}
+
+\textbf{AGLA}
+\begin{itemize}
+\item Matrix eingeben 
+\begin{sagein}
+matrix([ [z1s1,z1s2],[z2s1,z2s2] ])
+\end{sagein}
+ \item Vektor eingebe 
+\begin{sagein}
+vector([a,b,c])
+\end{sagein}
+\item LGS lösen 
+\begin{sagein}
+A\b
+\end{sagein}
+\item Matrixoperationen 
+\begin{sagein}
+A+B, A-B, A*B
+\end{sagein}
+\item Matrix invertieren 
+\begin{sagein}
+A^(-1); A.inverse()
+\end{sagein}
+\item Substitutieren 
+\begin{sagein}
+<expr>.subs(<variable>=<subs>)
+\end{sagein}
+\end{itemize}
+
+\textbf{Etwas Programmieren}
+\begin{itemize}
+    \item Listen (geordnet)
+        \begin{sagein}
+[a,b,c,..]
+        \end{sagein}
+    \item Tuple
+        \begin{sagein}
+(a,b,c,..)
+        \end{sagein}
+    \item (Nicht-mathematische) Funktionen
+\begin{sagein}
+def <function>(<argument>): <befehle> return <rueckgabewert>
+\end{sagein}
+    \item Einzeilige Schleifen
+\begin{sagein}
+[<expr(var)> for <var> in <range|liste> if <expr>]
+\end{sagein}
+\end{itemize}
+
+\textbf{Zahlentheorie}
+\begin{itemize}
+    \item Teiler 
+\begin{sagein}
+divisors(<number>)
+\end{sagein}
+\item Anzahl Teiler
+\begin{sagein}
+number_of_divisors(<number>)
+\end{sagein}
+    \item Primzahl-Überprüfung 
+\begin{sagein} 
+is_prime(<number>)
+\end{sagein}
+\end{itemize}
+
+
+
+\end{document}
+
