@@ -1,0 +1,91 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Mengen und Zahlen}\\
+    {\large Zusammenfassung Einheit 03}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+
+\textbf{Mengen}
+
+\begin{itemize}
+ \item Deklaration Set
+\begin{sagein}
+Set([<element1>,<element2>,...])
+\end{sagein}
+ \item Zugriff via Indizes(auch ``Intervalle'' möglich)
+\begin{sagein}
+M2[1]; M2[1:4]
+\end{sagein}
+ \item Operationen auf Mengen
+\begin{itemize}
+ \item cardinality()
+ \item intersection()
+ \item union()
+ \item difference()
+ \item in
+ \end{itemize}
+ \item filter()
+\begin{sagein}
+M1 = filter(<f>,<M>)
+\end{sagein}
+\end{itemize}
+
+
+\textbf{Zahlen}
+
+\begin{itemize}
+ \item Natürliche Zahlen
+\begin{itemize}
+ \item Peano Axiome
+ \item Äquivalenzrelation, Äquivalenzklasse
+\end{itemize}
+ \item Ganze Zahlen
+\begin{itemize} 
+\item Division mit Rest
+\end{itemize}
+\item Rationale Zahlen
+\item Gruppe + Körper
+\begin{itemize}
+\item Gruppen und Körper in Sage
+\begin{itemize}
+\item ZZ, QQ, RR, CC
+\end{itemize}
+\item Ordnung
+\item Schranken
+\end{itemize}
+\item Reele Zahlen (in Sage)
+\begin{itemize}
+\item n(digits=<digits>)
+\item Rundungsfehler
+\item Auslöschung
+\item Numerik
+\item nützliche Funktionen
+\begin{itemize}
+\item abs
+\item ceil
+\item floor
+\item round
+\item sqrt
+\item digits
+\end{itemize}
+\item Gleitkommazahlen
+\begin{itemize}
+\item b-adische Darstellung
+\item str(<Basis>)
+\end{itemize}
+\end{itemize}
+\item Komplexe Zahlen (in Sage)
+ \end{itemize}
+
+
+
+\end{document}
+
