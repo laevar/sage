@@ -6,19 +6,84 @@
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
-    \textbf{\LARGE Einf\"uhrung in Sage}\\
+    \textbf{\LARGE Grundlagen}\\
     {\large Zusammenfassung Einheit 02}
 \end{center}
-\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+\textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
 
 \medskip
+\textbf{Begriffe}
 
 \begin{itemize}
-    \item
-\begin{sagein} 
+ \item Bezeichner
+ \item Zuweisung
+ \item Auswertung
+ \item Operatoren
+ \item Ausdrücke
+\end{itemize}
+
+\textbf{Dictionaries}
+
+\begin{itemize}
+ \item Deklarieren eines Dictionaries:
+\begin{sagein}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+ \item Zugriff auf Index:
+\begin{sagein}
+d[<Index>]
 \end{sagein}
 \end{itemize}
 
+\textbf{Funktionen und Abfragen}
+
+\begin{itemize}
+ \item anonyme Funktion deklarieren:
+\begin{sagein}
+lambda <parameter_list>: <expression> 
+\end{sagein}
+ \item Objektmethode
+ \item Code-Blöcke:
+\begin{sagein}
+for <indexvar> in <expr>/<list>:
+    <Code-Block>
+else:
+    <Code-Block>
+\end{sagein}
+ \item Abfragen:
+\begin{sagein}
+if <boolean expr>:
+    <Code-Block>
+\end{sagein}
+
+\end{itemize}
+
+\textbf{Ausdrücke}
+
+\begin{itemize}
+ \item Kombination von Ausdrücken
+ \item Vereinfachung von Ausdrücken
+  \begin{itemize}
+   \item collect()
+   \item combine()
+   \item expand()
+   \item factor()
+   \item partial\_fraction()
+   \item simplify()
+  \end{itemize}
+\end{itemize}
+
+\textbf{Gleichungen, Vergleiche, Logik}
+
+\begin{itemize}
+ \item Gleichnugssysteme lösen mit solve():
+\begin{sagein}
+ solve(<gleichungen>,<variablen>,<optionen>)
+\end{sagein}
+ \item bool(<Ausdruck>)
+ \item true, false
+ \item and, or, not
+\end{itemize}
 
 
 \end{document}
