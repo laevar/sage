@@ -118,59 +118,59 @@ f(x) = (2*x^2-20*x +42)/(x-1)+a;f
 \end{sagein}
 \textbf{Bemerkung:} Die Multiplikationszeichen dürfen NICHT weggelassen werden.\newline
 Wir erhalten als Antwort\newline
-\begin{sage}
+\begin{sageout}
   x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
-\end{sage}
+\end{sageout}
 \textbf{Bemerkung:} Es findet keine Ausgabe statt, wenn wir in unserer Eingabe ;f weglassen.\newline
 Wir möchten nun herausfinden, ob unsere Funktion Polstellen besitzt; dazu benutzen wir den limit Befehl:\newline
 \begin{sagein}
 f.limit(x=1, dir='minus')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x |--> -Infinity
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f.limit(x=1, dir='plus') 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x |--> +Infinity
-\end{sage}
+\end{sageout}
 Wir sehen nun, dass unsere Funktion f an der Stelle x=1 einen Pol hat. Wir verfahren weiter mit der Suche nach Nullstellen 
 und wenden dafür den solve Befehl an:\newline
 \begin{sagein}
 solve(f==0,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
-\end{sage}
+\end{sageout}
 Wir haben nun 2 Nullstellen gefunden und stellen uns sogleich die Frage nach der Ableitunge von f, die wir über den 
 differentiate Befehl erhalten:\newline
 \begin{sagein}
 f.differentiate(x)
 \end{sagein}
-\begin{sage} 
+\begin{sageout} 
 x |--> 4*(x - 5)/(x - 1) - 2*(x^2 - 10*x + 21)/(x - 1)^2
-\end{sage}
+\end{sageout}
 Da unsere Funktion offenbar eine Ableitung besitzt, interessiert uns, ob und, wenn ja, wo f Extrema besitzt sowie die Antwort 
 auf die Frage, ob es sich um Minima oder MAxima handelt:\newline
 \begin{sagein}
 maxi = solve(f.differentiate(x)==0,x); maxi
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -1.1547005383792501
-\end{sage}
+\end{sageout}
 \begin{sagein}
 float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1.1547005383792515
-\end{sage}
+\end{sageout}
 Wir erkennen die Existenz zweier Extremstellen, von denen eines ein Maximum, das andere ein Minimum ist.\newline
 \textbf{Bemerkung:} Als ``Speicherplatz'' der Nullstellen von f' besitzt maxi zwei Werte- diese werden mit maxi[0].rhs() 
 bzw maxi[1].rhs() angesprochen.\newline
@@ -183,10 +183,10 @@ Zuletzt betrachten wir noch das Verhalten am Rande:\newline
 \begin{sagein}
 f.limit(x=oo); f.limit(x=-oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> +Infinity
 x |--> -Infinity
-\end{sage}
+\end{sageout}
 \textbf{Bemerkung:} Wir erkennen, in Sage stellt sich $\infty$ dar via oo, $-\infty$ entspricht offenbar -oo.\newline
 Viel interessanter jedoch ist die Tatsache, dass Sage mit jenen ``Werten'' direkt arbeiten zu können scheint.\newline
 Zuletzt wollen wir uns mit der grafischen Darstellung einiger Repräsentanten von f auseinandersetzen. Hierzu wollen wir zuerst 3 
@@ -196,9 +196,9 @@ jener Repräsentanten deklarieren und diese anschließend mit dem plot Befehl vi
  f1 = f(x, a=-20)
  f2 = f(x, a=20);f0,f1,f2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
 p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
@@ -220,52 +220,52 @@ Wir möchten gerne das Integral $\int_0^\infty x^4 e^{-x} dx$ numerisch berechne
 integrate(x^4*exp(-x),x,0,oo)
 \end{sagein}
 und erhalten als Ausgabe 
-\begin{sage}
+\begin{sageout}
   24
-\end{sage}.
+\end{sageout}.
 Wollen wir eine Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$ berechnen, so genügt uns die Deklaration zweier Funktion f
 und g wie folgt:
 \begin{sagein}
 f(x) = (1+sin(x))/(1+cos(x))
 g = f.integrate(x);g
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
-\end{sage}
+\end{sageout}
 Die Funktion g sieht eher unschön aus, wir möchten sie daher vereinfachen und benutzen dafür
 \begin{sagein}
 g.full_simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
-\end{sage}
+\end{sageout}
 Die Verschönerung hat hier nur bedingt geklappt, aber der Versuch war es wert und oft erhält man wirklich ein schöneres 
 Ergebnis als zuvor. Ein wenig effektiver funktioniert es mit ($\frac{e^x -1}{e^{(1/2)x}+1}$)
 \begin{sagein}
 g = (exp(x)-1)/(exp(x/2)+1)
 g.simplify_radical()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  e^(1/2*x) - 1
-\end{sage}
+\end{sageout}
 Es gibt noch andere Möglichkeiten, Termen ein schöneres Aussehen zu geben. Betrachten wir den Term
-\begin{sage}
+\begin{sageout}
 x^4 - 10*x^3 + 35*x^2 - 50*x + 24
-\end{sage}
+\end{sageout}
 und fragen uns: Können wir ihn Faktorisieren? Eine Antwort darauf liefert 
 \begin{sagein}
 factor(x^4 - 10*x^3 + 35*x^2 - 50*x + 24)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x - 4)*(x - 3)*(x - 2)*(x - 1)
-\end{sage}
+\end{sageout}
 Als kleine Probe können wir die Faktorisierung rückgängig machen:
 \begin{sagein}
 expand(_)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x^4 - 10*x^3 + 35*x^2 - 50*x + 24
-\end{sage}
+\end{sageout}
 \textbf{Bemerkung:} Wir erinnern uns, dass \_ eine Referenz auf die letzte Ausgabe ist.\newline
 Wir können Terme Terme auch bzgl. einer Variablen sortieren lassen:\newline
 \begin{sagein}
@@ -273,17 +273,17 @@ var('b,a')
 g = x^2+2*x+b*x^2+sin(x)+a*x
 g.collect(x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (b + 1)*x^2 + (a + 2)*x + sin(x)
-\end{sage}
+\end{sageout}
 Zuletzt steht uns hier noch die Partialbruchzerlegung zur Verfügung:\newline
 \begin{sagein}
 g = x^ 2/( x^ 2- 1)
 g.partial_fraction()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1/2/(x - 1) - 1/2/(x + 1) + 1
-\end{sage}
+\end{sageout}
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -329,11 +329,11 @@ Wir wollen nun lineare Gleichungssysteme (wie dieses) wie gewöhnlich durch MAtr
 \begin{sagein}
 A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [ 1 -3 -4]
 [-1  1  1]
 [-1  4 -2]
-\end{sage}
+\end{sageout}
 \item Definieren des Vektors $b$
 \begin{sagein}
 b = vector([1,-1,2])
@@ -347,16 +347,16 @@ oder
 A\b
 \end{sagein}
 ergibt
-\begin{sage}
+\begin{sageout}
 (6/5, 3/5, -2/5)
-\end{sage}
+\end{sageout}
 \item Einsetzen in die Geradengleichung
 \begin{sagein}
 x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [7/5 2/5 1/5]
-\end{sage}
+\end{sageout}
 \end{itemize}
 So haben wir nun recht aufwandsarm den Schnittpunkt der beiden Objekte E und g erhalten. Wir geben noch einen kurzen Ausblick auf weitere 
 Matrizenoperationen:\newline
@@ -364,16 +364,16 @@ Matrizenoperationen:\newline
 B = matrix([[1,0,0],[0,1,1],[1,1,1]])
 A*B; A-B; A+B
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [-3 -7 -7]  [ 0 -3 -4] [ 2 -3 -4]
 [ 0  2  2]  [-1  0  0] [-1  2  2]
 [-3  2  2]  [-2  3 -3] [ 0  5 -1]
-\end{sage}
+\end{sageout}
 Berechnen der Inversen (mit Probe)
 \begin{sagein}
 A^(-1), A*A^(-1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [  -2/5 -22/15   1/15]
 [  -1/5   -2/5    1/5]
 [  -1/5  -1/15  -2/15]
@@ -381,7 +381,7 @@ A^(-1), A*A^(-1)
 [1 0 0]
 [0 1 0]
 [0 0 1]
-\end{sage}
+\end{sageout}
 Wir wollen uns das Ganze mal visualisieren, hierzu bietet uns Sage den 3D plot:
 \begin{sagein}
 var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
@@ -410,26 +410,26 @@ p.show()
   def fd(ex) : return diff(ex)
   fd(x^2)
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   2*x
-  \end{sage}
+  \end{sageout}
  \item Wir können Objekte in Listen und Tupeln zusammenfassen:\newline
   Eine \emph{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet
   \begin{sagein}
   liste = [21,22,24,23]
   liste.sort(); liste 
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [21, 22, 23, 24]
-  \end{sage}
+  \end{sageout}
   Ein \emph{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
   \begin{sagein}
   tuple = (liste[0], liste[2])
   tuple, tuple[0]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   ((21, 24), 21) 
-  \end{sage}
+  \end{sageout}
   Liste von ganzen Zahlen von \isage{a} bis \isage{b}
   \begin{sagein}
   [a..b] ; range(a,b+1)
@@ -443,16 +443,16 @@ p.show()
   \begin{sagein}
   [m^2 for m in [1..5] ]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [1, 4, 9, 16, 25]
-  \end{sage}
+  \end{sageout}
   Beispiel mit Abfrage:
   \begin{sagein}
   [m^2 for m in [1..5] if m%2==0]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [4, 16]
-  \end{sage}
+  \end{sageout}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -466,36 +466,36 @@ schreiben wir uns ein kleines Programm:
 def F(n): return 2^(2^n)+1
 [[F(m),is_prime(F(m))] for m in range(1,6)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
-\end{sage}
+\end{sageout}
 Uns interssieren nun noch die Teiler von $F_5$
 \begin{sagein}
 divisors(int(F(5)))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [1, 641, 6700417, 4294967297]
-\end{sage}
+\end{sageout}
 2. Wir möchten eine Liste der Primzahlen bis 100:
 \begin{sagein}
 menge = range(1,101)
 [m for m in menge if is_prime(m)]
 oder filter(is_prime,menge)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-\end{sage}
+\end{sageout}
 3.Die Mersenne Primzahlen sind gegeben durch $2^p-1$, dabei $p$ Primzahl. Wir wollen die Mersenne Primzahlen im Bereich $\leq200$ bestimmen:
 \begin{sagein}
 menge = range(1,201)
 primes = [m for m in menge if is_prime(m)]
 [2^m-1 for m in primes if is_prime(2^m-1)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
 618970019642690137449562111, 162259276829213363391578010288127,
 170141183460469231731687303715884105727]
-\end{sage}
+\end{sageout}
 4.Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
 \begin{sagein}
 menge = range(1,1001)
@@ -503,11 +503,11 @@ liste = [number_of_divisors(int(m)) for m in menge]
 [(i,len([m for m in liste if m==i]))for i in range(1,51)]
 \end{sagein}
 
-\begin{sage}
+\begin{sageout}
 [(1, 1), (2, 168), (3, 11), (4, 292), (5, 3), (6, 110), (7, 2), (8,
 180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
 ...
-\end{sage}
+\end{sageout}
 Bis hierher haben wir einen kleinen Rundumblick genommen, einige sehr elementare Grundlagen kennengelernt und sind schon recht vertraut mit 
 Sage. Vieles von dem, was wir bisher gesehen haben, wird uns wieder begegnen, wenn wir uns weiter mit Sage befassen.
 \end{document}
