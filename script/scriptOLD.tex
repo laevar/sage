@@ -123,59 +123,59 @@ f(x) = (2*x^2-20*x +42)/(x-1)+a;f
 \end{sagein}
 \begin{bem} Die Multiplikationszeichen dürfen NICHT weggelassen werden.\end{bem}
 Wir erhalten als Antwort
-\begin{sage}
+\begin{sageout}
   x |--> a + 2*(x^2 - 10*x + 21)/(x - 1)
-\end{sage}
+\end{sageout}
 \begin{bem} Es findet keine Ausgabe statt, wenn wir in unserer Eingabe ;f weglassen.\end{bem}
 Wir möchten nun herausfinden, ob unsere Funktion $f$ Polstellen besitzt; dazu benutzen wir den {\color{blue} \verb limit() }-Befehl:
 \begin{sagein}
 f.limit(x=1, dir='minus')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x |--> -Infinity
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f.limit(x=1, dir='plus') 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x |--> +Infinity
-\end{sage}
+\end{sageout}
 Wir sehen nun, dass unsere Funktion $f$ an der Stelle x=1 einen Pol hat. Wir verfahren weiter mit der Suche nach Nullstellen 
 und wenden dafür den {\color{blue} \verb solve() }-Befehl an:
 \begin{sagein}
 solve(f==0,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -1/4*a - 1/4*sqrt(a^2 - 32*a + 64) + 5, x == -1/4*a + 1/4*sqrt(a^2 - 32*a + 64) + 5]
-\end{sage}
+\end{sageout}
 Wir haben nun 2 Nullstellen gefunden und stellen uns sogleich die Frage nach der Ableitung von $f$, die wir über den 
 {\color{blue} \verb differentiate() }-Befehl erhalten:
 \begin{sagein}
 f.differentiate(x)
 \end{sagein}
-\begin{sage} 
+\begin{sageout} 
 x |--> 4*(x - 5)/(x - 1) - 2*(x^2 - 10*x + 21)/(x - 1)^2
-\end{sage}
+\end{sageout}
 Da unsere Funktion $f$ offenbar eine Ableitung besitzt, interessiert uns, ob und, wenn ja, wo $f$ Extrema besitzt sowie die Antwort 
 auf die Frage, ob es sich um Minima oder Maxima handelt:
 \begin{sagein}
 maxi = solve(f.differentiate(x)==0,x); maxi
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -2*sqrt(3) + 1, x == 2*sqrt(3) + 1]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 float( ((f.diff(x)).diff(x))(maxi[0].rhs()) )
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -1.1547005383792501
-\end{sage}
+\end{sageout}
 \begin{sagein}
 float( ((f.diff(x)).diff(x))(maxi[1].rhs()) )
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1.1547005383792515
-\end{sage}
+\end{sageout}
 Wir erkennen die Existenz zweier Extremstellen, von denen eine ein Maximum, die andere ein Minimum ist.
 \begin{bem} Als ``Speicherplatz'' der Nullstellen von $f'$ besitzt maxi zwei Werte-- diese werden mit maxi[0].rhs() 
 bzw maxi[1].rhs() angesprochen.\end{bem}
@@ -188,10 +188,10 @@ Zuletzt betrachten wir noch das Verhalten am Rande:
 \begin{sagein}
 f.limit(x=oo); f.limit(x=-oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> +Infinity
 x |--> -Infinity
-\end{sage}
+\end{sageout}
 \begin{bem} Wir erkennen, in Sage stellt sich $\infty$ dar via oo, $-\infty$ entspricht -oo.
 Viel interessanter jedoch ist die Tatsache, dass Sage mit jenen ``Werten'' direkt arbeiten zu können scheint.\end{bem}
 Zuletzt wollen wir uns mit der grafischen Darstellung einiger Repräsentanten von f auseinandersetzen. Hierzu wollen wir zuerst 3 
@@ -201,9 +201,9 @@ jener Repräsentanten deklarieren und diese anschließend mit dem {\color{blue} 
  f1 = f(x, a=-20)
  f2 = f(x, a=20);f0,f1,f2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (2*(x^2 - 10*x + 21)/(x - 1), 2*(x^2 - 10*x + 21)/(x - 1) - 20, 2*(x^2 - 10*x + 21)/(x - 1) + 20)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
 p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
@@ -224,52 +224,52 @@ Wir möchten gerne das Integral $\int_0^\infty x^4 e^{-x} dx$ numerisch berechne
 integrate(x^4*exp(-x),x,0,oo)
 \end{sagein}
 und erhalten als Ausgabe 
-\begin{sage}
+\begin{sageout}
   24
-\end{sage}
+\end{sageout}
 Wollen wir eine Stammfunktion von $\frac{1+\sin (x)}{1+\cos(x)}$ berechnen, so genügt uns die Deklaration zweier Funktion f
 und g wie folgt:
 \begin{sagein}
 f(x) = (1+sin(x))/(1+cos(x))
 g = f.integrate(x);g
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> sin(x)/(cos(x) + 1) - log(cos(x) + 1)
-\end{sage}
+\end{sageout}
 Die Funktion g sieht eher unschön aus, wir möchten sie daher vereinfachen und benutzen dafür
 \begin{sagein}
 g.full_simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> -((cos(x) + 1)*log(cos(x) + 1) - sin(x))/(cos(x) + 1)
-\end{sage}
+\end{sageout}
 Die Verschönerung hat hier nur bedingt geklappt, aber der Versuch war es wert und oft erhält man wirklich ein schöneres 
 Ergebnis als zuvor. Ein wenig effektiver funktioniert es mit ($\frac{e^x -1}{e^{(1/2)x}+1}$)
 \begin{sagein}
 g = (exp(x)-1)/(exp(x/2)+1)
 g.simplify_radical()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  e^(1/2*x) - 1
-\end{sage}
+\end{sageout}
 Es gibt noch andere Möglichkeiten, Termen ein schöneres Aussehen zu geben. Betrachten wir den Term
-\begin{sage}
+\begin{sageout}
 x^4 - 10*x^3 + 35*x^2 - 50*x + 24
-\end{sage}
+\end{sageout}
 und fragen uns: Können wir ihn Faktorisieren? Eine Antwort darauf liefert 
 \begin{sagein}
 factor(x^4 - 10*x^3 + 35*x^2 - 50*x + 24)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x - 4)*(x - 3)*(x - 2)*(x - 1)
-\end{sage}
+\end{sageout}
 Als kleine Probe können wir die Faktorisierung rückgängig machen:
 \begin{sagein}
 expand(_)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x^4 - 10*x^3 + 35*x^2 - 50*x + 24
-\end{sage}
+\end{sageout}
 \begin{bem} Wir erinnern uns, dass {\color{blue} \verb _ } eine Referenz auf die letzte Ausgabe ist.\end{bem}
 Wir können Terme auch bzgl. einer Variablen sortieren:
 \begin{sagein}
@@ -277,17 +277,17 @@ var('b,a')
 g = x^2+2*x+b*x^2+sin(x)+a*x
 g.collect(x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (b + 1)*x^2 + (a + 2)*x + sin(x)
-\end{sage}
+\end{sageout}
 Zuletzt steht uns hier noch die Partialbruchzerlegung zur Verfügung:
 \begin{sagein}
 g = x^ 2/( x^ 2- 1)
 g.partial_fraction()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1/2/(x - 1) - 1/2/(x + 1) + 1
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Analytische Geometrie und Lineare Algebra}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -329,18 +329,18 @@ Wir wollen nun lineare Gleichungssysteme (wie dieses) wie gewöhnlich durch Matr
 \begin{sagein}
 A = matrix([[1,-3,-4],[-1,1,1],[-1,4,-2]]); A
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [ 1 -3 -4]
 [-1  1  1]
 [-1  4 -2]
-\end{sage}
+\end{sageout}
  Definieren des Vektors $b$
 \begin{sagein}
 b = vector([1,-1,2]);b
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (1,-1,2) 
-\end{sage}
+\end{sageout}
  Lösen von  $A \ L=b$
 \begin{sagein}
 A.solve_right(b)
@@ -350,40 +350,40 @@ oder
 A\b
 \end{sagein}
 ergibt
-\begin{sage}
+\begin{sageout}
 (6/5, 3/5, -2/5)
-\end{sage}
+\end{sageout}
  Einsetzen in die Geradengleichung
 \begin{sagein}
 x_s = matrix([g1,g2,g3]).subs(k=L[2]); x_s
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [7/5 2/5 1/5]
-\end{sage}
+\end{sageout}
 So haben wir nun recht aufwandsarm den Schnittpunkt der beiden Objekte E und g erhalten. Wir geben noch einen kurzen Ausblick auf weitere 
 Matrizenoperationen:
 \begin{sagein}
 B = matrix([[1,0,0],[0,1,1],[1,1,1]])
 A*B, A-B, A+B
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (
 [-3 -7 -7]   [ 0 -3 -4]  [ 2 -3 -4]
 [ 0  2  2]   [-1  0  0]  [-1  2  2]
 [-3  2  2],  [-2  3 -3], [ 0  5 -1]
 )
-\end{sage}
+\end{sageout}
 Berechnen der Inversen (mit Probe)
 \begin{sagein}
 $A^{(-1)}$, A*A^(-1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (
 [  -2/5 -22/15   1/15]  [1 0 0]
 [  -1/5   -2/5    1/5]  [0 1 0]
 [  -1/5  -1/15  -2/15], [0 0 1]
 )
-\end{sage}
+\end{sageout}
 Wir wollen uns das Ganze mal visualisieren, hierzu bietet uns Sage den 3D plot:
 \begin{sagein}
 var('l,m'); E1 = 2+l-3*m; E2 = 1-l+m; E3 =-1-l+4*m
@@ -411,9 +411,9 @@ und sich der Einfachheit halber der sage-internen Funktion {\color{blue} \verb d
   def fd(ex) : return diff(ex)
   fd(x^2)
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   2*x
-  \end{sage}
+  \end{sageout}
 Sage kennt Listen und Tupel, in denen wir Objekte ablegen, zusammenfassen und noch einiges mehr können. Eine {\color{blue} \verb Liste } 
 ist in Sage (und Python) durch \isage{[..,..]}, ein {\color{blue} \verb Tuple } durch \isage{(..,..)} gekennzeichnet. Wir haben einige 
 interessante Operationen speziell für Listen:
@@ -421,9 +421,9 @@ interessante Operationen speziell für Listen:
   liste = [21,22,24,23]
   liste.sort(); liste 
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [21, 22, 23, 24]
-  \end{sage}
+  \end{sageout}
 \begin{bem}
  Wir erinnern uns, dass durch die {\color{blue} \verb~<TAB>~}-Taste eine Autovervollständigung verfügbar ist. Wenden wir sie auf die Eingabe
 {\color{blue} \verb list. } an, erhalten wir eine Auflistung möglicher Operationen auf Listen.
@@ -433,9 +433,9 @@ Fast analog haben wir Tuple:
   tuple = (liste[0], liste[2])
   tuple, tuple[0]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   ((21, 24), 21) 
-  \end{sage}
+  \end{sageout}
 \begin{bem}
  {\color{blue} \verb liste[i] } liefert das $i$-te Element der Liste liste.
 \end{bem}
@@ -448,9 +448,9 @@ Wir erstellen uns probehalber eine Liste der Zahlen von 1 bis 10:
 \begin{sagein}
  a = [1..10];a
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-\end{sage}
+\end{sageout}
 Schauen wir uns nun etwas wirklich nützliches an: Schleifen! Wir unterscheiden grundlegend bedingte und unbedingte Schleifen:
   \begin{sagein}
   [<expr(var)> for <var> in <range|liste>] 
@@ -460,16 +460,16 @@ Als kleine Aufwärmübung wollen wir uns die Quadrate der Zahlen von 1 bis 5 ber
   \begin{sagein}
   [m^2 for m in [1..5] ]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [1, 4, 9, 16, 25]
-  \end{sage}
+  \end{sageout}
 Und anschließend die Quadrate der Zahlen von 1 bis 5, die durch 2 teilbar sind:
   \begin{sagein}
   [m^2 for m in [1..5] if m%2==0]
   \end{sagein}
-  \begin{sage}
+  \begin{sageout}
   [4, 16]
-  \end{sage}
+  \end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Zahlentheorie}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -480,24 +480,24 @@ schreiben wir uns ein kleines Programm:
 def F(n): return 2^(2^n)+1
 [[F(m),is_prime(F(m))] for m in range(1,6)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
-\end{sage}
+\end{sageout}
 Da $F_5$ keine Primzahl ist, interssieren uns nun noch die Teiler von $F_5$
 \begin{sagein}
 divisors(int(F(5)))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [1, 641, 6700417, 4294967297]
-\end{sage}
+\end{sageout}
  Wir möchten eine Liste der Primzahlen bis 100 und lösen unser Problem durch eine Schleife:
 \begin{sagein}
 menge = range(1,101)
 [m for m in menge if is_prime(m)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-\end{sage}
+\end{sageout}
  Sage hätte alternativ die {\color{blue} \verb filter() } Funktion geliefert, die allgemeiner nach (fast) beliebigen Merkmalen filtert:
 \begin{sagein}
  filter(is_prime,menge)
@@ -508,11 +508,11 @@ menge = range(1,201)
 primes = [m for m in menge if is_prime(m)]
 [2^m-1 for m in primes if is_prime(2^m-1)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
 618970019642690137449562111, 162259276829213363391578010288127,
 170141183460469231731687303715884105727]
-\end{sage}
+\end{sageout}
 Wir widmen uns einer etwas komplizierteren Aufgabe: Wir wollen für die Zahlen $\leq1000$ bestimmen, wieviele Zahlen 1,2,3,... Teiler haben:
 \begin{sagein}
 menge = range(1,1001)
@@ -520,11 +520,11 @@ liste = [number_of_divisors(int(m)) for m in menge]
 [(i,len([m for m in liste if m==i]))for i in range(1,51)]
 \end{sagein}
 
-\begin{sage}
+\begin{sageout}
 [(1, 1), (2, 168), (3, 11), (4, 292), (5, 3), (6, 110), (7, 2), (8,
 180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
 ...
-\end{sage}
+\end{sageout}
 Bis hierher haben wir einen kleinen Rundumblick genommen, einige sehr elementare Grundlagen kennengelernt und sind schon recht vertraut mit 
 Sage. Vieles von dem, was wir bisher gesehen haben, wird uns wieder begegnen, wenn wir uns weiter mit Sage befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -579,27 +579,27 @@ An einigen Beispielen sollten wir uns verdeutlichen, wie Sage diese Datentypen v
     \begin{sagein}
     type(5)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
       <type 'sage.rings.integer.Integer'>
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     f = x^2-3*x-18; type(f)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
       <type 'sage.symbolic.expression.Expression'>
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     type(x)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
       <type 'sage.symbolic.expression.Expression'>
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     f+f
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
     2*x^2 - 6*x - 36
-    \end{sage}
+    \end{sageout}
 \subsubsection{Zuweisung}
 Nachdem diese Dinge klar sind, betrachten wir Zuweisungen in Sage. Durch {\color{blue} \isage{bez=wert}} wird dem Bezeichner bez der Wert wert
 zugewisen. Analoges gilt für Funktionen: Durch {\color{blue} \isage{func(arg)=expr(arg)}} wird die Funktion func mit dem Argument arg definiert, 
@@ -614,21 +614,21 @@ gleich nocheinmal ein wenig ausprobieren:
       \begin{sagein}
       N=6; N
       \end{sagein}
-      \begin{sage}
+      \begin{sageout}
 	6
-      \end{sage}
+      \end{sageout}
       \begin{sagein}
       x,y = var('x,y'); f = x+2*x*x-y; g(x) = x^2; f,g
       \end{sagein}
-      \begin{sage}
+      \begin{sageout}
       (2*x^2 + x - y, x |--> x^2)
-      \end{sage}
+      \end{sageout}
       \begin{sagein}
       x=pi;y = cos(x); x,y
       \end{sagein}
-      \begin{sage}
+      \begin{sageout}
 	(pi, -1)
-      \end{sage}
+      \end{sageout}
 \subsubsection{Auswertung}
 Da wir die Zuweisung nun blind beherrschen und auf diese Weise Werte an Bezeichner binden können, stellt sich die Frage nach der Auswertung solcher 
 Bezeichner. Dazu halten wir in einer kurzen Definiton folgendes fest:
@@ -640,27 +640,27 @@ Das wollen wir uns doch genauer ansehen:
     \begin{sagein}
     var('a') ; f(x) = x*x-3*x-a
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
     x |--> x^2 - a - 3*x
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     f(a=2)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
     x^2 - 3*x - 2 
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     f(1)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
       -a - 2
-    \end{sage}
+    \end{sageout}
     \begin{sagein}
     f(1,a=2)
     \end{sagein}
-    \begin{sage}
+    \begin{sageout}
       -4
-    \end{sage}
+    \end{sageout}
 \subsubsection{Operatoren}
 Nun, da wir mit Zuweisung und Auswertung vertraut sind, wollen wir uns den Operatoren und Ausdrücken zuwenden. Auch hierzu eine Begriffsabgrenzung:
 \begin{df}
@@ -699,15 +699,15 @@ Hierzu wollen wir zwei einfache Beispiele betrachten:
 _=var('z,y');f = x*z+3*x+sqrt(y)
 f.operands(),(f.operands())[1],((f.operands())[1]).nops()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ([x*z, 3*x, sqrt(y)], 3*x, 2)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f.has(z), f.has(6) 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (True, False)
-\end{sage}
+\end{sageout}
 Da wir sie eben schon kurz angesprochen haben, wollen wir hier einen kurzen, dennoch sehr aufschlussreichen Einschub über die automatische 
 Vereinfachung unterbringen:
 Sage vereinfacht oft selbstständig. Ist dies einmal nicht der Fall, so haben wir vermöge der Funktion {\color{blue} \verb simplify() } die 
@@ -715,27 +715,27 @@ Möglichkeit, eine Vereinfachung anzufordern. Das sieht dann im Prinzip so aus:
 \begin{sagein}
 sin(15*pi), exp(0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (0, 1)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 2*Infinity-5
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 +Infinity
-\end{sage}
+\end{sageout}
 \begin{sagein}
 y = (-4*x+x^2+4)*(7*x+x^2+12); y
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x^2 - 4*x + 4)*(x^2 + 7*x + 12)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 y.full_simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x^4 + 3*x^3 - 12*x^2 - 20*x + 48
-\end{sage}
+\end{sageout}
 Da wir uns nun mit der Zuweisung, der Auswertung, Operatoren und Ausdrücken beschäftigt haben, sollte uns interessieren, wie wir unsere 
 Ergebnisse, die ja in Sageobjekten stecken, in z.B. einem Text (also in gewisser Art und Weise ``schön'') ausgeben können. Dazu bietet 
 Sage die Textausgabe, in der Variablen direkt angesprochen werden können:
@@ -751,15 +751,15 @@ Wir wollen uns diese Funktionalität an konkreten Beispielen verdeutlichen:
 x = 4;y = 6
 print "x ist %i und y ist %i" % (x,y)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x ist 4 und y ist 6
-\end{sage}
+\end{sageout}
 \begin{sagein}
 x = [var("x%i" % k) for k in [1..3]]; x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x1, x2, x3]
-\end{sage}
+\end{sageout}
 Dieses soll uns als Grundlagenwissen über die Sage-interna genügen. Wir werden nun zu anwendungsorientierteren Problemen zurückkehren.
 Im nächsten Abschnitt wollen wir uns mit Funktionen, Code-Blöcken, Bedingungen sowie praktischen Anwendungen befassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -778,9 +778,9 @@ Hier ein kleines Beispiel:
 var('x,y,z');d = {x:21,y:5,z:42==y}
 d[x],d[z],d[z].rhs()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (21, 42 == y, y)
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir erinnern uns an die Auswirkung der {\color{blue} \verb rhs() }-Funktion. Zugleich erahnen wir, dass Dictionaries, richtig verstanden,
  sehr mächtige Werkzeuge werden können. 
@@ -800,17 +800,17 @@ Wir wollen uns eine anonyme Funktion konstruieren, die die Quadrate der Elemente
 menge = [1,2,3,4,5]
 map(lambda x: x^2,menge)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [1, 4, 9, 16, 25]
-\end{sage}
+\end{sageout}
 \begin{bem}
  Die Funktion {\color{blue} \verb map() } wendet im Allgemeinen eine Funktion $f$ auf eine gegebene Liste an:
 \begin{sagein}
  map(sin, [1, 2, 3])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [sin(1), sin(2), sin(3)]
-\end{sage}
+\end{sageout}
 \end{bem}
 \subsubsection{Objektmethoden}
 Ein weiterer Funktionentyp sind die sog. Objekt-Methoden, die, wie der Name schon sagt, Funktionen von Objekten sind (wir haben schon einige solcher 
@@ -820,12 +820,12 @@ Aufruf erhellt:
 \begin{sagein}
 f = 1 +x -x^2; f.operands(); operands(f)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [-x^2, x, 1]
 Traceback (click to the left of this block for traceback)
 ...
 NameError: name 'operands' is not defined
-\end{sage}
+\end{sageout}
 \begin{bem}
  f.operands() erzeugt die erste Zeile.
  Den ErrorCode verursacht operands(f).
@@ -852,9 +852,9 @@ for k in [1..4]:
     y = y^k
 x,y
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (12, 16777216)
-\end{sage}
+\end{sageout}
 \subsubsection{Abfragen}
 Nun, da wir entdeckt haben, dass Sage ganze Code-Blöcke verarbeiten kann, ist es nur konsequent, nach bedingter Ausführung von Code-Blöcken zu verlangen. 
 Sage bietet uns hier das {\color{blue} \verb if/else }-Konstrukt:
@@ -871,9 +871,9 @@ else:
     z = y
 z
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 3
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ausdrücke}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -888,24 +888,24 @@ Nun wollen wir, aus einer Laune heraus, f mit g Potenzieren:
 \begin{sagein}
 f^g
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x^2 + 3*x + y)^(x - y)
-\end{sage}
+\end{sageout}
 Offensichtlich kein Problem, auch wenn das Ergebnis recht ``unübersichtlich'' ist (wir erinnern uns an den {\color{blue} \verb simplify() }-Befehl\ldots).
 Wie dem auch sei, wenn schon das Potenzieren funktioniert, so werden die übrigen Rechenarten wohl kaum Probleme machen:
 \begin{sagein}
 f+g, f-g
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x^2 + 4*x, x^2 + 2*x + 2*y)
-\end{sage}
+\end{sageout}
 Multiplikation/ Division
 \begin{sagein}
 f*g, f/g
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ((x - y)*(x^2 + 3*x + y), (x^2 + 3*x + y)/(x - y))
-\end{sage}
+\end{sageout}
 \subsubsection{Vereinfachung von Ausdrücken}
 Da wir nun Ausdrücke beliebig kombinieren können, und also auch die Ergebnisse solcher Kombinationen beliebig ``hässlich'' werden können, wollen 
 wir uns noch einmal mit verschiedenen Möglichkeiten der ``Verschönerung'' beschäftigen. Dazu stellt Sage uns die Funktionen 
@@ -918,15 +918,15 @@ dann so aus:
 f = a*x^2+a*x+x^3+sin(x)+b*x+4*x+x*sin(x)
 f.collect(x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 a*x^2 + x^3 + (a + b + sin(x) + 4)*x + sin(x)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f.collect(x*sin(x))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 a*x^2 + x^3 + a*x + b*x + x*sin(x) + 4*x + sin(x)
-\end{sage} 
+\end{sageout} 
 Wir sehen, dass {\color{blue} \verb collect() } bei richtiger Wahl des Arguments eine deutlich wahrnehmbare Übersicht schafft. Sollten wir 
 einen Ausdruck vorfinden, der möglicherweise durch Potenzgesetze zu vereinfachen ist, so sollten wir uns an folgenden Befehl erinnern:
 \subsubsection{combine()}
@@ -935,43 +935,43 @@ einen Ausdruck vorfinden, der möglicherweise durch Potenzgesetze zu vereinfache
 g = x^(a)*x^(b)
 g.combine()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x^(a + b)
-\end{sage}
+\end{sageout}
 Wir kennen bereits den {\color{blue} \isage{a.expand()}}-Befehl, den wir hier erweitern wollen.
 \subsubsection{expand\_trig()}
 Durch {\color{blue} \isage{a.expand_trig()}} wird nach trigonometrischen Eigenschaften ausmultipliziert.
 \begin{sagein}
 expand((x+2)^4)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x^4 + 8*x^3 + 24*x^2 + 32*x + 16
-\end{sage}
+\end{sageout}
 \begin{sagein}
 (sin(x+y)).expand_trig()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 sin(x)*cos(y) + sin(y)*cos(x)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 a = (16*x-13)^2 == (3*x+5)^2/2
 a.expand()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 256*x^2 - 416*x + 169 == 9/2*x^2 + 15*x + 25/2
-\end{sage}
+\end{sageout}
 \begin{sagein}
 a.expand('left')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 256*x^2 - 416*x + 169 == 1/2*(3*x + 5)^2
-\end{sage}
+\end{sageout}
 \begin{sagein}
 a.expand('right')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (16*x - 13)^2 == 9/2*x^2 + 15*x + 25/2
-\end{sage}
+\end{sageout}
 \subsubsection{factor()}
 Durch {\color{blue} \isage{factor(Ausdruck)}} wird ein Ausdruck Faktorisiert. 
 Sage faktorisiert nur, wenn die resultierenden Koeffizienten rationale 
@@ -979,29 +979,29 @@ Zahlen sind. Bei rationalen Funktionen wird ein gemeinsamer Hauptnenner gesucht.
 \begin{sagein}
 factor(x^2-2), factor(x^2-9/4)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x^2 - 2, 1/4*(2*x - 3)*(2*x + 3))
-\end{sage}
+\end{sageout}
 \begin{sagein}
 factor(2 - 2/(x^2-1))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 2*(x^2 - 2)/((x - 1)*(x + 1))
-\end{sage}
+\end{sageout}
 \subsubsection{f.partial\_fraction()}
 Der {\color{blue} \isage{f.partial_fraction()}}-Befehl liefert eine Partialbruchzerlegung.
 \begin{sagein}
 f = x^2/(x^2-1); f.partial_fraction()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1/2/(x - 1) - 1/2/(x + 1) + 1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f = (x^2+2*x+3)/(x^3+4*x^2+5*x+2); f 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x^2 + 2*x + 3)/(x^3 + 4*x^2 + 5*x + 2)
-\end{sage}
+\end{sageout}
 \subsubsection{simplify()}
 Hier wollen wir den {\color{blue} \isage{f.simplify()}}-Befehl spezifizieren. {\color{blue} \isage{f.simplify_<target>()}}: vereinfacht den Ausdruck $f$ mit der Methode \isage{<target>}. 
 Mögliche targets sind dabei \isage{trig}: trigonometrisch, \isage{rational}: rational, \isage{radical}: log/ln/exp, \isage{factorial}: 
@@ -1009,36 +1009,36 @@ Nutzung der Fakultät, \isage{full}: alle Vereinfachungen. Anwendungen sehen dan
 \begin{sagein}
 (2 - 2/(x^2-1)).simplify_rational()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 2*(x^2 - 2)/(x^2 - 1)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f = x/(x+y)+y/(x+y)-sin(x)^2-cos(x)^2
 f.simplify_rational()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -sin(x)^2 - cos(x)^2 + 1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 g = sqrt(997)-(997^3)^(1/6)
 g.simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 0
-\end{sage}
+\end{sageout}
 \begin{sagein}
 (tan(x)).simplify_trig()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 sin(x)/cos(x)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 a = (2^(1/3)+4^(1/3))^3-6*(2^(1/3) + 4^(1/3))-6
 a.simplify_full() 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 0
-\end{sage} 
+\end{sageout} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gleichungen, Vergleiche, Logik}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1048,16 +1048,16 @@ var('x,y')
 Gleichungen = [x+y == 1, x-y == 1]
 solve(Gleichungen,x,y)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [[x == 1, y == 0]]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Gleichungen1 = [x+y == 1,(x-y)^2 == 1]
 solve(Gleichungen1,x,y)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [[x == 0, y == 1], [x == 1, y == 0]]
-\end{sage}
+\end{sageout}
 Sage liefert uns offenbar ein sehr gut handhabbares Tool zum Lösen auch komplizierterer Gleichungen, wie das nicht-lineare Beispiel zeigt.
 Unsere leichtfertige Benutzung des logischen Operators {\color{blue} \verb == } soll uns hier zum Anlass dienen, Sage einmal genauer auf 
 Logik-Tauglichkeit zu untersuchen.
@@ -1070,45 +1070,45 @@ ist a<>b genau dann wahr, wenn a nicht gleich b ist. Wir betrachten zu Verdeutli
 \begin{sagein}
 bool(4-3==1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 True
-\end{sage}
+\end{sageout}
 \begin{sagein}
 bool(4*x==x); x=0; bool(4*x==x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 False
 True
-\end{sage}
+\end{sageout}
 \begin{sagein}
 bool(x==0); bool(x<>0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 True
 False
-\end{sage}
+\end{sageout}
 \begin{sagein}
 bool(0.5==1/2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 True
-\end{sage}
+\end{sageout}
 \begin{sagein}
 type(0.5); type(1/2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 <type 'sage.rings.real_mpfr.RealLiteral'>
 <type 'sage.rings.rational.Rational'>
-\end{sage}
+\end{sageout}
 Sage scheint recht gut mit Logik arbeiten zu können-- wir bemerken noch folgendes: Sage kennt das logische 'und' {\color{blue} \verb and }, 
 das 'oder' {\color{blue} \verb or } sowie das 'not' {\color{blue} \verb not }. Wiederum der Vollständigkeit halber ein kleines, selbsterklärendes 
 Beispiel und die (hoffentlich) bekannte Logiktabelle:
 \begin{sagein}
 true and false, true or false, not true
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  (False, True, False)
-\end{sage}
+\end{sageout}
 \begin{center}
 \begin{tabular}{|c||c|c|}
 \hline
@@ -1137,52 +1137,52 @@ ein System äquivalenter Gleichungen zurückgeliefert wird. Wir machen uns dies 
 \begin{sagein}
 solve(x^2+x == y/4,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -1/2*sqrt(y + 1) - 1/2, x == 1/2*sqrt(y + 1) - 1/2]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f = (x-1)^5*(x^2+1)
 solve(f == 0, x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == -I, x == I, x == 1]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 solve(f == 0, x, multiplicities=True)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ([x == -I, x == I, x == 1], [1, 1, 5])
-\end{sage}
+\end{sageout}
 \begin{sagein}
 assume(x>0); solve(x^2+x == y/4,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [y == 4*x^2 + 4*x]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 solve([x^2-y^2 == 0],[x,y])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ([x == -y, x == y], [1, 1])
-\end{sage}
+\end{sageout}
 \begin{sagein}
 solve([x^2-y^2 == 0, x+y == 1],x,y)
 \end{sagein}
-\begin{sage}   
+\begin{sageout}   
 [[x == (1/2), y == (1/2)]]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 sol = solve([x^2-y^2 == 0, x+y == 1],x,y, solution_dict=True); sol 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [{y: 1/2, x: 1/2}]
-\end{sage}
+\end{sageout}
 \begin{sagein}
  sol[0][x], sol[0][y]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  (1/2, 1/2)
-\end{sage}
+\end{sageout}
 An dieser Stelle betrachten wir noch rasch das numerische Lösen von Gleichungen, hier lediglich im 1-D Fall des Auffindens von Nullstellen 
 der Funktion $f$ in einem Intervall $[a,b]$:
 \begin{sagein}
@@ -1192,9 +1192,9 @@ Exemplarisch sei die Funktion $f(x)=sin(x)$ zu betrachten
 \begin{sagein}
  (x == sin(x)).find_root(-2,2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 0.0
-\end{sage}
+\end{sageout}
 \begin{bem}
  Der geneigten Leserin wird aufgefallen sein, dass hier tatsächlicherweise nicht die Nullstelle der Funktion $f(x)=sin(x)$ gesucht und gefunden 
 wurde, sondern die Suche nach einem Fixpunkt zurückgeführt wurde auf ein Nullstellenproblem. Eine identische Lösung hätte die Nullstellenbetrachtung 
@@ -1228,22 +1228,22 @@ die Elemente mit den Indizes i bis (j-1). Die leere Menge können wir durch {\co
 \begin{sagein}
 M1 = Set([x, 2,3,pi,sqrt(2)]); M1
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 {pi, 2, 3, sqrt(2), x}
-\end{sage}
+\end{sageout}
 \begin{sagein}
 var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 {1, y, 2, x, {1, y}}
-\end{sage}
+\end{sageout}
 \begin{sagein}
 M2[1]; M2[1:4]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 y
 [y, 2, x]
-\end{sage}
+\end{sageout}
 \subsubsection{Operationen auf Sets}
 Wenn Sage mit Mengen richtig umgehen können soll, so müssen elementare Mengenoperationen vorhanden sein. Im Folgenden beschäftigen wir uns mit 
 solchen Funktionen:
@@ -1253,16 +1253,16 @@ Funktion bereit, welche wir auf unsere Menge $M1$ anwenden wollen:
 \begin{sagein}
 M1.cardinality()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   5
-\end{sage}
+\end{sageout}
 % Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
 %\begin{sagein}
 %op(M2,3), subsop(M2,3=neu)
 %\end{sagein}
-%\begin{sage}
+%\begin{sageout}
 %  {1, y}, {1, 2, neu, x, y}
-%\end{sage}
+%\end{sageout}
 \subsubsection{Vereinigung, Differenz, Schnitt}
 Weiter sind wir es gewohnt, Mengen schneiden und vereinigen zu können, sowie die Differenz zweier Mengen zu bilden. Hierfür bietet uns Sage die Befehle 
 {\color{blue} \verb intersection() }, {\color{blue} \verb union() } und {\color{blue} \verb difference() }. Um uns der Funktionalität gewahr zu werden, betrachten wir folendes 
@@ -1271,22 +1271,22 @@ Minimalbeispiel:
 L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
 L1.union(L2), L1.difference(L2), L1.intersection(L2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
-\end{sage}
+\end{sageout}
 Auf die Frage, ob ein Element in einer Menge enthalten ist, liefert folgendes eine aufschlussreiche Antwort:
 \begin{sagein}
 a in L1, c in L1
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (True, False)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Set([1,y]) in M2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 True
-\end{sage}
+\end{sageout}
 \subsubsection{Auswahl nach Eigenschaften}
 Betrachten wir etwas ausgefallenere Mengenoperationen. Hierzu erinnern wir uns an die {\color{blue} \verb filter() }-Funktion. Wir wollen 
 uns aus einer gegebenen Menge die Primzahlen herausgeben lassen:
@@ -1294,18 +1294,18 @@ uns aus einer gegebenen Menge die Primzahlen herausgeben lassen:
 M = Set(range(1,15))
 filter(is_prime,M)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [2, 3, 5, 7, 11, 13]
-\end{sage}
+\end{sageout}
 Wir wollen die Potenzmenge der Menge $\{1, 2, 3\}$ bestimmen
 \begin{sagein}
 list(powerset([1,2,3]))
 [s for s in Set([1..3]).subsets()]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
-\end{sage}
+\end{sageout}
 \begin{bem}
  Während der erste Befehl eine Liste von Listen erzeugt, erhalten wir im zweiten Fall eine Liste von Mengen. Formal korrekt ist die Potenzmenge 
 eine Menge von Mengen.
@@ -1325,9 +1325,9 @@ def f(x): return bool(mod(x,15)==0)
 M15 = Set(filter(f,M))
 M2.intersection(M15)
 \end{sagein} 
-\begin{sage}
+\begin{sageout}
  {90, 60, 30}
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir haben hier die durch 2 und 15 teilbaren Elemente der Menge $\{1,\ldots,100\}$ bestimmt.
 \end{bem}
@@ -1346,15 +1346,15 @@ A2 = Set(range(9,12))
 \begin{sagein}
 A.intersection(A1) == A1
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   True
-\end{sage}
+\end{sageout}
 \begin{sagein}
 A.intersection(A2) == A2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   False
-\end{sage}
+\end{sageout}
 Nachdem wir nun Mengen unser Eigen nennen dürfen, wird es Zeit, dass wir Zahlsysteme, Gruppen und Körper erschließen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zahlen}
@@ -1425,11 +1425,11 @@ Sage verwendet hier, wie bereits erklärt, den Datentyp Integer:
 \begin{sagein}
 type(5), type(0), type(-5)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (<type 'sage.rings.integer.Integer'>, 
 <type 'sage.rings.integer.Integer'>, 
 <type 'sage.rings.integer.Integer'>)
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir erkennen hier deutlich, dass zwischen natürlichen und ganzen Zahlen nicht unterschieden wird.
 \end{bem}
@@ -1437,10 +1437,10 @@ Wir erlauben uns einen kleinen Ausblick auf die Division:
 \begin{sagein}
 type(5*4), type(5/4)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (<type 'sage.rings.integer.Integer'>, 
 <type 'sage.rings.rational.Rational'>)
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir sehen hier, dass Sage den Datentyp 'Rational' offenbar vom Typ 'Integer' trennt. Wir nehmen dies zum Anlass, uns den rationalen Zahlen 
 zuzuwenden.
@@ -1452,15 +1452,15 @@ $n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. Na
 \begin{sagein}
 mod(45,7), floor(45/7)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (3, 6)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 mod(-34,8), floor(-34/8)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (6, -5)
-\end{sage}
+\end{sageout}
 \subsubsection{Rationale Zahlen}
 Die rationalen Zahlen werden wiederum durch eine Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$ eingeführt. Diese 
 Relation ist gegeben zu
@@ -1484,15 +1484,15 @@ Sage verwendet, wie wir oben schon gesehen haben, den Datentyp \isage{rational}.
 \begin{sagein}
 var('a,b,c,d'); (a/b+c/d).simplify_rational())
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (a*d + b*c)/(b*d)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 bool(a/b+c/d == (a/b+c/d).simplify_rational())
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 True
-\end{sage}
+\end{sageout}
 Wir wollen uns nun mit Gruppen und Körpern beschäftigen und schließlich die reellen Zahlen einführen.
 \subsection{Gruppe}
 Wir wollen den Begriff der Gruppe formal definieren.
@@ -1565,15 +1565,15 @@ Wir wollen uns verdeutlichen, was uns durch diese Operatoren in Sage möglich is
 \begin{sagein}
 QQ(5.01), RR(5/3) 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (501/100, 1.66666666666667)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 RR.is_field(),ZZ.is_field()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (True, False)
-\end{sage}
+\end{sageout}
 Wir wollen uns nun mit geordneten Körpern und Schranken beschäftigen, um anschließend die reellen Zahlen kennenzulernen.
 \subsubsection{Ordnung}
 Wie gewohnt gehen wir Schritt für Schritt vor, fangen hier an mit einer Definition des Begriffs des geordneten Körpers:
@@ -1633,10 +1633,10 @@ Wir wollen uns durch $\sqrt{2}$ ein Bild der Gleitkommaarithmetik verschaffen:
 \begin{sagein}
 (sqrt(2)).n(digits=200)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1.4142135623730950488016887
 242096980785696718753769480731767
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir erkennen hier den eben angesprochenen Datenverlust-- $\sqrt{2}$ wurde einfach nach der 200-sten Dezimale abgeschnitten, das ausgegebene 
 Ergebnis ist daher keinesfalls $\sqrt{2}$.
@@ -1658,21 +1658,21 @@ Wir betrachten ein Beispiel der Auslöschung im Zusammenhang mit ``kleinen'' Zah
 \begin{sagein}
 x = 10^(-2); ((1.0+x)-1.0)/x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1.00000000000000
-\end{sage}
+\end{sageout}
 \begin{sagein}
 x = 10^(-4); ((1.0+x)-1.0)/x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  0.999999999999890
-\end{sage}
+\end{sageout}
 \begin{sagein}
 x = 10^(-16); ((1.0+x)-1.0)/x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0.000000000000000
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir sehen also, dass das Arbeiten mit kleinen Zahlen eine gewisse Vorsicht und ``Programmiergeschick'' erfordert, um nicht 
 relevante Dezimalen zu verlieren.
@@ -1682,44 +1682,44 @@ Wir wollen nun ein wenig unsere neu erworbenen Fähigkeiten austesten und berech
 \begin{sagein}
 (pi).n(digits=22), (exp(1)).n(digits=22)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (3.141592653589793238463, 2.718281828459045235360)
-\end{sage}
+\end{sageout}
 Wir bemerken hier, dass Sage mit \isage{floats} rechnet, sobald mindestens eine Zahl in
 Gleitkommadarstellung gegeben ist 
 \begin{sagein}
 (1.0+(5/2*3))/(1/7+7/9)^2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 10.0286860879905
-\end{sage}
+\end{sageout}
 \begin{sagein}
 (1+(5/2*3))/(1/7+7/9)^2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 67473/6728
-\end{sage}
+\end{sageout}
 Viele Sage Funktionen liefern numerische Werte beim Einsetzen
      von Gleitkommazahlen.
 \begin{sagein}
 sqrt(64.0), sin(3.14), sin(7/5)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (8.0000000000000, 0.00159265291648683, sin(7/5))
-\end{sage}
+\end{sageout}
 Wir stellen fest, dass Ausdrücke nicht unbedingt automatisch umgewandelt werden
 \begin{sagein}
 2/3*sin(2), 0.666666666666666*sin(2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (2/3*sin(2), 0.666666666666666*sin(2))
-\end{sage}
+\end{sageout}
 \begin{sagein}
 float(2/3*sin(2))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 0.60619828455045444
-\end{sage}
+\end{sageout}
 \subsubsection{Nützliche Funktionen}
 Wir wollen einen kleinen Einblick in recht nützliche Sagefunktionen geben, zusammen mit dem Appell an die geneigte Leserin, diese 
 einmal ausführlich auf Herz und Nieren zu testen.
@@ -1769,15 +1769,15 @@ Sage kommt uns in Fragen der Darstellung einer Zahl zu einer anderen Basis mit e
 \begin{sagein}
 73.str(2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1001001
-\end{sage}
+\end{sageout}
 \begin{sagein}
 73.str(8)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 111
-\end{sage}
+\end{sageout}
 Bleibt noch unser zweites Beispiel zu betrachten
 \[ 2.45 = 1 \cdot 2^1 + 0 \cdot 2^0 + 0 \cdot
   2^{-1} + 1 \cdot 2^{-2}+
@@ -1792,15 +1792,15 @@ Wiederum hilft Sage uns gern
  \begin{sagein}
  (2.45).str(2)
  \end{sagein}
- \begin{sage}
+ \begin{sageout}
 10.011100110011001100110011001100110011001100110011010
- \end{sage}
+ \end{sageout}
  \begin{sagein}
  (2.45).str(8)
  \end{sagein}
- \begin{sage}
+ \begin{sageout}
 2.346314631463146320
- \end{sage}
+ \end{sageout}
 \subsubsection{Komplexe Zahlen}
 Wir führen hier noch den Körper $\mathbb{C}$ der komplexen Zahlen als die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ ein. 
 Für die Addition und die Multiplikation zweier Elemente $a=(k,l)$, $b=(n,m)\in \mathbb{C}$ gilt: 
@@ -1824,30 +1824,30 @@ Wir machen uns den Umgang mit komplexen Zahlen an einigen Beipielen klar
 \begin{sagein}
 sqrt(-1), I^2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (I, -1)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 (1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  (9*I + 2, -0.4500000000 + 0.3500000000*I)
-\end{sage}
+\end{sageout}
 Wir stellen fest, dass Sage keine automatische Trennung bzgl. Realteil und  Imaginärteil vornimmt. Wir können eine Trennung erzwingen, 
 Sage stellt dafür die Befehle \isage{real()} und \isage{imag()}.
 \begin{sagein}
 1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1/(sqrt(2) + I)
 1/3*sqrt(2) - 1/3*I
-\end{sage}
+\end{sageout}
 \begin{sagein}
 real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (1/3*sqrt(2), -1/3)
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Vektoren und Vektorräume}
 \section{Vektoren}
@@ -1943,32 +1943,32 @@ Die Spaltenanzahl erhalten wir vermöge \isage{<matrix>.ncols()}:
 \begin{sagein}
 C.ncols()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   5
-\end{sage}
+\end{sageout}
 Analog erhalten wir die Zeilenanzahl durch \isage{<matrix>.nrows()}:
 \begin{sagein}
 C.nrows()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   3
-\end{sage}
+\end{sageout}
 Allgemeinere Informationen über die Matrix liefert uns \isage{<matrix>.parent()}
 \begin{sagein}
 C.parent()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
-\end{sage}
+\end{sageout}
 \subsubsection{Zugriff auf Matrixeinträge}
 Um mit Matrizen arbeiten zu können, ist oft der Zugriff auf einzelne Einträge notwendig. Wollen wir den Eintrag in Zeile $i$ und Spalte $j$ der Matrix $C$, so können wir folgendes 
 (uns im Prinzip schon bekanntes) Werkzeug nutzen:
 \begin{sagein}
 i=1; j=2; C[i,j]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   6
-\end{sage}
+\end{sageout}
 Wenn wir schon auf einen Eintrag lesend zugreifen können, so ist sicher auch das manipulieren des Eintrags in Zeile $i$ und Spalte $j$ kein grosser Aufwand:
 \begin{sagein}
 i=1; j=2; C[i,j]=22
@@ -2009,39 +2009,39 @@ Wir betrachten einige Beispiele. Wir wollen also den Rang der Matrix $S$ ermitte
 S = matrix([[1,0,0],[0,1,1],[1,1,1]])
 S.rank()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2
-\end{sage}
+\end{sageout}
 Wir wollen wissen, ob $S$ symmetrisch bzw invertierbar ist.
 \begin{sagein}
 S.is_symmetric() 
 S.is_invertible()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 False
 False
-\end{sage}
+\end{sageout}
 Wir möchten die Determinante der Matrix $S$ bestimmen
 \begin{sagein}
 S.det()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   27
-\end{sage}
+\end{sageout}
 %  Ist eine Matrix unitär ?
 % \begin{sagein}
 % linalg::isUnitary(S)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   FALSE
-% \end{sage}
+% \end{sageout}
 % \begin{sagein}
 % F:=matrix([[I,0],[0,-I]])
 % linalg::isUnitary(F)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   TRUE
-% \end{sage}
+% \end{sageout}
 \subsubsection{map() für Matrizen}
 Wir haben schon gesehen, dass Sage recht unkompliziert relativ komplexe Funktionsanwendungen auf nahezu beliebige Objekte 
 zulässt (siehe \isage{map()}). Wir wollen daher die Anwendung der Funktion \isage{<function>} auf die Matrix \isage{<matrix>} betrachten:
@@ -2052,10 +2052,10 @@ map_threaded(<function>,<matrix>)
 \begin{sagein}
 map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [1.00000000000000 1.41421356237310]
 [1.73205080756888 2.00000000000000] 
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir erkennen, dass Sage relativ unkompliziert die Funktion auf jeden Eintrag der Matrix anwendet.
 \end{bem}
@@ -2110,16 +2110,16 @@ Das wollen wir doch gleich einmal an einem konkreten Vektor ausprobieren
 \begin{sagein}
 a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ((1, 2, 3, 4), (5, 6, 7))
-\end{sage}
+\end{sageout}
 Für Vektoren verwendet Sage den Datentyp \isage{vector_integer_dense} (für dichte Vektoren)
 \begin{sagein}
 type(a)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 <type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
-\end{sage}
+\end{sageout}
 \subsubsection{Lineare Algebra}
 Nachdem wir nun die Grundlagen über Vektorräume Sage-technisch an der Hand haben, betrachten wir etwas ausgefallenere Konstrukte über Vektorräumen; auch hierzu wieder 
 eingangs klärende Definitionen.
@@ -2181,30 +2181,30 @@ s2 = vector([0,1,1])
 s3 = vector([1,1,1])
 span([s1,s2,s3],QQ)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Vector space of degree 3 and dimension 2 over Rational Field
 Basis matrix:
 [1 0 0]
 [0 1 1]
-\end{sage}
+\end{sageout}
  Wir wollen den Schnitt von $span(s1)$ und $span(s2,s3)$ bestimmen:
 \begin{sagein}
 span([s1],QQ).intersection(span([s2,s3],QQ))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Vector space of degree 3 and dimension 1 over Rational Field
 Basis matrix:
 [1 0 0]
-\end{sage}
+\end{sageout}
 Wir möchten herausfinden, ob unsere Vektoren $(s1,s2,s3)$ linear unabhängig sind. Dazu erzeugen wir eine Matrix und bestimmen ihren Rang:
 \begin{sagein}
 m = matrix([s1,s2,s3])
 m.rank() >= min(m.ncols(), m.nrows())
 m.determinant() <> 0 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   False
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir erinnern uns, dass $a <> b$ das Gegenteil von $a == b$ ist, also genau dann den Wert \isage{true} liefert, wenn $a\not=b$. Unsere Matrix hat also nicht vollen Rang, 
 unsere Vektoren sind also auch nicht linear unabhängig-- dies hätte uns schon am ersten Beispiel auffallen können, denn $span(s1,s2,s3)$ hat nur Dimension 2.
@@ -2282,16 +2282,16 @@ Auch die Berechnung des Skalarprodukts ist für Sage kein Problem:
 \begin{sagein}
 a2.dot_product(a3), a2*a3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (5, 5)
-\end{sage}
+\end{sageout}
 Nun fehlt uns noch die Berechnung des Winkels zwischen zwei Vektoren
 \begin{sagein}
 float(acos(a2*a3/(abs(a2)*abs(a3))))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0.79520271328967818
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Sage Funktionen und Datencontainer}
 \section{Funktionen}
@@ -2348,60 +2348,60 @@ Wir erinnern uns, dass Tuple recht einfach zu erzeugen sind:
 \begin{sagein}
 t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (a, b, c)
 (c, d, e)
-\end{sage}
+\end{sageout}
  Wir betrachten die Konstruktion von Folgen in Sage. Wir haben hierzu verschiedene Varianten. Zuerst sei hier die Erzeugung mittels Listen erwähnt
 \begin{sagein}
 tuple(i^2 for i in range(2,8))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (4, 9, 16, 25, 36, 49)
-\end{sage}
+\end{sageout}
 Das Erzeugen von $n$ identischen Objekten können wir so realisieren:
 \begin{sagein}
 tuple(sin(x) for i in range(0,5))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (sin(x),sin(x),sin(x),sin(x),sin(x))
-\end{sage}
+\end{sageout}
 Das Erzeugen von $n$ funktionalen Objekten ist uns nahezu analog möglich:
 \begin{sagein}
 x = tuple(sin(i) for i in range(1,5)); x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (sin(1), sin(2), sin(3), sin(4))
-\end{sage}  
+\end{sageout}  
 Wenn wir beliebige Folgen erzeugen können, dann sicher auch eine leere:
 \begin{sagein}
 folge = (); folge2 = folge,2,3; folge2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  ((), 2, 3)
-\end{sage}
+\end{sageout}
 \subsubsection{Operationen auf Folgen}
 Wir können Folgen verbinden:
 \begin{sagein}
 Folge3 = Folge1+Folge2; Folge3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (a, b, c, c, d, e)
-\end{sage}
+\end{sageout}
 Auch der Zugriff auf Elemente ist weiterhin möglich:
 \begin{sagein}
 x = 1,2,3,4; x[2] 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   3
-\end{sage}
+\end{sageout}
 \begin{sagein}
 x[2]; x[0:2]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 3
 (1, 2)
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Listen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2417,53 +2417,53 @@ Wir erinnern uns, dass auch Listen einfach zu konstruieren waren:
 \begin{sagein}
 Liste = [1,[1,2], Set([1,2,3]),x]; Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
-\end{sage}
+\end{sageout}
 Auch Listen funktionaler Objekte sind kein Problem:
 \begin{sagein}
 Liste = [2^i for i in range(1,9)]; Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [2, 4, 8, 16, 32, 64, 128, 256]
-\end{sage}
+\end{sageout}
 Selbstredend sind wir in der Lage, leere Listen zu erzeugen:
 \begin{sagein}
 Liste = []; Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   []
-\end{sage}
+\end{sageout}
 \subsubsection{Zugriff auf Listenelemente}
 Der Zugriff funktioniert genau wie bei Folgen.
 \begin{sagein}
 Liste=[(x,i) for x in range(1,4) for i in range(0,x)];  Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), (3, 2)]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Liste[3], Liste[5]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ((3, 0), (3, 2))
-\end{sage}
+\end{sageout}
  Zuweisung:
 \begin{sagein}
 Liste[5] = 42; Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
-\end{sage}
+\end{sageout}
 \subsubsection{Befehle für Listen}
 Listen eignen sich besonders gut, um ihre Einträge zu manipulieren.
 Wir können einen Index aus der Liste mit \isage{pop()} entfernen:
 \begin{sagein}
 Liste = [a,b,c]; Liste.pop(1); Liste 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [a, c]
-\end{sage}
+\end{sageout}
 \begin{bem}
  Wir greifen hier auf einen Listenplatz (Index) zu, nicht auf ein Element der Liste.
 \end{bem}
@@ -2471,36 +2471,36 @@ Wir können auch ein Element aus der Liste entfernen, hierfür haben wir \isage{
 \begin{sagein}
 Liste = [a,b,c]; Liste.remove(b); Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [a, c]
-\end{sage}
+\end{sageout}
 Da wir Elemente entfernen können, ist es nur konsequent, wenn wir auch welche einfügen können. Sage stellt uns den \isage{append()}-Befehl.
 \begin{sagein}
 Liste.append([3,4,5]); Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [a, c, [3, 4, 5]]
-\end{sage}
+\end{sageout}
 Wir können Listen aneinanderhängen. Hier haben wir zwei Operator, $+$ und $*$:
 \begin{sagein}
 Liste2 = Liste+[3,4,5]; Liste2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [a, c, [3, 4, 5], 3, 4, 5]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Liste*2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  [a, c, [3, 4, 5], a, c, [3, 4, 5]]
-\end{sage}
+\end{sageout}
 Wir können uns Listen mit \isage{sort()} sortieren lassen:
 \begin{sagein}
 Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [1, 3, 4, -23]
-\end{sage}
+\end{sageout}
 \subsubsection{Inklusionen}
 Nun interessiert uns, ob eine \isage{Liste} ein bestimmtes \isage{Objekt} enthält. Unsere Frage lässt sich wie folgt beantworten:
 \begin{sagein}
@@ -2511,9 +2511,9 @@ Für eine konkrete Liste gestaltet sich die Anfrage dann so:
 Liste = [x+1,a,x+1,sin(b)]
 x+1 in Liste
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   True
-\end{sage}
+\end{sageout}
 Wie wir schon wissen, können wir Elemente einer Liste auch über ihren Platz (Index) in der Liste ansprechen. Also ist es nur konsequent, wenn wir uns zu einem Objekt einer Liste 
 dessen Position zurückgeben lassen können:
 \begin{sagein}
@@ -2523,9 +2523,9 @@ Für eine konkrete Liste erhalten wir
 \begin{sagein}
 Liste.index(sin(b))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   3
-\end{sage}
+\end{sageout}
 \begin{bem}
  Ist das getestete Objekt nicht in der Liste enthalten, so gibt es eine entsprechende Meldung.
 \end{bem}
@@ -2540,15 +2540,15 @@ verdeutlichen uns folgende Beispiele.
 \begin{sagein}
 map(sin,[x,1,0,pi,0.3])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [sin(x), sin(1), 0, 0, 0.295520206661340]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 map(max,[2,3,4,5,6,7],[8,7,6,5,4,3])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [8, 7, 6, 5, 6, 7]
-\end{sage}
+\end{sageout}
 \subsubsection{map\_threaded()}
 Auch \isage{map\_threaded()} ist uns schon bekannt, wir erinnern uns, dass
 \begin{sagein}
@@ -2558,16 +2558,16 @@ die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} anw
 \begin{sagein}
 map_threaded(sin,[x,[1,0],[pi,[0.3]]])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [sin(x), [sin(1), 0], [0, [0.295520206661340]]]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 map_threaded(sin,matrix([[1,2,3],[4,5,6]]))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [sin(1) sin(2) sin(3)]
 [sin(4) sin(5) sin(6)]
-\end{sage}
+\end{sageout}
 \subsubsection{filter()}
 Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
 \begin{sagein}
@@ -2580,17 +2580,17 @@ Wir machen uns die Wirkung von FIltern an einigen Beispielen klar:
 \begin{sagein}
  filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
  \end{sagein}
- \begin{sage}
+ \begin{sageout}
  [True, True, True]
- \end{sage}
+ \end{sageout}
 \begin{sagein}
 var('x,y,z,a')
 def f(x): return a in x.operands()
 filter(f,[a+2,x,y,z,sin(a)])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [a + 2, sin(a)]
-\end{sage}
+\end{sageout}
 \subsubsection{zip()}
 Wir wollen uns etwas neues ansehen: \isage{zip()}:
 \begin{sagein}
@@ -2602,16 +2602,16 @@ Wir betrachten ein Beispiel:
 Liste1 = [a,b,c]; Liste2 = [e,f,g]
 zip(Liste1,Liste2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [(a, e), (b, f), (c, g)]
-\end{sage}
+\end{sageout}
 % \begin{sagein}
 % zip(Liste1,Liste2,_power)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %     e   f   g
 %   [a , b , c ]
-% \end{sage}
+% \end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dictionaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2633,32 +2633,32 @@ Wir wollen zunächst einmal ein leeres Dictionary erzeugen:
 \begin{sagein}
 T = {}; T
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   {}
-\end{sage}
+\end{sageout}
 Wir können Einträge durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugen oder verändern. 
 \begin{sagein}
 T[f] = sin(x); T[1,2] = 5
 T[1,2,3] = [a,b,c]; T[a] = d;
 T
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 {(1, 2): 5, f: sin(x), a: d, (1, 2, 3): [a, b, c]}
-\end{sage}
+\end{sageout}
 \subsubsection{Zugriff auf Einträge}
 Der Zugriff auf ein Dictionary erfolgt, wie gesgat, über den Index:
 \begin{sagein}
 T[a],T[1,2],T[c]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (d, 5, d)
-\end{sage}
+\end{sageout}
 \begin{sagein}
  float(T[f](x=4))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  -0.7568024953079282
-\end{sage}
+\end{sageout}
 Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung.\\
 Das Löschen von Einträgen gelingt uns via \isage{pop()}
 \begin{sagein}
@@ -2676,32 +2676,32 @@ Wir machen uns unsere Erkenntnisse an einigen Beispielen klar:\\
 Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
 a in Z, b in Z
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (True, False)
-\end{sage}
+\end{sageout}
 \isage{a} taucht als Index auf, \isage{b} nur als Wert.\\
 \isage{Filter} prüfen ebenfalls nur Indizes.
 \begin{sagein}
 f(y) = y == c; filter(f,Z)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [c]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 f(y) = y == d; filter(f,Z.values())
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [d]
-\end{sage}
+\end{sageout}
 \subsubsection{update()}
 Dictionaries können aneinander gehängt werden:
 \begin{sagein}
 T={1:a,2:b}; S={3:c,4:d}
 T.update(S); T
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 {1: a, 2: b, 3: c, 4: d}
-\end{sage}
+\end{sageout}
 \begin{bem}
 Doppelt auftretenden Indizes werden überschrieben!
 \end{bem}
@@ -2813,9 +2813,9 @@ Wir verdeutlichen uns die Drehung an einem kleinen Beispiel.
 var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
 A(a=pi/2)*vector([1,1])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  (-1, 1)
-\end{sage}
+\end{sageout}
 \subsubsection{Spiegelung}
 Auch die Spiegelung lässt sich auf Matrizen zurückführen. Wir betrachten die Spiegelung bezüglich der Ebene 
 \[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
@@ -2827,9 +2827,9 @@ I_n = identity_matrix(3)
 S = I_n - 2*a*a.transpose()
 norm(S*S-I_n)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
    0.0
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eigenwerte und Eigenvektoren}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2857,9 +2857,9 @@ Wir wollen mithilfe von Sage die Eigenwerten einer Matrix $A$ bestimmen:
 _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 [ m.full_simplify() for m in  A.eigenvalues()]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [-1, 1]
-\end{sage}
+\end{sageout}
 Auch die Bestimmung der Eigenvektoren ist mit Sage kein großer Aufwand:
 \begin{sagein}
 A.eigenvectors_right()
@@ -2869,9 +2869,9 @@ Das charakteristische Polynom erhalten wir vermöge
 E = identity_matrix(2)
 p = (A-x*E).det(); p
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x - cos(al))*(x + cos(al)) - sin(al)^2
-\end{sage}
+\end{sageout}
 Natürlich hat Sage auch eine direkte Berechnungsmöglichkeit für charakteristische Polynome.
 \begin{sagein}
 A.charpoly() 
@@ -2883,9 +2883,9 @@ Die Eigenwerte ergebens sich als Nullstellen des charakteristischen Polynoms:
 \begin{sagein}
 [m.full_simplify() for m in solve(p==0,x)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [x == -1, x == 1]
-\end{sage}
+\end{sageout}
 \subsubsection{Lineare Gleichungssysteme}
 Wir wollen uns ein wenig vertiefend mit linearen Gleichungssystemen befassen.
 Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
@@ -2926,10 +2926,10 @@ b3 = A*b2
 print A\b1
 print A\b3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (0, 0, 0)
 (1, 0, 0) 
-\end{sage}
+\end{sageout}
 %linalg::gaussElim(A)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Folgen, Reihen}
@@ -2991,37 +2991,37 @@ $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konv
 \begin{sagein}
 _=var('n');limit(1/(n+1),n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0
-\end{sage}
+\end{sageout}
  $d_n:=\left( \frac{n+2}{n+1} \right)^{n+1} => \frac{2^1}{1^1},\frac{3^2}{2^2}, \frac{4^3}{3^3},...$ (konvergent)
 \begin{sagein}
 limit(((n+2)/(n+1))^(n+1),n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   e
-\end{sage}
+\end{sageout}
  $e_n:=(-1)^n => 1,-1,1,-1,...$ (divergent)
 \begin{sagein}
 limit((-1)^n,n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   ind
-\end{sage}
+\end{sageout}
  $c_n:=2^n => 1,2,4,8,\ldots$ (divergent)
 \begin{sagein}
 limit(2^n,n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   +Infinity
-\end{sage}
+\end{sageout}
   $b_n:= 2^{-n} => 1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$ (konvergent)
 \begin{sagein}
 limit(2^(-n),n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1/1048576
-\end{sage}
+\end{sageout}
 \subsubsection{Visualisieren von Folgen}
 Folgen können in Sage durch {\color{blue} \isage{points}} visualisiert werden.
 \begin{sagein}
@@ -3080,9 +3080,9 @@ def y(n):
    return 2*y(n-1)-y(n-2)+2
 y(4)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 4*a + 15
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reihen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3128,40 +3128,40 @@ dem Wert $\sum_{n=0}^\infty = \frac{1}{1-x}$.
 \begin{sagein}
 sum(x^k,k,0,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Is  abs(x)-1  positive, negative, or zero?
-\end{sage}
+\end{sageout}
 Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt
 \begin{sagein}
 x = 1/2; sum(x^k,k,0,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2
-\end{sage}
+\end{sageout}
  Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
 $\pi^2/6$.
 \begin{sagein}
 _=var('k');sum(1/k^2,k,1,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1/6*pi^2
-\end{sage}
+\end{sageout}
  Die alternierende harmonische Reihe  $\sum_{n=1}^\infty
 \frac{(-1)^{n+1}}{n}$ konvergiert.
 \begin{sagein}
 sum((-1)^(k+1)/k,k,1,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   log(2)
-\end{sage}
+\end{sageout}
  Die harmonische Reihe $\sum_{n=1}^\infty \frac{1}{n}$
  divergiert.
 \begin{sagein}
 sum(1/k,k,1,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ValueError: Sum is divergent
-\end{sage}
+\end{sageout}
 \subsubsection{Partialsummen}
 Die Partialsumme einer Reihe lässt sich in Sage wie folgt definieren
 \begin{sagein}
@@ -3169,31 +3169,31 @@ _=var('x,n,k')
 s = sum(x^k,k,0,n); s
 \end{sagein}
 {\color{blue}\[\frac{x^{{\left(n + 1\right)}} - 1}{x - 1}\]}
-% \begin{sage}
+% \begin{sageout}
 % (x^(n + 1) - 1)/(x - 1)
-% \end{sage}
+% \end{sageout}
 Die ersten $5$ Glieder der Partialsumme erhalten wir durch
 \begin{sagein}
 assume(x<>1); [s(n=m) for m in [1..6]]
 \end{sagein}
 {\color{blue}\[\left[\frac{x^{2} - 1}{x - 1}, \frac{x^{3} - 1}{x - 1}, \frac{x^{4} - 1}{x - 1}, \frac{x^{5} - 1}{x - 1}, \frac{x^{6} - 1}{x - 1}, \frac{x^{7} - 1}{x - 1}\right] \]}
-% \begin{sage}
+% \begin{sageout}
 % [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
 % 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
-% \end{sage} 
+% \end{sageout} 
 Das Bestimmen des Grenzwertes der Folge der Partialsummen gelingt uns via
 \begin{sagein}
 forget();assume(abs(x)<1);limit(s,n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -1/(x - 1)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 forget();assume(x>1);limit(s,n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 +Infinity
-\end{sage}
+\end{sageout}
 \subsubsection{\isage{assume()}}
 Wir können Sage auffordern, bestimmte Annahmen über Variablen zu machen. Dafür haben wir den Befehl \isage{assume()}.
 \begin{sagein}
@@ -3228,42 +3228,42 @@ Wir betrachten weitere Beispiele.
 \begin{sagein}
 var('c'); assumptions()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 c
 []
-\end{sage}
+\end{sageout}
 \begin{sagein}
 c = 2; assume(c>0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  AttributeError: 'bool' object has no attribute 'assume'
-\end{sage}
+\end{sageout}
 \begin{sagein}
 _=var('c')
 assume(c,'integer'); assumptions()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [c is integer]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 sin(c*pi)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 sin(pi*c)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 sin(c*pi).simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
    0
-\end{sage}
+\end{sageout}
 \begin{sagein}
 assume(x>0)
 sqrt(x^2).simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x
-\end{sage}
+\end{sageout}
 % integer,
 % noninteger, even, odd, rational, irrational, real, imaginary, complex,
 % analytic, increasing, decreasing, oddfun, evenfun, posfun, constant,
@@ -3328,9 +3328,9 @@ f(n) = n^4*exp(-n*n)
 g(n) = f(n+1)/f(n)
 limit(g(n),n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0
-\end{sage}
+\end{sageout}
  Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
 \begin{sagein}
 f(n) = 1/(n*(log(n)^2))
@@ -3338,9 +3338,9 @@ g(n) = 2^n*f(2^n)
 h(n) = 2^n*g(2^n)
 limit(h(n+1)/h(n),n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1/2
- \end{sage}
+ \end{sageout}
 \subsubsection{Absolute und bedingte Konvergenz}
 Eine Reihe $\sum_{n=0}^\infty a_n$ heißt absolute konvergent
 genau dann, wenn $\sum_{n=0}^\infty |a_n|$ konvergiert.\\
@@ -3375,18 +3375,18 @@ Sei $\sum_{n=1}^\infty \frac{x^n}{n!}$ gegeben und ihr Konvergenzradius von Inte
 f(n) = 1/factorial(n)
 rho = limit(expand(f(n)/f(n+1)),n=oo); rho
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 +Infinity
-\end{sage}
+\end{sageout}
 Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$.\\ 
 Sei nun $\sum_{n=0}^\infty n^s x^n$, $s>0$ gegeben und wieder der Konvergenzradius gefragt:
 \begin{sagein}
 _=var('s');f(n)= n^s; assume(s>0)
 limit(expand(f(n)^(1/n)),n=infinity)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1
-\end{sage}
+\end{sageout}
 Der Konvergenzradius ist $1$.
 \subsubsection{Exponentialfunktion}
 Wir erklären die Exponentialfunktion durch
@@ -3414,30 +3414,30 @@ Wie wir oben schon bemerkt haben könnten, ist die Exponentialfunktion in Sage g
 \begin{sagein}
 sum(x^n/factorial(n),n,0,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   e^x
-\end{sage}
+\end{sageout}
 Wir testen, ob der Logarithmus die Umkehrung der Exponentialfunktion ist:
 \begin{sagein}
 exp(log(x))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   x
-\end{sage}
+\end{sageout}
 Alternative darstellung der Exponentialfunktion:
 \begin{sagein}
 _=var('n');limit((1+x/n)^n,n=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   e^x
-\end{sage}
+\end{sageout}
 % \begin{sagein}
 % ??
 % ??
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   
-% \end{sage}
+% \end{sageout}
 \subsubsection{Trigonometrische Funktionen}
 Die Sinusfunktion und die Cosinusfunktion sind definiert
 durch
@@ -3475,15 +3475,15 @@ Wir betrachten zwei kleine Beispiele:
 \begin{sagein}
 solve(cos(x)==0,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [x == 1/2*pi]
-\end{sage}
+\end{sageout}
 \begin{sagein}
 sin(x+pi/2).simplify()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 cos(x)
-\end{sage}
+\end{sageout}
 Wir wollen uns um weitere Eigenschaften der trigonometrischen Funktionen bemühen.
 % Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
 Die Umkehrfunktion des Sinus ist $\arcsin$, die des Cosinus $\arccos$. Wiederum machen wir uns ein Bild: 
@@ -3522,9 +3522,9 @@ while f(x) > 0.1:
     x += 0.1
 x
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  10.1000000000000
-\end{sage}
+\end{sageout}
 %achtung: rundungsfehler, daher kommt 10.1 raus.. selbst einmal drauf reingefallen..
 % 
 %  Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
@@ -3537,12 +3537,12 @@ x
 
 % \begin{frame}[fragile]{Schleifen III}
 %  Eine elegante Möglichkeit sind Schleifen über Listen oder Mengen.
-% \begin{sage}
+% \begin{sageout}
 % L = [1..10]
 % for i in L:
 %     x = i^2
 %     print("Das Quadrat von {0} ist {1}").format(i,x)
-% \end{sage}
+% \end{sageout}
 % \end{frame}
 
 % \begin{frame}[fragile]{Etwas Zahlentheorie}
@@ -3566,11 +3566,11 @@ Nicht nur die Durchlaufrichtung ist variabel, sondern auch die Schrittweiten sel
 for j in srange(3,10,2.6):
     print(x,x^j) 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x, x^3.00000000000000)
 (x, x^5.60000000000000)
 (x, x^8.20000000000000)
-\end{sage}
+\end{sageout}
 \subsubsection{Fixpunkte}
 Schon einmal wurde die Suche einer Nullstelle zurückgeführt auf die Bestimmung eines Fixpunktes- nur wie finden wir den Fixpunkt einer Funktion? Wir wollen die Idee 
 eines Verfahrens zur Fixpunktbestimmung am Beispiel des $cos()$ erläutern. Wir suche ein $x_{\mathrm{fix}} \in \mathbb{R}$ so dass
@@ -3603,9 +3603,9 @@ def fixpunkt(f,In,x0,n):
 \begin{sagein}
 fixpunkt(lambda x: cos(x),[0,1],0.2,10)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 [0.200000000000000, 0.98006657784124163, 0.55696725280964243, 0.84886216565827077, 0.66083755111661502, 0.78947843776686832, 0.70421571334199318, 0.76211956176066087, 0.72337417210557109, 0.74957657633149311, 0.73197742525819132]
-\end{sage}
+\end{sageout}
 \begin{bem}
  Unsere Funktion approximiert den Fixpunkt beliebig schlecht (abhängig von der Größe unseres $n$, denn es werden eben ``nur'' $n$ Iterationen durchgeführt). Eine \isage{while()}-Schleife 
 mit geeignetem Abbruchkriterium könnte Abhilfe schaffen. Der geneigten Leserin sei die Implementation als spaßige Übung nahegebracht.
@@ -3658,23 +3658,23 @@ Wir betrachten eine konkrete Funktion $f$
 \begin{sagein}
 f(x,y) = x^2+y^2; f
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x, y) |--> x^2 + y^2
-\end{sage}
+\end{sageout}
 Die so definierte Funktion $f$ kann wie jede beliebige andere Funktion
 aufgerufen werden. Funktionen haben den Datentyp \isage{expression}.
 \begin{sagein}
 _=var('a,b');f(a,b+1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (b + 1)^2 + a^2
-\end{sage}
+\end{sageout}
 \begin{sagein}
 type(f)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 <type 'sage.symbolic.expression.Expression'>
-\end{sage}
+\end{sageout}
 Wie gewohnt können Abbildungen addiert, subtrahiert, multipliziert und
 dividiert werden:
 \begin{sagein}
@@ -3685,9 +3685,9 @@ h(a),k(a),l(a)
 {\color{blue} \[\left(\frac{1}{a + 1} + \sin\left(a^{2}\right),
 \frac{\sin\left(a^{2}\right)}{a + 1}, \frac{1}{{\left(a + 1\right)}
 \sin\left(a^{2}\right)}\right)\]}
-% \begin{sage}
+% \begin{sageout}
 % (1/(a + 1) + sin(a^2), sin(a^2)/(a + 1), 1/((a + 1)*sin(a^2)))
-% \end{sage}
+% \end{sageout}
 \subsubsection{Komposition in Sage}
 Kompositionen $f\circ g$ werden in Sage durch Ineinanderschachteln erzeugt:
 \begin{sagein}
@@ -3696,25 +3696,25 @@ f_g(x), g_f(x)
 \end{sagein}
 {\color{blue} \[ \left(\frac{1}{\sin\left(x^{2}\right) + 1}, \sin\left(\frac{1}{{\left(x
 + 1\right)}^{2}}\right)\right) \]}
-% \begin{sage}
+% \begin{sageout}
 % (1/(sin(x^2) + 1), sin((x + 1)^(-2)))
-% \end{sage}
+% \end{sageout}
 Mehrfachverknüpfungen erhalten wir durch mehrfaches Hintereinanderschalten $f(f(\cdots f(\cdot)))=f \circ \dots
 \circ f(\cdot)$
 \begin{sagein}
 g4(x) = g(g(g(g))); g4
 \end{sagein}
 {\color{blue} \[ x \ {\mapsto}\sin\left(\sin\left(\sin\left(\sin\left(x^{2}\right)^{2}\right)^{2}\right)^{2}\right) \]}
-% \begin{sage}
+% \begin{sageout}
 % x |--> sin(sin(sin(sin(x^2)^2)^2)^2)
-% \end{sage}
+% \end{sageout}
 Diese Konstruktionen funktionieren auch mit Systemfunktionen:
 \begin{sagein}
 abs(real(-2+3*I))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2
-\end{sage}
+\end{sageout}
 Kompliziertere Funktionen können besser durch selbst definierte Funktionen/Prozeduren \isage{def <func>():} erklärt
 werden (vgl. Kapitel 4).
 \subsubsection{Ausdrücke und Funktionen}
@@ -3723,28 +3723,28 @@ die Funktionsauswertung i.A. allerdings unterschiedlich. Wir machen uns diesen U
 \begin{sagein}
 Funktion(x) = 2*x*cos(x); Funktion(1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2*cos(1)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Ausdruck = 2*x*cos(x); Ausdruck(x=1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2*cos(1)
-\end{sage}
+\end{sageout}
 Auch mehrere Veränderliche  sind möglich:
 \begin{sagein}
 _=var('y');Funktion2(x) = x+sin(y); Funktion2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  x |--> x + sin(y)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 Funktion3(x,y) = x+sin(y); Funktion3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (x, y) |--> x + sin(y)
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grenzwerte und Stetigkeit}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3797,32 +3797,32 @@ $\lim_{x \rightarrow 0}
 \begin{sagein}
 limit(sin(x)/x,x=0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1
-\end{sage}
+\end{sageout}
 $\lim_{x \rightarrow \infty}
 \frac{\log(x)}{x}$
 \begin{sagein}
 limit(log(x)/x,x=infinity)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0
-\end{sage}
+\end{sageout}
 $\lim_{x \rightarrow \infty} \sqrt[x]{x}$
 \begin{sagein}
 limit(x^(1/x),x=infinity)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1
-\end{sage}
+\end{sageout}
 $\lim_{x \rightarrow 0}
 \sin(1/x)$
 \begin{sagein}
 limit(sin(1/x),x=0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   ind
-\end{sage}
+\end{sageout}
 Der Grenzwert existiert nicht: \isage{ind} (indefinit aber beschränkt).\\ 
 $\lim_{x \rightarrow 0} |x|' $
 \begin{sagein}
@@ -3830,9 +3830,9 @@ limit(diff(abs(x),x),x=0),
 limit(diff(abs(x),x),x=0,dir='minus'),
 limit(diff(abs(x),x),x=0,dir='plus')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (und, -1, 1)
-\end{sage}
+\end{sageout}
 \subsection{Stetigkeit}
 Wir definieren die Stetigkeit einer Funktion wie folgt.
 \begin{df}[Stetigkeit]
@@ -3883,15 +3883,15 @@ Um Stetigkeit einer Funktion $f$ an einer Stelle $x_0$feststellen zu können, be
 \begin{sagein}
 limit(1/x,x=0,dir='plus') 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  +Infinity
-\end{sage}
+\end{sageout}
 \begin{sagein}
  limit(1/x,x=0,dir='minus')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  -Infinity
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Funktionenfolgen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4264,15 +4264,15 @@ Der Ausdruck oder die Funktion wird nach $x$ abgeleitet. Wir betrachten zwei Bei
 \begin{sagein}
 diff(sin(x),x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 cos(x)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 diff(x^x,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (log(x) + 1)*x^x
-\end{sage}
+\end{sageout}
 Auch höhre Ableitungen sind in Sage kein Problem:
 \begin{sagein}
 diff(<Ausdruck>,x1,x2,x3,...)
@@ -4284,32 +4284,32 @@ Wir betrachten wiederum zwei Beispiele:
 \begin{sagein}
 _=var('x,y,a'); diff(x^2*y^2+a,x,y)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 4*x*y
-\end{sage}
+\end{sageout}
 \begin{sagein}
 diff(1/x,x,10)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 3628800/x^11
-\end{sage}
+\end{sageout}
 Wir wollen uns noch ein wenig vertrauter mit der Ableitungsoperation machen.
 \begin{sagein}
 f(x) = log(cos(x))
 f.diff(); diff(f); diff(f,x,x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 x |--> -sin(x)/cos(x)
 x |--> -sin(x)/cos(x)
 x |--> -sin(x)^2/cos(x)^2 - 1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 g(x,y) = sin(x^2+y^2)
 g.diff(x,x,y)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
-\end{sage}
+\end{sageout}
 
 \subsubsection{Differentiationsregeln}
 Wir erinnern uns an einige Regeln:
@@ -4368,37 +4368,37 @@ var('a');f(x) = log(x); g(x) = x^a
 assume(a > 0)
 limit(diff(f(x),x)/diff(g(x),x),x=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0
-\end{sage}
+\end{sageout}
 \begin{sagein}
 assume(a,'integer')
 limit(f(x)/g(x),x=oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0
-\end{sage}
+\end{sageout}
 Wir wollen $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$ bestimmen:
 \begin{sagein}
 f(x) = sin(x); g(x) = x 
 limit(f(x)/g(x), x=0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 diff(f(x),x);diff(g(x),x)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 cos(x) 
 1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 limit(diff(f(x),x)/diff(g(x),x),x=0)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 1
-\end{sage}
+\end{sageout}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Taylor}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4471,10 +4471,10 @@ g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
 {\color{blue}\[ \left[1, x + 1, \frac{1}{2} \, x^{2} + x + 1, \frac{1}{6} \, x^{3} +
 \frac{1}{2} \, x^{2} + x + 1, \frac{1}{24} \, x^{4} + \frac{1}{6} \,
 x^{3} + \frac{1}{2} \, x^{2} + x + 1\right]\]}
-% \begin{sage}
+% \begin{sageout}
 % [1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
 % 1/6*x^3 + 1/2*x^2 + x + 1]
-% \end{sage}
+% \end{sageout}
 In einem Plot wollen wir die Approximationen sowie $f$ selbst einmal betrachten:
 \begin{sagein}
 p = plot(f,(-3,2),color='black')
@@ -4611,44 +4611,44 @@ Wir wollen uns diese Tatsachen an einigen Beispielen verdeutlichen:
 \begin{sagein}
  integrate(sin(x),x,0,6)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -cos(6) + 1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 integrate(exp(x)*x,x,2,3),integrate(exp(x)*x,x)
 \end{sagein}
 {\color{blue}\[\left(-e^{2} + 2 \, e^{3}, {\left(x - 1\right)} e^{x}\right)\]}
-% \begin{sage}
+% \begin{sageout}
 % -e^2 + 2*e^3
-% \end{sage}
+% \end{sageout}
 \begin{sagein}
 integrate(1/x^2,x,1,oo)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   1
-\end{sage}
+\end{sageout}
 \begin{sagein}
 numerical_integral(sin(1/x)*x,1,2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (0.91905916759870254, 1.0203606488609102e-14)
-\end{sage}
+\end{sageout}
 \begin{sagein}
 assume(a<>-1)
 integrate(x^a*b,x)
 \end{sagein}
 {\color{blue} \[ \frac{b x^{{\left(a + 1\right)}}}{a + 1}\]}
-% \begin{sage}
+% \begin{sageout}
 % b*x^(a + 1)/(a + 1)
-% \end{sage}
+% \end{sageout}
 \begin{sagein}
 forget();a=-1
 integrate(x^a*b,x)
 \end{sagein}
 {\color{blue} \[ b \log\left(x\right)\]}
-% \begin{sage}
+% \begin{sageout}
 %  b*log(x)
-% \end{sage}
+% \end{sageout}
 \subsubsection{Uneigentliche Integrale}
 Wir wollen den Begriff des uneigentlichen Integrals einführen:
 \begin{df}
@@ -4686,79 +4686,79 @@ eingeschlossen. Wir betrachten einige Beispiele:
 \begin{sagein}
 text1 = 'Dies ist ein String.'; text1
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 'Dies ist ein String.'
-\end{sage}
+\end{sageout}
 \begin{sagein}
 text2 = "Dies ist noch ein String."; text2
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 'Dies ist noch ein String.'
-\end{sage}
+\end{sageout}
 \begin{sagein}
 type(text1)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 <type 'str'>
-\end{sage}
+\end{sageout}
 \subsubsection{Zugriff}
 Der Zugriff auf Strings gestaltet sich so, wie wir das schon gewohnt sind, über den Index:
 \begin{sagein}
 text1[0], text1[3], text1[2:4], text1[0:4:2]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ('D', 's', 'es', 'De')
-\end{sage}
+\end{sageout}
 Wir können leicht Ersetzungen innerhalb eines Strings vornehmen:
 \begin{sagein}
 text1.replace('Dies','Das')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 'Das ist ein String.'
-\end{sage}
+\end{sageout}
 \subsubsection{Operationen auf Strings}
 Wir betrachten weitere Operationen auf Strings, zuerst das Zusammenhängen von solchen:
 \begin{sagein}
 A='Letzte '; B='Vorlesung'; A+B
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 'Letzte Vorlesung'
-\end{sage}
+\end{sageout}
  \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
 an:
 \begin{sagein}
 a=len(A+B); a
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   16
-\end{sage}
+\end{sageout}
 Wir können durch geschickte Indexwahl Zugriffe beginnend vom Ende vornehmen:
 \begin{sagein}
 (A+B)[-1]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   'g'
-\end{sage}
+\end{sageout}
  {\color{blue} \isage{str()}} wandelt Objekte in einen String um:
 \begin{sagein}
 str(x^2+2), str([1,2,3])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ('x^2 + 2', '[1, 2, 3]')
-\end{sage}
+\end{sageout}
 Mittels {\color{blue} \isage{find()}} können wir Strings in Strings suchen:
 \begin{sagein}
 'Hallo'.find('lo')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 3
-\end{sage}
+\end{sageout}
  \begin{sagein}
 'Hallo'.find('gnu')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 -1
-\end{sage}
+\end{sageout}
 \begin{bem}
  \isage{find()} liefert offensichtlich den Index zurück, an der der gesuchte String steht oder $-1$, falls der String nicht 
 enthalten ist.
@@ -4768,15 +4768,15 @@ Durch {\color{blue} \isage{split()}} können wir Strings aufspalten:
 text = 'Dies ist ein Satz, und ein Nebensatz'
 text.split() 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  ['Dies', 'ist', 'ein', 'Satz,', 'und', 'ein', 'Nebensatz']
-\end{sage}
+\end{sageout}
 \begin{sagein}
 text.split('i')
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
-\end{sage}
+\end{sageout}
 \subsubsection{Formate und print}
 Nachdem wir nun Strings kennen und diese manipulieren können, 
 müssen wir noch wissen, wie genau wir Strings ausgeben können. 
@@ -4807,12 +4807,12 @@ print '%5s | %7s' % ('Index','Wert')
 for k in srange(1,25,9.55): 
     print '%5i | %07.3f' % (k,k^2) 
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Index |    Wert
     1 | 001.000
    10 | 111.303
    20 | 404.010
-\end{sage}
+\end{sageout}
 \subsubsection{Interaktive Plots}
 Wir wollen hier an einem Beispiel den interaktiven Plot vorstellen:
 \begin{sagein}
@@ -4926,9 +4926,9 @@ def ggT(a,b):
     return a
 ggT(6,9)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 3  
-\end{sage}
+\end{sageout}
 \subsubsection{Primzahlzwillinge}
 Ein weitere interessanter Algorithmus ergibt sich, wenn man versucht, Primzahlzwillinge zu berechnen:
 \begin{sagein}
@@ -4939,11 +4939,11 @@ for i in [2..100]:
         T.append([i,i+2])
 print('Anzahl = %s' % anz);T
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Anzahl = 8
 [[3, 5], [5, 7], [11, 13], [17, 19], [29, 31], [41, 43], [59, 61], [71,
 73]]
-\end{sage}
+\end{sageout}
 \subsubsection{Betrag}
 Wir möchten den Betrag (auch komplexer Zahlen!!!) berechnen. Unser Algorithmus sieht so aus:
 \begin{sagein}
@@ -4960,9 +4960,9 @@ def betrag(a):
     return y
 betrag([1,2]), betrag(2+I*2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 ('Falscher Eingabetyp', 2*sqrt(2))
-\end{sage}
+\end{sageout}
 \subsubsection{Gültigkeit von Variablen}
 Im Zusammenhang mit Programmierung muss man über den Güligkeitsbereich von Variablen sprechen. Mit der 
 Gültigkeit von Variablen ist die Bestandsdauer von Variablen bzw. der Werte dieser Variablen gemeint. 
@@ -5029,19 +5029,19 @@ x zur Basis b. Rueckgabe des Ergebnis als Liste!"""
 \begin{sagein}
 Gadisch(6,2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 6 : 2 = 3 Rest 0
 3 : 2 = 1 Rest 1
 1 : 2 = 0 Rest 1
 [0, 1, 1]
-\end{sage}
+\end{sageout}
 
 \begin{sagein}
 Gadisch(3.4,2)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 'Eingabe nicht korrekt!'
-\end{sage}
+\end{sageout}
 \subsubsection{Kochsche Kurve}
 Seien $y_1,y_2$ zwei Punkte im $\mathbb{R}^2$. Betrachte die Strecke mit Endpunkten $y_1$ und $y_2$. 
 Ersetze  diese Strecke durch 4 Strecken 
