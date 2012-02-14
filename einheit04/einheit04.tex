@@ -2,7 +2,7 @@
 \title{Einführung in Sage - Einheit 4}
 \subtitle{Matrizen, Vektorräume, Funktionen}
 \input{../slide_header}
-%\maketitle
+\maketitle
 
 \begin{frame}{Aufbau}
 \tableofcontents
@@ -80,138 +80,15 @@ Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bezüglich der
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Matrizen in Sage}
-
-\begin{sagein}
-matrix([[a11,a12,...],[a21,a22,..],..])
-\end{sagein}
-
-\begin{itemize}
-\item Der Rückgabewert ist vom Typ \isage{matrix}.
-\item Die Einträge der Matrix können beliebige Ausdrücke sein.
-\item Es ist möglich Matrizen über bestimmten Bereichen
-(z.B. $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Z}$) zu
-konstruieren.                                                     
-\item Es gibt spezielle Datenstrukturen für quadratische Matrizen und für dünnbesetzte Matrizen. 
-\end{itemize}
-\end{frame}
+%switch to sage
 
 
-\begin{frame}[fragile]{Konstruktion von Matrizen I}
-Es gibt in Sage verschiedene Möglichkeiten eine Matrix zu
-konstruieren. Beispiel:
-\[ A:= \left( \begin{array}{cccc}
-1 & 2 & 3 & 4\\
-a & 0 & 1 & b\\ 
-\end{array} \right), \quad a,b\in \mathbb{R} \]
-\begin{itemize}
-\item Einträge pro Zeile in eckigen Klammern $[ ..]$. Alle
-Spalten dann wieder in eckigen Klammern $[ ..]$ (Standard)
-\begin{sagein}
-A = matrix([[1, 2, 3, 4],[a, 0, 1, b]]) 
-\end{sagein}
-\item Explizite Größenangabe
-\begin{sagein}
-A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
-\end{sagein}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Konstruktion von Matrizen II}
-\begin{itemize}
-\item Nullmatrix der Größe $n \times m$:
-\begin{sagein}
-n = 3; m = 4; B = matrix(n,m)
-\end{sagein}
-\item Erzeugung mit Hilfe einer Funktion $f(i,j)$ mit Einträgen $a_{ij}=f(i,j)$
-\begin{sagein}
-f(i,j) = i*j
-C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
-\end{sagein}
-\item Eingabe von Zeilen- und Spaltenvektoren (falls explizit nötig)
-\begin{sagein}
-matrix(3,1,[1,2,3])
-matrix(1,3,[4,5,6])
-\end{sagein}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Zeilen- und Spaltenzahl}
-\begin{itemize}
-\item Spaltenanzahl: \isage{<matrix>.ncols()}
-\begin{sagein}
-C.ncols()
-\end{sagein}
-\begin{sageout}
-  5
-\end{sageout}
-\item Zeilenanzahl: \isage{<matrix>.nrows()}
-\begin{sagein}
-C.nrows()
-\end{sagein}
-\begin{sageout}
-  3
-\end{sageout}
-\item Informationen über die Matrix: \isage{<matrix>.parent()}
-\begin{sagein}
-C.parent()
-\end{sagein}
-\begin{sageout}
-Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
-\end{sageout}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Zugriff auf die Einträge I}
-\begin{itemize}
-\item Zugriff auf Einträge in Zeile $i$ und Spalte $j$:
-\begin{sagein}
-i=1; j=2; C[i,j]
-\end{sagein}
-\begin{sageout}
-  6
-\end{sageout}
-\item Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
-\begin{sagein}
-i=1; j=2; C[i,j]=22
-\end{sagein}
-\item Extrahieren von Zeilen/Spalten
-\begin{sagein}
-zeile = C.row(0)
-spalte = C.column(4)
-\end{sagein}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Zugriff auf die Einträge II}
-\begin{itemize}
-\item Teilmatrizen
-\begin{sagein}
-C[1:3,1:3]
-\end{sagein}
-\item Diagonalmatrizen
-\begin{sagein}
-x = [1,2,3,4,5]
-Diag = diagonal_matrix(x); Diag
-\end{sagein}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Rechnen mit Matrizen}
-\begin{itemize} 
-\item Addieren, Multiplizieren
-\begin{sagein}
-var('a,b,c,d,g,h,f')
-A = matrix([[a, b], [c,d]])
-B = matrix([[e, f], [g,h]])
-A+B; A*B
-\end{sagein}
-\item Inverse und der Transponierte
-\begin{sagein}
-A^(-1); A.transpose()
-\end{sagein}
-\end{itemize}
-\end{frame}
+
 
 \begin{frame}{Rang von Matrizen}
 Sei $A \in K^{m \times n}$. 
@@ -222,66 +99,6 @@ Sei $A \in K^{m \times n}$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Matrizen}
-\begin{itemize}
-\item Bestimmen des Ranges einer Matrix
-\begin{sagein}
-S = matrix([[1,0,0],[0,1,1],[1,1,1]])
-S.rank()
-\end{sagein}
-\begin{sageout}
-  2
-\end{sageout}
-\item ist S symmetrisch ? ist S invertierbar ?
-\begin{sagein}
-S.is_symmetric() 
-S.is_invertible()
-\end{sagein}
-\begin{sageout}
-False
-False
-\end{sageout}
-\item Determinante
-\begin{sagein}
-S.det()
-\end{sagein}
-\begin{sageout}
-  27
-\end{sageout}
-
-% \item Ist eine Matrix unitär ?
-% \begin{sagein}
-% linalg::isUnitary(S)
-% \end{sagein}
-% \begin{sageout}
-%   FALSE
-% \end{sageout}
-% \begin{sagein}
-% F:=matrix([[I,0],[0,-I]])
-% linalg::isUnitary(F)
-% \end{sagein}
-% \begin{sageout}
-%   TRUE
-% \end{sageout}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Maps auf Matrizen}
-Anwendung der Funktion \isage{<function>} auf \isage{<matrix>} (siehe auch \isage{map()})\\
-\begin{sagein}
-map_threaded(<function>,<matrix>)
-\end{sagein}
-\textbf{Beispiel}:
-\begin{sagein}
-map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
-\end{sagein}
-  	
-\begin{sageout}
-[1.00000000000000 1.41421356237310]
-[1.73205080756888 2.00000000000000] 
-\end{sageout}
-
-\end{frame}
 
 
 

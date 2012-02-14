@@ -39,148 +39,7 @@ Set([<element1>,<element2>,...])
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Mengen}
-\begin{sagein}
-M1 = Set([x, 2,3,pi,sqrt(2)]); M1
-\end{sagein}
-\begin{sage}
-{pi, 2, 3, sqrt(2), x}
-\end{sage}
-\begin{sagein}
-var('y');M2 = Set([y,1,Set([1,y]),2,x]); M2
-\end{sagein}
-\begin{sage}
-{1, y, 2, x, {1, y}}
-\end{sage}
-\end{frame}
 
-\begin{frame}[fragile]{Befehle für Mengen I}
-\begin{itemize}
-\item Anzahl der Elemente in einer Menge:
-\begin{sagein}
-M1.cardinality()
-\end{sagein}
-\begin{sage}
-  5
-\end{sage}
-\item Zugriff:
-\begin{sagein}
-M2[1]; M2[1:4]
-\end{sagein}
-\begin{sage}
-y
-[y, 2, x]
-\end{sage}
-%\item Ändern von Einträgen mit \isage{op} und \isage{subsop} ohne Nebeneffekt:
-%\begin{sagein}
-%op(M2,3), subsop(M2,3=neu)
-%\end{sagein}
-%\begin{sage}
-%  {1, y}, {1, 2, neu, x, y}
-%\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Befehle für Mengen II}
-\begin{itemize}
-\item Vereinigung, Differenz, Schnitt:
-\begin{sagein}
-L1 = Set([1,2,3,a,b]); L2 = Set([a,b,c,4,5])
-L1.union(L2), L1.difference(L2), L1.intersection(L2)
-\end{sagein}
-\begin{sage}
-({1, 2, 3, 4, a, c, b, 5}, {1, 2, 3}, {b, a})
-\end{sage}
-\item Prüfen, ob  ein Element enthalten ist:
-\begin{sagein}
-a in L1, c in L1
-\end{sagein}
-\begin{sage}
-(True, False)
-\end{sage}
-\begin{sagein}
-Set([1,y]) in M2
-\end{sagein}
-\begin{sage}
-True
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Befehle für Mengen III}
-\begin{itemize}
-\item Auswählen von Elementen mit bestimmten Eigenschaften
-\begin{sagein}
-M = Set(range(1,15))
-filter(is_prime,M)
-\end{sagein}
-\begin{sage}
-  [2, 3, 5, 7, 11, 13]
-\end{sage}
-\item Erzeugen der Potenzmenge
-\begin{sagein}
-list(powerset([1,2,3]))
-[s for s in Set([1..3]).subsets()]
-\end{sagein}
-\begin{sage}
-[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
-[{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Filter - \verb~filter()~}
-Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
-\begin{sagein}
-M1 = filter(<f>,<M>)
-\end{sagein}
-\begin{itemize}
-\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
-\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
-ergibt. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiel für Filter I}
-\begin{sagein}
-M = Set(range(1,101))
-def f(x): return bool(mod(x,2)==0)
-M2 = Set(filter(f,M))
-def f(x): return bool(mod(x,15)==0)
-M15 = Set(filter(f,M))
-M2.intersection(M15)
-\end{sagein} 
-\begin{sage}
- {90, 60, 30}
-\end{sage}
-Alternative:
-\begin{sagein}
-M2 = Set([m for m in M if mod(m,2)==0])
-M15 = Set([m for m in M if mod(m,15)==0])
-\end{sagein}
-
-\end{frame}
-
-\begin{frame}[fragile]{Beispiel für Filter II}
-Ist Menge \isage{A1} eine Teilmenge von Menge \isage{A}?
-\begin{sagein}
-A = Set(range(1,11))
-A1 = Set(range(1,3))
-A2 = Set(range(9,12))
-\end{sagein}
-\begin{sagein}
-A.intersection(A1) == A1
-\end{sagein}
-\begin{sage}
-  True
-\end{sage}
-\begin{sagein}
-A.intersection(A2) == A2
-\end{sagein}
-\begin{sage}
-  False
-\end{sage} 
-\end{frame}
 
 % \begin{frame}[fragile]{Multimengen}
 %  Oft ist es nützlich Elemente von Mengen mit Vielfachheit zu zählen. In MuPAD 
@@ -199,10 +58,6 @@ A.intersection(A2) == A2
 %   {[a, 3], [b, 1], [c, 1], [d, 1]}
 % \end{sage}
 % \end{frame}
-
-
-
-
 
 
 %-------------------------------------
@@ -280,44 +135,7 @@ der Äquivalenzklassen.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Ganze Zahlen in Sage}
-Datentyp \isage{Integer}. \\
-\textbf{Beispiele:}
-\begin{sagein}
-type(5), type(0), type(-5)
-\end{sagein}
-\begin{sage}
-(<type 'sage.rings.integer.Integer'>, 
-<type 'sage.rings.integer.Integer'>, 
-<type 'sage.rings.integer.Integer'>)
-\end{sage}
-Division
-\begin{sagein}
-type(5*4), type(5/4)
-\end{sagein}
-\begin{sage}
-(<type 'sage.rings.integer.Integer'>, 
-<type 'sage.rings.rational.Rational'>)
-\end{sage}
-\end{frame}
 
-\begin{frame}[fragile]{Division mit Rest}
-Seien $x \in \mathbb{Z}$, $a \in \mathbb{N}$. Dann gibt es eindeutig bestimmte Zahlen
-$n,r \in \mathbb{Z}$ mit $r \in \{0,1,\dots ,a-1\}$, so dass $x=na + r$ gilt. \\
-\textbf{Beispiele:}
-\begin{sagein}
-mod(45,7), floor(45/7)
-\end{sagein}
-\begin{sage}
-(3, 6)
-\end{sage}
-\begin{sagein}
-mod(-34,8), floor(-34/8)
-\end{sagein}
-\begin{sage}
-(6, -5)
-\end{sage}
-\end{frame}
 
 \begin{frame}[fragile]{Rationale Zahlen $\mathbb{Q}$}
 Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
@@ -340,23 +158,6 @@ Multiplikation:
 \end{itemize} 
 \end{frame}
 
-\begin{frame}[fragile]{Rationale Zahlen in Sage}
-Datentyp \isage{rational}. 
-
-\begin{sagein}
-var('a,b,c,d'); (a/b+c/d).simplify_rational())
-\end{sagein}
-\begin{sage}
-(a*d + b*c)/(b*d)
-\end{sage}
-
-\begin{sagein}
-bool(a/b+c/d == (a/b+c/d).simplify_rational())
-\end{sagein}
-\begin{sage}
-True
-\end{sage}
-\end{frame}
 
 \begin{frame}[fragile]{Gruppe}
 Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
@@ -424,27 +225,7 @@ Körper:
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Körper und Gruppen in Sage}
-\begin{itemize}
-\item Die ganzen Zahlen  $\mathbb{Z}$: \isage{ZZ}
-\item Die rationalen Zahlen $\mathbb{Q}$: \isage{QQ} 
-\item Die reellen Zahlen $\mathbb{R}$: \isage{RR} 
-\item Die komplexen Zahlen $\mathbb{C}$ : \isage{CC}
-\end{itemize}
-\begin{sagein}
-QQ(5.01), RR(5/3) 
-\end{sagein}
-\begin{sage}
-(501/100, 1.66666666666667)
-\end{sage}
-\begin{sagein}
-RR.is_field(),ZZ.is_field()
-\end{sagein}
-\begin{sage}
-(True, False)
-\end{sage}
-\end{frame}
-
+%switch to sage
 
 \begin{frame}[fragile]{Anordnung}
 Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
@@ -496,30 +277,8 @@ einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
 \end{frame}
 
 
-\begin{frame}[fragile]{Reelle Zahlen in Sage - Gleitkommazahlen }
-Datentyp \isage{RealNumber}\\
-\textbf{Problem:}
-keine exakte Darstellung möglich => Approximation: die Gleitkommazahlen
-\begin{itemize}
-\item Gleitkommazahlen haben in Sage den Datentyp \isage{float}. 
-%\item Gleitkommazahlen werden zur Basis $10$ ausgegeben.
-\item Die Anzahl der signifikanten Stellen kann durch die Objekt-Methode \isage{n(digits=<digits>)} gesteuert werden
-%\item Intern werden zus\"atzliche Schutzstellen verwendet. Z.B. wird
-%bei DIGITS=10 intern mit ca. 19 Stellen gerechnet. ?? nachlesen
-\end{itemize}
 
-\textbf{Beispiel:} $\sqrt{2}$
-\begin{sagein}
-(sqrt(2)).n(digits=200)
-\end{sagein}
-\begin{sage}
-1.4142135623730950488016887
-242096980785696718753769480731767
-\end{sage}
-\end{frame}
-
-
-
+% aus dem PDF rausnehmen?
 \begin{frame}[fragile]{Rundungsfehler}
 \begin{itemize}
 \item \alert{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
@@ -535,167 +294,28 @@ vermeiden.}
 \end{frame}
 
 
-\begin{frame}[fragile]{Rechnen mit Zahlen I}
-\begin{itemize}
- \item Berechnen einer numerischen  Näherung
-\begin{sagein}
-(pi).n(digits=22), (exp(1)).n(digits=22)
-\end{sagein}
-\begin{sage}
-(3.141592653589793238463, 2.718281828459045235360)
-\end{sage}
-\item Sage rechnet mit \isage{floats}, sobald mindestens eine Zahl in
-Gleitkommadarstellung gegeben ist 
-\begin{sagein}
-(1.0+(5/2*3))/(1/7+7/9)^2
-\end{sagein}
-\begin{sage}
-10.0286860879905
-\end{sage}
-\begin{sagein}
-(1+(5/2*3))/(1/7+7/9)^2
-\end{sagein}
-\begin{sage}
-67473/6728
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Rechnen mit Zahlen II}
-\begin{itemize}
-\item Viele Sage Funktionen liefern numerische Werte beim Einsetzen
-     von Gleitkommazahlen.
-\begin{sagein}
-sqrt(64.0), sin(3.14), sin(7/5)
-\end{sagein}
-\begin{sage}
-(8.0000000000000, 0.00159265291648683, sin(7/5))
-\end{sage}
-\item Ausdrücke werden nicht automatisch umgewandelt
-\begin{sagein}
-2/3*sin(2), 0.666666666666666*sin(2)
-\end{sagein}
-\begin{sage}
-(2/3*sin(2), 0.666666666666666*sin(2))
-\end{sage}
-\begin{sagein}
-float(2/3*sin(2))
-\end{sagein}
-\begin{sage}
-0.60619828455045444
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Auslöschung}
-\begin{sagein}
-x = 10^(-2); ((1.0+x)-1.0)/x
-\end{sagein}
-\begin{sage}
-  1.00000000000000
-\end{sage}
-\begin{sagein}
-x = 10^(-4); ((1.0+x)-1.0)/x
-\end{sagein}
-\begin{sage}
- 0.999999999999890
-\end{sage}
-\begin{sagein}
-x = 10^(-16); ((1.0+x)-1.0)/x
-\end{sagein}
-\begin{sage}
-  0.000000000000000
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Wichtige Funktionen für Zahlen}
-\begin{center}
-\begin{tabular}{|ll|}
-\hline
-\isage{abs} & Absolutbetrag\\
-\isage{ceil} & Aufrunden\\
-\isage{floor} & Abrunden\\
-%\isage{frac} & Abschneiden der Vorkommastellen\\
-%\isage{trunc} & Abschneiden der Nachkommastellen\\
-\isage{round} & Runden\\
-%\isage{sign} & Vorzeichen\\
-\isage{sqrt} & Wurzel\\
-\isage{digits} & Anzahl Stellen\\
-%\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
-\hline
-\end{tabular}
-\end{center}
-\end{frame}
-
-\begin{frame}{Darstellung von Gleitkommazahlen I}
-\[ x=(-1)^{\color{brown} s} \cdot ({\color{red} 0.a_1a_2 \dots a_t}) \cdot {\color{blue}
-  b^e}, \quad { \color{red} a_1} \neq 0
-\]
-\begin{itemize}
-\item ${\color{blue} b} \in \mathbb{N} \smallsetminus \{ 0, 1\}$ ist die Basis
-\item ${\color{red} a_1} \neq 0$ erzwingt die Eindeutigkeit der Darstellung.
-\item ${\color{brown} s \in \{0, 1\}}$ das Vorzeichen.
-\item Es sei ${\color{red} a_i} \in \{0,1,\dots, b-1 \}$.
-\item $t$ ist die Anzahl der {\it signifikanten Stellen}.   
-\item $x$ hat den Wert $(-1)^s b^e \sum_{k=1}^t a_k b^{-k}$. 
-\item Man spricht von einer {\color{red} $b$-adischen Darstellung} oder einer Darstellung zur Basis $b$.
-\end{itemize} 
-\end{frame}
-
-\begin{frame}[fragile]{Darstellung von Gleitkommazahlen II}
-
-\textbf{Beispiele:}
-\[ 73 = {\color{red} 1} \cdot 2^6+{\color{red} 0} \cdot 2^5 +{\color{red} 0} \cdot 2^4 +
-  {\color{red} 1} \cdot 2^3 +{\color{red} 0} \cdot 2^2
-  + {\color{red} 0} \cdot 2^1 + {\color{red} 1} \cdot 2^0 
-\]
-$\Rightarrow$ Binärdarstellung {\color{red} $1001001=0.1001001\cdot 2^7$}.
-\[
-73={\color{blue} 1} \cdot 8^2 + {\color{blue} 1} \cdot 8^1 + {\color{blue} 1} \cdot 8^0
-\]
- $\Rightarrow$ Oktaldarstellung {\color{red} $111=0.111 \cdot 8^3$}.
-\begin{sagein}
-73.str(2)
-\end{sagein}
-\begin{sage}
-1001001
-\end{sage}
-\begin{sagein}
-73.str(8)
-\end{sagein}
-\begin{sage}
-111
-\end{sage}
 
 
-\end{frame}
 
+%\begin{frame}[fragile]{Wichtige Funktionen für Zahlen}
+%\begin{center}
+%\begin{tabular}{|ll|}
+%\hline
+%\isage{abs} & Absolutbetrag\\
+%\isage{ceil} & Aufrunden\\
+%\isage{floor} & Abrunden\\
+%%\isage{frac} & Abschneiden der Vorkommastellen\\
+%%\isage{trunc} & Abschneiden der Nachkommastellen\\
+%\isage{round} & Runden\\
+%%\isage{sign} & Vorzeichen\\
+%\isage{sqrt} & Wurzel\\
+%\isage{z.digits} & Einzelne Stellen\\
+%%\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{frame}
 
-\begin{frame}[fragile]{Darstellung von Gleitkommazahlen III}
-
-\[ 2.45 = {\color{red} 1} \cdot 2^1 + {\color{red} 0} \cdot 2^0 + {\color{red} 0} \cdot
-  2^{-1} + {\color{red} 1} \cdot 2^{-2}+
-{\color{red} 1} \cdot 2^{-3} + {\color{red} 1} \cdot 2^{-4}+{\color{red} 0} \cdot 2^{-5}+ \dots \]
-$\Rightarrow$ Binärdarstellung {\color{red} \ $10.01110 \dots$}\\
-
-\[ 2.45 = {\color{red} 2} \cdot 8^0 +  {\color{red} 3} \cdot
-  8^{-1} + {\color{red} 4} \cdot 8^{-2}+
-{\color{red} 6} \cdot 8^{-3} + {\color{red} 3} \cdot 8^{-4}+{\color{red} 1} \cdot 8^{-5}+ \dots \]
-$\Rightarrow$ Oktaldarstellung {\color{red} \ $2.34631 \dots$}\\
- \begin{sagein}
- (2.45).str(2)
- \end{sagein}
- \begin{sage}
-10.011100110011001100110011001100110011001100110011010
- \end{sage}
- \begin{sagein}
- (2.45).str(8)
- \end{sagein}
- \begin{sage}
-2.346314631463146320
- \end{sage}
-
-\end{frame}
 
 
 \begin{frame}{Komplexe Zahlen $\mathbb{C}$}
@@ -729,46 +349,7 @@ Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{$\mathbb{C}$ in Sage I}
-\begin{itemize}
-\item Datentyp in Sage: \isage{complex}
-\item Die imaginäre Einheit $i=(0,1)$ ist in Sage \isage{I}.
-\begin{sagein}
-sqrt(-1), I^2
-\end{sagein}
-\begin{sage}
-(I, -1)
-\end{sage}
-\item Rechnen mit komplexen Zahlen
-\begin{sagein}
-(1+2*I)*(4+I), (1/2+I)*(0.1+I/2)
-\end{sagein}
-\begin{sage}
- (9*I + 2, -0.4500000000 + 0.3500000000*I)
-\end{sage}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{$\mathbb{C}$ in Sage II}
-\begin{itemize}
-\item  Keine automatische Trennung bzgl. Realteil und  Imaginärteil\\
-\item \isage{real()}: Realteil
-\item \isage{imag()}: Imaginärteil
-\begin{sagein}
-1/(sqrt(2)+I), real(1/(sqrt(2)+I)) + imag(1/(sqrt(2)+I))*I
-\end{sagein}
-\begin{sage}
-1/(sqrt(2) + I)
-1/3*sqrt(2) - 1/3*I
-\end{sage}
-\begin{sagein}
-real(1/(sqrt(2)+I)), imag(1/(sqrt(2)+I))
-\end{sagein}
-\begin{sage}
-(1/3*sqrt(2), -1/3)
-\end{sage}
-\end{itemize}
-\end{frame}
 
 %=======================================
 %\section{Ungleichungen}
