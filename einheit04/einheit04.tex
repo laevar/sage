@@ -2,7 +2,7 @@
 \title{Einführung in Sage - Einheit 4}
 \subtitle{Matrizen, Vektorräume, Funktionen}
 \input{../slide_header}
-\maketitle
+%\maketitle
 
 \begin{frame}{Aufbau}
 \tableofcontents
@@ -142,23 +142,23 @@ matrix(1,3,[4,5,6])
 \begin{sagein}
 C.ncols()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   5
-\end{sage}
+\end{sageout}
 \item Zeilenanzahl: \isage{<matrix>.nrows()}
 \begin{sagein}
 C.nrows()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   3
-\end{sage}
+\end{sageout}
 \item Informationen über die Matrix: \isage{<matrix>.parent()}
 \begin{sagein}
 C.parent()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
-\end{sage}
+\end{sageout}
 \end{itemize}
 \end{frame}
 
@@ -168,9 +168,9 @@ Full MatrixSpace of 3 by 5 dense matrices over Symbolic Ring
 \begin{sagein}
 i=1; j=2; C[i,j]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   6
-\end{sage}
+\end{sageout}
 \item Ändern eines Eintrags in Zeile $i$ und Spalte $j$:
 \begin{sagein}
 i=1; j=2; C[i,j]=22
@@ -229,40 +229,40 @@ Sei $A \in K^{m \times n}$.
 S = matrix([[1,0,0],[0,1,1],[1,1,1]])
 S.rank()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   2
-\end{sage}
+\end{sageout}
 \item ist S symmetrisch ? ist S invertierbar ?
 \begin{sagein}
 S.is_symmetric() 
 S.is_invertible()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 False
 False
-\end{sage}
+\end{sageout}
 \item Determinante
 \begin{sagein}
 S.det()
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   27
-\end{sage}
+\end{sageout}
 
 % \item Ist eine Matrix unitär ?
 % \begin{sagein}
 % linalg::isUnitary(S)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   FALSE
-% \end{sage}
+% \end{sageout}
 % \begin{sagein}
 % F:=matrix([[I,0],[0,-I]])
 % linalg::isUnitary(F)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   TRUE
-% \end{sage}
+% \end{sageout}
 \end{itemize}
 \end{frame}
 
@@ -276,10 +276,10 @@ map_threaded(<function>,<matrix>)
 map_threaded(sqrt,matrix(RR,[[1,2],[3,4]]))
 \end{sagein}
   	
-\begin{sage}
+\begin{sageout}
 [1.00000000000000 1.41421356237310]
 [1.73205080756888 2.00000000000000] 
-\end{sage}
+\end{sageout}
 
 \end{frame}
 
@@ -349,18 +349,18 @@ vector([v1,v2,..])
 a = vector([1,2,3,4]); b = vector([5,6,7]); a,b
 \end{sagein}
 \begin{small}
-\begin{sage}
+\begin{sageout}
 ((1, 2, 3, 4), (5, 6, 7))
-\end{sage}
+\end{sageout}
 \end{small}
 \item Datentyp: \isage{vector_integer_dense} (für dichte Vektoren)
 \begin{sagein}
 type(a)
 \end{sagein}
 \scriptsize{
-\begin{sage}
+\begin{sageout}
 <type 'sage.modules.vector_integer_dense.Vector_integer_dense'>
-\end{sage}}
+\end{sageout}}
 \end{itemize}
 \end{frame}
 
@@ -431,12 +431,12 @@ s2 = vector([0,1,1])
 s3 = vector([1,1,1])
 span([s1,s2,s3],QQ)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Vector space of degree 3 and dimension 2 over Rational Field
 Basis matrix:
 [1 0 0]
 [0 1 1]
-\end{sage}
+\end{sageout}
 \end{itemize}
 \end{frame}
 
@@ -446,11 +446,11 @@ Basis matrix:
 \begin{sagein}
 span([s1],QQ).intersection(span([s2,s3],QQ))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 Vector space of degree 3 and dimension 1 over Rational Field
 Basis matrix:
 [1 0 0]
-\end{sage}
+\end{sageout}
 
 \item Testen der linearen Unabhängigkeit
 \begin{sagein}
@@ -459,9 +459,9 @@ m.rank() >= min(m.ncols(), m.nrows())
 m.determinant() <> 0 
 \end{sagein}
 
-\begin{sage}
+\begin{sageout}
   False
-\end{sage}
+\end{sageout}
 \end{itemize}
 \end{frame}
 
@@ -513,9 +513,9 @@ m.determinant() <> 0
 % export(student,isFree): 
 % isFree([s1,s2,s3])
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   FALSE
-% \end{sage}
+% \end{sageout}
 % \end{itemize}
 % \end{frame}
 % 
@@ -630,16 +630,16 @@ X * X.transpose()
 \begin{sagein}
 a2.dot_product(a3), a2*a3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   (5, 5)
-\end{sage}
+\end{sageout}
 \item Berechnen des Winkels zwischen zwei Vektoren
 \begin{sagein}
 float(acos(a2*a3/(abs(a2)*abs(a3))))
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   0.79520271328967818
-\end{sage}
+\end{sageout}
 \end{itemize}
 \end{frame}
 
