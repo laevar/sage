@@ -11,480 +11,14 @@
 
 
 
-%===============================================
-\section{Datencontainer in Sage}
-%===============================================
-
-% \begin{frame}{Datencontainer in Sage}
-%  \begin{itemize}
-% \item Matrizen (bereits besprochen)
-% \item Mengen (bereits besprochen)
-% \item Folgen/Tuple
-% \item Listen
-% \item Wörterbücher
-% \item Felder
-% \end{itemize}
-% \end{frame}
-\subsection*{Folgen}
-\begin{frame}[fragile]{Folgen - \verb~tuple~}
-\begin{sagein}
- Folge = a,b,c,..
- Folge = tuple(<sequence>)
-\end{sagein}
-
-\begin{itemize}
-\item Ein Tuple ist eine Aneinanderreihung beliebiger Sage-Objekte,
-  welche durch Kommata getrennt sind.
-\item ein Tuple ist in  runde Klammern eingeschlossen.
-\item Tuple sind ein grundlegender Typ (Listen und Mengen bestehen daraus).
-
-\item Einfache Definition
-\begin{sagein}
-t=var('a,b,c,d,e');Folge1 = a,b,c; Folge2 = (c,d,e); Folge1 ; Folge2
-\end{sagein}
-\begin{sage}
-(a, b, c)
-(c, d, e)
-\end{sage}
- \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Folgen }
-\begin{itemize}
-\item Mit Listen erzeugte Folgen 
-\begin{sagein}
-tuple(i^2 for i in range(2,8))
-\end{sagein}
-\begin{sage}
-(4, 9, 16, 25, 36, 49)
-\end{sage}
-
-\item Erzeugen von $n$ identischen Objekten
-\begin{sagein}
-tuple(sin(x) for i in range(0,5))
-\end{sagein}
-\begin{sage}
-  (sin(x),sin(x),sin(x),sin(x),sin(x))
-\end{sage}
-\item Erzeugen von $n$ funktionalen Objekten
-\begin{sagein}
-x = tuple(sin(i) for i in range(1,5)); x
-\end{sagein}
-\begin{sage}
-(sin(1), sin(2), sin(3), sin(4))
-\end{sage}  
-\item Erzeugen einer leeren Folge
-\begin{sagein}
-folge = (); folge2 = folge,2,3; folge2
-\end{sagein}
-\begin{sage}
- ((), 2, 3)
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Folgen - Zugriff und Verknüpfungen}
-\begin{itemize}
-\item Verbinden von Folgen
-\begin{sagein}
-Folge3 = Folge1+Folge2; Folge3
-\end{sagein}
-\begin{sage}
-(a, b, c, c, d, e)
-\end{sage}
-\item Zugriff auf Elemente
-\begin{sagein}
-x = 1,2,3,4; x[2] 
-\end{sagein}
-\begin{sage}
-  3
-\end{sage}
-\begin{sagein}
-x[2]; x[0:2]
-\end{sagein}
-\begin{sage}
-3
-(1, 2)
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-\subsection*{Listen}
-
-\begin{frame}[fragile]{Listen}
-\begin{sagein}
-liste = [a,b,c,...] 
-liste = list(<sequence>)
-\end{sagein}
-
-\begin{itemize}
-\item Eine Liste ist eine geordnete Folge beliebiger Sage Objekte.
-\item eine Liste is in eckigen Klammern eingeschlossen.
-\item Matrizen werden als geschachtelte Listen definiert.
-\item Baut auf \isage{tuple} auf.
-\item einfache Konstruktion:
-\begin{sagein}
-Liste = [1,[1,2], Set([1,2,3]),x]; Liste
-\end{sagein}
-\begin{sage}
-[1, [1, 2], {1, 2, 3}, (1, 2, 3, 4)]
-\end{sage}
-
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Listen}
-\begin{itemize}
-\item Erzeugen von Listen mit funktionalen Objekten
-\begin{sagein}
-Liste = [2^i for i in range(1,9)]; Liste
-\end{sagein}
-\begin{sage}
-[2, 4, 8, 16, 32, 64, 128, 256]
-\end{sage}
-\item Leere Listen:
-\begin{sagein}
-Liste = []; Liste
-\end{sagein}
-\begin{sage}
-  []
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zugriff auf Listen}
-\begin{itemize}
-\item Der Zugriff funktioniert genau wie bei Folgen.
-\begin{sagein}
-Liste=[(x,i) for x in range(1,4) for i in range(0,x)];  Liste
-\end{sagein}
-\begin{sage}
-[(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), (3, 2)]
-\end{sage}
-\begin{sagein}
-Liste[3], Liste[5]
-\end{sagein}
-\begin{sage}
-((3, 0), (3, 2))
-\end{sage}
-\item Zuweisung:
-\begin{sagein}
-Liste[5] = 42; Liste
-\end{sagein}
-\begin{sage}
-  [(1, 0), (2, 0), (2, 1), (3, 0), (3, 1), 42]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Weitere Befehle für Listen I}
-\begin{itemize}
-\item Entfernen eines Elements aus der Liste mit \isage{pop()}
-\begin{sagein}
-Liste = [a,b,c]; Liste.pop(1); Liste 
-\end{sagein}
-\begin{sage}
-  [a, c]
-\end{sage}
-\item Entfernen eines Elements aus der Liste mit \isage{remove()} 
-\begin{sagein}
-Liste = [a,b,c]; Liste.remove(b); Liste
-\end{sagein}
-\begin{sage}
-  [a, c]
-\end{sage}
-\item Anhängen eines Elementes mittels \isage{append()}
-\begin{sagein}
-Liste.append([3,4,5]); Liste
-\end{sagein}
-\begin{sage}
-[a, c, [3, 4, 5]]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Weitere Befehle für Listen II}
-\begin{itemize}
-\item Zusammenfügen von Listen mit dem $+$- und $*$-Operator. 
-\begin{sagein}
-Liste2 = Liste+[3,4,5]; Liste2
-\end{sagein}
-\begin{sage}
-[a, c, [3, 4, 5], 3, 4, 5]
-\end{sage}
-\begin{sagein}
-Liste*2
-\end{sagein}
-\begin{sage}
- [a, c, [3, 4, 5], a, c, [3, 4, 5]]
-\end{sage}
-\item Sortieren von Listen mit \isage{sort()}
-\begin{sagein}
-Liste = [4,-23,1,3]; Liste.sort(cmp=lambda x,y: int(2*(abs(x)>abs(y))-1)); Liste
-\end{sagein}
-\begin{sage}
-[1, 3, 4, -23]
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Inklusionen}
-\begin{itemize}
- \item Ist Objekt \isage{Objekt} in der Liste \isage{Liste} enthalten?
-\begin{sagein}
- <Objekt> in <Liste>
-\end{sagein}
-Beispiel:
-\begin{sagein}
-Liste = [x+1,a,x+1,sin(b)]
-x+1 in Liste
-\end{sagein}
-\begin{sage}
-  True
-\end{sage}
-\item Position des Objektes in der Liste (bei Fehlen gibt es eine entsprechende Meldung)
-\begin{sagein}
- <Liste>.index(<Objekt>)
-\end{sagein}
-Beispiel:
-\begin{sagein}
-Liste.index(sin(b))
-\end{sagein}
-\begin{sage}
-  3
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{map()}
-\begin{sagein}
- map(<f>,<Liste>)
-\end{sagein}
-wendet Funktion \isage{f} auf alle Elemente der Liste \isage{Liste} an.
-\begin{itemize}
- \item Kapselung bei Funktionen mit mehreren Argumenten.
-%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index).
-\item Beispiele:
-\begin{sagein}
-map(sin,[x,1,0,pi,0.3])
-\end{sagein}
-\begin{sage}
-[sin(x), sin(1), 0, 0, 0.295520206661340]
-\end{sage}
-\begin{sagein}
-map(max,[2,3,4,5,6,7],[8,7,6,5,4,3])
-\end{sagein}
-\begin{sage}
-[8, 7, 6, 5, 6, 7]
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{map\_threaded()}
-\begin{sagein}
-map_threaded(<f>,<Liste>)
-\end{sagein}
-führt die Funktion \isage{f} rekursiv auf alle Elemente in der Liste \isage{Liste} an.
-\begin{itemize}
- \item Beispiele:
-\begin{sagein}
-map_threaded(sin,[x,[1,0],[pi,[0.3]]])
-\end{sagein}
-\begin{sage}
-[sin(x), [sin(1), 0], [0, [0.295520206661340]]]
-\end{sage}
-\begin{sagein}
-map_threaded(sin,matrix([[1,2,3],[4,5,6]]))
-\end{sagein}
-\begin{sage}
-[sin(1) sin(2) sin(3)]
-[sin(4) sin(5) sin(6)]
-\end{sage}
-\end{itemize}
-
-\end{frame}
 
 
 
-\begin{frame}[fragile]{filter()}
-Ein Filter erzeugt eine Teilmenge aus einer größeren Menge.
-\begin{sagein}
-M1 = filter(<f>,<M>)
-\end{sagein}
-\begin{itemize}
-\item \isage{f(x)} ist eine Abbildung auf die Boolschen Werte \isage{True/False}. 
-\item \isage{M1} ist die Teilmenge  die aus den Elementen $x\in M$ besteht, für die \isage{f(x)} eine wahre Aussage
-ergibt. 
-%\item Der Befehl funktioniert für Mengen, Listen, Dictionaries (nur Index) oder Ausdrücke.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele für filter}
- \begin{sagein}
- filter(bool,[1==1, 1==2, 3==3, 4==5, 7==7])
- \end{sagein}
- \begin{sage}
- [True, True, True]
- \end{sage}
-\begin{sagein}
-var('x,y,z,a')
-def f(x): return a in x.operands()
-filter(f,[a+2,x,y,z,sin(a)])
-\end{sagein}
-\begin{sage}
-  [a + 2, sin(a)]
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{zip()}
-\begin{sagein}
-zip(<Liste1>, <Liste2>) 
-\end{sagein}
-die Elemente zweier Listen werden paarweise zu einer neuen Liste verknüpft.\\
-\textbf{Beispiel}:
-\begin{sagein}
-Liste1 = [a,b,c]; Liste2 = [e,f,g]
-zip(Liste1,Liste2)
-\end{sagein}
-\begin{sage}
-[(a, e), (b, f), (c, g)]
-\end{sage}
-% \begin{sagein}
-% zip(Liste1,Liste2,_power)
-% \end{sagein}
-% \begin{sage}
-%     e   f   g
-%   [a , b , c ]
-% \end{sage}
-\end{frame}
-
-\subsection*{Dictionaries}
-
-
-\begin{frame}[fragile]{Wörterbücher (Dictionaries)}
-\begin{sagein}
-d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
-\end{sagein}
-
-\begin{itemize}
-\item Dictionaries bestehen aus \alert{Assoziationen} der Form \verb+<Index>:<Wert>+. 
-\item Zugriff:
-\begin{sagein}
-d[<Index>]
-\end{sagein}
-\item  Sind gut geeignet für das Speichern großer Datenmengen, der indizierte Zugriff sehr schnell ist.
-\item der \isage{Index} ist eindeutig
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Konstruktion von Dictionaries}
-\begin{itemize}
-\item Erzeugen eines leeren Dictionaries
-\begin{sagein}
-T = {}; T
-\end{sagein}
-\begin{sage}
-  {}
-\end{sage}
-\item Einträge können durch Zuweisungen der Form \isage{<Dict>[<Index>] = <Wert>} erzeugt oder verändert werden. 
-\begin{sagein}
-T[f] = sin(x); T[1,2] = 5
-T[1,2,3] = [a,b,c]; T[a] = d;
-T
-\end{sagein}
-\begin{sage}
-{(1, 2): 5, f: sin(x), a: d, (1, 2, 3): [a, b, c]}
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Zugriff auf Dictionaries}
-\begin{itemize}
-\item Zugriff auf ein Dictionary
-\begin{sagein}
-T[a],T[1,2],T[c]
-\end{sagein}
-\begin{sage}
-(d, 5, d)
-\end{sage}
-\begin{sagein}
- float(T[f](x=4))
-\end{sagein}
-\begin{sage}
- -0.7568024953079282
-\end{sage}
-Wird ein \isage{Index} nicht gefunden, gibt es eine Fehlermeldung
-\item Löschen von Einträgen mit \isage{pop()}
-\begin{sagein}
-T.pop(a)
-\end{sagein}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Befehle (nicht) wie bei Listen}
-Alle Funktionen wirken erstmal direkt auf den Index, nicht den Werten:
-\begin{itemize}
-\item \isage{<a> in <M>}: Es wird überprüft, ob der Index \isage{a} in einem
-Dictionary vorkommt. 
-\item \isage{filter()}: Filtert die Dictionary-Indizes nach Kriterien.
-\item \isage{map()}: Wendet eine Funktion auf die Indizes an.
-\end{itemize}
-Man kann aber die Objektfunktion \isage{values()} benutzen um eine Liste der Werte zu bekommen (Dann hat man allerdings kein Dictionary mehr!)
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele}
-\begin{itemize}
- \item \isage{in} prüft ob \isage{a} oder \isage{b} als Index in einem Dictionary auftaucht.
-\begin{sagein}
-Z = {}; Z[a] = b; Z[c] = d; Z[x] = b
-a in Z, b in Z
-\end{sagein}
-\begin{sage}
-(True, False)
-\end{sage}
-\isage{a} taucht als Index auf, \isage{b} nur als Wert.
-\item \isage{filter} prüft ebenfalls nur den Index.
-\begin{sagein}
-f(y) = y == c; filter(f,Z)
-\end{sagein}
-\begin{sage}
-[c]
-\end{sage}
-
-\begin{sagein}
-f(y) = y == d; filter(f,Z.values())
-\end{sagein}
-\begin{sage}
-[d]
-\end{sage}
-
-\end{itemize}
 
 
 
-\end{frame}
 
-\begin{frame}[fragile]{Dictonaries - \verb~update()~}
- \begin{itemize}
-\item Dictionaries können aneinander gehängt werden:
-\begin{sagein}
-T={1:a,2:b}; S={3:c,4:d}
-T.update(S); T
-\end{sagein}
-\begin{sage}
-{1: a, 2: b, 3: c, 4: d}
-\end{sage}
-\alert{Vorsicht}: Doppelt auftretenden Indizes werden überschrieben!
-\end{itemize}
-\end{frame}
+
 
 
 % \begin{frame}[fragile]{Felder}
@@ -505,13 +39,13 @@ T.update(S); T
 % \begin{sagein}
 % A:=array(0..1,1..3)
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   +-                           -+
 %   |  ?[0, 1], ?[0, 2], ?[0, 3]  |
 %   |                             |
 %   |  ?[1, 1], ?[1, 2], ?[1, 3]  |
 %   +-                           -+
-% \end{sage}
+% \end{sageout}
 % Das \isage{?} bedeutet, dass die entsprechenden Werte nicht belegt sind.
 % \end{frame}
 
@@ -520,19 +54,19 @@ T.update(S); T
 % \begin{sagein}
 % A[0,1]:=1: A[1,3]:=HALLO: A
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   +-                           -+
 %   |     1,    ?[0, 2], ?[0, 3]  |
 %   |                             |
 %   |  ?[1, 1], ?[1, 2],  HALLO   |
 %   +-                           -+
-% \end{sage}
+% \end{sageout}
 % \begin{sagein}
 % A[1,3]
 % \end{sagein}
-% \begin{sage}
+% \begin{sageout}
 %   HALLO
-% \end{sage}
+% \end{sageout}
 % \end{frame}
 
 
@@ -670,9 +204,9 @@ Drehung um den Winkel $\alpha$ - Drehmatrix $G$:
 var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
 A(a=pi/2)*vector([1,1])
 \end{sagein}
-\begin{sage}
+\begin{sageout}
  (-1, 1)
-\end{sage}
+\end{sageout}
 
 \end{frame}
 
@@ -687,9 +221,9 @@ I_n = identity_matrix(3)
 S = I_n - 2*a*a.transpose()
 norm(S*S-I_n)
 \end{sagein}
-\begin{sage}
+\begin{sageout}
    0.0
-\end{sage}
+\end{sageout}
 \end{frame}
 
 \section{Eigenwerte und Eigenvektoren}
@@ -726,9 +260,9 @@ eine Matrix in \alert{Jordanscher Normalform} darstellen.
 _=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
 [ m.full_simplify() for m in  A.eigenvalues()]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [-1, 1]
-\end{sage}
+\end{sageout}
 \item Bestimmung von Eigenvektoren
 \begin{sagein}
 A.eigenvectors_right()
@@ -743,9 +277,9 @@ A.eigenvectors_right()
 E = identity_matrix(2)
 p = (A-x*E).det(); p
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (x - cos(al))*(x + cos(al)) - sin(al)^2
-\end{sage}
+\end{sageout}
 Alternative (Vorsicht: gleich bis auf Vorzeichen!):
 \begin{sagein}
 A.charpoly() 
@@ -754,9 +288,9 @@ A.charpoly()
 \begin{sagein}
 [m.full_simplify() for m in solve(p==0,x)]
 \end{sagein}
-\begin{sage}
+\begin{sageout}
   [x == -1, x == 1]
-\end{sage}
+\end{sageout}
 \end{itemize}
 \end{frame}
 
@@ -813,10 +347,10 @@ b3 = A*b2
 print A\b1
 print A\b3
 \end{sagein}
-\begin{sage}
+\begin{sageout}
 (0, 0, 0)
 (1, 0, 0) 
-\end{sage}
+\end{sageout}
 
 %linalg::gaussElim(A)
 \end{frame}
