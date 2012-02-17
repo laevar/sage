@@ -1,0 +1,92 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Datencontainer}\\
+    {\large Zusammenfassung Einheit 05}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+\textbf{Tuple}
+\begin{itemize}
+ \item Konstruktion
+\begin{sagein}
+ Folge = a,b,c,..
+ Folge = tuple(<sequence>)
+\end{sagein}
+ \item Zugriff auf Index
+\begin{sagein}
+ Folge[<Index>]
+\end{sagein}
+ \item Zugriff auf Intervall
+\begin{sagein}
+ Folge[<von>:<bis>]
+\end{sagein}
+\end{itemize}
+
+
+\textbf{Listen}
+\begin{itemize}
+ \item Konstruktion
+\begin{sagein}
+liste = [a,b,c,...] 
+liste = list(<sequence>)
+\end{sagein}
+\item Zugriff (siehe Folge)
+\item Liste erweitern
+\begin{sagein}
+Liste.append(<sequence>)
+\end{sagein}
+\item sortieren
+\begin{sagein}
+ liste.sort(cmp=<vergleichsfunktion>)
+\end{sagein}
+\item map()
+\begin{sagein}
+ map(<f>,<Liste>)
+\end{sagein}
+\item mapthreaded()
+\begin{sagein}
+ mapthreaded(<f>,<Liste>)
+\end{sagein}
+\end{itemize}
+
+\textbf{Dictionaries}
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+ \item Zugriff
+\begin{sagein}
+ d[<Index>]
+\end{sagein}
+\item Dictionaries zusammenhängen
+\begin{sagein}
+ d.update(d')
+\end{sagein}
+\end{itemize}
+
+\textbf{Lineare Abbildungen}
+\begin{itemize}
+\item Eigenwerte
+\begin{sagein}
+A.eigenvalues()
+\end{sagein}
+ \item Eigenvektoren
+\begin{sagein}
+A.eigenvectors_right()
+\end{sagein}
+\item charakteristisches Polynom
+\begin{sagein}
+A.charpoly() 
+\end{sagein}
+\end{itemize}
+
+\end{document}
+

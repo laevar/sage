@@ -14,35 +14,14 @@
 \medskip
 \textbf{Matrix}
 \begin{itemize}
-\item Begriffe
-\begin{itemize}
- \item Transponierte
- \item symmetrisch
- \item Adjungierte
- \item Einheitsmatrix
- \item Addition, MUltiplikation
- \item orthogonal
- \item unitär
- \item invertierbar
-\end{itemize}
 \item Deklaration
+\begin{sagein}
+matrix([<n>,<m>,[a11,a12,...],[a21,a22,..],..])
+\end{sagein}
 \begin{itemize}
-\item Standarddeklaration
-\begin{sagein}
-matrix([[a11,a12,...],[a21,a22,..],..])
-\end{sagein}
-\item Deklaration mit expliziter Größenangabe
-\begin{sagein}
-A = matrix(2,4,[[1,2,3,4],[a,0,1,b]]) 
-\end{sagein}
 \item $n\times m$ Nullmatrix
 \begin{sagein}
 n = 3; m = 4; B = matrix(n,m)
-\end{sagein}
-\item Erzeugen via Funktion
-\begin{sagein}
-f(i,j) = i*j
-C = matrix([[f(i,j) for i in range(1,6)] for j in range(1,4)]); C
 \end{sagein}
 \item Eingabe von Zeilen-/Spaltenvektoren
 \begin{sagein}
@@ -70,8 +49,6 @@ C.nrows()
 C.parent()
 \end{sagein}
 \end{itemize}
-\bigskip
-\bigskip
 \item Zugriff
 \begin{itemize}
  \item Eintrag in Zeile $i$ und Spalte $j$
@@ -93,9 +70,6 @@ C[1:3,1:3]
 \end{sagein}
 \item Addition/Multiplikation
 \begin{sagein}
-var('a,b,c,d,g,h,f')
-A = matrix([[a, b], [c,d]])
-B = matrix([[e, f], [g,h]])
 A+B; A*B
 \end{sagein}
 \end{itemize}
@@ -126,71 +100,11 @@ map_threaded(<function>,<matrix>)
 \textbf{Vektorraum}
 
 \begin{itemize}
- \item Begriffe
-\begin{itemize}
- \item Vektor
- \item Skalarmultiplikation
- \item Unterraum
-\end{itemize}
-
  \item Deklaration Vektor
 \begin{sagein}
 vector([v1,v2,..]) 
 \end{sagein}
-\item lineare Abhängigkeit
-\begin{itemize}
- \item Linearkombination
- \item Lineare Hülle (span)
-\end{itemize}
-\item Erzeugendensystem
-\item Dimension und Basis
-\item Vektoren in Sage
-\begin{itemize}
- \item Basis von $span(s1,s2,s3)$
-\begin{sagein}
-s1 = vector([1,0,0])
-s2 = vector([0,1,1])
-s3 = vector([1,1,1])
-span([s1,s2,s3],QQ)
-\end{sagein}
-\item Schnitt von $span(s1)$ und $span(s2,s3)$
-\begin{sagein}
-span([s1],QQ).intersection(span([s2,s3],QQ))
-\end{sagein}
-\item Test lineare Unabhängigkeit
-\begin{sagein}
-m = matrix([s1,s2,s3])
-m.rank() >= min(m.ncols(), m.nrows())
-m.determinant() <> 0 
-\end{sagein}
-\item Normen
-\item Skalarprodukt
-\item orthogonal
-\item Orthogonalbasis
-\item Orthonormalbasis
-\item Orthogonalraum
-\item $p$-Norm (hier: 2-Norm)
-\begin{sagein}
-x = vector([1,2,3,4,5]); p=2
-x.norm(p)
-\end{sagein}
-\item Vektoren orthogonal
-\begin{sagein}
-a1 = vector([1,2,3])
-a2 = vector([0,4,1])
-a3 = vector([1,1,1])
-X = matrix([a1,a2,a3])
-X * X.transpose() 
-\end{sagein}
-\item Skalarprodukt
-\begin{sagein}
-a2.dot_product(a3), a2*a3
-\end{sagein}
-\item Winkel
-\begin{sagein}
-float(acos(a2*a3/(abs(a2)*abs(a3))))
-\end{sagein}
-\end{itemize}
+
 \end{itemize}
 
 \textbf{Funktionen}
@@ -202,9 +116,6 @@ def <Name><(a,b,..)>:
     <Code-Block>
     return <ret>
 \end{sagein}
-\item Erklärungen
-\item Kommentare
-\item Externes Editieren
 \end{itemize}
 
 
