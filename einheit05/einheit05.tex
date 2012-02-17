@@ -12,15 +12,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 % \begin{frame}[fragile]{Felder}
 % \begin{itemize}
 % \item Felder sind spezielle Tabellen. Die Indizes müssen
@@ -193,38 +184,7 @@ $F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Drehung}
-Drehung um den Winkel $\alpha$ - Drehmatrix $G$:
-\[ G(\alpha):= \left ( \begin{array}{cc}
-\cos(\alpha) & -\sin(\alpha) \\
-\sin(\alpha) & \cos(\alpha)
-\end{array} \right)
-\]
-\begin{sagein}
-var('a,b');A = matrix([[cos(a),-sin(a)],[sin(a),cos(a)]])
-A(a=pi/2)*vector([1,1])
-\end{sagein}
-\begin{sageout}
- (-1, 1)
-\end{sageout}
-
-\end{frame}
-
-\begin{frame}[fragile]{Spiegelung}
-Spiegelung bezüglich der Ebene 
-\[H(a):=\{ x \in \mathbb{R}^3 | x^T a=0  \}, \|a\|=1\]
- durch \[S(a):=I - 2 a a^T.\] 
-\begin{sagein}
-a = matrix(3,1,[1,2,3])
-a = a/norm(a)
-I_n = identity_matrix(3)
-S = I_n - 2*a*a.transpose()
-norm(S*S-I_n)
-\end{sagein}
-\begin{sageout}
-   0.0
-\end{sageout}
-\end{frame}
+%switch to sage
 
 \section{Eigenwerte und Eigenvektoren}
 
@@ -253,46 +213,7 @@ eine Matrix in \alert{Jordanscher Normalform} darstellen.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Eigenwerte in Sage}
-\begin{itemize}
-\item Bestimmung von Eigenwerten
-\begin{sagein}
-_=var('al');A = matrix([[cos(al), sin(al)],[sin(al),-cos(al)]])
-[ m.full_simplify() for m in  A.eigenvalues()]
-\end{sagein}
-\begin{sageout}
-  [-1, 1]
-\end{sageout}
-\item Bestimmung von Eigenvektoren
-\begin{sagein}
-A.eigenvectors_right()
-\end{sagein} 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Eigenwerte in Sage}
-\begin{itemize}
-\item Bestimmung des charakteristischen Polynoms
-\begin{sagein}
-E = identity_matrix(2)
-p = (A-x*E).det(); p
-\end{sagein}
-\begin{sageout}
-(x - cos(al))*(x + cos(al)) - sin(al)^2
-\end{sageout}
-Alternative (Vorsicht: gleich bis auf Vorzeichen!):
-\begin{sagein}
-A.charpoly() 
-\end{sagein}
-
-\begin{sagein}
-[m.full_simplify() for m in solve(p==0,x)]
-\end{sagein}
-\begin{sageout}
-  [x == -1, x == 1]
-\end{sageout}
-\end{itemize}
-\end{frame}
+%switch to sage
 
 \begin{frame}{Lineare Gleichungssysteme (LGS)}
 Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
@@ -337,21 +258,10 @@ Eliminationsverfahren} gelöst werden.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{LGS in Sage}
-Berechnung der Lösungen von $Ax=b$: 
-\begin{sagein}
-A = matrix([[1,2,3],[4,5,6],[7,8,9]])
-b1 = vector([0,0,0])
-b2 = vector([1,0,0])
-b3 = A*b2
-print A\b1
-print A\b3
-\end{sagein}
-\begin{sageout}
-(0, 0, 0)
-(1, 0, 0) 
-\end{sageout}
+%switch to sage
 
-%linalg::gaussElim(A)
+%LU-Zerlegung, Gaussalgorithmus
+
+
 \end{frame}
 \end{document}
