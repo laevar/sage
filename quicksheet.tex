@@ -48,7 +48,80 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \end{itemize}
 \end{itemize}
 
+\textbf{Dictionaries}
+\begin{itemize}
+ \item Deklarieren eines Dictionaries:
+\begin{sagein}
+d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
+\end{sagein}
+ \item Zugriff auf Index:
+\begin{sagein}
+d[<Index>]
+\end{sagein}
+\end{itemize}
 
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\textbf{Zahlen}
+\begin{itemize}
+\item Wichtige Funktionen\\
+\begin{tabular}{|ll|}
+\hline
+\isage{abs} & Absolutbetrag\\
+\isage{ceil} & Aufrunden\\
+\isage{floor} & Abrunden\\
+%\isage{frac} & Abschneiden der Vorkommastellen\\
+%\isage{trunc} & Abschneiden der Nachkommastellen\\
+\isage{round} & Runden\\
+%\isage{sign} & Vorzeichen\\
+\isage{sqrt} & Wurzel\\
+\isage{digits} & Anzahl Stellen\\
+%\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
+\hline
+\end{tabular}
+\end{itemize}
+
+\textbf{Matrix}
+\begin{itemize}
+\item Deklaration
+\begin{sagein}
+matrix([<n>,<m>,[a11,a12,...],[a21,a22,..],..])
+\end{sagein}
+\end{itemize}
+
+\textbf{Vektor}
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+vector([v1,v2,..]) 
+\end{sagein}
+\end{itemize}
+
+\textbf{Funktionen}
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+def <Name><(a,b,..)>:
+    <Code-Block>
+    return <ret>
+\end{sagein}
+\end{itemize}
+
+\textbf{Liste}
+\begin{itemize}
+ \item Konstruktion
+\begin{sagein}
+liste = [a,b,c,...] 
+liste = list(<sequence>)
+\end{sagein}
+\end{itemize}
+
+\textbf{mapthreaded()}
+\begin{sagein}
+ mapthreaded(<Funktion>,<Objekt>)
+\end{sagein}
 
 \end{document}
 
