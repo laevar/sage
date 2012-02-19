@@ -2,7 +2,7 @@
 \title{Einführung in Sage - Einheit 3}
 \subtitle{Mengen, Zahlen}
 \input{../slide_header}
-%\maketitle
+\maketitle
 
 \begin{frame}{Aufbau}
 \tableofcontents
@@ -25,18 +25,11 @@ Unter einer \alert{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Mengen in Sage}
-\begin{sagein}
-Set([<element1>,<element2>,...])
-\end{sagein}
-\begin{itemize}
-\item Es ist eine {\color{blue} ungeordnete} Menge von beliebigen
-  Objekten. 
-\item Mengen in Sage haben den Typ \alert{\isage{set}}.
-\item Leere Mengen: \isage{leere_menge = Set([])}. 
-\item Zugriff: \isage{M[n]} (Menge $M$, $n\ge0$)
-\item Intervallzugriff: \isage{M[i:j]}.
-\end{itemize}
+
+\begin{frame}{Sage}
+\begin{center}
+\url{https://sage.math.uni-goettingen.de/home/pub/13/}
+\end{center}
 \end{frame}
 
 
@@ -225,8 +218,6 @@ Körper:
 \end{itemize}
 \end{frame}
 
-%switch to sage
-
 \begin{frame}[fragile]{Anordnung}
 Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
 Positivbereich} $P \subset K$ gibt mit
@@ -279,19 +270,19 @@ einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
 
 
 % aus dem PDF rausnehmen?
-\begin{frame}[fragile]{Rundungsfehler}
-\begin{itemize}
-\item \alert{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
-\[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
-mit $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
-\item Rundungsfehler können sich innerhalb eines Verfahrens
-verstärken. ({\it Fehlerfortpflanzung}).
-\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
-1996.
-\end{itemize}
-Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
-vermeiden.}
-\end{frame}
+%\begin{frame}[fragile]{Rundungsfehler}
+%\begin{itemize}
+%\item \alert{Relativer Fehler}: Sei $rd(x)$ die 'gerundete' Gleitkomma-Zahl zu $x \in \mathbb{R}$.  Dann gilt
+%\[ \frac{|x -rd(x)|}{|x|} \leq \varepsilon \]
+%mit $\varepsilon=b^{1-t}$ ($b$=Basis, $t$=Anzahl signifikante Stellen).
+%\item Rundungsfehler können sich innerhalb eines Verfahrens
+%verstärken. ({\it Fehlerfortpflanzung}).
+%\item Katastrophale Auswirkungen möglich! Z.B. Absturz der Arianne-Rakete
+%1996.
+%\end{itemize}
+%Warnung! {\color{red} Die Subtraktion zweier fast gleichgroßer Gleitkommazahlen ist zu
+%vermeiden.}
+%\end{frame}
 
 
 
@@ -335,8 +326,6 @@ Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit
 \item \alert{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
 \end{itemize}
 
-
-
 \end{frame}
 
 \begin{frame}[fragile]{Eigenschaften von $\mathbb{C}$}
@@ -349,6 +338,12 @@ Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}[fragile]{Sage}
+\begin{center}
+\url{https://sage.math.uni-goettingen.de/home/pub/14/}
+\end{center}
+\end{frame}
 
 
 %=======================================
