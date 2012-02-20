@@ -14,7 +14,7 @@
 
 \textbf{Überlebensregeln}
 \begin{itemize}
-\item Mehrere Befehle in einer Zeile durch \isage{;} trennen.
+\item Mehrere Befehle in einer Zeile trennen: {\color{blue}\isage{;}}
 \item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
   Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
 \item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
@@ -28,7 +28,7 @@
 %\item Anzeigen aller selbst definierten Variablen: {\color{blue} }
 \item Aktivieren des Feldes \emph{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
 %\item profiler und debugger -> commandline
-\item Dokumentation mit \LaTeX{}-Formeln:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken startet WYSIWYG-Editor.
+\item Dokumentation mit HTML und \LaTeX{}-Formeln:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken startet WYSIWYG-Editor.
 \item Publish: Im Notebook kann durch klicken des \emph{Publish}-Reiters das Notebook für alle offen gelegt werden. 
 %\item Unter dem Menupunkt \emph{File} kann man 
 \end{itemize}
@@ -40,6 +40,7 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
 \item {\color{blue} \isage{<command>??} :} gibt den source-code des \isage{command} an.
 \item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
+\item {\color{blue} \isage{search_doc('<begriff>')} :} Sucht in der Hilfe nach <begriff>.
 \item Dokumentation:
 \begin{itemize}
 \item Sage (lokal): \url{file:///usr/local/sage_4.7.2/devel/sage-main/doc/output/html/en/index.html}
@@ -87,7 +88,7 @@ d[<Index>]
 \begin{itemize}
 \item Deklaration
 \begin{sagein}
-matrix([<n>,<m>,[a11,a12,...],[a21,a22,..],..])
+matrix([<n>,<m>,[a11,...],[a21,..],..])
 \end{sagein}
 \end{itemize}
 
@@ -118,9 +119,10 @@ liste = list(<sequence>)
 \end{sagein}
 \end{itemize}
 
-\textbf{mapthreaded()}
+\textbf{map\_threaded()}:
+Rekursive Auswertung der Funktion auf das Objekt
 \begin{sagein}
- mapthreaded(<Funktion>,<Objekt>)
+ map_threaded(<Funktion>,<Objekt>)
 \end{sagein}
 
 \end{document}

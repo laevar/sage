@@ -6,7 +6,7 @@
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
-    \textbf{\LARGE Grundlagen}\\
+    \textbf{\LARGE Einführung in Sage}\\
     {\large Zusammenfassung Einheit 02}
 \end{center}
 \textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
@@ -43,14 +43,14 @@ d[<Index>]
 lambda <parameter_list>: <expression> 
 \end{sagein}
  \item Objektmethode
- \item Code-Blöcke:
+ \item Schleifen (For):
 \begin{sagein}
 for <indexvar> in <expr>/<list>:
     <Code-Block>
 else:
     <Code-Block>
 \end{sagein}
- \item Abfragen:
+ \item Abfragen (if):
 \begin{sagein}
 if <boolean expr>:
     <Code-Block>
@@ -60,18 +60,14 @@ if <boolean expr>:
 
 \textbf{Ausdrücke}
 
-\begin{itemize}
- \item Kombination von Ausdrücken
- \item Vereinfachung von Ausdrücken
   \begin{itemize}
-   \item collect()
-   \item combine()
-   \item expand()
-   \item factor()
-   \item partial\_fraction()
-   \item simplify()
+   \item collect(<x>): Sortieren nach <x>
+   \item combine(): 
+   \item expand(): Ausmultiplizieren
+   \item factor(): Faktorisieren
+   \item partial\_fraction(): Partialbruch-Zerlegung.
+   \item simplify(): (allgemeines) Vereinfachen
   \end{itemize}
-\end{itemize}
 
 \textbf{Gleichungen, Vergleiche, Logik}
 
@@ -80,9 +76,9 @@ if <boolean expr>:
 \begin{sagein}
  solve(<gleichungen>,<variablen>,<optionen>)
 \end{sagein}
- \item bool(<Ausdruck>)
- \item true, false
- \item and, or, not
+ \item bool(<Ausdruck>): gibt Wahrheitswert für den Ausdruck an.
+ \item Wahrheitswerte: \isage{True}, \isage{False}
+ \item Logische Verknüpfungen: and, or, not
 \end{itemize}
 
 
