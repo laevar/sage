@@ -12,15 +12,20 @@
 \textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
 
 \medskip
-\textbf{Begriffe}
-
+\textbf{Grundlagen}
 \begin{itemize}
- \item Bezeichner
- \item Zuweisung
- \item Auswertung
- \item Operatoren
- \item Ausdrücke
+    \item Bezeichner und Wert: <bezeichner> = <wert>
+    \item Typ eines Objekts
+        \begin{sagein}
+type(<var>)    
+        \end{sagein}
+    \item Ausgabe    
+        \begin{sagein}
+print ('Text %<format> und %<format> .. ' % (x,y,..))
+        \end{sagein}
 \end{itemize}
+
+
 
 \textbf{Dictionaries}
 
@@ -38,11 +43,11 @@ d[<Index>]
 \textbf{Funktionen und Abfragen}
 
 \begin{itemize}
- \item anonyme Funktion deklarieren:
+ \item anonyme Funktion:
 \begin{sagein}
 lambda <parameter_list>: <expression> 
 \end{sagein}
- \item Objektmethode
+% \item Objektfunktion: 
  \item Schleifen (For):
 \begin{sagein}
 for <indexvar> in <expr>/<list>:
@@ -61,24 +66,70 @@ if <boolean expr>:
 \textbf{Ausdrücke}
 
   \begin{itemize}
-   \item collect(<x>): Sortieren nach <x>
-   \item combine(): 
-   \item expand(): Ausmultiplizieren
-   \item factor(): Faktorisieren
-   \item partial\_fraction(): Partialbruch-Zerlegung.
-   \item simplify(): (allgemeines) Vereinfachen
+      \item Sortieren nach \isage{<x>}
+       \begin{sagein}
+<expr>.collect(<x>)  
+       \end{sagein}
+   \item  Potenzgesetze
+       \begin{sagein}
+<expr>.combine() 
+       \end{sagein}
+   \item Ausmultiplizieren
+       \begin{sagein}
+<expr>.expand()  
+       \end{sagein}
+   \item Faktorisieren
+       \begin{sagein}
+<expr>.factor()  
+       \end{sagein}
+   \item Partialbruch-Zerlegung.
+       \begin{sagein}
+<expr>.partial_fraction()  
+       \end{sagein}
+   \item Vereinfachen
+   \begin{itemize}
+       \item  trigonometrisch
+       \begin{sagein}
+<expr>.simplify_trig() 
+       \end{sagein}
+        \item rational
+       \begin{sagein}
+<expr>.simplify\_rational() 
+       \end{sagein}
+        \item log/ln/exp
+       \begin{sagein}
+<expr>.simplify_radical() 
+       \end{sagein}
+        \item Nutzung der Fakultät
+       \begin{sagein}
+<expr>.simplify_factorial()
+       \end{sagein}
+        \item alle Vereinfachungen
+       \begin{sagein}
+<expr>.simplify_full()
+       \end{sagein}
+       \end{itemize}
+
   \end{itemize}
 
 \textbf{Gleichungen, Vergleiche, Logik}
 
 \begin{itemize}
- \item Gleichnugssysteme lösen mit solve():
+ \item Gleichungssysteme analytisch lösen mit solve():
 \begin{sagein}
  solve(<gleichungen>,<variablen>,<optionen>)
 \end{sagein}
- \item bool(<Ausdruck>): gibt Wahrheitswert für den Ausdruck an.
+\item Gleichungssysteme numerisch lösen mit find\_root():
+    \begin{sagein}
+<expr>.find_root(<lowerbound>,<upperbound>)
+    \end{sagein}
+
+ \item Wahrheitswert für die Gleichung
+     \begin{sagein}
+bool(<Ausdruck/Gleichung>)   
+     \end{sagein}
  \item Wahrheitswerte: \isage{True}, \isage{False}
- \item Logische Verknüpfungen: and, or, not
+ \item Logische Verknüpfungen: \isage{and}, \isage{or}, \isage{not}
 \end{itemize}
 
 
