@@ -1,0 +1,67 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Einführung in Sage}\\
+    {\large Zusammenfassung Einheit 03}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+
+\textbf{Mengen}
+
+\begin{itemize}
+ \item Deklaration Mengen (Set)
+\begin{sagein}
+Set([<element1>,<element2>,...])
+\end{sagein}
+ \item Zugriff via Indizes(auch \emph{Intervalle} möglich)
+\begin{sagein}
+M2[1]; M2[1:4]
+\end{sagein}
+ \item Operationen auf Mengen
+\begin{itemize}
+ \item cardinality()
+ \item intersection()
+ \item union()
+ \item difference()
+ \item in
+ \end{itemize}
+ \item filter()
+\begin{sagein}
+M1 = filter(<f>,<M>)
+\end{sagein}
+\end{itemize}
+
+
+\textbf{Zahlen}
+
+\begin{itemize}
+\item Wichtige Funktionen\\
+\begin{tabular}{|ll|}
+\hline
+\isage{abs} & Absolutbetrag\\
+\isage{ceil} & Aufrunden\\
+\isage{floor} & Abrunden\\
+%\isage{frac} & Abschneiden der Vorkommastellen\\
+%\isage{trunc} & Abschneiden der Nachkommastellen\\
+\isage{round} & Runden\\
+%\isage{sign} & Vorzeichen\\
+\isage{sqrt} & Wurzel\\
+\isage{digits} & Anzahl Stellen\\
+%\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
+\hline
+\end{tabular}
+\item b-adische Darstellung
+\end{itemize}
+
+
+
+
+\end{document}
+
