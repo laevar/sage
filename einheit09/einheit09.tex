@@ -369,43 +369,6 @@ ggT(6,9)
 
 \end{frame}
 
-% \begin{frame}[fragile]{Logische Ausdrücke}
-% \begin{itemize}
-% \item Es gibt die drei logische (Boolsche) Werte {\color{blue}\isage{TRUE}},
-% {\color{blue}\isage{FALSE}} und {\color{blue}\isage{UNKNOWN}}.
-% \item Sie haben den Datentyp {\color{blue}\isage{DOM_BOOL}}.
-% \item Gleichungen $(=)$, Ungleichungen $(<>)$ oder Größenvergleiche 
-% (\isage{<,>,<=,>=}) können durch
-% \isage{bool} zu \isage{TRUE} oder \isage{FALSE} ausgewertet werden.
-% \end{itemize}
-% \end{frame}
-% 
-% \begin{frame}[fragile]{Logische Ausdrücke}
-% \begin{sagein}
-% bool(3<=4)
-% \end{sagein}
-% \begin{sage}
-%   TRUE
-% \end{sage}
-% \begin{sagein}
-% bool(TRUE=TRUE)
-% \end{sagein}
-% \begin{sage}
-%   TRUE
-% \end{sage}
-% \begin{sagein}
-% bool("AS"<="B")
-% \end{sagein}
-% \begin{sage}
-%   TRUE
-% \end{sage}
-% \begin{sagein}
-% bool(TRUE<>UNKNOWN)
-% \end{sagein}
-% \begin{sage}
-%   TRUE
-% \end{sage}
-% \end{frame}
 
 
 
@@ -460,19 +423,6 @@ ggT(6,9)
 % \end{sage}
 % \end{frame}
 % 
-% \begin{frame}[fragile]{if-Konstrukt}
-% Die Verzweigung \isage{if} hat die folgende Struktur:
-% \begin{sage}
-% if Bedingung
-%     then Befehle1
-%     else Befehle2
-% end_if
-% \end{sage}
-% Ist die \isage{Bedingung} wahr, so wird \isage{Befehle1} ausgeführt,
-% ansonsten \isage{Befehle2}. Befehle in den Befehlsfolgen sind durch
-% \isage{:} oder \isage{;} zu trennen. Der \isage{else} Aufruf ist
-% optional. 
-% \end{frame}
 
 \begin{frame}[fragile]{Berechnung von Primzahlzwillingen}
 \begin{sagein}
@@ -507,19 +457,6 @@ Anzahl = 8
 % \end{sage}
 % \isage{Case} funktioniert wie die \isage{switch} Anweisung in C.
 % \end{frame}
-% 
-% \begin{frame}[fragile]{Erklärung}
-% \begin{itemize}
-% \item Ist keiner der \isage{of}-Zweige richtig, so wird die
-%  Befehlssequenz zwischen \isage{otherwise} und \isage{end_case}
-%  ausgeführt. 
-% \item Durch den Befehl \isage{break} kann ein vorzeitiges Verlassen
-%  der \isage{case}-Anweisung bewirkt werden.
-% \item Stimmt der Wert von \isage{var} mit einem der Werte \isage{wert1},
-% \isage{wert2}, \ldots,  überein, werden von dieser Stelle an alle nachfolgenden Befehle 
-% ausgeführt, insbesondere also auch von \alert{allen} anderen \isage{of} und \isage{otherwise} Sequenzen). Sogenanntes {\it 'fall-through'}. 
-% \end{itemize}
-% \end{frame}
 
 \begin{frame}[fragile]{Betrag}
 \begin{sagein}
@@ -541,111 +478,6 @@ betrag([1,2]), betrag(2+I*2)
 \end{sage}
 \end{frame}
 
-\begin{frame}{Gültigkeit von Variablen}
-\begin{itemize}
-\item Mit der Gültigkeit von Variablen ist die Bestandsdauer von
-   Variablen bzw. der Werten dieser Variablen gemeint.
-\item \alert{globale Variablen}: Im aktuellen Worksheet sind alle Variablen/Funktionen global, 
-d.h. die den Variablen zugewiesenen Werte bleiben für die
-gesamte Laufzeit vom jeweiligen worksheet erhalten bis sie geändert werden. 
-Man kann auf die Variablen jederzeit zugreifen und die Werte der Variablen
-ändern.
-\item \alert{lokale Variablen}: Diese sind nur innerhalb einer Prozedur/Funktion 
-gültig. Nach Beenden der Prozedur werden
-diese Variablen wieder gelöscht. 
-\end{itemize}
-\end{frame}
-
-% \begin{frame}{Goldene Regel}
-% \begin{huge}
-% \begin{block}{}
-%  Die Verwendung von globalen Variablen in Prozeduren ist
-% schlechter Programmierstil und sollte vermieden werden.
-% \end{block}
-% \end{huge}
-% \end{frame}
-
-% \begin{frame}[fragile]{Beispiele}
-% Ein Beispiel mit globalen Variablen
-% \begin{sagein}
-% a:=b: 
-% f:=proc() 
-%       begin 
-%         a:=1+a^2: 
-%       end_proc:
-% f(); f(); f()
-% \end{sagein}
-%  Ein Beispiel mit lokalen Variablen
-% \begin{sagein}
-% a:=b: 
-% f:=proc() 
-%       local a; 
-%         begin a:=2 
-%       end_proc:
-% f(); a
-% \end{sagein}
-% \end{frame}
-
-
-% \begin{frame}[fragile]{Rekursives Beispiel}
-% Berechnung der Fakultät einer natürlichen Zahl
-% \begin{sage}
-% /* Berechnung der Fakultaet */
-% fakultaet := proc(n) begin
-%        if domtype(n)=DOM_INT and n>0
-%            then 
-%               if n=1 then return(1)
-%               else n*fakultaet(n-1)
-%               end_if
-%             else 
-%               print("Falscher Datentyp");
-%             end_if
-% end_proc:
-% \end{sage}
-% \end{frame}
-
-% \begin{frame}[fragile]{Symbolische Rückgabe}
-% \begin{sagein}
-% fakultaet(9)
-% \end{sagein}
-% \begin{sage}
-%   362880
-% \end{sage}
-% \begin{sagein}
-% x!
-% \end{sagein}
-% \begin{sage}
-%   fact(x)
-% \end{sage}
-% \begin{sagein}
-% fakultaet(x)
-% \end{sagein}
-% \begin{sage}
-%   "Falscher Datentyp"
-% \end{sage}
-% \begin{itemize}
-% \item Viele Systemfunktionen wie \isage{fact}, geben den Prozeduraufruf
-%                symbolisch zurück, wenn er nicht auszuwerten ist.
-% \item Die Auswertung kann dann später erfolgen.
-% \end{itemize}
-% \end{frame}
-
-% \begin{frame}[fragile]{Fakultät II}
-% \begin{sage}
-% /* Berechnung der Fakultaet */
-% fakultaet2 := proc(n) 
-%   begin
-%        if testtype(n,Type::PosInt)
-%            then 
-%               if n=1 then return(1)
-%               else n*fakultaet2(n-1)
-%               end_if
-%             else 
-%               return(procname(args()));
-%             end_if
-%   end_proc:
-% \end{sage}
-% \end{frame}
 
 % \begin{frame}[fragile]{Erklärungen}
 % \begin{itemize}
@@ -735,13 +567,6 @@ density_plot(mandel, (-2.1,1.2), (-1.1,1.1), plot_points=100)
 
 \end{frame}
 
-\begin{frame}[fragile]{Programmierregeln}
-\begin{itemize}
-\item \alert{Hilfetext}: Ein Programm sollte im Hilfetext eine gute Beschreibung der Funktionsweise der Funktion enthalten. Dieser sollte insbesondere Ein- und Ausgabe-Variablen genau beschreiben.
-\item \alert{Kommentieren}: Im Programm sollte durch Kommentare dokumentiert werden, was einzelne, wesentliche Abschnitte/Zeilen im Programm tun.
-\item \alert{Passende Benennung von Variablen/Funktionen}: Variablen und Funktionen sollten durchdacht benannt werden, d.h. man sollte an ihnen im Optimum direkt erkennen können, welchem Zweck sie im gegebenen Kontext dienen. 
-\end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]{Letztes Beispiel I}
 \begin{sagein}
