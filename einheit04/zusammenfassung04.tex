@@ -3,14 +3,19 @@
 \usepackage{amsmath}
 \usepackage[svgnames]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
-    \textbf{\LARGE Matrizen, Vektoren, Vektorräume, Funktionen}\\
+    \textbf{\LARGE Einführung in Sage}\\
     {\large Zusammenfassung Einheit 04}
 \end{center}
-\textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
-
+\textsl{Hinweis:} Textbausteine mit <name> weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.\\
+Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dokumentation.
 \medskip
 \textbf{Matrix}
 \begin{itemize}
@@ -19,50 +24,40 @@
 matrix([<n>,<m>,[a11,a12,...],[a21,a22,..],..])
 \end{sagein}
 \begin{itemize}
-\item $n\times m$ Nullmatrix
+\item Erzeuge Diagonalmatrix aus einem Vektor
 \begin{sagein}
-n = 3; m = 4; B = matrix(n,m)
-\end{sagein}
-\item Eingabe von Zeilen-/Spaltenvektoren
-\begin{sagein}
-matrix(3,1,[1,2,3])
-matrix(1,3,[4,5,6])
-\end{sagein}
-\item Erzeuge Diagonalmatrix aus Vektor
-\begin{sagein}
-x = [1,2,3,4,5]
-Diag = diagonal_matrix(x); Diag
+diagonal_matrix(<vector>)
 \end{sagein}
 \end{itemize}
 \item Zeilen- und Spaltenzahl
 \begin{itemize}
- \item Spaltenzahl <matrix>.ncols()
+ \item Spaltenzahl 
 \begin{sagein}
-C.ncols()
+<matrix>.ncols()
 \end{sagein}
-\item Zeilenzahl <matrix>.nrows()
+\item Zeilenzahl 
 \begin{sagein}
-C.nrows()
+<matrix>.nrows()
 \end{sagein}
-\item Informationen <matrix>.parent()
+\item Informationen
 \begin{sagein}
-C.parent()
+<matrix>.parent()
 \end{sagein}
 \end{itemize}
 \item Zugriff
 \begin{itemize}
  \item Eintrag in Zeile $i$ und Spalte $j$
 \begin{sagein}
-i=1; j=2; C[i,j]
+<matrix>[i,j]
 \end{sagein}
 \item Manipulation Eintrag Zeile $i$, Spalte $j$
 \begin{sagein}
-i=1; j=2; C[i,j]=22
+<matrix>[i,j]=<Wert>
 \end{sagein}
 \item Extrahieren von Zeilen/Spalten
 \begin{sagein}
-zeile = C.row(0)
-spalte = C.column(4)
+<matrix>.row(0)
+<matrix>.column(4)
 \end{sagein}
 \item Teilmatrizen
 \begin{sagein}

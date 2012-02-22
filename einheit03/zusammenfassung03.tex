@@ -1,22 +1,26 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
     \textbf{\LARGE Einführung in Sage}\\
     {\large Zusammenfassung Einheit 03}
 \end{center}
-\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, dass anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
-
+\textsl{Hinweise:} Textbausteine mit \isage{<name>} weisen darauf hin, dass anstatt des Ausdrucks eine passende Variable eingefügt werden muss.\\
+Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dokumentation.
 \medskip
 
 \textbf{Mengen}
 
 \begin{itemize}
- \item Deklaration Mengen (Set)
+ \item Deklaration Mengen - \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/sets/set.html#sage.sets.set.Set}{Set()} 
 \begin{sagein}
 Set([<element1>,<element2>,...])
 \end{sagein}
@@ -54,7 +58,7 @@ powerset(<set>)
 
  \item Prüfen, ob ein Element in einer Menge ist
 \begin{sagein}
-bool(<element> in <set>)
+<element> in <set>
 \end{sagein}
  \end{itemize}
 
