@@ -1,0 +1,58 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Strings, interaktive Grafiken, GeoGebra, Komplexe Beispiele}\\
+    {\large Zusammenfassung Einheit 09}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+
+\textbf{Strings}
+
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+string = '<Inhalt>'
+\end{sagein}
+\item Zugriff via Index
+\begin{sagein}
+string[<Index>]
+\end{sagein}
+\item Ersetzung
+\begin{sagein}
+string.replace('<Vorher>','<Hinterher>')
+\end{sagein}
+\item Zusammenhängen
+\begin{sagein}
+ string1+string2
+\end{sagein}
+\item Stringlänge
+\begin{sagein}
+ len(string)
+\end{sagein}
+\item Typecast
+\begin{sagein}
+str(<vorher kein String>)
+\end{sagein}
+\item Suchen
+\begin{sagein}
+ string.find(<string>)
+\end{sagein}
+\item Aufteilen
+\begin{sagein}
+ string.split(<Trennzeichen>)
+\end{sagein}
+\item Ausgabe
+\begin{sagein}
+  print 'Text %<format> und %<format> ... ' % (x,y,...)
+ \end{sagein}
+\end{itemize}
+
+\end{document}
+

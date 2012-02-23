@@ -1,0 +1,99 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Folgen, (Potenz-)Reihen, Vertiefung Schleifen}\\
+    {\large Zusammenfassung Einheit 06}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+
+\textbf{Folgen}
+
+\begin{itemize}
+ \item Grenzwert
+\begin{sagein}
+limit(<expr(x)>,x=<Stelle>,dir='<von wo>')
+\end{sagein}
+\item Visualisierung
+\begin{sagein}
+point([(<n>,<f(n)>], pointsize=<größe>)
+\end{sagein}
+\end{itemize}
+
+
+\textbf{Reihen}
+
+\begin{itemize}
+ \item Summe
+\begin{sagein}
+sum(<f>,<i>,<a>,<b>) 
+\end{sagein}
+\item Annahmen machen
+\begin{sagein}
+assume(<assumptions>) 
+\end{sagein}
+\item Annahmen vergessen
+\begin{sagein}
+ forget(<assumptions>)
+\end{sagein}
+\item Mögliche Annahmen\\
+\begin{tabular}{|l|l|}
+\hline
+Annahme & Erklärung\\
+\hline
+\isage{'real'} & $\mathbb{R}$ \\
+\isage{'rational'} & $\mathbb{Q}$\\
+\isage{'integer'} &  $\mathbb{Z}$\\
+\isage{'complex'} & $\mathbb{C}$\\
+\isage{'even'}   & gerade Zahl \\
+\isage{'odd'} & ungerade Zahl\\
+\isage{'increasing'} & wachsend \\
+\isage{'analytic'} & analytisch\\
+\hline
+\end{tabular}
+\end{itemize}
+
+\textbf{Potenzreihen}
+
+\begin{itemize}
+ \item Exponentialfunktion
+\begin{sagein}
+ exp(<Stelle>)
+\end{sagein}
+\item Sinus
+\begin{sagein}
+ sin(<Stelle>)
+\end{sagein}
+\item Cosinus
+\begin{sagein}
+ cos(<Stelle>)
+\end{sagein}
+\end{itemize}
+
+\textbf{Vertiefung Schleifen}
+
+\begin{itemize}
+ \item while- Schleife
+\begin{sagein}
+while <expression> :
+    <Code-block>
+\end{sagein}
+\item Abwärtszählen
+\begin{sagein}
+for j in reversed([<x>,<y>]):
+\end{sagein}
+\item Schrittweite modifizieren
+\begin{sagein}
+for j in srange(<x>,<y>,<Schrittweite>): 
+\end{sagein}
+\end{itemize}
+
+
+\end{document}
+
