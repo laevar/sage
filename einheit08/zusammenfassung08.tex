@@ -1,0 +1,58 @@
+\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\usepackage[psamsfonts]{amssymb}
+\usepackage{amsmath}
+\usepackage[svgnames]{xcolor} %color definition
+\input{../common_header}
+\begin{document}
+%--------------------------------------------------- Header
+\begin{center}
+    \textbf{\LARGE Differentiation, Taylorsche Formel, Integration}\\
+    {\large Zusammenfassung Einheit 08}
+\end{center}
+\textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
+
+\medskip
+
+\textbf{Differentiation}
+
+\begin{itemize}
+ \item Ableiten nach x
+\begin{sagein}
+diff(<Ausdruck>,x) 
+\end{sagein}
+\item höhere Ableitungen
+\begin{sagein}
+diff(<Ausdruck>,x1,x2,x3,...)
+diff(<Ausdruck>,x,<anzahl>) 
+\end{sagein}
+\end{itemize}
+
+
+\textbf{Taylorformel}
+
+\begin{itemize}
+ \item Taylorformel
+\begin{sagein}
+taylor(f, x, x0, n)
+\end{sagein}
+\end{itemize}
+
+\textbf{Integral}
+
+\begin{itemize}
+ \item bestimmte Integrale
+\begin{sagein}
+integrate(f,x,a,b) 
+\end{sagein}
+\item unbestimmte Integrale
+\begin{sagein}
+integrate(f,x)
+\end{sagein}
+\item numerische Approximation
+\begin{sagein}
+numerical_integral(f,a,b) 
+\end{sagein}
+\end{itemize}
+
+\end{document}
+
