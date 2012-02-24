@@ -49,6 +49,16 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \end{itemize}
 \end{itemize}
 
+\textbf{Datentypen}
+\textbf{Liste/Tuple}
+\begin{itemize}
+ \item Konstruktion
+\begin{sagein}
+liste = [a,b,c,...] 
+liste = list(<sequence>)
+\end{sagein}
+\end{itemize}
+
 \textbf{Dictionaries}
 \begin{itemize}
  \item Deklarieren eines Dictionaries:
@@ -61,8 +71,14 @@ d[<Index>]
 \end{sagein}
 \end{itemize}
 
-\bigskip
-\bigskip
+\textbf{map() und map\_threaded()}:
+(Rekursive) Auswertung der Funktion auf das Objekt
+\begin{sagein}
+ map_threaded(<Funktion>,<Objekt>)
+\end{sagein}
+
+filter
+
 \bigskip
 \bigskip
 \textbf{Zahlen}
@@ -73,10 +89,7 @@ d[<Index>]
 \isage{abs} & Absolutbetrag\\
 \isage{ceil} & Aufrunden\\
 \isage{floor} & Abrunden\\
-%\isage{frac} & Abschneiden der Vorkommastellen\\
-%\isage{trunc} & Abschneiden der Nachkommastellen\\
 \isage{round} & Runden\\
-%\isage{sign} & Vorzeichen\\
 \isage{sqrt} & Wurzel\\
 \isage{digits} & Anzahl Stellen\\
 %\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
@@ -88,7 +101,7 @@ d[<Index>]
 \begin{itemize}
 \item Deklaration
 \begin{sagein}
-matrix([<n>,<m>,[a11,...],[a21,..],..])
+matrix(<Koerper>,[<n>,<m>,[a11,...],[a21,..],..])
 \end{sagein}
 \end{itemize}
 
@@ -104,26 +117,16 @@ vector([v1,v2,..])
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
-def <Name><(a,b,..)>:
+def <Name><(<arg1>,<arg2>,..)>:
     <Code-Block>
     return <ret>
 \end{sagein}
 \end{itemize}
 
-\textbf{Liste}
-\begin{itemize}
- \item Konstruktion
-\begin{sagein}
-liste = [a,b,c,...] 
-liste = list(<sequence>)
-\end{sagein}
-\end{itemize}
+Schleifen
 
-\textbf{map\_threaded()}:
-Rekursive Auswertung der Funktion auf das Objekt
-\begin{sagein}
- map_threaded(<Funktion>,<Objekt>)
-\end{sagein}
+Abfragen
+
 
 \end{document}
 

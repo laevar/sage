@@ -2,6 +2,7 @@
 \title{Einführung in Sage - Einheit 6}
 \subtitle{Folgen, Reihen, Potenzreihen, Vertiefung Schleifen}
 \input{../slide_header}
+\begin{document}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -60,69 +61,7 @@ U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ 
 \end{frame}
 
 
-\begin{frame}[fragile]{Folgen in Sage I}
-Grenzwerte von Folgen $(a_n)_n$ können in Sage mit Hilfe von 
-\begin{sagein}
-limit(expr(x), x = oo, dir='above')
-\end{sagein}
-berechnet werden. Dabei ist $expr(x)$ ein Ausdruck.
 
-\textbf{Beispiele:}
-\begin{itemize}
- \item $a_n:= \frac{1}{n+1} => 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots$  (konvergent)
-\begin{sagein}
-_=var('n');limit(1/(n+1),n=oo)
-\end{sagein}
-\begin{sage}
-  0
-\end{sage}
-\item $d_n:=\left( \frac{n+2}{n+1} \right)^{n+1} => \frac{2^1}{1^1},\frac{3^2}{2^2}, \frac{4^3}{3^3},...$ (konvergent)
-\begin{sagein}
-limit(((n+2)/(n+1))^(n+1),n=oo)
-\end{sagein}
-\begin{sage}
-  e
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Folgen in Sage II}
-\begin{itemize}
-\item $e_n:=(-1)^n => 1,-1,1,-1,...$ (divergent)
-\begin{sagein}
-limit((-1)^n,n=oo)
-\end{sagein}
-\begin{sage}
-  ind
-\end{sage}
-\item $c_n:=2^n => 1,2,4,8,\ldots$ (divergent)
-\begin{sagein}
-limit(2^n,n=oo)
-\end{sagein}
-\begin{sage}
-  +Infinity
-\end{sage}
-\item  $b_n:= 2^{-n} => 1,\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \ldots$ (konvergent)
-\begin{sagein}
-limit(2^(-n),n=oo)
-\end{sagein}
-\begin{sage}
-  1/1048576
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Visualisieren von Folgen}
-Folgen können in Sage durch {\color{blue} \isage{points}} visualisiert werden.
-\begin{sagein}
-var('n');
-point([(n,(-1)^n/n) for n in range(1,21)], pointsize=8)
-\end{sagein}
-\begin{center}
-\includegraphics[width=9.5cm]{figures/folge.pdf}
-\end{center}
-\end{frame}
 
 \begin{frame}{Konvergenzkriterien}
 \begin{itemize}
@@ -162,24 +101,12 @@ für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Rekursive Folgen}
-Rekursive Folgen können durch rekursive Funktionen erzeugt werden.
-\textbf{Beispiel:}
-\[ y_{n+2}:=2y_{n+1}-y_n+2, \quad y_0=-1, y_1=a. \]
-\begin{sagein}
-var('a')
-def y(n):
-   if n==0:
-       return -1
-   if n==1:
-       return a
-   return 2*y(n-1)-y(n-2)+2
-y(4)
-\end{sagein}
-\begin{sage}
-4*a + 15
-\end{sage}
+\begin{frame}{Sage}
+    \begin{center}
+        \url{}
+    \end{center}
 \end{frame}
+
 
 %===============================================
 \section{Reihen}
@@ -208,75 +135,7 @@ Grenzwert ändern.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Reihen in Sage}
-\begin{sagein}
-sum(<f>,<i>,<a>,<b>) 
-\end{sagein}
-Gesucht: geschlossene Darstellung der Summe $\sum_{i=a}^b f(i)$ mit $a,b \in \mathbb{Z}$ ganze
-Zahlen (auch unendlich (\isage{infinity/oo}), \isage{f} Ausdruck in $i$.
-\begin{itemize}
-\item Oft ist die Konvergenz einer Reihe abhängig von bestimmten Parametern. Je nach Parameterwert zeigt die Reihe
-unterschiedliches Konvergenzverhalten.
-%geometrische Reihe z.b.
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{itemize}
-\item \alert{geometrische Reihe}: $\sum_{n=0}^\infty x^n$. Die
-Partialsummen lauten
-\[ s_n=1+x+x^2+\ldots + x^n = \left \{ \begin{array}{ll}
-n+1, & \mbox{ falls } x=1\\
-\frac{1-x^{n+1}}{1-x}, & \mbox{ falls } x \neq 1 
-\end{array} \right. .\]
-Die Reihe divergiert für $|x|\geq1$ und konvergiert für $|x|<1$ mit
-dem Wert $\sum_{n=0}^\infty = \frac{1}{1-x}$.
-
-\begin{sagein}
-sum(x^k,k,0,oo)
-\end{sagein}
-\begin{sage}
-Is  abs(x)-1  positive, negative, or zero?
-\end{sage}
-Entsprechend gibt es keine geschlossene Form. Für $x=1/2$ gilt
-\begin{sagein}
-x = 1/2; sum(x^k,k,0,oo)
-\end{sagein}
-\begin{sage}
-  2
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele}
-\begin{itemize}
-\item Die Reihe $\sum_{n=1}^\infty \frac{1}{n^2}$ konvergiert gegen
-$\pi^2/6$.
-\begin{sagein}
-_=var('k');sum(1/k^2,k,1,oo)
-\end{sagein}
-\begin{sage}
-1/6*pi^2
-\end{sage}
-\item Die \alert{alternierende harmonische Reihe}  $\sum_{n=1}^\infty
-\frac{(-1)^{n+1}}{n}$ konvergiert.
-\begin{sagein}
-sum((-1)^(k+1)/k,k,1,oo)
-\end{sagein}
-\begin{sage}
-  log(2)
-\end{sage}
-\item Die \alert{harmonische Reihe} $\sum_{n=1}^\infty \frac{1}{n}$
- divergiert.
-\begin{sagein}
-sum(1/k,k,1,oo)
-\end{sagein}
-\begin{sage}
-ValueError: Sum is divergent
-\end{sage}
-\end{itemize}
-\end{frame}
 
 
 % \begin{frame}[fragile]{Beispiele}
@@ -292,7 +151,7 @@ ValueError: Sum is divergent
 % \item Die Reihe  $\sum_{n=2}^\infty \frac{1}{n(\log n)^s}$ konvergiert
 % für $s>1$ und divergiert für $s=1$.
 % \begin{sagein}
-% sum(1/k,k,1,oo)
+% sum(1/(n*log(n)^s),k,2,oo)
 % \end{sagein}
 % \begin{sage}
 % 
@@ -302,70 +161,12 @@ ValueError: Sum is divergent
 % 
 % \end{frame}
 
-\begin{frame}[fragile]{Partialsummen}
-\begin{itemize}
-\item Definieren der Partialsumme
-\begin{sagein}
-_=var('x,n,k')
-s = sum(x^k,k,0,n); s
-\end{sagein}
-{\color{blue}\[\frac{x^{{\left(n + 1\right)}} - 1}{x - 1}\]}
-% \begin{sage}
-% (x^(n + 1) - 1)/(x - 1)
-% \end{sage}
 
-\item Die ersten $5$ Glieder der Partialsumme
-\begin{sagein}
-assume(x<>1); [s(n=m) for m in [1..6]]
-\end{sagein}
-{\color{blue}\[\left[\frac{x^{2} - 1}{x - 1}, \frac{x^{3} - 1}{x - 1}, \frac{x^{4} - 1}{x - 1}, \frac{x^{5} - 1}{x - 1}, \frac{x^{6} - 1}{x - 1}, \frac{x^{7} - 1}{x - 1}\right] \]}
-% \begin{sage}
-% [(x^2 - 1)/(x - 1), (x^3 - 1)/(x - 1), (x^4 - 1)/(x - 1), (x^5 - 1)/(x -
-% 1), (x^6 - 1)/(x - 1), (x^7 - 1)/(x - 1)]
-% \end{sage} 
- \end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Partialsummen II}
-\begin{itemize}
-\item Bestimmen des Grenzwertes der Folge der Partialsummen
-\begin{sagein}
-forget();assume(abs(x)<1);limit(s,n=oo)
-\end{sagein}
-\begin{sage}
--1/(x - 1)
-\end{sage}
-\begin{sagein}
-forget();assume(x>1);limit(s,n=oo)
-\end{sagein}
-\begin{sage}
-+Infinity
-\end{sage}
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Annahmen - \verb~assume()~}
-\begin{sagein}
-assume(<assumptions>)
-\end{sagein}
-Annahmen für bestimmte Bezeichner.
-
-\textbf{Beispiele:}
-\begin{sagein}
-assume(x,'real') # §$x$§ wird auf §$\mathbb{R}$§ eingeschränkt
-assume(x>a) # §$x$§ wird auf  §$\{y \in \mathbb{R}\ |\ y>a\}$§ eingeschränkt
-\end{sagein}
-
-Ruft man \isage{assume} mehrmals für einen Bezeichner auf, werden zusätzliche Annahmen gemacht. Sind diese
-Widersprüchlich erhält man eine entsprechende Meldung.
-\end{frame}
 
 \begin{frame}[fragile]{Bemerkungen}
 \begin{itemize}
-\item Umformungen oder Vereinfachungen für symbolische Bezeichner
-werden i.A. nur dann durchgeführt,
-wenn sie für alle komplexen Zahlen gelten. Hier kann ein Einschränken
-des Definitionsbereichs helfen.
 \item Mittels 
 \begin{sagein}
 forget(x>a)
@@ -528,6 +329,11 @@ genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Sage}
+    \begin{center}
+        \url{}
+    \end{center}
+\end{frame}
 %===============================================
 \section{Potenzreihen}
 %===============================================
