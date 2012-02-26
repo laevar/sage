@@ -58,7 +58,10 @@ liste = [a,b,c,...]
 liste = list(<sequence>)
 \end{sagein}
 \end{itemize}
-
+\bigskip
+\bigskip
+\bigskip
+\bigskip
 \textbf{Dictionaries}
 \begin{itemize}
  \item Deklarieren eines Dictionaries:
@@ -77,10 +80,11 @@ d[<Index>]
  map_threaded(<Funktion>,<Objekt>)
 \end{sagein}
 
-filter
+\textbf{filter}
+\begin{sagein}
+filter(<bedingung>,<menge>)
+\end{sagein}
 
-\bigskip
-\bigskip
 \textbf{Zahlen}
 \begin{itemize}
 \item Wichtige Funktionen\\
@@ -123,9 +127,75 @@ def <Name><(<arg1>,<arg2>,..)>:
 \end{sagein}
 \end{itemize}
 
-Schleifen
+\textbf{Schleifen}
+\begin{itemize}
+  \item while- Schleife
+\begin{sagein}
+while <expression> :
+    <Code-block>
+\end{sagein}
+\end{itemize}
+\textbf{Abfragen}
+\begin{sagein}
+if <boolean expr>:
+    <Code-Block>
+\end{sagein}
+\textbf{Funktionen}
 
-Abfragen
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+f(x,y,...) = expr
+\end{sagein}
+\end{itemize}
+\bigskip
+\bigskip
+\textbf{Grafik}
+\begin{itemize}
+\item 2D/3D Plot
+\begin{sagein}
+plot(f2,(x,a,b),optionen,...)
+plot3d(f3,(x,a,b),(y,c,d),optionen,...)
+\end{sagein}
+\end{itemize}
+
+\textbf{Differentiation}
+\begin{itemize}
+ \item Ableitungen
+\begin{sagein}
+diff(<Ausdruck>,<var1>,<var2>,<var3>,...)
+diff(<Ausdruck>,<var>,<anzahl>) 
+\end{sagein}
+\end{itemize}
+
+\textbf{Taylorformel}
+\begin{itemize}
+ \item Taylorformel
+\begin{sagein}
+taylor(<funktion>,<var>,<stelle>,<grad>)
+\end{sagein}
+\end{itemize}
+
+\textbf{Integrale}
+\begin{itemize}
+\item bestimmte/unbestimmte Integrale
+\begin{sagein}
+integrate(<funktion>,<var>[,<ug>,<og>]) 
+\end{sagein}
+\end{itemize}
+
+\textbf{Strings}
+
+\begin{itemize}
+ \item Deklaration
+\begin{sagein}
+string = '<Inhalt>'
+\end{sagein}
+\item Typecast
+\begin{sagein}
+str(<vorher kein String>)
+\end{sagein}
+\end{itemize}
 
 
 \end{document}
