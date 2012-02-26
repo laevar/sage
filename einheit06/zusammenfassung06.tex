@@ -6,7 +6,7 @@
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
-    \textbf{\LARGE Folgen, (Potenz-)Reihen, Vertiefung Schleifen}\\
+    \textbf{\LARGE Einführung in Sage}\\
     {\large Zusammenfassung Einheit 06}
 \end{center}
 \textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
@@ -18,7 +18,7 @@
 \begin{itemize}
  \item Grenzwert
 \begin{sagein}
-limit(<expr(x)>,x=<Stelle>,dir='<von wo>')
+limit(<expr(x)>,x=<Stelle>,dir='<+|->')
 \end{sagein}
 \item Visualisierung
 \begin{sagein}
@@ -30,7 +30,7 @@ point([(<n>,<f(n)>], pointsize=<größe>)
 \textbf{Reihen}
 
 \begin{itemize}
- \item Summe
+ \item Summe (symbolisch)
 \begin{sagein}
 sum(<f>,<i>,<a>,<b>) 
 \end{sagein}
@@ -59,38 +59,21 @@ Annahme & Erklärung\\
 \end{tabular}
 \end{itemize}
 
-\textbf{Potenzreihen}
-
-\begin{itemize}
- \item Exponentialfunktion
-\begin{sagein}
- exp(<Stelle>)
-\end{sagein}
-\item Sinus
-\begin{sagein}
- sin(<Stelle>)
-\end{sagein}
-\item Cosinus
-\begin{sagein}
- cos(<Stelle>)
-\end{sagein}
-\end{itemize}
-
 \textbf{Vertiefung Schleifen}
 
 \begin{itemize}
  \item while- Schleife
 \begin{sagein}
-while <expression> :
+while <boolean expression> :
     <Code-block>
 \end{sagein}
-\item Abwärtszählen
+\item Listen invertieren / Abwärtszählen
 \begin{sagein}
-for j in reversed([<x>,<y>]):
+reversed([<x>,<y>])
 \end{sagein}
-\item Schrittweite modifizieren
+\item srange() - reelle Schrittweiten
 \begin{sagein}
-for j in srange(<x>,<y>,<Schrittweite>): 
+srange(<x>,<y>,<Schrittweite>) 
 \end{sagein}
 \end{itemize}
 

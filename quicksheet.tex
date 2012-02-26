@@ -80,13 +80,15 @@ d[<Index>]
  map_threaded(<Funktion>,<Objekt>)
 \end{sagein}
 
-\textbf{filter}
+\textbf{filter}: filtert nach Wahrheitswert der übergebenen Funktion
 \begin{sagein}
-filter(<bedingung>,<menge>)
+filter(<funktion>,<menge oder Liste>)
 \end{sagein}
 
 \textbf{Zahlen}
 \begin{itemize}
+    \item Körper/Gruppen:\\
+        QQ (rationale Zahlen), ZZ (ganze Zahlen), RR (Reelle Zahlen)
 \item Wichtige Funktionen\\
 \begin{tabular}{|ll|}
 \hline
@@ -99,6 +101,10 @@ filter(<bedingung>,<menge>)
 %\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
 \hline
 \end{tabular}
+\item Annahmen
+    \begin{sagein}
+assume(<Annahme>        
+    \end{sagein}
 \end{itemize}
 
 \textbf{Matrix}
@@ -119,16 +125,33 @@ vector([v1,v2,..])
 
 \textbf{Funktionen}
 \begin{itemize}
- \item Deklaration
+ \item Mathematische Funktionen (Asudrücke)
+\begin{sagein}
+<f>(<x>,<y>,...) = <expr>
+\end{sagein}
+    \item einzeilige Deklaration       
+        \begin{sagein}
+def <name> (<arg1>,<arg2>,..): return <Rueckgabewert>            
+        \end{sagein}
+ \item normale Deklaration
 \begin{sagein}
 def <Name><(<arg1>,<arg2>,..)>:
     <Code-Block>
-    return <ret>
+    return <Rueckgabewert>
 \end{sagein}
 \end{itemize}
 
 \textbf{Schleifen}
 \begin{itemize}
+\item einzeilige for-Schleife
+    \begin{sagein}
+[<expr(x)> for <x> in <liste> if <bedingung>]
+    \end{sagein}
+\item for-Schleife
+    \begin{sagein}
+for <x> in <liste>:
+    <Code-Block>
+    \end{sagein}
   \item while- Schleife
 \begin{sagein}
 while <expression> :
@@ -140,16 +163,7 @@ while <expression> :
 if <boolean expr>:
     <Code-Block>
 \end{sagein}
-\textbf{Funktionen}
 
-\begin{itemize}
- \item Deklaration
-\begin{sagein}
-f(x,y,...) = expr
-\end{sagein}
-\end{itemize}
-\bigskip
-\bigskip
 \textbf{Grafik}
 \begin{itemize}
 \item 2D/3D Plot
@@ -184,7 +198,7 @@ integrate(<funktion>,<var>[,<ug>,<og>])
 \end{sagein}
 \end{itemize}
 
-\textbf{Strings}
+\textbf{Strings/Zeichenketten und Ausgabe}
 
 \begin{itemize}
  \item Deklaration
@@ -195,6 +209,16 @@ string = '<Inhalt>'
 \begin{sagein}
 str(<vorher kein String>)
 \end{sagein}
+\item print
+    \begin{sagein}
+print ("Text %<format> und %<format> \dots " % (x,y,\dots))
+    \end{sagein}
+    wichtigsten Formate:
+    \begin{itemize}
+        \item \%i : integer
+        \item \%f : float
+        \item \%s : string
+    \end{itemize}
 \end{itemize}
 
 
