@@ -103,7 +103,7 @@ für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
 
 \begin{frame}{Sage}
     \begin{center}
-        \url{}
+        \url{https://sage.math.uni-goettingen.de/home/pub/38/}
     \end{center}
 \end{frame}
 
@@ -165,94 +165,9 @@ Grenzwert ändern.
 
 
 
-\begin{frame}[fragile]{Bemerkungen}
-\begin{itemize}
-\item Mittels 
-\begin{sagein}
-forget(x>a)
-\end{sagein}
-wird die Annahme \isage{x>a} gelöscht.
-\item Durch 
-\begin{sagein}
-assumptions() 
-\end{sagein}
-können alle Annahmen ausgegeben werden.
-%\item Durch den speziellen Bezeichner \isage{Global} können Annahmen
-%für alle Bezeichner gesteuert werden. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele zu assume I}
-\begin{sagein}
-var('c'); assumptions()
-\end{sagein}
-\begin{sage}
-c
-[]
-\end{sage}
-
-\begin{sagein}
-c = 2; assume(c>0)
-\end{sagein}
-\begin{sage}
- AttributeError: 'bool' object has no attribute 'assume'
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele zu assume II}
-\begin{sagein}
-_=var('c')
-assume(c,'integer'); assumptions()
-\end{sagein}
-\begin{sage}
-[c is integer]
-\end{sage}
-\begin{sagein}
-sin(c*pi)
-\end{sagein}
-\begin{sage}
-sin(pi*c)
-\end{sage}
-\begin{sagein}
-sin(c*pi).simplify()
-\end{sagein}
-\begin{sage}
-   0
-\end{sage}
-\begin{sagein}
-assume(x>0)
-sqrt(x^2).simplify()
-\end{sagein}
-\begin{sage}
-  x
-\end{sage}
-\end{frame}
 
 
-\begin{frame}[fragile]{Einige Annahmen für assume}
-% integer,
-% noninteger, even, odd, rational, irrational, real, imaginary, complex,
-% analytic, increasing, decreasing, oddfun, evenfun, posfun, constant,
-% commutative, lassociative, rassociative, symmetric, antisymmetric,
-% integervalued, one_to_one
-\begin{center}
- \begin{tabular}{|l|l|}
-\hline
-Annahme & Erklärung\\
-\hline
-\isage{'real'} & $\mathbb{R}$ \\
-\isage{'rational'} & $\mathbb{Q}$\\
-\isage{'integer'} &  $\mathbb{Z}$\\
-\isage{'complex'} & $\mathbb{C}$\\
-\isage{'even'}   & gerade Zahl \\
-\isage{'odd'} & ungerade Zahl\\
-\isage{'increasing'} & wachsend \\
-\isage{'analytic'} & analytisch\\
-\hline
-\end{tabular}
-\end{center}
 
-\end{frame}
 
 \begin{frame}{Konvergenzkriterien}
 \begin{itemize}
@@ -293,29 +208,6 @@ Die Reihe $\sum_{n=1}^\infty a_n$ \alert{divergiert}, wenn...
 \end{description}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{itemize}
-\item Betrachte $\sum_{n=0}^\infty n^4 e^{-n^2}$
-\begin{sagein}
-f(n) = n^4*exp(-n*n)
-g(n) = f(n+1)/f(n)
-limit(g(n),n=oo)
-\end{sagein}
-\begin{sage}
-  0
-\end{sage}
-\item Betrache $\sum_{n=2}^\infty \frac{1}{n (\log n)^2}$
-\begin{sagein}
-f(n) = 1/(n*(log(n)^2))
-g(n) = 2^n*f(2^n)
-h(n) = 2^n*g(2^n)
-limit(h(n+1)/h(n),n=oo)
-\end{sagein}
-\begin{sage}
-  1/2
- \end{sage}
-\end{itemize}
-\end{frame}
 
 \begin{frame}{Absolute und bedingte Konvergenz}
 
@@ -331,9 +223,10 @@ genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert.
 
 \begin{frame}{Sage}
     \begin{center}
-        \url{}
+        \url{https://sage.math.uni-goettingen.de/home/pub/40/}
     \end{center}
 \end{frame}
+
 %===============================================
 \section{Potenzreihen}
 %===============================================
@@ -362,296 +255,27 @@ jeder Reihe individuell geprüft werden.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele}
-\begin{itemize}
-\item $\sum_{n=1}^\infty \frac{x^n}{n!}$
-\begin{sagein}
-f(n) = 1/factorial(n)
-rho = limit(expand(f(n)/f(n+1)),n=oo); rho
-\end{sagein}
-\begin{sage}
-+Infinity
-\end{sage}
-Die Potenzreihe konvergiert für alle $x \in \mathbb{R}$. 
-\item $\sum_{n=0}^\infty n^s x^n$, $s>0$
-\begin{sagein}
-_=var('s');f(n)= n^s; assume(s>0)
-limit(expand(f(n)^(1/n)),n=infinity)
-\end{sagein}
-\begin{sage}
-  1
-\end{sage}
-Der Konvergenzradius ist $1$.
-\end{itemize}
-\end{frame}   
 
-\begin{frame}[fragile]{Exponentialfunktion}
-Wir erklären die \alert{Exponentialfunktion} durch
-\[  exp(x) := \sum_{i=0}^\infty \frac{x^n}{n!}= 1 + \frac{x}{1!} +
-\frac{x^2}{2!}+ \frac{x^3}{3!}+ \dots, x \in \mathbb{R}. \]
- Die Funktion ist auf ganz $\mathbb{R}$ definiert. Plot:
-\begin{sagein}
-plot(exp,(-5,5))
-\end{sagein}
-\begin{center}
-\includegraphics[width=6cm]{figures/fexp.pdf}
-\end{center}
+
+\begin{frame}{Sage}
+    \begin{center}
+        \url{https://sage.math.uni-goettingen.de/home/pub/39/}
+    \end{center}
 \end{frame}
 
-\begin{frame}{Eigenschaften der Exponentialfunktion}
-\begin{itemize}
-\item Es gilt $\exp(x+y)=\exp(x) \cdot \exp(y)$.
-\item Es gilt $\exp(x)=\lim_{n \rightarrow \infty} (1+\frac{x}{n})^n$.
-\item Es gilt $\exp(x)=1/\exp(-x)$.
-\item Die Umkehrfunktion auf $\mathbb{R}_+$ der Exponentialfunktion ist die
-Logarithmusfunktion $\log (x)$. Es gilt
-\[ \exp(\log(x))=x, \ x >0, \quad \log ( \exp ( x ))=x, \ x \in \mathbb{R}.\] 
-\item Die {\color{red} allgemeine Potenz} ist durch $a^x:=\exp( x \log a)$,
-$a\in \mathbb{R}_+$
-definiert. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Sage}
-\begin{sagein}
-sum(x^n/factorial(n),n,0,oo)
-\end{sagein}
-\begin{sage}
-  e^x
-\end{sage}
-\begin{sagein}
-exp(log(x))
-\end{sagein}
-\begin{sage}
-  x
-\end{sage}
-\begin{sagein}
-_=var('n');limit((1+x/n)^n,n=oo)
-\end{sagein}
-\begin{sage}
-  e^x
-\end{sage}
-% \begin{sagein}
-% ??
-% ??
-% \end{sagein}
-% \begin{sage}
-%   
-% \end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Trigonometrische Funktionen}
-Die {\color{red} Sinusfunktion} und die {\color{red} Cosinusfunktion} sind definiert
-durch
-\begin{eqnarray*}
-\sin(x) := \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} \quad\quad
-\cos(x) := \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!}. 
-\end{eqnarray*}
-Die Potenzreihen konvergieren für alle $x \in \mathbb{R}$. Plotten:
-\begin{sagein}
-p = plot(sin,0,4*pi,color='red')
-p += plot(cos,0,4*pi); 
-p += text('-- $\sin(x)$', (10, 1.0), color='red')
-p += text('-- $\cos(x)$', (10, 0.85)); p.show()
-\end{sagein}
-\begin{center}
-\includegraphics[width=5.5cm]{figures/sincos.pdf}
-\end{center}
-\end{frame}
-
-\begin{frame}{Eigenschaften}
-\begin{itemize}
-\item \alert{Additionstheoreme}:
-\begin{eqnarray*}
-\sin(x+y) & = &\sin x \cos y+ \cos x \sin y \\
-\cos(x+y) & = &\cos x \cos y - \sin x \sin y .
-\end{eqnarray*} 
-\item 
-\[\sin^2x +\cos^2x=1.\]
-\item 
-\begin{eqnarray*}
-\sin(x+\pi/2)&=&\cos(x)\\
- \cos(x+\pi/2)&=&-\sin(x).
-\end{eqnarray*} 
-\item Wir definieren $\pi$, indem wir die kleinste positive Nullstelle
-von $\cos(x)$ als $\pi/2$ definieren.
-
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Sage}
-\begin{sagein}
-solve(cos(x)==0,x)
-\end{sagein}
-\begin{sage}
-[x == 1/2*pi]
-\end{sage}
-\begin{sagein}
-sin(x+pi/2).simplify()
-\end{sagein}
-\begin{sage}
-cos(x)
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Weitere Eigenschaften I}
-\begin{itemize}
-%\item Man kann die Sinusfunktion und die Cosinusfunktion mit Hilfe eines rechtwinkligen Dreiecks im Einheitskreis auch geometrisch  deuten.
-\item Umkehrfunktionen: $\arcsin$ bei Sinus und $\arccos$ bei Cosinus.
-Plotten: 
-\begin{sagein}
-p = plot(arcsin,-1,1,color='red')
-p += plot(arccos,-1,1); 
-p += text('-- arcsin(x)', (-0.7, 1.0), color='red')
-p += text('-- arccos(x)', (-0.7, 0.75)); p.show()
-\end{sagein}
-\begin{center}
-\includegraphics[width=6.5cm]{figures/arcsinarccos.pdf}
-\end{center}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Weitere Eigenschaften II}
-\begin{itemize}
-\item Der {\color{red} Tangens} ist definiert durch
-$\tan(x) :=\frac{\sin(x)}{\cos(x)}$.
-\begin{sagein}
-plot(tan,-4,4,detect_poles=True,ymax=4,ymin=-4)
-\end{sagein}
-\begin{center}
-\includegraphics[width=7cm]{figures/tan.pdf}
-\end{center}
-\end{itemize}
-\end{frame}
 
 %-----------
 \section{Vertiefung Schleifen}
 %-------------------
 
-\begin{frame}[fragile]{while-Schleifen}
-\begin{sagein}
-while <expression> :
-    <Code-block>
-\end{sagein}
-Diese wiederholt \isage{<Code-block>} solange wie die \isage{<expression>} als 
-\isage{True} ausgewertet wird.
+\begin{frame}{Sage}
+    \begin{center}
+        \url{https://sage.math.uni-goettingen.de/home/pub/41/}
+    \end{center}
+\end{frame}
 
-\textbf{Beispiel}:
-\begin{sagein}
-f(x) = 1/x
-x=0.1
-while f(x) > 0.1:
-    x += 0.1
-x
-\end{sagein}
-\begin{sage}
- 10.1000000000000
-\end{sage}
+
 %achtung: rundungsfehler, daher kommt 10.1 raus.. selbst einmal drauf reingefallen..
-
-\end{frame}
-
-% \begin{frame}[fragile]{Schleifen II}
-% \begin{itemize}
-% \item Die Schleifenvariable $k$ durchläuft die Werte $1$, $2$, $3$ und
-%   $4$. Dabei wird alles was ab \isage{:} eingerückt ist $k$-mal durchlaufen.
-% \item Ergebnisse, die in jedem Schleifenschritt berechnet werden,
-%   werden \alert{nicht} auf dem Bildschirm ausgegeben. 
-% \item Eine Ausgabe wird durch den \isage{print}-Befehl erzielt.
-% \end{itemize}
-% \end{frame}
-
-% \begin{frame}[fragile]{Schleifen III}
-%  Eine elegante Möglichkeit sind Schleifen über Listen oder Mengen.
-% \begin{sage}
-% L = [1..10]
-% for i in L:
-%     x = i^2
-%     print("Das Quadrat von {0} ist {1}").format(i,x)
-% \end{sage}
-% \end{frame}
-
-
-% \begin{frame}[fragile]{Etwas Zahlentheorie}
-% Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
-% $1,2,3,\dots $ Teiler haben.
-% \begin{sagein}
-% Liste = [1..1000]
-% def anz_teiler(n): return len(divisors(n))
-% Liste2 = map(anz_teiler,Liste)
-% for k in [1..50]:
-%     print "{0} , {1}".format(k,len(filter(lambda x: x == k, Liste2)))
-% print divisors(840)
-% \end{sagein}
-% \end{frame}
-
-\begin{frame}[fragile]{Alternative Schleifenkonstruktionen}
-\begin{itemize}
-\item Schleifen abwärts zählen
-\begin{sagein}
-for j in reversed([2,4]):
-   print("{0}, {1}").format(x,x^j) 
-\end{sagein}
-\item Schrittweite modifizieren
-\begin{sagein}
-for j in srange(3,10,2.6):
-    print(x,x^j) 
-\end{sagein}
-\begin{sage}
-(x, x^3.00000000000000)
-(x, x^5.60000000000000)
-(x, x^8.20000000000000)
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Fixpunkt}
-Suche ein $x_{\mathrm{fix}} \in \mathbb{R}$ so dass
-\[ x_{\mathrm{fix}} = \cos (x_{\mathrm{fix}}) \]
-gilt.
-\begin{center}
-\includegraphics[width=8cm]{figures/iter1.pdf}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Fixpunkt-Iteration}
-Fixpunkt-Iteration 
-\[ x_{k+1}=cos(x_k) \]
-bei geeignetem Startwert $x_0 = 0.2$.  \\
-\centering{\includegraphics[width=8cm]{figures/fixpunkt.pdf}}\\
-\end{frame}
-
-\begin{frame}[fragile]{Implementierung}
-\begin{small}
-\begin{sagein}
-def fixpunkt(f,In,x0,n):
-    y = [x0]
-    p = plot(f,(In[0],In[1]))
-    p += plot(x,(In[0],In[1]))
-    for i in [0..n-1]:
-        y.append(float(f(y[i])))
-        p += line( [ (y[i],y[i]), (y[i],y[i+1]) ],linestyle='--', color='red')
-        p += line( [ (y[i],y[i+1]), (y[i+1],y[i+1]) ],linestyle='--', color='red')
-    p.show()
-    return(y)
-\end{sagein}
-\end{small}
-\end{frame}
-
-\begin{frame}[fragile]{Aufruf}
-\begin{sagein}
-fixpunkt(lambda x: cos(x),[0,1],0.2,10)
-\end{sagein}
-\begin{sage}
-[0.200000000000000, 0.98006657784124163, 0.55696725280964243, 0.84886216565827077, 0.66083755111661502, 0.78947843776686832, 0.70421571334199318, 0.76211956176066087, 0.72337417210557109, 0.74957657633149311, 0.73197742525819132]
-\end{sage}
-\end{frame}
-
-
-
-
 
 
 
