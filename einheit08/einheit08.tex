@@ -2,6 +2,7 @@
 \title{Einführung in Sage - Einheit 8}
 \subtitle{Differentation, Taylorsche Formel, Integration}
 \input{../slide_header}
+\begin{document}
 \maketitle
 
 \begin{frame}{Aufbau}
@@ -76,68 +77,8 @@ differenzierbar ist für alle $n\in \mathbb{N}$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Ableitungen in Sage}
-\begin{sagein}
-diff(<Ausdruck>,x) 
-\end{sagein}
-wird ein Ausdruck oder eine Funktion nach $x$ abgeleitet. \\
-\textbf{Beispiele:}
-\begin{sagein}
-diff(sin(x),x)
-\end{sagein}
-\begin{sage}
-cos(x)
-\end{sage}
-\begin{sagein}
-diff(x^x,x)
-\end{sagein}
-\begin{sage}
-(log(x) + 1)*x^x
-\end{sage}
-\end{frame}
-
-\begin{frame}[fragile]{Höhere Ableitungen in Sage}
-\begin{sagein}
-diff(<Ausdruck>,x1,x2,x3,...)
-diff(<Ausdruck>,x,<anzahl>) 
-\end{sagein}
-Ableitung bzgl. der Unbekannten $x1$, dann der entstehende Ausdruck bzgl. $x2$, etc. 
-In der 2ten Form gibt \isage{<anzahl>} die Anzahl der Ableitung bzgl. \isage{x} an.\\
-\textbf{Beispiele:} 
-\begin{sagein}
-_=var('x,y,a'); diff(x^2*y^2+a,x,y)
-\end{sagein}
-\begin{sage}
-4*x*y
-\end{sage}
-\begin{sagein}
-diff(1/x,x,10)
-\end{sagein}
-\begin{sage}
-3628800/x^11
-\end{sage}
-
-\end{frame}
 
 
-\begin{frame}[fragile]{Ableitungen - Beispiele}
-\begin{sagein}
-f(x) = log(cos(x))
-f.diff(); diff(f); diff(f,x,x)
-\end{sagein}
-\begin{sage}
-x |--> -sin(x)/cos(x)
-x |--> -sin(x)/cos(x)
-x |--> -sin(x)^2/cos(x)^2 - 1
-\end{sage}
-\begin{sagein}
-g(x,y) = sin(x^2+y^2)
-g.diff(x,x,y)
-\end{sagein}
-\begin{sage}
-(x, y) |--> -8*x^2*y*cos(x^2 + y^2) - 4*y*sin(x^2 + y^2)
-\end{sage}
-\end{frame}
 
 \begin{frame}{Differentationsregeln}
 Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
@@ -197,53 +138,7 @@ Der Fall $a=\pm\infty$ ist auch erlaubt!
 \end{frame}
 
 
-\begin{frame}[fragile]{L'Hospital - Beispiele}
-\begin{itemize}
-\item Bestimmung von $ \lim_{x \rightarrow \infty} \frac{ln(x)}{x^\alpha}$, $\alpha >0$
-\begin{sagein}
-var('a');f(x) = log(x); g(x) = x^a
-assume(a > 0)
-limit(diff(f(x),x)/diff(g(x),x),x=oo)
-\end{sagein}
-\begin{sage}
-  0
-\end{sage}
-\begin{sagein}
-assume(a,'integer')
-limit(f(x)/g(x),x=oo)
-\end{sagein}
-\begin{sage}
-  0
-\end{sage}
-\end{itemize}
-\end{frame}
 
-
-\begin{frame}[fragile]{L'Hospital - Beispiele}
-\begin{itemize}
-\item Bestimmung von $\lim_{x \rightarrow 0} \frac{\sin(x)}{x}$:
-\begin{sagein}
-f(x) = sin(x); g(x) = x 
-limit(f(x)/g(x), x=0)
-\end{sagein}
-\begin{sage}
-  1
-\end{sage}
-\begin{sagein}
-diff(f(x),x);diff(g(x),x)
-\end{sagein}
-\begin{sage}
-cos(x) 
-1
-\end{sage}
-\begin{sagein}
-limit(diff(f(x),x)/diff(g(x),x),x=0)
-\end{sagein}
-\begin{sage}
-1
-\end{sage}
-\end{itemize}
-\end{frame}
 
 %------------------------------------------------------------
 \section{Taylorsche Formel}
@@ -325,73 +220,15 @@ x < 1. \]
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Visualisierung I}
-Entwickle $f(x)=exp(x)$ um $x_0=0$. Wir entwickeln gemäß der Taylorformel und erhalten die
-Approximationen $g_0(x):=1$, $g_1(x):=1+x$,
-$g_2(x):=1+x+\frac{1}{2}x^2$, $g_3(x)=\sum_{i=0}^3 \frac{x^i}{i!}$ und 
-$g_4(x)=\sum_{i=0}^4 \frac{x^i}{i!}$.
 
-\begin{sagein}
-var('n,k');f(x) = exp(x)
-g = [sum(x^k/factorial(k),k,0,n) for n in [0..4]]; g
-\end{sagein}
-{\color{blue}\[ \left[1, x + 1, \frac{1}{2} \, x^{2} + x + 1, \frac{1}{6} \, x^{3} +
-\frac{1}{2} \, x^{2} + x + 1, \frac{1}{24} \, x^{4} + \frac{1}{6} \,
-x^{3} + \frac{1}{2} \, x^{2} + x + 1\right]\]}
-% \begin{sage}
-% [1, x + 1, 1/2*x^2 + x + 1, 1/6*x^3 + 1/2*x^2 + x + 1, 1/24*x^4 +
-% 1/6*x^3 + 1/2*x^2 + x + 1]
-% \end{sage}
-\begin{sagein}
-p = plot(f,(-3,2),color='black')
-for n in [0..4]:
-    p += plot(g[n],(-3,2),rgbcolor=hue(n/5),label=n)
-p.show()
-\end{sagein}
-\end{frame} 
-
-\begin{frame}[fragile]{Visualisierung II}
+\begin{frame}[fragile]{Sage}
  \begin{center}
-  \includegraphics[width=\textwidth]{figures/taylorexp.pdf}
+     \url{http://sage.math.uni-goettingen.de/home/pub/47}
  \end{center}
 \end{frame}
 
 
-\begin{frame}[fragile]{Gegenbeispiel}
-Die Funktion
-\[ f(x) = \left \{ \begin{array}{ll}
-\exp(-1/x^2), & \mbox{ für } x \neq 0\\
-0, & \mbox{ für } x = 0\\
-\end{array} \right. \]
-ist nicht durch ihre Taylorreihe an $x_0=0$ darstellbar. Die Taylorreihe zu $f$
-ist identisch $0$, da $f^{\,n}(0)=0$ ist für alle $n \in \mathbb{N}$. \\
-\begin{sagein}
-plot(exp(-1/x^2),(-0.5,0.5)) 
-\end{sagein}
-\begin{center}
-  \includegraphics[height=4cm]{figures/taylorgegen.pdf}
- \end{center}
-\end{frame}
 
-\begin{frame}[fragile]{Taylorformel in Sage}
-\begin{sagein}
-taylor(f, x, x0, n)
-\end{sagein}
-Taylorpolynom $(n-1)$-ten Grades zu einem Ausdruck $f$ 
-(mit Unbekannten $x$) am Entwicklungspunkt $x0$. \\
-\textbf{Beispiele}:
-\begin{sagein}
-taylor(1/(1-x),x,0,5)
-\end{sagein}
-{\color{blue}\[ x^{5} + x^{4} + x^{3} + x^{2} + x + 1\]}
-\begin{sagein}
-taylor(sin(x),x,2,5)
-\end{sagein}
-{\small\color{blue}\[ \frac{1}{24} \, {\left(x - 2\right)}^{4} \sin\left(2\right) -
-\frac{1}{6} \, {\left(x - 2\right)}^{3} \cos\left(2\right) - \frac{1}{2}
-\, {\left(x - 2\right)}^{2} \sin\left(2\right) + {\left(x - 2\right)}
-\cos\left(2\right) + \sin\left(2\right)\]}
-\end{frame}
 
 % \begin{frame}[fragile]{Bemerkungen}
 % \begin{itemize}
@@ -465,6 +302,8 @@ Dabei ist $Z$ die zugehörige Zerlegung und $c_k=\phi(x)$, $x\in
 \end{itemize}
 \end{frame}
 
+%eventuell zu sage umschalten?
+
 \begin{frame}[fragile]{Begriffe II}
 Für eine beschränkte Funktion $f[a,b]\rightarrow \mathbb{R}$
 heißt
@@ -476,29 +315,6 @@ $\phi \leq f \leq \psi$ die Ungleichung
 \[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
 \end{frame}
 
-\begin{frame}[fragile]{Visualisierung in Sage}
-\begin{sagein}
-f = Piecewise([[(-pi,0),(cos(x)).function(x)]])
-rsf = f.riemann_sum(10,mode="midpoint")
-P = f.plot(rgbcolor=(0.7,0.1,0.5), plot_points=40)
-Q = rsf.plot(rgbcolor=(0.7,0.6,0.6), plot_points=40)
-L = add([line([[b,0],[b,f(x=b)]],rgbcolor=(0.7,0.6,0.6))+line([[a,0],[a,f(x=a)]],rgbcolor=(0.7,0.6,0.6)) for (a,b),f in rsf.list()])
-(P + Q +L)
-\end{sagein}
-\begin{center}
-\includegraphics[width=6cm]{figures/riemann.pdf}
-\end{center}
-\end{frame}
-
-% \begin{frame}[fragile]{Visualiserung mit MuPAD II}
-% \begin{sagein}
-% p:=student::plotRiemann(cos(x),x=-PI..PI,30): 
-% plot(p)
-% \end{sagein}
-% \begin{center}
-% %\includegraphics[width=8cm]{figures/riemann1.png}
-% \end{center}
-% \end{frame} 
 
 \begin{frame}{Das Riemannsche Integral}
 Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
@@ -533,72 +349,7 @@ $F\,'(x)=f(x)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Integrieren in Sage}
-\begin{itemize}
- \item Bestimmte Integrale der Form $\int_a^b f(x) dx$
-\begin{sagein}
-integrate(f,x,a,b) 
-\end{sagein}
-Dabei ist \isage{f} ein Ausdruck.
-\item Unbestimmte Integrale:
-\begin{sagein}
-integrate(f,x)
-\end{sagein}
-\item Numerische Approximationen:
-\begin{sagein}
-numerical_integral(f,a,b) 
-\end{sagein}
-(benutzt die GSL-library). 
-\end{itemize}
-\end{frame}
 
-\begin{frame}[fragile]{Integrieren - Beispiele I}
-\begin{sagein}
- integrate(sin(x),x,0,6)
-\end{sagein}
-\begin{sage}
--cos(6) + 1
-\end{sage}
-\begin{sagein}
-integrate(exp(x)*x,x,2,3),integrate(exp(x)*x,x)
-\end{sagein}
-{\color{blue}\[\left(-e^{2} + 2 \, e^{3}, {\left(x - 1\right)} e^{x}\right)\]}
-% \begin{sage}
-% -e^2 + 2*e^3
-% \end{sage}
-\begin{sagein}
-integrate(1/x^2,x,1,oo)
-\end{sagein}
-\begin{sage}
-  1
-\end{sage}
-\begin{sagein}
-numerical_integral(sin(1/x)*x,1,2)
-\end{sagein}
-\begin{sage}
-  (0.91905916759870254, 1.0203606488609102e-14)
-\end{sage}
-\end{frame}
-
-
-\begin{frame}[fragile]{Integrieren - Beispiele II}
-\begin{sagein}
-assume(a<>-1)
-integrate(x^a*b,x)
-\end{sagein}
-{\color{blue} \[ \frac{b x^{{\left(a + 1\right)}}}{a + 1}\]}
-% \begin{sage}
-% b*x^(a + 1)/(a + 1)
-% \end{sage}
-\begin{sagein}
-forget();a=-1
-integrate(x^a*b,x)
-\end{sagein}
-{\color{blue} \[ b \log\left(x\right)\]}
-% \begin{sage}
-%  b*log(x)
-% \end{sage}
-\end{frame}
 
 \begin{frame}{Uneigentliche Integrale}
 Sei $f$ auf $[a,b)$ erklärt (eventuell $b=\infty$) und sei $f$ auf jedem
@@ -623,16 +374,9 @@ gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
 \end{itemize}
 \end{frame}
 
-% 
-
-% \end{frame}
-% 
-% \begin{frame}[fragile]{Nützliches}
-% \begin{itemize}
-
-% \item Durch Voranstellen von {\color{blue}\isage{!}} kann man UNIX-Befehle innerhalb
-% MuPAD aufrufen. Zum Beispiel kann man sich den Inhalt des aktuellen
-% Verzeichnisses durch {\color{blue} \isage{!ls}} anzeigen lassen.
-% \end{itemize}
-% \end{frame}
+\begin{frame}[fragile]{Sage}
+ \begin{center}
+     \url{http://sage.math.uni-goettingen.de/home/pub/48}
+ \end{center}
+\end{frame}
 \end{document}
