@@ -1,8 +1,12 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -16,11 +20,11 @@
 \textbf{Folgen}
 
 \begin{itemize}
- \item Grenzwert
+ \item Grenzwert- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=function#sage.calculus.functional.limit}{limit()}
 \begin{sagein}
 limit(<expr(x)>,x=<Stelle>,dir='<+|->')
 \end{sagein}
-\item Visualisierung
+\item Visualisierung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/point.html?highlight=plot.point#points}{point()}
 \begin{sagein}
 point([(<n>,<f(n)>], pointsize=<größe>)
 \end{sagein}
@@ -30,15 +34,15 @@ point([(<n>,<f(n)>], pointsize=<größe>)
 \textbf{Reihen}
 
 \begin{itemize}
- \item Summe (symbolisch)
+ \item Summe (symbolisch)- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=.sum#sage.symbolic.expression.Expression.sum}{sum()}
 \begin{sagein}
 sum(<f>,<i>,<a>,<b>) 
 \end{sagein}
-\item Annahmen machen
+\item Annahmen machen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{assumptions()}
 \begin{sagein}
 assume(<assumptions>) 
 \end{sagein}
-\item Annahmen vergessen
+\item Annahmen vergessen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.forget}{forget()}
 \begin{sagein}
  forget(<assumptions>)
 \end{sagein}
@@ -71,7 +75,7 @@ while <boolean expression> :
 \begin{sagein}
 reversed([<x>,<y>])
 \end{sagein}
-\item srange() - reelle Schrittweiten
+\item srange() - reelle Schrittweiten- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/misc/misc.html?highlight=sage.misc.misc#sage.misc.misc.srange}{srange()}
 \begin{sagein}
 srange(<x>,<y>,<Schrittweite>) 
 \end{sagein}

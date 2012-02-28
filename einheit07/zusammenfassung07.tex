@@ -1,8 +1,13 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -30,14 +35,14 @@ f_g(x) = f(g); g_f(x) = g(f)
 \textbf{Grenzwert}
 
 \begin{itemize}
- \item Grenzwert
+ \item Grenzwert- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=function#sage.calculus.functional.limit}{limit()}
 \begin{sagein}
 expr.limit(x=<Stelle>,dir=<von wo>,taylor=False)
 limit(expr,x=<Stelle>,dir=<von wo>,taylor=False)
 \end{sagein}
 \end{itemize}
 
-\textbf{Grafiken}
+\textbf{Grafiken- }	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/plot.html?highlight=.plot#d-plotting}{\textbf{plotting}}
 
 \begin{itemize}
  \item Optionen für grafische Objekte\\
@@ -65,21 +70,21 @@ limit(expr,x=<Stelle>,dir=<von wo>,taylor=False)
 \isage{gridlines} & Gitterlinien
               {\color{blue} \isage{gridlines = True}}
 \end{tabular}
-\item 2D/3D Plot
+\item 2D/3D Plot- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot}{plot()}	/	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot3d}{plot3d()}
 \begin{sagein}
 plot(f2,(x,a,b),optionen,...)
 plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 \end{sagein}
-\item 2D/3D Kurven
+\item 2D/3D Kurven- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/plot.html?highlight=.plot#sage.plot.plot.parametric_plot}{parametric\_plot()}
 \begin{sagein}
 parametric_plot([x(t),y(t)], (t,a,b), optionen, ...)
 parametric_plot([x(t),y(t),z(t)], (t,a,b), optionen, ...)
 \end{sagein}
-\item Konturen
+\item Konturen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/contour_plot.html#sage.plot.contour_plot.contour_plot}{contour\_plot()}
 \begin{sagein}
 contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
 \end{sagein}
-\item animierte Grafiken
+\item animierte Grafiken- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/animate.html?highlight=.plot#sage.plot.animate.Animation}{animate()}
 \begin{sagein}
 animate([<graph1,graph2,...>], optionen, ... ) 
 \end{sagein}

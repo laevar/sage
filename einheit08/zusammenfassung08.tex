@@ -1,8 +1,13 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -16,7 +21,7 @@
 \textbf{Differentiation}
 
 \begin{itemize}
- \item Ableiten nach x
+ \item Ableiten nach x- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{diff()}
 \begin{sagein}
 diff(<Ausdruck>,x) 
 \end{sagein}
@@ -31,7 +36,7 @@ diff(<Ausdruck>,x,<anzahl>)
 \textbf{Taylorformel}
 
 \begin{itemize}
- \item Taylorformel
+ \item Taylorformel- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{taylor()}
 \begin{sagein}
 taylor(<funktion>,<var>,<stelle>,<grad>)
 \end{sagein}
@@ -40,7 +45,7 @@ taylor(<funktion>,<var>,<stelle>,<grad>)
 \textbf{Integral}
 
 \begin{itemize}
- \item bestimmte Integrale
+ \item bestimmte Integrale- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
 \begin{sagein}
 integrate(<funktion>,<var>,<untergrenze>,<obergrenze>) 
 \end{sagein}

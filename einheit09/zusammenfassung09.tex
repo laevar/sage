@@ -1,8 +1,12 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -13,7 +17,7 @@
 
 \medskip
 
-\textbf{Strings}
+\textbf{Strings- }\href{http://docs.python.org/library/string.html?highlight=string.replace#string-constants}{\textbf{string}}
 
 \begin{itemize}
  \item Deklaration
@@ -24,7 +28,7 @@ string = '<Inhalt>'
 \begin{sagein}
 string[<Index>]
 \end{sagein}
-\item Ersetzung
+\item Ersetzung- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.replace}{replace()}
 \begin{sagein}
 string.replace('<Vorher>','<Hinterher>')
 \end{sagein}
@@ -32,23 +36,23 @@ string.replace('<Vorher>','<Hinterher>')
 \begin{sagein}
  <string>+<string>
 \end{sagein}
-\item Stringlänge
+\item Stringlänge- \href{http://docs.python.org/library/functions.html?highlight=print#len}{len()}
 \begin{sagein}
  len(<string>)
 \end{sagein}
-\item Typecast
+\item Typecast- \href{http://docs.python.org/library/functions.html?highlight=print#str}{str()}
 \begin{sagein}
 str(<vorher kein String>)
 \end{sagein}
-\item Suchen
+\item Suchen- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.find}{find()}
 \begin{sagein}
  <string>.find(<string>)
 \end{sagein}
-\item Aufteilen
+\item Aufteilen- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.split}{split()}
 \begin{sagein}
  <string>.split([<Trennzeichen>])
 \end{sagein}
-\item Ausgabe
+\item Ausgabe- \href{http://docs.python.org/library/functions.html?highlight=print#print}{print}
 \begin{sagein}
   print 'Text %<format> und %<format> ... ' % (x,y,...)
  \end{sagein}

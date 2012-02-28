@@ -1,7 +1,7 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
 \usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
     colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
@@ -44,15 +44,15 @@ Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dok
 list(<sequence>)
 \end{sagein}
 \item Zugriff (siehe Folge)
-\item Liste erweitern
+\item Liste erweitern- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/misc/explain_pickle.html?highlight=append#sage.misc.explain_pickle.TestAppendList}{append()}
 \begin{sagein}
 <Liste>.append(<sequence>)
 \end{sagein}
-\item sortieren
+\item sortieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/structure/sequence.html?highlight=sort#sage.structure.sequence.Sequence_generic.sort}{sort()}
 \begin{sagein}
  <liste>.sort(cmp=<vergleichsfunktion>)
 \end{sagein}
-\item Funktionsanwendung auf Elemente
+\item Funktionsanwendung auf Elemente- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/generator.html?highlight=map#sage.combinat.generator.map}{map()}
 \begin{sagein}
  map(<f>,<Liste>)
 \end{sagein}
@@ -62,7 +62,7 @@ list(<sequence>)
 \end{sagein}
 \end{itemize}
 
-\textbf{Dictionaries}
+\textbf{Dictionaries- } \href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
@@ -72,27 +72,30 @@ list(<sequence>)
 \begin{sagein}
  <dict>[<Index>]
 \end{sagein}
-\item Dictionaries zusammenhängen
+\item Dictionaries zusammenhängen- \href{http://docs.python.org/library/stdtypes.html?highlight=.update#dict.update}{update()}
 \begin{sagein}
  <dict>.update(<dict2>)
 \end{sagein}
 \end{itemize}
-
+\bigskip
+\bigskip
+\bigskip
+\bigskip
 \textbf{Lineare Abbildungen}
 \begin{itemize}
-\item Eigenwerte
+\item Eigenwerte- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=eigenvalues#sage.matrix.matrix2.Matrix.eigenvalues}{eigenvalues()}
 \begin{sagein}
 <matrix>.eigenvalues()
 \end{sagein}
- \item Eigenvektoren
+ \item Eigenvektoren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=eigenvalues#sage.matrix.matrix2.Matrix.eigenvectors_right}{eigenvectors\_right()}
 \begin{sagein}
 <matrix>.eigenvectors_right()
 \end{sagein}
-\item charakteristisches Polynom
+\item charakteristisches Polynom- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=charpoly#sage.matrix.matrix2.Matrix.charpoly}{charpoly()}
 \begin{sagein}
 <matrix>.charpoly() 
 \end{sagein}
-\item LU-Zerlegung 
+\item LU-Zerlegung - \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=matrix.lu#sage.matrix.matrix2.Matrix.LU}{LU()}
     \begin{sagein}
 P,L,U = <matrix>.LU()
     \end{sagein}
