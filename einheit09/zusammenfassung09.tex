@@ -10,7 +10,7 @@
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
-    \textbf{\LARGE Strings, interaktive Grafiken, GeoGebra, Komplexe Beispiele}\\
+    \textbf{\LARGE Einführung in Sage}\\
     {\large Zusammenfassung Einheit 09}
 \end{center}
 \textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
@@ -22,15 +22,15 @@
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
-string = '<Inhalt>'
+<string> = '<Inhalt>'
 \end{sagein}
 \item Zugriff via Index
 \begin{sagein}
-string[<Index>]
+<string>[<Index>]
 \end{sagein}
 \item Ersetzung- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.replace}{replace()}
 \begin{sagein}
-string.replace('<Vorher>','<Hinterher>')
+<string>.replace('<Vorher>','<Hinterher>')
 \end{sagein}
 \item Zusammenhängen
 \begin{sagein}
@@ -52,10 +52,25 @@ str(<vorher kein String>)
 \begin{sagein}
  <string>.split([<Trennzeichen>])
 \end{sagein}
-\item Ausgabe- \href{http://docs.python.org/library/functions.html?highlight=print#print}{print}
+\item Ausgabe
 \begin{sagein}
   print 'Text %<format> und %<format> ... ' % (x,y,...)
  \end{sagein}
+ <format>:  \%[<flag>][<minwidth>][.<precision>]converter
+ \begin{itemize}
+\item flag: 0 für das Auffüllen mit Nullen
+\item minwidth: Minimale Breite der Darstellung
+\item precision: Genauigkeit (Nachkommastellen)
+\item converter:
+    \begin{itemize}
+        \item[i]  ganze Zahl mit Vorzeichen
+        \item[e]  Gleitkommazahl mit exponentialformat (kleingeschrieben)
+        \item[f]  Gleitkommazahl im Dezimalformat
+        \item[g]  Gleitkommazahl. Exponent < -4: kleingeschriebene Exponentialform, ansonsten Dezimalformat
+        \item[s]  Strings
+    \end{itemize}
+ \end{itemize}
+
 \end{itemize}
 
 \end{document}
