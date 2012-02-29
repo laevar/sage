@@ -1,7 +1,7 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
 \usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
     colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
@@ -18,25 +18,25 @@
 Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dokumentation.
 
 \medskip
-\textbf{Matrix}
+\textbf{Matrix- } \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{\textbf{matrix()}}
 \begin{itemize}
 \item Deklaration $n\times m$
 \begin{sagein}
 matrix([<Koerper>,<n>,<m>,[a11,a12,...],[a21,a22,..],..])
 \end{sagein}
 \begin{itemize}
-\item Erzeuge Diagonalmatrix aus einem Vektor
+\item Erzeuge Diagonalmatrix aus einem Vektor-\\ \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.diagonal_matrix}{diagonal\_matrix()}
 \begin{sagein}
 diagonal_matrix(<vector>)
 \end{sagein}
 \end{itemize}
 \item Zeilen- und Spaltenzahl
 \begin{itemize}
- \item Spaltenzahl 
+ \item Spaltenzahl- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.ncols}{ncols()}
 \begin{sagein}
 <matrix>.ncols()
 \end{sagein}
-\item Zeilenzahl 
+\item Zeilenzahl- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.nrows}{nrows()}
 \begin{sagein}
 <matrix>.nrows()
 \end{sagein}
@@ -65,19 +65,19 @@ diagonal_matrix(<vector>)
 \begin{sagein}
 A+B; A*B
 \end{sagein}
-\item Rang
+\item Rang- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.rank}{rank()}
 \begin{sagein}
 <matrix>.rank()        
 \end{sagein}
-\item Symmetrie 
+\item Symmetrie - \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.is_symmetric}{is\_symmetric()}
 \begin{sagein}
 <matrix>.is_symmetric() 
 \end{sagein}
-\item Invertierbarkeit
+\item Invertierbarkeit- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.is_invertible}{is\_invertible()}
     \begin{sagein}
 <matrix>.is_invertible()
     \end{sagein}
-\item Determinante
+\item Determinante- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=matrix.det#sage.matrix.matrix2.Matrix.det}{det()}
 \begin{sagein}
 <matrix>.det()
 \end{sagein}
@@ -87,7 +87,7 @@ map_threaded(<function>,<matrix oder verschachtelte Listen>)
 \end{sagein}
 \end{itemize}
 
-\textbf{Vektorraum}
+\textbf{Vektorraum- } \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/categories/vector_spaces.html#vector-spaces}{\textbf{vector spaces}}
 
 \begin{itemize}
  \item Deklaration Vektor
@@ -100,7 +100,7 @@ vector([v1,v2,..])
 \textbf{Funktionen}
 
 \begin{itemize}
- \item Deklaration
+ \item Deklaration- \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}
 \begin{sagein}
 def <Name><(a,b,..)>:
     """ <Hilfetext> """

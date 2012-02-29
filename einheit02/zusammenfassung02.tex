@@ -1,8 +1,12 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -15,11 +19,11 @@
 \textbf{Grundlagen}
 \begin{itemize}
     \item Bezeichner und Wert: <bezeichner> = <wert>
-    \item Typ eines Objekts
+    \item Typ eines Objekts- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html#sage.combinat.e_one_star.Face.type}{type()}
         \begin{sagein}
 type(<var>)    
         \end{sagein}
-    \item Ausgabe    
+    \item Ausgabe- \href{http://docs.python.org/library/functions.html?highlight=print#print}{print} 
         \begin{sagein}
 print ('Text %<format> und %<format> .. ' % (x,y,..))
         \end{sagein}
@@ -27,7 +31,7 @@ print ('Text %<format> und %<format> .. ' % (x,y,..))
 
 
 
-\textbf{Dictionaries}
+\textbf{Dictionaries- } \href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
 
 \begin{itemize}
  \item Deklarieren eines Dictionaries:
@@ -43,19 +47,19 @@ d[<Index>]
 \textbf{Funktionen und Abfragen}
 
 \begin{itemize}
- \item anonyme Funktion:
+ \item anonyme Funktion- \href{http://docs.python.org/howto/functional.html#small-functions-and-the-lambda-expression}{lambda}
 \begin{sagein}
 lambda <parameter_list>: <expression> 
 \end{sagein}
 % \item Objektfunktion: 
- \item Schleifen (For):
+ \item Schleifen- \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
 \begin{sagein}
 for <indexvar> in <expr>/<list>:
     <Code-Block>
 else:
     <Code-Block>
 \end{sagein}
- \item Abfragen (if):
+ \item Abfragen- \href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{if}
 \begin{sagein}
 if <boolean expr>:
     <Code-Block>
@@ -66,45 +70,45 @@ if <boolean expr>:
 \textbf{Ausdrücke}
 
   \begin{itemize}
-      \item Sortieren nach \isage{<x>}
+      \item Sortieren nach \isage{<x>}- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.collect}{collect()}
        \begin{sagein}
 <expr>.collect(<x>)  
        \end{sagein}
-   \item  Potenzgesetze
+   \item  Potenzgesetze- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.combine}{combine()}
        \begin{sagein}
 <expr>.combine() 
        \end{sagein}
-   \item Ausmultiplizieren
+   \item Ausmultiplizieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.expand}{expand()}
        \begin{sagein}
 <expr>.expand()  
        \end{sagein}
-   \item Faktorisieren
+   \item Faktorisieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.factor}{factor()}
        \begin{sagein}
 <expr>.factor()  
        \end{sagein}
-   \item Partialbruch-Zerlegung.
+   \item Partialbruch-Zerlegung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.partial_fraction}{partial\_fraction()}
        \begin{sagein}
-<expr>.partial_fraction()  
+<expr>.partial_fraction()
        \end{sagein}
    \item Vereinfachen
    \begin{itemize}
-       \item  trigonometrisch
+       \item  trigonometrisch- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_trig}{simplify\_trig()}
        \begin{sagein}
 <expr>.simplify_trig() 
        \end{sagein}
-        \item rational
+        \item rational- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_rational}{simplify\_rational()}
        \begin{sagein}
-<expr>.simplify\_rational() 
+<expr>.simplify_rational() 
        \end{sagein}
-        \item log/ln/exp
+        \item log/ln/exp- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_radical}{simplify\_radical()}
        \begin{sagein}
 <expr>.simplify_radical() 
        \end{sagein}
-        \item Nutzung der Fakultät
+        \item Nutzung der Fakultät- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_factorial}{simplify\_factorial()}
        \begin{sagein}
 <expr>.simplify_factorial()
        \end{sagein}
-        \item alle Vereinfachungen
+        \item alle Vereinfachungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_full}{simplify\_full()}
        \begin{sagein}
 <expr>.simplify_full()
        \end{sagein}
@@ -115,16 +119,16 @@ if <boolean expr>:
 \textbf{Gleichungen, Vergleiche, Logik}
 
 \begin{itemize}
- \item Gleichungssysteme analytisch lösen mit solve():
+ \item Gleichungssysteme analytisch lösen mit \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/relation.html?highlight=symbolic.relation#sage.symbolic.relation.solve}{solve()}:
 \begin{sagein}
  solve(<gleichungen>,<variablen>,<optionen>)
 \end{sagein}
-\item Gleichungssysteme numerisch lösen mit find\_root():
+\item Gleichungssysteme numerisch lösen mit \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/numerical/optimize.html?highlight=numerical.optimize#sage.numerical.optimize.find_root}{find\_root()}:
     \begin{sagein}
 <expr>.find_root(<lowerbound>,<upperbound>)
     \end{sagein}
 
- \item Wahrheitswert für die Gleichung
+ \item Wahrheitswert für die Gleichung- \href{http://docs.python.org/library/stdtypes.html#boolean-operations-and-or-not}{boolean}
      \begin{sagein}
 bool(<Ausdruck/Gleichung>)   
      \end{sagein}
