@@ -15,7 +15,7 @@
 \item  Ort: HS1 (A bis J) und AudiMax (K bis Z)
 \item  Hilfsmittel: Schreibgerät(e) und Unterlagen in Papierform
 \item  Studenten-Ausweis mitbringen
-\item Schreibweisen der art $x^2$ oder $xy$ sind ok, solange klar ist was gemeint ist.
+\item Schreibweisen der Art $x^2$ oder $xy$ sind ok, solange klar ist was gemeint ist.
 %\item  Ab 10:30 keine vorzeitige Abgabe möglich
 \end{itemize}
 
@@ -25,307 +25,29 @@
 \section{Umgang mit Strings}
 %==================================================
 
-\begin{frame}[fragile]{Strings}
-\begin{itemize}
-\item Zeichenketten (engl. {\color{red} strings}) sind eine geordnete
-Aneinanderreihung von Zeichen. Zeichen sind z.B. Buchstaben, Ziffern,
-Sonderzeichen,...
-\item Mit ihnen kann man in Sage Texte gestalten. Sie sind wichtig
-für die Ausgabe der Ergebnisse.
-\item Datentyp \isage{str}.
-\item eingeschlossen in Hochkommas oder Anführungszeichen.
-\end{itemize}
-\end{frame} 
 
-
-\begin{frame}[fragile]{Beispiele für Strings}
-\begin{sagein}
-text1 = 'Dies ist ein String.'; text1
-\end{sagein}
-\begin{sage}
-'Dies ist ein String.'
-\end{sage}
-\begin{sagein}
-text2 = "Dies ist noch ein String."; text2
-\end{sagein}
-\begin{sage}
-'Dies ist noch ein String.'
-\end{sage}
-\begin{sagein}
-type(text1)
-\end{sagein}
-\begin{sage}
-<type 'str'>
-\end{sage}
+\begin{frame}[Sage]
+    \begin{center}
+        \url{https://sage.math.uni-goettingen.de/home/pub/54/}
+    \end{center}
 \end{frame}
-
-\begin{frame}[fragile]{Zugriff}
-\begin{itemize}
-\item Indexoperator {\color{blue}$[\ ]$}:
-\begin{sagein}
-text1[0], text1[3], text1[2:4], text1[0:4:2]
-\end{sagein}
-\begin{sage}
-('D', 's', 'es', 'De')
-\end{sage}
-\item Ersetzungen innerhalb des Strings:
-\begin{sagein}
-text1.replace('Dies','Das')
-\end{sagein}
-\begin{sage}
-'Das ist ein String.'
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Operationen für Strings I}
-\begin{itemize}
-\item Zusammenhängen von Strings
-\begin{sagein}
-A='Letzte '; B='Vorlesung'; A+B
-\end{sagein}
-\begin{sage}
-'Letzte Vorlesung'
-\end{sage}
-\item \isage{len()} gibt die Anzahl der Zeichen in einer Zeichenkette
-an.
-\begin{sagein}
-a=len(A+B); a
-\end{sagein}
-\begin{sage}
-  16
-\end{sage}
- 
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Operationen für Strings II}
-\begin{itemize}
-\item Zugriffe beginnend vom Ende
-\begin{sagein}
-(A+B)[-1]
-\end{sagein}
-\begin{sage}
-  'g'
-\end{sage}
-\item {\color{blue} \isage{str()}} wandelt Objekte in einen String um.
-\begin{sagein}
-str(x^2+2), str([1,2,3])
-\end{sagein}
-\begin{sage}
-('x^2 + 2', '[1, 2, 3]')
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Operationen für Strings III}
-\begin{itemize}
- \item \isage{find()}: Strings durchsuchen
-\begin{sagein}
-'Hallo'.find('lo')
-\end{sagein}
-\begin{sage}
-3
-\end{sage}
-\item 
-\begin{sagein}
-'Hallo'.find('gnu')
-\end{sagein}
-\begin{sage}
--1
-\end{sage}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Operationen für Strings IV} 
-\begin{itemize}
-\item \isage{split()}: Aufspalten von Texten
-\begin{sagein}
-text = 'Dies ist ein Satz, und ein Nebensatz'
-text.split() 
-\end{sagein}
-\begin{sage}
- ['Dies', 'ist', 'ein', 'Satz,', 'und', 'ein', 'Nebensatz']
-\end{sage}
-\begin{sagein}
-text.split('i')
-\end{sagein}
-\begin{sage}
-['D', 'es ', 'st e', 'n Satz, und e', 'n Nebensatz']
-\end{sage}
-
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Vertiefung print und Formate} 
- \begin{sagein}
-  print 'Text %<format> und %<format> ... ' % (x,y,...)
- \end{sagein}
-\isage{<format>}:
-\begin{sagein}
-%[<flag>][<minwidth>][.<precision>]converter 
-\end{sagein}
-\begin{itemize}
-\item \isage{flag}: 0 für das Auffüllen mit Nullen
-\item \isage{minwidth}: Minimale Breite der Darstellung
-\item \isage{precision}: Genauigkeit (Nachkommastellen)
-\item \isage{converter}:
-\begin{tabular}{cp{10cm}}
-\isage{'i'} & ganze Zahl mit Vorzeichen\\
-\isage{'e'} & Gleitkommazahl mit exponentialformat (kleingeschrieben).\\
-\isage{'f'} &Gleitkommazahl im Dezimalformat.\\
-\isage{'g'} &Gleitkommazahl. Benutzt kleingeschriebene Exponentialform wenn der Exponent kleiner als -4 oder der Genauigkeit ist, ansonsten Dezimalformat.
-\end{tabular}
-
-\end{itemize}
-
-
-
-\end{frame}
-
-\begin{frame}[fragile]{print - Beispiele}
-\begin{sagein}
-print '%5s | %7s' % ('Index','Wert')
-for k in srange(1,25,9.55): 
-    print '%5i | %07.3f' % (k,k^2) 
-\end{sagein}
-\begin{sage}
-Index |    Wert
-    1 | 001.000
-   10 | 111.303
-   20 | 404.010
-\end{sage}
- 
-\end{frame}
-
-
-
-% \begin{frame}[fragile]{Anwendungen}
-% \item Schreiben Sie eine Funktion, die eine Zeichenkette rückwärts
-% berechnet. 
-% \begin{sagein}
-% revers:= A->_concat(A[length(A)-i+1]
-%    $\text{dollar}$ i=1..length(A))
-% \end{sagein}
-% \begin{sagein}
-% revers("Hallo")
-% \end{sagein}
-% \begin{sage}
-%   "ollaH"
-% \end{sage}
-% \end{itemize}
-% \end{frame}
 
 \section{Interaktive (grafische) Elemente}
 
-\begin{frame}[fragile]{interact}
-\begin{sagein}
-@interact
-def _(b = range_slider(-20, 20, 1, default=(-19,3), label='Range')):
-    plot(sin(x)/x, b[0], b[1]).show(xmin=b[0],xmax=b[1]) 
-\end{sagein}
-\begin{center}
-\includegraphics[width=0.8\textwidth]{figures/interact_basis.png}
-\end{center}
-
+\begin{frame}[Sage]
+    \begin{center}
+        \url{https://sage.math.uni-goettingen.de/home/pub/55/}
+    \end{center}
 \end{frame}
 
-
-\begin{frame}[fragile]{interact}
-\begin{itemize}
-\item Regler mit Werten von vmin bis vmax
-\begin{sagein}
-u=slider(vmin, vmax=, step_size=1, default=, label=) 
-\end{sagein}
-\item Regler eines Intervalles
-\begin{sagein}
-u=range_slider(vmin, vmax=, step_size=1, default=, label=)
-\end{sagein}
-\item Eine Ankreuzfeld
-\begin{sagein}
-u=checkbox(default=True, label=)
-\end{sagein}
-\item Ein Aufklappmenü oder Knöpfe (Knöpfe wenn nrows, ncols, oder buttons gesetzt ist, sonst Aufklappmenü)
-\begin{sagein}
-u=selector(values, label=, nrows=, ncols=, buttons=False)
-\end{sagein}
-\item Ein Textblock
-\begin{sagein}
-u=text_control(value='')
-\end{sagein}
-
-\end{itemize}
-
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]{interact - Taylor}
-\begin{center}
-\includegraphics[width=\textwidth]{figures/interact1.png}
-\end{center}
-\end{frame}
-
-
-\begin{frame}[fragile]{interact - Taylor}
-\begin{sagein}
-var('x')
-x0  = 0
-f   = sin(x)*e^(-x)
-p   = plot(f,-1,5, thickness=2)
-dot = point((x0,f(x=x0)),pointsize=80,rgbcolor=(1,0,0))
-@interact
-def tayl(order=slider(1,12,1,label='order')):
-    ft = f.taylor(x,x0,order)
-    pt = plot(ft,-1, 5, color='green', thickness=2)
-    print ('f(x) = %s'% f)
-    print ('f^(x;%s) = %s + O(x^(%s))'%(x0,ft,order+1))
-    show(dot + p + pt, ymin = -.5, ymax = 1)
-\end{sagein}
-\end{frame}
-
-\begin{frame}[fragile]{interact - Grafiken von einer Abstandsfunktion}
-\begin{center}
-\includegraphics[width=7.5cm]{figures/interact2.png}
-\end{center}
-\end{frame}
-
-
-\begin{frame}[fragile]{interact - Grafiken von einer Abstandsfunktion}
-\begin{sagein}
-@interact
-def _(q1=slider(-3,3,default=-1), q2=slider(-3,3,default=-2), cmap=selector(['autumn', 'bone', 'cool', 'copper', 'gray', 'hot', 'hsv','jet', 'pink', 'prism', 'spring', 'summer','winter'])):
-     x,y = var('x,y')
-     f = q1/sqrt((x+1)^2 + y^2) + q2/sqrt((x-1)^2+(y+0.5)^2)
-     C = contour_plot(f, (x,-2,2), (y,-2,2), plot_points=30, contours=15, cmap=cmap)
-     show(C, figsize=3, aspect_ratio=1)
-     show(plot3d(f, (x,-2,2), (y,-2,2)), figsize=5, viewer='tachyon')
-\end{sagein}
-
-\end{frame}
 
 \section{GeoGebra}
 
-\begin{frame}[fragile]{GeoGebra einbetten}
-\begin{itemize}
- \item In GeoGebra: Erstellen eines Objektes
-\item In GeoGebra: File> Export> Dynamic worksheet.
-\item In Sage notebook: Data> Die .jar (von GeoGebra) und die .ggb hochladen.
-\item Aus dem Exportierten .html den Teil mit <applet> kopieren und im worksheet in Sage unter Edit kopieren( Edit> Paste ).
-\item Im Editier-tab die codebase zu "./data/" ändern
-\item Fertig!
-\end{itemize}
- 
+\begin{frame}[Sage]
+    \begin{center}
+        \url{https://sage.math.uni-goettingen.de/home/pub/56/}
+    \end{center}
 \end{frame}
-
-\begin{frame}[fragile]{GeoGebra einbetten}
-\begin{center}
-\includegraphics[width=0.6\textwidth]{figures/geogebra.png}
-\end{center}
-\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Vertiefung Programmierung}
