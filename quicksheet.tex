@@ -50,7 +50,7 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \end{itemize}
 
 \textbf{Datentypen}
-\textbf{Liste/Tuple}
+\textbf{Liste/Tuple-} 	{\href{http://docs.python.org/library/functions.html#list}{\textbf{list(),} } \href{http://docs.python.org/library/functions.html#tuple}{\textbf{tuple()}}
 \begin{itemize}
  \item Konstruktion
 \begin{sagein}
@@ -62,7 +62,7 @@ liste = list(<sequence>)
 \bigskip
 \bigskip
 \bigskip
-\textbf{Dictionaries}
+\textbf{Dictionaries- }		\href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
 \begin{itemize}
  \item Deklarieren eines Dictionaries:
 \begin{sagein}
@@ -74,13 +74,13 @@ d[<Index>]
 \end{sagein}
 \end{itemize}
 
-\textbf{map() und map\_threaded()}:
+\textbf{map() und map\_threaded()- } \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/generator.html?highlight=map#sage.combinat.generator.map}{\textbf{map()}\\}
 (Rekursive) Auswertung der Funktion auf das Objekt
 \begin{sagein}
  map_threaded(<Funktion>,<Objekt>)
 \end{sagein}
 
-\textbf{filter}: filtert nach Wahrheitswert der übergebenen Funktion
+\textbf{filter}: filtert nach Wahrheitswert der übergebenen Funktion- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{filter()}
 \begin{sagein}
 filter(<funktion>,<menge oder Liste>)
 \end{sagein}
@@ -101,13 +101,13 @@ filter(<funktion>,<menge oder Liste>)
 %\isage{parent} & Vaterobjekt; Gruppe der Zahl\\
 \hline
 \end{tabular}
-\item Annahmen
+\item Annahmen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{assume()}
     \begin{sagein}
 assume(<Annahme>        
     \end{sagein}
 \end{itemize}
 
-\textbf{Matrix}
+\textbf{Matrix- }\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{\textbf{matrix()}}
 \begin{itemize}
 \item Deklaration
 \begin{sagein}
@@ -115,7 +115,7 @@ matrix(<Koerper>,[<n>,<m>,[a11,...],[a21,..],..])
 \end{sagein}
 \end{itemize}
 
-\textbf{Vektor}
+\textbf{Vektor- }\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{vector()}
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
@@ -125,11 +125,11 @@ vector([v1,v2,..])
 
 \textbf{Funktionen}
 \begin{itemize}
- \item Mathematische Funktionen (Asudrücke)
+ \item Mathematische Funktionen (Ausdrücke)
 \begin{sagein}
 <f>(<x>,<y>,...) = <expr>
 \end{sagein}
-    \item einzeilige Deklaration       
+    \item einzeilige Deklaration- \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}     
         \begin{sagein}
 def <name> (<arg1>,<arg2>,..): return <Rueckgabewert>            
         \end{sagein}
@@ -143,7 +143,7 @@ def <Name><(<arg1>,<arg2>,..)>:
 
 \textbf{Schleifen}
 \begin{itemize}
-\item einzeilige for-Schleife
+\item einzeilige for-Schleife- \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
     \begin{sagein}
 [<expr(x)> for <x> in <liste> if <bedingung>]
     \end{sagein}
@@ -152,19 +152,19 @@ def <Name><(<arg1>,<arg2>,..)>:
 for <x> in <liste>:
     <Code-Block>
     \end{sagein}
-  \item while- Schleife
+  \item while- Schleife- \href{http://docs.python.org/reference/compound_stmts.html#the-while-statement}{while()}
 \begin{sagein}
 while <expression> :
     <Code-block>
 \end{sagein}
 \end{itemize}
-\textbf{Abfragen}
+\textbf{Abfragen- }\href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{\textbf{if}}
 \begin{sagein}
 if <boolean expr>:
     <Code-Block>
 \end{sagein}
 
-\textbf{Grafik}
+\textbf{Grafik- }\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot}{\textbf{plot()}}	/	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot3d}{\textbf{plot3d()}}
 \begin{itemize}
 \item 2D/3D Plot
 \begin{sagein}
@@ -175,7 +175,7 @@ plot3d(f3,(x,a,b),(y,c,d),optionen,...)
 
 \textbf{Differentiation}
 \begin{itemize}
- \item Ableitungen
+ \item Ableitungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{diff()}
 \begin{sagein}
 diff(<Ausdruck>,<var1>,<var2>,<var3>,...)
 diff(<Ausdruck>,<var>,<anzahl>) 
@@ -184,7 +184,8 @@ diff(<Ausdruck>,<var>,<anzahl>)
 
 \textbf{Taylorformel}
 \begin{itemize}
- \item Taylorformel
+ \item Taylorformel- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{taylor()}
+
 \begin{sagein}
 taylor(<funktion>,<var>,<stelle>,<grad>)
 \end{sagein}
@@ -192,20 +193,20 @@ taylor(<funktion>,<var>,<stelle>,<grad>)
 
 \textbf{Integrale}
 \begin{itemize}
-\item bestimmte/unbestimmte Integrale
+\item bestimmte/unbestimmte Integrale- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
 \begin{sagein}
 integrate(<funktion>,<var>[,<ug>,<og>]) 
 \end{sagein}
 \end{itemize}
 
-\textbf{Strings/Zeichenketten und Ausgabe}
+\textbf{Strings/Zeichenketten und Ausgabe- }\href{http://docs.python.org/library/string.html?highlight=string.replace#string-constants}{\textbf{string}}
 
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
 string = '<Inhalt>'
 \end{sagein}
-\item Typecast
+\item Typecast- \href{http://docs.python.org/library/functions.html?highlight=print#str}{str()}
 \begin{sagein}
 str(<vorher kein String>)
 \end{sagein}

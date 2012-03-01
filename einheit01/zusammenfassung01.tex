@@ -1,8 +1,12 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
 \usepackage[psamsfonts]{amssymb}
 \usepackage{amsmath}
-\usepackage[svgnames]{xcolor} %color definition
+\usepackage[svgnames,hyperref]{xcolor} %color definition
 \input{../common_header}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \begin{document}
 %--------------------------------------------------- Header
 \begin{center}
@@ -14,7 +18,7 @@
 \medskip
 \textbf{Kurvendiskussion}
 \begin{itemize}
- \item Deklarieren von Variablen mit 
+ \item Deklarieren von Variablen mit- \href{}{}
 \begin{sagein}
 var('<varname>')
 \end{sagein}
@@ -28,11 +32,11 @@ var('<varname>')
     \end{sagein}
 %\item Symbolisches Rechnen 
 %\begin{itemize}
-\item Grenzwertbestimmung:
+\item Grenzwertbestimmung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=function#sage.calculus.functional.limit}{limit()}
     \begin{sagein}
 <expr>.limit(x=<a>, dir='<plus|minus>')
     \end{sagein}
-\item Bilden von Ableitungen
+\item Bilden von Ableitungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=differentiate#sage.symbolic.expression.Expression.differentiate}{differentiate()}
 \begin{sagein}
 <expr>.differentiate(<variable>)
 \end{sagein}
@@ -40,16 +44,16 @@ var('<varname>')
 %\end{itemize}  
 %\end{itemize}
 %\begin{itemize}
-\item Lösen von Gleichungen
+\item Lösen von Gleichungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/relation.html?highlight=symbolic.relation#sage.symbolic.relation.solve}{solve()}:
 \begin{sagein}
 solve( f(x)==0, x)
 \end{sagein}
 
-\item Berechnen numerischer Approximationen
+\item Berechnen numerischer Approximationen- \href{http://docs.python.org/library/functions.html#float}{float()}
 \begin{sagein}
 float(<expr>)
 \end{sagein}
-\item Plotten einer Funktion 
+\item Plotten einer Funktion- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/plot.html?highlight=.plot#d-plotting}{plotting}
 \begin{sagein}
 plot(<function>,(<lowerbound>,<upperbound>))
 \end{sagein}
@@ -57,7 +61,7 @@ plot(<function>,(<lowerbound>,<upperbound>))
 
 \textbf{Symbolisches Rechnen}
 \begin{itemize}
-\item Symbolisch Integrieren
+\item Symbolisch Integrieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
 \begin{sagein}
 integrate(<expr>,<variable>)
 \end{sagein}
@@ -65,23 +69,23 @@ integrate(<expr>,<variable>)
 \begin{sagein}
 integrate(<expr>,<variable>,<lower>,<upper>)
 \end{sagein}
-\item Faktorisieren 
+\item Faktorisieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.factor}{factor()} 
 \begin{sagein}
 factor(<expr>)
 \end{sagein}
-\item Sortieren 
+\item Sortieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.collect}{collect()}
 \begin{sagein}
 <expr>.collect(x)
 \end{sagein}
-\item Partialbruchzerlegung 
+\item Partialbruchzerlegung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.partial_fraction}{partial\_fraction()}
 \begin{sagein}
 <expr>.partial_fraction()
 \end{sagein}
-\item (vollständiges) Vereinfachen 
+\item (vollständiges) Vereinfachen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_full}{simplify\_full()}
 \begin{sagein}
 <expr>.full_simplify()
 \end{sagein}
-\item Vereinfachen mit radicals 
+\item Vereinfachen mit radicals- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_radical}{simplify\_radical()}
 \begin{sagein}
 <expr>.radical_simplify()
 \end{sagein}
@@ -89,11 +93,11 @@ factor(<expr>)
 
 \textbf{AGLA}
 \begin{itemize}
-\item Matrix eingeben 
+\item Matrix eingeben- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{matrix()}
 \begin{sagein}
 matrix([ [<z1s1>,<z1s2>],[<z2s1>,<z2s2>] ])
 \end{sagein}
- \item Vektor eingeben 
+ \item Vektor eingeben- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{vector()}
 \begin{sagein}
 vector([<a>,<b>,<c>])
 \end{sagein}
@@ -105,11 +109,11 @@ A\b
 \begin{sagein}
 A+B, A-B, A*B
 \end{sagein}
-\item Matrix invertieren 
+\item Matrix invertieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=matrix.inverse#sage.matrix.matrix2.Matrix.inverse}{inverse()}
 \begin{sagein}
 A^(-1); A.inverse()
 \end{sagein}
-\item Substitutieren 
+\item Substitutieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/crypto/mq/mpolynomialsystem.html#sage.crypto.mq.mpolynomialsystem.MPolynomialRoundSystem_generic.subs}{subs()}
 \begin{sagein}
 <expr>.subs(<variable>=<subs>)
 \end{sagein}
@@ -117,19 +121,19 @@ A^(-1); A.inverse()
 
 \textbf{Etwas Programmieren}
 \begin{itemize}
-    \item Listen (geordnet)
+    \item Listen (geordnet)- \href{http://docs.python.org/library/functions.html#list}{list()}
         \begin{sagein}
 [a,b,c,..]
         \end{sagein}
-    \item Tuple
+    \item Tuple- \href{http://docs.python.org/library/functions.html#tuple}{tuple()}
         \begin{sagein}
 (a,b,c,..)
         \end{sagein}
-    \item (Nicht-mathematische) Funktionen
+    \item (Nicht-mathematische) Funktionen- \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}
 \begin{sagein}
 def <function>(<argument>): <befehle> return <rueckgabewert>
 \end{sagein}
-    \item Einzeilige Schleifen
+    \item Einzeilige Schleifen- \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
 \begin{sagein}
 [<expr(var)> for <var> in <range|liste> if <expr>]
 \end{sagein}
@@ -137,15 +141,15 @@ def <function>(<argument>): <befehle> return <rueckgabewert>
 
 \textbf{Zahlentheorie}
 \begin{itemize}
-    \item Teiler 
+    \item Teiler- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/rings/arith.html#sage.rings.arith.divisors}{divisors()}
 \begin{sagein}
 divisors(<number>)
 \end{sagein}
-\item Anzahl Teiler
+\item Anzahl Teiler- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/rings/arith.html#sage.rings.arith.number_of_divisors}{number\_of\_divisors()}
 \begin{sagein}
 number_of_divisors(<number>)
 \end{sagein}
-    \item Primzahl-Überprüfung 
+    \item Primzahl-Überprüfung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/rings/arith.html#sage.rings.arith.is_prime}{is\_prime()}
 \begin{sagein} 
 is_prime(<number>)
 \end{sagein}
