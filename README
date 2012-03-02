@@ -1,17 +1,3 @@
 Please use https://sage.math.uni-goettingen.de for sharing of documents.
 
 
-
-*********
-obsolete:
-
-* files to track in sagenb:
-
-worksheet.html
-worksheet_conf.pickle
-
-
-* local sage-dir 
-cd sage-dir
-./sagelocal
-open up browser and navigate to https://localhost:8000
