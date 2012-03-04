@@ -23,3 +23,6 @@ tmp.inputs
 *.pid
 *.zip
 *.jmol
+*.sagetex.*
+*/xelatex.py
+xelatex.pyc
