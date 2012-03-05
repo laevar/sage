@@ -8,14 +8,14 @@ def cleanfiles(targetdir,auxfiletypes):
 
 
 #add builder for TeX using rubber
-xetex = Builder(action = 'rubber --inplace -m xelatex $SOURCE ')
+#xetex = Builder(action = 'xelatex -output-directory=$(basename $SOURCE) $SOURCE',suffix='.pdf',src_suffix='.tex')
 #auxilary files to delete when cleaning up
-auxfiletypes = ['.log','.bak', '.aux','.bbl', '.blg' ,'.idx' ,'.brf' ,'.out' ,'.nlo' ,'.nls' ,'.ilg' ,'.ind' ,'.lof', '.lot','.toc']
+#auxfiletypes = ['.log','.bak', '.aux','.bbl', '.blg' ,'.idx' ,'.brf' ,'.out' ,'.nlo' ,'.nls' ,'.ilg' ,'.ind' ,'.lof', '.lot','.toc']
 
 targets =  ['einheit01','einheit02','einheit03','einheit04','einheit05','einheit06','einheit07','einheit08','einheit09','quicksheet','klausur1','klausur2','script']
 
 # creating environment
-env = Environment(BUILDERS = {'TeX' : xetex})
+env = Environment(ENV = os.environ, PDFLATEX = 'xelatex')
 
 # Look in sage-directory for .sty files
 env['ENV']['TEXINPUTS'] = ":.:" + os.getcwd()
@@ -50,16 +50,12 @@ for t in targets:
         file = t + '/zusammenfassung' + t[-2:] + '.tex'
     
     # add builder for path
-    env.TeX(file)
+    env.PDF(file)
     dir = os.path.dirname(file)
-    if dir == '': 
-        dir = '.'
+    #if dir == '': 
+    #    dir = '.'
     #print dir
-    # create symlinks for xelatex-module of rubber
-    if not os.access(dir + '/xelatex.py', os.F_OK):
-        os.symlink(os.getcwd() + '/xelatex.py', dir + '/xelatex.py')
-        os.symlink(os.getcwd() + '/xelatex.pyc', dir + '/xelatex.pyc')
-    env.Clean(t, cleanfiles(dir,auxfiletypes))
+    #env.Clean(t, cleanfiles(dir,auxfiletypes))
 
 
 
@@ -72,6 +68,23 @@ for t in targets:
 #xhtml : $(FILE).tex $(SRC) $(BIB)
 #    #bibtex aufrufen?
 #    htlatex $(FILE).tex "xhtml,jsmath,charset=utf-8" " -cunihtf -utf8" "-cvalidate"
+
+#The other environment variables that control the executables (and their default values) are:
+#    env['TEX']      = 'tex'
+#    env['TEXFLAGS'] = SCons.Util.CLVar('-interaction=nonstopmode -recorder')
+#
+#    env['PDFTEX']      = 'pdftex'
+#    env['PDFTEXFLAGS'] = SCons.Util.CLVar('-interaction=nonstopmode -recorder')
+#
+#    env['LATEX']        = 'latex'
+#    env['LATEXFLAGS']   = SCons.Util.CLVar('-interaction=nonstopmode -recorder')
+#
+#    env['PDFLATEX']      = 'pdflatex'
+#    env['PDFLATEXFLAGS'] = SCons.Util.CLVar('-interaction=nonstopmode -recorder')
+#
+#    env['BIBTEX']      = 'bibtex'
+#
+#    env['MAKEINDEX']      = 'makeindex'
 
 #TODO: extractaufg : 
 

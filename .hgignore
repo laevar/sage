@@ -17,6 +17,7 @@ tmp.inputs
 *.bak
 *.nav
 *.snm
+*.fls
 *.toc
 *.vrb
 *.bz2
