@@ -12,13 +12,13 @@ xetex = Builder(action = 'rubber --inplace -m xelatex $SOURCE ')
 #auxilary files to delete when cleaning up
 auxfiletypes = ['.log','.bak', '.aux','.bbl', '.blg' ,'.idx' ,'.brf' ,'.out' ,'.nlo' ,'.nls' ,'.ilg' ,'.ind' ,'.lof', '.lot','.toc']
 
-targets =  ['einheit01','einheit02','einheit03','einheit04','einheit05','einheit06','einheit07','einheit08','einheit09','quicksheet','klausur1','klausur2']
+targets =  ['einheit01','einheit02','einheit03','einheit04','einheit05','einheit06','einheit07','einheit08','einheit09','quicksheet','klausur1','klausur2','script']
 
 # creating environment
 env = Environment(BUILDERS = {'TeX' : xetex})
 
 # Look in sage-directory for .sty files
-env['ENV']['TEXINPUTS'] = os.environ['TEXINPUTS'] + ":.:" + os.environ['HOME'] + os.getcwd()
+env['ENV']['TEXINPUTS'] = ":.:" + os.getcwd()
 
 # debug output..
 print "BUILD_TARGETS is", map(str, BUILD_TARGETS)
@@ -36,13 +36,16 @@ for t in targets:
     # file for quicksheet
     if t == 'quicksheet':
         file = 'quicksheet.tex'
-    # build environment for exams
     elif t == 'klausur1':
+        # file for exams
         file = 'klausuren/2012/klausur1/klausur1.tex'
         env.Alias('')
     elif t == 'klausur2':
         file = 'klausuren/2012/klausur2/klausur2.tex'
+    elif t == 'script':
+        file = 'script/script.tex'
     else:
+        # files for units
         file = t + '/' + t + '.tex'
         file = t + '/zusammenfassung' + t[-2:] + '.tex'
     
