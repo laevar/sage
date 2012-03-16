@@ -45,6 +45,7 @@ for t in targets:
     else:
         # files for units
         file = t + '/' + t + '.tex'
+        env.PDF(file)
         file = t + '/zusammenfassung' + t[-2:] + '.tex'
     
     # add builder for path
