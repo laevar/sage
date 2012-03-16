@@ -7,8 +7,6 @@ def cleanfiles(targetdir,auxfiletypes):
     return liste
 
 
-#add builder for TeX using rubber
-#xetex = Builder(action = 'xelatex -output-directory=$(basename $SOURCE) $SOURCE',suffix='.pdf',src_suffix='.tex')
 #auxilary files to delete when cleaning up
 #auxfiletypes = ['.log','.bak', '.aux','.bbl', '.blg' ,'.idx' ,'.brf' ,'.out' ,'.nlo' ,'.nls' ,'.ilg' ,'.ind' ,'.lof', '.lot','.toc']
 
@@ -59,12 +57,8 @@ for t in targets:
 
 
 
-#% : %/%.aux
-#    while grep 'Rerun to get ' $(FILE).log ; do \
-#    $(RUBBER) $(FILE) ; done
-#    while grep 'Citation(s) may have changed' $(FILE).log ; do \
-#    $(RUBBER) $(FILE) ; done
-#
+#TODO: nachbearbeitung pdf2pdf damit drucken funktioniert..
+
 #xhtml : $(FILE).tex $(SRC) $(BIB)
 #    #bibtex aufrufen?
 #    htlatex $(FILE).tex "xhtml,jsmath,charset=utf-8" " -cunihtf -utf8" "-cvalidate"
