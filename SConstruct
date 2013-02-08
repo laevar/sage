@@ -33,7 +33,7 @@ env.Alias('klausur2', 'klausuren/2012/klausur2')
 for t in targets:
     # file for quicksheet
     if t == 'quicksheet':
-        file = 'quicksheet.tex'
+        file = t + '/quicksheet.tex'
     elif t == 'klausur1':
         # file for exams
         file = 'klausuren/2012/klausur1/klausur1.tex'
