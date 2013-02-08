@@ -1,9 +1,9 @@
-\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\documentclass[hyperref={xetex}]{beamer}
 \title{Einführung in Sage - Einheit 1}
 \subtitle{Organisatorisches, Was ist Sage?, Streifzug durch Sage}
 \input{slide_header}
 \begin{document}
-\maketitle
+\titlepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Organisatorisches}
@@ -14,9 +14,9 @@
 \item Anmeldung über StudIP \\
       \url{https://www.studip.uni-goettingen.de/}
 
-{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2011/2012)}}
-\item Aufgabenblätter und  Vorlesungsworksheets sind unter \url{https://sage.math.uni-goettingen.de} zu erhalten.
-\item Vorlesungsfolien, Musterlösungen und Zusammenfassungen können aus StudIP heruntergeladen werden. 
+{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2012/2013)}}
+\item Aufgabenblätter, Musterlösungen und Vorlesungsworksheets: \url{https://sage.math.uni-goettingen.de} (Studenten-Account).
+\item Vorlesungsfolien und Zusammenfassungen: StudIP. 
 \pause
 \begin{block}{Dozent}
 Jochen Schulz\\
@@ -30,43 +30,36 @@ XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
 \end{frame}
 
 \begin{frame}{Starten des Programms}
-\textbf{Vor.:} Account im CIP-Pool der Mathematischen Fakultät (MI und NAM): Registrierungs-Formular unter \url{https://ldap.math.uni-goettingen.de} (\alert{Stud.It-Account} nötig!)\\
+\textbf{Vor.:} \alert{Stud.It-Account} nötig. \\
 \textbf{Intranet/Wiki} (\url{https://wiki.math.uni-goettingen.de})
 \begin{itemize}
-\item Sage ist in Version 4.7.2 installiert
+\item Sage ist in Version 5.5 installiert
 \item Nutzen von Sage: 
 \begin{itemize}
 \item Über \url{https://sage.math.uni-goettingen.de}. Login mit Studentendaten.
 \item im Menu unter Education: \texttt{sagenotebook} startet (lokale) gui.\\
 \item im Terminal: \texttt{sage}
-\item Remote per \alert{nxclient} oder \alert{x2goclient}
+\item Remote per\alert{x2goclient}
 auf \texttt{login.math.uni-goettingen.de} und \texttt{sc1.math.uni-goettingen.de} bis 
-\texttt{sc8.math.uni-goettingen.de}
+\texttt{sc8.math.uni-goettingen.de} \\
+(siehe auch \texttt{https://wiki.math.uni-goettingen.de/wiki/ComputeServer})
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
-\item Blockveranstaltung vom  20.2-2.3.2012
-\item \alert{Vorlesung:} 9 Uhr bis 11 Uhr
-\item \alert{Übungsbetrieb}: 4 Gruppen \`a je 1h 15min (Besprechung Aufgaben u. Praktikum, Teilnahme freiwillig)
-\begin{itemize}
-\item 11:00-12:15 	
-\item 12:15-13:15 Mittagspause
-\item 13:15-14:30 
-\item 14:30-15:45
-\item 15:45-17:00 
-\end{itemize}
-\item \alert{Praktikum:} von 11:00 bis 17:00 Uhr Computerräume im Keller des MI.
+\item Blockveranstaltung vom  18.2-1.3.2013
+\item \alert{Vorlesung:} 9:15 Uhr bis 11 Uhr
 \item \alert{Übungsbetrieb:}
 \begin{itemize}
 \item 1 Übungszettel/Tag.
 \item Klausurzulassung: 3 beliebige markierte Aufgaben/Woche testieren lassen. 
 \item Alternativ: Projektarbeit durchführen (Projekte im StudIP zu finden)
 \end{itemize}
-\item \alert{Klausur 1:} 9.3.2012; 10:00 - 11:30; HS1/Maximum.
-\item \alert{Klausur 2:} 23.3.2012; 10:00 - 11:30; HS1.
+\item \alert{Praktikum:} von 11:00 bis 17:00 Uhr Computerräume im Keller des MI.
+\item \alert{Klausur 1:} 8.3.2013; 10:00 - 11:30; HS1/Maximum.
+\item \alert{Klausur 2:} 5.4.2013; 16:00 - 17:30; HS1.
 \end{itemize}
 \end{frame}
 
@@ -127,11 +120,11 @@ Gruppen, Ringe, \ldots
 \begin{block}{}
 \begin{tabular}{ll}
 \alert{Sage} & Mathematik-Software; Symbolisch und numerisch (GPL)\\
- \alert{Maxima} & GPL, von Sage benutzt\\
 \alert{Mathematica} &einer der Grossen CAS (kommerziell)\\
  \alert{Maple} &einer der Grossen CAS (kommerziell)\\
 \alert{Matlab} &Für numerische Rechnungen (inkl. Mupad,kommerziell)\\
 \alert{Octave} &Für numerische Rechnungen (GPL)\\
+ \alert{Maxima} & GPL, von Sage benutzt\\
 \alert{Magma} & Algebra, Zahlentheorie, Geometrie (kommerziell)\\
  \alert{SymPy} &Phython-Bibliotheken; als CAS-Verwendbar (GPL)\\
  \alert{SymbolicC++} &Bibliotheken zur CA in C++ (GPL)
@@ -171,18 +164,18 @@ von Joachim Neubüser (Gründer von GAP):
     \alert{You can read (a) Theorem and its proof [. . . ] and then
     you can use (this) Theorem for the rest of your life free of
     charge, but for many computer algebra systems license fees
-    have to be paid regularly [. . . ]}. You press buttons and you get
-    answers in the same way as you get the bright pictures from
-    your television set but you cannot control how they were
-    made in either case. 
+    have to be paid regularly [. . . ]}.  
 
 With this situation \alert{two of the most basic rules of conduct in
 mathematics are violated: in mathematics information is
 passed on free of charge and everything is laid open for
-checking}. Not applying these rules to computer algebra
+checking}. 
+
+Not applying these rules to computer algebra
 systems that are made for mathematical research [. . . ]
-means moving in a most undesirable direction. Most
-important: can we expect somebody to believe a result of a
+means moving in a most undesirable direction. 
+
+Most important: can we expect somebody to believe a result of a
 program that he is not allowed to see?  
 \end{quote}
  \end{small}
@@ -196,7 +189,7 @@ program that he is not allowed to see?
 \alert{Stärken}
 \begin{itemize}
 \item Vereinigung von vielen anderen CAS und Libraries unter einer einheitlichen Oberfläche (Maxima, Pari,
-GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
+GAP, R, Magma, ..., ) und damit flexibel.
 \item Durch Python angebunden an eine mächtige Skriptsprache
 %\item interaktiver Quellcode-Debugger
 \item umfangreiches Hilfesystem
@@ -207,8 +200,8 @@ GAP, R, Magma, ..., wovon die freien grösstenteils bei Sage enthalten sind)
 \pause
 \alert{Schwächen}
 \begin{itemize}
-\item Befehlsumfang insgesamt nicht so mächtig oder Leistungsfähig wie bei Maple, Mathematica oder Matlab (Dafür flexibler)
-\item es fehlt eine gute standalone Entwicklungsumgebung\\(Alternative zum Webinterface: \alert{Cantor})
+\item Befehlsumfang insgesamt wahrscheinlich nicht so Leistungsfähig/ausgefeilt wie bei Maple, Mathematica oder Matlab.
+\item Es fehlt eine gute eigenständige Entwicklungsumgebung\\(Alternative zum Webinterface: \alert{Cantor})
 \end{itemize}
 \end{frame}
 

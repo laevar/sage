@@ -57,9 +57,6 @@ for t in targets:
     #env.Clean(t, cleanfiles(dir,auxfiletypes))
 
 
-
-#TODO: nachbearbeitung pdf2pdf damit drucken funktioniert..
-
 #xhtml : $(FILE).tex $(SRC) $(BIB)
 #    #bibtex aufrufen?
 #    htlatex $(FILE).tex "xhtml,jsmath,charset=utf-8" " -cunihtf -utf8" "-cvalidate"
@@ -80,10 +77,6 @@ for t in targets:
 #    env['BIBTEX']      = 'bibtex'
 #
 #    env['MAKEINDEX']      = 'makeindex'
-
-#TODO: extractaufg : 
-
-#TODO: convertslides : 
 
 #TODO: exec ssh -t -L 8000:localhost:8000 $1@login.num.math.uni-goettingen.de sh -c 'hostname; exec ~/sagelocal port=8000'
 
