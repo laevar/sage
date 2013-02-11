@@ -1,9 +1,9 @@
-\documentclass[notes=hide,hyperref={dvipdfmx,pdfpagelabels=false}]{beamer}
+\documentclass[hyperref={xetex}]{beamer}
 \title{Einführung in Sage - Einheit 3}
 \subtitle{Mengen, Zahlen}
 \input{slide_header}
 \begin{document}
-\maketitle
+\titlepage
 
 \begin{frame}{Aufbau}
 \tableofcontents
@@ -14,17 +14,17 @@
 %==================================================
 
 
-\begin{frame}{Mengen}
-\begin{quote}
-Unter einer \alert{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
-{\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
-\end{quote}
- \begin{itemize}
-\item \alert{Element}: Ein Objekt $x$ in der Menge $M$ (\alert{$x \in  M$}). 
-\item \alert{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\alert{$M \subset N$}).
-\item \alert{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\alert{$M=N$}).
-\end{itemize}
-\end{frame}
+%\begin{frame}{Mengen}
+%\begin{quote}
+%Unter einer \alert{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
+%{\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
+%\end{quote}
+% \begin{itemize}
+%\item \alert{Element}: Ein Objekt $x$ in der Menge $M$ (\alert{$x \in  M$}). 
+%\item \alert{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ (\alert{$M \subset N$}).
+%\item \alert{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ (\alert{$M=N$}).
+%\end{itemize}
+%\end{frame}
 
 
 \begin{frame}{Sage}
@@ -58,254 +58,254 @@ Unter einer \alert{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten 
 \section{Zahlen}
 %--------------------------------------
 
-\begin{frame}{Natürliche Zahlen $\mathbb{N}$ (nach Peano)}
-% andere einfuehrung!
-$\mathbb{N} := \{0,1,2,3,\dots\}$:
-\begin{enumerate}
-\item $0 \in \mathbb{N}$
-\item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
-  \rightarrow \mathbb{N} \smallsetminus \{ 0 \}$
-\item $nf$ ist injektiv.
-\item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
-  $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
-\end{enumerate}
-Bemerkungen:
-\begin{itemize}
-\item Nachfolgefunktion: $nf(m)=m+1$
-\item Es besteht ein enger Zusammenhang zwischen den natürlichen
-  Zahlen und vollständiger  Induktion.
-%TODO:erklaerung  .
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Äquivalenzrelation}
-Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
-\[R\subseteq M \times M\]
- mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
-\begin{enumerate}
-\item \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
-\item \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
-\item \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
-  $x \sim z$.  
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Äquivalenzklasse}
-\begin{itemize}
-\item Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
-\item Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
-\begin{itemize}
-\item [(a)] $A \neq \emptyset$.
-\item [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
-\item [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
-\end{itemize}
-\item Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
-Äquivalenzklassen.  
-\item Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
-\item  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
-$A$. Schreibweise: $\overline{a}$, $a \bmod R$ für ein Äquivalenzklasse $A$. 
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Ganze Zahlen $\mathbb{Z}$}
-$\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
-\begin{itemize}
-\item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
-$(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
-\item Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
-zueinander.
-\item Negative Zahlen: $(0,m)$. 
-\item Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
-der Äquivalenzklassen.
-\item Addition:
-\[
-\overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
-\item Multiplikation:
-\[
-\overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
-\]
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}[fragile]{Rationale Zahlen $\mathbb{Q}$}
-Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
-\[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
-Statt $(m,n)$ schreibt man $\frac{m}{n}$.
-\begin{itemize}
-\item Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
-die $0$ in $\mathbb{Q}$.
-\item Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
-Ä.-klasse.  
-\item Addition:  
-\[ 
-\overline{\genfrac(){}{}{m}{n}}+\overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mq+pn}{nq}},
-\]
-Multiplikation:
-\[
-\overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
-\]
-%\item Die rationalen Zahlen bilden einen \alert{Körper}.
-\end{itemize} 
-\end{frame}
-
-
-\begin{frame}[fragile]{Gruppe}
-Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
-$G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
-\[
- \cdot: G \times G \ \rightarrow \ G, \quad (a,b) \mapsto a \cdot b
-\]
-mit folgenden Eigenschaften
-\begin{itemize}
-\item [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
-$a,b,c \in G$.
-\item [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
-\in G$ und zu jedem $a \in G$ existiert ein $a' \in G$ ({\it inverses
-Element}) mit $a' \cdot
-a=e$. 
-\end{itemize}  
-{\it abelsche} Gruppe: $a \cdot b = b \cdot a$ \alert{für alle} $a,b \in G$.
-\end{frame}
-
-\begin{frame}[fragile]{Eigenschaften einer Gruppe}
-\begin{itemize}
-\item Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
-$a\in G$.
-\item Es gibt genau ein neutrales Element $e \in G$.
-\item Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
-und wird durch $a^{-1}$ bezeichnet. 
-\item Es gilt auch $a \cdot a'=e$. 
-\item Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Körper}
-Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
-Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
-Eigenschaften:
-\begin{itemize}
-\item [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
-heiße $0$. Das inverse Element zu $a \in K$ sei $-a$.) 
-\item [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
-Gruppe. (Das neutrale Element dazu sei $1$.)
-\item [(K3)] Distributivgesetze
-\begin{eqnarray*}
-a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
-(a+b) \cdot c & = &   (a \cdot c) + (b \cdot c) \mbox{ für alle }
-a,b,c \in K.
-\end{eqnarray*}
-\end{itemize}
-%(Ein Körper ist ein kommutativer unitärer Ring)
-\end{frame}
-
-\begin{frame}[fragile]{Beispiele}
-Gruppen:
-\begin{itemize}
-\item $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
-\item $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
-\item $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
-\item $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
-\end{itemize} 
-Körper:
-\begin{itemize}
-\item Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
-\item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Anordnung}
-Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
-Positivbereich} $P \subset K$ gibt mit
-\begin{itemize}
-\item Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
-disjunkt. 
-\item $K = P \cup \{ 0 \} \cup -P$.
-\item Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
-\end{itemize}
-Man definiert:
-\begin{eqnarray*}
- x >y& \text{genau dann, wenn}& x-y\in P,\\
- x \geq y&  \text{genau dann, wenn} &x-y \in P \cup \{ 0 \}.
-\end{eqnarray*}
-Analog definiert man $<$ und $\leq$. 
-\end{frame}
-
-\begin{frame}{Schranken}
-Sei $K$ ein angeordneter Körper.
-\begin{itemize}
-\item {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
-\item nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
-\item {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
-\item {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
-(Nicht notwendigerweise in $M$ oder $K$).  
-\end{itemize}
-\end{frame} 
-
-\begin{frame}{Reelle Zahlen $\mathbb{R}$}
-\begin{itemize}
-\item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
-Schranke.
-\item Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
-Mengen von oberen Schranken haben. 
-\item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
-Zahlen}.
-\end{itemize}
-Bemerkungen
-\begin{itemize}
-\item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
-definieren. 
-\item Die reellen Zahlen können auch als Vervollständigung von
-$\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
-\item Die rationalen Zahlen sind als Äquivalenzklassen der
-einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
-
- \end{itemize}
-\end{frame}
-
-
-
-
-
-
-\begin{frame}{Komplexe Zahlen $\mathbb{C}$}
-Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
-Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
-\begin{itemize}
- \item   Addition: $(k,l)+(n,m)=(k+n,l+m)$
-\item Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
-\end{itemize}
-
-\begin{itemize}
- \item {\color{red} $i:=(0,1)$}  mit 
-\begin{itemize}
-\item $ i^2=(0,1) \cdot (0,1) = (-1,0) $
-\item $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
-\end{itemize}
-\item \alert{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Eigenschaften von $\mathbb{C}$}
-\begin{itemize}
-\item \alert{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
-\item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
-\[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
-
-\item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]{Sage}
-\begin{center}
-\url{https://sage.math.uni-goettingen.de/home/pub/14/}
-\end{center}
-\end{frame}
+%\begin{frame}{Natürliche Zahlen $\mathbb{N}$ (nach Peano)}
+%% andere einfuehrung!
+%$\mathbb{N} := \{0,1,2,3,\dots\}$:
+%\begin{enumerate}
+%\item $0 \in \mathbb{N}$
+%\item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
+%  \rightarrow \mathbb{N} \smallsetminus \{ 0 \}$
+%\item $nf$ ist injektiv.
+%\item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
+%  $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
+%\end{enumerate}
+%Bemerkungen:
+%\begin{itemize}
+%\item Nachfolgefunktion: $nf(m)=m+1$
+%\item Es besteht ein enger Zusammenhang zwischen den natürlichen
+%  Zahlen und vollständiger  Induktion.
+%%TODO:erklaerung  .
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Äquivalenzrelation}
+%Sei $M$ eine Menge. Eine {\color{red} Äquivalenzrelation} $R$ auf $M$ ist eine Teilmenge
+%\[R\subseteq M \times M\]
+% mit den folgenden Eigenschaften (Schreibweise: $(x,y) \in R$, $x \sim_R y$, $x \sim y$):
+%\begin{enumerate}
+%\item \textbf{Reflexivität:} für alle $x \in M$ gilt $x \sim x$. 
+%\item \textbf{Symmetrie:} für alle $x,y \in M$ folgt aus $x \sim y$ das $y \sim x$.
+%\item \textbf{Transitivität:} für alle $x,y,z \in M$ und $x \sim y$, $y \sim z$ folgt
+%  $x \sim z$.  
+%\end{enumerate}
+%\end{frame}
+%
+%\begin{frame}{Äquivalenzklasse}
+%\begin{itemize}
+%\item Sei $\sim_R$ eine Äquivalenzrelation auf einer Menge $M$.
+%\item Eine Teilmenge $A \subset M$ heißt {\color{red} Äquivalenzklasse}, falls gilt:
+%\begin{itemize}
+%\item [(a)] $A \neq \emptyset$.
+%\item [(b)] $x,y \in A \ \Rightarrow \ x \sim y$.
+%\item [(c)] $x \in A$, $y \in M$, $x \sim y$ $\Rightarrow$ $y \in A$.
+%\end{itemize}
+%\item Eine Äquivalenzrelation zerlegt eine Menge in disjunkte
+%Äquivalenzklassen.  
+%\item Andersrum definiert eine disjunkte Zerlegung einer Menge eine Äquivalenzrelation.
+%\item  Ein $a \in A$ ist ein {\color{red} Repräsentant} der Äquivalenzklasse
+%$A$. Schreibweise: $\overline{a}$, $a \bmod R$ für ein Äquivalenzklasse $A$. 
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Ganze Zahlen $\mathbb{Z}$}
+%$\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
+%\begin{itemize}
+%\item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
+%$(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
+%\item Nichtnegative Zahlen: $(m,0)$. Sie sind paarweise nicht äquivalent
+%zueinander.
+%\item Negative Zahlen: $(0,m)$. 
+%\item Die ganzen Zahlen $\mathbb{Z}$ sind  gegeben durch die Menge
+%der Äquivalenzklassen.
+%\item Addition:
+%\[
+%\overline{(m,n)}+\overline{(u,v)}:=\overline{(m+u,n+v)}\]
+%\item Multiplikation:
+%\[
+%\overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
+%\]
+%\end{itemize}
+%\end{frame}
+%
+%
+%
+%\begin{frame}[fragile]{Rationale Zahlen $\mathbb{Q}$}
+%Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
+%\[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
+%Statt $(m,n)$ schreibt man $\frac{m}{n}$.
+%\begin{itemize}
+%\item Die Äquivalenzklasse $\overline{(0,n)}$, $n \in \mathbb{Z}$ ist
+%die $0$ in $\mathbb{Q}$.
+%\item Mit $(n,m)$ gehören auch alle Erweiterungen $(kn,km)$ zu einer
+%Ä.-klasse.  
+%\item Addition:  
+%\[ 
+%\overline{\genfrac(){}{}{m}{n}}+\overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mq+pn}{nq}},
+%\]
+%Multiplikation:
+%\[
+%\overline{\genfrac(){}{}{m}{n}} \ \cdot \ \overline{\genfrac(){}{}{p}{q}}=\overline{\genfrac(){}{}{mp}{nq}}.
+%\]
+%%\item Die rationalen Zahlen bilden einen \alert{Körper}.
+%\end{itemize} 
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]{Gruppe}
+%Eine {\color{red} Gruppe} ist ein Paar $(G,\cdot)$ bestehend aus einer Menge
+%$G$ und einer Verknüpfung $\cdot$ auf $G$, d.h. einer Abbildung
+%\[
+% \cdot: G \times G \ \rightarrow \ G, \quad (a,b) \mapsto a \cdot b
+%\]
+%mit folgenden Eigenschaften
+%\begin{itemize}
+%\item [(G1)] $(a \cdot b) \cdot c =a \cdot (b \cdot c)$ für alle
+%$a,b,c \in G$.
+%\item [(G2)] Es existiert ein $e \in G$ ({\it neutrales Element}) mit $e \cdot a =a$ für alle $a
+%\in G$ und zu jedem $a \in G$ existiert ein $a' \in G$ ({\it inverses
+%Element}) mit $a' \cdot
+%a=e$. 
+%\end{itemize}  
+%{\it abelsche} Gruppe: $a \cdot b = b \cdot a$ \alert{für alle} $a,b \in G$.
+%\end{frame}
+%
+%\begin{frame}[fragile]{Eigenschaften einer Gruppe}
+%\begin{itemize}
+%\item Für ein neutrales Element gilt auch $a \cdot e= a$ für alle
+%$a\in G$.
+%\item Es gibt genau ein neutrales Element $e \in G$.
+%\item Zu jedem $a \in G$ ist das inverse Element $a' \in G$ eindeutig
+%und wird durch $a^{-1}$ bezeichnet. 
+%\item Es gilt auch $a \cdot a'=e$. 
+%\item Für abelsche Gruppen schreibt man oft $+$ statt $\cdot$. Das Inverse zu $a$ wird dann mit $-a$, das Neutrale mit $0$ bezeichnet.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Körper}
+%Ein {\color{red} Körper} ist ein Tripel $(K,+,\cdot)$ bestehend aus einer
+%Menge $K$ und zwei Verknüpfungen $+$ und $\cdot$ mit folgenden
+%Eigenschaften:
+%\begin{itemize}
+%\item [(K1)] $(K,+)$ ist eine abelsche Gruppe. (Das neutrale Element
+%heiße $0$. Das inverse Element zu $a \in K$ sei $-a$.) 
+%\item [(K2)] $(K \smallsetminus \{ 0 \}, \cdot)$ sei eine abelsche
+%Gruppe. (Das neutrale Element dazu sei $1$.)
+%\item [(K3)] Distributivgesetze
+%\begin{eqnarray*}
+%a \cdot (b + c) & = & (a \cdot b) + (a \cdot c)\\
+%(a+b) \cdot c & = &   (a \cdot c) + (b \cdot c) \mbox{ für alle }
+%a,b,c \in K.
+%\end{eqnarray*}
+%\end{itemize}
+%%(Ein Körper ist ein kommutativer unitärer Ring)
+%\end{frame}
+%
+%\begin{frame}[fragile]{Beispiele}
+%Gruppen:
+%\begin{itemize}
+%\item $(\mathbb{Z},+)$, die ganzen Zahlen mit Addition.
+%\item $(\mathbb{Z}/n\mathbb{Z},+)$, die Restklassen modulo $n$ mit Addition.
+%\item $(\mathbb{Q},+)$, $(\mathbb{Q} \smallsetminus \{ 0 \} ,\cdot)$
+%\item $(\mathop{Add}(M,\mathbb{R}),+)$, die reellwertigen Funktionen auf einer Menge $M$ mit punktweiser Addition.
+%\end{itemize} 
+%Körper:
+%\begin{itemize}
+%\item Die rationalen Zahlen $\mathbb{Q}$ mit den Verknüpfungen $+$ und $\cdot$.
+%\item Die reellen Zahlen $\mathbb{R}$ mit den Verknüpfungen $+$ und $\cdot$.
+%\item Die komplexen Zahlen $\mathbb{C}$ mit den Verknüpfungen $+$ und $\cdot$.
+%\item Für $p$ Primzahl $\mathbb{Z}/p\mathbb{Z}$, die Restklassen modulo $p$ mit $+$ und $\cdot$.
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}[fragile]{Anordnung}
+%Sei $K$ ein Körper. Er heißt {\color{red} angeordnet}, wenn es einen {\color{red}
+%Positivbereich} $P \subset K$ gibt mit
+%\begin{itemize}
+%\item Die Mengen $P$, $\{ 0 \}$, und $-P:=\{-x\;|\;x \in P \}$ sind
+%disjunkt. 
+%\item $K = P \cup \{ 0 \} \cup -P$.
+%\item Aus $x,y \in P$ folgt $x+y \in P$ und $x \cdot y \in P$. 
+%\end{itemize}
+%Man definiert:
+%\begin{eqnarray*}
+% x >y& \text{genau dann, wenn}& x-y\in P,\\
+% x \geq y&  \text{genau dann, wenn} &x-y \in P \cup \{ 0 \}.
+%\end{eqnarray*}
+%Analog definiert man $<$ und $\leq$. 
+%\end{frame}
+%
+%\begin{frame}{Schranken}
+%Sei $K$ ein angeordneter Körper.
+%\begin{itemize}
+%\item {\color{red} obere Schranke} $y\in K$: Für $M \subset K$, wenn für alle $x\in M$ die Relation $x \leq y$ gilt.
+%\item nach oben {\color{red} beschränkt}: Wenn eine Teilmenge $M$ von $K$ eine obere Schranke besitzt (analog {\color{red} untere Schranke}).
+%\item {\color{red} Maximum} von $M$: Eine obere Schranke $y$ einer Teilmenge $M \subset K$, wenn $y\in M$ (analog {\color{red} Minimum}).
+%\item {\color{red} Supremum}: Die kleinstmögliche obere Schranke $y$ einer Teilmenge $M \subset K$ (analog {\color{red} Infimum}) 
+%(Nicht notwendigerweise in $M$ oder $K$).  
+%\end{itemize}
+%\end{frame} 
+%
+%\begin{frame}{Reelle Zahlen $\mathbb{R}$}
+%\begin{itemize}
+%\item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
+%Schranke.
+%\item Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
+%Mengen von oberen Schranken haben. 
+%\item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
+%Zahlen}.
+%\end{itemize}
+%Bemerkungen
+%\begin{itemize}
+%\item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
+%definieren. 
+%\item Die reellen Zahlen können auch als Vervollständigung von
+%$\mathbb{Q}$ definiert werden oder durch den Dedekindschen Schnitt.
+%\item Die rationalen Zahlen sind als Äquivalenzklassen der
+%einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
+%
+% \end{itemize}
+%\end{frame}
+%
+%
+%
+%
+%
+%
+%\begin{frame}{Komplexe Zahlen $\mathbb{C}$}
+%Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
+%Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
+%\begin{itemize}
+% \item   Addition: $(k,l)+(n,m)=(k+n,l+m)$
+%\item Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
+%\end{itemize}
+%
+%\begin{itemize}
+% \item {\color{red} $i:=(0,1)$}  mit 
+%\begin{itemize}
+%\item $ i^2=(0,1) \cdot (0,1) = (-1,0) $
+%\item $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
+%\end{itemize}
+%\item \alert{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
+%\end{itemize}
+%
+%\end{frame}
+%
+%\begin{frame}[fragile]{Eigenschaften von $\mathbb{C}$}
+%\begin{itemize}
+%\item \alert{Fundamentalsatz der Algebra}: Jedes nicht konstante Polynom (mit komplexen Koeffizienten) hat mindestens eine Nullstelle in $\mathbb{C}$. 
+%\item Polarkoordinaten $(r, \varphi)$ zu $(x,y) \in \mathbb{C}$
+%\[  r:= \sqrt{x^2+y^2}, \quad \tan(\varphi)=\frac{y}{x} \] 
+%
+%\item Es gilt: $z = (x,y)_{\text{Rechtwinklig}} = (r,\varphi)_{\text{Polar}} = re^{i\varphi}$
+%\end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]{Sage}
+%\begin{center}
+%\url{https://sage.math.uni-goettingen.de/home/pub/14/}
+%\end{center}
+%\end{frame}
 
 
 %=======================================
@@ -377,5 +377,7 @@ Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit
 %   3.141592653 ... 3.141592654 
 % \end{sage}
 % \end{frame}
+
+%TODO: Platz fuer mehr!
 
 \end{document}

@@ -1,0 +1,231 @@
+\documentclass[a4paper,12pt,DIV15]{scrartcl}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+\usepackage[svgnames,hyperref]{xcolor} %color definition
+\input{common_header}
+\begin{document}
+\begin{center}
+    \textbf{\LARGE Einführung in Sage}\\
+    {\large Einheit 04}\\
+    {\large Zusammenfassung: Vektoren, Matrizen und Vektorräume}
+\end{center}
+
+\section{Matrizen}
+
+\begin{defn}[Matrix]
+    \label{def:matrix}
+{\color{red} $m \times n$ Matrix} $A=(a_{ij}) \in K^{m\times n}$ über einen Körper $K$ 
+
+\[ A = \left( \begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{array} \right) \] 
+$a_{ij} \in K$, Zeilenindex $i \in [1,m]$, Spaltenindex $j \in [1,n]$
+\end{defn}
+
+\begin{defn}[Eigenschaften von Matrizen] 
+    Sei A eine Matrix aus Definition \ref{def:matrix}.
+\begin{itemize}
+\item {\color{red} Transponiert} von $A=(a_{ij})$: $A^T:=(a_{ji})$ .
+\item {\color{red} Symmetrisch}: wenn $A=A^T$ gilt.
+\item {\color{red} Adjungiert} von $A=(a_{ij})\in \mathbb{C}^{m\times n}$: $A^* :=
+(\overline{a_{ji}}) \in \mathbb{C}^{n \times m}$.
+\item {\color{red} Einheitsmatrix}: $I:=I_n:=(\delta_{ij}) \in K^{n \times
+n}$
+\item {\color{red} Addition}: Seien $A=(a_{ij}),B=(b_{ij}) \in {K}^{n \times m}$, dann
+\[ C=(c_{ij}):=A+B \in {K}^{n \times m} \]
+mit $c_{ij}=a_{ij}+b_{ij}$.  
+\item {\color{red} Multiplikation}: Seien $A=(a_{ij}) \in {K}^{m \times n}$ und $B=(b_{ij})
+\in {K}^{n \times p}$, dann 
+\[ C=(c_{ij}):=A \cdot B \in{K}^{m \times p} \]
+mit $c_{ij}=\sum_{k=1}^n a_{ik} b_{kj}$. 
+\item {\color{red} orthogonal}: $A \cdot A^T=A^T \cdot A=I_n$ für $A\in K^{n \times n}$ 
+\item {\color{red} unitär}: $A \cdot A^*=A^* \cdot A=I_n$ für $A\in \mathbb{C}^{n \times n}$.
+\item {\color{red} invertierbar}: $A\in K^{n \times n}$ heißt , wenn eine
+Matrix $A^{-1}\in K^{n \times n}$ existiert mit  $A \cdot
+A^{-1}=A^{-1} \cdot A=I_n$.
+\end{itemize}
+\end{defn} 
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item Die Multiplikation ist assoziativ aber in der Regel \textsl{nicht kommutativ}. 
+\item Die Matrizen aus $K^{m \times n}$ bilden einen Vektorraum über
+$K$ (mit komponentenweiser Skalarmultiplikation).
+\item {\color{red} allgemeine
+lineare Gruppe} $\operatorname{GL}(K,n) = \operatorname{GL}_n(K) = \operatorname{GL}(n,K)$: 
+Die Menge der invertierbaren Matrizen aus $K^{n \times n}$ bilden bezüglich der Multiplikation eine Gruppe.
+\item {\color{red} orthogonale Gruppe}: $O(n)$: Die Menge der orthogonalen Matrizen in $GL(\mathbb{R},n)$ bilden
+ eine Untergruppe von  $GL(\mathbb{R},n)$. 
+\item  {\color{red} unitäre Gruppe} $U(n)$: Die entsprechende Untergruppe der unitären Matrizen in $GL(\mathbb{C},n)$.
+\end{itemize}
+
+
+\subsection{Vektorräume}
+\begin{defn}[Vektorraum]
+Ein Tripel $(V,+,\cdot)$, bestehend aus einer nichtleeren Menge $V$
+und Verknüpfungen
+\[ +:V \times V \ \rightarrow \ V, \qquad \cdot:K\times V \ \rightarrow \ V\]
+heißt {\color{red} Vektorraum} über einem Körper
+$K$, wenn gilt:
+\begin{enumerate}
+\item $(V,+)$ ist eine abelsche Gruppe.
+\item Für alle $v,w \in V$ und alle $\lambda, \mu \in K$ gilt:
+\begin{enumerate}
+ \item $(\lambda + \mu) \cdot v  =(\lambda \cdot v) + ( \mu \cdot v)$.
+\item $\lambda \cdot (v + w )  = ( \lambda \cdot v) + ( \lambda \cdot w)$.
+\item $(\lambda \mu) \cdot v = \lambda \cdot (\mu \cdot v)$.
+\item $1 \cdot v = v$.
+\end{enumerate}
+\end{enumerate}
+\end{defn}
+
+\paragraph{Eigenschaften:}
+\begin{itemize}
+\item {\color{red} Vektoren}: Die Elemente eines Vektorraums.
+\item {\color{red} Skalarmultiplikation}: Die Abbildung $\cdot : K\times V \ \rightarrow \ V$. Die Elemente des Körpers $K$ nennt man
+  {\color{red} Skalare}.
+\item {\color{red} Untervektorraum} oder {\color{red} Unterraum} von $V$: Ist $U \subset V$ eine Teilmenge des Vektorraums $V$ und es gelten
+  alle Vektorraumaxiome.
+\item \textsl{Vorsicht!} man muß zwischen der $0$ des Körpers und der $0$ des Vektorraums (Nullvektor) unterscheiden. \\
+Es gilt $0 \cdot v  = 0$ für alle $v \in V$. 
+\end{itemize}
+
+\paragraph{Beispiele für Vektorräume:}
+\begin{itemize}
+\item $K^n := \{(x_1,\ldots,x_n) \;|\; x_1, \ldots, x_n \in K\}$, $n \in \mathbb{N}$
+\item Sei $M$ eine beliebige Menge. Die Menge der Abbildungen von $M$
+  in $K$, $\text{Abb}(M,K)$, mit den punktweise definiertenVerknüpfungen
+\begin{eqnarray*}
+(f+g)(x) & :=& f(x)+g(x), \forall\; x \in M\\
+(\alpha \cdot f)(x) & :=& \alpha \cdot f(x), \forall\; x \in M  
+\end{eqnarray*}
+für $\alpha \in K$, $f,g:M \mapsto K$.
+\item Die Menge der Polynome bis zum Grad $n$.
+\item Die Menge aller Polynome.
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum.
+\item $\mathbb{C}$ als $\mathbb{R}$-Vektorraum.
+\end{itemize}
+
+
+
+\begin{defn}[Lineare Abhängigkeit]
+Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
+Elementen aus $V$.
+\begin{itemize}
+\item {\color{red} Linearkombination} $v \in V$ von $(v_1,\dots ,v_r)$: 
+  falls $\exists \lambda_1, \dots, \lambda_r \in K$  mit
+  $ v= \lambda_1 v_1 + \dots + \lambda_r v_r$. 
+\item {\color{red} Lineare Hülle} $\mathop{span}\{v_1, \dots, v_n\}$: Die Menge aller Linearkombinationen. Die Lineare
+  Hülle ist ein Unterraum von $V$.
+\item {\color{red} linear unabhängig}: 
+  Sind $\lambda_1, \dots , \lambda_r \in K$ und ist $\lambda_1 v_1 +
+  \dots + \lambda_r v_r=0$ so folgt $\lambda_1= \dots =
+  \lambda_r=0$. Andernfalls {\color{red} linear abhängig}. 
+\begin{itemize}
+\item Ist $M \subseteq V$ eine unendliche Menge, dann ist $M$ linear unabhängig falls alle endlichen Teilmengen von $M$ linear unabhängig sind.
+\end{itemize}
+\end{itemize}
+\end{defn}
+
+\begin{bemerk}
+Sei $V$ ein $K$-Vektorraum und $(v_1,\dots ,v_r)$ eine Familie von
+Elementen aus $V$
+\begin{itemize}
+\item $(v_1,\dots ,v_r)$ sind genau dann linear unabhängig, wenn sich
+jeder Vektor $v \in span\{v_1, \dots ,v_r\}$ eindeutig linear kombinieren
+läßt. 
+\item Vektoren sind linear unabhängig wenn die Determinante der korrelierenden Matrix ungleich 0 ist.
+\item Gilt $V=span\{v_1,\dots ,v_r \}$, so ist $(v_1, \dots ,v_r)$ ein
+{\color{red} Erzeugendensystem}. Sind $(v_1, \dots ,v_r)$ zusätzlich linear
+unabhängig, so ist $(v_1, \dots ,v_r)$ eine {\color{red} Basis}.
+\item Aus jedem Erzeugendensystem kann man eine Basis auswählen. 
+\end{itemize}
+\end{bemerk}
+
+
+\paragraph{Beispiele für Basen:}
+\begin{itemize}
+\item Seien $(e_i)_{i=1,\ldots,n} \in \mathbb{R}^n$ die Einheitsvektoren. $(e_1, \dots
+,e_n)$ ist eine Basis des $\mathbb{R}^n$.
+\item Die Monombasis $(1,x,x^2,\dots, x^n)$ ist eine Basis des
+Vektorraums der Polynome $n$-ten Grades.
+\item $(1,i)$ ist eine Basis von $\mathbb{C}$ als
+$\mathbb{R}$-Vektorraum. 
+\item $\mathbb{R}$ als $\mathbb{Q}$-Vektorraum hat keine endliche
+Basis. 
+\end{itemize}
+
+\begin{defn}[Basis und Dimension] Jeder Vektorraum besitzt eine Basis.
+\begin{itemize}
+\item {\color{red} Dimension} des Vektorraums $V$: die  Anzahl der Basiselemente einer Basis $(v_1,\dots, v_n)$.
+\item Seien $W,Z$ Unterräume von $V$. Dann ist {\color{red} $W+Z:=span(W \cup Z)$}
+die {\color{red} Summe} von $W$ und $Z$. Es gilt:
+\[ \dim(W+Z)=\dim(W) + \dim (Z) - \dim( W \cap Z) \]
+\end{itemize}
+\end{defn}
+
+
+
+\begin{defn}[Normen auf Vektorräumen]
+Sei $V$ ein Vektorraum über $K=\mathbb{R}$ oder $K=\mathbb{C}$.\\
+Eine {\color{red} Norm} auf $V$ ist eine Abbildung
+\[ \| \cdot \|: V \ \rightarrow \mathbb{R}, v \mapsto \| v \|, \]
+so dass für  alle $\alpha \in K$, $u,v \in V$ gilt 
+\[ \begin{array} {rcl}
+\| v \| & \geq & 0 \\
+\| v \| & = & 0 \mbox{ impliziert } v=0\\
+\| \alpha v \| & = & | \alpha | \| v \|\\
+\| u + v \| & \leq & \| u \| + \| v \| \mbox{ (Dreiecksungleichung)}.\\
+\end{array} \]
+$(V,\| \cdot \|)$
+heißt {\color{red} normierter Raum}.
+\end{defn}
+
+\begin{defn}[Skalarprodukt]
+Eine skalarwertige binäre Abbildung
+\[ ( \cdot, \cdot ): V \times V: \ \rightarrow \ K\]
+auf einem Vektorraum $V$ über $K=\mathbb{R}$ oder $K=\mathbb{C}$ heißt
+{\color{red} Skalarprodukt}, wenn für alle $x,y,z \in V$, $\alpha, \beta \in
+K$ gilt 
+\begin{eqnarray*}
+(x,x) & \geq & 0\\
+(x,x) & = & 0 \mbox{ impliziert } x=0.\\
+(x,y) & = & \overline{(y,x)}\\
+(\alpha x+\beta y,z) & = & \alpha (x,z)+ \beta (y,z)
+\end{eqnarray*}
+\end{defn}
+
+\paragraph{Bemerkungen:}
+
+\begin{itemize}
+\item Ein VR $V$ mit Skalarprodukt heißt {\color{red} Prä-Hilbert-Raum}. Ist
+$K=\mathbb{R}$ so heißt der Raum auch {\color{red} euklidisch}.
+\item Durch $\|v\|:=\sqrt{(v,v)}$, $v \in V$ läßt sich eine Norm
+definieren. Es gilt die {\color{red} Cauchy-Schwarzsche Ungleichung}
+\[ |(u,v)| \leq \| u \| \|v\|. \]
+\item Im euklidischen Raum ist der Winkel $\alpha$ zwischen zwei Vektoren
+$u,v \in V\smallsetminus \{ 0 \}$ definiert durch
+\[ \cos(\alpha) = \frac{(u,v)}{\|u\| \|v \|}. \]
+   \end{itemize}
+
+
+\begin{itemize}
+\item {\color{red} Orthogonal}: wenn $(u,v)=0$ gilt.
+\item {\color{red} Orthogonalbasis}: Eine Basis aus paarweise orthogonalen Vektoren. 
+\item {\color{red} Orthonormalbasis}: Eine Orthogonalbasis, bei der alle Vektoren die Norm $1$
+haben.
+\item Jeder endlichdimensionale Prä-Hilbert-Raum hat eine
+Orthonormalbasis. 
+\item {\color{red} Orthogonalraum}:
+\[
+{U}^\perp := \{ v \in V \ | \ (v,u)=0 \mbox{ für alle } u \in U \}
+\]
+wenn $U$ ein Unterraum von $V$ ist.
+\item Es gilt: $\dim U + \dim U^\perp = \dim V$, insb. $U \cap U^\perp = 0$.
+\end{itemize}
+\end{document}

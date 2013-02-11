@@ -47,6 +47,9 @@ for t in targets:
         file = t + '/' + t + '.tex'
         env.PDF(file)
         file = t + '/zusammenfassung' + t[-2:] + '.tex'
+        mathfile = t + '/math' +t[-2:] + '.tex'
+        if os.path.exists(mathfile):
+            env.PDF(mathfile)
     
     # add builder for path
     env.PDF(file)
