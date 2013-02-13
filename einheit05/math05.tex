@@ -4,6 +4,7 @@
     pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
     breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \usepackage[svgnames,hyperref]{xcolor} %color definition
+\usepackage{tikz}
 \input{common_header}
 \begin{document}
 \begin{center}
@@ -12,4 +13,187 @@
     {\large Zusammenfassung: lineare Abbildungen}
 \end{center}
 
+\section{Lineare Abbildungen}
+\begin{defn}[Lineare Abbildung]
+Seien $K$-Vektorräume $V$ und $W$ gegeben. Eine Abbildung
+\[ F: \ V \rightarrow \ W \]
+heißt {\color{red} linear}, falls für $v,w\in V$ und $\lambda \in K$ gilt:
+\begin{itemize}
+\item [(L1)] $F(v+w)=F(v)+F(w)$
+\item [(L2)] $F(\lambda \cdot v)=\lambda \cdot F(v)$
+\end{itemize} 
+\begin{itemize}
+ \item {\color{red} Isomorphismus}: $F$ bijektiv. 
+\item {\color{red} Endomorphismus}: $V=W$.
+\item {\color{red} Automorphismus}: $V=W$ und $F$ bijektiv.
+\end{itemize}
+\end{defn}
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item Sei $(v_i)_{i\in I}$ eine Basis in $V$ und $(w_i)_{i\in I}$
+seien Vektoren in $W$. Dann gibt es genau eine lineare Abbildung $F:V
+\rightarrow W$ mit $F(v_i)=w_i$ für alle $i \in I$.
+\item {\color{red} Bild} von $F$:   $\mathop{Im}(F) = F(V):=\{ F(v), v \in V \}$.
+\item {\color{red} Kern} von F: $\mathop{Ker}(F):=\{v \ \in V \ | \ F(v)=0 \}$
+\item Kern und Bild sind Untervektorräume.
+\item Dimensionsformel:
+\[\dim V = \dim F(V) + \dim Ker(F)\]
+\item {\color{red} $\operatorname{Hom}_K(V,W)$}: Die Menge der linearen Abbildungen von $V$ nach $W$. 
+Sie ist ein Vektorraum durch punktweise Addition und Skalarmultiplikation.
+\end{itemize}
+
+\paragraph{Lineare Abbildungen und Matrizen}
+\begin{itemize}
+\item Jeder Matrix $A \in K^{m \times n}$ läßt sich durch 
+\[
+ L_A: K^n \rightarrow K^m,\; 
+\begin{pmatrix}
+ x_1\\
+\vdots\\
+x_n
+\end{pmatrix}
+\longmapsto
+A
+\begin{pmatrix}
+ x_1\\
+\vdots\\
+x_n
+\end{pmatrix}
+\]
+eine lineare Abbildung zuordnen.
+\item Es gilt $\operatorname{dim}(L_A(K^m))=\operatorname{Rang}(A)$.
+\end{itemize}
+
+\begin{defn}[Koordinatenvektor]
+Sei $V$ ein $K$-Vektorraum mit Basis $\mathcal{V}=(v_1, \dots
+,v_n)$.
+\begin{itemize}
+\item Die lineare Abbildung 
+$\Phi_\mathcal{V}:K^n \ \rightarrow \ V$ mit
+\[\Phi_\mathcal{V}(x_1,\dots ,x_n)=x_1v_1+ \dots +x_nv_n\]
+ist ein Isomorphismus. Man nennt $\Phi_\mathcal{V}$ ein
+{\color{red} Koordinatensystem} in $V$ und $x=(x_1,\dots ,x_n)=\Phi_\mathcal{V}^{-1}(v)$
+den {\color{red} Koordinatenvektor} zu $v \in V$.
+\item Basiswechselabbildung von $\mathcal{V}$ nach Basis $\mathcal{Z}$:
+\[T:= \Phi_\mathcal{Z}^{-1} \circ \Phi_\mathcal{V}\].
+ \end{itemize}
+\end{defn}
+
+\begin{defn}[Isomorphismus]
+Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
+,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ gegeben. 
+
+ Für eine Matrix $A\in K^{m
+ \times n}$ wird durch
+\begin{eqnarray*}
+F(v_1) & := & a_{11}w_1 + \dots +a_{m1} w_m\\
+\vdots &    & \vdots     \\
+F(v_n) & := & a_{1n} w_1 + \dots + a_{mn}w_m
+\end{eqnarray*}
+eine lineare Abbildung $F$ definiert. Dies ergibt einen Isomorphismus
+\[
+L^\mathcal{V}_\mathcal{W}: K^{m \times n} \ \rightarrow \
+\mathrm{Hom}_K(V,W), \quad A \ \mapsto \ F.
+\] 
+\end{defn}
+
+\paragraph{Kanonisches Beispiel:}
+Seien $K^n$ und $K^m$ mit den kanonischen Basen $\mathcal{K}_n$ und
+$\mathcal{K}_m$ versehen.
+\begin{itemize}
+\item Die Abbildungen $\Phi_{\mathcal{K}_n}$ und $\Phi_{\mathcal{K}_m}$
+sind Identitäten.
+\item  Die Abbildung $L^{\mathcal{K}_n}_{\mathcal{K}_m}$ ist gegeben
+durch 
+\[ L^{\mathcal{K}_n}_{\mathcal{K}_m} (A)(x)=Ax,\; x \in K^n. \]
+\item Die Spaltenvektoren von $A$ sind die Bilder der Einheitsvektoren
+unter der Abbildung  $L^{\mathcal{K}_n}_{\mathcal{K}_m}(A)$.
+\end{itemize}
+
+\begin{defn}[Kommutierendes Diagramm]
+  Seien $K$-Vektorräume $V$ und $W$ mit Basen $\mathcal{V}=(v_1, \dots
+,v_n)$ und $\mathcal{W}=(w_1, \dots ,w_m)$ und eine lineare Abbildung
+$F$ gegeben. Dann gilt das folgende kommutierende Diagramm:\\
+\begin{center}
+  \begin{tikzpicture}
+  \draw (0,2) node[] (a) {$V$}
+   (5,2) node[] (b) {$W$}
+   (0,0)  node[] (c) {$K^n$}
+   (5,0)  node[] (d) {$K^m$};
+  \draw[-latex,thick] (a) -- (b) node[midway, above] {$F$};
+ \draw[-latex,thick] (d) -- (b) node[midway,right] {$\Phi_W$};
+  \draw[-latex,thick] (c) -- (d) node[midway,below] {$(L_\mathcal{W}^\mathcal{V})^{-1}(F)$};
+  \draw[-latex,thick] (c) -- (a) node[midway,left] {$\Phi_V$};
+  \end{tikzpicture}
+\end{center}
+\end{defn}
+
+\section{Eigenwerte und Eigenvektoren}
+\begin{defn}[Eigenwert und Eigenvektor]
+Sei $A\in K^{n\times n}$. Ein Element $\lambda \in K$ heißt {\color{red} Eigenwert} von
+$A$, wenn ein $x \in K^n\smallsetminus \{0 \}$ existiert, 
+\[ {\color{red}A x = \lambda x} \] 
+gilt. Der Vektor $x \in K^n$ heißt {\color{red} Eigenvektor} zum Eigenwert $\lambda$.
+\begin{itemize}
+\item Die Eigenwerte sind die Nullstellen des {\color{red} charakteristischen
+Polynoms} 
+\[p(t):=\det(A-t \ I_n).\] 
+\item Es gibt höchstens $n$ Eigenwerte.
+\end{itemize}
+\end{defn}
+
+\paragraph{Bemerkungen}
+\begin{itemize}
+\item Eigenvektoren zu paarweise verschiedenen Eigenwerten  sind linear
+unabhängig.
+\item Gibt es eine Basis aus Eigenvektoren, so ist $A$
+{\color{red} diagonalisierbar}, d.h. man kann die Abbildung $L_A$ bei
+geeigneter Basiswahl durch eine Diagonalmatrix repräsentieren.
+\item Jeder Endomorphismus eines komplexen Vektorraums läßt sich durch
+eine Matrix in \textsl{Jordanscher Normalform} darstellen.
+\end{itemize}
+
+
+\begin{defn}[Lineare Gleichungssysteme (LGS)]
+Sei $A\in K^{m \times n}$ und $b \in K^m$. Gesucht ist die Menge der
+Lösungen (Lösungsraum): 
+\[ \{ x \in K^n \;|\; A x = b\} \]
+\begin{itemize}
+\item Ist $b=0$, so spricht man von einem {\color{red} homogenen
+System}. Ansonsten spricht man von einem {\color{red} inhomogenen System}.
+\item Der Lösungsraum $W$ des homogenen Systems bildet einen
+Untervektorraum des $K^n$. Die Dimension ist 
+\[ \dim (W)=n - \rang(A). \] 
+\end{itemize}
+\end{defn}
+
+\paragraph{Struktur des Lösungsraums:}
+\begin{itemize}
+\item {\color{red} affiner Unterraum}  $X \subset K^n$: wenn ein
+Unterraum $W$ von $K^n$ und ein $v \in K^n$ existiert, so dass 
+\[X=v+W\]
+%Der Unterraum $W$ ist durch $X$ eindeutig bestimmt, $v$ kann jeder Vektor aus $X$ sein.
+\item Die Lösungen des inhomogenen Systems ($b \neq 0$) bilden einen affinen
+Unterraum des $K^n$.   
+
+\item Ist $W$ der Lösungsraum des homogenen Systems und $v \in K^n$
+eine beliebige Lösung von $Ax=b$, dann ist der Lösungsraum $X$ von $Ax=b$
+gegeben durch  $X=v+W$.
+\item Zwei Lösungen des inhomogenen Systems unterscheiden sich durch
+eine Lösung des homogenen Systems.
+\end{itemize}
+
+\begin{thm}[Lösbarkeit]
+\begin{itemize}
+\item Das inhomogene System ist genau dann für alle $b$
+lösbar, wenn $\rang(A)=m$ gilt.
+\item Das homogene bzw. das inhomogene System besitzt höchstens eine
+Lösung, genau dann wenn $\rang(A)=n$ gilt.
+\item Der Lösungsraum des inhomogenen Systems ist genau dann nicht
+leer, wenn $\rang(A)=\rang(A, b)$ gilt. %A,b : erweiterte Koeffizientenmatrix
+\item Praktisch kann ein LGS mit dem {\color{red} Gausschen
+Eliminationsverfahren} gelöst werden.
+\end{itemize}
+\end{thm}
 \end{document}

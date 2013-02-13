@@ -1,0 +1,203 @@
+\documentclass[a4paper,12pt,DIV15]{scrartcl}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+\usepackage[svgnames,hyperref]{xcolor} %color definition
+\usepackage{tikz}
+\input{common_header}
+\begin{document}
+\begin{center}
+    \textbf{\LARGE Einführung in Sage}\\
+    {\large Einheit 07}\\
+    {\large Zusammenfassung: Funktionen und Funktionenfolgen}
+\end{center}
+
+\section{Funktionen}
+\begin{defn}[Funktion]
+(reelle) {\color{red} Funktion}:  Abbildung
+\[f: \ D \subset \mathbb{R} \ \rightarrow \ \mathbb{R}.\]
+die jedem Element aus $D$ eindeutig genau ein Element aus $\mathbb{R}$ zuordnet.
+\begin{itemize}
+ \item {\color{red} Definitionsbereich}: $D \subset \mathbb{R}$, $D \neq \emptyset$.
+\item {color{red}Wertebereich}: Die Menge $f(D)$ aller rellen Zahlen, die als Werte der
+Funktion vorkommen.
+\item {\color{red} Graph} einer Funktion: ist die Menge aller Punkte 
+\[ \{ (x,f(x)) \in \mathbb{R}^2 \;|\; x \in D\}. \]
+\end{itemize}
+\end{defn}
+
+\begin{defn}[Verknüpfungen]
+Seien $f$ und $g$ Funktionen mit einem gemeinsamen Definitionsbereich. Dann
+definiert man:
+\begin{itemize}
+\item Summe: $(f+g)(x):=f(x)+g(x)$
+\item Differenz: $(f-g)(x):=f(x)-g(x)$
+\item Produkt: $(f\cdot g)(x):=f(x) \cdot g(x)$
+\item Quotient: $(\frac{f}{g})(x):=\frac{f(x)}{g(x)}$, falls $g(x) \neq
+0$ für alle $x \in D$ 
+\item Komposition: Mit $f:D_f \rightarrow \mathbb{R}$ und $g:D_g \rightarrow \mathbb{R}$
+mit $f(D_f) \subset D_g$ 
+\[(g \circ f) (x):=g(f(x)).\] 
+\end{itemize}
+
+\end{defn}
+
+\paragraph{Funktionen mehrerer Veränderlicher:}
+Ist $D \subseteq \mathbb{R}^n$ und $f : D \Rightarrow \mathbb{R}$ dann spricht man von
+einer reellen Funktion in {color{red}mehreren Veränderlichen}. Das Studium dieser Funktionen ist einer der Hauptinhalte der Diff2-Vorlesung.
+
+\bigskip
+
+Weiterhin können Funktionen auch Wertebereiche außerhalb der reellen Zahlen haben.
+Z.B. 
+\[f : D \Rightarrow \mathbb{R}^m.\]
+ Im physikalischen Umfeld spricht man für $m=1$ dann von {color{red}skalarwertigen Funktionen} und für $m>1$ von {color{red}vektorwertigen Funktionen} oder {color{red}Vektorfeldern}.
+ 
+\bigskip
+Sage-Notebook über Funktionen:        
+\url{https://sage.math.uni-goettingen.de/home/pub/42/}
+
+\section{Grenzwerte von Funktionen}
+
+\begin{defn}[Grenzwert]
+{\color{red} Grenzwert}: Sei $f$ eine Funktion mit Definitionsbereich $D$ und $a\in D$.\\
+$f$ strebt für $x \rightarrow a$ gegen $b \in \mathbb{R}$, wenn es zu jedem $\varepsilon >0$ ein $\delta >0$ gibt, so
+dass für alle $x \in D\smallsetminus\{a \}$ mit $|x-a|<\delta$ gilt 
+\[ |f(x)-b| < \varepsilon .\]
+Der Grenzwert $b$ ist eindeutig bestimmt und man schreibt
+\[ \lim_{x \rightarrow a} f(x) =b \mbox{ oder } f(x) \rightarrow b
+\mbox{ für } x \rightarrow a. \]
+Die Aussage überträgt sich sinngemäß auf $a=\pm \infty$.
+\end{defn}
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item {color{red}Folgenkriterium}: Es gilt $ \lim_{x \rightarrow a} f(x) =b$
+genau dann, wenn für jede Folge $a_n \in D$ mit $a_n \neq a$ und $a_n \rightarrow a$
+gilt $\lim_{n \rightarrow \infty} f(a_n)=b$.
+\item Es gelten die üblichen Rechenregeln:
+\begin{eqnarray*}
+\lim_{x \rightarrow a}(f(x)+g(x)) &=&\lim_{x \rightarrow a} f(x) +
+\lim_{x \rightarrow a} g(x) \\
+\lim_{x \rightarrow a}(f(x) \cdot g(x)) &=& \lim_{x \rightarrow a}
+f(x) \cdot \lim_{x \rightarrow a} g(x)
+\end{eqnarray*}
+wenn $\lim_{x \rightarrow a} f(x)$ und $\lim_{x \rightarrow a}g(x)$
+existieren. 
+\item Gilt $\lim_{x \rightarrow a} f(x)=b$, $\lim_{x \rightarrow b}
+g(x)=c$ bei entsprechenden Definitionsgebieten für $f$ und $g$, so
+folgt $\lim_{x \rightarrow a} g(f(x)) =c$.
+\end{itemize}
+
+
+
+\begin{defn}[Stetigkeit]
+Eine Funktion $f:D \ \rightarrow  \ \mathbb{R}$ heißt {\color{red} stetig an
+der Stelle $x_0 \in D$}, wenn es zu jedem $\varepsilon>0$ ein $\delta>0$
+gibt, so dass für alle $x \in D$ mit $|x - x_0| < \delta$ gilt
+\[ |f(x)-f(x_0) | < \varepsilon .\]
+Man sagt, dass $f$ {\color{red} stetig} ist, wenn $f$ an jeder Stelle $x_0
+\in D$ stetig ist. \\
+Sind $f$ und $g$ an $x_0$ stetig, so auch $f+g$, $f-g$, $f \cdot g$
+und $\frac{f}{g}$ (falls $g(x_0) \neq 0$). 
+\end{defn}
+
+\begin{thm}[Wichtige Sätze]
+\begin{itemize}
+\item Sei $f$ auf einem offenen Intervall $I$ definiert. $f$ ist an
+$x_0 \in I$ genau dann stetig, wenn gilt
+\[ \lim_{x \rightarrow x_0} f(x) = f(x_0). \]
+\item Für $f:I \rightarrow \mathbb{R}$ und $g:J \rightarrow
+\mathbb{R}$ gelte $f(I) \subset J$ und es seien $f$ an $x_0 \in I$ und
+$g$ an $y_0=f(x_0)$ stetig. Dann ist $g \circ f$ an $x_0$ stetig.
+\item Eine Funktion $f: D \rightarrow \mathbb{R}$ ist {\color{red}
+linksstetig} bzw. {\color{red} rechtsstetig}, wenn $f|_{D\cap (-\infty,x_0)}$
+bzw  $f|_{D\cap (x_0,\infty)}$ an $x_0$ stetig ist. Eine Funktion $f$
+ist dann an $x_0$ stetig, genau dann wenn $f$ links- und rechtsstetig
+an $x_0$ ist.
+\item Eine stetige Funktion auf einem abgeschlossenen Intervall $I=[a,b]$
+besitzt ein Maximum und ein Minimum.
+\item Eine stetige Funktion $f$ auf einem abgeschlossenen  Intervall
+$[a,b]$ nimmt in $I$ jeden Wert zwischen $f(a)$ und $f(b)$ an.
+\item Potenzreihen $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$ sind stetig
+innerhalb ihres Konvergenzintervalls.
+\end{itemize}
+\end{thm}
+
+
+\begin{defn}[Gleichmäßige Stetigkeit]
+$f: D \rightarrow \mathbb{R}$ heißt {\color{red} gleichmäßig stetig auf $D$},
+wenn es zu jedem $\varepsilon >0$ ein $\delta>0$ gibt, so dass für alle
+Paare $x,x_0 \in D$ mit $|x - x_0|< \delta$ gilt
+\[ | f(x)-f(x_0)| < \varepsilon. \]
+\begin{itemize}
+\item Die Exponentialfunktion ist auf jedem kompakten Intervall
+gleichmäßig stetig (aber nicht auf ganz $\mathbb{R}$). 
+\item $\log:(0,1) \rightarrow \mathbb{R}$ ist stetig aber nicht
+gleichmäßig stetig.
+\end{itemize}
+\end{defn}
+
+\bigskip
+Sage-Notebook über Grenzwerte von Funktionen:        
+        \url{https://sage.math.uni-goettingen.de/home/pub/43/}
+
+
+\section{Funktionenfolgen}
+\begin{defn}[Funktionenfolge]
+Seien $f_n: D \ \rightarrow \ \mathbb{R}$, $n \in
+\mathbb{N}$  rellwertige Funktionen auf  $D \subset \mathbb{R}$.
+\begin{itemize}
+\item $(f_n)_n$ heißt {\color{red} Funktionenfolge.}
+\item Ist für jedes $x\in D$ die Folge $(f_n(x))_n$ konvergent, so wird durch 
+\[ f(x):= \lim_{n \rightarrow \infty} f_n(x), \quad x \in D \]
+die {\color{red} Grenzfunktion} $f:D \ \rightarrow \ \mathbb{R}$ definiert.
+\item Man sagt $f_n$ strebe {\color{red} punktweise} auf $D$ gegen $f$.  
+\item Durch $\sum_{i=1}^\infty f_i$ definierte {\color{red} Funktionenreihen}
+sind spezielle Funktionenfolgen.
+\end{itemize}  
+\end{defn}
+
+\paragraph{Beispiele Grenzübergänge:}
+\begin{itemize}
+\item $x^n \rightarrow 0$ auf dem Intervall $(-1,1)$.
+\item $\left( 1+ \frac{x}{n} \right)^n \rightarrow \exp(x)$ auf $\mathbb{R}$.
+\item Potenzreihen konvergieren innerhalb ihres Konvergenzradius.
+\item {\color{red} Warnung} zum Vertauschen der Grenzprozesse für $x \in (0,1)$:
+\[ \lim_{x \rightarrow 1} \lim_{n \rightarrow \infty} x^n =0 \neq 1 = 
+  \lim_{n \rightarrow \infty} \lim_{x \rightarrow 1} x^n.\]  
+\end{itemize}
+
+\begin{defn}[Gleichmäßige Konvergenz]
+$(f_n)_n$ konvergiert {\color{red} gleichmäßig} auf $D$ gegen $f$, wenn es zu
+jedem $\varepsilon >0$ ein $n_0 \in \mathbb{N}$ gibt, so dass für alle
+$x \in D$ und $n\geq n_0$ gilt:
+\[ |f_n(x) -f(x)| < \varepsilon.\]
+\end{defn}
+
+\begin{thm}
+ Konvergiert $(f_n)_n$ gleichmäßig auf $D$ und existiert $\lim_{x
+\rightarrow a} f_n(x)$ für $a\in D$, so gilt:
+\[ \lim_{x \rightarrow a} \lim_{n \rightarrow \infty} f_n(x) = \lim_{n
+\rightarrow \infty} \lim_{x \rightarrow a} f_n(x). \]
+\end{thm}
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item Die Grenzfunktion einer gleichmäßig konvergenten Folge stetiger
+Funktionen ist stetig.
+\item {color{red}Funktionenreihen}: Ist $f_1, f_2, \ldots$, eine Folge von Funktionen auf $D \subseteq \mathbb{R}$ dann definiert
+\[
+ s := \sum_{n=1}^\infty f_n
+\]
+eine Funktionenreihe. 
+
+Alle Aussagen übertragen sich analog; ebenso die Aussagen über die Folge der Partialsummen
+\[
+ s_k := \sum_{n=1}^k f_n.
+\]
+ 
+ 
+\end{itemize}
+\end{document}

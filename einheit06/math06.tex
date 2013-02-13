@@ -1,0 +1,224 @@
+\documentclass[a4paper,12pt,DIV15]{scrartcl}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+\usepackage[svgnames,hyperref]{xcolor} %color definition
+\usepackage{tikz}
+\input{common_header}
+\begin{document}
+\begin{center}
+    \textbf{\LARGE Einführung in Sage}\\
+    {\large Einheit 06}\\
+    {\large Zusammenfassung: Folgen und Reihen}
+\end{center}
+
+\section{Folgen}
+\begin{itemize}
+\item {\color{red} reelle Zahlenfolge}: Abbildung $a:\mathbb{N} \ \rightarrow \ \mathbb{R}$.
+\item Alternative Notation: $(a_n)_{n \in \mathbb{N}}$ oder $(a_n)_{n}$.
+\item {\color{red} Glieder} der Folge: Die Zahlen $a_n$.
+\item {\color{red} Teilfolge}: $(a_{n_i})_{n_i}$ ist eine Abbildung $a:N \
+\rightarrow \ \mathbb{R}$, wobei $N \subset \mathbb{N}$ eine Menge mit
+unendlich vielen Elementen ist.
+\item Bemerkung: Wir beschränken uns auf den Fall reeller Zahlenfolgen. 
+\end{itemize}
+
+\begin{defn}[Konvergenz von Folgen]
+Eine Zahlenfolge $(a_n)_n$ ist {\color{red} konvergent} gegen den {\color{red}
+Grenzwert} oder {\color{red} Limes} $a\in \mathbb{R}$, wenn es zu jedem
+$\varepsilon >0$ ein $n_0 \in \mathbb{N}$ gibt, so dass für alle $n \geq
+n_0$ die Abschätzung 
+\[ |a_n - a|< \varepsilon \]
+ gilt. Man schreibt
+\[ a=\lim_{n \rightarrow \infty} a_n. \]
+
+{\color{red} divergent}: nicht konvergente Folge. 
+\end{defn}
+
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+    \item {\color{red} Nullfolge}: Folge konvergiert gegen $0$.
+\item {\color{red} Häufungspunkt}: Grenzwert einer konvergenten Teilfolge $(a_{n_i})_{n_i}$.
+\begin{itemize}
+\item Ein Folge kann keinen aber auch mehrere Häufungspunkte besitzten
+\item konvergente Folgen haben genau einen Häufungspunkt.
+\end{itemize}
+\item  {\color{red} Cauchy-Folge}: eine Folge $(a_n)_n$ bei der für
+alle $\varepsilon>0$ ein $n_0 \in \mathbb{N}$ existiert, so dass für alle
+$n,m \geq n_0$ gilt:
+$|a_n - a_m| < \varepsilon$. \\
+\item In $\mathbb{R}$ ist eine Folge konvergent,
+genau dann wenn sie eine Cauchy-Folge ist (Vollständigkeit).
+\item {\color{red} $\varepsilon$-Umgebung}: $U_\varepsilon(a)$ von $a$ ist
+definiert durch
+\[
+U_\varepsilon(a) := (a-\varepsilon, a+\varepsilon) := \{ x \in \mathbb{R} \ | \ |x - a| < \varepsilon \}.
+\] 
+\end{itemize}
+
+
+
+
+\begin{thm}[Konvergenzkriterien]
+\begin{itemize}
+\item Jede monotone, beschränkte Folge konvergiert.
+\item Konvergenz bei Addition: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, $\alpha, \beta \in \mathbb{R}$, so ist auch die
+                   Folge $( \alpha a_n+\beta b_n)_n$ konvergent mit
+                   dem Grenzwert
+ \[ \lim_{n \rightarrow \infty} ( \alpha a_n + \beta b_n)= \alpha
+                   \lim_{n \rightarrow \infty} a_n + \beta \lim_{n
+                   \rightarrow \infty} b_n .\]
+\item Konvergenz bei Multiplikation: Sind $(a_n)_n$ und $(b_n)_n$ konvergente Folgen, so ist auch die
+                   Folge $(a_n b_n)_n$ konvergent mit
+                   dem Grenzwert
+ \[
+  \lim_{n \rightarrow \infty} ( a_n b_n)= 
+                   (\lim_{n \rightarrow \infty} a_n) \cdot  (\lim_{n
+                   \rightarrow \infty} b_n).
+ \]
+\item Bemerkung: Weglassen oder Hinzufügen endlich vieler Glieder verändert das
+                   Konvergenzverhalten nicht.
+\end{itemize}
+\end{thm}
+
+\begin{thm}[Wichtige Sätze]
+\begin{itemize}
+    \item \textsl{\color{red}(Bolzano-Weierstrass)}: Jede beschränkte Folge besitzt (mindestens) eine
+konvergente Teilfolge.
+\item Jede Teilfolge einer konvergenten Folge konvergiert gegen den
+Grenzwert der ursprünglichen Folge.
+\item Jede konvergente Folge ist beschränkt, d.h. es gibt ein $K>0$,
+so dass $|a_n|\leq K$ gilt für alle $n \in \mathbb{N}$.
+\item \textsl{\color{red}Zwischenfolge}: Seien $(a_n)_n$ und $(b_n)_n$ konvergente Folgen mit $\lim_{n
+\rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n$. Dann gilt
+für eine Folge $(c_n)_n$ mit $a_n \leq c_n \leq b_n$, $n \in
+\mathbb{N}$, dass sie konvergiert mit  $\lim_{n
+\rightarrow \infty} c_n = \lim_{n \rightarrow \infty} b_n$.
+\end{itemize}
+\end{thm}
+
+
+\section{Reihen}
+\begin{defn}[unendliche Reihe]
+Sei $(a_n)_n$ eine Folge reeller Zahlen. Eine {\color{red} (unendliche)
+Reihe} mit den {\color{red} Gliedern} $a_n$, in Zeichen
+\[ \sum_{n=1}^\infty a_n =a_1 + a_2 + a_3 + \dots, \]
+ist definiert durch die Folge $(s_n)_n$ der {\color{red} Partialsummen}\\
+\[
+s_n=\sum_{k=1}^n a_k = a_1+a_2+ \dots +a_n 
+\]
+Der Grenzwert $s$ der Folge $(s_n)_n$ wird als {\color{red} Wert} oder 
+{\color{red} Summe} der Reihe bezeichnet. Man schreibt
+\[s= \sum_{n=1}^\infty a_n.\] 
+\end{defn}
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item  Reihen sind eine spezielle Art von Folgen.
+\item Indizierung mit $m$: $\sum_{n=m}^\infty a_n$.
+\item Bei Abänderung, Weglassen oder Hinzufügen endlich vieler Glieder
+bleiben Konvergenz und Divergenz unberührt. I.A. wird sich aber der
+Grenzwert ändern.
+\end{itemize}
+
+
+% \begin{frame}[fragile]{Beispiele}
+% \begin{itemize}
+% \item Die Reihe  $\sum_{n=1}^\infty \frac{1}{n^s}$ konvergiert für $s>1$.
+% \begin{sagein}
+% var('s');assume(s>1);sum(1/k^s,k,1,oo)
+% \end{sagein}
+% \begin{sage}
+% 
+% \end{sage}
+% 
+% \item Die Reihe  $\sum_{n=2}^\infty \frac{1}{n(\log n)^s}$ konvergiert
+% für $s>1$ und divergiert für $s=1$.
+% \begin{sagein}
+% sum(1/(n*log(n)^s),k,2,oo)
+% \end{sagein}
+% \begin{sage}
+% 
+% \end{sage}
+% 
+% \end{itemize}
+% 
+% \end{frame}
+
+
+\begin{thm}[Konvergenzkriterien]
+\begin{itemize}
+\item {\color{red}Cauchykriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ konvergiert
+                  genau dann, wenn es zu jedem $\varepsilon>0$ ein $n_0
+                  \in \mathbb{N}$ gibt, so dass für alle $m,n \geq n_0$
+                  gilt $| \sum_{k=m}^n a_k|<\varepsilon$.
+\item {\color{red}Notwendiges Kriterium:} Konvergiert eine Reihe, so bilden ihre Glieder eine Nullfolge. Dieses Kriterium ist {\color{red}nicht} hinreichend!
+\item {\color{red}Verdichtungskriterium:} Eine Reihe $\sum_{n=1}^\infty a_n$ mit
+                  einer Folge nichtnegativer, monoton fallender
+                  Glieder konvergiert genau dann, wenn die Reihe
+                  $\sum_{n=1}^\infty 2^n a_{2^n}$ konvergiert.
+\end{itemize}
+
+Gilt $0 \leq c_n \leq a_n \leq b_n$ für alle $n \in \mathbb{N}$
+\begin{itemize}
+ \item {\color{red} Minorante}: $\sum_{n=1}^\infty c_n$
+ \item {\color{red} Majorante}: $\sum_{n=1}^\infty b_n$ 
+\end{itemize}
+Die Reihe $\sum_{n=1}^\infty a_n$ {\color{red}konvergiert}, wenn...
+\begin{description}
+\item[Majorantenkriterium:] eine konvergente Majorante besitzt (nichtnegative Glieder).
+
+\item[Quotientenkriterium:] Die Glieder positiv sind und ein $q<1$
+existiert, so dass für $n \in \mathbb{N}$ gilt $\frac{a_{n+1}}{a_n}
+\leq q$. 
+\item[Wurzelkriterium:] Die Glieder positiv sind und ein $q<1$
+existiert, so dass für $n \in \mathbb{N}$ gilt $\sqrt[n]{a_n} \leq
+q$. 
+\item[Leibnizsches Kriterium:] wenn die Folge $(a_n)_n$ bei $\sum_{n=1}^\infty (-1)^n a_n$
+eine monoton fallende  Nullfolge ist.
+\end{description}
+Die Reihe $\sum_{n=1}^\infty a_n$ \textsl{divergiert}, wenn...
+\begin{description}
+\item[Majorantenkriterium:] sie eine divergente Minorante besitzt.
+\end{description}
+\end{thm}
+
+
+\begin{defn}[Absolute und bedingte Konvergenz]
+
+{\color{red} absolut konvergent}: Ist eine Reihe $\sum_{n=0}^\infty a_n$ 
+genau dann wenn $\sum_{n=0}^\infty |a_n|$ konvergiert. 
+
+{\color{red} bedingt konvergent}: konvergent, aber nicht absolut konvergent.
+\begin{itemize}
+\item Absolut konvergente Reihen können beliebig umgeordnet werden.
+\item Dies ist i.d.R. bei nicht absolut konvergenten Reihen falsch!
+\end{itemize}
+\end{defn}
+
+\section{Potenzreihen}
+
+{\color{red} Potenzreihe}:
+\[ \sum_{n=0}^\infty a_n (x-x_0)^n \]
+mit $x_0 \in \mathbb{R}$. 
+
+{\color{red} Konvergenzradius}: 
+\[  \rho := \frac{1}{ \limsup_{n \rightarrow \infty} \sqrt[n]{|a_n|}}
+\]
+Ist $a_n \neq 0$ für alle $n > n_0$:
+\[
+ \rho = \limsup_{n \rightarrow \infty} \frac{|a_{n}|}{|a_{n+1}|}.
+\]
+
+Konvergenzverhalten:
+\begin{itemize}
+ \item konvergiert absolut für $|x -x_0|< \rho$.
+ \item divergiert für $|x-x_0|>\rho$.
+\item Die Konvergenz an den Stellen $x_0-\rho$ und $x_0+\rho$ muss bei
+jeder Reihe individuell geprüft werden.   
+\end{itemize}
+
+
+\end{document}

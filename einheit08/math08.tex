@@ -1,0 +1,301 @@
+\documentclass[a4paper,12pt,DIV15]{scrartcl}
+\usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
+    colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
+    pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
+    breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
+\usepackage[svgnames,hyperref]{xcolor} %color definition
+\usepackage{tikz}
+\input{common_header}
+\begin{document}
+\begin{center}
+    \textbf{\LARGE Einführung in Sage}\\
+    {\large Einheit 08}\\
+    {\large Zusammenfassung: Differentation und Integration}
+\end{center}
+
+\section{Differentation}
+\begin{defn}[Ableitung]
+Eine Funktion $f: D \ \rightarrow \mathbb{R}$ heißt {\color{red}  differenzierbar} an
+der Stelle $x_0 \in D$, wenn 
+\[ \lim_{x \rightarrow x_0} \frac{f(x)-f(x_0)}{x -x_0} \]
+existiert. \\
+Der Grenzwert wird {\color{red} Ableitung} oder {\color{red} Differentialquotient}
+von $f$ an $x_0$ genannt und mit $f\,'(x_0)=f^{\,(1)} (x_0)$ bezeichnet.
+\end{defn}
+
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+\item $f$ {\color{red} differenzierbar} (auf $D$): Wenn $f$ an jeder
+Stelle von $D$ differenzierbar ist. 
+\item {\color{red} Ableitung} von $f$: $f\,'$ für die gilt $f$ differenzierbar auf $D$.
+\item Eine Funktion $f:D \rightarrow \mathbb{R}$ ist an $x_0 \in D$
+genau dann differenzierbar, wenn es eine lineare Abbildung
+$T:\mathbb{R} \rightarrow \mathbb{R}$ gibt, so dass 
+\[ f(x_0+h)=f(x_0) +Th + R(h)h, \quad \lim_{h \rightarrow 0} R(h)=0 \]
+gilt ($T$ und $R$ hängen i.A. von $x_0$ ab). 
+\item $f$ an $x_0 \in D$ differenzierbar => stetig.
+\end{itemize}
+
+\paragraph{Beispiele:}
+\begin{itemize}
+\item $(x^n)'=n x^{n-1}$
+\item $(e^x)'=e^x$
+\item $(\log(x))'= \frac{1}{x}$, $x>0$
+\item $(\sin(x))'=\cos(x)$
+\item $(\cos(x))'=-\sin(x)$
+\end{itemize}
+
+\begin{defn}[Landau-Symbol]
+Sei $f$ eine Funktion, die auf einem Intervall definiert ist, das $0$
+enthält. 
+\begin{itemize}
+ \item {\color{red} $f(x)=O(x^n)$}: Es gibt eine Kontante $C >0$, so dass
+\[  \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n} \leq C\]
+($f(x)$ geht gegen $0$ mindestens so schnell wie $x^n$)
+\item {\color{red} $f(x)=o(x^n)$}: 
+\[  
+ \lim_{x \rightarrow 0} \frac{|f(x)|}{|x|^n}=0
+\]
+($f(x)$ geht schneller gegen $0$ als $x^n$)
+\end{itemize}
+\end{defn}
+
+
+\begin{defn}[Höhere Ableitungen]
+\begin{itemize}
+\item {color{red}$f$ $n$-mal differenzierbar, $f^{\,(n)}$}: Ist $f:D
+\rightarrow \mathbb{R}$ $(n-1)$-mal differenzierbar mit der
+$(n-1)$-ten Ableitung $f^{\,(n-1)}$ und ist $f^{\,(n-1)}$ wiederum
+differenzierbar.
+\item Ist $f$ $n$-mal differenzierbar und ist die $n$-te Ableitung $f^{\,(n)}$
+stetig, so heißt $f$ $n$-mal {\color{red} stetig differenzierbar}.
+\item $f$ heißt {\color{red} unendlich oft differenzierbar}, wenn $f$ $n$-mal
+differenzierbar ist für alle $n\in \mathbb{N}$. 
+\end{itemize}
+\end{defn}
+
+
+
+
+\begin{thm}[Differentationsregeln]
+Seien $f,g:D \rightarrow \mathbb{R}$ differenzierbare Funktionen und
+$x_0 \in D$. Dann gilt
+\begin{itemize}
+\item {color{red}Summe}: $(f+g)'(x_0)=f\,'(x_0)+ g\,'(x_0)$
+\item {color{red}Produktregel}: \[(f \cdot g)'(x_0) = f\,'(x_0) \cdot g(x_0) + f(x_0)g\,'(x_0)\] 
+\item {color{red}Quotientenregel}: \[\left(\frac{f}{g}\right)'(x_0) = \frac{f\,'(x_0) g(x_0) - f(x_0)
+g'(x_0)}{(g(x_0))^2}\]
+falls $g(x_0) \neq 0$ .
+\item {color{red}Kettenregel}: Seien $f:D_f \rightarrow \mathbb{R}$ und $g:D_g
+\rightarrow \mathbb{R}$ mit $f(D_f) \subset D_g$. Ferner seien $f$ an
+$x_0 \in D_f$ und $g$ an $y_0=f(x_0)$ differenzierbar. Dann gilt
+\[ (g \circ f)(x_0) = g\,'(y_0) \cdot f\,'(x_0).  \]
+\item {color{red}Leibnizsche Regel}:
+\[
+(f \cdot g)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{\,(k)} g^{\,(n-k)}.
+\]
+\item {color{red}Umkehrfunktion $f^{\,-1}$}:
+\[(f^{\,-1})' \circ f = \frac{1}{f\,'}.\]
+\end{itemize}
+\end{thm}
+
+\begin{thm}
+Ist eine Funktion $f$ an $x_0$ differenzierbar und hat sie ein
+lokales Extremum, so gilt $f\,'(x_0)=0$.
+\end{thm}
+\begin{thm}[Mittelwertsatz] 
+Sei $f$ eine in dem Intervall $[a,b]$ stetige
+und in $(a,b)$ differenzierbare Funktion. Dann gibt es ein $\xi \in
+(a,b)$, so dass gilt
+\[ \frac{f(b)-f(a)}{b-a}= f\,'(\xi). \]  
+\end{thm}
+\begin{thm}
+Eine differenzierbare Funktion auf dem Intervall $I$ ist genau
+dann konstant, wenn $f\,'(x)$ auf $I$ identisch verschwindet.
+ \end{thm}
+
+\begin{defn}[Regel von L'Hospital]
+Seien $f,g: D \rightarrow \mathbb{R}$
+differenzierbar, und $g\,'(x) \neq 0$, $x \in D$ und 
+{\color{red} $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)= 0$}. Dann gilt
+\[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} =  \lim_{x \rightarrow a}
+\frac{f\,'(x)}{g\,'(x)}, \]
+falls der Limes auf der rechten Seite existiert.
+
+\end{defn}
+\begin{bemerk}
+Der Fall $a=\pm\infty$ ist auch erlaubt!
+
+Die Aussage gilt auch für $\lim_{x \rightarrow a} f(x)=\lim_{x \rightarrow a} g(x)= \infty$ 
+\end{bemerk}
+
+ \begin{center}
+     Sage-Notebook zur Differentation: 
+     \url{http://sage.math.uni-goettingen.de/home/pub/47}
+ \end{center}
+
+
+\section{Taylorsche Formel}
+
+\begin{thm}[Taylorsche Formel]
+Sei $f:I \rightarrow \mathbb{R}$ $(n+1)$-mal differenzierbar und seien
+$x,x_0 \in I$, $x \neq x_0$. Dann gibt es $\xi \in \mathbb{R}$, so
+dass
+\begin{eqnarray*}
+f(x)& = & f(x_0) + \frac{f\,'(x_0)}{1!}(x-x_0)+
+\frac{f\,''(x_0)}{2!}(x-x_0)^2\\[0.5cm]
+ & & + \cdots + \frac{f^{\,n}(x_0)}{n!}(x-x_0)^n +R_n(x,x_0) 
+\end{eqnarray*}
+gilt mit dem  {\color{red} Lagrangschen Restglied}
+\[ R_n(x,x_0) := \frac{f^{\,(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}. \]
+\end{thm}
+
+\paragraph{Restglied:}
+Für das Restglied gibt es noch andere Darstellungen:
+\begin{itemize}
+\item Darstellung von {color{red}Cauchy}
+\[ R_n(x,x_0)= \frac{f^{\,(n+1)}(\xi)}{n!} (x- \xi)^{n}(x-x_0).\]
+\item {color{red}Integraldarstellung}
+\[ R_n(x,x_0)= \int_{x_0}^x \frac{f^{\,(n+1)}(t)}{n!}  (x-t)^n dt.\]
+\end{itemize}
+
+\begin{defn}[Taylorreihe]
+Sei $f:I \rightarrow \mathbb{R}$ unendlich oft  differenzierbar und seien
+$x,x_0 \in I$, $x \neq x_0$. Dann nennt man die Reihe
+\[ \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n \]
+die {\color{red} Taylorreihe} von $f(x)$ um den Entwicklungspunkt
+{\color{red} $x_0$}.
+
+\bigskip
+Die Taylorreihe stellt die Funktion $f$, wenn das Restglied $R_n(x,x_0)$ für $n
+\rightarrow \infty$ gegen $0$ geht.
+\end{defn}
+
+\paragraph{Hinreichende Bedingungen:}
+\begin{itemize}
+\item Die Funktion $f$ läßt sich auf $I\cap (x_0-\delta, x_0+\delta)$ durch die Taylorreihe darstellen, wenn
+\[
+\delta:= \frac{1}{\limsup_{n \rightarrow \infty} \sqrt[n]{A_n}}>0
+ \]
+mit $A_n=\sup_{x \in I}  \frac{|f^{\,(n)}(x)|}{n!}$ gilt.
+\item Gibt es ein $M>0$, so dass $|f^{\,(n)}(x)|\leq M^n$ ist für $x \in
+I$, $n \in \mathbb{N}$, so läßt sich $f$ auf $I$ durch die Taylorreihe
+darstellen.
+\item Es gebe ein $M$ mit  $f^{\,(n)}(x)\geq -M^n$, $x \in [a,b]$. Dann
+gilt die Taylorreihendarstellung für alle $x \in [a,b]$ mit
+$|x-x_0|<b-x$. 
+\end{itemize}
+
+\paragraph{Beispiele:}
+\begin{itemize}
+\item Ist $f(x) = \sum_{n=0}^k a_n x^n$ ein Polynom, so gilt für jeden Punkt $x_0 \in \R$
+\[
+ f(x) = \sum_{n=0}^\infty \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n 
+ = \sum_{n=0}^k  \frac{f^{\,(n)}(x_0)}{n!}(x-x_0)^n
+\]
+\item Für $f(x)=\exp(x)$ und $x_0 \in \mathbb{R}$ gilt 
+\[ \exp(x)= \sum_{n=0}^\infty \frac{\exp(x_0)}{n!} (x-x_0)^n, \quad x
+\in \mathbb{R}.\]
+\item Für $f(x)=\log(x)$ und $x_0=1$ gilt
+\[ \log (x) = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}(x-1)^n, \quad 0 <
+x \leq 2.\]
+\item Für $f(x)= (1+x)^a$, $a\in \mathbb{R}$  und $x_0=0$ gilt
+\[ (1+x)^a= \sum_{n =0}^\infty \binom{a}{n}{x^n}, \quad -1 <
+x < 1. \]
+\end{itemize}
+
+\section{Integration}
+\begin{itemize}
+\item  Sei $[a,b]$ ein Intervall. Gilt $a=a_0 < a_1 <a_2 < \dots <
+                                 a_n=b$, so nennt man $Z=(a_0, \dots
+                                 ,a_n)$ eine {\color{red} Zerlegung} von
+                                 $[a,b]$.
+\item Eine Funktion $\phi:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
+                                 Treppenfunktion}, wenn es eine
+                                 Zerlegung $Z$ von $[a,b]$ gibt, so dass
+                                 $\phi$ konstant ist auf jedem
+                                 Teilintervall $(a_i,a_{i+1})$ von $Z$.
+\item Wir erklären das Integral einer Treppenfunktion $\phi$ durch
+\[\int_Z \phi := \sum_{k=1}^n c_k (a_k -a_{k-1}).\]
+Dabei ist $Z$ die zugehörige Zerlegung und $c_k=\phi(x)$, $x\in
+(a_{k-1},a_k)$.  
+\item Die Menge aller Treppenfunktionen auf $[a,b]$ sei $T[a,b]$.
+\end{itemize}
+
+%eventuell zu sage umschalten?
+
+\begin{defn}
+Für eine beschränkte Funktion $f[a,b]\rightarrow \mathbb{R}$
+heißt
+\[ \int^*f:= \inf  \{ \int \psi \ | \ \psi \in T[a,b], f \leq \psi \}. \]
+das {\color{red} Oberintegral} und 
+\[ \int_*f:= \sup  \{ \int \psi \ | \ \psi \in T[a,b], f \geq \psi \}.\]
+das {\color{red} Unterintegral}. Es gilt für $\phi, \psi \in T[a,b]$ mit
+$\phi \leq f \leq \psi$ die Ungleichung
+\[ \int \phi \leq \int_* f \leq \int^* f \leq \int \psi.\]
+\end{defn}
+
+\begin{defn}[Das Riemannsche Integral]
+Eine beschränkte Funktion $f:[a,b] \rightarrow \mathbb{R}$ heißt {\color{red}
+integrierbar}, wenn Ober- und Unterintegral von $f$ auf $[a,b]$ übereinstimmen.\\
+Der gemeinsame Wert heißt das {\color{red} Integral} von $f$ und wird mit 
+\[ \int_a^b f(x)dx \]
+bezeichnet.\\ 
+($f$ der Integrand, $x$ Integrationsvariable, $a$, $b$ Integrationsgrenzen).
+\end{defn}
+
+\paragraph{Eigenschaften:}
+\begin{itemize}
+\item Linearität
+\[ \int_a^b (\alpha f + \beta g) dx = \alpha \int_a^b fdx + \beta
+\int_a^b g dx \]
+\item Monotonie
+\[  f \leq g \quad \Rightarrow \quad \int_a^b f dx \leq \int_a^b g
+dx.\]
+\item Ist $f,g$ integrierbar, so auch $f+g$, $f*g$, $f-g$,
+$\max\{f,g\}$, $\min \{f,g \}$. 
+\end{itemize}
+
+\begin{thm}
+{\color{red} Stammfunktion} $F$: Ist $f$ stetig auf einem Intervall $I$ und $a \in I$, so ist 
+\[F(x)= \int_a^x f(t) dt, x \in I \] eine differenzierbare Funktion mit
+$F\,'(x)=f(x)$. 
+\end{thm}
+\begin{thm}
+{color{red}Unbestimmtes Integral}: alternative Notation für eine Stammfunktion $F$:  $\int f(x) dx$ 
+\end{thm}
+\begin{thm}
+Ist $f$ stetig auf $[a,b]$, so gibt es ein $\xi \in [a,b]$ mit
+\[\int_a^b f(x)dx = f(\xi) (b-a)\]
+\end{thm}
+
+
+
+\begin{defn}[Uneigentliche Integrale]
+Sei $f$ auf $[a,b)$ erklärt (eventuell $b=\infty$) und sei $f$ auf jedem
+abgeschlossenen Teilintervall integrierbar. Man definiert
+\[  \int_a^b f(x)dx := \lim_{z \rightarrow b (-0)} \int_a^z f(x)dx,\]
+falls der Limes existiert. Man spricht von einem {\color{red}
+uneigentlichen Integral}.
+\end{defn}
+
+\subsection{Funktionenfolgen}
+\begin{itemize}
+\item Sei $(f_n)_n$ eine Folge integrierbarer Funktionen auf
+$[a,b]$. Konvergiert $(f_n)_n$ gleichmäßig, so ist die Grenzfunktion
+integrierbar mit
+\[ \int_a^b \lim_{n \rightarrow \infty} f_n(x) dx = \lim_{n
+\rightarrow \infty} \int_a^b f_n(x) dx .\]
+\item Sei $(f_n)_n$ eine Folge differenzierbarer Funktionen auf
+$[a,b]$. $(f\,'_n)_n$ konvergiere gleichmäßig und es existiere ein $x_0
+\in [a,b]$ für den $f_n(x_0)$ konvergiert. Dann konvergiert $(f_n)_n$
+gleichmäßig mit $( \lim_{n \rightarrow \infty} f_n(x))' = \lim_{n
+\rightarrow \infty} f\,'_n(x)$.  
+\end{itemize}
+ 
+\begin{center}
+    Sage-Notebook zur Integration:
+     \url{http://sage.math.uni-goettingen.de/home/pub/48}
+ \end{center}
+\end{document}
