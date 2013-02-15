@@ -1,12 +1,9 @@
 \documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
-%\usepackage[psamsfonts]{amssymb}
-%\usepackage{amsmath}
 \usepackage[svgnames,hyperref]{xcolor} %color definition
 \usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
     colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
     pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
     breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
-%\usepackage[xetex]{hyperref}
 \input{../common_header}
 \begin{document}
 %--------------------------------------------------- Header
@@ -17,6 +14,17 @@
 \textsl{Hinweis:} Textbausteine mit \isage{<name>} weisen darauf hin, das anstatt des Ausdrucks eine passende Variable eingefügt werden muss.
 
 \medskip
+\textbf{Grundlagen}
+\begin{itemize}
+    \item Listen (geordnet)- \href{http://docs.python.org/library/functions.html#list}{list()}
+        \begin{sagein}
+[a,b,c,..]
+        \end{sagein}
+    \item Tuple- \href{http://docs.python.org/library/functions.html#tuple}{tuple()}
+        \begin{sagein}
+(a,b,c,..)
+        \end{sagein}
+\end{itemize}  
 \textbf{Kurvendiskussion}
 \begin{itemize}
  \item Deklarieren von Variablen mit- \href{}{}
@@ -42,7 +50,6 @@ var('<varname>')
 <expr>.differentiate(<variable>)
 \end{sagein}
 
-%\end{itemize}  
 %\end{itemize}
 %\begin{itemize}
 \item Lösen von Gleichungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/relation.html?highlight=symbolic.relation#sage.symbolic.relation.solve}{solve()}:
@@ -60,37 +67,6 @@ plot(<function>,(<lowerbound>,<upperbound>))
 \end{sagein}
 \end{itemize}
 
-\textbf{Symbolisches Rechnen}
-\begin{itemize}
-\item Symbolisch Integrieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
-\begin{sagein}
-integrate(<expr>,<variable>)
-\end{sagein}
- \item Numerisch Integrieren 
-\begin{sagein}
-integrate(<expr>,<variable>,<lower>,<upper>)
-\end{sagein}
-\item Faktorisieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.factor}{factor()} 
-\begin{sagein}
-factor(<expr>)
-\end{sagein}
-\item Sortieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.collect}{collect()}
-\begin{sagein}
-<expr>.collect(x)
-\end{sagein}
-\item Partialbruchzerlegung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.partial_fraction}{partial\_fraction()}
-\begin{sagein}
-<expr>.partial_fraction()
-\end{sagein}
-\item (vollständiges) Vereinfachen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_full}{simplify\_full()}
-\begin{sagein}
-<expr>.full_simplify()
-\end{sagein}
-\item Vereinfachen mit radicals- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.simplify_radical}{simplify\_radical()}
-\begin{sagein}
-<expr>.radical_simplify()
-\end{sagein}
-\end{itemize}
 
 \textbf{AGLA}
 \begin{itemize}
@@ -120,16 +96,8 @@ A^(-1); A.inverse()
 \end{sagein}
 \end{itemize}
 
-\textbf{Etwas Programmieren}
+\textbf{Funktionen, Schleifen und Abfragen}
 \begin{itemize}
-    \item Listen (geordnet)- \href{http://docs.python.org/library/functions.html#list}{list()}
-        \begin{sagein}
-[a,b,c,..]
-        \end{sagein}
-    \item Tuple- \href{http://docs.python.org/library/functions.html#tuple}{tuple()}
-        \begin{sagein}
-(a,b,c,..)
-        \end{sagein}
     \item (Nicht-mathematische) Funktionen- \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}
 \begin{sagein}
 def <function>(<argument>): <befehle> return <rueckgabewert>

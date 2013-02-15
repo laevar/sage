@@ -96,7 +96,11 @@ float(<expr>)
 \begin{sagein}
 <expr>.n(digits=<number>)
 \end{sagein}
-Dabei ist die Angabe des Parameters digits optional.
+der Parameters digits setzt die Genauigkeit von expr.
+\item In eine andere Basis konvertieren
+\begin{sagein}
+    <number>.str(<base>)
+\end{sagein}
 \end{itemize}
 \item Komplexe Zahlen
 \begin{itemize}
@@ -108,9 +112,9 @@ real(<expr>)
 \begin{sagein}
 imag(<expr>)
 \end{sagein}
- \item Wurzel
+ \item Winkel
 \begin{sagein}
-sqrt(<expr>)
+<expr>.arg()
 \end{sagein}
 \end{itemize}
 

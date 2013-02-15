@@ -5,6 +5,10 @@
 \begin{document}
 \titlepage
 
+\begin{frame}{Aufbau}
+    \tableofcontents
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Organisatorisches}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,7 +20,7 @@
 
 {\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2012/2013)}}
 \item Aufgabenblätter, Musterlösungen und Vorlesungsworksheets: \url{https://sage.math.uni-goettingen.de} (Studenten-Account).
-\item Vorlesungsfolien und Zusammenfassungen: StudIP. 
+\item Vorlesungsfolien, Zusammenfassungen und sonstige Dokumente: StudIP. 
 \pause
 \begin{block}{Dozent}
 Jochen Schulz\\
@@ -39,9 +43,8 @@ XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
 \item Über \url{https://sage.math.uni-goettingen.de}. Login mit Studentendaten.
 \item im Menu unter Education: \texttt{sagenotebook} startet (lokale) gui.\\
 \item im Terminal: \texttt{sage}
-\item Remote per\alert{x2goclient}
-auf \texttt{login.math.uni-goettingen.de} und \texttt{sc1.math.uni-goettingen.de} bis 
-\texttt{sc8.math.uni-goettingen.de} \\
+\item Remote per \alert{x2goclient}
+auf \texttt{login.math.uni-goettingen.de} oder \texttt{compute.math.uni-goettingen.de}\\
 (siehe auch \texttt{https://wiki.math.uni-goettingen.de/wiki/ComputeServer})
 \end{itemize}
 \end{itemize}
@@ -50,14 +53,14 @@ auf \texttt{login.math.uni-goettingen.de} und \texttt{sc1.math.uni-goettingen.de
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
 \item Blockveranstaltung vom  18.2-1.3.2013
-\item \alert{Vorlesung:} 9:15 Uhr bis 11 Uhr
+\item \alert{Vorlesung:} 9:15 Uhr bis ca. 11 Uhr
 \item \alert{Übungsbetrieb:}
 \begin{itemize}
 \item 1 Übungszettel/Tag.
-\item Klausurzulassung: 3 beliebige markierte Aufgaben/Woche testieren lassen. 
+\item Klausurzulassung: 3 beliebige markierte Aufgaben/Woche testieren lassen (per Stern markiert)
 \item Alternativ: Projektarbeit durchführen (Projekte im StudIP zu finden)
 \end{itemize}
-\item \alert{Praktikum:} von 11:00 bis 17:00 Uhr Computerräume im Keller des MI.
+\item \alert{Praktikum:} von 11:00 bis 17:00 Uhr Computerräume im Keller des MI (Multimediaraum).
 \item \alert{Klausur 1:} 8.3.2013; 10:00 - 11:30; HS1/Maximum.
 \item \alert{Klausur 2:} 5.4.2013; 16:00 - 17:30; HS1.
 \end{itemize}
@@ -200,8 +203,8 @@ GAP, R, Magma, ..., ) und damit flexibel.
 \pause
 \alert{Schwächen}
 \begin{itemize}
-\item Befehlsumfang insgesamt wahrscheinlich nicht so Leistungsfähig/ausgefeilt wie bei Maple, Mathematica oder Matlab.
-\item Es fehlt eine gute eigenständige Entwicklungsumgebung\\(Alternative zum Webinterface: \alert{Cantor})
+\item Befehlsumfang insgesamt wahrscheinlich nicht so leistungsfähig/ausgefeilt wie bei Maple, Mathematica oder Matlab.
+\item Es fehlt eine gute eigenständige Entwicklungsumgebung\\(Python IDEs sind aber mit ein bisschen Aufwand nutzbar. Alternative zum Webinterface: \alert{Cantor})
 \end{itemize}
 \end{frame}
 
@@ -259,6 +262,14 @@ sage: float(sqrt(2))
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Grundlagen (Sage/Python)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Sage}
+\begin{center}
+\url{https://sage.math.uni-goettingen.de/home/pub/8/}
+\end{center}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Eine Kurvendiskussion}
@@ -400,15 +411,6 @@ sage: float(sqrt(2))
 %\end{itemize}
 %\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Symbolisches Rechnen}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Sage}
-\begin{center}
-\url{https://sage.math.uni-goettingen.de/home/pub/3/}
-\end{center}
-\end{frame}
 
 %
 %\begin{frame}[fragile]{Symbolisches Rechnen I}

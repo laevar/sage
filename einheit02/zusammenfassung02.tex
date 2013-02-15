@@ -16,14 +16,9 @@
 \medskip
 \textbf{Grundlagen}
 \begin{itemize}
-    \item Bezeichner und Wert: <bezeichner> = <wert>
-    \item Typ eines Objekts- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html#sage.combinat.e_one_star.Face.type}{type()}
-        \begin{sagein}
-type(<var>)    
-        \end{sagein}
     \item Ausgabe- \href{http://docs.python.org/library/functions.html?highlight=print#print}{print} 
         \begin{sagein}
-print ('Text %<format> und %<format> .. ' % (x,y,..))
+print ('Text {<format>} und {<format>} .. '.format(x,y,..))
         \end{sagein}
 \end{itemize}
 
@@ -42,7 +37,7 @@ d[<Index>]
 \end{sagein}
 \end{itemize}
 
-\textbf{Funktionen und Abfragen}
+\textbf{Funktionen, Schleifen und Abfragen}
 
 \begin{itemize}
  \item anonyme Funktion- \href{http://docs.python.org/howto/functional.html#small-functions-and-the-lambda-expression}{lambda}
@@ -54,20 +49,31 @@ lambda <parameter_list>: <expression>
 \begin{sagein}
 for <indexvar> in <expr>/<list>:
     <Code-Block>
-else:
-    <Code-Block>
 \end{sagein}
  \item Abfragen- \href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{if}
 \begin{sagein}
 if <boolean expr>:
     <Code-Block>
+else:
+    <Code-Block>
 \end{sagein}
 
 \end{itemize}
 
-\textbf{Ausdrücke}
-
+\textbf{Symbolisches Rechnen}
+\begin{itemize}
+\item Unbestimmtes Integral- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
+\begin{sagein}
+integrate(<expr>,<variable>)
+\end{sagein}
+ \item Bestimmtes Integral
+\begin{sagein}
+integrate(<expr>,<variable>,<lower>,<upper>)
+\end{sagein}
+\end{itemize}
   \begin{itemize}
+
+      
       \item Sortieren nach \isage{<x>}- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.collect}{collect()}
        \begin{sagein}
 <expr>.collect(<x>)  
