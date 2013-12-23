@@ -27,6 +27,20 @@ f(x,y,...) = expr
 \begin{sagein}
 f_g(x) = f(g); g_f(x) = g(f)
 \end{sagein}
+\item Stückweise Funktionen
+    \begin{sagein}
+Piecewise([ <interval>,<function>], [<interval2>,<function2>],..])
+    \end{sagein}
+    \begin{itemize}
+        \item Definitionsbereich
+            \begin{sagein}
+<piecewisefunc>.domain()
+            \end{sagein}
+        \item Endpunkte
+            \begin{sagein}
+<piecewisefunc>.end_points()
+            \end{sagein}
+    \end{itemize}
 \end{itemize}
 
 

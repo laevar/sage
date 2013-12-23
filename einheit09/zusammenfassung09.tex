@@ -25,7 +25,7 @@
 \begin{sagein}
 <string>[<Index>]
 \end{sagein}
-\item Ersetzung- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.replace}{replace()}
+\item Ersetzung: \href{http://docs.python.org/library/string.html?highlight=string.replace#string.replace}{replace()}
 \begin{sagein}
 <string>.replace('<Vorher>','<Hinterher>')
 \end{sagein}
@@ -33,34 +33,34 @@
 \begin{sagein}
  <string>+<string>
 \end{sagein}
-\item Stringlänge- \href{http://docs.python.org/library/functions.html?highlight=print#len}{len()}
+\item Stringlänge: \href{http://docs.python.org/library/functions.html?highlight=print#len}{len()}
 \begin{sagein}
  len(<string>)
 \end{sagein}
-\item Typecast- \href{http://docs.python.org/library/functions.html?highlight=print#str}{str()}
+\item Typecast: \href{http://docs.python.org/library/functions.html?highlight=print#str}{str()}
 \begin{sagein}
 str(<vorher kein String>)
 \end{sagein}
-\item Suchen- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.find}{find()}
+\item Suchen: \href{http://docs.python.org/library/string.html?highlight=string.replace#string.find}{find()}
 \begin{sagein}
  <string>.find(<string>)
 \end{sagein}
-\item Aufteilen- \href{http://docs.python.org/library/string.html?highlight=string.replace#string.split}{split()}
+\item Aufteilen: \href{http://docs.python.org/library/string.html?highlight=string.replace#string.split}{split()}
 \begin{sagein}
  <string>.split([<Trennzeichen>])
 \end{sagein}
 \item Ausgabe
 \begin{sagein}
-  print 'Text %<format> und %<format> ... ' % (x,y,...)
+'Text {name|index:<format>} und {name|index:<format>} ... '.format([name=]x,[name=]y,...)
  \end{sagein}
- <format>:  \%[<flag>][<minwidth>][.<precision>]converter
+ <format>:  {[<flag>][<minwidth>][.<precision>]converter}
  \begin{itemize}
 \item flag: 0 für das Auffüllen mit Nullen
 \item minwidth: Minimale Breite der Darstellung
 \item precision: Genauigkeit (Nachkommastellen)
 \item converter:
     \begin{itemize}
-        \item[i]  ganze Zahl mit Vorzeichen
+        \item[d]  ganze Zahl mit Vorzeichen
         \item[e]  Gleitkommazahl mit exponentialformat (kleingeschrieben)
         \item[f]  Gleitkommazahl im Dezimalformat
         \item[g]  Gleitkommazahl. Exponent < -4: kleingeschriebene Exponentialform, ansonsten Dezimalformat
