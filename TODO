@@ -1,0 +1,52 @@
+# vim:ft=todo
+
+SAGE=Software for Algebra and Geometry Experimentation
+sage-doc-format im worksheet (wuerde nur ueber direk html gehen, preformatted ist ok)
+--------
+
+** organisation** 
+
+TODO 2014-01-23  Kurs so halten, dass man kurz was vorstellt, dann aufgaben dazu, dann wieder was vorstellen , usw. (fuer sage vielleicht zuviel, evtl. aber mit matlab-kurs machbar.)
+
+TODO 2014-01-23  anleitung schreiben wie man sage mit editor und im batch-betrieb benutzen kann
+-> sage : attach, then editor (spyder!)
+
+** Inhaltliches** 
+
+TODO 2014-01-23  lsg06: limit der tschebysched-polynome?
+
+TODO 2014-01-23  python decorators, klassen?
+TODO 2014-01-23  mehr Mathematik-aufgaben, wo man den Sinn besser sieht.
+
+TODO 2014-01-23  einheit 4 zu kurz : evtl. datencontainer aus 5 weit ! vorziehen
+TODO 2014-01-23  einheit  8 zu kurz. was koennte man da nettes noch machen?
+TODO 2014-01-23  quicksheet anpassen
+TODO 2014-01-23  grundlegende Erklaerung des interfaces: erste vorlesung (zusammen mit quicksheet-sachen) einige andere Sachen auf den 2ten/3ten  Tag  verschieben
+
+
+
+TODO 2014-01-23 Durchgang:
+ [] zusammenfassungen ueberarbeiten
+ [] links zur docu einfuegen!
+ [] Mehr noetige Mathematik in den sage-notebook unterbringen
+ [] links zu den sage-seiten in der mathe-pdf machen
+ [] aufgaben ausdenken.
+
+TODO 2014-01-23  - vorkurs in den ersten Tag mitintegrieren (d.h. also langsamerer einstieg ins programmieren!). 
+
+
+TODO 2014-01-23  bisschen weniger detaillierte beispiele und/oder wiederholungen und weniger simple copy uebungsaufgaben.
+
+
+--------- 
+TODO 2014-01-23  sum: gleich so erklaeren dass man damit nur geschlossene ausdruecke haben will, ansonsten add!
+
+
+  
+
+** Skript und Ilias** 
+ moeglichkeiten folien-konstruktion sehr nah an einm skript zu haben. (gettext-like)
+ skript->ilias am besten moeglichst automatisch.
+
+ Problem: in sagetex gehen keine sachen mit mehreren Befehlen in einer zeile. wer produziert das sout? sagetex.py macht den latex-code!?
+less /usr/local/sage_4.7.2/local/lib/python2.6/site-packages/sagetex.py
