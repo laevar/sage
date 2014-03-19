@@ -1,6 +1,6 @@
 \documentclass[hyperref={xetex}]{beamer}
 \title{Einführung in Sage - Einheit 1}
-\subtitle{Organisatorisches, Was ist Sage?, Streifzug durch Sage}
+\subtitle{Organisatorisches, Was ist Sage?, Basis}
 \input{slide_header}
 \begin{document}
 \titlepage
@@ -18,7 +18,7 @@
 \item Anmeldung über StudIP \\
       \url{https://www.studip.uni-goettingen.de/}
 
-{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2012/2013)}}
+{\color{blue}{Einführung in Sage (Mathematische Anwendersysteme) (WS 2013/2014)}}
 \item Aufgabenblätter, Musterlösungen und Vorlesungsworksheets: \url{https://sage.math.uni-goettingen.de} (Studenten-Account).
 \item Vorlesungsfolien, Zusammenfassungen und sonstige Dokumente: StudIP. 
 \pause
@@ -27,7 +27,7 @@ Jochen Schulz\\
 NAM, Zimmer 04 (Erdgescho{\ss})\\
 Telefon: 39-4525
 Email: \href{mailto:schulz@math.uni-goettingen.de}{\texttt{schulz@math.uni-goettingen.de}}\\
-XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
+XMPP: \url{jschulz1@jabber.gwdg.de}\\
 
 \end{block}
 \end{itemize}
@@ -37,14 +37,14 @@ XMPP: \url{schulz@jabber.num.math.uni-goettingen.de}\\
 \textbf{Vor.:} \alert{Stud.It-Account} nötig. \\
 \textbf{Intranet/Wiki} (\url{https://wiki.math.uni-goettingen.de})
 \begin{itemize}
-\item Sage ist in Version 5.5 installiert
-\item Nutzen von Sage: 
+\item Sage ist in Version 5.11 installiert
+\item Sage nutzen: 
 \begin{itemize}
 \item Über \url{https://sage.math.uni-goettingen.de}. Login mit Studentendaten.
 \item im Menu unter Education: \texttt{sagenotebook} startet (lokale) gui.\\
 \item im Terminal: \texttt{sage}
 \item Remote per \alert{x2goclient}
-auf \texttt{login.math.uni-goettingen.de} oder \texttt{compute.math.uni-goettingen.de}\\
+auf \texttt{login.math.uni-goettingen.de} oder auf die Compute-Server \\
 (siehe auch \texttt{https://wiki.math.uni-goettingen.de/wiki/ComputeServer})
 \end{itemize}
 \end{itemize}
@@ -52,7 +52,7 @@ auf \texttt{login.math.uni-goettingen.de} oder \texttt{compute.math.uni-goetting
 
 \begin{frame}{Ablauf der Veranstaltung}
 \begin{itemize}
-\item Blockveranstaltung vom  18.2-1.3.2013
+\item Blockveranstaltung vom  31.3-11.4.2014
 \item \alert{Vorlesung:} 9:15 Uhr bis ca. 11 Uhr
 \item \alert{Übungsbetrieb:}
 \begin{itemize}
@@ -61,15 +61,15 @@ auf \texttt{login.math.uni-goettingen.de} oder \texttt{compute.math.uni-goetting
 \item Alternativ: Projektarbeit durchführen (Projekte im StudIP zu finden)
 \end{itemize}
 \item \alert{Praktikum:} von 11:00 bis 17:00 Uhr Computerräume im Keller des MI (Multimediaraum).
-\item \alert{Klausur 1:} 8.3.2013; 10:00 - 11:30; HS1/Maximum.
-\item \alert{Klausur 2:} 5.4.2013; 16:00 - 17:30; HS1.
+\item \alert{Klausur 1:} 17.4.2014; 10:00 - 11:30; HS1/Maximum.
+\item \alert{Klausur 2:} 26.4.2014; 10:00 - 11:30; HS1.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Inhalt der Vorlesung}
 \alert{Ziel:} Wiederholung des Stoffs Diff 1 und AGLA 1 mittels der Methoden der Computeralgebra und der numerischen Rechnung.
 \begin{description}
- \item[1. Tag]Organisatorisches, Aufbau von Sage, Streifzug durch Sage
+ \item[1. Tag] Organisatorisches, Aufbau von Sage, Streifzug durch Sage
 \item [2. Tag] Grundlagen, Symbolisches Rechnen, Gleichungen
 \item [3. Tag] Mengen, Zahlen
 \item [4. Tag] Matrizen, Vektorräume, Funktionen
@@ -155,7 +155,7 @@ Gruppen, Ringe, \ldots
 \item Basiert auf Python
 \item Objektorientiert
 \item Besitzt Frontends für viele externe Software 
-\item (Haupt-)Interface im Browser 
+\item (Haupt-)Interface im Browser
 \end{itemize}
 \end{frame}
 
@@ -188,23 +188,26 @@ program that he is not allowed to see?
 
 
 
-\begin{frame}[<+->]{Sage - Stärken und Schwächen}
+\begin{frame}[fragile]{Sage - Stärken und Schwächen}
 \alert{Stärken}
 \begin{itemize}
 \item Vereinigung von vielen anderen CAS und Libraries unter einer einheitlichen Oberfläche (Maxima, Pari,
 GAP, R, Magma, ..., ) und damit flexibel.
 \item Durch Python angebunden an eine mächtige Skriptsprache
+\item geeignet für Prototyping
 %\item interaktiver Quellcode-Debugger
 \item umfangreiches Hilfesystem
 %\item Einfaches Einbinden von C/C++ Routinen (dynamische Module)
 \item Viele freie (Unterrichts-)materialien im Internet 
 \item Source Code offen und gut dokumentiert (Peer Review)
+\item Browserinterface erlaubt leichten Einstieg.
 \end{itemize}
 \pause
 \alert{Schwächen}
 \begin{itemize}
 \item Befehlsumfang insgesamt wahrscheinlich nicht so leistungsfähig/ausgefeilt wie bei Maple, Mathematica oder Matlab.
-\item Es fehlt eine gute eigenständige Entwicklungsumgebung\\(Python IDEs sind aber mit ein bisschen Aufwand nutzbar. Alternative zum Webinterface: \alert{Cantor})
+\item Es fehlt eine gute eigenständige Entwicklungsumgebung\\(Python IDEs sind allerdings nutzbar. Alternative zum Webinterface: \alert{Cantor})
+\item Performance i.a. nicht gut, aber leicht verbesserbar (Cython)
 \end{itemize}
 \end{frame}
 
@@ -214,52 +217,32 @@ GAP, R, Magma, ..., ) und damit flexibel.
 %\end{center}
 %\end{frame}
 
-% \begin{frame}{Kern von Sage ??}
-% \begin{itemize}
-% \item \alert{Parser:} Liest die Eingaben und überprüft die Syntax;
-%   Umwandlung in MuPAD-Datentyp
-% \item \alert{Auswerter:} Auswertung und Vereinfachung der
-%   Ergebnisse
-% \item \alert{Speicherverwaltung:} (MAMMUT $\equiv$ Memory
-%   Allocation Managment Unit) interne Verwaltung der
-%   MuPAD-Objekte
-% \item \alert{Kernfunktionen:}  Oft benötigte Funktionen
-%   werden aus Effizienzgründen im Kern auf C-Ebene implementiert.
-% \end{itemize}
-% \end{frame}
 
 %\begin{frame}{Literatur}
 %\begin{itemize}
-%\item K. Gehrs, F. Postel. MuPAD -- Eine praktische
-%  Einführung. SciFace. 2001.
-%\item Ch. Creutzig, J. Gerhard, W. Oevel, St. Wehmeier. Das MuPAD
-%  Tutorium. Springer. 2. Auflage. 2002.
-%\item M. Majewski. MuPAD Pro Computing Essentials. Springer. 2002.
-%\item Rolf Monnerjahn. Mathematische Anwendungen in Biologie, Chemie, Physik. MuPad im Mathematikunterricht: 5.-10. Schuljahr
-%\item  Gerd Rapin, Thomas Wassong, Stefan Wiedmann und Stefan Koospal. MuPAD: Eine Einführung
 %\end{itemize}
 %\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Streifzug durch Sage}
+%\section{Streifzug durch Sage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[fragile]{Sage als Taschenrechner}
-Hier einige Beispiele: 
-\begin{sagecommandline}
-sage: 3+4*10+12 
-\end{sagecommandline}
-\begin{sagecommandline}
-sage: sin(pi) 
-\end{sagecommandline}
-\begin{sagecommandline}
-sage: float(pi)
-\end{sagecommandline}
-\begin{sagecommandline}
-sage: float(sqrt(2))
-\end{sagecommandline}
-\end{frame}
+%\begin{frame}[fragile]{Sage als Taschenrechner}
+%Hier einige Beispiele: 
+%\begin{sagecommandline}
+%sage: 3+4*10+12 
+%\end{sagecommandline}
+%\begin{sagecommandline}
+%sage: sin(pi) 
+%\end{sagecommandline}
+%\begin{sagecommandline}
+%sage: float(pi)
+%\end{sagecommandline}
+%\begin{sagecommandline}
+%sage: float(sqrt(2))
+%\end{sagecommandline}
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -380,37 +363,6 @@ sage: float(sqrt(2))
 %\end{itemize}
 %\end{frame}
 %
-%\begin{frame}[fragile]{Plot}
-%\begin{sagecommandline}
-%p = plot(f0,detect_poles='show',xmin=0, xmax=10,color='red')
-%p += plot(f1,detect_poles='show',xmin=0, xmax=10,color='green')
-%p += plot(f2,detect_poles='show',xmin=0, xmax=10,color='blue'); p.show(ymin=-80, ymax=80)
-%\end{sagecommandline}
-%\begin{center}
-%\includegraphics[height=4.5cm]{figures/graphen}
-%\end{center}
-%\end{frame}
-
-%\begin{frame}[fragile]{Zusammenfassung}
-%\begin{itemize}
-% \item Deklarieren von Variablen mir \isage{var()}, z.B.{\verb~var('a')~} 
-%\item Definieren von Variablen mit {\color{blue}'='}, z.B. {\verb~a=3~} 
-%\item Definieren von Funktionen mit{\color{blue} '='}, z.B. {\verb~f(x) = x^2 - 6*x~}
-%%\item Symbolisches Rechnen 
-%%\begin{itemize}
-%\item Grenzwertbestimmung: {\color{blue}   \verb~f.limit(x=1, dir='<plus|minus>')~}
-%%\item Vereinfachen: {\color{blue}  \verb~f.full_simplify()~}
-%\item Bilden von Ableitungen {\color{blue} \verb~f.differentiate(x)~}
-%%\end{itemize} 
-%%\end{itemize}
-%%\begin{itemize}
-%\item Lösen von Gleichungen: {\color{blue} \verb~solve( f(x)==0, x)~}
-%\item Berechnen numerischer Approximationen:
-%  {\color{blue} \verb~float(f(sqrt(3)+ 4))~}
-%\item Plotten einer Funktion: {\color{blue} \verb~plot(sin,(0,4))~}
-%\end{itemize}
-%\end{frame}
-
 
 %
 %\begin{frame}[fragile]{Symbolisches Rechnen I}
@@ -502,58 +454,7 @@ sage: float(sqrt(2))
 %\end{itemize}
 %\end{frame}
 
-% \begin{frame}[fragile]{MuPAD unterscheidet 
-% strikt zwischen Funktionen und Ausdrücken I}
-% 
-% Beispiele:
-% 
-% \begin{sagecommandline}
-% f:= x -> sin(x)
-% \end{sagecommandline}
-% \begin{sageout}
-%  x -> sin(x)
-% \end{sageout}
-% \begin{sagecommandline}
-% g:=sin(x)
-% \end{sagecommandline}
-% \begin{sageout}
-%   sin(x)
-% \end{sageout}
-% \begin{sagecommandline}
-% f(1),g(1)
-% \end{sagecommandline}
-% \begin{sageout}
-%  sin(1), sin(x)(1)
-% \end{sageout}
-% \end{frame}
 
-% \begin{frame}[fragile]{MuPAD unterscheidet 
-% strikt zwischen Funktionen und Ausdrücken II}
-% \begin{sagecommandline}
-% int(f,x)
-% \end{sagecommandline}
-% \begin{sageout}
-%   Error: Illegal integrand [int]
-% \end{sageout}
-% \begin{sagecommandline}
-% int(f(x),x)
-% \end{sagecommandline}
-% \begin{sageout}
-%   -cos(x)
-% \end{sageout}
-% \begin{sagecommandline}
-% f(x)-g
-% \end{sagecommandline}
-% \begin{sageout}
-%   0
-% \end{sageout}
-% \begin{sagecommandline}
-% h:=fp::unapply(g)
-% \end{sagecommandline}
-% \begin{sageout}
-%   x -> sin(x)
-% \end{sageout}
-% \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -715,78 +616,6 @@ sage: float(sqrt(2))
 \url{https://sage.math.uni-goettingen.de/home/pub/5/}
 \end{center}
 \end{frame}
-%
-%\begin{frame}[fragile]{Funktionen}
-%\begin{itemize}
-% \item eine einzeilige Funktion kann man wie folgt definieren:
-%\begin{sagecommandline}
-%def <name>(<Argumente>) : return <Rueckgabe>
-%\end{sagecommandline}
-%\item Beispiel: 
-%\begin{sagecommandline}
-%def fd(ex) : return diff(ex)
-%fd(x^2)
-%\end{sagecommandline}
-%\begin{sageout}
-% 2*x
-%\end{sageout}
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Listen und Tuple}
-% \begin{itemize}
-%\item Eine \alert{Liste} ist in Sage (und Python) mit \isage{[..,..]} gekennzeichnet 
-%\begin{sagecommandline}
-%liste = [21,22,24,23]
-%liste.sort(); liste 
-%\end{sagecommandline}
-%\begin{sageout}
-% [21, 22, 23, 24]
-%\end{sageout}
-%\item Ein \alert{Tuple} ist in Sage (und Python) mit \isage{(..,..)} gekennzeichnet 
-%\begin{sagecommandline}
-%tuple = (liste[0], liste[2])
-%tuple, tuple[0]
-%\end{sagecommandline}
-%\begin{sageout}
-%((21, 24), 21) 
-%\end{sageout}
-%\item Liste von ganzen Zahlen von \isage{a} bis \isage{b}
-%\begin{sagecommandline}
-%[a..b] ; range(a,b+1)
-%\end{sagecommandline}
-% \end{itemize}
-%\end{frame}
-%
-%
-%\begin{frame}[fragile]{Einfache Schleifen und Abfragen}
-%
-%Einzeilige Schleifen
-%\begin{sagecommandline}
-%[<expr(var)> for <var> in <range|liste>] 
-%[<expr(var)> for <var> in <range|liste> if <expr>] 
-%\end{sagecommandline}
-% \begin{itemize}
-%\item Beispiel:
-%\begin{sagecommandline}
-%[m^2 for m in [1..5] ]
-%\end{sagecommandline}
-%\begin{sageout}
-%[1, 4, 9, 16, 25]
-%\end{sageout}
-%\item Beispiel mit Abfrage:
-%\begin{sagecommandline}
-%[m^2 for m in [1..5] if m%2==0]
-%\end{sagecommandline}
-%\begin{sageout}
-% [4, 16]
-%\end{sageout}
-%
-% \end{itemize}
-%
-% 
-%\end{frame}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -797,71 +626,6 @@ sage: float(sqrt(2))
 \url{https://sage.math.uni-goettingen.de/home/pub/6/}
 \end{center}
 \end{frame}
-%
-%\begin{frame}[fragile]{Etwas Zahlentheorie I}
-%Fermatsche Primzahlen: $F_n=2^{2^n} +1$. Finden Sie die kleinste
-%Zahl $F_n$, die keine Primzahl ist!
-%\begin{sagecommandline}
-%def F(n): return 2^(2^n)+1
-%[[F(m),is_prime(F(m))] for m in range(1,6)]
-%\end{sagecommandline}
-%\begin{sageout}
-%[[5, True], [17, True], [257, True], [65537, True], [4294967297, False]]
-%\end{sageout}
-%\begin{sagecommandline}
-%divisors(int(F(5)))
-%\end{sagecommandline}
-%\begin{sageout}
-%[1, 641, 6700417, 4294967297]
-%\end{sageout}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Etwas Zahlentheorie II}
-%\begin{itemize}
-%\item Eine Liste der ersten  Primzahlen bis $100$
-%\begin{sagecommandline}
-%menge = range(1,101)
-%[m for m in menge if is_prime(m)]
-%oder filter(is_prime,menge)
-%\end{sagecommandline}
-%\begin{sageout}
-%[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-%\end{sageout}
-%\item Mersenne-Primzahlen $2^p-1$, $p$ Primzahl. Bestimmen der ersten
-%Mersenne Primzahlen im Bereich $\leq 200$.
-%\begin{sagecommandline}
-%menge = range(1,201)
-%primes = [m for m in menge if is_prime(m)]
-%[2^m-1 for m in primes if is_prime(2^m-1)]
-%\end{sagecommandline}
-%\begin{sageout}
-%[3, 7, 31, 127, 8191, 131071, 524287, 2147483647, 2305843009213693951,
-%618970019642690137449562111, 162259276829213363391578010288127,
-%170141183460469231731687303715884105727]
-%\end{sageout}
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Etwas Zahlentheorie III}
-%Wir geben für die natürlichen Zahlen $\leq 1000$ an, wieviele Zahlen
-%$1,2,3,\dots $ Teiler haben.
-%\begin{sagecommandline}
-%menge = range(1,1001)
-%liste = [number_of_divisors(int(m)) for m in menge]
-%[(i,len([m for m in liste if m==i]))for i in range(1,51)]
-%\end{sagecommandline}
-%
-%\begin{sageout}
-%[(1, 1), (2, 168), (3, 11), (4, 292), (5, 3), (6, 110), (7, 2), (8,
-%180), (9, 8), (10, 22), (11, 0), (12, 97), (13, 0), (14, 5), (15, 4),
-%...
-%\end{sageout}
-%Teiler der Zahl $840$:
-%\begin{sagecommandline}
-%divisors(840)
-%\end{sagecommandline}
-%\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \section{Nützliches und Hilfe}
@@ -871,44 +635,10 @@ sage: float(sqrt(2))
 Finde man auf dem \alert{Quicksheet} (Dokument im StudIP zu finden).
 %\url{https://sage.math.uni-goettingen.de/home/pub/2/}
 \end{center}
+
+\begin{block}{Anmerkung}
+Programmieren lernt man am Rechner durch Übung! nehmt bitte die Möglichkeiten 
+der Übung und des Praktikums wahr!
+\end{block}
 \end{frame}
-%
-%\begin{frame}[fragile]{Überlebensregeln}
-%\begin{itemize}
-%\item Mehrere Befehle in einer Zeile durch {\color{blue} \isage{;}} trennen. 
-%\item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
-%  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
-%\item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
-%\item Ein neues Eingabefeld erhält man durch klicken auf den blauen, horizontalen Balken
-%\end{itemize}
-%\end{frame} 
-%
-%\begin{frame}{Nützliches}
-%\begin{itemize}
-%\item {\color{blue} \isage{_} } refenziert die letzte Ausgabe.
-%\item Löschen aller eigenen Variablen und Zurücksetzen auf den Anfangsstatus: {\color{blue} \isage{reset()}}
-%%\item Anzeigen aller definierten Variablen: {\color{blue} anames(All)}
-%%\item Anzeigen aller selbst definierten Variablen: {\color{blue} anames(All,User)}
-%\item Das Feld aktivieren von \alert{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
-%%\item profiler und debugger -> commandline
-%\item Html- und/oder \LaTeX-Dokumentation:{\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken
-%%\item Publish: Im Notebook kann durch klicken des \alert{Publish}-Reiters das Notebook für alle offen gelegt werden. 
-%%\item Unter dem Menupunkt \alert{File} kann man 
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Hilfefunktionen in Sage}
-%
-%\begin{itemize}
-%\item {\color{blue} Autocompletion :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
-%Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
-%\item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
-%\item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
-%\item online Dokumentation: 
-%\begin{itemize}
-%\item Sage: \url{http://www.sagemath.org/doc/index.html}
-%\item Python: \url{http://docs.python.org/}
-%\end{itemize}
-%\end{itemize}
-%\end{frame}
 \end{document}
