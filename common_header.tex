@@ -1,4 +1,6 @@
 \usepackage{fontspec,xunicode,xltxtra}
+%\usepackage{fontspec,xunicode}
+%\usepackage{polyglossia}
 %\setdefaultlanguage[spelling=new, latesthyphen=true]{german}
 %\setsansfont{DejaVu Sans}
 %\setsansfont{Verdana}
@@ -6,20 +8,19 @@
 %\setromanfont[Mapping=tex-text]{Linux Libertine}
 %\setsansfont[Mapping=tex-text]{Myriad Pro}
 %\setmonofont[Mapping=tex-text]{Courier New}
+
 %\setsansfont{Linux Biolinum}
 
 \usepackage[ngerman]{babel}
 \selectlanguage{ngerman}
 
-\usepackage{sagetex}
-
 %
 % math/symbols
 %
 \usepackage{amssymb}
+\usepackage{amsthm}
 % \usepackage{latexsym}
 \usepackage{amsmath}
-\usepackage{amsthm}
 %\usepackage{amsxtra} %Weitere Extrasymbole
 %\usepackage{empheq} %Gleichungen hervorheben
 %\usepackage{bm}
@@ -38,38 +39,125 @@
 %Listingsumgebung fuer verbatim
 %Grauhinterlegeter Text
 %Automatischer Zeilenumbruch ist aktiviert
-\usepackage{listings}
+%\usepackage{listings}
+\usepackage[framed]{mcode}
+%\usepackage{mcode}
 % This command allows you to typeset syntax highlighted Matlab
 % code ``inline''.
-\newcommand{\isage}[1]{\lstinline|#1|}
+% mcode fuer matlab
 
 \definecolor{lgray}{gray}{0.80}
 \definecolor{gray}{gray}{0.3}
 \definecolor{darkgreen}{rgb}{0,0.4,0}
 \definecolor{darkblue}{rgb}{0,0,0.8}
 \definecolor{key}{rgb}{0,0.5,0} 
+\definecolor{NU0}{RGB}{68,85,136} % #458
+\definecolor{KW3}{RGB}{85,68,136}
+\definecolor{KW4}{RGB}{153,0,0}
+\definecolor{dred}{RGB}{221,17,68} % #d14
+\definecolor{BG}{RGB}{240,240,240}
 %\lstset{backgroundcolor=\color{lgray}, frame=single, basicstyle=\ttfamily, breaklines=true}
-\lstnewenvironment{sageout}[1][]{\lstset{xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{} 
-\lstnewenvironment{sagein}[1][]{\lstset{#1}}{} 
 %\lstnewenvironment{sage}{\lstset{,language=python, keywordstyle=color{blue},    commentstyle=color{green}, emphstyle=\color{red}, %frame=single, stringstyle=\color{red}, basicstyle=\ttfamily, ,mathescape =true,escapechar=§}}{}
 
-%\renewcommand{\sagecommandlinetextoutput}{False}
+\lstdefinelanguage{fooHaskell} {%
+  basicstyle=\footnotesize\ttfamily,%
+  commentstyle=\slshape\color{gray},%
+  keywordstyle=\bfseries,%\color{KW4},
+  breaklines=true,
+  sensitive=true,
+  xleftmargin=1pc,
+  emph={[1]
+    FilePath,IOError,abs,acos,acosh,all,and,any,appendFile,approxRational,asTypeOf,asin,
+    asinh,atan,atan2,atanh,basicIORun,break,catch,ceiling,chr,compare,concat,concatMap,
+    const,cos,cosh,curry,cycle,decodeFloat,denominator,digitToInt,div,divMod,drop,
+    dropWhile,either,elem,encodeFloat,enumFrom,enumFromThen,enumFromThenTo,enumFromTo,
+    error,even,exp,exponent,fail,filter,flip,floatDigits,floatRadix,floatRange,floor,
+    fmap,foldl,foldl1,foldr,foldr1,fromDouble,fromEnum,fromInt,fromInteger,fromIntegral,
+    fromRational,fst,gcd,getChar,getContents,getLine,head,id,inRange,index,init,intToDigit,
+    interact,ioError,isAlpha,isAlphaNum,isAscii,isControl,isDenormalized,isDigit,isHexDigit,
+    isIEEE,isInfinite,isLower,isNaN,isNegativeZero,isOctDigit,isPrint,isSpace,isUpper,iterate,
+    last,lcm,length,lex,lexDigits,lexLitChar,lines,log,logBase,lookup,map,mapM,mapM_,max,
+    maxBound,maximum,maybe,min,minBound,minimum,mod,negate,not,notElem,null,numerator,odd,
+    or,ord,otherwise,pi,pred,primExitWith,print,product,properFraction,putChar,putStr,putStrLn,quot,
+    quotRem,range,rangeSize,read,readDec,readFile,readFloat,readHex,readIO,readInt,readList,readLitChar,
+    readLn,readOct,readParen,readSigned,reads,readsPrec,realToFrac,recip,rem,repeat,replicate,return,
+    reverse,round,scaleFloat,scanl,scanl1,scanr,scanr1,seq,sequence,sequence_,show,showChar,showInt,
+    showList,showLitChar,showParen,showSigned,showString,shows,showsPrec,significand,signum,sin,
+    sinh,snd,span,splitAt,sqrt,subtract,succ,sum,tail,take,takeWhile,tan,tanh,threadToIOResult,toEnum,
+    toInt,toInteger,toLower,toRational,toUpper,truncate,uncurry,undefined,unlines,until,unwords,unzip,
+    unzip3,userError,words,writeFile,zip,zip3,zipWith,zipWith3,listArray,doParse
+  },%
+  emphstyle={[1]\color{NU0}},%
+  emph={[2]
+    Bool,Char,Double,Either,Float,IO,Integer,Int,Maybe,Ordering,Rational,Ratio,ReadS,Show,ShowS,String,
+    Word8,InPacket
+  },%
+  emphstyle={[2]\bfseries\color{KW4}},%
+  emph={[3]
+    case,class,data,deriving,do,else,if,import,in,infixl,infixr,instance,let,
+    module,of,primitive,then,type,where
+  },
+  emphstyle={[3]\color{darkblue}},
+  emph={[4]
+    quot,rem,div,mod,elem,notElem,seq
+  },
+  emphstyle={[4]\color{NU0}\bfseries},
+  emph={[5]
+    EQ,False,GT,Just,LT,Left,Nothing,Right,True,Show,Eq,Ord,Num
+  },
+  emphstyle={[5]\color{KW4}\bfseries},
+  morestring=[b]",%
+  morestring=[b]',%
+  stringstyle=\color{darkgreen},%
+  showstringspaces=false
+}
+\lstnewenvironment{hs}
+{\lstset{language=fooHaskell,backgroundcolor=\color{BG}}}
+{\smallskip}
+\newcommand{\ihs}[1]{\lstset{language=fooHaskell,basicstyle=\color[gray]{0.6}}\lstinline|#1|}
 
-\lstdefinestyle{SageInput}{style=DefaultSageInput,basicstyle=\ttfamily\small}
-\lstdefinestyle{SageOutput}{style=DefaultSageOutput,basicstyle=\ttfamily\small}
 
+\lstdefinelanguage{fooMatlab} {%
+backgroundcolor=\color[gray]{0.9},
+breaklines=true,
+basicstyle=\ttfamily\small,
+%otherkeywords={ =},
+%keywordstyle=\color{blue},
+%stringstyle=\color{darkgreen},
+showstringspaces=false,
+%emph={for, while, if, elif, else, not, and, or, printf, break, continue, return, end, function},
+%emphstyle=\color{blue},
+%emph={[2]True, False, None, self, NaN, NULL},
+%emphstyle=[2]\color{key},
+%emph={[3]from, import, as},
+%emphstyle=[3]\color{blue},
+%upquote=true,
+%morecomment=[s]{"""}{"""},
+%commentstyle=\color{gray}\slshape,
+%framexleftmargin=1mm, framextopmargin=1mm, 
+%title=\tiny matlab,
+frame=single,
+%mathescape =true,
+%escapechar=§
+}
+\newcommand{\imatlab}[1]{\lstset{language=fooMatlab,basicstyle=\color[gray]{0.6}}\lstinline|#1|}
+\lstnewenvironment{matlab}[1][]{\lstset{language=fooMatlab,xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{} 
+\lstnewenvironment{matlabin}[1][]{\lstset{language=fooMatlab,#1}}{} 
+\newcommand{\matinput}[1]{\lstset{language=fooMatlab}\lstinputlisting{#1}}
 
-\lstset{
+\lstdefinelanguage{fooPython} {%
 language=python,
-backgroundcolor=\color{lgray},
+backgroundcolor=\color[gray]{0.7},
 breaklines=true,
 basicstyle=\ttfamily\small,
 %otherkeywords={ =},
 keywordstyle=\color{blue},
 stringstyle=\color{darkgreen},
+morestring=[b]",%
+morestring=[b]',%
 showstringspaces=false,
 emph={class, pass, in, for, while, if, is, elif, else, not, and, or,
-def, print, exec, break, continue, return},
+def, print, exec, break, continue, return, import, from, lambda, null},
 emphstyle=\color{blue},
 emph={[2]True, False, None, self},
 emphstyle=[2]\color{key},
@@ -77,18 +165,41 @@ emph={[3]from, import, as},
 emphstyle=[3]\color{blue},
 upquote=true,
 morecomment=[s]{"""}{"""},
-commentstyle=\color{gray}\slshape,
+comment=[l]{\#},
+commentstyle=\color{gray},
 %framexleftmargin=1mm, framextopmargin=1mm, 
-frame=single,
-mathescape =true,
-escapechar=§
+%title=\tiny python,
+%caption=python,
+frame=single
+%frameround=tttt,
+%mathescape =true,
+%escapechar=§
 }
+
+\newcommand{\pyinput}[1]{\lstset{language=fooPython}\lstinputlisting{#1}}
+\newcommand{\isage}[1]{\lstset{language=fooPython,basicstyle=\color[gray]{0.3}}\lstinline|#1|}
+
+\lstnewenvironment{pyout}[1][]{\lstset{language=fooPython,xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{}
+\lstnewenvironment{pyin}[1][]{\lstset{language=fooPython,#1}}{}
+\lstnewenvironment{sageout}[1][]{\lstset{language=fooPython,xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{}
+\lstnewenvironment{sagein}[1][]{\lstset{language=fooPython,#1}}{}
+
+%\usepackage{caption}
+%\DeclareCaptionFont{white}{ \color{white} }
+%\DeclareCaptionFormat{listing}{
+%  \colorbox[cmyk]{0.43, 0.35, 0.35,0.01 }{
+%      \parbox{\textwidth}{\hspace{15pt}#1#2#3}
+%        }
+%        }
+%        \captionsetup[lstlisting]{ format=listing, labelfont=white, textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize} }
 
 
 \usepackage{mydef}
 %\usepackage{cmap} % you can search in the pdf for umlauts and ligatures
 \usepackage{colonequals} %corrects the definition-symbols \colonequals (besides others)
+
 \usepackage{ifthen}
+
 %%%%%%%%%%%%%%%%%%%
 %Neue Definitionen
 %%%%%%%%%%%%%%%%%%%
@@ -115,6 +226,8 @@ escapechar=§
 
 %Operatoren
 \DeclareMathOperator{\Abb}{Abb}
+%\usepackage{sagetex}
+
 
 %
 % Aufgaben
@@ -124,16 +237,15 @@ escapechar=§
 \definecolor{light-gray}{gray}{.9}
 
 \newcounter{zaehler}     % neuen Z�hler einf�hren
-\stepcounter{zaehler}    % Z�hler einen hochz�hlen
-
-\newenvironment{aufg}[1][0]
+\newenvironment{aufgn}[2][0]
 %---- Header
 {\begin{samepage}%
 %\colorbox{light-gray}{%                         % Box in gray
 % \makebox[\textwidth]{%                           % Box in linewidth
 %\textbf{Aufgabe \arabic{zaehler} } }\hspace{-\textwidth}\makebox[\textwidth]{\hfill #1 Punkte} }\\[0.05cm]       % Header
 \dotfill\\
-{\large\textbf{Aufgabe \arabic{zaehler} }\ifthenelse{-1=#1}{(testierbar)}{}\ifthenelse{0=#1 \or -1=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
+{\large\textbf{Exercise \arabic{zaehler} \ifthenelse{ \equal{#2}{} }{}{: \emph{ #2 } }}\ifthenelse{-1=#1}{(testierbar)}{}\ifthenelse{0=#1 \or -1=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
+%{\large\textbf{Exercise \arabic{zaehler}  #2 }\ifthenelse{-1=#1}{(testierbar)}{}\ifthenelse{0=#1 \or -1=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
 \begin{minipage}{\textwidth}%
 }%
 %-----  foot
@@ -142,6 +254,28 @@ escapechar=§
 %\begin{minipage}{0.1cm} \end{minipage} 
 %\hrulefill \begin{minipage}{1cm} \end{minipage}\\[1cm]  
 \stepcounter{zaehler}                           % increase counter
+\end{samepage}%
+\\%
+\bigskip%
+}
+
+
+\newenvironment{aufg}[1][0]
+%---- Header
+{\begin{samepage}%
+\refstepcounter{zaehler}% increase counter
+%\colorbox{light-gray}{%                         % Box in gray
+% \makebox[\textwidth]{%                           % Box in linewidth
+%\textbf{Aufgabe \arabic{zaehler} } }\hspace{-\textwidth}\makebox[\textwidth]{\hfill #1 Punkte} }\\[0.05cm]       % Header
+\dotfill\\
+{\large\textbf{Exercise \arabic{zaehler} }\ifthenelse{-1=#1}{(testierbar)}{}\ifthenelse{0=#1 \or -1=#1}{}{\hfill #1 Punkte} }\\[0.4cm]
+\begin{minipage}{\textwidth}%
+}%
+%-----  foot
+{\end{minipage}\nopagebreak%\begin{minipage}{1cm} \end{minipage}
+%\\ 
+%\begin{minipage}{0.1cm} \end{minipage} 
+%\hrulefill \begin{minipage}{1cm} \end{minipage}\\[1cm]  
 \end{samepage}%
 \\%
 \bigskip%
