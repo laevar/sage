@@ -8,7 +8,7 @@
     pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
     breaklinks=true,naturalnames=false,setpagesize=true,a4paper=true,hyperindex]{hyperref}
 \input{common_header}
-\lstnewenvironment{sageinsmall}[1][]{\lstset{language=fooPython,belowskip=0em,aboveskip=0.1em,xleftmargin=1em,xrightmargin=1em,#1}}{}
+\lstnewenvironment{sageinsmall}[1][]{\lstset{language=fooPython,belowskip=0em,aboveskip=0.4em,xleftmargin=1em,xrightmargin=1em,#1}}{}
 
 \begin{document}
 \begin{center}
@@ -74,7 +74,7 @@ Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
 \paragraph{Dictionaries:}		\href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
 \begin{itemize}
  \item Deklarieren eines Dictionaries:
-\begin{sageinsmall}[belowskip=0em,aboveskip=0em]
+\begin{sageinsmall}
 <Bez> = {<Index1>:<Wert1>,...}
 \end{sageinsmall}
  \item Beispiel:
@@ -85,7 +85,7 @@ Auto['Marke']		# gibt 'VW' aus
 \end{itemize}
 
 \paragraph{map() und map\_threaded():} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/generator.html?highlight=map#sage.combinat.generator.map}{\textbf{map()}\\}
-(Rekursive) Auswertung der (einstelligen) Funktion auf eine (verschachtelte) Liste.
+(Rekursive) Auswertung der einstelligen Funktion auf eine (verschachtelte) Liste.
 \begin{sageinsmall}
  map_threaded(<Funktion>,<Menge oder Liste>)
 \end{sageinsmall}
@@ -95,7 +95,7 @@ Beispiel:
  map_threaded(sqrt,[[25,16],9]	#[[5,4],3]
 \end{sageinsmall}
 
-\paragraph{filter}: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{filter()}\\ filtert nach Wahrheitswert der übergebenen Funktion. 
+\paragraph{filter}: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{\textbf{filter()}}\\ filtert nach Wahrheitswert der übergebenen Funktion. 
 \begin{sageinsmall}
 filter(<Funktion>,<Menge oder Liste>)
 \end{sageinsmall}
@@ -103,7 +103,16 @@ filter(<Funktion>,<Menge oder Liste>)
 \paragraph{Zahlen}
 \begin{itemize}
     \item Zahlenmengen/Körper:\\
-        ZZ (ganze Zahlen), QQ (rationale Zahlen), RR (Reelle Zahlen), CC (komplexe Zahlen)
+    \begin{tabular}{|ll|}
+\hline 
+{\isage{ZZ}} & ganze Zahlen\\
+{\isage{QQ}} & rationale Zahlen\\
+{\isage{RR}} & reele Zahlen \\
+{\isage{CC}} & komplexe Zahlen \\
+{\isage{GF(2)}} & Körper mit zwei Elementen\\
+%{\isage{parent}} & Vaterobjekt; Gruppe der Zahl\\
+\hline
+\end{tabular}
    \item Einige wichtige Funktionen für Zahlen:\\
 \begin{tabular}{|ll|}
 \hline 
@@ -123,7 +132,7 @@ filter(<Funktion>,<Menge oder Liste>)
 %{\isage{parent}} & Vaterobjekt; Gruppe der Zahl\\
 \hline
 \end{tabular}
-\item Annahmen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{assume()}
+\item Annahmen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{\textbf{assume()}}
     \begin{sageinsmall}
 assume(<Annahme>        
     \end{sageinsmall}
@@ -140,13 +149,35 @@ Dabei sind die Angabe des Körpers/Gruppe und der Dimensionen meist optional. Be
 \begin{sageinsmall}
 matrix([[1,2],[3,4]])
 \end{sageinsmall} 
+Einige Funktionen für Matrizen:\\
+\begin{tabular}{|ll|}
+\hline 
+{\isage{det}} & Determinante\\
+{\isage{eigenvalues}} & Eigenwerte\\
+{\isage{inverse}} & Inverse berechnen\\
+%{\isage{rank}} & Rang der Matrix bestimmen \\
+{\isage{kernel}} & Kern der Matrix bestimmen \\
+\hline
+\end{tabular}
+
 \end{itemize}
 
-\paragraph{Vektor:}\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{vector()}
+\paragraph{Vektor:}\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{\textbf{vector()}}
 \begin{itemize}
  \item Deklaration
 \begin{sageinsmall}
 vector([v1,v2,..]) 
+\end{sageinsmall}
+\end{itemize}
+\paragraph{Vektorräume:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/modules/sage/modules/free_module.html#sage.modules.free_module.VectorSpace}{\textbf{vectorspace()}}
+\begin{itemize}
+ \item Deklaration
+\begin{sageinsmall}
+vectorspace(<Koerper>,<Dimension>)
+\end{sageinsmall}
+ \item Lineare Hülle:
+\begin{sageinsmall}
+span([<Vec1>,<Vec2>,...],<Koerper>)
 \end{sageinsmall}
 \end{itemize}
 \paragraph{Abfragen:} \href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{\textbf{if}}
@@ -165,12 +196,12 @@ else:
     \begin{sageinsmall}
 [<Ausd(Bez)> for <Bez> in <Liste> if <Bed>]
     \end{sageinsmall}
-\item for-Schleife: \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
+\item for-Schleife: \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{\textbf{for}}
     \begin{sageinsmall}
 for <Bezeichner> in <liste>:
     <Code-Block>
     \end{sageinsmall}
-  \item while-Schleife: \href{http://docs.python.org/reference/compound_stmts.html#the-while-statement}{while()}
+  \item while-Schleife: \href{http://docs.python.org/reference/compound_stmts.html#the-while-statement}{\textbf{while()}}
 \begin{sageinsmall}
 while <Bedingung> :
     <Code-Block>
@@ -183,13 +214,13 @@ while <Bedingung> :
 \begin{sageinsmall}
 <Bez>(<x>,<y>,...) = <expr>
 \end{sageinsmall}
-    \item einzeilige Deklaration: \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}     
+    \item einzeilige Deklaration: \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{\textbf{def}}     
         \begin{sageinsmall}
 def <Bez> (<arg1>,<arg2>,..): return <Rueck gabewert>            
         \end{sageinsmall}
  \item normale Deklaration
 \begin{sageinsmall}
-def <Name><(<arg1>,<arg2>,..)>:
+def <Bez><(<arg1>,<arg2>,..)>:
     <Code-Block>
     return <Rueckgabewert>
 \end{sageinsmall}
@@ -217,7 +248,7 @@ Einige mögliche Optionen: \\
 \hline 
 {\isage{color}} & Farbe z.B. 'red', '\#FF0000', (1,0,0)\\
 {\isage{plot_points}} & Bildauflösung\\
-{\isage{xmin, xmax}} & Achsendefinitionsbereich\\
+%{\isage{xmin, xmax}} & Achsendefinitionsbereich\\
 {\isage{opacity}} & Transparenz (bei 3D Plots) \\
 {\isage{aspect_ratio}} & Seitenverhältnis der Achsen \\
 \hline
@@ -227,28 +258,88 @@ Beispiel:
 plot(x^2,(x,-2,2),color='red')
 \end{sageinsmall}
 \end{itemize}
+\paragraph{Summen} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.symbolic_sum}{\textbf{sum()}}
 
+\begin{itemize}
+ \item Aufaddieren von Zahlen:
+ \begin{sageinsmall}
+add([<Summand1>,<Summand2>,..]) 
+\end{sageinsmall}
+ \item Symbolischer Summenausdruck
+ \begin{sageinsmall}
+sum(<Ausdr>,<Var>,<Start>,<Stop>) 
+\end{sageinsmall}
+Achtung: Der symbolische Summenausdruck kann von Sage nicht immer wieder in einen Zahlwert umgewandelt werden.\\
+Der symbolische Summenoperator kann auch Reihen vereinfachen. Beispiel:
+ \begin{sageinsmall}
+sum(x^(-2),x,1,oo)		#1/6*pi^2
+\end{sageinsmall}
+\end{itemize}
+
+\paragraph{Grenzwerte} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.limit}{\textbf{limit()}}
+\begin{itemize}
+ \item Verhalten von Funktionen an Grenzwerten.
+ \begin{sageinsmall}
+limit(<Ausdr>,<Variable>=<Grenzwert>,dir=<Richtung>)
+\end{sageinsmall}
+Beispiel:
+ \begin{sageinsmall}
+limit(e^(-1/x), x=0, dir='right')
+ \end{sageinsmall}
+ \end{itemize}
+ 
 \paragraph{Differentiation}
 \begin{itemize}
- \item Ableitungen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{diff()}
+ \item Ableitungen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{\textbf{diff()}}
 \begin{sageinsmall}
 diff(<Ausdruck>,<var1>,<var2>,<var3>,...)
 diff(<Ausdruck>,<var>,<anzahl>) 
+\end{sageinsmall}
+Beispiele:
+\begin{sageinsmall}
+diff(x^2+y^2,x,y) 	#6*x^2*y 
+diff(x^10,x,3) 		#720*x^7 
 \end{sageinsmall}
 \end{itemize}
 
 \paragraph{Taylorformel}
 \begin{itemize}
- \item Taylorformel: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{taylor()}
+ \item Taylorapproximation: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{taylor()}}
 
 \begin{sageinsmall}
 taylor(<funktion>,<var>,<stelle>,<grad>)
 \end{sageinsmall}
 \end{itemize}
+\paragraph{Gleichungen}
+\begin{itemize}
+ \item Exaktes Lösen von Gleichungen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/symbolic/relation.html#sage.symbolic.relation.solve}{\textbf{solve()}}
+  \begin{sageinsmall}
+solve([<Gleichung1>,<Gleichung2>,...],<Var>)
+\end{sageinsmall}
+Bei nur einer Gleichung, kann die Liste auch weggelassen werden. Beispiel:
+  \begin{sageinsmall}
+S=solve(x^2-4 == 0,x) #Ergebnis: [x==2,x==-2]
+\end{sageinsmall}
+Zugreifen auf die Lösung:
+  \begin{sageinsmall}
+S[0].rhs() #Ergebnis: 2
+S[1].rhs() #Ergebnis: -2
+\end{sageinsmall}
+\item Numerisches Lösen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/numerical/sage/numerical/optimize.html#sage.numerical.optimize.find_root}{\textbf{find\_root()}}
+
+   \begin{sageinsmall}
+find_root(<Gleichung>,<uG>,<oG>,<Toleranz>)
+\end{sageinsmall}
+Findet Lösungen im Intervall  $[<uG>,<oG>]$.\\
+Beispiel:
+  \begin{sageinsmall}
+find_root(cos(x)==sin(x),0,2)
+\end{sageinsmall}
+\end{itemize}
 
 \paragraph{Integrale}
 \begin{itemize}
-\item bestimmte/unbestimmte Integrale: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
+\item bestimmte/unbestimmte Integrale: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{integrate()}}
 \begin{sageinsmall}
 integrate(<funktion>,<var>,[<ug>,<og>]) 
 \end{sageinsmall}
@@ -261,13 +352,14 @@ integrate(<funktion>,<var>,[<ug>,<og>])
 \begin{sageinsmall}
 string = '<Inhalt>'
 \end{sageinsmall}
-\item Zu Strings konvertieren: \href{http://docs.python.org/library/functions.html?highlight=print#str}{str()}
+\item Zu Strings konvertieren: \href{http://docs.python.org/library/functions.html?highlight=print#str}{\textbf{str()}}
 \begin{sageinsmall}
 str(<vorher kein String>)
 \end{sageinsmall}
-\item print und Stringformatierung: \href{http://docs.python.org/2/library/string.html#format-string-syntax}{format}
+
+\item Stringformatierung: \href{http://docs.python.org/2/library/string.html#format-string-syntax}{\textbf{format}}
     \begin{sageinsmall}
-        print ("Text {<format>} und {<format>} \dots ".format(x,y,\dots))
+print ("Text {<format>} und {<format>}... ".format(x,y,...))
     \end{sageinsmall}
     wichtigsten Formate:
     \begin{itemize}
