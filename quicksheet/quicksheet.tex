@@ -17,20 +17,20 @@
 \end{center}
 
 \paragraph{Über die Kurzreferenz}
-In der Kurzreferenz werden an vielen Stellen Platzhalter benutzt. Diese sind durch spitze Klammern gekenzeichnet. Zum Beispiel 
-{\verb <Ausd> }. Wenn in der Referenz steht, das Zuweisungen in der Form 
+In der Kurzreferenz werden an vielen Stellen Platzhalter benutzt. Diese sind durch spitze Klammern gekennzeichnet. Zum Beispiel 
+{\verb <Ausd> }. Wenn in der Referenz steht, dass Zuweisungen in der Form 
 \begin{sageinsmall}
   <Bezeichner> = <Ausdruck>
 \end{sageinsmall}
-gemacht werden, dann ist ein Beispiel für solchen Code: \isage{Vier = 2 + 2}
+gemacht werden, dann ist ein Beispiel für einen solchen Code:\\ \isage{Vier = 2 + 2}
 \paragraph{Überlebensregeln}
 \begin{itemize}
 %\item Mehrere Befehle in einer Zeile trennen: {\color{blue}\isage{;}}
 %\item Bei Eingaben, die über mehrere Zeilen gehen, kann ein
 %  Zeilenumbruch durch {\color{blue} \verb~<ENTER>~} erreicht werden.
 \item Das Auswerten eines Blocks erfolgt mit {\color{blue} \verb~<SHIFT>+<ENTER>~}.
-\item Ein neues Eingabefeld erhält man durch Klicken auf den blauen, horizontalen Balken
-\item Bei Python (und damit auch Sage) ist das Einrücken von Codezeilen von Bedeutung. Es werden damit, die bei anderen 
+\item Ein neues Eingabefeld erhält man durch Klicken auf den blauen, horizontalen Balken.
+\item Bei Python (und damit auch Sage) ist das Einrücken von Codezeilen von Bedeutung. Es werden damit die bei anderen 
       Programmiersprachen üblichen Klammern ersetzt.
 \end{itemize}
 \paragraph{Nützliches}
@@ -40,6 +40,7 @@ gemacht werden, dann ist ein Beispiel für solchen Code: \isage{Vier = 2 + 2}
 %\item Anzeigen aller definierten Variablen: {\color{blue} }
 %\item Anzeigen aller selbst definierten Variablen: {\color{blue} }
 \item Aktivieren des Feldes \emph{Typeset} lässt alle Ausgaben von \LaTeX{} rendern.
+\item Kommentare werden mit \# eingeleitet.
 %\item profiler und debugger -> commandline
 \item Dokumentation im Notebook mit HTML und \LaTeX{}-Formeln: {\color{blue} \verb~<SHIFT>+<KLICK>~ }auf den blauen Balken startet einen WYSIWYG-Editor.
 \item Publish: Im Notebook kann durch Klicken des \emph{Publish}-Reiters das Notebook für alle offen gelegt werden. 
@@ -48,12 +49,12 @@ gemacht werden, dann ist ein Beispiel für solchen Code: \isage{Vier = 2 + 2}
 
 \paragraph{Hilfefunktionen}
 \begin{itemize}
-\item {\color{blue} Autovervollständigung :} mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
-Dies gilt insbesondere auch für Objektfunktionen (\isage{object.function()})
-\item {\color{blue} \isage{<command>?} :} gibt ausführliche Hilfe zu \isage{command} an.
-\item {\color{blue} \isage{<command>??} :} gibt den source-code des \isage{command} an.
-\item {\color{blue} \isage{help(<command>)} :} öffnet ein Hilfefenster zu \isage{command}.
-\item {\color{blue} \isage{search_doc('<begriff>')} :} Sucht in der Hilfe nach <begriff>.
+\item {\color{blue} Autovervollständigung :} Mit der {\color{blue} \verb~<TAB>~}-Taste erhält man alle möglichen Funktions- und/oder Variablen-Namen im gegebenen Kontext.\\
+Dies gilt insbesondere auch für Objektfunktionen\\ (\isage{<Objekt>.<Funktion()>}).
+\item {\color{blue} \isage{<Befehl>?} :} Gibt ausführliche Hilfe zu \isage{Befehl} an.
+\item {\color{blue} \isage{<Befehl>??} :} Gibt den Quellcode von \isage{Befehl} an.
+\item {\color{blue} \isage{help(<Befehl>)} :} Öffnet ein Hilfefenster zu \isage{Befehl}.
+\item {\color{blue} \isage{search_doc('<Begriff>')} :} Sucht in der Hilfe nach <Begriff>.
 \item Dokumentation:
 \begin{itemize}
     \item Sage (lokal): {\small\url{file:///usr/local/sage-5.5/devel/sage-main/doc/output/html/en/index.html}}
@@ -84,7 +85,7 @@ Auto['Marke']		# gibt 'VW' aus
 \end{sageinsmall}
 \end{itemize}
 
-\paragraph{map() und map\_threaded():} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/generator.html?highlight=map#sage.combinat.generator.map}{\textbf{map()}\\}
+\paragraph{map() und map\_threaded():} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/generator.html?highlight=map#sage.combinat.generator.map}{\textbf{map()}}\\
 (Rekursive) Auswertung der einstelligen Funktion auf eine (verschachtelte) Liste.
 \begin{sageinsmall}
  map_threaded(<Funktion>,<Menge oder Liste>)
@@ -95,7 +96,8 @@ Beispiel:
  map_threaded(sqrt,[[25,16],9]	#[[5,4],3]
 \end{sageinsmall}
 
-\paragraph{filter}: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{\textbf{filter()}}\\ filtert nach Wahrheitswert der übergebenen Funktion. 
+\paragraph{filter:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{\textbf{filter()}}\\
+Filtert nach Wahrheitswert der übergebenen Funktion. 
 \begin{sageinsmall}
 filter(<Funktion>,<Menge oder Liste>)
 \end{sageinsmall}
@@ -105,10 +107,10 @@ filter(<Funktion>,<Menge oder Liste>)
     \item Zahlenmengen/Körper:\\
     \begin{tabular}{|ll|}
 \hline 
-{\isage{ZZ}} & ganze Zahlen\\
-{\isage{QQ}} & rationale Zahlen\\
-{\isage{RR}} & reele Zahlen \\
-{\isage{CC}} & komplexe Zahlen \\
+{\isage{ZZ}} & Ganze Zahlen\\
+{\isage{QQ}} & Rationale Zahlen\\
+{\isage{RR}} & Reelle Zahlen \\
+{\isage{CC}} & Komplexe Zahlen \\
 {\isage{GF(2)}} & Körper mit zwei Elementen\\
 %{\isage{parent}} & Vaterobjekt; Gruppe der Zahl\\
 \hline
@@ -134,7 +136,7 @@ filter(<Funktion>,<Menge oder Liste>)
 \end{tabular}
 \item Annahmen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{\textbf{assume()}}
     \begin{sageinsmall}
-assume(<Annahme>        
+assume(<Annahme>)        
     \end{sageinsmall}
     Achtung: Annahmen werden mit \isage{reset()} nicht wieder zurückgesetzt. Dafür gibt es den Befehl \isage{forget()}.
 \end{itemize}
@@ -143,9 +145,9 @@ assume(<Annahme>
 \begin{itemize}
 \item Deklaration
 \begin{sageinsmall}
-matrix(<Koerper>,[<n>,<m>,[a11,...],[a21,..],..])
+matrix(<Koerper>,[[a11,...],[a21,..],..])
 \end{sageinsmall}
-Dabei sind die Angabe des Körpers/Gruppe und der Dimensionen meist optional. Beispiel:
+Dabei ist die Angabe des Körpers/Gruppe meist optional. Beispiel:
 \begin{sageinsmall}
 matrix([[1,2],[3,4]])
 \end{sageinsmall} 
@@ -155,8 +157,8 @@ Einige Funktionen für Matrizen:\\
 {\isage{det}} & Determinante\\
 {\isage{eigenvalues}} & Eigenwerte\\
 {\isage{inverse}} & Inverse berechnen\\
-%{\isage{rank}} & Rang der Matrix bestimmen \\
-{\isage{kernel}} & Kern der Matrix bestimmen \\
+{\isage{rank}} & Rang der Matrix bestimmen \\
+{\isage{right_kernel}} & Kern der Matrix bestimmen \\
 \hline
 \end{tabular}
 
@@ -183,7 +185,7 @@ span([<Vec1>,<Vec2>,...],<Koerper>)
 \paragraph{Abfragen:} \href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{\textbf{if}}
 \begin{itemize}
  \item  Syntax: \begin{sageinsmall}
-if <Boolscher Ausdruck>:
+if <Boolscher Ausdruck>:	#z.B. x==2
     <Code-Block>
 else:
     <Code-Block>
@@ -203,7 +205,7 @@ for <Bezeichner> in <liste>:
     \end{sageinsmall}
   \item while-Schleife: \href{http://docs.python.org/reference/compound_stmts.html#the-while-statement}{\textbf{while()}}
 \begin{sageinsmall}
-while <Bedingung> :
+while <Bedingung>:
     <Code-Block>
 \end{sageinsmall}
 \end{itemize}
@@ -212,17 +214,17 @@ while <Bedingung> :
 \begin{itemize}
  \item Mathematische Funktionen (Ausdrücke)
 \begin{sageinsmall}
-<Bez>(<x>,<y>,...) = <expr>
+<Bez>(<Arg1>,<Arg2>,...) = <Ausdruck>
 \end{sageinsmall}
     \item einzeilige Deklaration: \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{\textbf{def}}     
         \begin{sageinsmall}
-def <Bez> (<arg1>,<arg2>,..): return <Rueck gabewert>            
+def <Bez> (<Arg1>,..): return <Rückgabewert>            
         \end{sageinsmall}
- \item normale Deklaration
+ \item normale Deklaration:
 \begin{sageinsmall}
 def <Bez><(<arg1>,<arg2>,..)>:
     <Code-Block>
-    return <Rueckgabewert>
+    return <Rückgabewert>
 \end{sageinsmall}
 Beispiele:
 \begin{sageinsmall}
@@ -240,8 +242,8 @@ def Summe(x,y):
 \begin{itemize}
 \item 2D/3D Plot
 \begin{sageinsmall}
-plot(f2,(x,a,b),optionen,...)
-plot3d(f3,(x,a,b),(y,c,d),optionen,...)
+plot(<Funktion>,(x,a,b),<Optionen>,...)
+plot3d(<Funk>,(x,a,b),(y,c,d),<Optionen>,...)
 \end{sageinsmall}
 Einige mögliche Optionen: \\
 \begin{tabular}{|ll|}
@@ -257,8 +259,12 @@ Beispiel:
 \begin{sageinsmall}
 plot(x^2,(x,-2,2),color='red')
 \end{sageinsmall}
+%\item Parametrisierte Funktionen \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot}{\textbf{plot()}}	/	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot3d}{\textbf{parametric_plot()}}
+%\begin{sageinsmall}
+%parametric_plot([<F1>,<F2>],(x,a,b))
+%\end{sageinsmall}
 \end{itemize}
-\paragraph{Summen} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.symbolic_sum}{\textbf{sum()}}
+\paragraph{Summen:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.symbolic_sum}{\textbf{sum()}}
 
 \begin{itemize}
  \item Aufaddieren von Zahlen:
@@ -269,16 +275,16 @@ add([<Summand1>,<Summand2>,..])
  \begin{sageinsmall}
 sum(<Ausdr>,<Var>,<Start>,<Stop>) 
 \end{sageinsmall}
-Achtung: Der symbolische Summenausdruck kann von Sage nicht immer wieder in einen Zahlwert umgewandelt werden.\\
+Achtung: Der symbolische Summenausdruck kann von Sage nicht immer in einen Zahlwert umgewandelt werden.\\
 Der symbolische Summenoperator kann auch Reihen vereinfachen. Beispiel:
  \begin{sageinsmall}
 sum(x^(-2),x,1,oo)		#1/6*pi^2
 \end{sageinsmall}
 \end{itemize}
 
-\paragraph{Grenzwerte} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.limit}{\textbf{limit()}}
+\paragraph{Grenzwerte:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/calculus/calculus.html#sage.calculus.calculus.limit}{\textbf{limit()}}
 \begin{itemize}
- \item Verhalten von Funktionen an Grenzwerten.
+ \item Verhalten von Funktionen an Grenzwerten:
  \begin{sageinsmall}
 limit(<Ausdr>,<Variable>=<Grenzwert>,dir=<Richtung>)
 \end{sageinsmall}
@@ -288,29 +294,29 @@ limit(e^(-1/x), x=0, dir='right')
  \end{sageinsmall}
  \end{itemize}
  
-\paragraph{Differentiation}
+\paragraph{Differentiation:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{\textbf{diff()}}
 \begin{itemize}
- \item Ableitungen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{\textbf{diff()}}
+ \item Ableitungen: 
 \begin{sageinsmall}
 diff(<Ausdruck>,<var1>,<var2>,<var3>,...)
 diff(<Ausdruck>,<var>,<anzahl>) 
 \end{sageinsmall}
 Beispiele:
 \begin{sageinsmall}
-diff(x^2+y^2,x,y) 	#6*x^2*y 
+diff(x^2*y^2,x,y) 	#6*x^2*y 
 diff(x^10,x,3) 		#720*x^7 
 \end{sageinsmall}
 \end{itemize}
 
-\paragraph{Taylorformel}
+\paragraph{Taylorformel:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{taylor()}}
 \begin{itemize}
- \item Taylorapproximation: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{taylor()}}
+ \item Taylorapproximation: 
 
 \begin{sageinsmall}
 taylor(<funktion>,<var>,<stelle>,<grad>)
 \end{sageinsmall}
 \end{itemize}
-\paragraph{Gleichungen}
+\paragraph{Gleichungen:}
 \begin{itemize}
  \item Exaktes Lösen von Gleichungen: \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/symbolic/relation.html#sage.symbolic.relation.solve}{\textbf{solve()}}
   \begin{sageinsmall}
@@ -337,20 +343,20 @@ find_root(cos(x)==sin(x),0,2)
 \end{sageinsmall}
 \end{itemize}
 
-\paragraph{Integrale}
+\paragraph{Integrale:} \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{integrate()}}
 \begin{itemize}
-\item bestimmte/unbestimmte Integrale: \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{\textbf{integrate()}}
+\item bestimmte/unbestimmte Integrale: 
 \begin{sageinsmall}
-integrate(<funktion>,<var>,[<ug>,<og>]) 
+integrate(<funktion>,<var>,[<uG>,<oG>]) 
 \end{sageinsmall}
 \end{itemize}
 
 \paragraph{Strings/Zeichenketten und Ausgabe:}\href{http://docs.python.org/library/string.html?highlight=string.replace#string-constants}{\textbf{string}}
 
 \begin{itemize}
- \item Deklaration
+ \item Deklaration:
 \begin{sageinsmall}
-string = '<Inhalt>'
+<Bezeichner> = '<Inhalt>'
 \end{sageinsmall}
 \item Zu Strings konvertieren: \href{http://docs.python.org/library/functions.html?highlight=print#str}{\textbf{str()}}
 \begin{sageinsmall}
@@ -363,8 +369,8 @@ print ("Text {<format>} und {<format>}... ".format(x,y,...))
     \end{sageinsmall}
     wichtigsten Formate:
     \begin{itemize}
-        \item \isage{:d} : integer
-        \item \isage{:f} : Nachkommastellen-notation
+        \item \isage{:d} : integer (Ganze Zahl)
+        \item \isage{:f} : Nachkommastellen-Notation
         \item \isage{:e} : Exponential-Notation 
     \end{itemize}
 \end{itemize}
