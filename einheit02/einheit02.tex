@@ -1,6 +1,6 @@
 \documentclass[hyperref={xetex}]{beamer}
 \title{Einführung in Sage - Einheit 2}
-\subtitle{Grundlagen, Symbolisches Rechnen, Gleichungen}
+\subtitle{Mehr Python, Symbolisches Rechnen, Gleichungen}
 \input{slide_header}
 \begin{document}
 \titlepage
@@ -8,100 +8,6 @@
 \begin{frame}{Aufbau}
 \tableofcontents
 \end{frame}
-
-%=================================================
-%\section{Grundlagen}
-%=================================================
-
-%\subsection{Sage}
-
-%\begin{frame}[fragile]{Beispiel} 
-%Betrachte:
-%\begin{sagein}
-%f = x^2-3*x-18
-%\end{sagein}
-%\begin{itemize}
-%\item Wie geht Sage mit der Unbekannten $x$ um?
-%\item Welchen Datentyp hat $f$?
-%\item Was kann ich mit $f$ machen?
-%\end{itemize}
-%\end{frame}
-
-%\begin{frame}[fragile]{Bezeichner}
-%\begin{itemize}
-%\item \alert{Bezeichner} sind Namen, wie z.B. $x$ oder $f$. Sie können
-%im mathematischen Kontext sowohl Variablen als auch Unbestimmte repräsentieren.
-%\item Bezeichner sind aus Buchstaben, Ziffern und
-%Unterstrich \_ zusammengesetzt.
-%\item Sage unterscheidet zwischen Groß- und Kleinschreibung.
-%\item Bezeichner dürfen nicht mit einer Ziffer beginnen.
-%\end{itemize}
-%\textbf{Beispiele}
-%\begin{itemize}
-%\item zulässige Bezeichner:
-%\isage{x}, \isage{f}, \isage{x23}, \isage{_x_1}
-%\item unzulässige Bezeichner:
-%\isage{12x}, \isage{p~}, \isage{x>y}, \isage{Das System}
-%\end{itemize}
-%\end{frame}
-
-
-%\begin{frame}[fragile]{Wert eines Bezeichners}
-%\begin{itemize}
-%\item Der \alert{Wert} eines Bezeichners  ist ein \alert{Objekt} eines bestimmten
-%\alert{Datentyps}.
-%\item Ein \alert{Datentyp} ist durch seine Eigenschaften gegeben. \\
-%\textbf{Beispiel}: Natürliche Zahlen, rationale Zahlen, Bezeichner, Zeichenketten, \ldots  
-%\item Ein \alert{Objekt} ist eine Instanz (Einheit) eines Datentyps.
-%\end{itemize}
-%\end{frame}
-
-%\begin{frame}[fragile]{Zuweisungsoperator $=$}
-%    \begin{sagein}
-%<bezeichner> = <wert>
-%    \end{sagein}   
-%Zuweisung des Wertes \isage{wert} zu dem Bezeichner \isage{bez}.
-%\begin{itemize}
-%\item {\color{blue} \isage{func(arg)=expr(arg)}}: Definition der Funktion \isage{func} mit dem Argument \isage{arg} und Zuweisung des Ausdrucks \isage{expr} zu (abhängig von \isage{arg})
-%%\item Rückgabeparameter ist die rechte Seite (Eine Ausgabe erfolgt jedoch normalerweise nicht)
-%\item \textbf{Warnung:} Unterscheiden Sie  stets zwischen dem Zuweisungsoperator {\color{blue} $=$} und
-%dem logischen Operator {\color{blue} $==$}.   
-%\item {\color{blue} \isage{reset('<bezeichner>')}}: Löschen von Zuweisungen/Variablen.
-%\end{itemize}
-%\end{frame}
-
-
-%\begin{frame}{Operatoren}
-%\begin{itemize}
-%\item Typische \alert{Operatoren} sind \verb~+,-,*,/,..~
-%\item In Sage werden Objekte immer durch Funktionen miteinander
-%verbunden. Operatoren sind äquivalent zu Funktionen.
-%%\item Operatoren sind in Sage auch als Funktionen realisiert.
-%%\item Für wichtige Operatoren gibt es die gewohnte
-%%Kurzschreibweise.
-%\item Kombination verschiedener Operatoren: Die Regeln der \alert{Bindungsstärke} gelten (Punktrechnung vor Strichrechnung); Die Ordnung kann
-%durch Klammersetzung geändert werden.
-%\end{itemize}
-%\end{frame}
-%
-%\begin{frame}[fragile]{Wichtige mathematische Operatoren}
-%\begin{center}
-%\begin{tabular}{|c|l|}
-%\hline
-%Operator/Funktion &  Erklärung\\
-%\hline
-%\hline
-%\verb!+! & Addition \\
-%\verb!-! & Subtraktion\\
-%\verb!*! & Multiplikation \\
-%\verb!/! & Division\\
-%\verb!^! & Potenz\\
-%\verb!%! &  Rest bei Division\\
-%\verb!factorial()! & Fakultät \\
-%\hline
-%\end{tabular}
-%\end{center}
-%\end{frame}
 
 %\begin{frame}[fragile]{Sage}
 %\begin{center}

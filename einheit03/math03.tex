@@ -9,12 +9,27 @@
 \begin{center}
     \textbf{\LARGE Einführung in Sage}\\
     {\large Einheit 03}\\
-    {\large Zusammenfassung: Zahlen}
+    {\large Zusammenfassung: Mengen und Zahlen}
 \end{center}
 
-\section{Natürliche Zahlen $\mathbb{N}$ (nach Peano)}
-% andere einfuehrung!
-$\mathbb{N} := \{0,1,2,3,\dots\}$:
+\section{Mengen}
+
+\begin{defn}[Menge]
+\begin{quote}
+Unter einer \emph{Menge} verstehen wir jede Zusammenfassung $M$ von bestimmten wohlunterschiedenen Objekten $m$ unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
+{\tiny (G. Cantor; Beiträge zur Begründung der transfiniten Mengenlehre; Mathematische Annalen; Bd. 46; 1895; S. 481-512) }
+\end{quote}
+ \begin{itemize}
+\item \emph{Element}: Ein Objekt $x$ in der Menge $M$ ($x \in  M$). 
+\item \emph{Enthalten}: Es gilt für alle $x \in M$ auch $x \in N$ ($M \subset N$).
+\item \emph{Gleichheit}: Es gilt $M\subset N$ und $N \subset M$ ($M=N$).
+\end{itemize}
+\end{defn}
+
+\section{Natürliche Zahlen}
+
+\begin{defn}[Natürliche Zahlen $\mathbb{N}$ nach Peano]
+Sei $\mathbb{N} := \{0,1,2,3,\dots\}$ die Menge der natürlichen Zahlen mit folgenden Eigenschaften:
 \begin{enumerate}
 \item $0 \in \mathbb{N}$
 \item Es gibt eine Nachfolgerabbildung $nf : \mathbb{N} \
@@ -23,6 +38,9 @@ $\mathbb{N} := \{0,1,2,3,\dots\}$:
 \item Ist $M \subset \mathbb{N}$ mit $0 \in M$ und folgt für alle  $m \in M$ das
   $nf(m) \in M$ gilt, so ist $M=\mathbb{N}$.
 \end{enumerate}
+  
+\end{defn}
+% andere einfuehrung!
 Bemerkungen:
 \begin{itemize}
 \item Nachfolgefunktion: $nf(m)=m+1$
@@ -59,8 +77,9 @@ $A$. Schreibweise: $\overline{a}$, $a \bmod R$ für ein Äquivalenzklasse $A$.
 \end{itemize}
 \end{defn}
 
-\section{Ganze Zahlen $\mathbb{Z}$}
-$\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$
+\section{Ganze Zahlen}
+\begin{defn}[Ganze Zahlen $\mathbb{Z}$]
+Sei $\mathbb{Z}:=\{ 0,1,-1,2,-2,\dots \}$ die Menge der ganzen Zahlen mit folgenden Eigenschaften:
 \begin{itemize}
 \item Äquivalenzrelation auf $\mathbb{N} \times \mathbb{N}$:\\
 $(m,n) \sim (p,q) \mbox{ genau dann, wenn } m+q=n+p \mbox{ gilt.} $
@@ -77,10 +96,14 @@ der Äquivalenzklassen.
 \overline{(m,n)}\cdot\overline{(u,v)}:=\overline{(m u+nv,mv+nu)}
 \]
 \end{itemize}
+  
+\end{defn}
 
 
 
-\section{Rationale Zahlen $\mathbb{Q}$}
+\section{Rationale Zahlen}
+\begin{defn}[Rationale Zahlen $\mathbb{Q}$]
+  Die rationale Zahlen können eingeführt werden über die
 Äquivalenzrelation auf $\mathbb{Z}\times(\mathbb{Z}\smallsetminus \{ 0\})$:
 \[ (m,n) \sim (p,q) \mbox{ genau dann, wenn } mq=np \mbox{ gilt.} \]
 Statt $(m,n)$ schreibt man $\frac{m}{n}$.
@@ -99,6 +122,8 @@ Multiplikation:
 \]
 %\item Die rationalen Zahlen bilden einen \alert{Körper}.
 \end{itemize} 
+  
+\end{defn}
 
 
 \begin{defn}[Gruppe]
@@ -194,16 +219,19 @@ Sei $K$ ein angeordneter Körper.
 \end{itemize}
 \end{defn}
 
-\section{Reelle Zahlen $\mathbb{R}$}
-\begin{itemize}
+\section{Reelle Zahlen}
+\begin{defn}[Reelle Zahlen $\mathbb{R}$]
+Die reellen Zahlen können definiert werden über die Einführung folgender Äquivalenzklasse:
+  \begin{itemize}
 \item Sei $M$ die Menge aller Teilmengen von $\mathbb{Q}$ mit oberer
 Schranke.
 \item Äquivalenzrelation: Zwei Elemente aus $M$ seien äquivalent, wenn sie dieselben
 Mengen von oberen Schranken haben. 
-\item Die entstehenden Äquivalenzklassen nennt man {\color{red} reelle
-Zahlen}.
 \end{itemize}
-Bemerkungen
+  
+\end{defn}
+
+Bemerkungen:
 \begin{itemize}
 \item Es lassen sich die üblichen Verknüpfungen auf $\mathbb{R}$
 definieren. 
@@ -218,23 +246,24 @@ einelementigen Mengen $\{ x \}$, $x \in \mathbb{Q}$ enthalten.
 
 
 
-
-\section{Komplexe Zahlen $\mathbb{C}$}
-Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen}:
-Die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
+\section{Komplexe Zahlen}
+\begin{defn}[Komplexe Zahlen $\mathbb{C}$]
+Der Körper $\mathbb{C}$ der {\color{red} komplexen Zahlen} ist
+definiert über die Menge $\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$ mit 
 \begin{itemize}
  \item   Addition: $(k,l)+(n,m)=(k+n,l+m)$
 \item Multiplikation:  $ (k,l) \cdot (n,m) = (kn-lm, km+ln) $
 \end{itemize}
-
 \begin{itemize}
  \item {\color{red} $i:=(0,1)$}  mit 
 \begin{itemize}
 \item $ i^2=(0,1) \cdot (0,1) = (-1,0) $
 \item $\forall (x,y) \in \mathbb{C}:  (x,y)=x \cdot (1,0) + y \cdot (0,1)= x +i y$
 \end{itemize}
-\item \textsl{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ (Sage: \isage{abs})
+\item \textsl{Betrag}: $|z|=|(x,y)|:=\sqrt{x^2+y^2}$ 
 \end{itemize}
+  
+\end{defn}
 
 
 \begin{thm}[Fundamentalsatz der Algebra]

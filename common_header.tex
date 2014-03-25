@@ -178,7 +178,7 @@ frame=single
 }
 
 \newcommand{\pyinput}[1]{\lstset{language=fooPython}\lstinputlisting{#1}}
-\newcommand{\isage}[1]{\lstset{language=fooPython,basicstyle=\color[gray]{0.3}}\lstinline|#1|}
+\newcommand{\isage}[1]{{\lstset{language=fooPython,basicstyle=\color[gray]{0.3}}\lstinline|#1|}}
 
 \lstnewenvironment{pyout}[1][]{\lstset{language=fooPython,xleftmargin=0.2cm,frame=none,backgroundcolor=\color{white},basicstyle=\color{darkblue}\ttfamily\small,#1}}{}
 \lstnewenvironment{pyin}[1][]{\lstset{language=fooPython,#1}}{}
