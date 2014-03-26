@@ -8,7 +8,10 @@ sage-doc-format im worksheet (wuerde nur ueber direk html gehen, preformatted is
 
 TODO 2014-01-23  Kurs so halten, dass man kurz was vorstellt, dann aufgaben dazu, dann wieder was vorstellen , usw. (fuer sage vielleicht zuviel, evtl. aber mit matlab-kurs machbar.)
 
-TODO 2014-01-23  anleitung schreiben wie man sage mit editor und im batch-betrieb benutzen kann-> sage : attach, then editor (spyder!)
+DONE 2014-01-23  anleitung schreiben wie man sage mit editor und im batch-betrieb benutzen kann-> sage : attach, then editor (spyder!)
+  CLOSED: 2014-03-26 18:00:40
+  :LOGBOOK:
+    DONE: 2014-03-26 18:00:40
 
 * Inhaltliches*
 
@@ -17,7 +20,10 @@ TODO 2014-01-23  lsg06: limit der tschebyschef-polynome?
 TODO 2014-01-23  python decorators, klassen?
 TODO 2014-01-23  mehr Mathematik-aufgaben, wo man den Sinn der Technik besser versteht .
 
-TODO 2014-01-23  einheit 4 zu kurz : evtl. datencontainer aus 5 weit ! vorziehen
+DONE 2014-01-23  einheit 4 zu kurz : evtl. datencontainer aus 5 weit ! vorziehen
+  CLOSED: 2014-03-26 17:57:09
+  :LOGBOOK:
+    DONE: 2014-03-26 17:57:09
 TODO 2014-01-23  einheit  8 zu kurz. was koennte man da nettes noch machen?
 
 TODO 2014-01-23 Durchgang:
