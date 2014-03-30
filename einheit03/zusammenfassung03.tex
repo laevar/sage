@@ -44,7 +44,7 @@ M2[1]; M2[1:4]
 <set>.union(<set>)
 \end{sagein}
 
- \item Mengenminus- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/sets/set.html#sage.sets.set.Set_object.difference}{difference()}
+ \item Differenz zweier Mengen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/sets/set.html#sage.sets.set.Set_object.difference}{difference()}
 \begin{sagein}
 <set>.difference(<set>)
 \end{sagein}
@@ -58,6 +58,10 @@ powerset(<set>)
 \begin{sagein}
 <element> in <set>
 \end{sagein}
+\item Teilmengen einer Menge- subsets()
+	\begin{sagein}
+<set>.subsets()
+	\end{sagein}
  \end{itemize}
 
  \item Filtern nach einer Eigenschaft- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/combinat.html?highlight=filter#sage.combinat.combinat.CombinatorialClass.filter}{filter()}
@@ -76,7 +80,6 @@ M1 enthält dann alle Elemente von <set>, die <f> erfüllen.
 \begin{itemize}
  \item Runden
 
-
  \begin{tabular}{|ll|}
 \hline
 \isage{abs()} & Absolutbetrag\\
@@ -92,11 +95,10 @@ M1 enthält dann alle Elemente von <set>, die <f> erfüllen.
 float(<expr>)
 \end{sagein}
 
-\[\]
+Genauigkeit eines Ausdrucks
 \begin{sagein}
 <expr>.n(digits=<number>)
 \end{sagein}
-der Parameters digits setzt die Genauigkeit von expr.
 \item In eine andere Basis konvertieren
 \begin{sagein}
     <number>.str(<base>)

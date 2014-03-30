@@ -21,41 +21,49 @@
 \begin{itemize}
  \item Ableiten nach x- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.diff}{diff()}
 \begin{sagein}
-diff(<Ausdruck>,x) 
+diff(<expr(x)>,x) #oder: <expr>.diff(x)
 \end{sagein}
-\item höhere Ableitungen
+\item Mehrfache ($n$-te) Ableitung nach einer Variablen
 \begin{sagein}
-diff(<Ausdruck>,x1,x2,x3,...)
-diff(<Ausdruck>,x,<anzahl>) 
+diff(<expr(x)>,x,<n>) 
 \end{sagein}
-\end{itemize}
+\item H\"ohere Ableitungen (nach mehreren Variablen)
+	\begin{sagein}
+diff(<expr>,<var1>,<var2>,$\ldots$)
+	\end{sagein}
 
+\end{itemize}
 
 \textbf{Taylorformel}
 
 \begin{itemize}
  \item Taylorformel- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{taylor()}
 \begin{sagein}
-taylor(<funktion>,<var>,<stelle>,<grad>)
+taylor(<function>,<var>,<location>,<degree>)
 \end{sagein}
 \end{itemize}
 
 \textbf{Integral}
 
 \begin{itemize}
- \item bestimmte Integrale- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
+ \item Bestimmte Integrale- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
 \begin{sagein}
-integrate(<funktion>,<var>,<untergrenze>,<obergrenze>) 
+integrate(<function>,<var>,<lowerBound>,<upperBound>) 
 \end{sagein}
-\item unbestimmte Integrale
+\item Unbestimmte Integrale
 \begin{sagein}
-integrate(<funktion>,<var>)
+integrate(<function>,<var>)
 \end{sagein}
-\item numerische Approximation
+\item Numerische Approximation
 \begin{sagein}
-numerical_integral(<funktion>,<untergrenze>,<obergrenze>) 
+numerical_integral(<function>,<lowerBound>,<upperBound>) 
 \end{sagein}
 \end{itemize}
 
 \end{document}
+
+\item
+	\begin{sagein}
+
+	\end{sagein}
 

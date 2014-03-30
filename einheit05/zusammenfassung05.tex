@@ -24,11 +24,11 @@ Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dok
 \end{sagein}
  \item Zugriff auf Index
 \begin{sagein}
-<Folge>[<Index>]
+<tuple>[<index>]
 \end{sagein}
  \item Zugriff auf Intervall
 \begin{sagein}
-<Folge>[<von>:<bis>]
+<tuple>[<start>:<stop>-1]
 \end{sagein}
 \end{itemize}
 
@@ -40,11 +40,35 @@ Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dok
 [a,b,c,...] 
 list(<sequence>)
 \end{sagein}
-\item Zugriff (siehe Folge)
+\item Zugriff auf Index
+	\begin{sagein}
+<list>[<index>]
+	\end{sagein}
+
 \item Liste erweitern- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/misc/explain_pickle.html?highlight=append#sage.misc.explain_pickle.TestAppendList}{append()}
 \begin{sagein}
 <Liste>.append(<sequence>)
 \end{sagein}
+\item Entfernen eines Elements aus einer Liste- pop()
+	\begin{sagein}
+<list>.pop(<index>)
+	\end{sagein}
+\item Entfernen eines Elements aus einer Liste- remove()
+	\begin{sagein}
+<list>.remove(<element>)
+	\end{sagein}	
+\item Ist Element in Liste?
+	\begin{sagein}
+<element> in <list>
+	\end{sagein}
+\item Index eines Elements in einer Liste
+	\begin{sagein}
+<list>.index(<element>)
+	\end{sagein}
+\item Echte Kopie einer Liste
+	\begin{sagein}
+copy(<list>) #oder: <list>[:]
+	\end{sagein}
 \item sortieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/structure/sequence.html?highlight=sort#sage.structure.sequence.Sequence_generic.sort}{sort()}
 \begin{sagein}
  <liste>.sort(cmp=<vergleichsfunktion>)
@@ -57,6 +81,10 @@ list(<sequence>)
 \begin{sagein}
  mapthreaded(<f>,<Liste>)
 \end{sagein}
+\item Listen paarweise verkn\"upfen- zip()
+	\begin{sagein}
+zip(<list1>,<list2>,$\ldots$)
+	\end{sagein}
 \end{itemize}
 
 \textbf{Dictionaries- } \href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
@@ -65,20 +93,34 @@ list(<sequence>)
 \begin{sagein}
 {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
 \end{sagein}
- \item Zugriff
+ \item Zugriff auf Index
 \begin{sagein}
  <dict>[<Index>]
 \end{sagein}
-\item Dictionaries zusammenhängen- \href{http://docs.python.org/library/stdtypes.html?highlight=.update#dict.update}{update()}
+\item Entnehmen von Eintr\"agen aus Dictionary- pop()
+	\begin{sagein}
+<dict>.pop(<index>)
+	\end{sagein}
+\item dict1 um dict2 erweitern- \href{http://docs.python.org/library/stdtypes.html?highlight=.update#dict.update}{update()}
 \begin{sagein}
- <dict>.update(<dict2>)
+ <dict1>.update(<dict2>)
 \end{sagein}
+
+\item Liste der Indizes eines Dictionary- keys()
+	\begin{sagein}
+<dict>.keys()
+	\end{sagein}
+
+\item Liste der Werte eines Dictionary- values()
+	\begin{sagein}
+<dict>.values()
+	\end{sagein}
+\item Iterator \"uber die Index:Wert Paare- iteritems()
+	\begin{sagein}
+<dict>.iteritems()
+	\end{sagein}
 \end{itemize}
-\bigskip
-\bigskip
-\bigskip
-\bigskip
-\textbf{Lineare Abbildungen}
+\textbf{Eigenwerte und -vektoren}
 \begin{itemize}
 \item Eigenwerte- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=eigenvalues#sage.matrix.matrix2.Matrix.eigenvalues}{eigenvalues()}
 \begin{sagein}
@@ -92,6 +134,11 @@ list(<sequence>)
 \begin{sagein}
 <matrix>.charpoly() 
 \end{sagein}
+\item Kern einer Abbildung
+	\begin{sagein}
+<A>.kernel()
+	\end{sagein}
+
 \item LU-Zerlegung - \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=matrix.lu#sage.matrix.matrix2.Matrix.LU}{LU()}
     \begin{sagein}
 P,L,U = <matrix>.LU()
@@ -100,3 +147,7 @@ P,L,U = <matrix>.LU()
 
 \end{document}
 
+\item
+	\begin{sagein}
+
+	\end{sagein}

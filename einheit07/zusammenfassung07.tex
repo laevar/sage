@@ -1,4 +1,4 @@
-\documentclass[a4paper,9pt,DIV15,twocolumn]{scrartcl}
+\documentclass[a4paper,9pt,DIV15]{scrartcl}
 \usepackage[xetex,bookmarks=true,pdfstartview=FitH,bookmarksopen=true,
     colorlinks,citecolor=Blue,linkcolor=DarkBlue,urlcolor=Green,
     pagebackref=true,plainpages=false,pdfpagelabels=true,unicode=true,
@@ -17,30 +17,42 @@
 \medskip
 
 \textbf{Funktionen}
-
+Note: Unterscheiden Sie Ausdruck und Funktion
 \begin{itemize}
  \item Deklaration
 \begin{sagein}
-f(x,y,...) = expr
+f(<var1>,<var2>,$\ldots$) = expr(<var1>,<var2>,$\ldots$)
 \end{sagein}
 \item Komposition
 \begin{sagein}
-f_g(x) = f(g); g_f(x) = g(f)
+f_g(<var>) = f(g); g_f(<var>) = g(f)
 \end{sagein}
 \item Stückweise Funktionen
     \begin{sagein}
 Piecewise([ <interval>,<function>], [<interval2>,<function2>],..])
     \end{sagein}
-    \begin{itemize}
         \item Definitionsbereich
             \begin{sagein}
-<piecewisefunc>.domain()
+<piecewiseFunc>.domain()
             \end{sagein}
         \item Endpunkte
             \begin{sagein}
-<piecewisefunc>.end_points()
+<piecewiseFunc>.end_points()
             \end{sagein}
-    \end{itemize}
+\item Basis-Ring einer Piecewise-Funktion
+	\begin{sagein}
+<piecewiseFunc>.base_ring()
+	\end{sagein}
+
+\item Liste der Paare (Intervall, Funktion)
+	\begin{sagein}
+<piecewiseFunc>.list()
+	\end{sagein}
+
+\item Liste der Funktionen
+	\begin{sagein}
+<piecewiseFunc>.functions()
+	\end{sagein}
 \end{itemize}
 
 
@@ -53,54 +65,68 @@ expr.limit(x=<Stelle>,dir=<von wo>,taylor=False)
 limit(expr,x=<Stelle>,dir=<von wo>,taylor=False)
 \end{sagein}
 \end{itemize}
-
+\pagebreak
 \textbf{Grafiken- }	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/plot.html?highlight=.plot#d-plotting}{\textbf{plotting}}
-
 \begin{itemize}
  \item Optionen für grafische Objekte\\
-\begin{tabular}{lp{8cm}}
-\isage{linestyle}  & Darstellung von Linien
-           (\isage{'-'} (solid), \isage{'-.'} (dashed), \isage{':'}) (dotted)
-                {\color{blue} \isage{linestyle = '.'}}\\
-\isage{thickness}  & Linienstärke in mm
-              {\color{blue} \isage{thickness = 4}}\\
-\isage{color}      & Zuweisung einer Farbe
-              {\color{blue} \isage{color='red'}}\\
-\isage{plot_points}        & Anzahl Stützstellen
-              {\color{blue} \isage{plot_points  = [nx,ny]}} (2 Parameter)\\
-\isage{alpha/opacity}  & Transparenzfaktor
-     {\color{blue} \isage{alpha = 0.8}}\\
+\begin{tabular}{lp{19cm}}
+{linestyle}  & {Darstellung von Linien}
+	{\isage{'-'} (solid)} {\isage{'-.'} (dashed)} {\isage{':'} (dotted)}
+                {\color{blue} {linestyle = ':'}}\\
+{thickness}  & Linienstärke in mm
+              {\color{blue} {thickness = 4}}\\
+{color}      & Zuweisung einer Farbe
+              {\color{blue} {color='red'}}\\
+							{plot\_points}        & {Anzahl Stützstellen}
+							{\color{blue} {plot\_points  = [nx,ny]}} (2 Parameter)\\
+{alpha/opacity}  & Transparenzfaktor
+     {\color{blue} {alpha = 0.8}}\\
 \end{tabular}
 \item Optionen für grafische Szenen\\
-\begin{tabular}{lp{8cm}}
-\isage{aspect_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. 
-              {\color{blue} \isage{aspect_ratio = 2}}\\
-\isage{figsize}    & Grösse des Bildes 
-                  {\color{blue} \isage{figsize = [width, height]}}\\          
-\isage{axes_labels} &  Tuple oder Liste der Achsenbeschriftungen 
-{\color{blue} \isage{axes_labels = ('$x$','$y$')}}\\
-\isage{gridlines} & Gitterlinien
-              {\color{blue} \isage{gridlines = True}}
+\begin{tabular}{lp{19cm}}
+	{aspect\_ratio} & Verhältnis der Achsen (Breite/Höhe). $1$ für 1:1 Verhältnis. 
+	{\color{blue} {aspect\_ratio = 2}}\\
+		{figsize}    & {Grösse des Bildes} 
+							{{\color{blue} {figsize = [width, height]}}}\\          
+{axes\_labels} &  Tuple oder Liste der Achsenbeschriftungen 
+{\color{blue} {axes\_labels = ('$x$','$y$')}}\\
+{gridlines} & Gitterlinien
+              {\color{blue} {gridlines = True}}
 \end{tabular}
+\item Default Plotoptionen
+	\begin{sagein}
+plot.options()
+	\end{sagein}
+
 \item 2D/3D Plot- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot}{plot()}	/	\href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/combinat/e_one_star.html?highlight=.plot#sage.combinat.e_one_star.Patch.plot3d}{plot3d()}
 \begin{sagein}
-plot(f2,(x,a,b),optionen,...)
-plot3d(f3,(x,a,b),(y,c,d),optionen,...)
+plot(<func>,(<var>,<lowerBound>,<upperBound>),options,...)
+plot3d(<func>,(<var1>,<lowerBound1>,<upperBound1>),(<var>2,<lowerBound2>,<upperBound2>),options,...)
 \end{sagein}
 \item 2D/3D Kurven- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/plot.html?highlight=.plot#sage.plot.plot.parametric_plot}{parametric\_plot()}
 \begin{sagein}
-parametric_plot([x(t),y(t)], (t,a,b), optionen, ...)
-parametric_plot([x(t),y(t),z(t)], (t,a,b), optionen, ...)
+parametric_plot([<func1>(t),<func2>(t)], (t,<lowerBound>,<upperBound>), options, ...)
+parametric_plot([<func1>(t),<func2>(t),<func3>(t)], (t,<lowerBound>,<upperBound>), opts, ...)
 \end{sagein}
 \item Konturen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/contour_plot.html#sage.plot.contour_plot.contour_plot}{contour\_plot()}
 \begin{sagein}
-contour_plot(f, (x,a,b), (y,c,d), contours=[c1,c2,...], optionen, ...)
+contour_plot(<func>(x,y), (x,<lowerBound>,<upperBound>), (y,<lowerBound>,<upperBound>), contours=[val1,val2,...], options, ...)
 \end{sagein}
+\item 2D Punkte- points()
+	\begin{sagein}
+point([<p1>,<p2>,$\ldots$],options,$\ldots$)
+	\end{sagein}
+
 \item animierte Grafiken- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/animate.html?highlight=.plot#sage.plot.animate.Animation}{animate()}
 \begin{sagein}
-animate([<graph1,graph2,...>], optionen, ... ) 
+animate([<graph1>,<graph2>,...], options, ... ) 
 \end{sagein}
 \end{itemize}
 
 \end{document}
+
+\item
+	\begin{sagein}
+
+	\end{sagein}
 

@@ -18,16 +18,18 @@ Die {\color{Green}grün} markierten Wörter Sind web-links zu der jeweiligen Dok
 \medskip
 \textbf{Matrix- } \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{\textbf{matrix()}}
 \begin{itemize}
-\item Deklaration $n\times m$
+	\item Deklaration $n\times m$ mit Eintr\"agen $a_{ij}$
 \begin{sagein}
-matrix([<Koerper>,<n>,<m>,[a11,a12,...],[a21,a22,..],..])
+matrix([<Koerper>,<n>,<m>,[[a11,a12,...],[a21,a22,..],..])
 \end{sagein}
-\begin{itemize}
-\item Erzeuge Diagonalmatrix aus einem Vektor-\\ \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.diagonal_matrix}{diagonal\_matrix()}
+\item Nullmatrix der Gr\"osse $n,m$
+	\begin{sagein}
+matrix(<n>,<m>)
+	\end{sagein}
+\item Diagonalmatrix aus Vektor- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.diagonal_matrix}{diagonal\_matrix()}
 \begin{sagein}
 diagonal_matrix(<vector>)
 \end{sagein}
-\end{itemize}
 \item Zeilen- und Spaltenzahl
 \begin{itemize}
  \item Spaltenzahl- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.ncols}{ncols()}
@@ -47,7 +49,7 @@ diagonal_matrix(<vector>)
 \begin{itemize}
  \item Eintrag in Zeile $i$ und Spalte $j$
 \begin{sagein}
-<matrix>[i,j] , <matrix>[i1:i2,j1:j2]
+<matrix>[i,j]% , <matrix>[i1:i2,j1:j2]
 \end{sagein}
 \item Manipulation Eintrag Zeile $i$, Spalte $j$
 \begin{sagein}
@@ -58,11 +60,23 @@ diagonal_matrix(<vector>)
 <matrix>.row(0)
 <matrix>.column(4)
 \end{sagein}
+\item Teilmatrix zwischen Zeile rs und re-1, Spalte cb und ce-1
+	\begin{sagein}
+<matrix>[rs:re,cs:ce]
+	\end{sagein}
 \end{itemize}
 \item Addition/Multiplikation
 \begin{sagein}
 A+B; A*B
 \end{sagein}
+\item Inverse
+	\begin{sagein}
+<matrix>.inverse() #oder: <matrix>^(-1)
+	\end{sagein}
+\item Transponierte
+	\begin{sagein}
+<matrix>.transpose()
+	\end{sagein}
 \item Rang- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.rank}{rank()}
 \begin{sagein}
 <matrix>.rank()        
@@ -74,6 +88,10 @@ A+B; A*B
 \item Invertierbarkeit- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix0.html?highlight=matrix.rank#sage.matrix.matrix0.Matrix.is_invertible}{is\_invertible()}
     \begin{sagein}
 <matrix>.is_invertible()
+    \end{sagein}
+	\item Unit\"ar- \href{https://sage.math.uni-goettingen.de/doc/static/reference/matrices/sage/matrix/matrix2.html?highlight=is_unitary}{is\_unitary()}
+    \begin{sagein}
+<matrix>.is_unitary()
     \end{sagein}
 \item Determinante- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/matrix2.html?highlight=matrix.det#sage.matrix.matrix2.Matrix.det}{det()}
 \begin{sagein}
@@ -93,7 +111,39 @@ map_threaded(<function>,<matrix oder verschachtelte Listen>)
  vector([v1,v2,..]) 
 \end{sagein}
 
+\item Basis des Spans mehrerer Vektoren
+	\begin{sagein}
+span(<v1>,<v2>,$\ldots$,<field>)
+	\end{sagein}
+
+\item Basis eines Vektorraums
+	\begin{sagein}
+<vr>.basis()
+	\end{sagein}
+
+\item Erzeuge $n$-dim Vektorraum \"uber K\"orper
+	\begin{sagein}
+VectorSpace(<field>,<n>)
+	\end{sagein}
+
+\item Von Vektoren aufgespannter Unterraum
+	\begin{sagein}
+<vr>.subspace([v1,v2,$\ldots$])
+	\end{sagein}
+
+\item Skalarprodukt zweier Vektoren
+	\begin{sagein}
+<v1>.dot_product(<v2>) #oder: <v1>*<v2>
+	\end{sagein}
+
+\item $p$-Norm eines Vektors
+	\begin{sagein}
+<v>.norm(p)
+	\end{sagein}
+
 \end{itemize}
+
+
 
 \textbf{Funktionen}
 
@@ -109,3 +159,7 @@ def <Name><(a,b,..)>:
 
 \end{document}
 
+\item 
+	\begin{sagein}
+
+	\end{sagein}

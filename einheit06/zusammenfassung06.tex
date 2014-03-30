@@ -20,11 +20,11 @@
 \begin{itemize}
  \item Grenzwert- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=function#sage.calculus.functional.limit}{limit()}
 \begin{sagein}
-limit(<expr(x)>,x=<Stelle>,dir='<+|->')
+limit(<expr(x)>,x=<location>,dir='<+|->')
 \end{sagein}
 \item Visualisierung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/plot/point.html?highlight=plot.point#points}{point()}
 \begin{sagein}
-point([(<n>,<f(n)>], pointsize=<größe>)
+point([(<n>,<f(n)>], pointsize=<size>)
 \end{sagein}
 \end{itemize}
 
@@ -34,12 +34,16 @@ point([(<n>,<f(n)>], pointsize=<größe>)
 \begin{itemize}
  \item Summe (symbolisch)- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=.sum#sage.symbolic.expression.Expression.sum}{sum()}
 \begin{sagein}
-sum(<f>,<i>,<a>,<b>) 
+sum(<expr(var,index)>,<index>,<lowerBound>,<upperBound>) 
 \end{sagein}
 \item Annahmen machen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.assume}{assumptions()}
 \begin{sagein}
 assume(<assumptions>) 
 \end{sagein}
+\item Liste gemachter Annahmen- assumptions()
+	\begin{sagein}
+assumptions()
+	\end{sagein}
 \item Annahmen vergessen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=assume#sage.symbolic.expression.Expression.forget}{forget()}
 \begin{sagein}
  forget(<assumptions>)
@@ -69,16 +73,24 @@ Annahme & Erklärung\\
 while <boolean expression> :
     <Code-block>
 \end{sagein}
-\item Listen invertieren / Abwärtszählen
+\item Abwärtszählen- reversed()
 \begin{sagein}
-reversed([<x>,<y>])
+reversed([<lowerBound>,<upperBound>])
 \end{sagein}
-\item srange() - reelle Schrittweiten- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/misc/misc.html?highlight=sage.misc.misc#sage.misc.misc.srange}{srange()}
+\item Z\"ahlen in beliebige Richtung mit ganzzahliger Schrittweite- range()
+	\begin{sagein}
+range(<bound>,<bound>,<stepSize>)
+	\end{sagein}
+\item Abw\"arzz\"ahlen mit reeller Schrittweite- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/misc/misc.html?highlight=sage.misc.misc#sage.misc.misc.srange}{srange()}
 \begin{sagein}
-srange(<x>,<y>,<Schrittweite>) 
+srange(<lowerBound>,<upperBound>,<stepSize>) 
 \end{sagein}
 \end{itemize}
 
 
 \end{document}
 
+\item
+	\begin{sagein}
+
+	\end{sagein}

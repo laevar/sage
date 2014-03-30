@@ -20,6 +20,10 @@
         \begin{sagein}
 print ('Text {<format>} und {<format>} .. '.format(x,y,..))
         \end{sagein}
+			\item Allgemeiner: <str>.format()
+				\begin{sagein}
+"x hat den Wert {} und y den Wert {}".format(x,y)
+				\end{sagein}
 \end{itemize}
 
 
@@ -27,14 +31,22 @@ print ('Text {<format>} und {<format>} .. '.format(x,y,..))
 \textbf{Dictionaries- } \href{http://docs.python.org/library/stdtypes.html?highlight=.update#mapping-types-dict}{\textbf{dictionaries}}
 
 \begin{itemize}
- \item Deklarieren eines Dictionaries:
+ \item Deklarieren eines Dictionaries
 \begin{sagein}
 d = {<Index1>:<Wert1>,<Index2>:<Wert2>,...}
 \end{sagein}
- \item Zugriff auf Index:
+ \item Zugriff auf einen Index
 \begin{sagein}
 d[<Index>]
 \end{sagein}
+\item Liste aller Indizes
+	\begin{sagein}
+d.keys()
+	\end{sagein}
+\item Liste aller Werte
+	\begin{sagein}
+d.values()
+	\end{sagein}
 \end{itemize}
 
 \textbf{Funktionen, Schleifen und Abfragen}
@@ -47,30 +59,31 @@ lambda <parameter_list>: <expression>
 % \item Objektfunktion: 
  \item Schleifen- \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
 \begin{sagein}
-for <indexvar> in <expr>/<list>:
-    <Code-Block>
+for <var> in <list>:
+    <codeBlock>
 \end{sagein}
  \item Abfragen- \href{http://docs.python.org/reference/compound_stmts.html#the-if-statement}{if}
 \begin{sagein}
 if <boolean expr>:
-    <Code-Block>
+    <codeBlock>
+elif <boolean expr>:
+		<codeBlock>
 else:
-    <Code-Block>
+    <codeBlock>
 \end{sagein}
 
 \end{itemize}
-
 \textbf{Symbolisches Rechnen}
-\begin{itemize}
-\item Unbestimmtes Integral- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
-\begin{sagein}
-integrate(<expr>,<variable>)
-\end{sagein}
- \item Bestimmtes Integral
-\begin{sagein}
-integrate(<expr>,<variable>,<lower>,<upper>)
-\end{sagein}
-\end{itemize}
+%\begin{itemize}
+%\item Unbestimmtes Integral- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=diff#sage.calculus.functional.integral}{integrate()}
+%\begin{sagein}
+%integrate(<expr>,<variable>)
+%\end{sagein}
+% \item Bestimmtes Integral
+%\begin{sagein}
+%integrate(<expr>,<variable>,<lower>,<upper>)
+%\end{sagein}
+%\end{itemize}
   \begin{itemize}
 
       
@@ -78,13 +91,29 @@ integrate(<expr>,<variable>,<lower>,<upper>)
        \begin{sagein}
 <expr>.collect(<x>)  
        \end{sagein}
-   \item  Potenzgesetze- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.combine}{combine()}
+		 \item Zerlegen von Ausdr\"ucken
+			 \begin{itemize}
+				\item Anzahl der Operanden
+					\begin{sagein}
+<expr>.nops()
+					\end{sagein}
+				\item Operanden eines Ausdrucks
+					\begin{sagein}
+<expr>.operands()
+					\end{sagein}
+				\item Ist Operand in Ausdruck?
+					\begin{sagein}
+<expr>.has(<op>)
+					\end{sagein}
+				\end{itemize}
+		 \item  Potenzgesetze- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.combine}{combine()}
        \begin{sagein}
 <expr>.combine() 
        \end{sagein}
-   \item Ausmultiplizieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.expand}{expand()}
+		 \item Ausmultiplizieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.expand}{expand()}, \href{https://sage.math.uni-goettingen.de/doc/static/reference/calculus/sage/symbolic/expression.html#sage.symbolic.expression.Expression.expand_trig}{expand\_trig()}
        \begin{sagein}
-<expr>.expand()  
+<expr>.expand() 
+<expr>.expand_trig()
        \end{sagein}
    \item Faktorisieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=simplify_full#sage.symbolic.expression.Expression.factor}{factor()}
        \begin{sagein}
@@ -123,23 +152,28 @@ integrate(<expr>,<variable>,<lower>,<upper>)
 \textbf{Gleichungen, Vergleiche, Logik}
 
 \begin{itemize}
+ %\item Wahrheitswert für die Gleichung- \href{http://docs.python.org/library/stdtypes.html#boolean-operations-and-or-not}{boolean}
+  %   \begin{sagein}
+%bool(<Ausdruck/Gleichung>)   
+ %    \end{sagein}
+	\item \"Uberpr\"ufung zweier Ausdr\"ucke auf Gleichheit
+		\begin{sagein}
+<expr1>==<expr2>
+		\end{sagein}
+	\item \textbf{ == != =}
+ \item Wahrheitswerte: \isage{True}, \isage{False}
+ \item Logische Verknüpfungen: \isage{and}, \isage{or}, \isage{not}
  \item Gleichungssysteme analytisch lösen mit \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/relation.html?highlight=symbolic.relation#sage.symbolic.relation.solve}{solve()}:
 \begin{sagein}
- solve(<gleichungen>,<variablen>,<optionen>)
+ solve(<equations>,<vars>,<options>)
 \end{sagein}
 \item Gleichungssysteme numerisch lösen mit \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/numerical/optimize.html?highlight=numerical.optimize#sage.numerical.optimize.find_root}{find\_root()}:
     \begin{sagein}
-<expr>.find_root(<lowerbound>,<upperbound>)
+<expr>.find_root(<lowerBound>,<upperBound>)
     \end{sagein}
 
- \item Wahrheitswert für die Gleichung- \href{http://docs.python.org/library/stdtypes.html#boolean-operations-and-or-not}{boolean}
-     \begin{sagein}
-bool(<Ausdruck/Gleichung>)   
-     \end{sagein}
- \item Wahrheitswerte: \isage{True}, \isage{False}
- \item Logische Verknüpfungen: \isage{and}, \isage{or}, \isage{not}
-\end{itemize}
 
+\end{itemize}
 
 \end{document}
 

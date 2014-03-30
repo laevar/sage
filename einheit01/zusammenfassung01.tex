@@ -16,18 +16,26 @@
 \medskip
 \textbf{Grundlagen}
 \begin{itemize}
-    \item Listen (geordnet, änderbar)- \href{http://docs.python.org/library/functions.html#list}{list()}
+    \item Listen (geordnet, veränderbar)- \href{http://docs.python.org/library/functions.html#list}{list()}
         \begin{sagein}
 [a,b,c,..]
         \end{sagein}
-    \item Tuple (fest) \href{http://docs.python.org/library/functions.html#tuple}{tuple()}
+    \item Tuple (ungeordnet, nicht ver\"anderbar) \href{http://docs.python.org/library/functions.html#tuple}{tuple()}
         \begin{sagein}
 (a,b,c,..)
         \end{sagein}
+	\item Liste ganzer Zahlen von a bis b
+		\begin{sagein}
+[a..b] #oder: range(a,b+1)
+		\end{sagein}
+	\item Typen von Variablen und Objekten
+		\begin{sagein}
+type(arg)
+		\end{sagein}
 \end{itemize}  
 \textbf{Kurvendiskussion}
 \begin{itemize}
- \item Deklarieren von Variablen mit- \href{}{}
+ \item Deklarieren von Variablen- var()%\href{}{}
 \begin{sagein}
 var('<varname>')
 \end{sagein}
@@ -37,26 +45,25 @@ var('<varname>')
     \end{sagein}
 \item Definieren von (mathematischen) Funktionen 
     \begin{sagein}
-<functionname>(<arguments>) = <expr>
+<functionname>(<args>) = <expr>(<args>)
     \end{sagein}
 %\item Symbolisches Rechnen 
 %\begin{itemize}
 \item Grenzwertbestimmung- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/calculus/functional.html?highlight=function#sage.calculus.functional.limit}{limit()}
     \begin{sagein}
-<expr>.limit(x=<a>, dir='<plus|minus>')
+<expr>.limit(x=<loc>, dir='<plus|minus>')
     \end{sagein}
 \item Bilden von Ableitungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/expression.html?highlight=differentiate#sage.symbolic.expression.Expression.differentiate}{differentiate()}
 \begin{sagein}
-<expr>.differentiate(<variable>)
+<expr>.differentiate(<var>)
 \end{sagein}
 
 %\end{itemize}
 %\begin{itemize}
 \item Lösen von Gleichungen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/symbolic/relation.html?highlight=symbolic.relation#sage.symbolic.relation.solve}{solve()}:
 \begin{sagein}
-solve( f(x)==0, x)
+solve( f(var)==0, var)
 \end{sagein}
-
 \item Berechnen numerischer Approximationen- \href{http://docs.python.org/library/functions.html#float}{float()}
 \begin{sagein}
 float(<expr>)
@@ -70,11 +77,11 @@ plot(<function>,(<lowerbound>,<upperbound>))
 
 \textbf{AGLA}
 \begin{itemize}
-\item Matrix eingeben- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{matrix()}
+\item Matrix erzeugen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/matrix/constructor.html#sage.matrix.constructor.Matrix}{matrix()}
 \begin{sagein}
 matrix([ [<z1s1>,<z1s2>],[<z2s1>,<z2s2>] ])
 \end{sagein}
- \item Vektor eingeben- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{vector()}
+ \item Vektor erzuegen- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/modules/free_module_element.html#sage.modules.free_module_element.vector}{vector()}
 \begin{sagein}
 vector([<a>,<b>,<c>])
 \end{sagein}
@@ -90,9 +97,9 @@ A+B, A-B, A*B
 \begin{sagein}
 A^(-1); A.inverse()
 \end{sagein}
-\item Substitutieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/crypto/mq/mpolynomialsystem.html#sage.crypto.mq.mpolynomialsystem.MPolynomialRoundSystem_generic.subs}{subs()}
+\item Substituieren- \href{https://sage.math.uni-goettingen.de/doc/static/reference/sage/crypto/mq/mpolynomialsystem.html#sage.crypto.mq.mpolynomialsystem.MPolynomialRoundSystem_generic.subs}{subs()}
 \begin{sagein}
-<expr>.subs(<variable>=<subs>)
+<expr>.subs(<var>=<subs>)
 \end{sagein}
 \end{itemize}
 
@@ -100,7 +107,9 @@ A^(-1); A.inverse()
 \begin{itemize}
     \item (Nicht-mathematische) Funktionen- \href{http://docs.python.org/reference/compound_stmts.html#function-definitions}{def}
 \begin{sagein}
-def <function>(<argument>): <befehle> return <rueckgabewert>
+def <name>(<arguments>):
+	<codeBlock>
+	return <value>
 \end{sagein}
     \item Einzeilige Schleifen- \href{http://docs.python.org/tutorial/controlflow.html#for-statements}{for}
 \begin{sagein}
