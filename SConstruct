@@ -21,8 +21,8 @@ env['ENV']['TEXINPUTS'] = ":.:" + os.getcwd()
 # debug output..
 print "BUILD_TARGETS is", map(str, BUILD_TARGETS)
 
-env.Alias('klausur1', 'klausuren/2013/klausur1')
-env.Alias('klausur2', 'klausuren/2013/klausur2')
+env.Alias('klausur1', 'klausuren/2014/klausur1')
+env.Alias('klausur2', 'klausuren/2014/klausur2')
 
 # setting default target
 #Default('einheit01')
@@ -36,9 +36,9 @@ for t in targets:
         file = t + '/quicksheet.tex'
     elif t == 'klausur1':
         # file for exams
-        file = 'klausuren/2013/klausur1/klausur1.tex'
+        file = 'klausuren/2014/klausur1/klausur1.tex'
     elif t == 'klausur2':
-        file = 'klausuren/2013/klausur2/klausur2.tex'
+        file = 'klausuren/2014/klausur2/klausur2.tex'
     elif t == 'script':
         file = 'script/script.tex'
     else:
