@@ -2,36 +2,8 @@
 
 SAGE=Software for Algebra and Geometry Experimentation
 sage-doc-format im worksheet (wuerde nur ueber direk html gehen, preformatted ist ok)
---------
 
-* organisation* 
-
-TODO 2014-01-23  Kurs so halten, dass man kurz was vorstellt, dann aufgaben dazu, dann wieder was vorstellen , usw. (fuer sage vielleicht zuviel, evtl. aber mit matlab-kurs machbar.)
-
-DONE 2014-01-23  anleitung schreiben wie man sage mit editor und im batch-betrieb benutzen kann-> sage : attach, then editor (spyder!)
-  CLOSED: 2014-03-26 18:00:40
-  :LOGBOOK:
-    DONE: 2014-03-26 18:00:40
-
-* Inhaltliches*
-
-TODO 2014-04-02 slicing gleich bei listen erklaeren!
-
-TODO 2014-01-23  lsg06: limit der tschebyschef-polynome? noch 20 Minuten platz: rekursion nochmal besser erklaeren. Folgen-beispiel aus 7 nach 6 vorziehen
-
-TODO 2014-01-23  python decorators, klassen?
-TODO 2014-01-23  mehr Mathematik-aufgaben, wo man den Sinn der Technik besser versteht .
-
-DONE 2014-01-23  einheit 4 zu kurz : evtl. datencontainer aus 5 weit ! vorziehen
-  CLOSED: 2014-03-26 17:57:09
-  :LOGBOOK:
-    DONE: 2014-03-26 17:57:09
-DONE 2014-01-23  einheit  8 zu kurz. was koennte man da nettes noch machen?
-  CLOSED: 2014-04-09 19:23:53
-  :LOGBOOK:
-    DONE: 2014-04-09 19:23:53
-TODO 2014-04-08  einheit 7 zu kurz: Graphics() erklaeren! mehr visualisierungen!
-TODO 2014-04-08 vector-plots bei Grafiken hinzufuegen!
+TODO 2015-02-12 standarf-tex-files in separates git auslagern?
 
 TODO 2014-01-23 Durchgang:
   [] quicksheet ueberarbeiten (dazu braucht man git-zugriff)
@@ -44,16 +16,33 @@ TODO 2014-01-23 Durchgang:
   [] Zusammenfassungen erstellen/pruefen (dazu braucht man git-zugriff)
   [x] Vorlesung ueberarbeiten (Dokumentations-links einfuegen)
   [x] Mehr noetige Mathematik in den sage-notebook unterbringen
+--------
+*Inhalt*
 
+TODO 2015-02-12 reset() am ersten tag erwaehnen! oder auf das quicksheet packen
+TODO 2014-04-02 slicing gleich bei listen erklaeren!
+
+TODO 2014-01-23  lsg06: limit der tschebyschef-polynome? noch 20 Minuten platz: rekursion nochmal besser erklaeren. Folgen-beispiel aus 7 nach 6 vorziehen
+
+TODO 2014-01-23  python decorators, klassen? Diesmal mit einfuehren
+TODO 2014-01-23  mehr Mathematik-aufgaben, wo man den Sinn der Technik besser versteht .
+
+TODO 2014-04-08  einheit 7 zu kurz: Graphics() erklaeren! mehr visualisierungen!
+TODO 2014-04-08 vector-plots bei Grafiken hinzufuegen
 
 TODO 2014-04-09 enumerate bei schleifen einfuehren, break, continue, reduce
 
+
+
+* organisation* 
+
+TODO 2015-02-09 virtualbox-container fuer klausur erstellen
+
 TODO 2014-01-23  bisschen weniger detaillierte beispiele und/oder wiederholungen und weniger simple copy uebungsaufgaben.
 
-DONE 2014-01-23  sum: gleich so erklaeren dass man damit nur geschlossene ausdruecke haben will, ansonsten add!
-  CLOSED: 2014-04-07 18:35:18
-  :LOGBOOK:
-    DONE: 2014-04-07 18:35:18
+TODO 2015-02-12 direktes vorprogrammieren
 
+*Zukunft*
 
-  
+TODO 2014-01-23  Kurs so halten, dass man kurz was vorstellt, dann aufgaben dazu, dann wieder was vorstellen , usw. (fuer sage vielleicht zuviel, evtl. aber mit matlab-kurs machbar.)
+
