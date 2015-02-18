@@ -3,7 +3,7 @@
 SAGE=Software for Algebra and Geometry Experimentation
 sage-doc-format im worksheet (wuerde nur ueber direk html gehen, preformatted ist ok)
 
-TODO 2015-02-12 standarf-tex-files in separates git auslagern?
+TODO 2015-02-12 standard-tex-files in separates git auslagern?
 
 TODO 2014-01-23 Durchgang:
   [] quicksheet ueberarbeiten (dazu braucht man git-zugriff)
@@ -19,8 +19,7 @@ TODO 2014-01-23 Durchgang:
 --------
 *Inhalt*
 
-TODO 2015-02-12 reset() am ersten tag erwaehnen! oder auf das quicksheet packen
-TODO 2014-04-02 slicing gleich bei listen erklaeren!
+TODO 2014-04-09 einheit6: enumerate bei schleifen einfuehren, break, continue, reduce
 
 TODO 2014-01-23  lsg06: limit der tschebyschef-polynome? noch 20 Minuten platz: rekursion nochmal besser erklaeren. Folgen-beispiel aus 7 nach 6 vorziehen
 
@@ -30,13 +29,14 @@ TODO 2014-01-23  mehr Mathematik-aufgaben, wo man den Sinn der Technik besser ve
 TODO 2014-04-08  einheit 7 zu kurz: Graphics() erklaeren! mehr visualisierungen!
 TODO 2014-04-08 vector-plots bei Grafiken hinzufuegen
 
-TODO 2014-04-09 enumerate bei schleifen einfuehren, break, continue, reduce
 
 
 
 * organisation* 
 
-TODO 2015-02-09 virtualbox-container fuer klausur erstellen
+WAITING 2015-02-09 virtualbox-container fuer klausur erstellen
+  :LOGBOOK:
+    WAITING: 2015-02-18 12:46:35
 
 TODO 2014-01-23  bisschen weniger detaillierte beispiele und/oder wiederholungen und weniger simple copy uebungsaufgaben.
 
